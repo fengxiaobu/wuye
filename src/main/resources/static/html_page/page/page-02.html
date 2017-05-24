@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>首页</title>
+	<link rel="stylesheet" type="text/css" href="../../js/libs/bootstrap/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="../../css/reset.css">
+</head>
+<body>
+
+
+		<div class="col-xs-12">
+			<form class="form-inline">
+				<div class="form-group">
+					<label>地块：</label>
+					<select class="form-control">
+						<option>1#地</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+						<option>5</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label>期区/批次：</label>
+					<select class="form-control">
+						<option>1#地</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+						<option>5</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label>楼号：</label>
+					<select class="form-control">
+						<option>1#地</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+						<option>5</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<button type="submit" class="btn btn-info">检索</button>
+				</div>
+			</form>
+		</div>
+		<div class="col-xs-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<div class="col-xs-4">签约情况（土地协议）</div>
+					<div class="col-xs-8 panel-oprerate">
+						<button class="btn btn-info" type="button"><span class="glyphicon glyphicon-pencil"></span>填报</button>
+					</div>
+				</div>
+				<div class="panel-body">
+					<table class="table table-bordered">
+						<thead>
+							<tr class="info">
+								<th>地块</th>
+								<th>期区批次</th>
+								<th>楼号</th>
+								<th>时间</th>
+								<th colspan="2">事项、进度</th>
+								<th>历史填报</th>
+							</tr>
+						</thead>
+						<tbody>
+							<td>1#地</td>
+							<td>第一期第三批次</td>
+							<td></td>
+							<td>2017-05-06</td>
+							<td style="text-align:left!important">首层脚手架完成20％首层脚手架完成20％首层脚手架完成20％首层脚手架完成20％首层脚手架完成20％</td>
+							<td>
+								<img src="../../imgs_test/timg.jpg" alt="..." class="img140" style="width:114px;height:80px;margin-bottom:10px;">
+								<img src="../../imgs_test/timg.jpg" alt="..." class="img140" style="width:114px;height:80px;margin-bottom:10px;">
+								<img src="../../imgs_test/timg.jpg" alt="..." class="img140" style="width:114px;height:80px;margin-bottom:10px;">
+							</td>
+							<td><a>查看</a></td>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+
+
+</body>
+<script type="text/javascript" src="../../js/libs/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="../../js/libs/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	function tableEdit(start, end) {
+		$(".tudiqianyue").addClass("tableedit");
+		var tr = $(".tudiqianyue-tdtr").length;
+		$(".tudiqianyue-tdtr").each(function(_index,_this) {
+			var trIndex = _index;
+			console.log(_index)
+			$(this).find("td").each(function(_index,_this) {
+			console.log(_index)
+				var tdIndex = _index;
+				// $(this).attr("contenteditable","true");
+				if(tdIndex == start) {
+					$(this).css({"border-left": "2px solid red"})
+				}
+				if(tdIndex == end) {
+					$(this).css({"border-right": "2px solid red"})
+				}
+				if(trIndex == 0 && tdIndex >= start && tdIndex <= end) {
+					$(this).css({"border-top": "3px solid red"})
+				}
+				if(trIndex == tr-1 && tdIndex >= start && tdIndex <= end) {
+					$(this).css({"border-bottom": "3px solid red"})
+				}
+				if(tdIndex >= start && tdIndex <= end) {
+					$(this).css({"background":"#fff"}).attr("contenteditable","true");
+				}
+			});
+		});
+	}
+	
+	$("#edit-xieyi").click(function() {
+		tableEdit(1,3)
+	});
+</script>
+</html>
