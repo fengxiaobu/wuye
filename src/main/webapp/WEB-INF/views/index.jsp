@@ -403,7 +403,8 @@
 <article class="container article" id="article">
     <!-- 正文部分 -->
     <!--<iframe class="my-iframe" id="main" src="./index-level2.html"></iframe>-->
-    <iframe class="my-iframe" id="main-lv2" name="main" src="../html_page/page/page-01.html"></iframe>
+    <iframe class="my-iframe" id="main-lv2" src="userlist.jsp"></iframe>
+    <iframe class="my-iframe" id="main-lv2" src="userlist.jsp"></iframe>
 </article>
 
 </body>
@@ -420,7 +421,7 @@
         $("[data-toggle='collapse']").click(function () {
             var value = $(this).attr("href");
             if (value === "#") {
-                $("#main-lv2").attr("src", "../html_page/page/userlist.jsp");
+                $("#main-lv2").attr("src", "userlist.jsp");
             }
         })
     })
