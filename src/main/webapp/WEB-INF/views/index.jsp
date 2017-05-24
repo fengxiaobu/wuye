@@ -11,21 +11,21 @@
 <head>
     <meta charset="utf-8">
     <title>首页</title>
-    <link rel="stylesheet" type="text/css" href="../../../src/main/resources/static/js/libs/bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="../../../src/main/resources/static/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="../js/libs/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../css/reset.css">
 </head>
 <body>
 
 <nav class="navbar navbar-default navbar-fixed-top" id="header">
     <div class="container">
         <div class="col-md-4 col-xs-4">
-            <img class="logo-img" src="../../../src/main/resources/static/imgs/logo02.png">
+            <img class="logo-img" src="../imgs/logo02.png">
         </div>
         <div class="col-md-8 col-xs-8">
             <div class="col-xs-12">
                 <div class="nav-group">
                     <div class="user-container">
-                        <div class="user-photo-wrap"><img src="../../../src/main/resources/static/imgs_test/timg.jpg" alt="..."
+                        <div class="user-photo-wrap"><img src="../imgs_test/timg.jpg" alt="..."
                                                           class="img-circle user-photo"></div>
                         <div class="user-name">风吹乱了夏天</div>
                     </div>
@@ -407,9 +407,9 @@
 </article>
 
 </body>
-<script type="text/javascript" src="../../../src/main/resources/static/js/libs/jquery-1.11.3.min.js"></script>
-<script type="text/javascript" src="../../../src/main/resources/static/js/libs/bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="../../../src/main/resources/static/js/main.js"></script>
+<script type="text/javascript" src="../js/libs/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="../js/libs/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../js/main.js"></script>
 <script type="text/javascript">
 
 
