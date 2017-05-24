@@ -382,7 +382,7 @@
                         <ul class="panel-group level02" id="aside_eight_02">
                             <li class="panel" role="tab">
                                 <div class="panel-header">
-                                    <a data-toggle="collapse" data-parent="#aside_eight_02" href="#">管理用户列表</a>
+                                    <a href="/userList" target="main">管理用户列表</a>
                                 </div>
                             </li>
 
@@ -402,7 +402,7 @@
 <article class="container article" id="article">
     <!-- 正文部分 -->
     <!--<iframe class="my-iframe" id="main" src="./index-level2.html"></iframe>-->
-    <iframe class="my-iframe" id="main-lv2" src="about:blank" name="main"></iframe>
+    <iframe class="my-iframe" id="main-lv2" src="about:blank" name="main" style="margin-top: 125px"></iframe>
 </article>
 
 </body>

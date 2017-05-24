@@ -1,12 +1,12 @@
-package cn.rzhd.ldug.rzhdldugwuye;
+package cn.rzhd.wuye;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class RzhdLdugWuyeApplication {
+public class WuyeApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(RzhdLdugWuyeApplication.class, args);
+		SpringApplication.run(WuyeApplication.class, args);
 	}
 }

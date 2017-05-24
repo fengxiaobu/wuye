@@ -1,4 +1,4 @@
-package cn.rzhd.ldug.rzhdldugwuye;
+package cn.rzhd.wuye;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class RzhdLdugWuyeApplicationTests {
+public class WuyeApplicationTests {
 
 	@Test
 	public void contextLoads() {
