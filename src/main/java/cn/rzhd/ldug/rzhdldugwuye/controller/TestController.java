@@ -20,6 +20,6 @@ public class TestController {
 	
 	@RequestMapping("/index")
 	public String index(){
-		return "html_page/index.html";
+		return "index1";
 	}
 }
