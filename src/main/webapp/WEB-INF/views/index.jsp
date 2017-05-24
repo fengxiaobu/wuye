@@ -63,8 +63,7 @@
 
                             <li class="panel" role="tab">
                                 <div class="panel-header">
-                                    <a data-toggle="collapse" data-parent="#aside_one_02"
-                                       onclick="changeTitle('page-02.html')">房产信息</a>
+                                    <a target="main" href="/houseList">房产信息</a>
                                 </div>
                             </li>
                         </ul>

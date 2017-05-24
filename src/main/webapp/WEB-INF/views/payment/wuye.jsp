@@ -13,7 +13,8 @@
 <div class="col-xs-12">
     <ol class="breadcrumb">
         <li><a href="#">首页</a></li>
-        <li class="active">房产信息</li>
+        <li><a href="#">快捷缴费</a></li>
+        <li class="active">物业</li>
     </ol>
 </div>
 <!-- 路径导航 结束 -->
@@ -22,15 +23,14 @@
     </div>
     <div class="panel panel-default tudiqianyue">
         <div class="panel-heading">
-            <div class="col-xs-4">房产信息</div>
+            <div class="col-xs-4">物业</div>
             <div class="col-xs-8 panel-oprerate">
                 <div class="col-xs-12">
+                    <span style="margin-right: 50px"><input style="height: 35px;width: 320px;" type="text"></span>至
+                    <span style="margin-right: 50px"><input style="height: 35px;width: 320px;" type="text"></span>
                     <span style="margin-right: 50px"><input style="height: 35px;width: 320px;" type="text"
-                                                            id="exampleInputName" placeholder="房产编号,客户名称,手机号"></span>
+                                                            placeholder="项目名称,房产,客户名称"></span>
                     <button class="btn btn-info" type="button"><span class="glyphicon glyphicon-search"></span>搜素
-                    </button>
-                    <%--<a href="/userEdit" class="btn btn-info"  type="button"><span class="glyphicon glyphicon-plus"></span>新增</a>--%>
-                    <button class="btn btn-info" type="button"><span class="glyphicon glyphicon-remove"></span>删除
                     </button>
                 </div>
                 <div class="col-xs-12">

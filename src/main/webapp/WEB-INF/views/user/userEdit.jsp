@@ -54,6 +54,7 @@
                                value="option2"/>个人
                     </label>
                 </div>
+            </div>
                 <div class="form-group" >
                     <label class="col-sm-2 control-label">绑定手机号:</label>
                     <div class="col-sm-10">

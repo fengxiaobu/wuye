@@ -21,4 +21,14 @@ public class TestController {
     public String userAdd() {
         return "/user/userEdit";
     }
+
+    @RequestMapping("/houseList")
+    public String houseList() {
+        return "/houseinfo/houseList";
+    }
+
+    @RequestMapping("/houseEdit")
+    public String houseEdit() {
+        return "/houseinfo/houseEdit";
+    }
 }
