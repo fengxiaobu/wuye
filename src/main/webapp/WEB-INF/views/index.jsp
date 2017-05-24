@@ -57,8 +57,7 @@
                         <ul class="panel-group level02" id="aside_one_02">
                             <li class="panel" role="tab">
                                 <div class="panel-header">
-                                    <a data-toggle="collapse" data-parent="#aside_one_02"
-                                       onclick="changeTitle('page-02.html')">用户列表</a>
+                                    <a href="/userlist" target="main">用户列表</a>
                                 </div>
                             </li>
 
@@ -403,8 +402,7 @@
 <article class="container article" id="article">
     <!-- 正文部分 -->
     <!--<iframe class="my-iframe" id="main" src="./index-level2.html"></iframe>-->
-    <iframe class="my-iframe" id="main-lv2" src="userlist.jsp"></iframe>
-    <iframe class="my-iframe" id="main-lv2" src="userlist.jsp"></iframe>
+    <iframe class="my-iframe" id="main-lv2" src="about:blank" name="main"></iframe>
 </article>
 
 </body>
