@@ -387,8 +387,7 @@
 
                             <li class="panel" role="tab">
                                 <div class="panel-header">
-                                    <a data-toggle="collapse" data-parent="#aside_eight_02"
-                                       onclick="changeTitle('page-02.html')">角色列表</a>
+                                    <a href="/roleList" target="main">角色列表</a>
                                 </div>
                             </li>
                         </ul>
