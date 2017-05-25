@@ -26,7 +26,7 @@ public class User implements Serializable{
 	/**
 	 * 企业类型(0-个人，1-企业)
 	 */
-	private Integer COMPANY_TYPE;
+	private Integer ComPanyType;
 	/**
 	 * 客户名称
 	 */
@@ -48,18 +48,22 @@ public class User implements Serializable{
 		this.logo = logo;
 
 	}
+
 	/**
-	 * @return the cOMPANY_TYPE
+	 *
+	 * @return the ComPanyType
 	 */
-	public Integer getCOMPANY_TYPE() {
-		return COMPANY_TYPE;
+	public Integer getComPanyType() {
+		return ComPanyType;
 	}
-	/*
-	@param cOMPANY_TYPE the cOMPANY_TYPE to set
-	*/
-	public void setCOMPANY_TYPE(Integer cOMPANY_TYPE) {
-		COMPANY_TYPE = cOMPANY_TYPE;
+
+	/**
+	 * @param comPanyType
+	 */
+	public void setComPanyType(Integer comPanyType) {
+		ComPanyType = comPanyType;
 	}
+
 	/**
 	 * @return the clientName
 	 */
