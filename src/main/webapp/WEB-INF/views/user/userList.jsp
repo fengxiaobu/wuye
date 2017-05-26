@@ -4,8 +4,8 @@
 <head>
     <meta charset="utf-8">
     <title>首页</title>
-    <link rel="stylesheet" type="text/css" href="../js/libs/bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="../css/reset.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/js/libs/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css">
 </head>
 <body>
 
@@ -58,7 +58,7 @@
                     <td>联东集团</td>
                     <td>18190124022</td>
                     <td>2013-01-10</td>
-                    <td><a class="btn btn-info" href="#" role="button">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-info" href="/userEdit" role="button">编辑</a></td>
+                    <td><a class="btn btn-info" href="#" role="button">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-info" href="/views/user/userEdit" role="button">编辑</a></td>
                 </tr>
                 <tr class="tudiqianyue-tdtr">
                     <td><input type="checkbox" value=""></td>
@@ -67,7 +67,7 @@
                     <td>联东集团</td>
                     <td>18190124022</td>
                     <td>2013-01-10</td>
-                    <td><a class="btn btn-info" href="#" role="button">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-info" href="/userEdit" role="button">编辑</a></td>
+                    <td><a class="btn btn-info" href="#" role="button">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-info" href="/views/user/userEdit" role="button">编辑</a></td>
                 </tr>
                 </tbody>
             </table>
@@ -75,8 +75,8 @@
     </div>
 
 </body>
-<script type="text/javascript" src="../js/libs/jquery-1.11.3.min.js"></script>
-<script type="text/javascript" src="../js/libs/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/libs/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/libs/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript">
     var tableEdit = {
         content: function(option) {

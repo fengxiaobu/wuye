@@ -10,11 +10,11 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements IUserService {
 
 	@Autowired
-	UserMapper mapper;
+	UserMapper userMapper;
 	
 	@Override
 	public User get(Long id) {
-		return mapper.get(id);
+		return userMapper.get(id);
 	}
 
 }

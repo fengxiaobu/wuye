@@ -1,10 +1,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
     <title>首页</title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/js/libs/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css"
+          href="${pageContext.request.contextPath}/js/libs/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css">
 </head>
 <body>
@@ -13,7 +15,8 @@
 <div class="col-xs-12">
     <ol class="breadcrumb">
         <li><a href="#">首页</a></li>
-        <li class="active">房产信息</li>
+        <li><a href="#">业务办理</a></li>
+        <li class="active">入住申请列表</li>
     </ol>
 </div>
 <!-- 路径导航 结束 -->
@@ -22,11 +25,11 @@
     </div>
     <div class="panel panel-default tudiqianyue">
         <div class="panel-heading">
-            <div class="col-xs-4">房产信息</div>
+            <div class="col-xs-4">用户列表</div>
             <div class="col-xs-8 panel-oprerate">
                 <div class="col-xs-12">
                     <span style="margin-right: 50px"><input style="height: 35px;width: 320px;" type="text"
-                                                            id="exampleInputName" placeholder="房产编号,客户名称,手机号"></span>
+                                                            id="exampleInputName" placeholder="用户编号,客户名称,手机号"></span>
                     <button class="btn btn-info" type="button"><span class="glyphicon glyphicon-search"></span>搜素
                     </button>
                     <%--<a href="/userEdit" class="btn btn-info"  type="button"><span class="glyphicon glyphicon-plus"></span>新增</a>--%>
@@ -49,40 +52,39 @@
                 <tr class="info">
                     <th rowspan="2">选择</th>
                     <th rowspan="2">序号</th>
-                    <th rowspan="2">用户ID<br/></th>
-                    <th rowspan="2">项目名称</th>
+                    <th rowspan="2">项目名称<br/></th>
                     <th rowspan="2">房产</th>
-                    <th rowspan="2">房产使用属性</th>
-                    <th rowspan="2">星级</th>
-                    <th rowspan="2">更新日期</th>
+                    <th rowspan="2">客户名称</th>
+                    <th rowspan="2">申请日期</th>
+                    <th rowspan="2">审核状态</th>
                     <th rowspan="2">操作</th>
                 </tr>
                 </thead>
                 <tbody class="tudiqianyue-tbody">
-                <tr class="tudiqianyue-tdtr">
-                    <td><input type="checkbox" value=""></td>
-                    <td>1</td>
-                    <td>9527</td>
-                    <td>联东U谷</td>
-                    <td>联东</td>
-                    <td>自用</td>
-                    <td>AAAA</td>
-                    <td>2013-01-10</td>
-                    <td><a class="btn btn-info" href="#" role="button">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;<a
-                            class="btn btn-info" href="/houseEdit" role="button">编辑</a></td>
-                </tr>
-                <tr class="tudiqianyue-tdtr">
-                    <td><input type="checkbox" value=""></td>
-                    <td>1</td>
-                    <td>9527</td>
-                    <td>联东U谷</td>
-                    <td>联东</td>
-                    <td>自用</td>
-                    <td>AAAAAA</td>
-                    <td>2013-01-10</td>
-                    <td><a class="btn btn-info" href="#" role="button">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;<a
-                            class="btn btn-info" href="/houseEdit" role="button">编辑</a></td>
-                </tr>
+                <c:forEach items="${enterApplyList}" var="enterApply" varStatus="status">
+                    <tr class="tudiqianyue-tdtr">
+                        <td><input type="checkbox" value=""></td>
+                        <td>${status.index+1}</td>
+                        <td>${enterApply.}</td>
+                        <td>${enterApply.}</td>
+                        <td>${enterApply.}</td>
+                        <td>${enterApply.}</td>
+                        <td>待审核</td>
+                        <td><a class="btn btn-info" href="#" role="button">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;<a
+                                class="btn btn-info" href="/views/forbusiness/enterApplyEdit?enterApplyId="
+                                role="button">编辑</a></td>
+                    </tr>
+                </c:forEach>
+                <%-- <tr class="tudiqianyue-tdtr">
+                     <td><input type="checkbox" value=""></td>
+                     <td>2</td>
+                     <td>联东UV</td>
+                     <td>联东集团</td>
+                     <td>乌鲁</td>
+                     <td>2013-01-10</td>
+                     <td>待审核</td>
+                     <td><a class="btn btn-info" href="#" role="button">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-info" href="/views/forbusiness/enterApplyEdit?enterApplyId=" role="button">编辑</a></td>
+                 </tr>--%>
                 </tbody>
             </table>
         </div>

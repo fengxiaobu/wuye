@@ -1,7 +1,8 @@
 package cn.rzhd.wuye.mapper;
 
-import cn.rzhd.wuye.bean.User;
 import org.apache.ibatis.annotations.Mapper;
+
+import cn.rzhd.wuye.bean.User;
 
 @Mapper
 public interface UserMapper {

@@ -4,8 +4,7 @@
 <mapper namespace="cn.rzhd.wuye.mapper.UserMapper">
     
     <!-- 单表查询info数据 -->
-    <select id="get" resultType="cn.rzhd.wuye.bean.User"
-        parameterType="long">
+    <select id="get" resultType="cn.rzhd.wuye.bean.User" parameterType="long">
         select * from t_user where user_id = #{id}
     </select>
 </mapper>

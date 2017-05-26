@@ -4,8 +4,8 @@
 <head>
     <meta charset="utf-8">
     <title>首页</title>
-    <link rel="stylesheet" type="text/css" href="../js/libs/bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="../css/reset.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/js/libs/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css">
 </head>
 <body>
 <div class="col-xs-12">
@@ -105,8 +105,8 @@
 
 
 </body>
-<script type="text/javascript" src="../js/libs/jquery-1.11.3.min.js"></script>
-<script type="text/javascript" src="../js/libs/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/libs/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/libs/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 </script>
 </html>

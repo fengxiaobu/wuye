@@ -57,7 +57,7 @@
                         <ul class="panel-group level02" id="aside_one_02">
                             <li class="panel" role="tab">
                                 <div class="panel-header">
-                                    <a href="/userlist" target="main">用户列表</a>
+                                    <a href="/views/user/userList" target="main">用户列表</a>
                                 </div>
                             </li>
 
@@ -168,42 +168,42 @@
                         <ul class="panel-group level02" id="aside_four_02">
                             <li class="panel" role="tab">
                                 <div class="panel-header">
-                                    <a data-toggle="collapse" data-parent="#aside_four_02" href="#">入驻申请</a>
+                                    <a target="main" href="/views/forbusiness/enterApplyList">入驻申请</a>
                                 </div>
 
                             </li>
 
                             <li class="panel" role="tab">
                                 <div class="panel-header">
-                                    <a data-toggle="collapse" data-parent="#aside_four_02" href="#">入驻资料列表</a>
+                                    <a data-toggle="collapse" target="main" href="#">入驻资料列表</a>
                                 </div>
 
                             </li>
 
                             <li class="panel" role="tab">
                                 <div class="panel-header">
-                                    <a data-toggle="collapse" data-parent="#aside_four_02" href="#">装修申请</a>
+                                    <a data-toggle="collapse" target="main" href="#">装修申请</a>
                                 </div>
 
                             </li>
 
                             <li class="panel" role="tab">
                                 <div class="panel-header">
-                                    <a data-toggle="collapse" data-parent="#aside_four_02" href="#">装修附件与资料</a>
+                                    <a data-toggle="collapse" target="main" href="#">装修附件与资料</a>
                                 </div>
                             </li>
 
 
                             <li class="panel" role="tab">
                                 <div class="panel-header">
-                                    <a data-toggle="collapse" data-parent="#aside_four_02" href="#">退租申请</a>
+                                    <a data-toggle="collapse" target="main" href="#">退租申请</a>
                                 </div>
 
                             </li>
 
                             <li class="panel" role="tab">
                                 <div class="panel-header">
-                                    <a data-toggle="collapse" data-parent="#aside_four_02" href="#">续租申请</a>
+                                    <a data-toggle="collapse" target="main" href="#">续租申请</a>
                                 </div>
 
                             </li>
@@ -223,19 +223,19 @@
                         <ul class="panel-group level02" id="aside_five_02">
                             <li class="panel" role="tab">
                                 <div class="panel-header">
-                                    <a data-toggle="collapse" data-parent="#aside_three_02" href="#">更名</a>
+                                    <a data-toggle="collapse" target="main"  href="#">更名</a>
                                 </div>
                             </li>
 
                             <li class="panel" role="tab">
                                 <div class="panel-header">
-                                    <a data-toggle="collapse" data-parent="#aside_three_02" href="#">装修须知</a>
+                                    <a data-toggle="collapse" target="main"  href="#">装修须知</a>
                                 </div>
                             </li>
 
                             <li class="panel" role="tab">
                                 <div class="panel-header">
-                                    <a data-toggle="collapse" data-parent="#aside_five_02" href="#">单个房产电费购买限制</a>
+                                    <a data-toggle="collapse" target="main"  href="#">单个房产电费购买限制</a>
                                 </div>
 
                             </li>
@@ -248,40 +248,40 @@
 
                             <li class="panel" role="tab">
                                 <div class="panel-header">
-                                    <a data-toggle="collapse" data-parent="#aside_five_02" href="#">系统设置</a>
+                                    <a data-toggle="collapse" target="main" href="#">系统设置</a>
                                 </div>
                                 <div class="panel-header">
-                                    <a data-toggle="collapse" data-parent="#aside_five_02" href="#">入驻完成-提示信息</a>
-                                </div>
-                            </li>
-
-                            <li class="panel" role="tab">
-                                <div class="panel-header">
-                                    <a data-toggle="collapse" data-parent="#aside_five_02" href="#">项目设置</a>
+                                    <a data-toggle="collapse" target="main"  href="#">入驻完成-提示信息</a>
                                 </div>
                             </li>
 
                             <li class="panel" role="tab">
                                 <div class="panel-header">
-                                    <a data-toggle="collapse" data-parent="#aside_five_02" href="#">物业开票列表</a>
+                                    <a data-toggle="collapse" target="main"  href="#">项目设置</a>
                                 </div>
                             </li>
 
                             <li class="panel" role="tab">
                                 <div class="panel-header">
-                                    <a data-toggle="collapse" data-parent="#aside_five_02" href="#">开发开票列表</a>
+                                    <a data-toggle="collapse" target="main"  href="#">物业开票列表</a>
                                 </div>
                             </li>
 
                             <li class="panel" role="tab">
                                 <div class="panel-header">
-                                    <a data-toggle="collapse" data-parent="#aside_five_02" href="#">开发开票列表</a>
+                                    <a data-toggle="collapse" target="main"  href="#">开发开票列表</a>
                                 </div>
                             </li>
 
                             <li class="panel" role="tab">
                                 <div class="panel-header">
-                                    <a data-toggle="collapse" data-parent="#"
+                                    <a data-toggle="collapse" target="main"  href="#">开发开票列表</a>
+                                </div>
+                            </li>
+
+                            <li class="panel" role="tab">
+                                <div class="panel-header">
+                                    <a data-toggle="collapse" target="main"
                                        href="#collapse_five_018">电表</a>
                                 </div>
                             </li>
