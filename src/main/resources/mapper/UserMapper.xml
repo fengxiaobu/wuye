@@ -3,8 +3,53 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="cn.rzhd.wuye.mapper.UserMapper">
     
+<<<<<<< HEAD:src/main/resources/mapper/UserMapper.xml
     <!-- 单表查询info数据 -->
     <select id="get" resultType="cn.rzhd.wuye.bean.User" parameterType="long">
         select * from t_user where user_id = #{id}
+=======
+    <resultMap id="userMap" type="java.util.Map">
+        <id property="userId" column="user_id"/>
+        <result property="logo" column="logo"/>
+        <result property="companyType" column="company_type"/>
+        <result property="clientName" column="client_name"/>
+        <result property="phone" column="phone"/>
+    </resultMap>
+    
+    <!-- 用户总条数查询 -->
+   <!-- <select id ="findUserAmount" resultType="java.lang.Integer">
+    	select count(USER_ID) from T_USER
+    </select> -->
+    
+   <!-- 用户列表分页查询 -->
+   <select id="findUserList" resultMap="userMap" >
+        SELECT * FROM (  SELECT U.*, ROWNUM RN  
+        	FROM (SELECT * FROM T_USER) U ) 
+        		WHERE RN BETWEEN #{pageStartRow} AND #{pageEndRow}
+>>>>>>> c7638ed9f7e0dd998af201d69a7ff88ade3006ef:src/main/java/cn/rzhd/wuye/mapper/UserMapper.xml
     </select>
+   <!-- 用户列表条件查询 -->
+   <select id="findUserByCondition" resultMap="userMap">
+   
+   		SELECT * FROM (  SELECT U.*, ROWNUM RN  
+        	FROM (SELECT * FROM T_USER 
+   				WHERE CLIENT_NAME LIKE CONCAT(CONCAT('%',#{condition}),'%') or 
+   					PHONE LIKE CONCAT(CONCAT('%',#{condition}),'%')) U ) 
+        		WHERE RN BETWEEN #{pageStartRow} AND 
+        			#{pageEndRow}
+   		
+   </select>
+   <!-- 用户信息修改 操作-->
+   <update id="updateUser" >
+        update T_USER set LOGO= #{user.logo},COMPANY_TYPE= #{user.companyType},
+        	CLIENT_NAME= #{user.clientName},PHONE= #{user.phone} 
+        	where USER_ID = #{user.userId}
+   </update>
+   
+   <!-- 用户信息删除操作 -->
+    <delete id="delUserById">
+    	DELETE FROM T_USER WHERE USER_ID = #{userId} 
+    </delete>
+    
+    
 </mapper>

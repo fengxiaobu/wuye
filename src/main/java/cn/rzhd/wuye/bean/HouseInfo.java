@@ -53,6 +53,10 @@ public class HouseInfo implements Serializable{
 	 */
 	private Date updateTime;
 	/**
+	 * ERP客户主键
+	 */
+	private String customerId;
+	/**
 	 * @return the erpHouseId
 	 */
 	public String getErpHouseId() {
@@ -162,4 +166,11 @@ public class HouseInfo implements Serializable{
 		this.projectInfoId = projectInfoId;
 	}
 
+	public String getCustomerId() {
+		return customerId;
+	}
+
+	public void setCustomerId(String customerId) {
+		this.customerId = customerId;
+	}
 }

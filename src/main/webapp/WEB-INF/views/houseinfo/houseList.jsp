@@ -25,12 +25,10 @@
             <div class="col-xs-4">房产信息</div>
             <div class="col-xs-8 panel-oprerate">
                 <div class="col-xs-12">
-                    <span style="margin-right: 50px"><input style="height: 35px;width: 320px;" type="text"
-                                                            id="exampleInputName" placeholder="房产编号,客户名称,手机号"></span>
-                    <button class="btn btn-info" type="button"><span class="glyphicon glyphicon-search"></span>搜素
-                    </button>
-                    <%--<a href="/userEdit" class="btn btn-info"  type="button"><span class="glyphicon glyphicon-plus"></span>新增</a>--%>
-                    <button class="btn btn-info" type="button"><span class="glyphicon glyphicon-remove"></span>删除
+                    <span style="margin-right: 50px;text-align: center"><input type="text" placeholder="房产编号"></span>
+                    <span style="margin-right: 50px;text-align: center"><input type="text" placeholder="客户名称"></span>
+                    <span style="margin-right: 50px;text-align: center"><input type="text" placeholder="手机号"></span>
+                    <button class="btn btn-info" type="button" id="search"><span class="glyphicon glyphicon-search"></span>搜素
                     </button>
                 </div>
                 <div class="col-xs-12">
@@ -55,7 +53,6 @@
                     <th rowspan="2">房产使用属性</th>
                     <th rowspan="2">星级</th>
                     <th rowspan="2">更新日期</th>
-                    <th rowspan="2">操作</th>
                 </tr>
                 </thead>
                 <tbody class="tudiqianyue-tbody">
@@ -68,8 +65,6 @@
                     <td>自用</td>
                     <td>AAAA</td>
                     <td>2013-01-10</td>
-                    <td><a class="btn btn-info" href="#" role="button">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;<a
-                            class="btn btn-info" href="/houseEdit" role="button">编辑</a></td>
                 </tr>
                 <tr class="tudiqianyue-tdtr">
                     <td><input type="checkbox" value=""></td>
@@ -80,8 +75,6 @@
                     <td>自用</td>
                     <td>AAAAAA</td>
                     <td>2013-01-10</td>
-                    <td><a class="btn btn-info" href="#" role="button">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;<a
-                            class="btn btn-info" href="/houseEdit" role="button">编辑</a></td>
                 </tr>
                 </tbody>
             </table>
@@ -162,67 +155,6 @@
             });
         },
     };
-    // function tableEdit(option) {
-    // 	if($(".tudiqianyue").is(".tableedit")) {
-    // 		$(".tudiqianyue-tdtr").find("td").css({
-    // 			"border": "",
-    // 			"background": ""
-    // 		});
-    // 	}
-    // 	$(".tudiqianyue").addClass("tableedit");
-    // 	var tr = $(".tudiqianyue-tdtr").length;
-    // 	$(".tudiqianyue-tdtr").each(function(_index,_this) {
-    // 		var trIndex = _index;
-    // 		console.log(_index)
-    // 		$(this).find("td").each(function(_index,_this) {
-    // 			var tdIndex = _index;
-    // 			// $(this).attr("contenteditable","true");
-    // 			if(tdIndex == option.start) {
-    // 				$(this).css({"border-left": "2px solid red"});
-    // 			}
-    // 			if(tdIndex == option.end) {
-    // 				$(this).css({"border-right": "2px solid red"});
-    // 			}
-    // 			if(trIndex == 0 && tdIndex >= option.start && tdIndex <= option.end) {
-    // 				$(this).css({"border-top": "3px solid red"})
-    // 			}
-    // 			if(trIndex == tr-1 && tdIndex >= option.start && tdIndex <= option.end) {
-    // 				$(this).css({"border-bottom": "3px solid red"})
-    // 			}
-    // 			if(tdIndex >= option.start && tdIndex <= option.end) {
-    // 				$(this).css({"background":"#fff"}).attr("contenteditable","true");
-    // 			}
-    // 		});
-    // 	});
-
-    // 	function close() {
-    // 		$(".tudiqianyue").removeClass("tableedit");
-    // 		$(".tudiqianyue-tdtr").each(function(_index,_this) {
-    // 			var trIndex = _index;
-    // 			console.log(_index)
-    // 			$(this).find("td").each(function(_index,_this) {
-    // 				var tdIndex = _index;
-    // 				// $(this).attr("contenteditable","true");
-    // 				if(tdIndex == option.start) {
-    // 					$(this).css({"border-left": ""})
-    // 				}
-    // 				if(tdIndex == option.end) {
-    // 					$(this).css({"border-right": ""})
-    // 				}
-    // 				if(trIndex == 0 && tdIndex >= option.start && tdIndex <= option.end) {
-    // 					$(this).css({"border-top": ""})
-    // 				}
-    // 				if(trIndex == tr-1 && tdIndex >= option.start && tdIndex <= option.end) {
-    // 					$(this).css({"border-bottom": ""})
-    // 				}
-    // 				if(tdIndex >= option.start && tdIndex <= option.end) {
-    // 					$(this).css({"background":"#fff"}).attr("contenteditable","false");
-    // 				}
-    // 			});
-    // 		});
-    // 	};
-    // 	return close;
-    // }
 
     $("#edit-xieyi").click(function () {
         tableEdit.content({
