@@ -1,4 +1,4 @@
-package cn.rzhd.wuye.bean;
+package cn.rzhd.wuye.bean.vo;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -7,27 +7,32 @@ import java.util.Date;
  * 
 © 2017 RZHD.CN
 @Package: cn.rzhd.ldug.bean
-@ClassName: TypeDifferentiate
-@Description: 描述：数据字典类型
+@ClassName: TypeRefinement
+@Description: 描述：数据字典明细
 @author: zhongchaojie@rzhd.cn
-@date: 2017年5月23日 下午2:22:53
+@date: 2017年5月23日 下午2:18:54
 @version: V1.0
  */
-public class TypeDifferentiate implements Serializable{
+public class TypeRefinementVo implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	/**
-	 * 类型区分id
+	 * 类型细化id
 	 */
-	private Long typeDifferentiateId;
+	private Long typeRefinementId;
 	/**
 	 * 类型名称
 	 */
 	private String typeDifferentiateName;
 	/**
+	 * 类型细化名称
+	 */
+	private String typeRefinementName;
+	/**
 	 * 备注
 	 */
 	private String note;
+	
 	/**
 	 * 状态，0-启用，1-禁用
 	 */
@@ -35,17 +40,18 @@ public class TypeDifferentiate implements Serializable{
 	
 	private Date createTime;
 	private Date updateTime;
+	
 	/**
-	 * @return the typeDifferentiateName
+	 * @return the typeRefinementName
 	 */
-	public String getTypeDifferentiateName() {
-		return typeDifferentiateName;
+	public String getTypeRefinementName() {
+		return typeRefinementName;
 	}
 	/*
-	@param typeDifferentiateName the typeDifferentiateName to set
+	@param typeRefinementName the typeRefinementName to set
 	*/
-	public void setTypeDifferentiateName(String typeDifferentiateName) {
-		this.typeDifferentiateName = typeDifferentiateName;
+	public void setTypeRefinementName(String typeRefinementName) {
+		this.typeRefinementName = typeRefinementName;
 	}
 	/**
 	 * @return the note
@@ -60,16 +66,28 @@ public class TypeDifferentiate implements Serializable{
 		this.note = note;
 	}
 	/**
+	 * @return the typeRefinementId
+	 */
+	public Long getTypeRefinementId() {
+		return typeRefinementId;
+	}
+	/*
+	@param typeRefinementId the typeRefinementId to set
+	*/
+	public void setTypeRefinementId(Long typeRefinementId) {
+		this.typeRefinementId = typeRefinementId;
+	}
+	/**
 	 * @return the typeDifferentiateId
 	 */
-	public Long getTypeDifferentiateId() {
-		return typeDifferentiateId;
+	public String getTypeDifferentiateName() {
+		return typeDifferentiateName;
 	}
 	/*
 	@param typeDifferentiateId the typeDifferentiateId to set
 	*/
-	public void setTypeDifferentiateId(Long typeDifferentiateId) {
-		this.typeDifferentiateId = typeDifferentiateId;
+	public void setTypeDifferentiateName(String typeDifferentiateName) {
+		this.typeDifferentiateName = typeDifferentiateName;
 	}
 	public Integer getStatus() {
 	    return status;
@@ -89,6 +107,5 @@ public class TypeDifferentiate implements Serializable{
 	public void setUpdateTime(Date updateTime) {
 	    this.updateTime = updateTime;
 	}
-	
 
 }
