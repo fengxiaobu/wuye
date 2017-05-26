@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.rzhd.wuye.mapper.HouseInfoMapper">
+
+    <resultMap id="houseInfoMap" type="HouseInfo">
+        <id column="HOUSE_INFO_ID" property="houseInfoId"/>
+        <result column="ERP_HOUSE_ID" property="erpHouseId"/>
+        <result column="PROJECT_INFO_ID" property="projectInfoId"/>
+        <result column="HOUSE_PROPERTY" property="houseProperty"/>
+        <result column="ENTER_STATUS" property="enterStatus"/>
+        <result column="STAR_LEVEL" property="starLevel"/>
+        <result column="STATUS" property="status"/>
+        <result column="CREATION_TIME" property="creationTime"/>
+        <result column="UPDATE_TIME" property="updateTime"/>
+        <result column="pk_customerid" property="customerId"/>
+
+
+    </resultMap>
+
+    <select id="getById" resultMap="houseInfoMap" parameterType="long">
+        SELECT
+            HOUSE_INFO_ID,
+            ERP_HOUSE_ID,
+            PROJECT_INFO_ID,
+            HOUSE_PROPERTY,
+            ENTER_STATUS,
+            STAR_LEVEL,
+            STATUS,
+            CREATION_TIME,
+            UPDATE_TIME,
+            "pk_customerid"
+        FROM T_HOUSE_INFO
+        WHERE HOUSE_INFO_ID=#{id}
+    </select>
+
+</mapper>
