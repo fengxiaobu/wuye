@@ -18,34 +18,34 @@
     <select id="getEnterApplyByID" resultType="cn.rzhd.wuye.bean.EnterApply"
             parameterType="long">
         SELECT
-        "EnterApply".ENTER_APPLY_ID AS "enterApplyId",
-        "EnterApply".HOUSE_INFO_ID AS "houseInfoId",
-        "EnterApply".CLIENT_NAME AS "clientName",
-        "EnterApply".APPLY_TIME AS "applyTime",
-        "EnterApply".AUDIT_STATUS AS "auditStatus",
-        "EnterApply".ENTER_ADVICE_NOTE AS "enterAdviceNote",
-        "EnterApply".NOTES AS "notes",
-        "EnterApply".CREATION_TIME AS "creationTime",
-        "EnterApply".UPDATE_TIME AS "updateTime"
+        ENTER_APPLY_ID,
+        HOUSE_INFO_ID ,
+        CLIENT_NAME ,
+        APPLY_TIME ,
+        AUDIT_STATUS ,
+        ENTER_ADVICE_NOTE ,
+        NOTES ,
+        CREATION_TIME ,
+        UPDATE_TIME
         FROM
-        WUYE.T_ENTER_APPLY "EnterApply"
+        T_ENTER_APPLY
         <where>
-            "EnterApply".ENTER_APPLY_ID=#{enterApplyId}
+            ENTER_APPLY_ID=#{enterApplyId}
         </where>
     </select>
     <!-- 单表查询info数据(全部数据)-->
      <select id="getEnterApplyAll" resultMap="BaseResultMap">
-        SELECT
-        "EnterApply".ENTER_APPLY_ID AS "enterApplyId",
-        "EnterApply".HOUSE_INFO_ID AS "houseInfoId",
-        "EnterApply".CLIENT_NAME AS "clientName",
-        "EnterApply".APPLY_TIME AS "applyTime",
-        "EnterApply".AUDIT_STATUS AS "auditStatus",
-        "EnterApply".ENTER_ADVICE_NOTE AS "enterAdviceNote",
-        "EnterApply".NOTES AS "notes",
-        "EnterApply".CREATION_TIME AS "creationTime",
-        "EnterApply".UPDATE_TIME AS "updateTime"
+          SELECT
+        ENTER_APPLY_ID,
+        HOUSE_INFO_ID ,
+        CLIENT_NAME ,
+        APPLY_TIME ,
+        AUDIT_STATUS ,
+        ENTER_ADVICE_NOTE ,
+        NOTES ,
+        CREATION_TIME ,
+        UPDATE_TIME
         FROM
-        WUYE.T_ENTER_APPLY "EnterApply"
+        T_ENTER_APPLY
     </select>
 </mapper>

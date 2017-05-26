@@ -21,7 +21,4 @@ public class HouseInfoController {
     public HouseInfo houseInfoList(Long id) {
         return houseInfoService.getById(id);
     }
-
-
-
 }

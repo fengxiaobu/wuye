@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -65,26 +66,20 @@
                     <tr class="tudiqianyue-tdtr">
                         <td><input type="checkbox" value=""></td>
                         <td>${status.index+1}</td>
-                        <td>${enterApply.}</td>
-                        <td>${enterApply.}</td>
-                        <td>${enterApply.}</td>
-                        <td>${enterApply.}</td>
-                        <td>待审核</td>
+                        <td>${enterApply.enterApplyId}</td>
+                        <td>${enterApply.clientName}</td>
+                        <td>${enterApply.applyTime}</td>
+                        <td><fmt:formatDate value="${enterApply.applyTime }" pattern="yyyy-MM-dd"/></td>
+                        <td>
+                            <c:if test="${enterApply.auditStatus eq 0}">未审核</c:if>
+                            <c:if test="${enterApply.auditStatus eq 1}">已通过</c:if>
+                            <c:if test="${enterApply.auditStatus eq 0}">未通过</c:if>
+                        </td>
                         <td><a class="btn btn-info" href="#" role="button">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;<a
-                                class="btn btn-info" href="/views/forbusiness/enterApplyEdit?enterApplyId="
+                                class="btn btn-info" href="/views/forbusiness/enterApplyEdit"
                                 role="button">编辑</a></td>
                     </tr>
                 </c:forEach>
-                <%-- <tr class="tudiqianyue-tdtr">
-                     <td><input type="checkbox" value=""></td>
-                     <td>2</td>
-                     <td>联东UV</td>
-                     <td>联东集团</td>
-                     <td>乌鲁</td>
-                     <td>2013-01-10</td>
-                     <td>待审核</td>
-                     <td><a class="btn btn-info" href="#" role="button">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-info" href="/views/forbusiness/enterApplyEdit?enterApplyId=" role="button">编辑</a></td>
-                 </tr>--%>
                 </tbody>
             </table>
         </div>

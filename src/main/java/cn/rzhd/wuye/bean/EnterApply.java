@@ -23,7 +23,7 @@ public class EnterApply implements Serializable{
 	/**
 	 * 房产id
 	 */
-	private Long houseInfoId;
+	private String houseInfoId;
 	/**
 	 * 客户名称
 	 */
@@ -69,13 +69,13 @@ public class EnterApply implements Serializable{
 	/**
 	 * @return the houseInfoId
 	 */
-	public Long getHouseInfoId() {
+	public String getHouseInfoId() {
 		return houseInfoId;
 	}
 	/*
 	@param houseInfoId the houseInfoId to set
 	*/
-	public void setHouseInfoId(Long houseInfoId) {
+	public void setHouseInfoId(String  houseInfoId) {
 		this.houseInfoId = houseInfoId;
 	}
 	/**

@@ -11,21 +11,21 @@
 <head>
     <meta charset="utf-8">
     <title>首页</title>
-    <link rel="stylesheet" type="text/css" href="../js/libs/bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="../css/reset.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/js/libs/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css">
 </head>
 <body>
 
 <nav class="navbar navbar-default navbar-fixed-top" id="header">
     <div class="container">
         <div class="col-md-4 col-xs-4">
-            <img class="logo-img" src="../imgs/logo02.png">
+            <img class="logo-img" src="${pageContext.request.contextPath}/imgs/logo02.png">
         </div>
         <div class="col-md-8 col-xs-8">
             <div class="col-xs-12">
                 <div class="nav-group">
                     <div class="user-container">
-                        <div class="user-photo-wrap"><img src="../imgs_test/timg.jpg" alt="..."
+                        <div class="user-photo-wrap"><img src="${pageContext.request.contextPath}/imgs_test/timg.jpg" alt="..."
                                                           class="img-circle user-photo"></div>
                         <div class="user-name">风吹乱了夏天</div>
                     </div>
@@ -168,9 +168,8 @@
                         <ul class="panel-group level02" id="aside_four_02">
                             <li class="panel" role="tab">
                                 <div class="panel-header">
-                                    <a target="main" href="/views/forbusiness/enterApplyList">入驻申请</a>
+                                    <a href="${pageContext.request.contextPath}/enterApply/enterApplyList" target="main">入驻申请</a>
                                 </div>
-
                             </li>
 
                             <li class="panel" role="tab">
@@ -404,9 +403,9 @@
 </article>
 
 </body>
-<script type="text/javascript" src="../js/libs/jquery-1.11.3.min.js"></script>
-<script type="text/javascript" src="../js/libs/bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="../js/main.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/libs/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/libs/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/main.js"></script>
 <script type="text/javascript">
 
 
@@ -422,7 +421,7 @@
         })
     })
     function changeTitle(title) {
-        $("#main-lv2").attr("src", "../html_page/page/" + title);
+        $("#main-lv2").attr("src", "${pageContext.request.contextPath}/html_page/page/" + title);
     }
 
 </script>

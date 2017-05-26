@@ -3,6 +3,7 @@ package cn.rzhd.wuye.service.impl;
 import cn.rzhd.wuye.bean.EnterApply;
 import cn.rzhd.wuye.mapper.EnterApplyMapper;
 import cn.rzhd.wuye.service.IEnterApplyService;
+import cn.rzhd.wuye.vo.RequesterVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +26,9 @@ public class IEnterApplyServiceImpl implements IEnterApplyService {
      */
     @Override
     public EnterApply getEnterApplyByID(Long enterApplyId) {
+        RequesterVO requesterVO=new RequesterVO();
+        requesterVO.setKey("liando");
+        requesterVO.setBilltype("");
         return enterApplyMapper.getEnterApplyByID(enterApplyId);
     }
 
