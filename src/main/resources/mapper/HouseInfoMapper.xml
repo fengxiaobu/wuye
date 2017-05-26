@@ -14,7 +14,7 @@
         <result column="STATUS" property="status"/>
         <result column="CREATION_TIME" property="creationTime"/>
         <result column="UPDATE_TIME" property="updateTime"/>
-        <result column="pk_customerid" property="customerId"/>
+        <result column="CUSTOMER_ID" property="customerId"/>
 
 
     </resultMap>
@@ -30,9 +30,42 @@
             STATUS,
             CREATION_TIME,
             UPDATE_TIME,
-            "pk_customerid"
+            CUSTOMER_ID
         FROM T_HOUSE_INFO
-        WHERE HOUSE_INFO_ID=#{id}
+        WHERE HOUSE_INFO_ID = #{id}
     </select>
+
+    <select id="getAll" resultMap="houseInfoMap">
+        SELECT
+            HOUSE_INFO_ID,
+            ERP_HOUSE_ID,
+            PROJECT_INFO_ID,
+            HOUSE_PROPERTY,
+            ENTER_STATUS,
+            STAR_LEVEL,
+            STATUS,
+            CREATION_TIME,
+            UPDATE_TIME,
+            CUSTOMER_ID
+        FROM T_HOUSE_INFO
+    </select>
+
+    <insert id="add" parameterType="HouseInfo">
+        INSERT INTO T_HOUSE_INFO (ERP_HOUSE_ID, PROJECT_INFO_ID, HOUSE_PROPERTY, ENTER_STATUS, STAR_LEVEL, STATUS, CREATION_TIME, CUSTOMER_ID)
+        VALUES (#{erpHouseId}, #{projectInfoId}, #{houseProperty}, #{enterStatus}, #{starLevel}, #{status},
+                #{creationTime}, #{customerId})
+    </insert>
+
+    <update id="update" parameterType="HouseInfo">
+        UPDATE T_HOUSE_INFO
+        SET ERP_HOUSE_ID = #{erpHouseId}, PROJECT_INFO_ID = #{projectInfoId}, HOUSE_PROPERTY = #{houseProperty},
+            ENTER_STATUS = #{enterStatus}, STAR_LEVEL = #{starLevel}, STATUS = #{status}, UPDATE_TIME = #{updateTime},
+            CUSTOMER_ID  = #{customerId}
+        WHERE HOUSE_INFO_ID = #{houseInfoId}
+    </update>
+
+    <delete id="delete" parameterType="long">
+        DELETE FROM T_HOUSE_INFO WHERE HOUSE_INFO_ID=#{id}
+    </delete>
 
 </mapper>

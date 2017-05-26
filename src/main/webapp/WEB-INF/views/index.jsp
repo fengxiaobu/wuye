@@ -143,7 +143,7 @@
 
                             <li class="panel" role="tab">
                                 <div class="panel-header">
-                                    <a data-toggle="collapse" data-parent="#aside_three_02" href="#">房产信息</a>
+                                    <a href="/houseInfo/index" target="main">房产信息</a>
                                 </div>
                             </li>
 

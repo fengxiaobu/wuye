@@ -13,13 +13,13 @@ public class RequesterVO implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	//相关的请求信息
-	private String key ;//秘钥，不能为空，值为 liando ，每次访问时都需要设置此字段
+	private String key="liando" ;//秘钥，不能为空，值为 liando ，每次访问时都需要设置此字段
 	
 	private String billtype;//数据类型
 	
 	private String pk_corp;//公司主键
 	
-	private String lastmaxtime;//上次获取中的最大时间
+	private static String lastmaxtime;//上次获取中的最大时间
 	
 	private FeeVO [] feedata;//费用数据
 	

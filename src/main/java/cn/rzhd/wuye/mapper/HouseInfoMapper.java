@@ -3,10 +3,22 @@ package cn.rzhd.wuye.mapper;
 import cn.rzhd.wuye.bean.HouseInfo;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 /**
- * Created by hasee on 2017/5/25.
+ * Created by zhongchaojie on 2017/5/25.
+ *
  */
 @Mapper
 public interface HouseInfoMapper {
+
     HouseInfo getById(Long id);
+
+    List<HouseInfo> getAll();
+
+    void add(HouseInfo houseInfo);
+
+    void update(HouseInfo houseInfo);
+
+    void delete(Long id);
 }

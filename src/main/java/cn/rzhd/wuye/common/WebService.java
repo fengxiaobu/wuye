@@ -9,7 +9,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  */
 public class WebService {
 
-    public static String getBaseDataTest(RequesterVO requesterVO) {
+    public static String getBaseData(RequesterVO requesterVO) {
         //Jackson
         ObjectMapper json = new ObjectMapper();
         String jsonStr = null;
