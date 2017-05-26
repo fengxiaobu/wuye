@@ -1,7 +1,6 @@
 package cn.rzhd.wuye.controller;
 
 import cn.rzhd.wuye.bean.EnterApply;
-import cn.rzhd.wuye.bean.User;
 import cn.rzhd.wuye.service.IEnterApplyService;
 import cn.rzhd.wuye.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,12 +37,6 @@ public class EnterApplyController {
         return enterApplyAll;
     }
 
-    @RequestMapping("/user")
-    @ResponseBody
-    public User getUser() {
-        User user = userService.get(1L);
-        return user;
-    }
     /**
      * 显示业务办理页面
      *
