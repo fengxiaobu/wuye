@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.rzhd.wuye.mapper.TypeRefinementMapper">
+    
+    <resultMap id="typeMap" type="cn.rzhd.wuye.bean.TypeRefinement">
+        <id property="typeRefinementId" column="type_refinement_id"/>
+        <result property="typeDifferentiateId" column="type_differentiate_id"/>
+        <result property="typeRefinementName" column="type_refinement_name"/>
+        <result property="note" column="note"/>
+        <result property="status" column="status"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+    
+    <!-- 查询id主键最后一位 -->
+    <select id="findRefinementId" resultType="java.lang.Long">
+    	select max(TYPE_REFINEMENT_ID) from T_TYPE_REFINEMENT
+    </select>
+    <!-- 查询是否重名 -->
+    <select id="findTypeRefinementNameIsRepeat" resultMap="typeMap">
+    	select * from T_TYPE_REFINEMENT 
+    		where 
+    			TYPE_REFINEMENT_NAME = #{typeRefinementName}
+    </select>
+    <!-- 查询类型id -->
+    <select id="findTypeDifferentiateIdByName" resultType="cn.rzhd.wuye.bean.TypeDifferentiate">
+    	select * from T_TYPE_DIFFERENTIATE 
+    		where 
+    			TYPE_DIFFERENTIATE_NAME = #{typeDifferentiateName}
+    </select>
+   <!-- 添加类型 -->
+   <insert id="addTypeRefinementName">
+   		insert into T_TYPE_REFINEMENT
+   			(TYPE_REFINEMENT_ID,TYPE_DIFFERENTIATE_ID,TYPE_REFINEMENT_NAME,NOTE,STATUS,CREATE_TIME)
+   		values 
+   			(#{typeRefinement.typeRefinementId},#{typeRefinement.typeDifferentiateId},#{typeRefinement.typeRefinementName},
+   			#{typeRefinement.note},#{typeRefinement.status},#{typeRefinement.createTime})
+   </insert>
+   
+    <!-- 修改类型 -->
+    <update id="updatetypeRefinementById">
+    	update T_TYPE_REFINEMENT set STATUS = #{typeRefinement.status},
+    	NOTE = #{typeRefinement.note},UPDATE_TIME = #{typeRefinement.updateTime}
+    		where
+    			TYPE_REFINEMENT_ID = #{typeRefinement.typeRefinementId} 
+    </update>
+    
+</mapper>

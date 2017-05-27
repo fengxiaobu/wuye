@@ -35,6 +35,10 @@ public class User implements Serializable {
      * 绑定手机号
      */
     private String phone;
+    
+    private String erpId;
+    
+    private Integer fccategory;
 
     /**
      * @return the logo
@@ -42,7 +46,7 @@ public class User implements Serializable {
     public String getLogo() {
         return logo;
     }
-
+    
     /*
     @param logo the logo to set
     */
@@ -100,6 +104,22 @@ public class User implements Serializable {
     */
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    public String getErpId() {
+        return erpId;
+    }
+
+    public void setErpId(String erpId) {
+        this.erpId = erpId;
+    }
+
+    public Integer getFccategory() {
+        return fccategory;
+    }
+
+    public void setFccategory(Integer fccategory) {
+        this.fccategory = fccategory;
     }
 
 

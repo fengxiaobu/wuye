@@ -18,4 +18,10 @@ public interface UserMapper {
     public void updateUser(@Param("user") User user);
     
     public void delUserById(@Param("userId") Long userId);
+    
+    public void addUser(@Param("user")User user);
+    
+    public Long findMaxUserId();
+    
+    public User findUserIsRepetitionByErpId(@Param("erpId")String erpId);
 }

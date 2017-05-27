@@ -9,6 +9,8 @@
         <result property="companyType" column="company_type"/>
         <result property="clientName" column="client_name"/>
         <result property="phone" column="phone"/>
+        <result property="erpId" column="erp_id"/>
+        <result property="fccategory" column="fccategory"/>
     </resultMap>
     
     <!-- 用户总条数查询 -->
@@ -31,7 +33,17 @@
    					PHONE LIKE CONCAT(CONCAT('%',#{condition}),'%')) U ) 
         		WHERE RN BETWEEN #{pageStartRow} AND 
         			#{pageEndRow}
-   		
+   </select>
+   
+   <!-- 添加用户 -->
+   <insert id="addUser">
+   		insert into T_USER (USER_ID,CLIENT_NAME,ERP_ID,FCCATEGORY) 
+   			VALUES 
+   				(#{user.userId},#{user.clientName},#{user.erpId},#{user.fccategory})
+   </insert>
+   <!--  查询用户id最大值 -->
+   <select id="findMaxUserId" resultType="java.lang.Long">
+   		select max(USER_ID) from T_USER
    </select>
    <!-- 用户信息修改 操作-->
    <update id="updateUser" >
@@ -44,6 +56,12 @@
     <delete id="delUserById">
     	DELETE FROM T_USER WHERE USER_ID = #{userId} 
     </delete>
+    
+    <!--  查询信息是否已经保存 -->
+    <select id="findUserIsRepetitionByErpId" resultType="cn.rzhd.wuye.bean.User">
+    	select * from T_USER where ERP_ID = #{erpId}
+    
+    </select>
     
     
 </mapper>

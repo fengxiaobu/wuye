@@ -120,4 +120,16 @@ public class UserController {
 	}
 	return JsonUtils.objectToJson("用户删除成功");
     }
+    
+    /**
+     * 拉取ERP用户信息
+     * @return
+     */
+    @RequestMapping(value="/pullUserInfo",method=RequestMethod.POST)
+    public String pullUserInfo(){
+	
+	String erpAllUserPull = userService.ERPAllUserPull();
+	return JsonUtils.objectToJson(erpAllUserPull);
+	
+    }
 }
