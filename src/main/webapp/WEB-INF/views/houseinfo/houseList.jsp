@@ -45,7 +45,6 @@
             <table class="table table-bordered tudiqianyue-table">
                 <thead>
                 <tr class="info">
-                    <th rowspan="2">选择</th>
                     <th rowspan="2">序号</th>
                     <th rowspan="2">用户ID<br/></th>
                     <th rowspan="2">项目名称</th>
@@ -57,7 +56,6 @@
                 </thead>
                 <tbody class="tudiqianyue-tbody">
                 <tr class="tudiqianyue-tdtr">
-                    <td><input type="checkbox" value=""></td>
                     <td>1</td>
                     <td>9527</td>
                     <td>联东U谷</td>
@@ -67,7 +65,6 @@
                     <td>2013-01-10</td>
                 </tr>
                 <tr class="tudiqianyue-tdtr">
-                    <td><input type="checkbox" value=""></td>
                     <td>1</td>
                     <td>9527</td>
                     <td>联东U谷</td>
