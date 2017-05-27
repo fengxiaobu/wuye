@@ -1,6 +1,5 @@
 package cn.rzhd.wuye;
 
-import cn.rzhd.wuye.vo.LiandoServiceConstant;
 import cn.rzhd.wuye.vo.RequesterVO;
 import cn.rzhd.wuye.wsclient.IExamDataServiceStub;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -28,7 +27,7 @@ public class WebServiceTest {
         RequesterVO request = new RequesterVO();
         request.setKey("liando");
         //request.setBilltype(LiandoServiceConstant.DATA_TYPE_CORP);
-        request.setBilltype(LiandoServiceConstant.DATA_TYPE_HOUSE);
+        //request.setBilltype(LiandoServiceConstant.DATA_TYPE_RENT_CUSTOMER);
         request.setPk_corp("1028");
         //Jackson
         ObjectMapper json = new ObjectMapper();

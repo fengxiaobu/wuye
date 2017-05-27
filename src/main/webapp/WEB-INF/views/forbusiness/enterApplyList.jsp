@@ -67,13 +67,13 @@
                         <td><input type="checkbox" value=""></td>
                         <td>${status.index+1}</td>
                         <td>${enterApply.enterApplyId}</td>
+                        <td>${enterApply.houseInfoId}</td>
                         <td>${enterApply.clientName}</td>
-                        <td>${enterApply.applyTime}</td>
                         <td><fmt:formatDate value="${enterApply.applyTime }" pattern="yyyy-MM-dd"/></td>
                         <td>
                             <c:if test="${enterApply.auditStatus eq 0}">未审核</c:if>
                             <c:if test="${enterApply.auditStatus eq 1}">已通过</c:if>
-                            <c:if test="${enterApply.auditStatus eq 0}">未通过</c:if>
+                            <c:if test="${enterApply.auditStatus eq 2}">未通过</c:if>
                         </td>
                         <td><a class="btn btn-info" href="#" role="button">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;<a
                                 class="btn btn-info" href="/views/forbusiness/enterApplyEdit"

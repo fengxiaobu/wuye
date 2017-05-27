@@ -39,6 +39,9 @@ public class ResponseVO implements Serializable{
 	private FeeitemVO [] feeitemdata;//费用项目数据
 	
 	private FeeAccountVO feeaccountdata;//费用项目与银行账号对照数据
+	
+	private RevfareVO [] revfaredata;//运营收款单数据
+	
 
 	public String getIssuccess() {
 		return issuccess;
@@ -150,6 +153,14 @@ public class ResponseVO implements Serializable{
 
 	public void setFeeitemdata(FeeitemVO[] feeitemdata) {
 		this.feeitemdata = feeitemdata;
+	}
+
+	public RevfareVO[] getRevfaredata() {
+		return revfaredata;
+	}
+
+	public void setRevfaredata(RevfareVO[] revfaredata) {
+		this.revfaredata = revfaredata;
 	}
 	
 

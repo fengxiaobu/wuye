@@ -4,7 +4,7 @@
 <mapper namespace="cn.rzhd.wuye.mapper.EnterApplyMapper">
 
     <resultMap id="BaseResultMap" type="cn.rzhd.wuye.bean.EnterApply">
-        <id column="ENTER_APPLY_ID" property="enterApplyId"/>
+    <id column="ENTER_APPLY_ID" property="enterApplyId"/>
         <result column="HOUSE_INFO_ID" property="houseInfoId"/>
         <result column="CLIENT_NAME" property="clientName"/>
         <result column="APPLY_TIME" property="applyTime"/>
@@ -15,8 +15,7 @@
         <result column="UPDATE_TIME" property="updateTime"/>
     </resultMap>
     <!-- 单表查询info数据根据ID -->
-    <select id="getEnterApplyByID" resultType="cn.rzhd.wuye.bean.EnterApply"
-            parameterType="long">
+    <select id="getEnterApplyByID" resultType="cn.rzhd.wuye.bean.EnterApply">
         SELECT
         ENTER_APPLY_ID,
         HOUSE_INFO_ID ,
@@ -33,19 +32,31 @@
             ENTER_APPLY_ID=#{enterApplyId}
         </where>
     </select>
-    <!-- 单表查询info数据(全部数据)-->
-     <select id="getEnterApplyAll" resultMap="BaseResultMap">
-          SELECT
-        ENTER_APPLY_ID,
-        HOUSE_INFO_ID ,
-        CLIENT_NAME ,
-        APPLY_TIME ,
-        AUDIT_STATUS ,
-        ENTER_ADVICE_NOTE ,
-        NOTES ,
-        CREATION_TIME ,
-        UPDATE_TIME
-        FROM
-        T_ENTER_APPLY
+
+    <!-- 入驻申请列表分页查询 -->
+    <select id="findEnterApplyList" resultMap="BaseResultMap">
+       SELECT * FROM (  SELECT U.*, ROWNUM RN
+            FROM (SELECT * FROM T_ENTER_APPLY) U )
+            WHERE RN BETWEEN #{pageStartRow} AND #{pageEndRow}
     </select>
+    <!-- 用户列表条件查询 -->
+    <select id="findEnterApplyByCondition" resultMap="BaseResultMap">
+
+        SELECT * FROM (  SELECT U.*, ROWNUM RN
+        FROM (SELECT * FROM T_ENTER_APPLY
+        WHERE CLIENT_NAME LIKE CONCAT(CONCAT('%',#{condition}),'%')) U )
+        WHERE RN BETWEEN #{pageStartRow} AND
+        #{pageEndRow}
+    </select>
+    <!-- 用户信息修改 操作-->
+    <!--<update id="updateEnterApply">
+        update T_ENTER_APPLY set LOGO= #{user.logo},COMPANY_TYPE= #{user.companyType},
+        CLIENT_NAME= #{user.clientName},PHONE= #{user.phone}
+        where USER_ID = #{user.userId}
+    </update>-->
+
+    <!-- 用户信息删除操作 -->
+   <!-- <delete id="delEnterApplyById">
+        DELETE FROM T_USER WHERE USER_ID = #{userId}
+    </delete>-->
 </mapper>

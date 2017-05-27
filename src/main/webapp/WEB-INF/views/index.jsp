@@ -168,7 +168,7 @@
                         <ul class="panel-group level02" id="aside_four_02">
                             <li class="panel" role="tab">
                                 <div class="panel-header">
-                                    <a href="${pageContext.request.contextPath}/enterApply/enterApplyList" target="main">入驻申请</a>
+                                    <a href="${pageContext.request.contextPath}/enterApply/enterApplyList?pageNum=1&pageSize=3" target="main">入驻申请</a>
                                 </div>
                             </li>
 

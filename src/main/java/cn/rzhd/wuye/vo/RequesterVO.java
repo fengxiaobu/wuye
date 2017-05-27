@@ -19,6 +19,8 @@ public class RequesterVO implements Serializable{
 	
 	private String pk_corp;//公司主键
 	
+	private String pk_customer;//客户主键
+	
 	private String lastmaxtime;//上次获取中的最大时间
 	
 	private FeeVO [] feedata;//费用数据
@@ -49,6 +51,14 @@ public class RequesterVO implements Serializable{
 
 	public void setPk_corp(String pk_corp) {
 		this.pk_corp = pk_corp;
+	}
+
+	public String getPk_customer() {
+		return pk_customer;
+	}
+
+	public void setPk_customer(String pk_customer) {
+		this.pk_customer = pk_customer;
 	}
 
 	public String getLastmaxtime() {
