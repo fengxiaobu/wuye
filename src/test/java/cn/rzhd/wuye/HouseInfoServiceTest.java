@@ -1,12 +1,20 @@
 package cn.rzhd.wuye;
 
 import cn.rzhd.wuye.bean.HouseInfo;
+import cn.rzhd.wuye.common.WebService;
 import cn.rzhd.wuye.service.IHouseInfoService;
+import cn.rzhd.wuye.utils.JsonUtils;
+import cn.rzhd.wuye.vo.HouseVO;
+import cn.rzhd.wuye.vo.RequesterVO;
+import cn.rzhd.wuye.vo.ResponseVO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by hasee on 2017/5/25.
@@ -25,8 +33,24 @@ public class HouseInfoServiceTest {
     
     @Test
     public void getAllTest(){
-        for (HouseInfo houseInfo : houseInfoService.getAll()) {
-            System.out.println(houseInfo.getHouseProperty());
+        List<HouseInfo> list = houseInfoService.getAll();
+        RequesterVO vo = new RequesterVO();
+        vo.setKey("liando");
+        vo.setBilltype("HOUSE");
+        vo.setPk_corp("1031");
+        String data = WebService.getBaseData(vo);
+        ResponseVO responseVO = JsonUtils.jsonToPojo(data, ResponseVO.class);
+        if (responseVO!=null){
+            if ("Y".equals(responseVO.getIssuccess())){
+                List<HouseVO> houseVOS = Arrays.asList(responseVO.getHousedata());
+                for (HouseVO houseVO : houseVOS) {
+                    System.out.println(houseVO);
+                }
+
+
+            }
+
+
         }
     }
 

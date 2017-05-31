@@ -1,11 +1,17 @@
 package cn.rzhd.wuye.service.impl;
 
 import cn.rzhd.wuye.bean.HouseInfo;
+import cn.rzhd.wuye.common.WebService;
 import cn.rzhd.wuye.mapper.HouseInfoMapper;
 import cn.rzhd.wuye.service.IHouseInfoService;
+import cn.rzhd.wuye.utils.JsonUtils;
+import cn.rzhd.wuye.vo.CorpVO;
+import cn.rzhd.wuye.vo.RequesterVO;
+import cn.rzhd.wuye.vo.ResponseVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -26,8 +32,21 @@ public class HouseInfoServiceImpl implements IHouseInfoService {
     @Override
     public List<HouseInfo> getAll() {
         List<HouseInfo> list = houseInfoMapper.getAll();
-        return list;
+        RequesterVO vo = new RequesterVO();
+        vo.setKey("liando");
+        vo.setBilltype("CORP");
+        String data = WebService.getBaseData(vo);
+        ResponseVO responseVO = JsonUtils.jsonToPojo(data, ResponseVO.class);
+        if (responseVO != null) {
+            if ("Y".equals(responseVO.getIssuccess())) {
+                List<CorpVO> corpVOList = Arrays.asList(responseVO.getCorpdata());
+
+            }
+        }
+
+        return null;
     }
+
 
     @Override
     public void add(HouseInfo houseInfo) {

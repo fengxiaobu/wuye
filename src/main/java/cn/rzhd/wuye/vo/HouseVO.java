@@ -355,4 +355,37 @@ public class HouseVO implements Serializable {
 		this.vdef10 = vdef10;
 	}
 
+	@Override
+	public String toString() {
+		return "HouseVO{" +
+				"pk_corp='" + pk_corp + '\'' +
+				", pk_house='" + pk_house + '\'' +
+				", pk_project='" + pk_project + '\'' +
+				", project='" + project + '\'' +
+				", building='" + building + '\'' +
+				", ifloor='" + ifloor + '\'' +
+				", vhcell='" + vhcell + '\'' +
+				", vhnum='" + vhnum + '\'' +
+				", vhcode='" + vhcode + '\'' +
+				", vhname='" + vhname + '\'' +
+				", otation='" + otation + '\'' +
+				", room='" + room + '\'' +
+				", situation='" + situation + '\'' +
+				", fsellmethod='" + fsellmethod + '\'' +
+				", managestate='" + managestate + '\'' +
+				", nbuildarea='" + nbuildarea + '\'' +
+				", ninarea='" + ninarea + '\'' +
+				", nleaseoutarea='" + nleaseoutarea + '\'' +
+				", nmanagearea='" + nmanagearea + '\'' +
+				", nsellarea='" + nsellarea + '\'' +
+				", npublicarea='" + npublicarea + '\'' +
+				", nunderlinearea='" + nunderlinearea + '\'' +
+				", ngardenarea='" + ngardenarea + '\'' +
+				", nrpublicarea='" + nrpublicarea + '\'' +
+				", nrinarea='" + nrinarea + '\'' +
+				", nrbuildarea='" + nrbuildarea + '\'' +
+				", nrunderlinearea='" + nrunderlinearea + '\'' +
+				", nrgardenarea='" + nrgardenarea + '\'' +
+				'}';
+	}
 }

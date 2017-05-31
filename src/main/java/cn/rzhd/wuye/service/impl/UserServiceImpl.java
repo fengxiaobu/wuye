@@ -9,15 +9,12 @@ import cn.rzhd.wuye.vo.CustomerVO;
 import cn.rzhd.wuye.vo.LiandoServiceConstant;
 import cn.rzhd.wuye.vo.RequesterVO;
 import cn.rzhd.wuye.vo.ResponseVO;
-import cn.rzhd.wuye.wsclient.IExamDataServiceStub;
-
-import java.util.List;
-import java.util.Map;
-
+import com.fasterxml.jackson.annotation.JsonFormat.Value;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.fasterxml.jackson.annotation.JsonFormat.Value;
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class UserServiceImpl implements IUserService {
@@ -59,7 +56,7 @@ public class UserServiceImpl implements IUserService {
 	    requesterVO.setKey("liando");
 	    requesterVO.setPk_corp("1031");
 	    requesterVO.setBilltype(LiandoServiceConstant.DATA_TYPE_SELL_CUSTOMER);
-	    String baseDataTest = WebService.getBaseDataTest(requesterVO);
+	    String baseDataTest = WebService.getBaseData(requesterVO);
 	    ResponseVO jsonToPojo = JsonUtils.jsonToPojo(baseDataTest, ResponseVO.class);
 	    if (jsonToPojo.getIssuccess().equals("Y")) {
 		CustomerVO[] customerdata = jsonToPojo.getCustomerdata();
@@ -87,7 +84,7 @@ public class UserServiceImpl implements IUserService {
 	    requesterVO1.setKey("liando");
 	    requesterVO1.setPk_corp("1031");
 	    requesterVO1.setBilltype(LiandoServiceConstant.DATA_TYPE_RENT_CUSTOMER);
-	    String baseDataTest1 = WebService.getBaseDataTest(requesterVO);
+	    String baseDataTest1 = WebService.getBaseData(requesterVO);
 	    ResponseVO jsonToPojo1 = JsonUtils.jsonToPojo(baseDataTest1, ResponseVO.class);
 	    if (jsonToPojo1.getIssuccess().equals("Y")) {
 		CustomerVO[] customerdata = jsonToPojo1.getCustomerdata();

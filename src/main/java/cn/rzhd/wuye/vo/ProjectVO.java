@@ -169,4 +169,16 @@ public class ProjectVO implements Serializable {
 		this.vdef10 = vdef10;
 	}
 
+	@Override
+	public String toString() {
+		return "ProjectVO{" +
+				"pk_corp='" + pk_corp + '\'' +
+				", pk_project='" + pk_project + '\'' +
+				", vcode='" + vcode + '\'' +
+				", vname='" + vname + '\'' +
+				", vshortname='" + vshortname + '\'' +
+				", pk_responsecorp='" + pk_responsecorp + '\'' +
+				", vincode='" + vincode + '\'' +
+				'}';
+	}
 }

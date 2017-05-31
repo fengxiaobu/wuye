@@ -241,4 +241,24 @@ public class CustomerVO implements Serializable {
 		this.vdef10 = vdef10;
 	}
 
+	@Override
+	public String toString() {
+		return "CustomerVO{" +
+				"pk_corp='" + pk_corp + '\'' +
+				", pk_customerid='" + pk_customerid + '\'' +
+				", fccategory='" + fccategory + '\'' +
+				", vccode='" + vccode + '\'' +
+				", vcname='" + vcname + '\'' +
+				", vpcnamespell='" + vpcnamespell + '\'' +
+				", vpreferredtel='" + vpreferredtel + '\'' +
+				", vccardnum='" + vccardnum + '\'' +
+				", vcaddress='" + vcaddress + '\'' +
+				", ccpostalcode='" + ccpostalcode + '\'' +
+				", dregdate='" + dregdate + '\'' +
+				", vregplace='" + vregplace + '\'' +
+				", vmemcardno='" + vmemcardno + '\'' +
+				", vpcemail='" + vpcemail + '\'' +
+				", nproperty='" + nproperty + '\'' +
+				'}';
+	}
 }

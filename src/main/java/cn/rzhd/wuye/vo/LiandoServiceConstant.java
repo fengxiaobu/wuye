@@ -1,6 +1,7 @@
 package cn.rzhd.wuye.vo;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /** webservice服务常量类
  * @author liudaoke
@@ -21,6 +22,10 @@ public class LiandoServiceConstant implements Serializable{
 	 * 公司
 	 */
 	public static final String DATA_TYPE_CORP = "CORP";
+	/**
+	 * 公司数据的上次查询时间
+	 */
+	public static Date CORP_LAST_TIME;
 	/**
 	 * 项目
 	 */
@@ -96,4 +101,11 @@ public class LiandoServiceConstant implements Serializable{
 //	public static final String DATA_SOURCE_NAME = "ncd9088";
 	public static final String DATA_SOURCE_NAME = "design";
 
+	public static Date getCorpLastTime() {
+		return CORP_LAST_TIME;
+	}
+
+	public static void setCorpLastTime(Date corpLastTime) {
+		CORP_LAST_TIME = corpLastTime;
+	}
 }

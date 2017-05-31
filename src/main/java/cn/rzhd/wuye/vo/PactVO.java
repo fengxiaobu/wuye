@@ -232,4 +232,23 @@ public class PactVO implements Serializable {
 		this.ndef5 = ndef5;
 	}
 
+	@Override
+	public String toString() {
+		return "PactVO{" +
+				"pk_corp='" + pk_corp + '\'' +
+				", pk_customerid='" + pk_customerid + '\'' +
+				", pk_project='" + pk_project + '\'' +
+				", pk_pact='" + pk_pact + '\'' +
+				", pk_house='" + pk_house + '\'' +
+				", house='" + house + '\'' +
+				", nrentarea='" + nrentarea + '\'' +
+				", dpactend='" + dpactend + '\'' +
+				", dpactstart='" + dpactstart + '\'' +
+				", nzlbzjmny='" + nzlbzjmny + '\'' +
+				", nhtysmny='" + nhtysmny + '\'' +
+				", nhtssmny='" + nhtssmny + '\'' +
+				", dysdate='" + dysdate + '\'' +
+				", nsbzjyjmny='" + nsbzjyjmny + '\'' +
+				'}';
+	}
 }
