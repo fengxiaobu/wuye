@@ -52,8 +52,19 @@ public class EnterApply implements Serializable{
 	 * 修改时间
 	 */
 	private Date updateTime;
-	
-	
+	/**
+	 * 房产信息
+	 */
+	private HouseInfo houseInfo;
+
+	public HouseInfo getHouseInfo() {
+		return houseInfo;
+	}
+
+	public void setHouseInfo(HouseInfo houseInfo) {
+		this.houseInfo = houseInfo;
+	}
+
 	/**
 	 * @return the enterApplyId
 	 */

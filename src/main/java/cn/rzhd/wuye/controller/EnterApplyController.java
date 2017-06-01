@@ -3,7 +3,12 @@ package cn.rzhd.wuye.controller;
 import cn.rzhd.wuye.bean.EnterApply;
 import cn.rzhd.wuye.service.IEnterApplyService;
 import cn.rzhd.wuye.utils.JsonUtils;
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,8 +44,12 @@ public class EnterApplyController {
             return JsonUtils.objectToJson("每页显示条数无效");
         }
         try {
-            List<Map<String, JsonFormat.Value>> enterApplyList = enterApplyService.findEnterApplyList(pageNum, pageSize);
-            return JsonUtils.objectToJson(enterApplyList);
+            PageHelper.startPage(pageNum, pageSize);
+            List<Map<String, JsonFormat.Value>> enterApplyList = enterApplyService.findEnterApplyList();
+            PageInfo pageInfo = new PageInfo(enterApplyList);
+            Page page=(Page) enterApplyList;
+            System.out.println("page = " + page);
+            return JSONObject.toJSONString(pageInfo, SerializerFeature.WriteMapNullValue)+JSONObject.toJSONString(page, SerializerFeature.WriteMapNullValue);
         } catch (Exception e) {
             System.err.println("入驻申请列表分页查询失败");
             e.printStackTrace();
@@ -54,21 +63,29 @@ public class EnterApplyController {
      */
     @RequestMapping("/enterApplyList")
     public String showEnterApplyList(Model model, Integer pageNum, Integer pageSize) {
-      /*  if (pageNum == null || pageNum <= 0) {
-          //  return JsonUtils.objectToJson("当前页码无效");
-        }
-        if (pageSize == null || pageSize <= 0) {
-          //  return JsonUtils.objectToJson("每页显示条数无效");
-        }*/
-        System.out.println("pageNum = " + pageNum);
-        List<Map<String, JsonFormat.Value>> enterApplyList = enterApplyService.findEnterApplyList(pageNum, pageSize);
+        PageHelper.startPage(pageNum, pageSize);
+        List<Map<String, JsonFormat.Value>> enterApplyList = enterApplyService.findEnterApplyList();
+        PageInfo pageInfo = new PageInfo(enterApplyList);
+
+        Page page=(Page) enterApplyList;
+         System.out.println(JSONObject.toJSONString(page,SerializerFeature.WriteMapNullValue));
+        System.out.println(page);
+        //List<Map<String, JsonFormat.Value>> enterApplyList = enterApplyService.findEnterApplyList(pageNum, pageSize);
         model.addAttribute("enterApplyList", enterApplyList);
+
+        model.addAttribute("pages", page.getPages());
         return "forbusiness/enterApplyList";
     }
 
-    @RequestMapping("/getEnterApplyPage")
-    public String getEnterApplyPage() {
-
-        return "";
+    /**
+     * 入驻申请编辑
+     *
+     * @return
+     */
+    @RequestMapping("/enterApplyEdit")
+    public String toEnterApplyAdd(Model model, Long enterApplyId) {
+        EnterApply enterApply = enterApplyService.getEnterApplyByID(enterApplyId);
+        model.addAttribute("enterApply", enterApply);
+        return "forbusiness/enterApplyEdit";
     }
 }

@@ -1,13 +1,12 @@
 package cn.rzhd.wuye.service.impl;
 
-import java.util.Date;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import cn.rzhd.wuye.bean.TypeDifferentiate;
 import cn.rzhd.wuye.mapper.TypeDifferentiateMapper;
 import cn.rzhd.wuye.service.IDataDictionaryService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.Date;
 
 @Service
 public class DataDictionaryServiceImpl implements IDataDictionaryService {

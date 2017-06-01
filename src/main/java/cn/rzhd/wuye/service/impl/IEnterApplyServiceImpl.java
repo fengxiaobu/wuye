@@ -1,9 +1,14 @@
 package cn.rzhd.wuye.service.impl;
 
 import cn.rzhd.wuye.bean.EnterApply;
+import cn.rzhd.wuye.common.WebService;
 import cn.rzhd.wuye.mapper.EnterApplyMapper;
 import cn.rzhd.wuye.service.IEnterApplyService;
+import cn.rzhd.wuye.vo.LiandoServiceConstant;
 import cn.rzhd.wuye.vo.RequesterVO;
+import cn.rzhd.wuye.vo.ResponseVO;
+import com.alibaba.fastjson.JSON;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonFormat.Value;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,7 +35,7 @@ public class IEnterApplyServiceImpl implements IEnterApplyService {
     public EnterApply getEnterApplyByID(Long enterApplyId) {
         RequesterVO requesterVO=new RequesterVO();
         requesterVO.setKey("liando");
-        requesterVO.setBilltype("");
+        requesterVO.setBilltype(LiandoServiceConstant.DATA_TYPE_CORP);
         return enterApplyMapper.getEnterApplyByID(enterApplyId);
     }
 
@@ -39,11 +44,40 @@ public class IEnterApplyServiceImpl implements IEnterApplyService {
      *
      * @return
      */
-    @Override
+ /*   @Override
     public List<Map<String, Value>> findEnterApplyList(Integer pageNum, Integer pageSize) {
         Integer pageStartRow = pageNum*pageSize-pageSize+1;
         Integer pageEndRow = pageStartRow+pageSize-1;
-        List<Map<String, Value>> enterApplyList = enterApplyMapper.findEnterApplyList(pageStartRow, pageEndRow);
+        RequesterVO requesterVO=new RequesterVO();
+        requesterVO.setKey("liando");
+        requesterVO.setBilltype(LiandoServiceConstant.DATA_TYPE_CORP);
+        //requesterVO.setPk_corp("1028");
+
+        List<Map<String, JsonFormat.Value>> enterApplyList = enterApplyMapper.findEnterApplyList(pageStartRow, pageEndRow);
+        String jsonString = JSON.toJSONString(enterApplyList);
+        List<EnterApply> enterApplies = JSON.parseArray(jsonString, EnterApply.class);
+        for (EnterApply enterApply : enterApplies) {
+            System.out.println("enterApply = " + enterApply);
+        }
+        String baseData = WebService.getBaseData(requesterVO);
+
+        return enterApplyList;
+    }*/
+    @Override
+    public List<Map<String, Value>> findEnterApplyList() {
+        RequesterVO requesterVO=new RequesterVO();
+        requesterVO.setKey("liando");
+        requesterVO.setBilltype(LiandoServiceConstant.DATA_TYPE_CORP);
+        //requesterVO.setPk_corp("1028");
+
+        List<Map<String, JsonFormat.Value>> enterApplyList = enterApplyMapper.findEnterApplyList();
+        String jsonString = JSON.toJSONString(enterApplyList);
+        List<EnterApply> enterApplies = JSON.parseArray(jsonString, EnterApply.class);
+        for (EnterApply enterApply : enterApplies) {
+            System.out.println("enterApply = " + enterApply);
+        }
+        String baseData = WebService.getBaseData(requesterVO);
+
         return enterApplyList;
     }
 }

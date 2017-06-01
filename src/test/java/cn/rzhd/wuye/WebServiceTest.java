@@ -26,9 +26,10 @@ public class WebServiceTest {
         //请求实体
         RequesterVO request = new RequesterVO();
         request.setKey("liando");
+        request.setBilltype("SFXM");
         //request.setBilltype(LiandoServiceConstant.DATA_TYPE_CORP);
-        //request.setBilltype(LiandoServiceConstant.DATA_TYPE_RENT_CUSTOMER);
         request.setPk_corp("1028");
+        request.setPk_feetype("1028AM1000000000GIYX");
         //Jackson
         ObjectMapper json = new ObjectMapper();
         String jsonStr = null;

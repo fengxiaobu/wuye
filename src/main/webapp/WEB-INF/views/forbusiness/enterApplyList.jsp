@@ -28,14 +28,13 @@
         <div class="panel-heading">
             <div class="col-xs-4">用户列表</div>
             <div class="col-xs-8 panel-oprerate">
-                <div class="col-xs-12">
+                <div class="col-xs-6dd">
                     <span style="margin-right: 50px"><input style="height: 35px;width: 320px;" type="text"
-                                                            id="exampleInputName" placeholder="用户编号,客户名称,手机号"></span>
-                    <button class="btn btn-info" type="button"><span class="glyphicon glyphicon-search"></span>搜素
-                    </button>
-                    <%--<a href="/userEdit" class="btn btn-info"  type="button"><span class="glyphicon glyphicon-plus"></span>新增</a>--%>
-                    <button class="btn btn-info" type="button"><span class="glyphicon glyphicon-remove"></span>删除
-                    </button>
+                                                            id="exampleInputName" placeholder="项目名称、用户名"></span>
+                    <a class="btn btn-info" type="button"><span class="glyphicon glyphicon-search"></span>搜素
+                    </a>
+                    <%--<a target="main" href="${pageContext.request.contextPath}/enterApply/toEnterApplyAdd" class="btn btn-info" type="button"><span class="glyphicon glyphicon-plus"></span>新增
+                    </a>--%>
                 </div>
                 <div class="col-xs-12">
                     <button class="btn btn-default" id="tudiqianyue-remove" type="button"><span
@@ -67,7 +66,7 @@
                         <td><input type="checkbox" value=""></td>
                         <td>${status.index+1}</td>
                         <td>${enterApply.enterApplyId}</td>
-                        <td>${enterApply.houseInfoId}</td>
+                        <td>${enterApply.houseInfo.houseProperty}</td>
                         <td>${enterApply.clientName}</td>
                         <td><fmt:formatDate value="${enterApply.applyTime }" pattern="yyyy-MM-dd"/></td>
                         <td>
@@ -76,15 +75,26 @@
                             <c:if test="${enterApply.auditStatus eq 2}">未通过</c:if>
                         </td>
                         <td><a class="btn btn-info" href="#" role="button">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;<a
-                                class="btn btn-info" href="/views/forbusiness/enterApplyEdit"
+                                class="btn btn-info"
+                                href="${pageContext.request.contextPath}/enterApply/enterApplyEdit?enterApplyId=${enterApply.enterApplyId}"
                                 role="button">编辑</a></td>
                     </tr>
                 </c:forEach>
                 </tbody>
             </table>
+            <div align="center">
+                <ul class="pagination">
+                    <li><a href="${pageContext.request.contextPath}/enterApply/enterApplyList?pageNum=1&pageSize=1" target="main">&laquo;</a></li>
+                        <c:forEach begin="1" end="${pages}" step="1" varStatus="page">
+                            <li><a href="${pageContext.request.contextPath}/enterApply/enterApplyList?pageNum=1&pageSize=1">${page.index}</a></li>
+                        </c:forEach>
+                    <li><a href="#">&raquo;</a></li>
+                </ul>
+            </div>
         </div>
     </div>
 
+</div>
 </body>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/libs/jquery-1.11.3.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/libs/bootstrap/js/bootstrap.min.js"></script>

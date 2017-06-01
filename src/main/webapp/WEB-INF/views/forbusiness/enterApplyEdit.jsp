@@ -25,13 +25,13 @@
         <form class="form-horizontal" action="" method="post" >
             <div style="margin-top: 50px"></div>
             <div class="form-group">
-                <label for="exampleInputFile" class="col-sm-2 control-label">LOGO</label>
+                <label class="col-sm-2 control-label">项目名称:</label>
                 <div class="col-sm-10">
-                    <input type="file" id="exampleInputFile">
+                    <label class="col-sm-2 control-label"></label>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-2 control-label">客户ID:</label>
+                <label class="col-sm-2 control-label">房产:</label>
                 <div class="col-sm-10">
                     <label class="col-sm-2 control-label"></label>
                 </div>
@@ -43,27 +43,118 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-2 control-label">客户类型:</label>
+                <label class="col-sm-2 control-label">申请时间:</label>
+                <div class="col-sm-10">
+                    <label class="col-sm-2 control-label"></label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputFile" class="col-sm-2 control-label">入驻通知</label>
+                <div class="col-sm-10">
+                    <input type="file" id="exampleInputFile"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">开发费用:</label>
+                <div class="col-sm-10" style="width: 700px">
+                    <div class="panel-body">
+                        <table class="table table-bordered tudiqianyue-table">
+                            <thead>
+                            <tr class="info">
+                                <th rowspan="2">序号</th>
+                                <th rowspan="2">费用类型<br/></th>
+                                <th rowspan="2">费用金额</th>
+                                <th rowspan="2">应缴款日期</th>
+                                <th rowspan="2">开始日期</th>
+                                <th rowspan="2">截止日期</th>
+                            </tr>
+                            </thead>
+                            <tbody class="tudiqianyue-tbody">
+                            <tr class="tudiqianyue-tdtr">
+                                <td>1</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr class="tudiqianyue-tdtr">
+                                <td>2</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">物业费用:</label>
+                <div class="col-sm-10" style="width: 700px">
+                    <div class="panel-body">
+                        <table class="table table-bordered tudiqianyue-table">
+                            <thead>
+                            <tr class="info">
+                                <th rowspan="2">序号</th>
+                                <th rowspan="2">费用类型<br/></th>
+                                <th rowspan="2">费用金额</th>
+                                <th rowspan="2">应缴款日期</th>
+                                <th rowspan="2">开始日期</th>
+                                <th rowspan="2">截止日期</th>
+                            </tr>
+                            </thead>
+                            <tbody class="tudiqianyue-tbody">
+                            <tr class="tudiqianyue-tdtr">
+                                <td>1</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr class="tudiqianyue-tdtr">
+                                <td>2</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">审核状态:</label>
                 <div class="col-sm-10 radio">
                     <label>
                         <input type="radio" name="optionsRadios" id="optionsRadios1"
-                               value="option1"/>企业
+                               value="option1"/>未审核
                     </label>
                     <label>
                         <input type="radio" name="optionsRadios" id="optionsRadios2"
-                               value="option2"/>个人
+                               value="option2"/>已通过
+                    </label>
+                    <label>
+                        <input type="radio" name="optionsRadios" id="optionsRadios3"
+                               value="option2"/>未通过
                     </label>
                 </div>
             </div>
-                <div class="form-group" >
-                    <label class="col-sm-2 control-label">绑定手机号:</label>
+            <div class="form-group">
+                    <label class="col-sm-2 control-label">审核信息:</label>
                     <div class="col-sm-10">
-                        <label class="col-sm-2 control-label"> <input type="text" style="width: 300px" class="form-control" placeholder="18190124022"></label>
+                        <label class="col-sm-2 control-label">
+                            <textarea name="" cols="30" rows="10"></textarea>
+                        </label>
                     </div>
                 </div>
-                <div class="form-group" style="margin-left: 300px">
-                    <button type="submit" class="btn btn-default">提交</button>
-                    <button type="submit" style="margin-left: 320px" class="btn btn-default">重置密码</button>
+            <div class="form-group">
+                    <button type="submit" class="btn btn-default">保存</button>
                 </div>
         </form>
     </div>

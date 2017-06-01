@@ -5,7 +5,7 @@ import java.io.Serializable;
 /*
  * 请求返回信息
  */
-public class ResponseVO implements Serializable{
+public class ResponseVO  implements Serializable{
 
 	/**
 	 * 

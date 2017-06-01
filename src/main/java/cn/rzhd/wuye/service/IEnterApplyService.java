@@ -21,5 +21,6 @@ public interface IEnterApplyService {
      * 获取所有入驻申请信息
      * @return
      */
-    List<Map<String, JsonFormat.Value>> findEnterApplyList(Integer pageNum, Integer pageSize);
+    //List<Map<String, JsonFormat.Value>> findEnterApplyList(Integer pageNum, Integer pageSize);
+    List<Map<String, JsonFormat.Value>> findEnterApplyList();
 }
