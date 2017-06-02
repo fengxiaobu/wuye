@@ -389,6 +389,11 @@
                                     <a href="/roleList" target="main">角色列表</a>
                                 </div>
                             </li>
+                            <li class="panel" role="tab">
+                                <div class="panel-header">
+                                    <a href="${pageContext.request.contextPath}/topay" target="main">支付</a>
+                                </div>
+                            </li>
                         </ul>
                     </div>
                 </li>
