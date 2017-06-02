@@ -354,4 +354,30 @@ public class PropertyFeePayDetails implements Serializable{
 		this.houseInfoId = houseInfoId;
 	}
 
+	@Override
+	public String toString() {
+		return "PropertyFeePayDetails{" +
+				"propertyFeePayDetails=" + propertyFeePayDetails +
+				", houseInfoId=" + houseInfoId +
+				", clientName='" + clientName + '\'' +
+				", costType='" + costType + '\'' +
+				", payManner='" + payManner + '\'' +
+				", payMonth=" + payMonth +
+				", startDate=" + startDate +
+				", endDate=" + endDate +
+				", payable=" + payable +
+				", paidIn=" + paidIn +
+				", voucherNumber='" + voucherNumber + '\'' +
+				", invoice='" + invoice + '\'' +
+				", invoiceNumber='" + invoiceNumber + '\'' +
+				", invoiceNotes='" + invoiceNotes + '\'' +
+				", invoiceStatus=" + invoiceStatus +
+				", collectingCompany='" + collectingCompany + '\'' +
+				", collectingAccount='" + collectingAccount + '\'' +
+				", invoiceCompany='" + invoiceCompany + '\'' +
+				", payTime=" + payTime +
+				", carteTime=" + carteTime +
+				", updateTime=" + updateTime +
+				'}';
+	}
 }

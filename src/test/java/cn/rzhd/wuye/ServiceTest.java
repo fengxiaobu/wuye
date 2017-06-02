@@ -3,10 +3,7 @@ package cn.rzhd.wuye;
 import cn.rzhd.wuye.common.WebService;
 import cn.rzhd.wuye.utils.JsonUtils;
 import cn.rzhd.wuye.utils.MD5Utils;
-import cn.rzhd.wuye.vo.LiandoServiceConstant;
-import cn.rzhd.wuye.vo.ProjectVO;
-import cn.rzhd.wuye.vo.RequesterVO;
-import cn.rzhd.wuye.vo.ResponseVO;
+import cn.rzhd.wuye.vo.*;
 import com.github.pagehelper.StringUtil;
 import org.junit.Test;
 
@@ -51,5 +48,32 @@ public class ServiceTest extends BaseTest {
     public void md5Password(){
         String s = MD5Utils.md5("123456");
         System.out.println(s);
+    }
+
+    @Test
+    public void accountTest(){
+        RequesterVO vo = new RequesterVO();
+        vo.setKey("liando");
+        vo.setPk_corp("1031");
+        vo.setBilltype(LiandoServiceConstant.DATA_TYPE_HOUSE);
+        String baseData = WebService.getBaseData(vo);
+        ResponseVO responseVO = JsonUtils.jsonToPojo(baseData, ResponseVO.class);
+        if ("Y".equals(responseVO.getIssuccess()) && StringUtil.isEmpty(responseVO.getErrorinfo())){
+            FeeitemVO[] vos = responseVO.getFeeitemdata();
+            if (vos!=null){
+                vo.setBilltype(LiandoServiceConstant.DATA_TYPE_BANK_ACCOUNT);
+                for (FeeitemVO feeitemVO : vos) {
+                    String pk_fee = feeitemVO.getPk_fee();
+                    vo.setPk_feetype(pk_fee);
+                    String data = WebService.getBaseData(vo);
+                    ResponseVO pojo = JsonUtils.jsonToPojo(data, ResponseVO.class);
+                    if ("Y".equals(pojo.getIssuccess()) && StringUtil.isEmpty(pojo.getErrorinfo())){
+                        FeeAccountVO feeaccountdata = pojo.getFeeaccountdata();
+                        System.out.println(feeaccountdata.getAccount());
+                    }
+                }
+
+            }
+        }
     }
 }

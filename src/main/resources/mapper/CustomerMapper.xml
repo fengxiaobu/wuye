@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.rzhd.wuye.mapper.CustomerMapper">
+    
+    <resultMap id="customerMap" type="cn.rzhd.wuye.bean.Customer">
+        <id property="pk_customerid" column="pk_customerid"/>
+        <result property="pk_corp" column="pk_corp"/>
+        <result property="fccategory" column="fccategory"/>
+        <result property="vccode" column="vccode"/>
+        <result property="vcname" column="vcname"/>
+        <result property="vpcnamespell" column="vpcnamespell"/>
+        <result property="vpreferredtel" column="vpreferredtel"/>
+        <result property="vccardnum" column="vccardnum"/>
+        <result property="vcaddress" column="vcaddress"/>
+        <result property="ccpostalcode" column="ccpostalcode"/>
+        <result property="dregdate" column="dregdate"/>
+        <result property="vregplace" column="vregplace"/>
+        <result property="vmemcardno" column="vmemcardno"/>
+        <result property="vpcemail" column="vpcemail"/>
+        <result property="nproperty" column="nproperty"/>
+        <result property="LOGO" column="LOGO"/>
+        <result property="companyType" column="Company_Type"/>
+        <result property="password" column="Password"/>
+        <result property="bindingPhone" column="Binding_Phone"/>
+        <collection property="houseInfos" javaType="list" column="houseInfoId" ofType="long"/>
+    </resultMap>
+    <select id="loginByPwd" parameterType="cn.rzhd.wuye.bean.Customer" resultMap="customerMap">
+        SELECT "pk_corp",
+            "pk_customerid",
+            "fccategory",
+            "vccode",
+            "vcname",
+            "vpcnamespell",
+            "vpreferredtel",
+            "vccardnum",
+            "vcaddress",
+            "ccpostalcode",
+            "dregdate",
+            "vregplace",
+            "vmemcardno",
+            "vpcemail",
+            "nproperty",
+            "LOGO",
+            "Company_Type",
+            "Password",
+            "Binding_Phone",
+            h."HOUSE_INFO_ID" AS houseInfoId
+        FROM "T_Customer" c LEFT JOIN T_HOUSE_INFO h ON h.CUSTOMER_ID="pk_customerid"
+        WHERE "vccode" = #{vccode} AND "Password" = #{password}
+    </select>
+    
+</mapper>
