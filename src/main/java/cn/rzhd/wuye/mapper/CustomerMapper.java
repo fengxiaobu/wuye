@@ -1,7 +1,15 @@
 package cn.rzhd.wuye.mapper;
 
 import cn.rzhd.wuye.bean.Customer;
+import cn.rzhd.wuye.vo.CustomerVO;
+
+import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+import com.fasterxml.jackson.annotation.JsonFormat.Value;
 
 /**
  * Created by hasee on 2017/6/1.
@@ -15,4 +23,16 @@ public interface CustomerMapper {
      * @return 账号密码吻合的Customer
      */
     Customer loginByPwd(Customer customer);
+    
+    List<Map<String, Value>> findCustomerList(@Param("pageStartRow") Integer pageStartRow,@Param("pageEndRow") Integer pageEndRow);
+    
+    List<Map<String, Value>> findCustomerByCondition(@Param("condition") String condition,@Param("pageStartRow") Integer pageStartRow,@Param("pageEndRow") Integer pageEndRow);
+    
+    void updateCustomer(@Param("customerVo") CustomerVO customerVo);
+    
+    void delCustomerById(@Param("customerId")Long customerId);
+    
+    Customer findCustomerIsRepetitionByErpId(@Param("customerId") String customerId);
+    
+    void addCustomer(@Param("customerVo") CustomerVO customerVo);
 }

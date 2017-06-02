@@ -50,4 +50,55 @@
         WHERE "vccode" = #{vccode} AND "Password" = #{password}
     </select>
     
+     <!-- 用户列表分页查询 -->
+   <select id="findCustomerList" resultMap="customerMap" >
+        SELECT * FROM (  SELECT C.*, ROWNUM RN  
+        	FROM (SELECT * FROM "T_Customer") C ) 
+        		WHERE RN BETWEEN #{pageStartRow} AND #{pageEndRow}
+    </select>
+   <!-- 用户列表条件查询 -->
+   <select id="findCustomerByCondition" resultMap="customerMap">
+   
+   		SELECT * FROM (  SELECT C.*, ROWNUM RN  
+        	FROM (SELECT * FROM "T_Customer" 
+   				WHERE "vcname" LIKE CONCAT(CONCAT('%',#{condition}),'%') or 
+   					"Binding_Phone" LIKE CONCAT(CONCAT('%',#{condition}),'%')) C ) 
+        		WHERE RN BETWEEN #{pageStartRow} AND 
+        			#{pageEndRow}
+   </select>
+   
+   <!-- 添加用户 -->
+   <insert id="addCustomer">
+   		insert into "T_Customer" ("pk_corp","pk_customerid","fccategory","vccode","vcname",
+   		"vpcnamespell","vpreferredtel","vccardnum","vcaddress","ccpostalcode","dregdate",
+   		"vregplace","vmemcardno","vpcemail","nproperty") 
+   			VALUES 
+   				(#{customerVo.pk_corp},#{customerVo.pk_customerid},#{customerVo.fccategory}
+   				,#{customerVo.vccode},#{customerVo.vcname},#{customerVo.vpcnamespell}
+   				,#{customerVo.vpreferredtel},#{customerVo.vccardnum},#{customerVo.vcaddress}
+   				,#{customerVo.ccpostalcode},#{customerVo.dregdate},#{customerVo.vregplace}
+   				,#{customerVo.vmemcardno},#{customerVo.vpcemail},#{customerVo.nproperty}
+   </insert>
+   <!-- 用户信息修改 操作-->
+   <update id="updateCustomer" >
+        update "T_Customer" set 
+        "pk_corp"= #{customerVo.pk_corp}, "fccategory"=#{customerVo.fccategory},
+        "vccode"=#{customerVo.vccode},"vcname"=#{customerVo.vcname},"vpcnamespell"=#{customerVo.vpcnamespell},
+        "vpreferredtel"=#{customerVo.vpreferredtel},"vccardnum"=#{customerVo.vccardnum},"vcaddress"=#{customerVo.vcaddress},
+        "ccpostalcode"=#{customerVo.ccpostalcode},"dregdate"=#{customerVo.dregdate},"vregplace"=#{customerVo.vregplace},
+        "vmemcardno"=#{customerVo.vmemcardno},"vpcemail"=#{customerVo.vpcemail},"nproperty"=#{customerVo.nproperty}  
+        	where "pk_customerid"= #{customerVo.pk_customerid} 
+   </update>
+   
+   <!-- 用户信息删除操作 -->
+    <delete id="delCustomerById">
+    	DELETE FROM "T_Customer" WHERE "pk_customerid"= #{customerVo.pk_customerid}
+    </delete>
+    
+    <!--  查询信息是否已经保存 -->
+    <select id="findCustomerIsRepetitionByErpId" resultType="cn.rzhd.wuye.bean.Customer">
+    	select * from "T_Customer" where "pk_customerid"= #{customerVo.pk_customerid}
+    
+    </select>
+    
 </mapper>

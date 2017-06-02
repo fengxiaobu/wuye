@@ -1,8 +1,11 @@
 package cn.rzhd.wuye.controller;
 
+import cn.rzhd.wuye.bean.Customer;
 import cn.rzhd.wuye.bean.User;
 import cn.rzhd.wuye.service.IUserService;
 import cn.rzhd.wuye.utils.JsonUtils;
+import cn.rzhd.wuye.vo.CustomerVO;
+
 import com.fasterxml.jackson.annotation.JsonFormat.Value;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,7 +46,7 @@ public class UserController {
 	    return JsonUtils.objectToJson("每页显示条数无效");
 	}
 	try {
-	    List<Map<String, Value>> findUserList = userService.findUserList(pageNum, pageSize);
+	    List<Map<String, Value>> findUserList = userService.findCustomerList(pageNum, pageSize);
 	    return JsonUtils.objectToJson(findUserList);
 	} catch (Exception e) {
 	    System.err.println("用户列表分页查询失败");
@@ -68,11 +71,11 @@ public class UserController {
 	    return JsonUtils.objectToJson("每页显示条数无效");
 	}
 	if (condition == null || condition.equals("")) {
-	    List<Map<String, Value>> findUserList = userService.findUserList(pageNum, pageSize);
+	    List<Map<String, Value>> findUserList = userService.findCustomerList(pageNum, pageSize);
 	    return JsonUtils.objectToJson(findUserList);
 	}
 	try {
-	    List<Map<String, Value>> findUserByCondition = userService.findUserByCondition(condition, pageNum, pageSize);
+	    List<Map<String, Value>> findUserByCondition = userService.findCustomerByCondition(condition, pageNum, pageSize);
 	    return findUserByCondition.toString();
 	} catch (Exception e) {
 	    System.err.println("用户条件查询失败");
@@ -86,15 +89,15 @@ public class UserController {
      * @return	json
      */
     @RequestMapping(value = "/updateUser",method = RequestMethod.POST)
-    public String updateUser(User user){
-	if(user == null){
+    public String updateUser(CustomerVO customer){
+	if(customer == null){
 	    JsonUtils.objectToJson("对象为空");
 	}
-	if (user.getUserId() == null || user.getUserId() <= 0) {
+	if (customer.getPk_customerid() == null || customer.getPk_customerid().equals("")) {
 	    JsonUtils.objectToJson("用户id无效");
 	}
 	try {
-	    userService.updateUser(user);
+	    userService.updateCustomer(customer);
 	} catch (Exception e) {
 	    System.err.println("修改用户操作失败。");
 	    e.printStackTrace();
@@ -113,7 +116,7 @@ public class UserController {
 	    return JsonUtils.objectToJson("id参数无效");
 	}
 	try {
-	    userService.delUser(id);
+	    userService.delCustomer(id);
 	} catch (Exception e) {
 	    System.err.println("删除用户操作失败。");
 	    e.printStackTrace();
@@ -128,8 +131,9 @@ public class UserController {
     @RequestMapping(value="/pullUserInfo",method=RequestMethod.POST)
     public String pullUserInfo(){
 	
-	String erpAllUserPull = userService.ERPAllUserPull();
+	String erpAllUserPull = userService.ERPAllCustomerPull();
 	return JsonUtils.objectToJson(erpAllUserPull);
 	
     }
+    
 }

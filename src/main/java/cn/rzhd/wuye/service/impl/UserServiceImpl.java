@@ -1,56 +1,58 @@
 package cn.rzhd.wuye.service.impl;
 
-import cn.rzhd.wuye.bean.User;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.fasterxml.jackson.annotation.JsonFormat.Value;
+
+import cn.rzhd.wuye.bean.Customer;
 import cn.rzhd.wuye.common.WebService;
-import cn.rzhd.wuye.mapper.UserMapper;
+import cn.rzhd.wuye.mapper.CustomerMapper;
 import cn.rzhd.wuye.service.IUserService;
 import cn.rzhd.wuye.utils.JsonUtils;
 import cn.rzhd.wuye.vo.CustomerVO;
 import cn.rzhd.wuye.vo.LiandoServiceConstant;
 import cn.rzhd.wuye.vo.RequesterVO;
 import cn.rzhd.wuye.vo.ResponseVO;
-import com.fasterxml.jackson.annotation.JsonFormat.Value;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Map;
 
 @Service
 public class UserServiceImpl implements IUserService {
 
 	@Autowired
-	UserMapper mapper;
+	CustomerMapper mapper;
 
 	@Override
-	public List<Map<String, Value>> findUserList(Integer pageNum, Integer pageSize) {
+	public List<Map<String, Value>> findCustomerList(Integer pageNum, Integer pageSize) {
 	    Integer pageStartRow = pageNum*pageSize-pageSize+1;
 	    Integer pageEndRow = pageStartRow+pageSize-1;
-	   List<Map<String, Value>> findUserList = mapper.findUserList(pageStartRow,pageEndRow );
-	   return findUserList;
+	   List<Map<String, Value>> findCustomerList = mapper.findCustomerList(pageStartRow,pageEndRow );
+	   return findCustomerList;
 	}
 	
 	@Override
-	public List<Map<String, Value>> findUserByCondition(String condition, Integer pageNum, Integer pageSize) {
+	public List<Map<String, Value>> findCustomerByCondition(String condition, Integer pageNum, Integer pageSize) {
 	    Integer pageStartRow = pageNum*pageSize-pageSize+1;
 	    Integer pageEndRow = pageStartRow+pageSize-1;
-	    List<Map<String, Value>> findUserByCondition = mapper.findUserByCondition(condition, pageStartRow, pageEndRow);
-	    return findUserByCondition;
+	    List<Map<String, Value>> findCustomerByCondition = mapper.findCustomerByCondition(condition, pageStartRow, pageEndRow);
+	    return findCustomerByCondition;
 	}
 
-	public void updateUser(User user) {
-	    mapper.updateUser(user);
+	public void updateCustomer(CustomerVO customerVo) {
+	    mapper.updateCustomer(customerVo);
 	    
 	}
 
 	@Override
-	public void delUser(Long userId) {
-	    mapper.delUserById(userId);
+	public void delCustomer(Long customerId) {
+	    mapper.delCustomerById(customerId);
 	    
 	}
 
 	@Override
-	public String ERPAllUserPull() {
+	public String ERPAllCustomerPull() {
 	    //拉起销售客户
 	    RequesterVO requesterVO = new RequesterVO();
 	    requesterVO.setKey("liando");
@@ -61,20 +63,11 @@ public class UserServiceImpl implements IUserService {
 	    if (jsonToPojo.getIssuccess().equals("Y")) {
 		CustomerVO[] customerdata = jsonToPojo.getCustomerdata();
 		for (CustomerVO customerVO : customerdata) {
-		    User findUserIsRepetitionByErpId = mapper.findUserIsRepetitionByErpId(customerVO.getPk_customerid());
-		    if (findUserIsRepetitionByErpId == null) {
-			 User user = new User();
-			 Long findMaxUserId = mapper.findMaxUserId();
-			 if (findMaxUserId==null) {
-			     user.setUserId(Long.valueOf(1));
-			 }else {
-			     user.setUserId(findMaxUserId+1);
-			 }
-			 
-			 user.setClientName(customerVO.getVcname());
-			 user.setErpId(customerVO.getPk_customerid());
-			 user.setFccategory(Integer.valueOf(customerVO.getFccategory()));
-			 mapper.addUser(user);
+		    Customer findCustomerIsRepetitionByErpId = mapper.findCustomerIsRepetitionByErpId(customerVO.getPk_customerid());
+		    if (findCustomerIsRepetitionByErpId == null) {
+			 mapper.addCustomer(customerVO);
+		    }else {
+			mapper.updateCustomer(customerVO);
 		    }
 		   
 		}
@@ -84,32 +77,23 @@ public class UserServiceImpl implements IUserService {
 	    requesterVO1.setKey("liando");
 	    requesterVO1.setPk_corp("1031");
 	    requesterVO1.setBilltype(LiandoServiceConstant.DATA_TYPE_RENT_CUSTOMER);
-	    String baseDataTest1 = WebService.getBaseData(requesterVO);
+	    String baseDataTest1 = WebService.getBaseData(requesterVO1);
 	    ResponseVO jsonToPojo1 = JsonUtils.jsonToPojo(baseDataTest1, ResponseVO.class);
 	    if (jsonToPojo1.getIssuccess().equals("Y")) {
 		CustomerVO[] customerdata = jsonToPojo1.getCustomerdata();
 		for (CustomerVO customerVO : customerdata) {
-		    User findUserIsRepetitionByErpId = mapper.findUserIsRepetitionByErpId(customerVO.getPk_customerid());
-		    if (findUserIsRepetitionByErpId == null ||
-			    Integer.valueOf(customerVO.getFccategory()) != findUserIsRepetitionByErpId.getFccategory()
-			    ){
-			 User user = new User();
-			 Long findMaxUserId = mapper.findMaxUserId();
-			 if (findMaxUserId==null) {
-			     user.setUserId(Long.valueOf(1));
-			 }else {
-			     user.setUserId(findMaxUserId+1);
-			 }
-			 user.setClientName(customerVO.getVcname());
-			 user.setErpId(customerVO.getPk_customerid());
-			 user.setFccategory(Integer.valueOf(customerVO.getFccategory()));
-			 mapper.addUser(user);
+		    Customer findCustomerIsRepetitionByErpId = mapper.findCustomerIsRepetitionByErpId(customerVO.getPk_customerid());
+		    if (findCustomerIsRepetitionByErpId == null){
+			mapper.addCustomer(customerVO);
+		    }else {
+			mapper.updateCustomer(customerVO);
 		    }
 		   
 		}
 	    }
 	    return "更新完成";
 	}
+
 	
 	
 }
