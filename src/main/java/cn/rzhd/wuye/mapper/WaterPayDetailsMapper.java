@@ -1,7 +1,7 @@
 package cn.rzhd.wuye.mapper;
 
 import cn.rzhd.wuye.bean.WaterRatePayDetails;
-import cn.rzhd.wuye.vo.WaterPayDetailsQuery;
+import cn.rzhd.wuye.vo.UtilitiesQuery;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -12,5 +12,5 @@ import java.util.List;
 @Mapper
 public interface WaterPayDetailsMapper {
 
-    List<WaterRatePayDetails> getAllByQuery(WaterPayDetailsQuery query);
+    List<WaterRatePayDetails> getAllByQuery(UtilitiesQuery query);
 }

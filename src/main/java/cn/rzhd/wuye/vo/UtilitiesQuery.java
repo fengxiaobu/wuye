@@ -8,7 +8,7 @@ import java.util.Date;
 /**
  * Created by hasee on 2017/6/2.
  */
-public class ElectricFeePayDetailsQuery extends BaseQuery {
+public class UtilitiesQuery extends BaseQuery {
     /**
      * 房产信息主键
      */
@@ -46,7 +46,7 @@ public class ElectricFeePayDetailsQuery extends BaseQuery {
         this.endDate = StringTimeUtil.format(endDate);
     }
 
-    public ElectricFeePayDetailsQuery() {
+    public UtilitiesQuery() {
         setStartDate(FirstAndLastDay.getFirstDay());
         setEndDate(FirstAndLastDay.getLastDay());
     }

@@ -1,7 +1,7 @@
 package cn.rzhd.wuye.service;
 
 import cn.rzhd.wuye.bean.WaterRatePayDetails;
-import cn.rzhd.wuye.vo.WaterPayDetailsQuery;
+import cn.rzhd.wuye.vo.UtilitiesQuery;
 
 import java.util.List;
 
@@ -11,5 +11,5 @@ import java.util.List;
  */
 public interface IWaterPayDetailsService {
 
-    List<WaterRatePayDetails> getAllByQuery(WaterPayDetailsQuery query);
+    List<WaterRatePayDetails> getAllByQuery(UtilitiesQuery query);
 }

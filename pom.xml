@@ -438,11 +438,6 @@
             <artifactId>fastjson</artifactId>
             <version>1.2.32</version>
         </dependency>
-        <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>1.2.17</version>
-        </dependency>
         <!-- https://mvnrepository.com/artifact/org.bouncycastle/bcprov-jdk15on -->
         <dependency>
             <groupId>org.bouncycastle</groupId>
@@ -452,8 +447,8 @@
         <!-- https://mvnrepository.com/artifact/org.apache.tomcat/tomcat-util -->
         <dependency>
             <groupId>org.apache.tomcat</groupId>
-            <artifactId>tomcat-util</artifactId>
-            <version>7.0.53</version>
+            <artifactId>tomcat-util-scan</artifactId>
+            <version>8.0.44</version>
         </dependency>
 
     </dependencies>
