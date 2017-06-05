@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
  * Created by hasee on 2017/6/1.
  */
 @RestController
+@RequestMapping("/customer")
 public class LoginController {
     @Autowired
     ICustomerService customerService;

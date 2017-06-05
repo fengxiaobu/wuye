@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.rzhd.wuye.mapper.WaterPayDetailsMapper">
+    <resultMap id="waterPayDetailsMap" type="cn.rzhd.wuye.bean.WaterRatePayDetails">
+        <id column="WATER_RATE_PAY_DETAILS_ID" property="waterRatePayDetailsId"/>
+        <result column="HOUSE_INFO_ID" property="houseInfoId"/>
+        <result column="CLIENT_NAME" property="clientName"/>
+        <result column="COST_TYPE" property="costType"/>
+        <result column="PAY_MANNER" property="payManner"/>
+        <result column="PAY_MONTH" property="payMonth"/>
+        <result column="START_DATE" property="startDate"/>
+        <result column="END_DATE" property="endDate"/>
+        <result column="PAYABLE" property="payable"/>
+        <result column="PAID_IN" property="paidIn"/>
+        <result column="VOUCHER_NUMBER" property="voucherNumber"/>
+        <result column="INVOICE" property="invoice"/>
+        <result column="INVOICE_NUMBER" property="invoiceNumber"/>
+        <result column="INVOICE_NOTES" property="invoiceNotes"/>
+        <result column="INVOICE_STATUS" property="invoiceStatus"/>
+        <result column="COLLECTING_COMPANY" property="collectingCompany"/>
+        <result column="COLLECTING_ACCOUNT" property="collectingAccount"/>
+        <result column="INVOICE_COMPANY" property="invoiceCompany"/>
+        <result column="PAY_TIME" property="payTime"/>
+        <result column="TUNNAGE" property="tunnage"/>
+        <result column="CARTE_TIME" property="carteTime"/>
+        <result column="UPDATE_TIME" property="updateTime"/>
+    </resultMap>
+    <sql id="whereSql">
+        <where>
+            AND HOUSE_INFO_ID=#{houseInfoId} AND PAY_TIME BETWEEN to_date(#{startDate},'YYYY-MM-DD') and to_date(#{endDate},'YYYY-MM-DD')
+        </where>
+    </sql>
+    <select id="getAllByQuery" parameterType="cn.rzhd.wuye.vo.UtilitiesQuery" resultMap="waterPayDetailsMap">
+        SELECT WATER_RATE_PAY_DETAILS_ID,
+            HOUSE_INFO_ID,
+            CLIENT_NAME,
+            COST_TYPE,
+            PAY_MANNER,
+            PAY_MONTH,
+            START_DATE,
+            END_DATE,
+            PAYABLE,
+            PAID_IN,
+            VOUCHER_NUMBER,
+            INVOICE,
+            INVOICE_NUMBER,
+            INVOICE_NOTES,
+            INVOICE_STATUS,
+            COLLECTING_COMPANY,
+            COLLECTING_ACCOUNT,
+            INVOICE_COMPANY,
+            PAY_TIME,
+            TUNNAGE,
+            CARTE_TIME,
+            UPDATE_TIME
+        FROM T_WATER_RATE_PAY_DETAILS
+        <include refid="whereSql"/>
+    </select>
+</mapper>
