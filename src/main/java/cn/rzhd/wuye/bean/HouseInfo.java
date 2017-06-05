@@ -19,7 +19,7 @@ public class HouseInfo implements Serializable{
 	/**
 	 * 房产信息id
 	 */
-	private Long houseInfoId;
+	private String houseInfoId;
 	/**
 	 * erp房产id
 	 */
@@ -27,7 +27,7 @@ public class HouseInfo implements Serializable{
 	/**
 	 * 项目id
 	 */
-	private Long projectInfoId;
+	private String projectInfoId;
 	/**
 	 * 房产
 	 */
@@ -154,30 +154,27 @@ public class HouseInfo implements Serializable{
 	public void setUpdateTime(Date updateTime) {
 		this.updateTime = updateTime;
 	}
-	/**
-	 * @return the houseInfoId
-	 */
-	public Long getHouseInfoId() {
+
+	public String getHouseInfoId() {
 		return houseInfoId;
 	}
-	/*
-	@param houseInfoId the houseInfoId to set
-	*/
-	public void setHouseInfoId(Long houseInfoId) {
+
+	public void setHouseInfoId(String houseInfoId) {
 		this.houseInfoId = houseInfoId;
 	}
+
+	public String getProjectInfoId() {
+		return projectInfoId;
+	}
+
+	public void setProjectInfoId(String projectInfoId) {
+		this.projectInfoId = projectInfoId;
+	}
+
 	/**
 	 * @return the projectInfoId
 	 */
-	public Long getProjectInfoId() {
-		return projectInfoId;
-	}
-	/*
-	@param projectInfoId the projectInfoId to set
-	*/
-	public void setProjectInfoId(Long projectInfoId) {
-		this.projectInfoId = projectInfoId;
-	}
+
 
 	public String getCustomerId() {
 		return customerId;

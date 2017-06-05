@@ -17,13 +17,54 @@ public class ProjectInfo implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	/**
+	 * erp公司主键
+	 */
+	private String pkCorp;
+	/**
+	 * 项目编码
+	 */
+	private String vcode;
+	/**
+	 * 项目简称
+	 */
+	private String vshortname;
+	/**
+	 * 责任公司
+	 */
+	private String pkResponsecorp;
+	/**
+	 * 内部编码
+	 */
+	private String vincode;
+	/**
+	 * 装修管理费单价
+	 */
+	private BigDecimal decorateManage;
+	/**
+	 * 出入证押金(个)
+	 */
+	private BigDecimal passcardPledge;
+	/**
+	 * 出入证工本费(个)
+	 */
+	private BigDecimal passcardCost;
+	/**
+	 * 装修面积,小于此值或大于等于此值分别计算押金单价
+	 */
+	private BigDecimal decorateArea;
+	/**
+	 * 小于设置的装修面积的押金单价
+	 */
+	private BigDecimal lessPledge;
+	/**
+	 * 大于等于设置的装修面积的押金单价
+	 */
+	private BigDecimal morePledge;
+	/**
 	 * 项目信息id
 	 */
-	private Long projectInfoId;
-	/**
-	 * erp项目id
-	 */
-	private String erpProjectId;
+	private String pkProject;
+
 	/**
 	 * 项目名称
 	 */
@@ -76,185 +117,204 @@ public class ProjectInfo implements Serializable{
 	 * 状态（0-正常，1-删除）
 	 */
 	private Integer status;
-	/**
-	 * @return the erpProjectId
-	 */
-	public String getErpProjectId() {
-		return erpProjectId;
+
+	public String getPkCorp() {
+		return pkCorp;
 	}
-	/*
-	@param erpProjectId the erpProjectId to set
-	*/
-	public void setErpProjectId(String erpProjectId) {
-		this.erpProjectId = erpProjectId;
+
+	public void setPkCorp(String pkCorp) {
+		this.pkCorp = pkCorp;
 	}
-	/**
-	 * @return the projectName
-	 */
+
+	public String getVcode() {
+		return vcode;
+	}
+
+	public void setVcode(String vcode) {
+		this.vcode = vcode;
+	}
+
+	public String getVshortname() {
+		return vshortname;
+	}
+
+	public void setVshortname(String vshortname) {
+		this.vshortname = vshortname;
+	}
+
+	public String getPkResponsecorp() {
+		return pkResponsecorp;
+	}
+
+	public void setPkResponsecorp(String pkResponsecorp) {
+		this.pkResponsecorp = pkResponsecorp;
+	}
+
+	public String getVincode() {
+		return vincode;
+	}
+
+	public void setVincode(String vincode) {
+		this.vincode = vincode;
+	}
+
+	public BigDecimal getDecorateManage() {
+		return decorateManage;
+	}
+
+	public void setDecorateManage(BigDecimal decorateManage) {
+		this.decorateManage = decorateManage;
+	}
+
+	public BigDecimal getPasscardPledge() {
+		return passcardPledge;
+	}
+
+	public void setPasscardPledge(BigDecimal passcardPledge) {
+		this.passcardPledge = passcardPledge;
+	}
+
+	public BigDecimal getPasscardCost() {
+		return passcardCost;
+	}
+
+	public void setPasscardCost(BigDecimal passcardCost) {
+		this.passcardCost = passcardCost;
+	}
+
+	public BigDecimal getDecorateArea() {
+		return decorateArea;
+	}
+
+	public void setDecorateArea(BigDecimal decorateArea) {
+		this.decorateArea = decorateArea;
+	}
+
+	public BigDecimal getLessPledge() {
+		return lessPledge;
+	}
+
+	public void setLessPledge(BigDecimal lessPledge) {
+		this.lessPledge = lessPledge;
+	}
+
+	public BigDecimal getMorePledge() {
+		return morePledge;
+	}
+
+	public void setMorePledge(BigDecimal morePledge) {
+		this.morePledge = morePledge;
+	}
+
+	public String getPkProject() {
+		return pkProject;
+	}
+
+	public void setPkProject(String pkProject) {
+		this.pkProject = pkProject;
+	}
+
 	public String getProjectName() {
 		return projectName;
 	}
-	/*
-	@param projectName the projectName to set
-	*/
+
 	public void setProjectName(String projectName) {
 		this.projectName = projectName;
 	}
-	/**
-	 * @return the projectAddress
-	 */
+
 	public String getProjectAddress() {
 		return projectAddress;
 	}
-	/*
-	@param projectAddress the projectAddress to set
-	*/
+
 	public void setProjectAddress(String projectAddress) {
 		this.projectAddress = projectAddress;
 	}
-	/**
-	 * @return the developmentCollectingCompany
-	 */
+
 	public String getDevelopmentCollectingCompany() {
 		return developmentCollectingCompany;
 	}
-	/*
-	@param developmentCollectingCompany the developmentCollectingCompany to set
-	*/
+
 	public void setDevelopmentCollectingCompany(String developmentCollectingCompany) {
 		this.developmentCollectingCompany = developmentCollectingCompany;
 	}
-	/**
-	 * @return the developmentCollectingAccount
-	 */
+
 	public String getDevelopmentCollectingAccount() {
 		return developmentCollectingAccount;
 	}
-	/*
-	@param developmentCollectingAccount the developmentCollectingAccount to set
-	*/
+
 	public void setDevelopmentCollectingAccount(String developmentCollectingAccount) {
 		this.developmentCollectingAccount = developmentCollectingAccount;
 	}
-	/**
-	 * @return the propertyCollectingCompany
-	 */
+
 	public String getPropertyCollectingCompany() {
 		return propertyCollectingCompany;
 	}
-	/*
-	@param propertyCollectingCompany the propertyCollectingCompany to set
-	*/
+
 	public void setPropertyCollectingCompany(String propertyCollectingCompany) {
 		this.propertyCollectingCompany = propertyCollectingCompany;
 	}
-	/**
-	 * @return the propertyCollectingAccount
-	 */
+
 	public String getPropertyCollectingAccount() {
 		return propertyCollectingAccount;
 	}
-	/*
-	@param propertyCollectingAccount the propertyCollectingAccount to set
-	*/
+
 	public void setPropertyCollectingAccount(String propertyCollectingAccount) {
 		this.propertyCollectingAccount = propertyCollectingAccount;
 	}
-	/**
-	 * @return the waterPrice
-	 */
+
 	public BigDecimal getWaterPrice() {
 		return waterPrice;
 	}
-	/*
-	@param waterPrice the waterPrice to set
-	*/
+
 	public void setWaterPrice(BigDecimal waterPrice) {
 		this.waterPrice = waterPrice;
 	}
-	/**
-	 * @return the electricityPrice
-	 */
+
 	public BigDecimal getElectricityPrice() {
 		return electricityPrice;
 	}
-	/*
-	@param electricityPrice the electricityPrice to set
-	*/
+
 	public void setElectricityPrice(BigDecimal electricityPrice) {
 		this.electricityPrice = electricityPrice;
 	}
-	/**
-	 * @return the servicePhone
-	 */
+
 	public String getServicePhone() {
 		return servicePhone;
 	}
-	/*
-	@param servicePhone the servicePhone to set
-	*/
+
 	public void setServicePhone(String servicePhone) {
 		this.servicePhone = servicePhone;
 	}
-	/**
-	 * @return the objectPhone
-	 */
+
 	public String getObjectPhone() {
 		return objectPhone;
 	}
-	/*
-	@param objectPhone the objectPhone to set
-	*/
+
 	public void setObjectPhone(String objectPhone) {
 		this.objectPhone = objectPhone;
 	}
-	/**
-	 * @return the creationTime
-	 */
+
 	public Date getCreationTime() {
 		return creationTime;
 	}
-	/*
-	@param creationTime the creationTime to set
-	*/
+
 	public void setCreationTime(Date creationTime) {
 		this.creationTime = creationTime;
 	}
-	/**
-	 * @return the updateTime
-	 */
+
 	public Date getUpdateTime() {
 		return updateTime;
 	}
-	/*
-	@param updateTime the updateTime to set
-	*/
+
 	public void setUpdateTime(Date updateTime) {
 		this.updateTime = updateTime;
 	}
-	/**
-	 * @return the status
-	 */
+
 	public Integer getStatus() {
 		return status;
 	}
-	/*
-	@param status the status to set
-	*/
+
 	public void setStatus(Integer status) {
 		this.status = status;
 	}
-	/**
-	 * @return the projectInfoId
-	 */
-	public Long getProjectInfoId() {
-		return projectInfoId;
-	}
-	/*
-	@param projectInfoId the projectInfoId to set
-	*/
-	public void setProjectInfoId(Long projectInfoId) {
-		this.projectInfoId = projectInfoId;
-	}
-
 }

@@ -65,7 +65,7 @@
                     <tr class="tudiqianyue-tdtr">
                         <td><input type="checkbox" value=""></td>
                         <td>${status.index+1}</td>
-                        <td>${enterApply.enterApplyId}</td>
+                        <td>${enterApply.houseInfo.projectInfo.projectName}</td>
                         <td>${enterApply.houseInfo.houseProperty}</td>
                         <td>${enterApply.clientName}</td>
                         <td><fmt:formatDate value="${enterApply.applyTime }" pattern="yyyy-MM-dd"/></td>
