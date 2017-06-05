@@ -77,7 +77,7 @@
    				,#{customerVo.vccode},#{customerVo.vcname},#{customerVo.vpcnamespell}
    				,#{customerVo.vpreferredtel},#{customerVo.vccardnum},#{customerVo.vcaddress}
    				,#{customerVo.ccpostalcode},#{customerVo.dregdate},#{customerVo.vregplace}
-   				,#{customerVo.vmemcardno},#{customerVo.vpcemail},#{customerVo.nproperty}
+   				,#{customerVo.vmemcardno},#{customerVo.vpcemail},#{customerVo.nproperty})
    </insert>
    <!-- 用户信息修改 操作-->
    <update id="updateCustomer" >
