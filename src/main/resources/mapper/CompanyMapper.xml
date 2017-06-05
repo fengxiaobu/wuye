@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.rzhd.wuye.mapper.CompanyMapper" >
+  <resultMap id="BaseResultMap" type="cn.rzhd.wuye.vo.CorpVO" >
+    <result column="pk_corp" property="pkCorp" jdbcType="CHAR" />
+    <result column="fathercorp" property="fathercorp" jdbcType="CHAR" />
+    <result column="unitcode" property="unitcode" jdbcType="VARCHAR" />
+    <result column="unitname" property="unitname" jdbcType="VARCHAR" />
+    <result column="unitshortname" property="unitshortname" jdbcType="VARCHAR" />
+    <result column="foreignname" property="foreignname" jdbcType="VARCHAR" />
+    <result column="isseal" property="isseal" jdbcType="CHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="cn.rzhd.wuye.vo.CorpVO" >
+    insert into T_COMPANY ("pk_corp", "fathercorp", "unitcode",
+      "unitname", "unitshortname", "foreignname",
+      "isseal")
+    values (#{pk_corp}, #{fathercorp}, #{unitcode},
+      #{unitname}, #{unitshortname}, #{foreignname},
+      #{isseal})
+  </insert>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select pk_corp, fathercorp, unitcode, unitname, unitshortname, foreignname, isseal
+    from T_COMPANY
+  </select>
+</mapper>

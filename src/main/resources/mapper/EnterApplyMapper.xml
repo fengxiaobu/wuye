@@ -24,8 +24,7 @@
             <result column="CREATION_TIME" property="creationTime"/>
             <result column="UPDATE_TIME" property="updateTime"/>
             <association property="projectInfo" javaType="cn.rzhd.wuye.bean.ProjectInfo">
-                <id column="PROJECT_INFO_ID" property="projectInfoId"/>
-                <result column="ERP_PROJECT_ID" property="erpProjectId"/>
+                <id column="PK_PROJECT" property="pkProject"/>
                 <result column="PROJECT_NAME" property="projectName"/>
                 <result column="PROJECT_ADDRESS" property="projectAddress"/>
                 <result column="DEVELOPMENT_COLLECTING_COMPANY" property="developmentCollectingCompany"/>
@@ -39,6 +38,17 @@
                 <result column="CREATION_TIME" property="creationTime"/>
                 <result column="UPDATE_TIME" property="updateTime"/>
                 <result column="STATUS" property="status"/>
+                <result column="PK_CORP" property="pkCorp"/>
+                <result column="VCODE" property="vcode"/>
+                <result column="VSHORTNAME" property="vshortname"/>
+                <result column="PK_RESPONSECORP" property="pkResponsecorp"/>
+                <result column="VINCODE" property="vincode"/>
+                <result column="DECORATE_MANAGE" property="decorateManage"/>
+                <result column="PASSCARD_PLEDGE" property="passcardPledge"/>
+                <result column="PASSCARD_COST" property="passcardCost"/>
+                <result column="DECORATE_AREA" property="decorateArea"/>
+                <result column="LESS_PLEDGE" property="lessPledge"/>
+                <result column="MORE_PLEDGE" property="morePledge"/>
             </association>
         </association>
     </resultMap>
@@ -82,8 +92,8 @@
               T_PROJECT_INFO project
           WHERE
             apply.HOUSE_INFO_ID=house.HOUSE_INFO_ID
-          AND
-          house.PROJECT_INFO_ID=project.PROJECT_INFO_ID
+         /* AND
+          house.PROJECT_INFO_ID=project.PK_PROJECT*/
     </select>
     <!-- 入驻申请列表条件查询 -->
     <select id="findEnterApplyByCondition" resultMap="BaseResultMap">
