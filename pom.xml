@@ -59,6 +59,16 @@
           <groupId>com.alibaba</groupId>
           <artifactId>druid</artifactId>
           <version>1.0.29</version>
+          <exclusions>
+                <exclusion>  
+                    <groupId>com.alibaba</groupId>
+                    <artifactId>jconsole</artifactId>
+                </exclusion>  
+                <exclusion>
+                    <groupId>com.alibaba</groupId>
+                    <artifactId>tools</artifactId>
+                </exclusion>
+        </exclusions>
      	</dependency>
       <!-- 分页插件 -->
         <dependency>
@@ -418,8 +428,7 @@
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
-            <version>1.2</version>
-        </dependency>
+            </dependency>
 
         <dependency>
             <groupId>taglibs</groupId>
@@ -445,11 +454,11 @@
             <version>1.47</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.apache.tomcat/tomcat-util -->
-        <dependency>
+      <!--   <dependency>
             <groupId>org.apache.tomcat</groupId>
             <artifactId>tomcat-util-scan</artifactId>
             <version>8.0.44</version>
-        </dependency>
+        </dependency> -->
 
     </dependencies>
 	<build>
