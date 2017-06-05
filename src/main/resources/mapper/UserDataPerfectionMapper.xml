@@ -27,7 +27,54 @@
     </resultMap> -->
     
      <!-- 个人资料完善 -->
-   <insert id="addUserDataPerfection"></insert>
+   <insert id="addUserDataPerfection">
+   		INSERT INTO T_PERFECT_INFORMATION (
+			HOUSE_INFO_ID,
+			USER_ID,
+			COMPANY_TYPE,
+			HOUSE_PROPERTY_ID,
+			U_RAVINE_PROPERTY_ID,
+			COMPANY_ESTABLISH_TIME,
+			SIGN_IN_FUND,
+			INDUSTRY_INVOLVED_ID,
+			MAIN_PRODUCT,
+			COMPANY_COVERAGE_ID,
+			EMPLOYEE_NUMBER,
+			PROPERTY_TO_ACCESS,
+			PROPERTY_TO_ACCESS_CONTACT,
+			EMERGENCY_CONTACT_PERSON,
+			EMERGENCY_CONTACT_NUMBER,
+			IS_HIGH_NEW,
+			HIGH_NEW_TYPE,
+			CERTIFICATE_TIME,
+			PATENT_TYPE_ID,
+			PATENT_NUMBER,
+			IS_UP_BAZAAR,
+			UP_BAZAAR_TYPE_ID,
+			HANG_BOARD_TIME,
+			STOCK_CODE,
+			NOTES,
+			STATUS,
+			CARTE_TIME
+			
+		)
+	VALUES
+	(#{perfectInformation.houseInfoId},#{perfectInformation.userId},#{perfectInformation.companyType},
+	#{perfectInformation.housePropertyId},#{perfectInformation.companyEstablishTime},#{perfectInformation.signInFund},
+	#{perfectInformation.industryInvolvedId},#{perfectInformation.mainProduct},#{perfectInformation.companyCoverageId},
+	#{perfectInformation.employeeNumber},#{perfectInformation.propertyToAccess},#{perfectInformation.propertyToAccessContact},
+	#{perfectInformation.emergencyContactPerson},#{perfectInformation.emergencyContactNumber},#{perfectInformation.isHighNew},
+	#{perfectInformation.highNewType},#{perfectInformation.certificateTime},#{perfectInformation.patentTypeId},
+	#{perfectInformation.patentNumber},#{perfectInformation.isUpBazaar},#{perfectInformation.upBazaarTypeId},
+	#{perfectInformation.hangBoardTime},#{perfectInformation.stockCode},#{perfectInformation.notes},
+	#{perfectInformation.status},#{perfectInformation.carteTime}
+	)
+   </insert>
+   
+   <!-- 入驻办理，资料上传 -->
+   <insert id="addEnterTransactMaterial">
+   		insert into 
+   </insert>
    
     
 </mapper>
