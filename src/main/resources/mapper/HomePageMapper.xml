@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.rzhd.wuye.mapper.HomePageMapper">
+    
+   <!--  <resultMap id="customerMap" type="cn.rzhd.wuye.bean.Customer">
+        <id property="pk_customerid" column="pk_customerid"/>
+        <result property="pk_corp" column="pk_corp"/>
+        <result property="fccategory" column="fccategory"/>
+        <result property="vccode" column="vccode"/>
+        <result property="vcname" column="vcname"/>
+        <result property="vpcnamespell" column="vpcnamespell"/>
+        <result property="vpreferredtel" column="vpreferredtel"/>
+        <result property="vccardnum" column="vccardnum"/>
+        <result property="vcaddress" column="vcaddress"/>
+        <result property="ccpostalcode" column="ccpostalcode"/>
+        <result property="dregdate" column="dregdate"/>
+        <result property="vregplace" column="vregplace"/>
+        <result property="vmemcardno" column="vmemcardno"/>
+        <result property="vpcemail" column="vpcemail"/>
+        <result property="nproperty" column="nproperty"/>
+        <result property="LOGO" column="LOGO"/>
+        <result property="companyType" column="Company_Type"/>
+        <result property="password" column="Password"/>
+        <result property="bindingPhone" column="Binding_Phone"/>
+        <collection property="houseInfos" javaType="list" column="houseInfoId" ofType="long"/>
+    </resultMap> -->
+    <resultMap id="homePageMap" type="java.util.Map">
+    	<result property="pk_house" column="pk_house"/>
+    	<result property="pk_project" column="pk_project"/>
+    	<result property="PROJECT_NAME" column="PROJECT_NAME"/>
+    	<result property="building" column="building"/>
+    	<result property="ifloor" column="ifloor"/>
+    	<result property="vhcell" column="vhcell"/>
+    	<result property="vhnum" column="vhnum"/>
+    	<result property="vhname" column="vhnum"/>
+    
+    </resultMap>
+    
+     <!-- 根据登录customer查询项目名称-->
+   <select id="findHomePageHouseByCustomer" resultMap="homePageMap" >
+        SELECT
+			HID."pk_house",
+			PI."pk_project",
+			PI.PROJECT_NAME,
+			HID."building",
+			HID."ifloor",
+			HID."vhcell",
+			HID."vhnum",
+			HID."vhname",
+			HI.STAR_LEVEL
+		FROM
+			T_HOUSE_INFO HI
+			LEFT JOIN "T_House_Info_Details" HID ON HI.ERP_HOUSE_ID = HID."pk_house"
+			LEFT JOIN T_PROJECT_INFO PI ON HI.PROJECT_INFO_ID = PI."pk_project"
+		WHERE
+			HI.CUSTOMER_ID = #{customer.pk_customerid}
+    </select>
+    
+    <!-- 根据房产id查询相关费用清单 -->
+    <select id="findFeeListByHouseId" resultMap="">
+    
+    </select>
+   
+    
+</mapper>
