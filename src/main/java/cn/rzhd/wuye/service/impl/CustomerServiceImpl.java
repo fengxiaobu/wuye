@@ -4,6 +4,7 @@ import cn.rzhd.wuye.bean.Customer;
 import cn.rzhd.wuye.mapper.CustomerMapper;
 import cn.rzhd.wuye.service.ICustomerService;
 import cn.rzhd.wuye.utils.MD5Utils;
+import cn.rzhd.wuye.vo.CustomerVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,5 +25,10 @@ public class CustomerServiceImpl implements ICustomerService {
     public Customer loginByPwd(Customer customer) {
         customer.setPassword(MD5Utils.md5(customer.getPassword()));
         return mapper.loginByPwd(customer);
+    }
+
+    @Override
+    public void addCustomer(CustomerVO customer) {
+        mapper.addCustomer(customer);
     }
 }

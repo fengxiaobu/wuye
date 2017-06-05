@@ -61,7 +61,7 @@ public class HouseInfoServiceTest {
         houseInfo.setEnterStatus(1);
         houseInfo.setErpHouseId("asdf");
         houseInfo.setHouseProperty("TestTest");
-        houseInfo.setProjectInfoId(123L);
+        houseInfo.setProjectInfoId("123");
         houseInfo.setStarLevel(3);
         houseInfo.setStatus(1);
         houseInfoService.add(houseInfo);
