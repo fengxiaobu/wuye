@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import cn.rzhd.wuye.bean.Customer;
+import cn.rzhd.wuye.bean.EnterMaterial;
 import cn.rzhd.wuye.bean.PerfectInformation;
 import cn.rzhd.wuye.service.IUserDataPerfectionService;
 import cn.rzhd.wuye.utils.JsonUtils;
@@ -45,5 +46,11 @@ public class UserDataPerfectionController {
     public String AddUserDataPerfection(PerfectInformation perfectInformation){
 	userDataPerfectionService.addUserDataPerfection(perfectInformation);
 	return JsonUtils.objectToJson("success");
+    }
+    
+    public String addEnterTransactMaterial(EnterMaterial enterMaterial){
+	userDataPerfectionService.addEnterTransactMaterial(enterMaterial);
+	return JsonUtils.objectToJson("success");
+	
     }
 }
