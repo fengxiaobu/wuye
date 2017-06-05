@@ -6,9 +6,6 @@
 	<groupId>cn.rzhd.ldug</groupId>
 	<artifactId>rzhd-ldug-wuye</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-    <modules>
-        <module>../parent</module>
-    </modules>
     <packaging>pom</packaging>
 
 	<name>rzhd-ldug-wuye</name>
