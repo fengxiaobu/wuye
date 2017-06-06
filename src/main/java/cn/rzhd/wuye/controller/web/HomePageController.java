@@ -38,6 +38,9 @@ public class HomePageController {
     @RequestMapping(value="/findHouseByCustomer",method=RequestMethod.POST)
     public String findHomePageHouseByCustomer(Customer customer){
 	List<Map<String, Object>> findHouseByCutomer = homePageService.findHouseByCutomer(customer);
+	if (findHouseByCutomer==null) {
+	    return JsonUtils.objectToJson("没有记录");
+	}
 	return JsonUtils.objectToJson(findHouseByCutomer);
     }
     

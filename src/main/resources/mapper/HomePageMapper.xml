@@ -19,7 +19,7 @@
    <select id="findHomePageHouseByCustomer" resultMap="homePageMap" >
         SELECT
 			HID."pk_house",
-			PI."pk_project",
+			PI.PK_PROJECT,
 			PI.PROJECT_NAME,
 			HID."building",
 			HID."ifloor",
@@ -29,8 +29,8 @@
 			HI.STAR_LEVEL
 		FROM
 			T_HOUSE_INFO HI
-			LEFT JOIN "T_House_Info_Details" HID ON HI.ERP_HOUSE_ID = HID."pk_house"
-			LEFT JOIN T_PROJECT_INFO PI ON HI.PROJECT_INFO_ID = PI."pk_project"
+			LEFT JOIN T_HOUSE_INFO_DETAILS HID ON HI.ERP_HOUSE_ID = HID."pk_house"
+			LEFT JOIN T_PROJECT_INFO PI ON HI.PROJECT_INFO_ID = PI.PK_PROJECT
 		WHERE
 			HI.CUSTOMER_ID = #{customer.pk_customerid}
     </select>
@@ -55,10 +55,13 @@
     	<result property="nyjmny" column="nyjmny"/>
     	<result property="nyshouldmny" column="nyshouldmny"/>
     	<result property="nmny" column="nmny"/>
-    	<result property="building" column="building"/>
-    	<result property="ifloor" column="ifloor"/>
-    	<result property="vhcell" column="vhcell"/>
-    	<result property="vhnum" column="vhnum"/>
+    	 <association property="houseVO" javaType="cn.rzhd.wuye.vo.HouseVO">
+            <result property="building" column="building"/>
+    		<result property="ifloor" column="ifloor"/>
+    		<result property="vhcell" column="vhcell"/>
+    		<result property="vhnum" column="vhnum"/>
+         </association>
+    	
     </resultMap>
     <!-- 开发费用查询 -->
     <select id="findKfFeeListByCustomerId" resultMap="kfFeeList">
@@ -89,11 +92,12 @@
     	<result property="vmemo" column="vmemo"/>
     	<result property="nyjmny" column="nyjmny"/>
     	<result property="nyshouldmny" column="nyshouldmny"/>
-    	<result property="nmny" column="nmny"/>
-    	<result property="building" column="building"/>
-    	<result property="ifloor" column="ifloor"/>
-    	<result property="vhcell" column="vhcell"/>
-    	<result property="vhnum" column="vhnum"/>
+    	<result property="nmny" column="nmny" />
+        <result property="building" column="building"/>
+   		<result property="ifloor" column="ifloor"/>
+   		<result property="vhcell" column="vhcell"/>
+   		<result property="vhnum" column="vhnum"/>
+    
     </resultMap>
     <!-- 物业费用查询 -->
     <select id="findPropertyFeeListByCustomerId" resultMap="PfFeeList">
