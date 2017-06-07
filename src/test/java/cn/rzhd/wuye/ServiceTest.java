@@ -1,11 +1,15 @@
 package cn.rzhd.wuye;
 
 import cn.rzhd.wuye.common.WebService;
+import cn.rzhd.wuye.utils.FirstAndLastDay;
 import cn.rzhd.wuye.utils.JsonUtils;
 import cn.rzhd.wuye.utils.MD5Utils;
 import cn.rzhd.wuye.vo.*;
 import com.github.pagehelper.StringUtil;
 import org.junit.Test;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * luopa 在 2017/5/25 创建.
@@ -75,5 +79,13 @@ public class ServiceTest extends BaseTest {
 
             }
         }
+    }
+
+    @Test
+    public void testTest(){
+        Date first = FirstAndLastDay.getLast("2017-02");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String s = sdf.format(first);
+        System.out.println(s);
     }
 }

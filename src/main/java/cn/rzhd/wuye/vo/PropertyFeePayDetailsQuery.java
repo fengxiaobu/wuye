@@ -1,15 +1,16 @@
 package cn.rzhd.wuye.vo;
 
 import cn.rzhd.wuye.utils.FirstAndLastDay;
-import cn.rzhd.wuye.utils.StringTimeUtil;
 
-import java.util.Date;
+import java.text.SimpleDateFormat;
 
 /**
  * Created by hasee on 2017/5/31.
  * 用于封装查询条件
  */
 public class PropertyFeePayDetailsQuery extends BaseQuery{
+
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     /**
      * 房产信息ID
      */
@@ -39,16 +40,16 @@ public class PropertyFeePayDetailsQuery extends BaseQuery{
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
-        this.startDate = StringTimeUtil.format(startDate);
+    public void setStartDate(String startDate) {
+        this.startDate =sdf.format(FirstAndLastDay.getFirst(startDate));
     }
 
     public String getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
-        this.endDate = StringTimeUtil.format(endDate);
+    public void setEndDate(String endDate) {
+        this.endDate = sdf.format(FirstAndLastDay.getLast(endDate));
     }
 
     public Integer getInvoiceStatus() {
@@ -70,7 +71,7 @@ public class PropertyFeePayDetailsQuery extends BaseQuery{
     }
 
     public PropertyFeePayDetailsQuery() {
-        setStartDate(FirstAndLastDay.getFirstDay());
-        setEndDate(FirstAndLastDay.getLastDay());
+        this.startDate = sdf.format(FirstAndLastDay.getFirstDay());
+        this.endDate = sdf.format(FirstAndLastDay.getLastDay());
     }
 }
