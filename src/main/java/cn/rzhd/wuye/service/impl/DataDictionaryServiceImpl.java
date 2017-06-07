@@ -8,15 +8,15 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 
-@Service
+@Service("dataDictionaryService")
 public class DataDictionaryServiceImpl implements IDataDictionaryService {
 
     @Autowired
-    private TypeDifferentiateMapper typeMapper;
+    private TypeDifferentiateMapper typeDifferentiateMapper;
     @Override
     public void addType(TypeDifferentiate typeDifferentiate) {
 	
-	TypeDifferentiate nameIsRepeat = typeMapper.findTypeDifferentiateNameIsRepeat(typeDifferentiate.getTypeDifferentiateName());
+	TypeDifferentiate nameIsRepeat = typeDifferentiateMapper.findTypeDifferentiateNameIsRepeat(typeDifferentiate.getTypeDifferentiateName());
 	if (nameIsRepeat != null) {
 	    //重复执行状态已经备注修改操作
 	    nameIsRepeat.setStatus(typeDifferentiate.getStatus());
@@ -24,13 +24,13 @@ public class DataDictionaryServiceImpl implements IDataDictionaryService {
 		nameIsRepeat.setNote(typeDifferentiate.getNote());
 	    }
 	    nameIsRepeat.setUpdateTime(new Date());
-	    typeMapper.updateTypeDifferentiateById(nameIsRepeat);
+		typeDifferentiateMapper.updateTypeDifferentiateById(nameIsRepeat);
 	    
 	}else {
-	    Long typeDifferentiateId = typeMapper.findTypeDifferentiateId();
+	    Long typeDifferentiateId = typeDifferentiateMapper.findTypeDifferentiateId();
 	    typeDifferentiate.setTypeDifferentiateId(typeDifferentiateId+1);
 	    typeDifferentiate.setCreateTime(new Date());
-	    typeMapper.addTypeDifferentiate(typeDifferentiate);
+		typeDifferentiateMapper.addTypeDifferentiate(typeDifferentiate);
 	}
 	
 	

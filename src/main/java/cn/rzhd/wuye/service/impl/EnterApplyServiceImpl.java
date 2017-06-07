@@ -1,12 +1,11 @@
 package cn.rzhd.wuye.service.impl;
 
 import cn.rzhd.wuye.bean.EnterApply;
-import cn.rzhd.wuye.common.WebService;
 import cn.rzhd.wuye.mapper.EnterApplyMapper;
 import cn.rzhd.wuye.service.IEnterApplyService;
+import cn.rzhd.wuye.vo.EnterApplyQuery;
 import cn.rzhd.wuye.vo.LiandoServiceConstant;
 import cn.rzhd.wuye.vo.RequesterVO;
-import cn.rzhd.wuye.vo.ResponseVO;
 import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonFormat.Value;
@@ -20,7 +19,7 @@ import java.util.Map;
  * luopa 在 2017/5/25 创建.
  */
 @Service
-public class IEnterApplyServiceImpl implements IEnterApplyService {
+public class EnterApplyServiceImpl implements IEnterApplyService {
 
     @Autowired
     EnterApplyMapper enterApplyMapper;
@@ -65,19 +64,40 @@ public class IEnterApplyServiceImpl implements IEnterApplyService {
     }*/
     @Override
     public List<Map<String, Value>> findEnterApplyList() {
-        RequesterVO requesterVO=new RequesterVO();
+     /*   RequesterVO requesterVO=new RequesterVO();
         requesterVO.setKey("liando");
-        requesterVO.setBilltype(LiandoServiceConstant.DATA_TYPE_CORP);
+        requesterVO.setBilltype(LiandoServiceConstant.DATA_TYPE_CORP);*/
         //requesterVO.setPk_corp("1028");
 
         List<Map<String, JsonFormat.Value>> enterApplyList = enterApplyMapper.findEnterApplyList();
         String jsonString = JSON.toJSONString(enterApplyList);
         List<EnterApply> enterApplies = JSON.parseArray(jsonString, EnterApply.class);
-        for (EnterApply enterApply : enterApplies) {
+       /* for (EnterApply enterApply : enterApplies) {
             System.out.println("enterApply = " + enterApply);
-        }
-        String baseData = WebService.getBaseData(requesterVO);
+        }*/
+        // String baseData = WebService.getBaseData(requesterVO);
 
         return enterApplyList;
+    }
+
+    @Override
+    public void insertEnterApply(EnterApply enterApply) {
+
+        enterApplyMapper.insertEnterApply(enterApply);
+    }
+
+    @Override
+    public void deleteEnterApply(Long enterApplyId) {
+        enterApplyMapper.deleteEnterApply(enterApplyId);
+    }
+
+    @Override
+    public void updateEnterApply(EnterApply enterApply) {
+        enterApplyMapper.updateEnterApply(enterApply);
+    }
+
+    @Override
+    public List<Map<String, Value>> findEnterApplyByQuery(EnterApplyQuery enterApplyQuery) {
+        return enterApplyMapper.findEnterApplyByQuery(enterApplyQuery);
     }
 }

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.rzhd.wuye.mapper.DecorateDetailMapper" >
+    <resultMap id="BaseResultMap" type="cn.rzhd.wuye.bean.DecorateDetail" >
+        <id column="DECORATE_DETAIL_ID" property="decorateDetailId" jdbcType="DECIMAL" />
+        <result column="DECORATION_APPLY_ID" property="decorationApplyId" jdbcType="DECIMAL" />
+        <result column="DETAIL_ORDER" property="detailOrder" jdbcType="DECIMAL" />
+        <result column="DETAIL_CONTENT" property="detailContent" jdbcType="OTHER" />
+    </resultMap>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+        delete from T_DECORATE_DETAIL
+        where DECORATE_DETAIL_ID = #{decorateDetailId,jdbcType=DECIMAL}
+    </delete>
+    <insert id="insert" parameterType="cn.rzhd.wuye.bean.DecorateDetail" >
+        insert into T_DECORATE_DETAIL (DECORATE_DETAIL_ID, DECORATION_APPLY_ID,
+        DETAIL_ORDER, DETAIL_CONTENT)
+        values (#{decorateDetailId,jdbcType=DECIMAL}, #{decorationApplyId,jdbcType=DECIMAL},
+        #{detailOrder,jdbcType=DECIMAL}, #{detailContent,jdbcType=OTHER})
+    </insert>
+    <update id="updateByPrimaryKey" parameterType="cn.rzhd.wuye.bean.DecorateDetail" >
+        update T_DECORATE_DETAIL
+        set DECORATION_APPLY_ID = #{decorationApplyId,jdbcType=DECIMAL},
+        DETAIL_ORDER = #{detailOrder,jdbcType=DECIMAL},
+        DETAIL_CONTENT = #{detailContent,jdbcType=OTHER}
+        where DECORATE_DETAIL_ID = #{decorateDetailId,jdbcType=DECIMAL}
+    </update>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+        select DECORATE_DETAIL_ID, DECORATION_APPLY_ID, DETAIL_ORDER, DETAIL_CONTENT
+        from T_DECORATE_DETAIL
+        where DECORATE_DETAIL_ID = #{decorateDetailId,jdbcType=DECIMAL}
+    </select>
+    <select id="selectAll" resultMap="BaseResultMap" >
+        select DECORATE_DETAIL_ID, DECORATION_APPLY_ID, DETAIL_ORDER, DETAIL_CONTENT
+        from T_DECORATE_DETAIL
+    </select>
+</mapper>

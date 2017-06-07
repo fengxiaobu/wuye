@@ -15,112 +15,113 @@ import java.io.Serializable;
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
     /**
      * 用户id
      */
     private Long userId;
     /**
-     * LOGO
+     *用户名
      */
-    private String logo;
+    private String username;
     /**
-     * 企业类型(0-个人，1-企业)
+     * 正式姓名
      */
-    private Integer companyType;
+    private String realname;
     /**
-     * 客户名称
+     * 工号
      */
-    private String clientName;
+    private String workNo;
     /**
-     * 绑定手机号
+     * 所属项目
      */
-    private String phone;
-    
-    private String erpId;
-    
-    private Integer fccategory;
-
+    private String projectBelong;
     /**
-     * @return the logo
+     * 性别  (0--女,1--男)
      */
-    public String getLogo() {
-        return logo;
-    }
-    
-    /*
-    @param logo the logo to set
-    */
-    public void setLogo(String logo) {
-        this.logo = logo;
-
-    }
-
-
+    private Short gender;
     /**
-     * @return the clientName
+     * 性别  (0--女,1--男)
      */
-    public String getClientName() {
-        return clientName;
-    }
-
-    /*
-    @param clientName the clientName to set
-    */
-    public void setClientName(String clientName) {
-        this.clientName = clientName;
-    }
-
-    public Integer getCompanyType() {
-        return companyType;
-    }
-
-    public void setCompanyType(Integer companyType) {
-        this.companyType = companyType;
-    }
-
+    private Short status;
     /**
-     * @return the phone
+     * 备注
      */
-    public String getPhone() {
-        return phone;
-    }
-
-    /*
-    @param phone the phone to set
-    */
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
+    private String note;
     /**
-     * @return the userId
+     * 权限角色主键
      */
+    private Long role;
+
     public Long getUserId() {
         return userId;
     }
 
-    /*
-    @param userId the userId to set
-    */
     public void setUserId(Long userId) {
         this.userId = userId;
     }
 
-    public String getErpId() {
-        return erpId;
+    public String getUsername() {
+        return username;
     }
 
-    public void setErpId(String erpId) {
-        this.erpId = erpId;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public Integer getFccategory() {
-        return fccategory;
+    public String getRealname() {
+        return realname;
     }
 
-    public void setFccategory(Integer fccategory) {
-        this.fccategory = fccategory;
+    public void setRealname(String realname) {
+        this.realname = realname;
     }
 
+    public String getWorkNo() {
+        return workNo;
+    }
 
+    public void setWorkNo(String workNo) {
+        this.workNo = workNo;
+    }
+
+    public String getProjectBelong() {
+        return projectBelong;
+    }
+
+    public void setProjectBelong(String projectBelong) {
+        this.projectBelong = projectBelong;
+    }
+
+    public Short getGender() {
+        return gender;
+    }
+
+    public void setGender(Short gender) {
+        this.gender = gender;
+    }
+
+    public Short getStatus() {
+        return status;
+    }
+
+    public void setStatus(Short status) {
+        this.status = status;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    public Long getRole() {
+        return role;
+    }
+
+    public void setRole(Long role) {
+        this.role = role;
+    }
 }

@@ -56,7 +56,10 @@ public class HouseInfo implements Serializable{
 	 * ERP客户主键
 	 */
 	private String customerId;
-
+	/**
+	 * 项目信息
+	 */
+	private ProjectInfo projectInfo;
 	public ProjectInfo getProjectInfo() {
 		return projectInfo;
 	}
@@ -65,10 +68,7 @@ public class HouseInfo implements Serializable{
 		this.projectInfo = projectInfo;
 	}
 
-	/**
-	 * 项目信息
-	 */
-	private ProjectInfo projectInfo;
+
 	/**
 	 * @return the erpHouseId
 	 */

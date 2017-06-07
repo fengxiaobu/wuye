@@ -7,11 +7,11 @@ import org.apache.ibatis.annotations.Param;
 @Mapper
 public interface TypeDifferentiateMapper {
     
-    public void addTypeDifferentiate(@Param("typeDifferentiate")TypeDifferentiate typeDifferentiate );
+     void addTypeDifferentiate(@Param("typeDifferentiate")TypeDifferentiate typeDifferentiate );
     
-    public Long findTypeDifferentiateId();
+     Long findTypeDifferentiateId();
     
-    public TypeDifferentiate findTypeDifferentiateNameIsRepeat(@Param("typeDifferentiateName")String typeDifferentiateName);
+     TypeDifferentiate findTypeDifferentiateNameIsRepeat(@Param("typeDifferentiateName")String typeDifferentiateName);
     
-    public void updateTypeDifferentiateById(@Param("typeDifferentiate")TypeDifferentiate typeDifferentiate);
+     void updateTypeDifferentiateById(@Param("typeDifferentiate")TypeDifferentiate typeDifferentiate);
 }

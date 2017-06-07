@@ -64,4 +64,15 @@ public class HouseInfoServiceImpl implements IHouseInfoService {
     public void delete(Long id) {
         houseInfoMapper.delete(id);
     }
+
+    /**
+     * 获取客户房产
+     *
+     * @param customerid 客户ID
+     * @return
+     */
+    @Override
+    public List<HouseInfo> selectByQuery(String customerid) {
+        return houseInfoMapper.selectByQuery(customerid);
+    }
 }

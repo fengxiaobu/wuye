@@ -1,13 +1,13 @@
 package cn.rzhd.wuye.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-
 import cn.rzhd.wuye.bean.TypeDifferentiate;
 import cn.rzhd.wuye.service.IDataDictionaryService;
 import cn.rzhd.wuye.utils.JsonUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * 
@@ -23,8 +23,9 @@ import cn.rzhd.wuye.utils.JsonUtils;
 @RequestMapping("/type")
 public class DataDictionaryTypeController {
 
-    @Autowired
-    private IDataDictionaryService dataDictionary;
+	@Autowired
+	@Qualifier("dataDictionaryService")
+    private IDataDictionaryService dataDictionaryService;
     /**
      * 添加类型
      * @param typeDifferentiate 类型对象
@@ -36,7 +37,7 @@ public class DataDictionaryTypeController {
 	    return JsonUtils.objectToJson("添加信息无效");
 	}
 	try {
-	    dataDictionary.addType(typeDifferentiate);
+		dataDictionaryService.addType(typeDifferentiate);
 	    return JsonUtils.objectToJson("添加类型成功");
 	} catch (Exception e) {
 	    e.printStackTrace();

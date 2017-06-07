@@ -2,9 +2,12 @@ package cn.rzhd.wuye.controller;
 
 import cn.rzhd.wuye.bean.HouseInfo;
 import cn.rzhd.wuye.service.IHouseInfoService;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
@@ -14,7 +17,7 @@ import java.util.List;
  * 房产信息Controller
  */
 @Controller
-@RequestMapping("/houseInfo")
+@RequestMapping("/dist/houseInfo")
 public class HouseInfoController {
 
     @Autowired
@@ -38,5 +41,22 @@ public class HouseInfoController {
     @RequestMapping("/index")
     public String houseInfo(){
         return "houseinfo/houseList";
+    }
+
+    /**
+     * 获取客户名下的房产信息
+     *
+     * @param customerid
+     * @return
+     */
+    @RequestMapping(value = "/getHouseNum",method = RequestMethod.GET)
+    @ResponseBody
+    public String selectByQuery(String customerid) {
+        if (customerid == null || customerid == "") {
+            return "客户ID未知!";
+        }
+        List<HouseInfo> houseInfos = houseInfoService.selectByQuery(customerid);
+        String jsonString = JSON.toJSONString(houseInfos, SerializerFeature.WriteMapNullValue);
+        return jsonString;
     }
 }

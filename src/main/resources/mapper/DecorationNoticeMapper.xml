@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.rzhd.wuye.mapper.DecorationNoticeMapper">
+    <resultMap id="BaseResultMap" type="cn.rzhd.wuye.bean.DecorationNotice">
+        <id column="DECORATION_NOTICE_ID" property="decorationNoticeId"/>
+        <result column="TITLE" property="title"/>
+        <result column="CONTENT" property="content"/>
+        <result column="CREATION_TIME" property="creationTime"/>
+        <result column="UPDATE_TIME" property="updateTime"/>
+    </resultMap>
+    <delete id="deleteByPrimaryKey" >
+        delete from T_DECORATION_NOTICE
+        where DECORATION_NOTICE_ID = #{decorationNoticeId}
+    </delete>
+    <insert id="insert" parameterType="cn.rzhd.wuye.bean.DecorationNotice">
+        insert into T_DECORATION_NOTICE (DECORATION_NOTICE_ID, TITLE, CONTENT,
+        CREATION_TIME, UPDATE_TIME)
+        values (#{decorationNoticeId,jdbcType=DECIMAL}, #{title,jdbcType=OTHER}, #{content,jdbcType=OTHER},
+        #{creationTime,jdbcType=DATE}, #{updateTime,jdbcType=DATE})
+    </insert>
+    <update id="updateByPrimaryKey" parameterType="cn.rzhd.wuye.bean.DecorationNotice">
+        update T_DECORATION_NOTICE
+        set TITLE = #{title,jdbcType=OTHER},
+        CONTENT = #{content,jdbcType=OTHER},
+        CREATION_TIME = #{creationTime,jdbcType=DATE},
+        UPDATE_TIME = #{updateTime,jdbcType=DATE}
+        where DECORATION_NOTICE_ID = #{decorationNoticeId,jdbcType=DECIMAL}
+    </update>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" >
+        select DECORATION_NOTICE_ID, TITLE, CONTENT, CREATION_TIME, UPDATE_TIME
+        from T_DECORATION_NOTICE
+        where DECORATION_NOTICE_ID = #{decorationNoticeId,jdbcType=DECIMAL}
+    </select>
+    <select id="selectAll" resultMap="BaseResultMap">
+        select DECORATION_NOTICE_ID, TITLE, CONTENT, CREATION_TIME, UPDATE_TIME
+        from T_DECORATION_NOTICE
+    </select>
+</mapper>

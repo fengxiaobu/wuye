@@ -49,6 +49,23 @@
             CUSTOMER_ID
         FROM T_HOUSE_INFO
     </select>
+<select id="selectByQuery" resultMap="houseInfoMap">
+        SELECT
+            HOUSE_INFO_ID,
+            ERP_HOUSE_ID,
+            PROJECT_INFO_ID,
+            HOUSE_PROPERTY,
+            ENTER_STATUS,
+            STAR_LEVEL,
+            STATUS,
+            CREATION_TIME,
+            UPDATE_TIME,
+            CUSTOMER_ID
+        FROM T_HOUSE_INFO
+        <where>
+            CUSTOMER_ID=#{customerid}
+        </where>
+    </select>
 
     <insert id="add" parameterType="HouseInfo">
         INSERT INTO T_HOUSE_INFO (ERP_HOUSE_ID, PROJECT_INFO_ID, HOUSE_PROPERTY, ENTER_STATUS, STAR_LEVEL, STATUS, CREATION_TIME, CUSTOMER_ID)

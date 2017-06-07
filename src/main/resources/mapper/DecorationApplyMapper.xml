@@ -1,17 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="cn.rzhd.wuye.mapper.EnterApplyMapper">
-    <resultMap id="enterApplyMap" type="java.util.Map">
-        <id column="ENTER_APPLY_ID" property="enterApplyId"/>
-        <result column="HOUSE_INFO_ID" property="houseInfoId"/>
-        <result column="CLIENT_NAME" property="clientName"/>
-        <result column="APPLY_TIME" property="applyTime"/>
-        <result column="AUDIT_STATUS" property="auditStatus"/>
-        <result column="ENTER_ADVICE_NOTE" property="enterAdviceNote"/>
-        <result column="NOTES" property="notes"/>
-        <result column="CREATION_TIME" property="creationTime"/>
-        <result column="UPDATE_TIME" property="updateTime"/>
+<mapper namespace="cn.rzhd.wuye.mapper.DecorationApplyMapper">
+    <resultMap id="DecorationApplyMapper" type="java.util.Map">
+        <id column="DECORATION_APPLY_ID" property="decorationApplyId" jdbcType="DECIMAL" />
+        <result column="HOUSE_INFO_ID" property="houseInfoId" jdbcType="DECIMAL" />
+        <result column="CLIENT_NAME" property="clientName" jdbcType="OTHER" />
+        <result column="APPLY_TIME" property="applyTime" jdbcType="DATE" />
+        <result column="ANTIPATE_TIME" property="antipateTime" jdbcType="DATE" />
+        <result column="LOCALE_CUSTODIAN" property="localeCustodian" jdbcType="OTHER" />
+        <result column="LOCALE_CUSTODIAN_PHONE" property="localeCustodianPhone" jdbcType="VARCHAR" />
+        <result column="DECORATION_PARTS" property="decorationParts" jdbcType="OTHER" />
+        <result column="DECORATE_AREA" property="decorateArea" jdbcType="FLOAT" />
+        <result column="CONSTRUCT_PEOPLE_NUMBER" property="constructPeopleNumber" jdbcType="DECIMAL" />
+        <result column="DECORATION_COMPANY" property="decorationCompany" jdbcType="OTHER" />
+        <result column="DECORATION_LEADER" property="decorationLeader" jdbcType="OTHER" />
+        <result column="DECORATION_ LEADER_PHONE" property="decorationLeaderPhone" jdbcType="VARCHAR" />
+        <result column="DECORATION_DEPOSIT" property="decorationDeposit" jdbcType="DECIMAL" />
+        <result column="DECORATION_MANAGEMENT_COST" property="decorationManagementCost" jdbcType="DECIMAL" />
+        <result column="PASS_PAPERS_COST" property="passPapersCost" jdbcType="DECIMAL" />
+        <result column="PASS_PAPERS_DEPOSIT" property="passPapersDeposit" jdbcType="DECIMAL" />
+        <result column="AUDIT_STATUS" property="auditStatus" jdbcType="DECIMAL" />
+        <result column="FEEDBACK1" property="feedback1" jdbcType="OTHER" />
+        <result column="FEEDBACK2" property="feedback2" jdbcType="OTHER" />
+        <result column="IS_SPECIAL_DECORATION" property="isSpecialDecoration" jdbcType="DECIMAL" />
+        <result column="SPECIAL_DECORATION_FILE" property="specialDecorationFile" jdbcType="OTHER" />
+        <result column="CREATION_TIME" property="creationTime" jdbcType="DATE" />
+        <result column="UPDATE_TIME" property="updateTime" jdbcType="DATE" />
         <association property="houseInfo" javaType="cn.rzhd.wuye.bean.HouseInfo">
             <id column="ERP_HOUSE_ID" property="erpHouseId"/>
             <result column="HOUSE_INFO_ID" property="houseInfoId"/>
@@ -53,7 +68,7 @@
         </association>
     </resultMap>
     <!-- 单表查询info数据根据ID -->
-    <select id="getEnterApplyByID" resultType="cn.rzhd.wuye.bean.EnterApply">
+    <select id="getDecorationApplyById" resultType="cn.rzhd.wuye.bean.DecorationApply">
         SELECT * FROM
         T_ENTER_APPLY apply,
         T_HOUSE_INFO house,
@@ -61,21 +76,21 @@
         WHERE
         apply.HOUSE_INFO_ID=house.HOUSE_INFO_ID
         AND
-            apply.ENTER_APPLY_ID=#{enterApplyId}
+        apply.ENTER_APPLY_ID=#{enterApplyId}
     </select>
     <!-- 入驻申请列表分页查询 -->
-    <select id="findEnterApplyList" resultMap="enterApplyMap">
-      SELECT apply.ENTER_APPLY_ID,project.PROJECT_NAME,house.HOUSE_PROPERTY,apply.CLIENT_NAME,apply.APPLY_TIME,apply.AUDIT_STATUS FROM
-              T_ENTER_APPLY  apply,
-              T_HOUSE_INFO house,
-              T_PROJECT_INFO project
-          WHERE
-            apply.HOUSE_INFO_ID=house.HOUSE_INFO_ID
-          AND
-          house.PROJECT_INFO_ID=project.PK_PROJECT
+    <select id="findDecorationApplyList" resultMap="DecorationApplyMapper">
+        SELECT apply.ENTER_APPLY_ID,project.PROJECT_NAME,house.HOUSE_PROPERTY,apply.CLIENT_NAME,apply.APPLY_TIME,apply.AUDIT_STATUS FROM
+        T_ENTER_APPLY  apply,
+        T_HOUSE_INFO house,
+        T_PROJECT_INFO project
+        WHERE
+        apply.HOUSE_INFO_ID=house.HOUSE_INFO_ID
+        AND
+        house.PROJECT_INFO_ID=project.PK_PROJECT
     </select>
     <!-- 入驻申请列表条件查询 -->
-    <select id="findEnterApplyByQuery" parameterType="cn.rzhd.wuye.vo.EnterApplyQuery" resultMap="enterApplyMap">
+    <select id="findDecorationApplyListByQuery" parameterType="cn.rzhd.wuye.vo.EnterApplyQuery" resultMap="DecorationApplyMapper">
         SELECT
         apply.ENTER_APPLY_ID,project.PROJECT_NAME,house.HOUSE_PROPERTY,apply.CLIENT_NAME,apply.APPLY_TIME,apply.AUDIT_STATUS
         FROM
@@ -101,31 +116,34 @@
 
     <!-- 用户信息修改 操作-->
     <update id="updateEnterApply" parameterType="cn.rzhd.wuye.bean.EnterApply">
-       update T_ENTER_APPLY
-      set HOUSE_INFO_ID = #{houseInfoId},
-      CLIENT_NAME = #{clientName},
-      APPLY_TIME = #{applyTime},
-      AUDIT_STATUS = #{auditStatus},
-      ENTER_ADVICE_NOTE = #{enterAdviceNote},
-      NOTES = #{notes},
-      CREATION_TIME = #{creationTime},
-      UPDATE_TIME = #{updateTime}
-    where ENTER_APPLY_ID = #{enterApplyId}
+        update T_ENTER_APPLY
+        set HOUSE_INFO_ID = #{houseInfoId},
+        CLIENT_NAME = #{clientName},
+        APPLY_TIME = #{applyTime},
+        AUDIT_STATUS = #{auditStatus},
+        ENTER_ADVICE_NOTE = #{enterAdviceNote},
+        NOTES = #{notes},
+        CREATION_TIME = #{creationTime},
+        UPDATE_TIME = #{updateTime}
+        where ENTER_APPLY_ID = #{enterApplyId}
     </update>
     <!--添加入驻申请-->
-    <insert id="insertEnterApply" parameterType="cn.rzhd.wuye.bean.EnterApply">
-       insert into T_ENTER_APPLY (ENTER_APPLY_ID, HOUSE_INFO_ID, CLIENT_NAME,
-      APPLY_TIME, AUDIT_STATUS, ENTER_ADVICE_NOTE,
-      NOTES, CREATION_TIME, UPDATE_TIME
-      )
-    values (#{enterApplyId}, #{houseInfoId}, #{clientName},
-      #{applyTime}, #{auditStatus}, #{enterAdviceNote},
-      #{notes}, #{creationTime}, #{updateTime}
-      )
+    <insert id="insertEnterApply" useGeneratedKeys="true" keyProperty="ENTER_APPLY_ID" parameterType="cn.rzhd.wuye.bean.EnterApply">
+        <selectKey resultType="long" order="BEFORE" keyProperty="ENTER_APPLY_ID">
+            SELECT T_ENTER_APPLY_ID_SEQ.Nextval as ID from DUAL
+        </selectKey>
+        insert into T_ENTER_APPLY (ENTER_APPLY_ID, HOUSE_INFO_ID, CLIENT_NAME,
+        APPLY_TIME, AUDIT_STATUS, ENTER_ADVICE_NOTE,
+        NOTES, CREATION_TIME, UPDATE_TIME
+        )
+        values (#{enterApplyId}, #{houseInfoId}, #{clientName},
+        #{applyTime}, #{auditStatus}, #{enterAdviceNote},
+        #{notes}, #{creationTime}, #{updateTime}
+        )
     </insert>
     <!-- 入驻信息删除操作 -->
     <delete id="deleteEnterApply">
-      delete from T_ENTER_APPLY
-    where ENTER_APPLY_ID = #{enterApplyId}
+        delete from T_ENTER_APPLY
+        where ENTER_APPLY_ID = #{enterApplyId}
     </delete>
 </mapper>

@@ -14,16 +14,42 @@ import java.util.Date;
 @version: V1.0
  */
 public class EnterMaterial implements Serializable{
-	
-	private static final long serialVersionUID = 1L;
+
+	private static final Long serialVersionUID = 1L;
+	/**
+	 * 房产信息
+	 */
+	private HouseInfo houseInfo;
+
+	/**
+	 * 用户信息
+	 */
+	private User user;
+
+	public HouseInfo getHouseInfo() {
+		return houseInfo;
+	}
+
+	public void setHouseInfo(HouseInfo houseInfo) {
+		this.houseInfo = houseInfo;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 	/**
 	 * 入驻资料表id
 	 */
-	private Long enterMaterialId;
+	private String enterMaterialId;
 	/**
 	 * 房产id
 	 */
-	private Long houseInfoId;
+	private String houseInfoId;
 	/**
 	 * 资料名称
 	 */
@@ -43,7 +69,7 @@ public class EnterMaterial implements Serializable{
 	/**
 	 * 修改用户
 	 */
-	private Long userId;
+	private String userId;
 	/**
 	 * 修改时间
 	 */
@@ -113,37 +139,37 @@ public class EnterMaterial implements Serializable{
 	/**
 	 * @return the enterMaterialId
 	 */
-	public Long getEnterMaterialId() {
+	public String getEnterMaterialId() {
 		return enterMaterialId;
 	}
 	/*
 	@param enterMaterialId the enterMaterialId to set
 	*/
-	public void setEnterMaterialId(Long enterMaterialId) {
+	public void setEnterMaterialId(String enterMaterialId) {
 		this.enterMaterialId = enterMaterialId;
 	}
 	/**
 	 * @return the houseInfoId
 	 */
-	public Long getHouseInfoId() {
+	public String getHouseInfoId() {
 		return houseInfoId;
 	}
 	/*
 	@param houseInfoId the houseInfoId to set
 	*/
-	public void setHouseInfoId(Long houseInfoId) {
+	public void setHouseInfoId(String houseInfoId) {
 		this.houseInfoId = houseInfoId;
 	}
 	/**
 	 * @return the userId
 	 */
-	public Long getUserId() {
+	public String getUserId() {
 		return userId;
 	}
 	/*
 	@param userId the userId to set
 	*/
-	public void setUserId(Long userId) {
+	public void setUserId(String userId) {
 		this.userId = userId;
 	}
 	

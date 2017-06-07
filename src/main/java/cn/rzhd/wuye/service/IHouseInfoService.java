@@ -37,4 +37,11 @@ public interface IHouseInfoService {
      * @param id
      */
     void delete(Long id);
+
+    /**
+     * 获取客户房产
+     * @param customerid 客户ID
+     * @return
+     */
+    List<HouseInfo> selectByQuery( String customerid);
 }

@@ -14,9 +14,18 @@ import java.util.Date;
 @version: V1.0
  */
 public class DecorationApply implements Serializable {
-    
+
     private static final long serialVersionUID = 1L;
-    
+    private HouseInfo houseInfo;
+
+    public HouseInfo getHouseInfo() {
+        return houseInfo;
+    }
+
+    public void setHouseInfo(HouseInfo houseInfo) {
+        this.houseInfo = houseInfo;
+    }
+
     /**
      * 主键
      */

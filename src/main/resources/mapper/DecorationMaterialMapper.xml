@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.rzhd.wuye.mapper.DecorationMaterialMapper" >
+    <resultMap id="BaseResultMap" type="cn.rzhd.wuye.bean.DecorationMaterial" >
+        <id column="DECORATION_MATERIAL_ID" property="decorationMaterialId" jdbcType="DECIMAL" />
+        <result column="DECORATION_APPLY_ID" property="decorationApplyId" jdbcType="DECIMAL" />
+        <result column="MATERIAL_NAME" property="materialName" jdbcType="OTHER" />
+        <result column="MATERIAL_ADDRESS" property="materialAddress" jdbcType="OTHER" />
+    </resultMap>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+        delete from T_DECORATION_MATERIAL
+        where DECORATION_MATERIAL_ID = #{decorationMaterialId,jdbcType=DECIMAL}
+    </delete>
+    <insert id="insert" parameterType="cn.rzhd.wuye.bean.DecorationMaterial" >
+        insert into T_DECORATION_MATERIAL (DECORATION_MATERIAL_ID, DECORATION_APPLY_ID,
+        MATERIAL_NAME, MATERIAL_ADDRESS)
+        values (#{decorationMaterialId,jdbcType=DECIMAL}, #{decorationApplyId,jdbcType=DECIMAL},
+        #{materialName,jdbcType=OTHER}, #{materialAddress,jdbcType=OTHER})
+    </insert>
+    <update id="updateByPrimaryKey" parameterType="cn.rzhd.wuye.bean.DecorationMaterial" >
+        update T_DECORATION_MATERIAL
+        set DECORATION_APPLY_ID = #{decorationApplyId,jdbcType=DECIMAL},
+        MATERIAL_NAME = #{materialName,jdbcType=OTHER},
+        MATERIAL_ADDRESS = #{materialAddress,jdbcType=OTHER}
+        where DECORATION_MATERIAL_ID = #{decorationMaterialId,jdbcType=DECIMAL}
+    </update>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+        select DECORATION_MATERIAL_ID, DECORATION_APPLY_ID, MATERIAL_NAME, MATERIAL_ADDRESS
+        from T_DECORATION_MATERIAL
+        where DECORATION_MATERIAL_ID = #{decorationMaterialId,jdbcType=DECIMAL}
+    </select>
+    <select id="selectAll" resultMap="BaseResultMap" >
+        select DECORATION_MATERIAL_ID, DECORATION_APPLY_ID, MATERIAL_NAME, MATERIAL_ADDRESS
+        from T_DECORATION_MATERIAL
+    </select>
+</mapper>

@@ -1,11 +1,8 @@
 package cn.rzhd.wuye.controller;
 
-import cn.rzhd.wuye.bean.Customer;
-import cn.rzhd.wuye.bean.User;
 import cn.rzhd.wuye.service.IUserService;
 import cn.rzhd.wuye.utils.JsonUtils;
 import cn.rzhd.wuye.vo.CustomerVO;
-
 import com.fasterxml.jackson.annotation.JsonFormat.Value;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -128,7 +125,7 @@ public class UserController {
      * 拉取ERP用户信息
      * @return
      */
-    @RequestMapping(value="/pullUserInfo",method=RequestMethod.POST)
+    @RequestMapping(value="/pullUserInfo",method=RequestMethod.GET)
     public String pullUserInfo(){
 	
 	String erpAllUserPull = userService.ERPAllCustomerPull();

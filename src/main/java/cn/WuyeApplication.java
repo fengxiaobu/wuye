@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
@@ -16,8 +17,12 @@ import org.springframework.context.annotation.PropertySource;
 @PropertySource(value={"classpath:application.properties"})
 public class WuyeApplication extends SpringBootServletInitializer {
 	public static void main(String[] args) {
-		SpringApplication.run(WuyeApplication.class, args);
-		System.out.println("123");
+		ConfigurableApplicationContext run = SpringApplication.run(WuyeApplication.class, args);
+		String[] beanNames =  run.getBeanDefinitionNames();
+		/*System.out.println("所有beanNames个数："+beanNames.length);
+		for(String bn:beanNames){
+			System.out.println(bn);
+		}*/
 	}
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {

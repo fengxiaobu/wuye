@@ -25,7 +25,7 @@
         <result property="bindingPhone" column="Binding_Phone"/>
         <collection property="houseInfos" javaType="list" column="houseInfoId" ofType="long"/>
     </resultMap> -->
-    <resultMap id="homePageMap" type="java.util.Map">
+<!--    <resultMap id="homePageMap" type="java.util.Map">
     	<result property="pk_house" column="pk_house"/>
     	<result property="pk_project" column="pk_project"/>
     	<result property="PROJECT_NAME" column="PROJECT_NAME"/>
@@ -33,11 +33,11 @@
     	<result property="ifloor" column="ifloor"/>
     	<result property="vhcell" column="vhcell"/>
     	<result property="vhnum" column="vhnum"/>
-    	<result property="vhname" column="vhnum"/>
+    	<result property="vhname" column="vhname"/>
     
     </resultMap>
     
-     <!-- 根据登录customer查询项目名称-->
+     &lt;!&ndash; 根据登录customer查询项目名称&ndash;&gt;
    <select id="findHomePageHouseByCustomer" resultMap="homePageMap" >
         SELECT
 			HID."pk_house",
@@ -57,10 +57,10 @@
 			HI.CUSTOMER_ID = #{customer.pk_customerid}
     </select>
     
-    <!-- 根据房产id查询相关费用清单 -->
+    &lt;!&ndash; 根据房产id查询相关费用清单 &ndash;&gt;
     <select id="findFeeListByHouseId" resultMap="">
     
     </select>
    
-    
+    -->
 </mapper>
