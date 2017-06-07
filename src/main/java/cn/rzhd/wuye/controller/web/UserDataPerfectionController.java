@@ -48,6 +48,12 @@ public class UserDataPerfectionController {
 	return JsonUtils.objectToJson("success");
     }
     
+    /**
+     * 入驻办理资料
+     * @param enterMaterial
+     * @return
+     */
+    @RequestMapping(value="/addEnterTransactMaterial",method=RequestMethod.POST)
     public String addEnterTransactMaterial(EnterMaterial enterMaterial){
 	userDataPerfectionService.addEnterTransactMaterial(enterMaterial);
 	return JsonUtils.objectToJson("success");

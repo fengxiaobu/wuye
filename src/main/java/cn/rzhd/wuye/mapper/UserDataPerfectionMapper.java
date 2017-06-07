@@ -11,6 +11,8 @@ public interface UserDataPerfectionMapper {
     
     Integer findMaxPerfectInformationId();
     
+    Integer findMaxEnterTransactMaterialId();
+    
     void addUserDataPerfection(@Param("perfectInformation") PerfectInformation perfectInformation);
     
     void addEnterTransactMaterial(@Param("enterMaterial") EnterMaterial enterMaterial);

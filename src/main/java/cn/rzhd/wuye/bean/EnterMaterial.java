@@ -45,7 +45,7 @@ public class EnterMaterial implements Serializable{
 	/**
 	 * 入驻资料表id
 	 */
-	private String enterMaterialId;
+	private Long enterMaterialId;
 	/**
 	 * 房产id
 	 */
@@ -69,7 +69,7 @@ public class EnterMaterial implements Serializable{
 	/**
 	 * 修改用户
 	 */
-	private String userId;
+	private String customerId;
 	/**
 	 * 修改时间
 	 */
@@ -139,13 +139,13 @@ public class EnterMaterial implements Serializable{
 	/**
 	 * @return the enterMaterialId
 	 */
-	public String getEnterMaterialId() {
+	public Long getEnterMaterialId() {
 		return enterMaterialId;
 	}
 	/*
 	@param enterMaterialId the enterMaterialId to set
 	*/
-	public void setEnterMaterialId(String enterMaterialId) {
+	public void setEnterMaterialId(Long enterMaterialId) {
 		this.enterMaterialId = enterMaterialId;
 	}
 	/**
@@ -163,14 +163,14 @@ public class EnterMaterial implements Serializable{
 	/**
 	 * @return the userId
 	 */
-	public String getUserId() {
-		return userId;
+	public String getCustomerId() {
+		return customerId;
 	}
 	/*
 	@param userId the userId to set
 	*/
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setCustomerId(String customerId) {
+		this.customerId = customerId;
 	}
 	
 
