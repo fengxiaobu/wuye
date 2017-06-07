@@ -9,8 +9,10 @@ import cn.rzhd.wuye.bean.PerfectInformation;
 @Mapper
 public interface UserDataPerfectionMapper {
     
-    <T> T addUserDataPerfection(@Param("perfectInformation") PerfectInformation perfectInformation);
+    Integer findMaxPerfectInformationId();
     
-    <T> T addEnterTransactMaterial(@Param("enterMaterial") EnterMaterial enterMaterial);
+    void addUserDataPerfection(@Param("perfectInformation") PerfectInformation perfectInformation);
+    
+    void addEnterTransactMaterial(@Param("enterMaterial") EnterMaterial enterMaterial);
 
 }

@@ -24,7 +24,7 @@ public class PerfectInformation implements Serializable{
 	/**
 	 * 房产id
 	 */
-	private Long houseInfoId;
+	private String houseInfoId;
 	/**
 	 * 企业类型(0-个人，1-企业)
 	 */
@@ -32,7 +32,7 @@ public class PerfectInformation implements Serializable{
 	/**
 	 * 用户id
 	 */
-	private Long userId;
+	private String customerId;
 	/**
 	 * 房产属性id
 	 */
@@ -144,13 +144,13 @@ public class PerfectInformation implements Serializable{
 	/**
 	 * @return the houseInfoId
 	 */
-	public Long getHouseInfoId() {
+	public String getHouseInfoId() {
 		return houseInfoId;
 	}
 	/*
 	@param houseInfoId the houseInfoId to set
 	*/
-	public void setHouseInfoId(Long houseInfoId) {
+	public void setHouseInfoId(String houseInfoId) {
 		this.houseInfoId = houseInfoId;
 	}
 	/**
@@ -168,14 +168,14 @@ public class PerfectInformation implements Serializable{
 	/**
 	 * @return the userId
 	 */
-	public Long getUserId() {
-		return userId;
+	public String getCustomerId() {
+		return customerId;
 	}
 	/*
 	@param userId the userId to set
 	*/
-	public void setUserId(Long userId) {
-		this.userId = userId;
+	public void setCustomerId(String customerId) {
+		this.customerId = customerId;
 	}
 	/**
 	 * @return the housePropertyId
