@@ -3,7 +3,7 @@ package cn.rzhd.wuye.controller;
 import cn.rzhd.wuye.bean.HouseInfo;
 import cn.rzhd.wuye.service.IHouseInfoService;
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.alibaba.fastjson.serializer.PropertyFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -55,8 +55,18 @@ public class HouseInfoController {
         if (customerid == null || customerid == "") {
             return "客户ID未知!";
         }
+        PropertyFilter propertyFilter = new PropertyFilter() {
+            @Override
+            public boolean apply(Object object, String name, Object value) {
+                if (name.equalsIgnoreCase("projectInfo")) {
+                    //false表示last字段将被排除在外
+                    return false;
+                }
+                return true;
+            }
+        };
         List<HouseInfo> houseInfos = houseInfoService.selectByQuery(customerid);
-        String jsonString = JSON.toJSONString(houseInfos, SerializerFeature.WriteMapNullValue);
+        String jsonString = JSON.toJSONString(houseInfos, propertyFilter);
         return jsonString;
     }
 }

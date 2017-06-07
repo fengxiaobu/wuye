@@ -16,7 +16,6 @@
         <result column="UPDATE_TIME" property="updateTime"/>
         <result column="CUSTOMER_ID" property="customerId"/>
 
-
     </resultMap>
 
     <select id="getById" resultMap="houseInfoMap" parameterType="long">

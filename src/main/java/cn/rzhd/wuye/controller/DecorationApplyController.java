@@ -71,9 +71,6 @@ public class DecorationApplyController {
     @RequestMapping(value = "/upload/batch", method = RequestMethod.POST)
     public @ResponseBody
     String batchUpload(HttpServletRequest request, DecorationMaterial decorationMaterial, DecorationApply decorationApply, DecorateDetail decorateDetail) {
-        System.out.println("装修资料 = " + decorationMaterial);
-        System.out.println("装修申请 = " + decorationApply);
-        System.out.println("装修明细 = " + decorateDetail);
         try {
             //文件上传
             String s = fileUpload(request);
@@ -149,6 +146,4 @@ public class DecorationApplyController {
         }
         return "上传成功!";
     }
-
-
 }
