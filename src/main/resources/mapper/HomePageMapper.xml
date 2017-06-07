@@ -1,66 +1,95 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" 
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="cn.rzhd.wuye.mapper.HomePageMapper">
-    
-   <!--  <resultMap id="customerMap" type="cn.rzhd.wuye.bean.Customer">
-        <id property="pk_customerid" column="pk_customerid"/>
-        <result property="pk_corp" column="pk_corp"/>
-        <result property="fccategory" column="fccategory"/>
-        <result property="vccode" column="vccode"/>
-        <result property="vcname" column="vcname"/>
-        <result property="vpcnamespell" column="vpcnamespell"/>
-        <result property="vpreferredtel" column="vpreferredtel"/>
-        <result property="vccardnum" column="vccardnum"/>
-        <result property="vcaddress" column="vcaddress"/>
-        <result property="ccpostalcode" column="ccpostalcode"/>
-        <result property="dregdate" column="dregdate"/>
-        <result property="vregplace" column="vregplace"/>
-        <result property="vmemcardno" column="vmemcardno"/>
-        <result property="vpcemail" column="vpcemail"/>
-        <result property="nproperty" column="nproperty"/>
-        <result property="LOGO" column="LOGO"/>
-        <result property="companyType" column="Company_Type"/>
-        <result property="password" column="Password"/>
-        <result property="bindingPhone" column="Binding_Phone"/>
-        <collection property="houseInfos" javaType="list" column="houseInfoId" ofType="long"/>
-    </resultMap> -->
-<!--    <resultMap id="homePageMap" type="java.util.Map">
-    	<result property="pk_house" column="pk_house"/>
-    	<result property="pk_project" column="pk_project"/>
-    	<result property="PROJECT_NAME" column="PROJECT_NAME"/>
-    	<result property="building" column="building"/>
-    	<result property="ifloor" column="ifloor"/>
-    	<result property="vhcell" column="vhcell"/>
-    	<result property="vhnum" column="vhnum"/>
-    	<result property="vhname" column="vhname"/>
-    
-    </resultMap>
-    
-     &lt;!&ndash; 根据登录customer查询项目名称&ndash;&gt;
-   <select id="findHomePageHouseByCustomer" resultMap="homePageMap" >
-        SELECT
-			HID."pk_house",
-			PI."pk_project",
-			PI.PROJECT_NAME,
-			HID."building",
-			HID."ifloor",
-			HID."vhcell",
-			HID."vhnum",
-			HID."vhname",
-			HI.STAR_LEVEL
+
+	<!-- 根据登录customer查询项目名称-->
+	<select id="findHomePageHouseByCustomer" resultType="java.util.Map" >
+		SELECT
+		HID."pk_house",
+		PI.PK_PROJECT,
+		PI.PROJECT_NAME,
+		HID."building",
+		HID."ifloor",
+		HID."vhcell",
+		HID."vhnum",
+		HID."vhname",
+		HI.STAR_LEVEL
 		FROM
-			T_HOUSE_INFO HI
-			LEFT JOIN "T_House_Info_Details" HID ON HI.ERP_HOUSE_ID = HID."pk_house"
-			LEFT JOIN T_PROJECT_INFO PI ON HI.PROJECT_INFO_ID = PI."pk_project"
+		T_HOUSE_INFO HI
+		LEFT JOIN T_HOUSE_INFO_DETAILS HID ON HI.ERP_HOUSE_ID = HID."pk_house"
+		LEFT JOIN T_PROJECT_INFO PI ON HI.PROJECT_INFO_ID = PI.PK_PROJECT
 		WHERE
-			HI.CUSTOMER_ID = #{customer.pk_customerid}
-    </select>
-    
-    &lt;!&ndash; 根据房产id查询相关费用清单 &ndash;&gt;
-    <select id="findFeeListByHouseId" resultMap="">
-    
-    </select>
-   
-    -->
+		HI.CUSTOMER_ID = '${customer.pk_customerid}'
+	</select>
+
+	<!-- 根据房产id查询相关费用清单 -->
+	<!--  <select id="findFeeListByHouseId" resultMap=""></select> -->
+
+	<!-- 开发费用查询 -->
+	<select id="findKfFeeListByCustomerId" parameterType="cn.rzhd.wuye.bean.Customer" resultType="java.util.Map">
+		SELECT
+		KF.*,
+		HID."building" ,
+		HID."ifloor" ,
+		HID."vhcell",
+		HID."vhnum"
+		FROM
+		"T_KF_Fee" KF
+		LEFT JOIN T_HOUSE_INFO_DETAILS HID ON KF."pk_house" = HID."pk_house"
+		WHERE
+		KF."pk_customerid" = ${pk_customerid}
+	</select>
+
+	<!-- 物业费用查询 -->
+	<select id="findPropertyFeeListByCustomerId" resultType="java.util.Map">
+		SELECT
+		PF.*,
+		HID."building",
+		HID."ifloor",
+		HID."vhcell",
+		HID."vhnum"
+		FROM
+		T_PROPERTY_FEE PF
+		LEFT JOIN T_HOUSE_INFO_DETAILS HID ON PF."pk_house" = HID."pk_house"
+		WHERE
+		PF."pk_customerid" = ${customer.pk_customerid }
+	</select>
+
+	<!-- 查询消息通知未读条数 -->
+	<select id="findMessageNumByCustomer" resultType="java.lang.Integer">
+		SELECT
+		"COUNT"(*)
+		FROM
+		T_MESSAGE_MANAGE MM
+		LEFT JOIN T_CUSTOMER_MESSAGE CM ON MM.MESSAGE_MANAGE_ID = CM.MESSAGE_ID
+		WHERE
+		CM.CUSTOMER_ID = ${customer.pk_customerid} and CM.READ_STATUS = 0
+	</select>
+
+	<resultMap id="messageList" type="cn.rzhd.wuye.bean.MessageManage">
+		<result property="messageManageId" column="MESSAGE_MANAGE_ID"/>
+		<result property="title" column="TITLE"/>
+		<result property="content" column="CONTENT"/>
+		<result property="note" column="NOTE"/>
+		<result property="createTime" column="CREATE_TIME"/>
+	</resultMap>
+
+	<!-- 查询消息通知详情 -->
+	<select id="findMessageByCustomer" resultMap="messageList">
+		SELECT
+		MM.MESSAGE_MANAGE_ID,
+		MM.TITLE,
+		MM."CONTENT",
+		MM.NOTE,
+		MM.CREATE_TIME
+		FROM
+		T_MESSAGE_MANAGE MM
+		LEFT JOIN T_CUSTOMER_MESSAGE CM ON MM.MESSAGE_MANAGE_ID = CM.MESSAGE_ID
+		WHERE
+		CM.CUSTOMER_ID = ${customer.pk_customerid}
+		AND CM.READ_STATUS = 0
+	</select>
+
+
 </mapper>

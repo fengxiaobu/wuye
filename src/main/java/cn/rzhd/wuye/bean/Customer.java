@@ -6,6 +6,7 @@ import java.util.List;
  * Created by hasee on 2017/6/1.
  */
 public class Customer {
+    
     /**
      * 公司主键
      */

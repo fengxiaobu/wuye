@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import cn.rzhd.wuye.bean.Customer;
+import cn.rzhd.wuye.bean.MessageManage;
 import cn.rzhd.wuye.service.IHomePageService;
 import cn.rzhd.wuye.utils.JsonUtils;
 /**
@@ -45,8 +46,35 @@ public class HomePageController {
      * @param houseId
      * @return
      */
-    @RequestMapping(value="/findFeeListByHouseId",method=RequestMethod.POST)
-    public String findFeeListByHouseId(String houseId){
-	return houseId;
+    @RequestMapping(value="/findFeeListByCustomer",method=RequestMethod.POST)
+    public String findFeeListByCustomer(Customer customer){
+	Map<String, Object> findFeeListByCustomerId = homePageService.findFeeListByCustomerId(customer);
+	return JsonUtils.objectToJson(findFeeListByCustomerId);
     }
+    
+    /**
+     * 查询未读信息数
+     * @param customer
+     * @return
+     */
+    @RequestMapping(value="/findMessageNumByCutromer",method=RequestMethod.POST)
+    public String findMessageNumByCutromer(Customer customer){
+	Integer findMessageNumByCustomer = homePageService.findMessageNumByCustomer(customer);
+	return JsonUtils.objectToJson(findMessageNumByCustomer);
+	
+    }
+    
+    /**
+     * 查询通知消息的标题列表
+     * @param customer
+     * @return
+     */
+    @RequestMapping(value="/findMessageByCustomer",method=RequestMethod.POST)
+    public String findMessageByCustomer(Customer customer){
+	List<MessageManage> findMessageByCustomer = homePageService.findMessageByCustomer(customer);
+	return JsonUtils.objectToJson(findMessageByCustomer);
+	
+    }
+    
+    
 }
