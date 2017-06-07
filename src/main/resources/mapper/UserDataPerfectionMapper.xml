@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="cn.rzhd.wuye.mapper.CustomerMapper">
+<mapper namespace="cn.rzhd.wuye.mapper.UserDataPerfectionMapper">
     
     <select id="findMaxPerfectInformationId" resultType="java.lang.Integer">
     	select "NVL"("MAX"(PERFECT_INFORMATION_ID),'0') as PERFECT_INFORMATION_ID  from T_PERFECT_INFORMATION
     </select>
+    
+    <select id="findMaxEnterTransactMaterialId" resultType="java.lang.Integer">
+    	select "NVL"("MAX"(ENTER_MATERIAL_ID),'0') as ENTER_MATERIAL_ID  from T_ENTER_MATERIAL
+    </select>
+    
      <!-- 个人资料完善 -->
    <insert id="addUserDataPerfection">
    		INSERT INTO T_PERFECT_INFORMATION (
@@ -14,7 +19,6 @@
 			CUSTOMER_ID,
 			COMPANY_TYPE,
 			HOUSE_PROPERTY_ID,
-			U_RAVINE_PROPERTY_ID,
 			COMPANY_ESTABLISH_TIME,
 			SIGN_IN_FUND,
 			INDUSTRY_INVOLVED_ID,
@@ -39,7 +43,8 @@
 			CARTE_TIME
 			
 		)
-	VALUES(#{perfectInformation.perfectInformationId},
+	VALUES
+	(#{perfectInformation.perfectInformationId},
 	#{perfectInformation.houseInfoId},#{perfectInformation.customerId},#{perfectInformation.companyType},
 	#{perfectInformation.housePropertyId},#{perfectInformation.companyEstablishTime},#{perfectInformation.signInFund},
 	#{perfectInformation.industryInvolvedId},#{perfectInformation.mainProduct},#{perfectInformation.companyCoverageId},
@@ -54,7 +59,18 @@
    
    <!-- 入驻办理，资料上传 -->
    <insert id="addEnterTransactMaterial">
-   		insert into 
+   		INSERT INTO T_ENTER_MATERIAL
+   			(ENTER_MATERIAL_ID,
+   			HOUSE_INFO_ID,
+   			MATERIAL_NAME,
+   			MATERIAL_ADDRESS,
+   			BASIC_INFO,
+   			NOTES,
+   			CUSTOMER_ID)
+   			VALUES
+   			(#{enterMaterial.enterMaterialId},#{enterMaterial.houseInfoId},#{enterMaterial.materialName},
+   			#{enterMaterial.materialAddress},#{enterMaterial.basicInfo},#{enterMaterial.notes},
+   			#{enterMaterial.customerId})
    </insert>
    
     
