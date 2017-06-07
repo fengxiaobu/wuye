@@ -25,7 +25,7 @@ public class HouseInfoController {
 
     /**
      *
-     * @return 元素为Map的List,返回结合远程数据及本地数据的所有记录
+     * @return
      */
     @RequestMapping("/list")
     @ResponseBody

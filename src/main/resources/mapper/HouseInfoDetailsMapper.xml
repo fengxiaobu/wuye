@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.rzhd.wuye.mapper.HouseInfoDetailsMapper">
+    <resultMap id="BaseResultMap" type="cn.rzhd.wuye.vo.HouseVO">
+        <id column="pk_house" property="pkHouse" jdbcType="CHAR"/>
+        <result column="pk_corp" property="pkCorp" jdbcType="CHAR"/>
+        <result column="pk_project" property="pkProject" jdbcType="VARCHAR"/>
+        <result column="project" property="project" jdbcType="VARCHAR"/>
+        <result column="building" property="building" jdbcType="VARCHAR"/>
+        <result column="ifloor" property="ifloor" jdbcType="VARCHAR"/>
+        <result column="vhcell" property="vhcell" jdbcType="VARCHAR"/>
+        <result column="vhnum" property="vhnum" jdbcType="VARCHAR"/>
+        <result column="vhcode" property="vhcode" jdbcType="VARCHAR"/>
+        <result column="vhname" property="vhname" jdbcType="VARCHAR"/>
+        <result column="otation" property="otation" jdbcType="VARCHAR"/>
+        <result column="room" property="room" jdbcType="VARCHAR"/>
+        <result column="situation" property="situation" jdbcType="VARCHAR"/>
+        <result column="fsellmethod" property="fsellmethod" jdbcType="VARCHAR"/>
+        <result column="managestate" property="managestate" jdbcType="VARCHAR"/>
+        <result column="nbuildarea" property="nbuildarea" jdbcType="VARCHAR"/>
+        <result column="ninarea" property="ninarea" jdbcType="VARCHAR"/>
+        <result column="nleaseoutarea" property="nleaseoutarea" jdbcType="VARCHAR"/>
+        <result column="nmanagearea" property="nmanagearea" jdbcType="VARCHAR"/>
+        <result column="nsellarea" property="nsellarea" jdbcType="VARCHAR"/>
+        <result column="npublicarea" property="npublicarea" jdbcType="VARCHAR"/>
+        <result column="nunderlinearea" property="nunderlinearea" jdbcType="VARCHAR"/>
+        <result column="ngardenarea" property="ngardenarea" jdbcType="VARCHAR"/>
+        <result column="nrpublicarea" property="nrpublicarea" jdbcType="VARCHAR"/>
+        <result column="nrinarea" property="nrinarea" jdbcType="VARCHAR"/>
+        <result column="nrbuildarea" property="nrbuildarea" jdbcType="VARCHAR"/>
+        <result column="nrunderlinearea" property="nrunderlinearea" jdbcType="VARCHAR"/>
+        <result column="nrgardenarea" property="nrgardenarea" jdbcType="VARCHAR"/>
+    </resultMap>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        DELETE FROM T_HOUSE_INFO_DETAILS
+        WHERE "pk_house" = #{pkHouse,jdbcType=CHAR}
+    </delete>
+    <insert id="insert" parameterType="cn.rzhd.wuye.vo.HouseVO">
+        INSERT INTO T_HOUSE_INFO_DETAILS ("pk_house", "pk_corp", "pk_project",
+                                          "project", "building", "ifloor",
+                                          "vhcell", "vhnum", "vhcode",
+                                          "vhname", "otation", "room",
+                                          "situation", "fsellmethod", "managestate",
+                                          "nbuildarea", "ninarea", "nleaseoutarea",
+                                          "nmanagearea", "nsellarea", "npublicarea",
+                                          "nunderlinearea", "ngardenarea", "nrpublicarea",
+                                          "nrinarea", "nrbuildarea", "nrunderlinearea",
+                                          "nrgardenarea")
+        VALUES (#{pk_house,jdbcType=CHAR}, #{pk_corp,jdbcType=CHAR}, #{pk_project,jdbcType=VARCHAR},
+                                           #{project,jdbcType=VARCHAR}, #{building,jdbcType=VARCHAR},
+                                           #{ifloor,jdbcType=VARCHAR},
+                                           #{vhcell,jdbcType=VARCHAR}, #{vhnum,jdbcType=VARCHAR},
+                                           #{vhcode,jdbcType=VARCHAR},
+                                           #{vhname,jdbcType=VARCHAR}, #{otation,jdbcType=VARCHAR},
+            #{room,jdbcType=VARCHAR},
+            #{situation,jdbcType=VARCHAR}, #{fsellmethod,jdbcType=VARCHAR}, #{managestate,jdbcType=VARCHAR},
+            #{nbuildarea,jdbcType=VARCHAR}, #{ninarea,jdbcType=VARCHAR}, #{nleaseoutarea,jdbcType=VARCHAR},
+            #{nmanagearea,jdbcType=VARCHAR}, #{nsellarea,jdbcType=VARCHAR}, #{npublicarea,jdbcType=VARCHAR},
+                #{nunderlinearea,jdbcType=VARCHAR}, #{ngardenarea,jdbcType=VARCHAR}, #{nrpublicarea,jdbcType=VARCHAR},
+                #{nrinarea,jdbcType=VARCHAR}, #{nrbuildarea,jdbcType=VARCHAR}, #{nrunderlinearea,jdbcType=VARCHAR},
+                #{nrgardenarea,jdbcType=VARCHAR})
+    </insert>
+    <update id="updateByPrimaryKey" parameterType="cn.rzhd.wuye.vo.HouseVO">
+        UPDATE T_HOUSE_INFO_DETAILS
+        SET "pk_corp"         = #{pk_corp,jdbcType=CHAR},
+            "pk_project"      = #{pk_project,jdbcType=VARCHAR},
+            "project"         = #{project,jdbcType=VARCHAR},
+            "building"        = #{building,jdbcType=VARCHAR},
+            "ifloor"          = #{ifloor,jdbcType=VARCHAR},
+            "vhcell"          = #{vhcell,jdbcType=VARCHAR},
+            "vhnum"           = #{vhnum,jdbcType=VARCHAR},
+            "vhcode"          = #{vhcode,jdbcType=VARCHAR},
+            "vhname"          = #{vhname,jdbcType=VARCHAR},
+            "otation"         = #{otation,jdbcType=VARCHAR},
+            "room"            = #{room,jdbcType=VARCHAR},
+            "situation"       = #{situation,jdbcType=VARCHAR},
+            "fsellmethod"     = #{fsellmethod,jdbcType=VARCHAR},
+            "managestate"     = #{managestate,jdbcType=VARCHAR},
+            "nbuildarea"      = #{nbuildarea,jdbcType=VARCHAR},
+            "ninarea"         = #{ninarea,jdbcType=VARCHAR},
+            "nleaseoutarea"   = #{nleaseoutarea,jdbcType=VARCHAR},
+            "nmanagearea"     = #{nmanagearea,jdbcType=VARCHAR},
+            "nsellarea"       = #{nsellarea,jdbcType=VARCHAR},
+            "npublicarea"     = #{npublicarea,jdbcType=VARCHAR},
+            "nunderlinearea"  = #{nunderlinearea,jdbcType=VARCHAR},
+            "ngardenarea"     = #{ngardenarea,jdbcType=VARCHAR},
+            "nrpublicarea"    = #{nrpublicarea,jdbcType=VARCHAR},
+            "nrinarea"        = #{nrinarea,jdbcType=VARCHAR},
+            "nrbuildarea"     = #{nrbuildarea,jdbcType=VARCHAR},
+            "nrunderlinearea" = #{nrunderlinearea,jdbcType=VARCHAR},
+            "nrgardenarea"    = #{nrgardenarea,jdbcType=VARCHAR}
+        WHERE "pk_house" = #{pk_house,jdbcType=CHAR}
+    </update>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+        SELECT
+            "pk_house",
+            "pk_corp",
+            "pk_project",
+            "project",
+            "building",
+            "ifloor",
+            "vhcell",
+            "vhnum",
+            "vhcode",
+            "vhname",
+            "otation",
+            "room",
+            "situation",
+            "fsellmethod",
+            "managestate",
+            "nbuildarea",
+            "ninarea",
+            "nleaseoutarea",
+            "nmanagearea",
+            "nsellarea",
+            "npublicarea",
+            "nunderlinearea",
+            "ngardenarea",
+            "nrpublicarea",
+            "nrinarea",
+            "nrbuildarea",
+            "nrunderlinearea",
+            "nrgardenarea"
+        FROM T_HOUSE_INFO_DETAILS
+        WHERE "pk_house" = #{pkHouse,jdbcType=CHAR}
+    </select>
+    <select id="selectAll" resultMap="BaseResultMap">
+        SELECT
+            "pk_house",
+            "pk_corp",
+            "pk_project",
+            "project",
+            "building",
+            "ifloor",
+            "vhcell",
+            "vhnum",
+            "vhcode",
+            "vhname",
+            "otation",
+            "room",
+            "situation",
+            "fsellmethod",
+            "managestate",
+            "nbuildarea",
+            "ninarea",
+            "nleaseoutarea",
+            "nmanagearea",
+            "nsellarea",
+            "npublicarea",
+            "nunderlinearea",
+            "ngardenarea",
+            "nrpublicarea",
+            "nrinarea",
+            "nrbuildarea",
+            "nrunderlinearea",
+            "nrgardenarea"
+        FROM T_HOUSE_INFO_DETAILS
+    </select>
+</mapper>

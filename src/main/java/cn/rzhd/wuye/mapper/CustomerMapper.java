@@ -2,14 +2,12 @@ package cn.rzhd.wuye.mapper;
 
 import cn.rzhd.wuye.bean.Customer;
 import cn.rzhd.wuye.vo.CustomerVO;
-
-import java.util.List;
-import java.util.Map;
-
+import com.fasterxml.jackson.annotation.JsonFormat.Value;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-import com.fasterxml.jackson.annotation.JsonFormat.Value;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by hasee on 2017/6/1.
@@ -35,4 +33,6 @@ public interface CustomerMapper {
     Customer findCustomerIsRepetitionByErpId(@Param("customerId") String customerId);
     
     void addCustomer(@Param("customerVo") CustomerVO customerVo);
+
+    List<Customer> getAll();
 }

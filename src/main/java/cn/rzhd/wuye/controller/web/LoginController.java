@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
  * Created by hasee on 2017/6/1.
  */
 @RestController
-@RequestMapping("/customer")
+@RequestMapping("/dist/customer")
 public class LoginController {
     @Autowired
     ICustomerService customerService;
@@ -19,7 +19,7 @@ public class LoginController {
     /**
      *
      * @param customer 通过Customer对象将vccode账号,password密码(未加密)封装起来
-     * @return
+     * @return json对象,包含房产id及房产名称
      */
     @RequestMapping("/login")
     public JsonResult login(Customer customer){
@@ -27,7 +27,9 @@ public class LoginController {
         if (loginCustomer == null){
             return new JsonResult("账号或密码错误!");
         }else{
-            return new JsonResult();
+            JsonResult result = new JsonResult();
+            result.getData().add(loginCustomer);
+            return result;
         }
     }
 }

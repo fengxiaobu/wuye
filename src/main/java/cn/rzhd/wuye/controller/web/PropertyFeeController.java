@@ -19,7 +19,7 @@ import java.util.List;
  * Created by hasee on 2017/6/1.
  */
 @RestController
-@RequestMapping("/propertyFee")
+@RequestMapping("/dist/propertyFee")
 public class PropertyFeeController {
 
     @Autowired

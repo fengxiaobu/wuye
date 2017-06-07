@@ -83,8 +83,10 @@ public class Customer {
      * 绑定手机号码
      */
     private String bindingPhone;
-
-    private List<Long> houseInfos;
+    /**
+     * 房产信息主键及房产名
+     */
+    private List<HouseInfo> houseInfos;
 
     public String getPk_corp() {
         return pk_corp;
@@ -238,11 +240,11 @@ public class Customer {
         this.bindingPhone = bindingPhone;
     }
 
-    public List<Long> getHouseInfos() {
+    public List<HouseInfo> getHouseInfos() {
         return houseInfos;
     }
 
-    public void setHouseInfos(List<Long> houseInfos) {
+    public void setHouseInfos(List<HouseInfo> houseInfos) {
         this.houseInfos = houseInfos;
     }
 

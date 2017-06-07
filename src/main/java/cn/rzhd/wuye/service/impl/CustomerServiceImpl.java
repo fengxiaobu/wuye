@@ -31,4 +31,14 @@ public class CustomerServiceImpl implements ICustomerService {
     public void addCustomer(CustomerVO customer) {
         mapper.addCustomer(customer);
     }
+
+    @Override
+    public void saveCustomer(CustomerVO customerVO) throws Exception {
+        Customer one = mapper.findCustomerIsRepetitionByErpId(customerVO.getPk_customerid());
+        if(one != null){
+            mapper.updateCustomer(customerVO);
+        }else{
+            mapper.addCustomer(customerVO);
+        }
+    }
 }

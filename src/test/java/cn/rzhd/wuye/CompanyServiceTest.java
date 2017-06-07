@@ -22,6 +22,7 @@ public class CompanyServiceTest extends BaseTest {
     @Test
     public void addCompanyTest(){
         RequesterVO req = new RequesterVO();
+        req.setKey("liando");
         req.setBilltype(LiandoServiceConstant.DATA_TYPE_CORP);
         String baseData = WebService.getBaseData(req);
         ResponseVO resp = JsonUtils.jsonToPojo(baseData, ResponseVO.class);
@@ -29,9 +30,6 @@ public class CompanyServiceTest extends BaseTest {
             for (CorpVO vo : resp.getCorpdata()) {
                 service.addCompany(vo);
             }
-
         }
-
-
     }
 }

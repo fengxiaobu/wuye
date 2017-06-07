@@ -1,14 +1,16 @@
 package cn.rzhd.wuye;
 
 import cn.rzhd.wuye.bean.Customer;
+import cn.rzhd.wuye.bean.HouseInfo;
 import cn.rzhd.wuye.common.WebService;
 import cn.rzhd.wuye.service.ICustomerService;
 import cn.rzhd.wuye.utils.JsonUtils;
-import cn.rzhd.wuye.utils.MD5Utils;
 import cn.rzhd.wuye.vo.*;
 import com.github.pagehelper.StringUtil;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.List;
 
 /**
  * Created by hasee on 2017/6/1.
@@ -23,10 +25,16 @@ public class CustomerServiceTest extends BaseTest {
         String username="test";
         cus.setVccode(username);
         String tempPassword="123456";
-        String s = MD5Utils.md5(tempPassword);
-        cus.setPassword(s);
+        cus.setPassword(tempPassword);
         Customer customer = service.loginByPwd(cus);
         System.out.println(customer);
+        List<HouseInfo> houseInfo = customer.getHouseInfos();
+        for (HouseInfo info : houseInfo) {
+            System.out.println(info.getHouseInfoId());
+            System.out.println(info.getHouseProperty());
+        }
+
+
     }
 
     @Test

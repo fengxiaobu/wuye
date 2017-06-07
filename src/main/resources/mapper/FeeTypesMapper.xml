@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.rzhd.wuye.mapper.FeeTypesMapper" >
+  <resultMap id="BaseResultMap" type="cn.rzhd.wuye.vo.FeeitemVO" >
+    <id column="pk_fee" property="pkFee" jdbcType="CHAR" />
+    <result column="pk_corp" property="pkCorp" jdbcType="CHAR" />
+    <result column="feecode" property="feecode" jdbcType="VARCHAR" />
+    <result column="feename" property="feename" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from T_FEE_TYPES
+    where pk_fee = #{pkFee,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="cn.rzhd.wuye.vo.FeeitemVO" >
+    insert into T_FEE_TYPES ("pk_fee", "pk_corp", "feecode",
+      "feename")
+    values (#{pk_fee,jdbcType=CHAR}, #{pk_corp,jdbcType=CHAR}, #{feecode,jdbcType=VARCHAR},
+      #{feename,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="cn.rzhd.wuye.vo.FeeitemVO" >
+    update T_FEE_TYPES
+    set pk_corp = #{pkCorp,jdbcType=CHAR},
+      feecode = #{feecode,jdbcType=VARCHAR},
+      feename = #{feename,jdbcType=VARCHAR}
+    where pk_fee = #{pkFee,jdbcType=CHAR}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select pk_fee, pk_corp, feecode, feename
+    from T_FEE_TYPES
+    where pk_fee = #{pkFee,jdbcType=CHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select pk_fee, pk_corp, feecode, feename
+    from T_FEE_TYPES
+  </select>
+</mapper>

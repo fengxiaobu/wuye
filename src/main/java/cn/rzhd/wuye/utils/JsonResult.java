@@ -1,11 +1,15 @@
 package cn.rzhd.wuye.utils;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by hasee on 2017/6/1.
  */
 public class JsonResult {
     private Boolean isSuccess;
     private String msg;
+    private List<Object> data = new ArrayList<>();
 
     public Boolean getSuccess() {
         return isSuccess;
@@ -30,5 +34,13 @@ public class JsonResult {
 
     public JsonResult() {
         this.isSuccess = true;
+    }
+
+    public List<Object> getData() {
+        return data;
+    }
+
+    public void setData(List<Object> data) {
+        this.data = data;
     }
 }

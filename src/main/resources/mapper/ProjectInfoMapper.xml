@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.rzhd.wuye.mapper.ProjectInfoMapper">
+    <resultMap id="BaseResultMap" type="cn.rzhd.wuye.vo.ProjectVO">
+        <id column="PK_PROJECT" property="pkProject" jdbcType="CHAR"/>
+        <result column="PROJECT_NAME" property="projectName" jdbcType="OTHER"/>
+        <result column="PROJECT_ADDRESS" property="projectAddress" jdbcType="OTHER"/>
+        <result column="DEVELOPMENT_COLLECTING_COMPANY" property="developmentCollectingCompany" jdbcType="OTHER"/>
+        <result column="DEVELOPMENT_COLLECTING_ACCOUNT" property="developmentCollectingAccount" jdbcType="OTHER"/>
+        <result column="PROPERTY_COLLECTING_COMPANY" property="propertyCollectingCompany" jdbcType="OTHER"/>
+        <result column="PROPERTY_COLLECTING_ACCOUNT" property="propertyCollectingAccount" jdbcType="OTHER"/>
+        <result column="WATER_PRICE" property="waterPrice" jdbcType="DECIMAL"/>
+        <result column="ELECTRICITY_PRICE" property="electricityPrice" jdbcType="DECIMAL"/>
+        <result column="SERVICE_PHONE" property="servicePhone" jdbcType="VARCHAR"/>
+        <result column="OBJECT_PHONE" property="objectPhone" jdbcType="VARCHAR"/>
+        <result column="CREATION_TIME" property="creationTime" jdbcType="DATE"/>
+        <result column="UPDATE_TIME" property="updateTime" jdbcType="DATE"/>
+        <result column="STATUS" property="status" jdbcType="DECIMAL"/>
+        <result column="PK_CORP" property="pkCorp" jdbcType="CHAR"/>
+        <result column="VCODE" property="vcode" jdbcType="VARCHAR"/>
+        <result column="VSHORTNAME" property="vshortname" jdbcType="VARCHAR"/>
+        <result column="PK_RESPONSECORP" property="pkResponsecorp" jdbcType="VARCHAR"/>
+        <result column="VINCODE" property="vincode" jdbcType="CHAR"/>
+        <result column="DECORATE_MANAGE" property="decorateManage" jdbcType="DECIMAL"/>
+        <result column="PASSCARD_PLEDGE" property="passcardPledge" jdbcType="DECIMAL"/>
+        <result column="PASSCARD_COST" property="passcardCost" jdbcType="DECIMAL"/>
+        <result column="DECORATE_AREA" property="decorateArea" jdbcType="DECIMAL"/>
+        <result column="LESS_PLEDGE" property="lessPledge" jdbcType="DECIMAL"/>
+        <result column="MORE_PLEDGE" property="morePledge" jdbcType="DECIMAL"/>
+    </resultMap>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        DELETE FROM T_PROJECT_INFO
+        WHERE PK_PROJECT = #{pkProject,jdbcType=CHAR}
+    </delete>
+    <insert id="insert" parameterType="cn.rzhd.wuye.vo.ProjectVO">
+        INSERT INTO T_PROJECT_INFO (PK_PROJECT, PK_CORP, VCODE, PROJECT_NAME,
+                                    VSHORTNAME, PK_RESPONSECORP, VINCODE
+        )
+        VALUES (#{pk_project,jdbcType=CHAR}, #{pk_corp,jdbcType=CHAR}, #{vcode,jdbcType=VARCHAR},
+                #{vname}, #{vshortname,jdbcType=VARCHAR}, #{pk_responsecorp,jdbcType=VARCHAR}, #{vincode,jdbcType=CHAR}
+        )
+    </insert>
+    <update id="updateByPrimaryKey" parameterType="cn.rzhd.wuye.bean.ProjectInfo">
+        UPDATE T_PROJECT_INFO
+        SET PROJECT_NAME                   = #{projectName,jdbcType=OTHER},
+            PROJECT_ADDRESS                = #{projectAddress,jdbcType=OTHER},
+            DEVELOPMENT_COLLECTING_COMPANY = #{developmentCollectingCompany,jdbcType=OTHER},
+            DEVELOPMENT_COLLECTING_ACCOUNT = #{developmentCollectingAccount,jdbcType=OTHER},
+            PROPERTY_COLLECTING_COMPANY    = #{propertyCollectingCompany,jdbcType=OTHER},
+            PROPERTY_COLLECTING_ACCOUNT    = #{propertyCollectingAccount,jdbcType=OTHER},
+            WATER_PRICE                    = #{waterPrice,jdbcType=DECIMAL},
+            ELECTRICITY_PRICE              = #{electricityPrice,jdbcType=DECIMAL},
+            SERVICE_PHONE                  = #{servicePhone,jdbcType=VARCHAR},
+            OBJECT_PHONE                   = #{objectPhone,jdbcType=VARCHAR},
+            CREATION_TIME                  = #{creationTime,jdbcType=DATE},
+            UPDATE_TIME                    = #{updateTime,jdbcType=DATE},
+            STATUS                         = #{status,jdbcType=DECIMAL},
+            PK_CORP                        = #{pkCorp,jdbcType=CHAR},
+            VCODE                          = #{vcode,jdbcType=VARCHAR},
+            VSHORTNAME                     = #{vshortname,jdbcType=VARCHAR},
+            PK_RESPONSECORP                = #{pkResponsecorp,jdbcType=VARCHAR},
+            VINCODE                        = #{vincode,jdbcType=CHAR},
+            DECORATE_MANAGE                = #{decorateManage,jdbcType=DECIMAL},
+            PASSCARD_PLEDGE                = #{passcardPledge,jdbcType=DECIMAL},
+            PASSCARD_COST                  = #{passcardCost,jdbcType=DECIMAL},
+            DECORATE_AREA                  = #{decorateArea,jdbcType=DECIMAL},
+            LESS_PLEDGE                    = #{lessPledge,jdbcType=DECIMAL},
+            MORE_PLEDGE                    = #{morePledge,jdbcType=DECIMAL}
+        WHERE PK_PROJECT = #{pkProject,jdbcType=CHAR}
+    </update>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+        SELECT
+            PK_PROJECT,
+            PROJECT_NAME,
+            PROJECT_ADDRESS,
+            DEVELOPMENT_COLLECTING_COMPANY,
+            DEVELOPMENT_COLLECTING_ACCOUNT,
+            PROPERTY_COLLECTING_COMPANY,
+            PROPERTY_COLLECTING_ACCOUNT,
+            WATER_PRICE,
+            ELECTRICITY_PRICE,
+            SERVICE_PHONE,
+            OBJECT_PHONE,
+            CREATION_TIME,
+            UPDATE_TIME,
+            STATUS,
+            PK_CORP,
+            VCODE,
+            VSHORTNAME,
+            PK_RESPONSECORP,
+            VINCODE,
+            DECORATE_MANAGE,
+            PASSCARD_PLEDGE,
+            PASSCARD_COST,
+            DECORATE_AREA,
+            LESS_PLEDGE,
+            MORE_PLEDGE
+        FROM T_PROJECT_INFO
+        WHERE PK_PROJECT = #{pkProject,jdbcType=CHAR}
+    </select>
+    <select id="selectAll" resultMap="BaseResultMap">
+        SELECT
+            PK_PROJECT,
+            PROJECT_NAME,
+            PROJECT_ADDRESS,
+            DEVELOPMENT_COLLECTING_COMPANY,
+            DEVELOPMENT_COLLECTING_ACCOUNT,
+            PROPERTY_COLLECTING_COMPANY,
+            PROPERTY_COLLECTING_ACCOUNT,
+            WATER_PRICE,
+            ELECTRICITY_PRICE,
+            SERVICE_PHONE,
+            OBJECT_PHONE,
+            CREATION_TIME,
+            UPDATE_TIME,
+            STATUS,
+            PK_CORP,
+            VCODE,
+            VSHORTNAME,
+            PK_RESPONSECORP,
+            VINCODE,
+            DECORATE_MANAGE,
+            PASSCARD_PLEDGE,
+            PASSCARD_COST,
+            DECORATE_AREA,
+            LESS_PLEDGE,
+            MORE_PLEDGE
+        FROM T_PROJECT_INFO
+    </select>
+    <update id="updateByERP" parameterType="cn.rzhd.wuye.vo.ProjectVO">
+        UPDATE T_PROJECT_INFO
+        SET
+            PK_CORP=#{pk_corp},
+            vcode=#{vcode},
+            PROJECT_NAME=#{vname},
+            vshortname=#{vshortname},
+            PK_RESPONSECORP=#{pk_responsecorp},
+            vincode=#{vincode}
+        WHERE PK_PROJECT=#{pk_project}
+    </update>
+</mapper>

@@ -19,7 +19,7 @@ import java.util.List;
  * Created by hasee on 2017/6/2.
  */
 @RestController
-@RequestMapping("/utilities")
+@RequestMapping("/dist/utilities")
 public class UtilitiesPayDetailsController {
     @Autowired
     IWaterPayDetailsService waterService;

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.rzhd.wuye.mapper.PropertyFeeMapper" >
+  <resultMap id="BaseResultMap" type="cn.rzhd.wuye.bean.PropertyFee" >
+    <result column="pk_corp" property="pkCorp" jdbcType="CHAR" />
+    <result column="pk_customerid" property="pkCustomerid" jdbcType="CHAR" />
+    <result column="pk_project" property="pkProject" jdbcType="CHAR" />
+    <result column="pk_house" property="pkHouse" jdbcType="CHAR" />
+    <result column="pk_receivablesid" property="pkReceivablesid" jdbcType="CHAR" />
+    <result column="pk_feetype" property="pkFeetype" jdbcType="CHAR" />
+    <result column="feetype" property="feetype" jdbcType="VARCHAR" />
+    <result column="actmonth" property="actmonth" jdbcType="VARCHAR" />
+    <result column="dbegin" property="dbegin" jdbcType="VARCHAR" />
+    <result column="dend" property="dend" jdbcType="VARCHAR" />
+    <result column="dshpay" property="dshpay" jdbcType="VARCHAR" />
+    <result column="vmemo" property="vmemo" jdbcType="VARCHAR" />
+    <result column="nyjmny" property="nyjmny" jdbcType="VARCHAR" />
+    <result column="nyshouldmny" property="nyshouldmny" jdbcType="VARCHAR" />
+    <result column="nmny" property="nmny" jdbcType="VARCHAR" />
+  </resultMap>
+  <!--用于插入从ERP获取的数据-->
+  <insert id="insert" parameterType="cn.rzhd.wuye.vo.FeeVO" >
+    insert into T_PROPERTY_FEE ("pk_corp", "pk_customerid", "pk_project",
+      "pk_house", "pk_receivablesid", "pk_feetype",
+      "feetype", "nyshouldmny", "nmny"
+      )
+    values (#{pk_corp,jdbcType=CHAR}, #{pk_customerid,jdbcType=CHAR}, #{pk_project,jdbcType=CHAR},
+      #{pk_house,jdbcType=CHAR}, #{pk_receivablesid,jdbcType=CHAR}, #{pk_feetype,jdbcType=CHAR},
+      #{feetype,jdbcType=VARCHAR},#{nyshouldmny,jdbcType=VARCHAR}, #{nmny,jdbcType=VARCHAR}
+      )
+  </insert>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select pk_corp, pk_customerid, pk_project, pk_house, pk_receivablesid, pk_feetype, 
+    feetype, actmonth, dbegin, dend, dshpay, vmemo, nyjmny, nyshouldmny, nmny
+    from T_PROPERTY_FEE
+  </select>
+</mapper>
