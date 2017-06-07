@@ -17,8 +17,7 @@ import org.springframework.context.annotation.PropertySource;
 public class WuyeApplication extends SpringBootServletInitializer {
 	public static void main(String[] args) {
 		SpringApplication.run(WuyeApplication.class, args);
-		System.out.println("123");
-	}
+	} 
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
 		return builder.sources(WuyeApplication.class);

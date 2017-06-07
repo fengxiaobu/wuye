@@ -27,14 +27,7 @@ public class KfFee implements Serializable {
     private String nyjmny;
     private String nyshouldmny;
     private String nmny;
-    private HouseVO houseVO;
    
-    public HouseVO getHouseVO() {
-        return houseVO;
-    }
-    public void setHouseVO(HouseVO houseVO) {
-        this.houseVO = houseVO;
-    }
     public String getPk_corp() {
         return pk_corp;
     }

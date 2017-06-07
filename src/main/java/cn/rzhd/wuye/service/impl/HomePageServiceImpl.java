@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import cn.rzhd.wuye.bean.Customer;
 import cn.rzhd.wuye.bean.MessageManage;
+import cn.rzhd.wuye.bean.vo.KfFeeHouseInfoDetailsVo;
+import cn.rzhd.wuye.bean.vo.PropertyFeeHouseInfoDetailsVo;
 import cn.rzhd.wuye.mapper.HomePageMapper;
 import cn.rzhd.wuye.service.IHomePageService;
 /**
@@ -35,16 +37,21 @@ public class HomePageServiceImpl implements IHomePageService {
 
     @Override
     public Map<String, Object> findFeeListByCustomerId(Customer customer) {
+	
 	List<Map<String, Object>> kfFeeList = mapper.findKfFeeListByCustomerId(customer);
+	
+	
 	Double kfFeeSum = 0.0;
-	for (Map<String, Object> map : kfFeeList) {
+	for (Map<String, Object> map:kfFeeList) {
 	    kfFeeSum=Double.parseDouble(map.get("nyshouldmny").toString())+kfFeeSum;
 	}
+	
 	List<Map<String, Object>> propertyFeeList = mapper.findPropertyFeeListByCustomerId(customer);
 	Double propertyFeeSum = 0.0;
-	for (Map<String, Object> map : propertyFeeList) {
+	for (Map<String, Object> map:propertyFeeList) {
 	    propertyFeeSum=Double.parseDouble(map.get("nyshouldmny").toString())+propertyFeeSum;
 	}
+	
 	Map<String, Object> feeMap = new HashMap<>();
 	feeMap.put("kfFeeList", kfFeeList);
 	feeMap.put("kfFeeSum", kfFeeSum);
@@ -62,6 +69,7 @@ public class HomePageServiceImpl implements IHomePageService {
 
     @Override
     public List<MessageManage> findMessageByCustomer(Customer customer) {
+	
 	List<MessageManage> findMessageByCustomer = mapper.findMessageByCustomer(customer);
 	return findMessageByCustomer;
     }

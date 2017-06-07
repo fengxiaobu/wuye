@@ -3,20 +3,8 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="cn.rzhd.wuye.mapper.HomePageMapper">
     
-    <resultMap id="homePageMap" type="java.util.Map">
-    	<result property="pk_house" column="pk_house"/>
-    	<result property="pk_project" column="pk_project"/>
-    	<result property="PROJECT_NAME" column="PROJECT_NAME"/>
-    	<result property="building" column="building"/>
-    	<result property="ifloor" column="ifloor"/>
-    	<result property="vhcell" column="vhcell"/>
-    	<result property="vhnum" column="vhnum"/>
-    	<result property="vhname" column="vhnum"/>
-    
-    </resultMap>
-    
-     <!-- 根据登录customer查询项目名称-->
-   <select id="findHomePageHouseByCustomer" resultMap="homePageMap" >
+     <!-- 根据登录customer查询项目名称--> 
+   <select id="findHomePageHouseByCustomer" resultType="java.util.Map" >
         SELECT
 			HID."pk_house",
 			PI.PK_PROJECT,
@@ -32,75 +20,29 @@
 			LEFT JOIN T_HOUSE_INFO_DETAILS HID ON HI.ERP_HOUSE_ID = HID."pk_house"
 			LEFT JOIN T_PROJECT_INFO PI ON HI.PROJECT_INFO_ID = PI.PK_PROJECT
 		WHERE
-			HI.CUSTOMER_ID = #{customer.pk_customerid}
+			HI.CUSTOMER_ID = '${customer.pk_customerid}'
     </select>
     
     <!-- 根据房产id查询相关费用清单 -->
     <!--  <select id="findFeeListByHouseId" resultMap=""></select> -->
     
-    <resultMap id="kfFeeList" type="java.util.Map">
-    	<result property="pkCorp" column="pk_corp"/>
-    	<result property="pkCustomerId" column="pk_customerid"/>
-    	<result property="pkProject" column="pk_project"/>
-    	<result property="pkHouse" column="pk_house"/>
-    	<result property="pkCourse_b" column="pk_course_b"/>
-    	<result property="pkReceivablesid" column="pk_receivablesid"/>
-    	<result property="pkFeetype" column="pk_feetype"/>
-    	<result property="feetype" column="feetype"/>
-    	<result property="actmonth" column="actmonth"/>
-    	<result property="dbegin" column="dbegin"/>
-    	<result property="dend" column="dend"/>
-    	<result property="dshpay" column="dshpay"/>
-    	<result property="vmemo" column="vmemo"/>
-    	<result property="nyjmny" column="nyjmny"/>
-    	<result property="nyshouldmny" column="nyshouldmny"/>
-    	<result property="nmny" column="nmny"/>
-    	 <association property="houseVO" javaType="cn.rzhd.wuye.vo.HouseVO">
-            <result property="building" column="building"/>
-    		<result property="ifloor" column="ifloor"/>
-    		<result property="vhcell" column="vhcell"/>
-    		<result property="vhnum" column="vhnum"/>
-         </association>
-    	
-    </resultMap>
     <!-- 开发费用查询 -->
-    <select id="findKfFeeListByCustomerId" resultMap="kfFeeList">
-    	SELECT
-			KF.*, 
-			HID."building",
-			HID."ifloor",
+    <select id="findKfFeeListByCustomerId" parameterType="cn.rzhd.wuye.bean.Customer" resultType="java.util.Map">
+    	SELECT 
+		    KF.*,
+			HID."building" ,
+			HID."ifloor" ,
 			HID."vhcell",
 			HID."vhnum"
 		FROM
 			"T_KF_Fee" KF
 			LEFT JOIN T_HOUSE_INFO_DETAILS HID ON KF."pk_house" = HID."pk_house"
 		WHERE
-			KF."pk_customerid" = #{customer.pk_customerid }
+			KF."pk_customerid" = ${pk_customerid}
     </select>
-    <resultMap id="PfFeeList" type="java.util.Map">
-    	<result property="pkCorp" column="pk_corp"/>
-    	<result property="pkCustomerId" column="pk_customerid"/>
-    	<result property="pkProject" column="pk_project"/>
-    	<result property="pkHouse" column="pk_house"/>
-    	<result property="pkReceivablesid" column="pk_receivablesid"/>
-    	<result property="pkFeetype" column="pk_feetype"/>
-    	<result property="feetype" column="feetype"/>
-    	<result property="actmonth" column="actmonth"/>
-    	<result property="dbegin" column="dbegin"/>
-    	<result property="dend" column="dend"/>
-    	<result property="dshpay" column="dshpay"/>
-    	<result property="vmemo" column="vmemo"/>
-    	<result property="nyjmny" column="nyjmny"/>
-    	<result property="nyshouldmny" column="nyshouldmny"/>
-    	<result property="nmny" column="nmny" />
-        <result property="building" column="building"/>
-   		<result property="ifloor" column="ifloor"/>
-   		<result property="vhcell" column="vhcell"/>
-   		<result property="vhnum" column="vhnum"/>
     
-    </resultMap>
     <!-- 物业费用查询 -->
-    <select id="findPropertyFeeListByCustomerId" resultMap="PfFeeList">
+    <select id="findPropertyFeeListByCustomerId" resultType="java.util.Map">
     	SELECT
 			PF.*, 
 			HID."building",
@@ -111,7 +53,7 @@
 			T_PROPERTY_FEE PF
 			LEFT JOIN T_HOUSE_INFO_DETAILS HID ON PF."pk_house" = HID."pk_house"
 		WHERE
-			PF."pk_customerid" = #{customer.pk_customerid }
+			PF."pk_customerid" = ${customer.pk_customerid }
     </select>
     
     <!-- 查询消息通知未读条数 -->
@@ -122,7 +64,7 @@
 			T_MESSAGE_MANAGE MM
 			LEFT JOIN T_CUSTOMER_MESSAGE CM ON MM.MESSAGE_MANAGE_ID = CM.MESSAGE_ID
 		WHERE
-			CM.CUSTOMER_ID = #{customer.pk_customerid} and CM.READ_STATUS = 0
+			CM.CUSTOMER_ID = ${customer.pk_customerid} and CM.READ_STATUS = 0
     </select>
     
      <resultMap id="messageList" type="cn.rzhd.wuye.bean.MessageManage">
@@ -145,7 +87,7 @@
 			T_MESSAGE_MANAGE MM
 			LEFT JOIN T_CUSTOMER_MESSAGE CM ON MM.MESSAGE_MANAGE_ID = CM.MESSAGE_ID
 		WHERE
-			CM.CUSTOMER_ID = #{customer.pk_customerid}
+			CM.CUSTOMER_ID = ${customer.pk_customerid}
 			AND CM.READ_STATUS = 0
     </select>
    

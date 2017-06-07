@@ -1,16 +1,7 @@
-package cn.rzhd.wuye.bean;
+package cn.rzhd.wuye.bean.vo;
 
-import java.io.Serializable;
+public class PropertyFeeHouseInfoDetailsVo {
 
-import cn.rzhd.wuye.vo.HouseVO;
-
-public class PropertyFee implements Serializable {
-
-    /**
-     * 
-     */
-    private static final long serialVersionUID = 1L;
-    
     private String pk_corp;
     private String pk_customerid;
     private String pk_project;
@@ -26,6 +17,11 @@ public class PropertyFee implements Serializable {
     private String nyjmny;
     private String nyshouldmny;
     private String nmny;
+    
+    private String building;// 楼栋
+    private String ifloor;// 楼层
+    private String vhcell;// 单元
+    private String vhnum;// 房号
     public String getPk_corp() {
         return pk_corp;
     }
@@ -116,5 +112,30 @@ public class PropertyFee implements Serializable {
     public void setNmny(String nmny) {
         this.nmny = nmny;
     }
-
+    public String getBuilding() {
+        return building;
+    }
+    public void setBuilding(String building) {
+        this.building = building;
+    }
+    public String getIfloor() {
+        return ifloor;
+    }
+    public void setIfloor(String ifloor) {
+        this.ifloor = ifloor;
+    }
+    public String getVhcell() {
+        return vhcell;
+    }
+    public void setVhcell(String vhcell) {
+        this.vhcell = vhcell;
+    }
+    public String getVhnum() {
+        return vhnum;
+    }
+    public void setVhnum(String vhnum) {
+        this.vhnum = vhnum;
+    }
+    
+    
 }
