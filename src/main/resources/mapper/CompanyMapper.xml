@@ -1,37 +1,39 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="cn.rzhd.wuye.mapper.CompanyMapper" >
-  <resultMap id="BaseResultMap" type="cn.rzhd.wuye.bean.Company" >
-    <result column="pk_corp" property="pkCorp" jdbcType="CHAR" />
-    <result column="fathercorp" property="fathercorp" jdbcType="CHAR" />
-    <result column="unitcode" property="unitcode" jdbcType="VARCHAR" />
-    <result column="unitname" property="unitname" jdbcType="VARCHAR" />
-    <result column="unitshortname" property="unitshortname" jdbcType="VARCHAR" />
-    <result column="foreignname" property="foreignname" jdbcType="VARCHAR" />
-    <result column="isseal" property="isseal" jdbcType="CHAR" />
-  </resultMap>
-  <insert id="insert" parameterType="cn.rzhd.wuye.vo.CorpVO" >
-    insert into "T_COMPANY" ("pk_corp", "fathercorp", "unitcode",
-      "unitname", "unitshortname", "foreignname",
-      "isseal")
-    values (#{pk_corp}, #{fathercorp}, #{unitcode},
-      #{unitname}, #{unitshortname}, #{foreignname},
-      #{isseal})
-  </insert>
-
-  <select id="selectAll" resultMap="BaseResultMap" >
-    select "pk_corp", "fathercorp", "unitcode", "unitname", "unitshortname", "foreignname", "isseal"
-    from "T_COMPANY"
+<mapper namespace="cn.rzhd.wuye.mapper.CustomerCentreMapper" >
+  <select id="findCustomer" resultType="cn.rzhd.wuye.bean.Customer">
+  		SELECT
+  			 LOGO,
+			"pk_corp",
+			"pk_customerid",
+			"vcname",
+			"vpreferredtel"
+		FROM
+			"T_Customer"
+		WHERE
+			"pk_customerid" = #{customer.pk_customerid}
   </select>
+  <select id="findHouse" resultType="java.util.Map">
+  		SELECT
+			POI.PROJECT_NAME,
+			HI.HOUSE_PROPERTY,
+			HI.STAR_LEVEL,
+			PI.*
 
-  <update id="update" parameterType="cn.rzhd.wuye.vo.CorpVO">
-    UPDATE "T_COMPANY" SET "fathercorp"=#{fathercorp},"unitcode"=#{unitcode},"unitname"=#{unitname},"unitshortname"=#{unitshortname},"foreignname"=#{foreignname},"isseal"=#{isseal}
-    WHERE "pk_corp"=#{pk_corp};
-  </update>
-
-    <select id="getById" parameterType="string" resultMap="BaseResultMap">
-        SELECT "pk_corp", "fathercorp", "unitcode", "unitname", "unitshortname", "foreignname", "isseal"
-            FROM "T_COMPANY"
-        WHERE "pk_corp"=#{pk_corp}
-    </select>
+		FROM
+			T_HOUSE_INFO HI
+			LEFT JOIN T_PERFECT_INFORMATION PI ON HI.HOUSE_INFO_ID = PI.HOUSE_INFO_ID
+			LEFT JOIN T_PROJECT_INFO POI ON HI.PROJECT_INFO_ID = POI.PK_PROJECT
+		WHERE
+			HI.CUSTOMER_ID = #{customer.pk_customerid}
+  </select>
+  <select id="updateLogo">
+  		UPDATE "T_Customer" SET LOGO=#{customer.LOGO}  WHERE "pk_customerid"=#{customer.pk_customerid}
+  </select>
+  <select id="updatePhone">
+  	UPDATE "T_Customer" SET vpreferredtel=#{customer.vpreferredtel}  WHERE "pk_customerid"=#{customer.pk_customerid}
+  </select>
+ <!--  <select id="updatePerfectInformation"></select> -->
+ 
+ 
 </mapper>
