@@ -57,8 +57,8 @@
 	)
    </insert>
    
-   <!-- 入驻办理，资料上传 -->
-   <insert id="addEnterTransactMaterial">
+    <!-- 入驻办理，资料上传 -->
+   <!--<insert id="addEnterTransactMaterial">
    		INSERT INTO T_ENTER_MATERIAL
    			(ENTER_MATERIAL_ID,
    			HOUSE_INFO_ID,
@@ -73,5 +73,34 @@
    			#{enterMaterial.customerId})
    </insert>
    
+   <select id="kfFeePaymentByHouseId" resultType="java.util.Map">
+   		select 
+   			"pk_corp","pk_customerid","pk_project","pk_house","pk_receivablesid",
+   			"pk_feetype","feetype","actmonth","dbegin","dend","dshpay","vmemo",
+   			"nyjmny","nyshouldmny","nmny" 
+   		from 
+   			"T_KF_Fee" 
+   		where 
+   			"pk_customerid" = #{customerId} and "pk_house"=#{houseId}
+   </select>
+   <select id="pfFeePaymentByHouseId" resultType="java.util.Map">
+   		select 
+   			"pk_corp","pk_customerid","pk_project","pk_house","pk_receivablesid",
+   			"pk_feetype","feetype","actmonth","dbegin","dend","dshpay","vmemo",
+   			"nyjmny","nyshouldmny","nmny" 
+   		from 
+   			"T_PROPERTY_FEE" 
+   		where 
+   			"pk_customerid" = #{customerId} and "pk_house"=#{houseId}
+   </select>
+   <select id="findDataPerfectionMessage">
+   		select * from 
+   </select>
+   <select id="propertyFeePayInfo"></select>
+   
+   <select id="payPropertyFeeInvoice">
+   		inset into T_PROPERTY_FEE_INVOICE_DETAILS
+   			()
+   </select> -->
     
 </mapper>

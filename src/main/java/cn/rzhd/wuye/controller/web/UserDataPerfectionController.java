@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import cn.rzhd.wuye.bean.Customer;
 import cn.rzhd.wuye.bean.EnterMaterial;
 import cn.rzhd.wuye.bean.PerfectInformation;
+import cn.rzhd.wuye.bean.PropertyFeeInvoiceDetails;
 import cn.rzhd.wuye.service.IUserDataPerfectionService;
 import cn.rzhd.wuye.utils.JsonUtils;
 
@@ -48,15 +49,50 @@ public class UserDataPerfectionController {
 	return JsonUtils.objectToJson("success");
     }
     
-    /**
-     * 入驻办理资料
-     * @param enterMaterial
-     * @return
-     */
-    @RequestMapping(value="/addEnterTransactMaterial",method=RequestMethod.POST)
-    public String addEnterTransactMaterial(EnterMaterial enterMaterial){
-	userDataPerfectionService.addEnterTransactMaterial(enterMaterial);
-	return JsonUtils.objectToJson("success");
-	
-    }
+//    /**
+//     * 入驻办理资料
+//     * @param enterMaterial
+//     * @return
+//     */
+//    @RequestMapping(value="/addEnterTransactMaterial",method=RequestMethod.POST)
+//    public String addEnterTransactMaterial(EnterMaterial enterMaterial){
+//	userDataPerfectionService.addEnterTransactMaterial(enterMaterial);
+//	return JsonUtils.objectToJson("success");
+//	
+//    }
+//    /**
+//     * 费用缴纳查询
+//     * @param customerId
+//     * @param houseId
+//     * @return
+//     */
+//    @RequestMapping(value="/feePaymentByHouseId",method=RequestMethod.POST)
+//    public String feePaymentByHouseId(String customerId,String houseId){
+//	return houseId;
+//	
+//    }
+//    
+//    /**
+//     *  完善资料完成后通知信息
+//     * @return
+//     */
+//    public String dataPerfectionMessage(){
+//	return null;
+//	
+//    }
+//    
+//    public String propertyFeePayInfo(String customerId,String houseId){
+//	return null;
+//	
+//    }
+//    
+//    /**
+//     * 物业费开具发票
+//     * @return
+//     */
+//    public String payPropertyFeeInvoice(PropertyFeeInvoiceDetails propertyFeeInvoiceDetails){
+//	userDataPerfectionService.payPropertyFeeInvoice(propertyFeeInvoiceDetails);
+//	return JsonUtils.objectToJson("success");
+//	
+//    }
 }

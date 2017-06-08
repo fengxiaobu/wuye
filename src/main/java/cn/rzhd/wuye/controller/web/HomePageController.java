@@ -42,7 +42,7 @@ public class HomePageController {
     }
     
     /**
-     * 根据房产查询相关费用清单
+     * 根据客户查询相关费用清单
      * @param houseId
      * @return
      */
