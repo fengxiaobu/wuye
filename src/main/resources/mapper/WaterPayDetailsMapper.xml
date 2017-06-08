@@ -30,7 +30,7 @@
             AND HOUSE_INFO_ID=#{houseInfoId} AND PAY_TIME BETWEEN to_date(#{startDate},'YYYY-MM-DD') and to_date(#{endDate},'YYYY-MM-DD')
         </where>
     </sql>
-    <select id="getAllByQuery" parameterType="cn.rzhd.wuye.vo.UtilitiesQuery" resultMap="waterPayDetailsMap">
+    <select id="getAllByQuery" parameterType="cn.rzhd.wuye.vo.query.UtilitiesQuery" resultMap="waterPayDetailsMap">
         SELECT WATER_RATE_PAY_DETAILS_ID,
             HOUSE_INFO_ID,
             CLIENT_NAME,

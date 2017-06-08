@@ -3,14 +3,12 @@ package cn.rzhd.wuye.service.impl;
 import cn.rzhd.wuye.bean.PropertyFeePayDetails;
 import cn.rzhd.wuye.mapper.PropertyFeePayDetailsMapper;
 import cn.rzhd.wuye.service.IPropertyFeePayDetailsService;
-import cn.rzhd.wuye.vo.PropertyFeePayDetailsQuery;
+import cn.rzhd.wuye.vo.query.PropertyFeePayDetailsQuery;
 import com.github.pagehelper.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by hasee on 2017/6/1.

@@ -1,10 +1,13 @@
-package cn.rzhd.wuye.vo;
+package cn.rzhd.wuye.vo.query;
+
+import java.text.SimpleDateFormat;
 
 /**
  * Created by hasee on 2017/5/31.
  */
 
 public class BaseQuery {
+    protected SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     private Long id;
     private Integer startPage;
     private Integer pageSize;

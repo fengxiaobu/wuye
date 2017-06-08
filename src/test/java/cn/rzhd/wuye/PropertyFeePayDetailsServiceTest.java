@@ -2,8 +2,7 @@ package cn.rzhd.wuye;
 
 import cn.rzhd.wuye.bean.PropertyFeePayDetails;
 import cn.rzhd.wuye.mapper.PropertyFeePayDetailsMapper;
-import cn.rzhd.wuye.vo.PropertyFeePayDetailsQuery;
-import com.github.pagehelper.Page;
+import cn.rzhd.wuye.vo.query.PropertyFeePayDetailsQuery;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.junit.Test;
@@ -28,7 +27,11 @@ public class PropertyFeePayDetailsServiceTest extends BaseTest{
         PageInfo pageInfo = new PageInfo(list);
         System.out.println(pageInfo.getPageNum());
         System.out.println(pageInfo.getPageSize());
-        pageInfo.getList();
+        List list1 = pageInfo.getList();
+        for (Object o : list1) {
+            PropertyFeePayDetails details = (PropertyFeePayDetails) o;
+        }
+
         pageInfo.getTotal();
     }
 

@@ -1,7 +1,7 @@
 package cn.rzhd.wuye.mapper;
 
 import cn.rzhd.wuye.bean.EnterApply;
-import cn.rzhd.wuye.vo.EnterApplyQuery;
+import cn.rzhd.wuye.vo.query.EnterApplyQuery;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;

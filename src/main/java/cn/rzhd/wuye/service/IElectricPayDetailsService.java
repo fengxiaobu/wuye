@@ -1,7 +1,7 @@
 package cn.rzhd.wuye.service;
 
 import cn.rzhd.wuye.bean.ElectricFeePayDetails;
-import cn.rzhd.wuye.vo.UtilitiesQuery;
+import cn.rzhd.wuye.vo.query.UtilitiesQuery;
 
 import java.util.List;
 

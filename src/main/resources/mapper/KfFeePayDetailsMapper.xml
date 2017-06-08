@@ -32,7 +32,7 @@
     </resultMap>
 
 
-    <select id="queryAll" parameterType="cn.rzhd.wuye.vo.KfFeePayDetailsQuery"
+    <select id="queryAll" parameterType="cn.rzhd.wuye.vo.query.KfFeePayDetailsQuery"
             resultMap="KfFeePayDetailsMapper">
         SELECT KF_FEE_PAY_DETAILS_ID,
         HOUSE_INFO_ID,

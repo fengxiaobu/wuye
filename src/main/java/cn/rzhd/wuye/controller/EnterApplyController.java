@@ -3,7 +3,7 @@ package cn.rzhd.wuye.controller;
 import cn.rzhd.wuye.bean.EnterApply;
 import cn.rzhd.wuye.service.IEnterApplyService;
 import cn.rzhd.wuye.utils.JsonUtils;
-import cn.rzhd.wuye.vo.EnterApplyQuery;
+import cn.rzhd.wuye.vo.query.EnterApplyQuery;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;

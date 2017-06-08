@@ -1,7 +1,7 @@
 package cn.rzhd.wuye.mapper;
 
 import cn.rzhd.wuye.bean.KfFeePayDetails;
-import cn.rzhd.wuye.vo.KfFeePayDetailsQuery;
+import cn.rzhd.wuye.vo.query.KfFeePayDetailsQuery;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

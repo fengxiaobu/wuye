@@ -3,7 +3,7 @@ package cn.rzhd.wuye.service.impl;
 import cn.rzhd.wuye.bean.KfFeePayDetails;
 import cn.rzhd.wuye.mapper.KfFeePayDetailsMapper;
 import cn.rzhd.wuye.service.IKfFeePayDetailsService;
-import cn.rzhd.wuye.vo.KfFeePayDetailsQuery;
+import cn.rzhd.wuye.vo.query.KfFeePayDetailsQuery;
 import com.github.pagehelper.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

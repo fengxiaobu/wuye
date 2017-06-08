@@ -5,7 +5,7 @@ import cn.rzhd.wuye.bean.WaterRatePayDetails;
 import cn.rzhd.wuye.service.IElectricPayDetailsService;
 import cn.rzhd.wuye.service.IWaterPayDetailsService;
 import cn.rzhd.wuye.utils.PageDataGridResult;
-import cn.rzhd.wuye.vo.UtilitiesQuery;
+import cn.rzhd.wuye.vo.query.UtilitiesQuery;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;

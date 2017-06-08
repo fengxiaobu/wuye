@@ -75,7 +75,7 @@
           house.PROJECT_INFO_ID=project.PK_PROJECT
     </select>
     <!-- 入驻申请列表条件查询 -->
-    <select id="findEnterApplyByQuery" parameterType="cn.rzhd.wuye.vo.EnterApplyQuery" resultMap="enterApplyMap">
+    <select id="findEnterApplyByQuery" parameterType="cn.rzhd.wuye.vo.query.EnterApplyQuery" resultMap="enterApplyMap">
         SELECT
         apply.ENTER_APPLY_ID,project.PROJECT_NAME,house.HOUSE_PROPERTY,apply.CLIENT_NAME,apply.APPLY_TIME,apply.AUDIT_STATUS
         FROM
