@@ -1,5 +1,6 @@
 package cn.rzhd.wuye.service;
 
+import cn.rzhd.wuye.bean.ProjectInfo;
 import cn.rzhd.wuye.vo.ProjectVO;
 
 /**
@@ -14,4 +15,11 @@ public interface IProjectInfoService {
      * @param projectVO
      */
     void saveProjectInfo(ProjectVO projectVO) throws Exception;
+
+    /**
+     * 根据ID查询项目信息
+     * @param pkProject
+     * @return
+     */
+    ProjectInfo selectByPrimaryKey(String pkProject);
 }

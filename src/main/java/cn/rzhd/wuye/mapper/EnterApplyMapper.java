@@ -20,11 +20,11 @@ public interface EnterApplyMapper{
 
     List<Map<String, JsonFormat.Value>>  findEnterApplyList();
 
-    void insertEnterApply(EnterApply enterApply);
+    int insertEnterApply(EnterApply enterApply);
 
-    void deleteEnterApply(@Param("enterApplyId") Long enterApplyId);
+    int deleteEnterApply(@Param("enterApplyId") Long enterApplyId);
 
-    void updateEnterApply(EnterApply enterApply);
+    int updateEnterApply(EnterApply enterApply);
 
     List<Map<String, JsonFormat.Value>> findEnterApplyByQuery(EnterApplyQuery enterApplyQuery);
 }

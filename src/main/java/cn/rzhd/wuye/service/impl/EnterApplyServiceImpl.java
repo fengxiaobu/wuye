@@ -81,19 +81,19 @@ public class EnterApplyServiceImpl implements IEnterApplyService {
     }
 
     @Override
-    public void insertEnterApply(EnterApply enterApply) {
+    public int insertEnterApply(EnterApply enterApply) {
 
-        enterApplyMapper.insertEnterApply(enterApply);
+        return enterApplyMapper.insertEnterApply(enterApply);
     }
 
     @Override
-    public void deleteEnterApply(Long enterApplyId) {
-        enterApplyMapper.deleteEnterApply(enterApplyId);
+    public int deleteEnterApply(Long enterApplyId) {
+        return enterApplyMapper.deleteEnterApply(enterApplyId);
     }
 
     @Override
-    public void updateEnterApply(EnterApply enterApply) {
-        enterApplyMapper.updateEnterApply(enterApply);
+    public int updateEnterApply(EnterApply enterApply) {
+        return enterApplyMapper.updateEnterApply(enterApply);
     }
 
     @Override

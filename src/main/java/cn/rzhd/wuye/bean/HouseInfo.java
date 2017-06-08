@@ -60,6 +60,7 @@ public class HouseInfo implements Serializable{
 	 * 项目信息
 	 */
 	private ProjectInfo projectInfo;
+
 	public ProjectInfo getProjectInfo() {
 		return projectInfo;
 	}

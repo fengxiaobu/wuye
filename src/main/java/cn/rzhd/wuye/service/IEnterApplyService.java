@@ -22,14 +22,13 @@ public interface IEnterApplyService {
      * 获取所有入驻申请信息
      * @return
      */
-    //List<Map<String, JsonFormat.Value>> findEnterApplyList(Integer pageNum, Integer pageSize);
     List<Map<String, JsonFormat.Value>> findEnterApplyList();
 
-    void insertEnterApply(EnterApply enterApply);
+    int insertEnterApply(EnterApply enterApply);
 
-    void deleteEnterApply(Long enterApplyId);
+    int deleteEnterApply(Long enterApplyId);
 
-    void updateEnterApply(EnterApply enterApply);
+    int updateEnterApply(EnterApply enterApply);
 
     List<Map<String, JsonFormat.Value>> findEnterApplyByQuery(EnterApplyQuery enterApplyQuery);
 }

@@ -32,7 +32,7 @@ public class HouseInfoServiceImpl implements IHouseInfoService {
     @Override
     public List<HouseInfo> getAll() {
         List<HouseInfo> list = houseInfoMapper.getAll();
-        RequesterVO vo = new RequesterVO();
+       /* RequesterVO vo = new RequesterVO();
         vo.setKey("liando");
         vo.setBilltype("CORP");
         String data = WebService.getBaseData(vo);
@@ -42,9 +42,9 @@ public class HouseInfoServiceImpl implements IHouseInfoService {
                 List<CorpVO> corpVOList = Arrays.asList(responseVO.getCorpdata());
 
             }
-        }
+        }*/
 
-        return null;
+        return list;
     }
 
 
