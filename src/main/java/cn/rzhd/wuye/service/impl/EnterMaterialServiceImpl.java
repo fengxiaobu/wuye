@@ -30,7 +30,7 @@ public class EnterMaterialServiceImpl implements IEnterMaterialService {
      * @return
      */
     @Override
-    public EnterMaterial findEnterMaterialByHouseId(String pkproject) {
-        return enterMaterialMapper.findEnterMaterialByHouseId(pkproject);
+    public EnterMaterial findEnterMaterialBypkproject(String pkproject) {
+        return enterMaterialMapper.findEnterMaterialBypkproject(pkproject);
     }
 }
