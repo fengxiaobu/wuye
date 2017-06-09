@@ -39,7 +39,7 @@ public class PropertyFeeServiceTest extends BaseTest {
             if ("Y".equals(responseVO.getIssuccess()) && StringUtil.isEmpty(responseVO.getErrorinfo())){
                 FeeVO[] vos = responseVO.getFeedata();
                 for (FeeVO vo : vos) {
-
+                    service.addPropertyFee(vo);
                 }
 
             }

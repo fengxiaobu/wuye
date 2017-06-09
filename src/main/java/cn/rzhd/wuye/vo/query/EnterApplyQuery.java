@@ -1,4 +1,4 @@
-package cn.rzhd.wuye.vo;
+package cn.rzhd.wuye.vo.query;
 
 /**
  * luopa 在 2017/6/6 创建.

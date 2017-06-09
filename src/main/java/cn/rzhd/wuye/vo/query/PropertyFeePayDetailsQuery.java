@@ -1,8 +1,6 @@
-package cn.rzhd.wuye.vo;
+package cn.rzhd.wuye.vo.query;
 
 import cn.rzhd.wuye.utils.FirstAndLastDay;
-
-import java.text.SimpleDateFormat;
 
 /**
  * Created by hasee on 2017/5/31.
@@ -10,7 +8,6 @@ import java.text.SimpleDateFormat;
  */
 public class PropertyFeePayDetailsQuery extends BaseQuery{
 
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     /**
      * 房产信息ID
      */

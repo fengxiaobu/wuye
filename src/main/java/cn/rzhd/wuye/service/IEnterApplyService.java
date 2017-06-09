@@ -1,7 +1,7 @@
 package cn.rzhd.wuye.service;
 
 import cn.rzhd.wuye.bean.EnterApply;
-import cn.rzhd.wuye.vo.EnterApplyQuery;
+import cn.rzhd.wuye.vo.query.EnterApplyQuery;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.util.List;

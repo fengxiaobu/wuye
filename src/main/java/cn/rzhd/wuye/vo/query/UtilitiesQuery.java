@@ -1,9 +1,6 @@
-package cn.rzhd.wuye.vo;
+package cn.rzhd.wuye.vo.query;
 
 import cn.rzhd.wuye.utils.FirstAndLastDay;
-import cn.rzhd.wuye.utils.StringTimeUtil;
-
-import java.util.Date;
 
 /**
  * Created by hasee on 2017/6/2.
@@ -34,20 +31,20 @@ public class UtilitiesQuery extends BaseQuery {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
-        this.startDate = StringTimeUtil.format(startDate);
+    public void setStartDate(String startDate) {
+        this.startDate = sdf.format(FirstAndLastDay.getFirst(startDate));
     }
 
     public String getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
-        this.endDate = StringTimeUtil.format(endDate);
+    public void setEndDate(String endDate) {
+        this.endDate = sdf.format(FirstAndLastDay.getLast(endDate));
     }
 
     public UtilitiesQuery() {
-        setStartDate(FirstAndLastDay.getFirstDay());
-        setEndDate(FirstAndLastDay.getLastDay());
+        this.startDate = sdf.format(FirstAndLastDay.getFirstDay());
+        this.endDate = sdf.format(FirstAndLastDay.getLastDay());
     }
 }

@@ -1,7 +1,7 @@
 package cn.rzhd.wuye.mapper;
 
 import cn.rzhd.wuye.bean.PropertyFeePayDetails;
-import cn.rzhd.wuye.vo.PropertyFeePayDetailsQuery;
+import cn.rzhd.wuye.vo.query.PropertyFeePayDetailsQuery;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

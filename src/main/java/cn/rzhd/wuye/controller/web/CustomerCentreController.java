@@ -54,7 +54,8 @@ public class CustomerCentreController {
     }
     
     public String updatePerfectInformation(PerfectInformation perfectInformation){
-	return null;
+	customerCentreService.updatePerfectInformation(perfectInformation);
+	return JsonUtils.objectToJson("success");
 	
     }
 

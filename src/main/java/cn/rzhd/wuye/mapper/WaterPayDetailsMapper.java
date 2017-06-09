@@ -1,7 +1,7 @@
 package cn.rzhd.wuye.mapper;
 
 import cn.rzhd.wuye.bean.WaterRatePayDetails;
-import cn.rzhd.wuye.vo.UtilitiesQuery;
+import cn.rzhd.wuye.vo.query.UtilitiesQuery;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

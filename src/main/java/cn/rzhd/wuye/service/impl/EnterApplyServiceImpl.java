@@ -3,7 +3,7 @@ package cn.rzhd.wuye.service.impl;
 import cn.rzhd.wuye.bean.EnterApply;
 import cn.rzhd.wuye.mapper.EnterApplyMapper;
 import cn.rzhd.wuye.service.IEnterApplyService;
-import cn.rzhd.wuye.vo.EnterApplyQuery;
+import cn.rzhd.wuye.vo.query.EnterApplyQuery;
 import cn.rzhd.wuye.vo.LiandoServiceConstant;
 import cn.rzhd.wuye.vo.RequesterVO;
 import com.alibaba.fastjson.JSON;

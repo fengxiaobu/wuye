@@ -2,8 +2,6 @@ package cn.rzhd.wuye.bean;
 
 import java.io.Serializable;
 
-import cn.rzhd.wuye.vo.HouseVO;
-
 public class PropertyFee implements Serializable {
 
     /**
@@ -23,9 +21,7 @@ public class PropertyFee implements Serializable {
     private String dend;
     private String dshpay;
     private String vmemo;
-    private String nyjmny;
     private String nyshouldmny;
-    private String nmny;
     public String getPk_corp() {
         return pk_corp;
     }
@@ -98,23 +94,11 @@ public class PropertyFee implements Serializable {
     public void setVmemo(String vmemo) {
         this.vmemo = vmemo;
     }
-    public String getNyjmny() {
-        return nyjmny;
-    }
-    public void setNyjmny(String nyjmny) {
-        this.nyjmny = nyjmny;
-    }
     public String getNyshouldmny() {
         return nyshouldmny;
     }
     public void setNyshouldmny(String nyshouldmny) {
         this.nyshouldmny = nyshouldmny;
-    }
-    public String getNmny() {
-        return nmny;
-    }
-    public void setNmny(String nmny) {
-        this.nmny = nmny;
     }
 
 }
