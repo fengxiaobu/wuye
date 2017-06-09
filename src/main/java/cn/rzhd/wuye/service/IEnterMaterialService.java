@@ -1,5 +1,6 @@
 package cn.rzhd.wuye.service;
 
+import cn.rzhd.wuye.bean.EnterMaterial;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.util.List;
@@ -10,4 +11,7 @@ import java.util.Map;
  */
 public interface IEnterMaterialService {
     List<Map<String, JsonFormat.Value>> findEnterMaterialList();
+
+    EnterMaterial findEnterMaterialByHouseId(String pkproject);
+
 }

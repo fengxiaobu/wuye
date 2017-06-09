@@ -91,7 +91,7 @@
     <!--from T_ELECTRIC_FEE_PAY_DETAILS-->
     <!--where ELECTRIC_FEE_PAY_DETAILS_ID = #{electricFeePayDetailsId}-->
   <!--</select>-->
-  <select id="selectAll" resultMap="BaseResultMap" parameterType="cn.rzhd.wuye.vo.UtilitiesQuery" >
+  <select id="selectAll" resultMap="BaseResultMap" parameterType="cn.rzhd.wuye.vo.query.UtilitiesQuery" >
     select ELECTRIC_FEE_PAY_DETAILS_ID, HOUSE_INFO_ID, CLIENT_NAME, COST_TYPE, PAY_MANNER, 
     PAY_MONTH, START_DATE, END_DATE, PAYABLE, PAID_IN, VOUCHER_NUMBER, INVOICE, INVOICE_NUMBER, 
     INVOICE_NOTES, INVOICE_STATUS, COLLECTING_COMPANY, COLLECTING_ACCOUNT, INVOICE_COMPANY, 

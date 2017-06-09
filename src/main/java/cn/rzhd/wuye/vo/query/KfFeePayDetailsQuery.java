@@ -1,14 +1,12 @@
-package cn.rzhd.wuye.vo;
+package cn.rzhd.wuye.vo.query;
 
 import cn.rzhd.wuye.utils.FirstAndLastDay;
-import cn.rzhd.wuye.utils.StringTimeUtil;
-
-import java.util.Date;
 
 /**
  * Created by hasee on 2017/6/1.
  */
 public class KfFeePayDetailsQuery extends BaseQuery{
+
     /**
      * 房产信息ID
      */
@@ -38,16 +36,16 @@ public class KfFeePayDetailsQuery extends BaseQuery{
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
-        this.startDate = StringTimeUtil.format(startDate);
+    public void setStartDate(String startDate) {
+        this.startDate = sdf.format(FirstAndLastDay.getFirst(startDate));
     }
 
     public String getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
-        this.endDate = StringTimeUtil.format(endDate);
+    public void setEndDate(String endDate) {
+        this.endDate = sdf.format(FirstAndLastDay.getLast(endDate));
     }
 
     public Integer getInvoiceStatus() {
@@ -69,7 +67,7 @@ public class KfFeePayDetailsQuery extends BaseQuery{
     }
 
     public KfFeePayDetailsQuery() {
-        setStartDate(FirstAndLastDay.getFirstDay());
-        setEndDate(FirstAndLastDay.getLastDay());
+        this.startDate=sdf.format(FirstAndLastDay.getFirstDay());
+        this.endDate=sdf.format(FirstAndLastDay.getLastDay());
     }
 }

@@ -3,7 +3,7 @@ package cn.rzhd.wuye.service.impl;
 import cn.rzhd.wuye.bean.ElectricFeePayDetails;
 import cn.rzhd.wuye.mapper.ElectricFeePayDetailsMapper;
 import cn.rzhd.wuye.service.IElectricPayDetailsService;
-import cn.rzhd.wuye.vo.UtilitiesQuery;
+import cn.rzhd.wuye.vo.query.UtilitiesQuery;
 import com.github.pagehelper.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

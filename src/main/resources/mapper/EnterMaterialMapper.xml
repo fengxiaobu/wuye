@@ -4,11 +4,12 @@
 <mapper namespace="cn.rzhd.wuye.mapper.EnterMaterialMapper">
     <resultMap id="enterMaterialMap" type="java.util.Map">
         <id column="ENTER_MATERIAL_ID" property="enterMaterialId"/>
-        <result column="MATERIAL_NAME" property="materialName"/>
-        <result column="MATERIAL_ADDRESS" property="materialAddress"/>
+        <result column="PK_PROJECT" property="pkProject"/>
+        <result column="MATERIAL_NAME" property="materialName"  />
+        <result column="MATERIAL_ADDRESS" property="materialAddress" />
         <result column="BASIC_INFO" property="basicInfo"/>
-        <result column="NOTES" property="notes"/>
-        <result column="USER_ID" property="userId"/>
+        <result column="NOTES" property="notes" />
+        <result column="USER_ID" property="userId" />
         <result column="UPDATE_TIME" property="updateTime"/>
         <association property="user" javaType="cn.rzhd.wuye.bean.User">
             <id column="USER_ID" property="userId"/>
@@ -79,33 +80,20 @@
         AND mater.HOUSE_INFO_ID = house.HOUSE_INFO_ID
         AND house.PROJECT_INFO_ID = pro.PK_PROJECT
     </select>
-    <!-- 入驻申请列表条件查询 -->
-    <!--  <select id="findEnterApplyByCondition" resultMap="BaseResultMap">
 
-          SELECT * FROM (  SELECT U.*, ROWNUM RN
-          FROM (SELECT * FROM T_ENTER_APPLY
-          WHERE CLIENT_NAME LIKE CONCAT(CONCAT('%',#{condition}),'%')) U )
-          WHERE RN BETWEEN #{pageStartRow} AND
-          #{pageEndRow}
-      </select>-->
-    <!--  &lt;!&ndash; 入驻申请列表条件查询 &ndash;&gt;
-      <select id="findEnterApplyByCondition" resultMap="BaseResultMap">
-
-          SELECT * FROM (  SELECT U.*, ROWNUM RN
-          FROM (SELECT * FROM T_ENTER_APPLY
-          WHERE CLIENT_NAME LIKE CONCAT(CONCAT('%',#{condition}),'%')) U )
-          WHERE RN BETWEEN #{pageStartRow} AND
-          #{pageEndRow}
-      </select>-->
-    <!-- 用户信息修改 操作-->
-    <!--<update id="updateEnterApply">
-        update T_ENTER_APPLY set LOGO= #{user.logo},COMPANY_TYPE= #{user.companyType},
-        CLIENT_NAME= #{user.clientName},PHONE= #{user.phone}
-        where USER_ID = #{user.userId}
-    </update>-->
-
-    <!-- 用户信息删除操作 -->
-    <!-- <delete id="delEnterApplyById">
-         DELETE FROM T_USER WHERE USER_ID = #{userId}
-     </delete>-->
+    <!--入驻申请列表条件查询-->
+    <select id="findEnterfindEnterMaterialByHouseId" resultType="cn.rzhd.wuye.bean.EnterMaterial">
+         SELECT
+                ENTER_MATERIAL_ID,
+                PK_PROJECT,
+                MATERIAL_NAME,
+                MATERIAL_ADDRESS,
+                BASIC_INFO,
+                NOTES,
+                USER_ID,
+                UPDATE_TIME
+            FROM
+            T_ENTER_MATERIAL
+            WHERE PK_PROJECT = #{pkproject};
+      </select>
 </mapper>

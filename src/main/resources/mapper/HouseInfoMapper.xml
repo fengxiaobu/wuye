@@ -15,7 +15,33 @@
         <result column="CREATION_TIME" property="creationTime"/>
         <result column="UPDATE_TIME" property="updateTime"/>
         <result column="CUSTOMER_ID" property="customerId"/>
-
+        <association property="projectInfo" javaType="cn.rzhd.wuye.bean.ProjectInfo">
+            <id column="PK_PROJECT" property="pkProject"/>
+            <result column="PROJECT_NAME" property="projectName"/>
+            <result column="PROJECT_ADDRESS" property="projectAddress"/>
+            <result column="DEVELOPMENT_COLLECTING_COMPANY" property="developmentCollectingCompany"/>
+            <result column="DEVELOPMENT_COLLECTING_ACCOUNT" property="developmentCollectingAccount"/>
+            <result column="PROPERTY_COLLECTING_COMPANY" property="propertyCollectingCompany"/>
+            <result column="PROPERTY_COLLECTING_ACCOUNT" property="propertyCollectingAccount"/>
+            <result column="WATER_PRICE" property="waterPrice"/>
+            <result column="ELECTRICITY_PRICE" property="electricityPrice"/>
+            <result column="SERVICE_PHONE" property="servicePhone"/>
+            <result column="OBJECT_PHONE" property="objectPhone"/>
+            <result column="CREATION_TIME" property="creationTime"/>
+            <result column="UPDATE_TIME" property="updateTime"/>
+            <result column="STATUS" property="status"/>
+            <result column="PK_CORP" property="pkCorp"/>
+            <result column="VCODE" property="vcode"/>
+            <result column="VSHORTNAME" property="vshortname"/>
+            <result column="PK_RESPONSECORP" property="pkResponsecorp"/>
+            <result column="VINCODE" property="vincode"/>
+            <result column="DECORATE_MANAGE" property="decorateManage"/>
+            <result column="PASSCARD_PLEDGE" property="passcardPledge"/>
+            <result column="PASSCARD_COST" property="passcardCost"/>
+            <result column="DECORATE_AREA" property="decorateArea"/>
+            <result column="LESS_PLEDGE" property="lessPledge"/>
+            <result column="MORE_PLEDGE" property="morePledge"/>
+        </association>
     </resultMap>
 
     <select id="getById" resultMap="houseInfoMap" parameterType="long">

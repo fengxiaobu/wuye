@@ -1,5 +1,6 @@
 package cn.rzhd.wuye.mapper;
 
+import cn.rzhd.wuye.bean.ProjectInfo;
 import cn.rzhd.wuye.vo.ProjectVO;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -10,11 +11,12 @@ public interface ProjectInfoMapper {
 
     int insert(ProjectVO record);
 
-    ProjectVO selectByPrimaryKey(String pkProject);
+    ProjectInfo selectByPrimaryKey(String pkProject);
 
     List<ProjectVO> selectAll();
 
     void updateByPrimaryKey(ProjectVO record);
 
     void updateByERP(ProjectVO record);
+
 }

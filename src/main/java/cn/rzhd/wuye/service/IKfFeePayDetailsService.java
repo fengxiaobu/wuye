@@ -1,7 +1,7 @@
 package cn.rzhd.wuye.service;
 
 import cn.rzhd.wuye.bean.KfFeePayDetails;
-import cn.rzhd.wuye.vo.KfFeePayDetailsQuery;
+import cn.rzhd.wuye.vo.query.KfFeePayDetailsQuery;
 
 import java.util.List;
 

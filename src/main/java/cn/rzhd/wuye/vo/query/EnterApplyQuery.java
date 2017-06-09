@@ -1,4 +1,4 @@
-package cn.rzhd.wuye.vo;
+package cn.rzhd.wuye.vo.query;
 
 /**
  * luopa 在 2017/6/6 创建.
@@ -24,7 +24,11 @@ public class EnterApplyQuery {
     private String endDate;
 
     public String getProjectName() {
-        return projectName.trim();
+        if (projectName != null) {
+            return projectName;
+        }
+        return null;
+
     }
 
     public void setProjectName(String projectName) {
@@ -32,7 +36,11 @@ public class EnterApplyQuery {
     }
 
     public String getClientName() {
-        return clientName.trim();
+        if (clientName != null) {
+            return clientName;
+        }
+        return null;
+
     }
 
     public void setClientName(String clientName) {
@@ -40,7 +48,10 @@ public class EnterApplyQuery {
     }
 
     public String getStartDate() {
-        return startDate.trim();
+        if (startDate != null) {
+            return startDate;
+        }
+        return null;
     }
 
     public void setStartDate(String startDate) {
@@ -48,7 +59,11 @@ public class EnterApplyQuery {
     }
 
     public String getEndDate() {
-        return endDate.trim();
+        if (endDate != null) {
+            return endDate;
+        }
+        return null;
+
     }
 
     public void setEndDate(String endDate) {

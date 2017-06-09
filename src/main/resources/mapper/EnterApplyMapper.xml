@@ -75,7 +75,7 @@
           house.PROJECT_INFO_ID=project.PK_PROJECT
     </select>
     <!-- 入驻申请列表条件查询 -->
-    <select id="findEnterApplyByQuery" parameterType="cn.rzhd.wuye.vo.EnterApplyQuery" resultMap="enterApplyMap">
+    <select id="findEnterApplyByQuery" parameterType="cn.rzhd.wuye.vo.query.EnterApplyQuery" resultMap="enterApplyMap">
         SELECT
         apply.ENTER_APPLY_ID,project.PROJECT_NAME,house.HOUSE_PROPERTY,apply.CLIENT_NAME,apply.APPLY_TIME,apply.AUDIT_STATUS
         FROM
@@ -85,9 +85,9 @@
         WHERE
         apply.HOUSE_INFO_ID=house.HOUSE_INFO_ID
         <if test="startDate != null">
-            AND apply.APPLY_TIME=to_date(#{startDate},'YYYY-MM-DD')
             <if test="endDate != null">
-                AND apply.APPLY_TIME=to_date(#{endDate},'YYYY-MM-DD')
+                AND BETWEEN apply.APPLY_TIME=to_date(#{startDate},'yyyy-mm-dd')
+                AND apply.APPLY_TIME=to_date(#{endDate},'yyyy-mm-dd')
             </if>
         </if>
         <if test="clientName != null">
@@ -113,12 +113,12 @@
     where ENTER_APPLY_ID = #{enterApplyId}
     </update>
     <!--添加入驻申请-->
-    <insert id="insertEnterApply" parameterType="cn.rzhd.wuye.bean.EnterApply">
+    <insert id="insertEnterApply"  parameterType="cn.rzhd.wuye.bean.EnterApply">
        insert into T_ENTER_APPLY (ENTER_APPLY_ID, HOUSE_INFO_ID, CLIENT_NAME,
       APPLY_TIME, AUDIT_STATUS, ENTER_ADVICE_NOTE,
       NOTES, CREATION_TIME, UPDATE_TIME
       )
-    values (#{enterApplyId}, #{houseInfoId}, #{clientName},
+    values (T_ENTER_APPLY_ID_SEQ.Nextval, #{houseInfoId}, #{clientName},
       #{applyTime}, #{auditStatus}, #{enterAdviceNote},
       #{notes}, #{creationTime}, #{updateTime}
       )

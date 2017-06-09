@@ -26,30 +26,15 @@ public class EnterMaterial implements Serializable{
 	 */
 	private User user;
 
-	public HouseInfo getHouseInfo() {
-		return houseInfo;
-	}
 
-	public void setHouseInfo(HouseInfo houseInfo) {
-		this.houseInfo = houseInfo;
-	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-	/**
-	 * 入驻资料表id
+    /**
+     * 入驻资料表id
 	 */
 	private Long enterMaterialId;
 	/**
-	 * 房产id
+	 * 项目ID
 	 */
-	private String houseInfoId;
+	private String pkProject;
 	/**
 	 * 资料名称
 	 */
@@ -69,14 +54,38 @@ public class EnterMaterial implements Serializable{
 	/**
 	 * 修改用户
 	 */
-	private String customerId;
-	/**
-	 * 修改时间
+    private Long  userId;
+    /**
+     * 修改时间
 	 */
 	private Date updateTime;
-	
+
+    public HouseInfo getHouseInfo() {
+        return houseInfo;
+    }
+
+    public void setHouseInfo(HouseInfo houseInfo) {
+        this.houseInfo = houseInfo;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+	public Long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
+
 	/**
-	 * @return the materialName
+     * @return the materialName
 	 */
 	public String getMaterialName() {
 		return materialName;
@@ -148,30 +157,12 @@ public class EnterMaterial implements Serializable{
 	public void setEnterMaterialId(Long enterMaterialId) {
 		this.enterMaterialId = enterMaterialId;
 	}
-	/**
-	 * @return the houseInfoId
-	 */
-	public String getHouseInfoId() {
-		return houseInfoId;
-	}
-	/*
-	@param houseInfoId the houseInfoId to set
-	*/
-	public void setHouseInfoId(String houseInfoId) {
-		this.houseInfoId = houseInfoId;
-	}
-	/**
-	 * @return the userId
-	 */
-	public String getCustomerId() {
-		return customerId;
-	}
-	/*
-	@param userId the userId to set
-	*/
-	public void setCustomerId(String customerId) {
-		this.customerId = customerId;
-	}
-	
 
+	public String getPkProject() {
+		return pkProject;
+	}
+
+	public void setPkProject(String pkProject) {
+		this.pkProject = pkProject;
+	}
 }

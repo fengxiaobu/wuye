@@ -1,7 +1,9 @@
 package cn.rzhd.wuye.mapper;
 
+import cn.rzhd.wuye.bean.EnterMaterial;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Map;
@@ -18,4 +20,11 @@ public interface EnterMaterialMapper {
      * @return
      */
     List<Map<String, JsonFormat.Value>> findEnterMaterial();
+
+    /**
+     * 根据房产ID查询入驻资料信息
+     * @param pkproject
+     * @return
+     */
+    EnterMaterial findEnterMaterialByHouseId(@Param("pkproject") String pkproject);
 }

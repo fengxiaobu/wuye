@@ -174,4 +174,19 @@ public class EnterApply implements Serializable{
 		this.updateTime = updateTime;
 	}
 
+	@Override
+	public String toString() {
+		return "EnterApply{" +
+				"enterApplyId=" + enterApplyId +
+				", houseInfoId='" + houseInfoId + '\'' +
+				", clientName='" + clientName + '\'' +
+				", applyTime=" + applyTime +
+				", auditStatus=" + auditStatus +
+				", enterAdviceNote='" + enterAdviceNote + '\'' +
+				", notes='" + notes + '\'' +
+				", creationTime=" + creationTime +
+				", updateTime=" + updateTime +
+				", houseInfo=" + houseInfo +
+				'}';
+	}
 }

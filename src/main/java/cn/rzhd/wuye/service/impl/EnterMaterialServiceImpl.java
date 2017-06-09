@@ -1,5 +1,6 @@
 package cn.rzhd.wuye.service.impl;
 
+import cn.rzhd.wuye.bean.EnterMaterial;
 import cn.rzhd.wuye.mapper.EnterMaterialMapper;
 import cn.rzhd.wuye.service.IEnterMaterialService;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -21,5 +22,15 @@ public class EnterMaterialServiceImpl implements IEnterMaterialService {
     public List<Map<String, JsonFormat.Value>> findEnterMaterialList() {
 
         return enterMaterialMapper.findEnterMaterial();
+    }
+
+    /**
+     * 获取项目信息(资料夹)
+     * @param pkproject
+     * @return
+     */
+    @Override
+    public EnterMaterial findEnterMaterialByHouseId(String pkproject) {
+        return enterMaterialMapper.findEnterMaterialByHouseId(pkproject);
     }
 }
