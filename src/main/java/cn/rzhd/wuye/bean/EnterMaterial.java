@@ -16,10 +16,6 @@ import java.util.Date;
 public class EnterMaterial implements Serializable{
 
 	private static final Long serialVersionUID = 1L;
-	/**
-	 * 房产信息
-	 */
-	private HouseInfo houseInfo;
 
 	/**
 	 * 用户信息
@@ -60,13 +56,7 @@ public class EnterMaterial implements Serializable{
 	 */
 	private Date updateTime;
 
-    public HouseInfo getHouseInfo() {
-        return houseInfo;
-    }
 
-    public void setHouseInfo(HouseInfo houseInfo) {
-        this.houseInfo = houseInfo;
-    }
 
     public User getUser() {
         return user;
@@ -159,10 +149,28 @@ public class EnterMaterial implements Serializable{
 	}
 
 	public String getPkProject() {
-		return pkProject;
+		if (pkProject == null) {
+			return null;
+		}
+		return pkProject.trim();
 	}
 
 	public void setPkProject(String pkProject) {
 		this.pkProject = pkProject;
+	}
+
+	@Override
+	public String toString() {
+		return "EnterMaterial{" +
+				", user=" + user +
+				", enterMaterialId=" + enterMaterialId +
+				", pkProject='" + pkProject + '\'' +
+				", materialName='" + materialName + '\'' +
+				", materialAddress='" + materialAddress + '\'' +
+				", basicInfo='" + basicInfo + '\'' +
+				", notes='" + notes + '\'' +
+				", userId=" + userId +
+				", updateTime=" + updateTime +
+				'}';
 	}
 }

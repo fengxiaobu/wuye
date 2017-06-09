@@ -96,9 +96,6 @@ public class DecorationApplyController {
     public String upload(@RequestParam("file") MultipartFile file) {
         if (!file.isEmpty()) {
             try {
-                // 这里只是简单例子，文件直接输出到项目路径下。
-                // 实际项目中，文件需要输出到指定位置，需要在增加代码处理。
-                // 还有关于文件格式限制、文件大小限制，详见：中配置。
                 BufferedOutputStream out = new BufferedOutputStream(
                         new FileOutputStream(new File(file.getOriginalFilename())));
                 out.write(file.getBytes());

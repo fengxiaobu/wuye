@@ -26,5 +26,5 @@ public interface EnterMaterialMapper {
      * @param pkproject
      * @return
      */
-    EnterMaterial findEnterMaterialByHouseId(@Param("pkproject") String pkproject);
+    EnterMaterial findEnterMaterialBypkproject(@Param("pkproject") String pkproject);
 }
