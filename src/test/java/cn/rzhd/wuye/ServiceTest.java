@@ -1,15 +1,21 @@
 package cn.rzhd.wuye;
 
+import cn.rzhd.wuye.bean.Company;
 import cn.rzhd.wuye.common.WebService;
+import cn.rzhd.wuye.service.ICompanyService;
+import cn.rzhd.wuye.service.IKfFeeService;
+import cn.rzhd.wuye.service.IPropertyFeeService;
 import cn.rzhd.wuye.utils.FirstAndLastDay;
 import cn.rzhd.wuye.utils.JsonUtils;
 import cn.rzhd.wuye.utils.MD5Utils;
 import cn.rzhd.wuye.vo.*;
 import com.github.pagehelper.StringUtil;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 /**
  * luopa 在 2017/5/25 创建.
@@ -87,5 +93,49 @@ public class ServiceTest extends BaseTest {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String s = sdf.format(first);
         System.out.println(s);
+    }
+
+    @Autowired
+    IPropertyFeeService propertyFeeService;
+    @Autowired
+    IKfFeeService kfFeeService;
+    @Autowired
+    ICompanyService companyService;
+
+    @Test
+    public void insertRzFee(){
+        RequesterVO req = new RequesterVO();
+        req.setKey(LiandoServiceConstant.SERVICE_KEY);
+        List<Company> companies = companyService.getAll();
+        //物业入驻费用拉取保存
+        req.setBilltype(LiandoServiceConstant.DATA_TYPE_WY_RZ_FEE);
+        for (Company company : companies) {
+            String pkCorp = company.getPkCorp();
+            req.setPk_corp(pkCorp);
+            String baseData = WebService.getBaseData(req);
+            ResponseVO responseVO = JsonUtils.jsonToPojo(baseData, ResponseVO.class);
+            if ("Y".equals(responseVO.getIssuccess()) && StringUtil.isEmpty(responseVO.getErrorinfo())){
+                FeeVO[] feedata = responseVO.getFeedata();
+                for (FeeVO vo : feedata) {
+                    propertyFeeService.addRzFee(vo);
+                }
+            }
+        }
+        //开发入驻费用拉取保存
+        req.setBilltype(LiandoServiceConstant.DATA_TYPE_KF_RZ_FEE);
+        for (Company company : companies) {
+            String pkCorp = company.getPkCorp();
+            req.setPk_corp(pkCorp);
+            String baseData = WebService.getBaseData(req);
+            ResponseVO responseVO = JsonUtils.jsonToPojo(baseData, ResponseVO.class);
+            if ("Y".equals(responseVO.getIssuccess()) && StringUtil.isEmpty(responseVO.getErrorinfo())){
+                FeeVO[] feedata = responseVO.getFeedata();
+                for (FeeVO vo : feedata) {
+                    kfFeeService.addRzFee(vo);
+                }
+            }
+        }
+
+
     }
 }

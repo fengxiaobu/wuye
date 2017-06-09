@@ -6,6 +6,7 @@ import cn.rzhd.wuye.vo.query.ArrearsQuery;
 import cn.rzhd.wuye.vo.query.FeeDataQuery;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by hasee on 2017/6/8.
@@ -13,7 +14,11 @@ import java.util.List;
 public interface IKfFeeService {
     void addKfFee(FeeVO KfFee);
 
+    void addRzFee(FeeVO kfFee);
+
     List<KfFee> queryAll(FeeDataQuery query);
 
     List<KfFee> queryAllArrears(ArrearsQuery query);
+
+    Map<String,List> queryForPay(ArrearsQuery query);
 }
