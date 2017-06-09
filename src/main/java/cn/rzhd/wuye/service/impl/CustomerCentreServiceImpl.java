@@ -40,7 +40,7 @@ public class CustomerCentreServiceImpl implements ICustomerCentreService {
 
     @Override
     public void updatePerfectInformation(PerfectInformation perfectInformation) {
-        
+        mapper.updatePerfectInformation(perfectInformation);
         
     }
 }

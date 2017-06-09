@@ -3,7 +3,7 @@ package cn.rzhd.wuye.controller;
 import cn.rzhd.wuye.bean.EnterMaterial;
 import cn.rzhd.wuye.service.IEnterMaterialService;
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.alibaba.fastjson.serializer.PropertyFilter;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
@@ -56,26 +56,27 @@ public class EnterMaterialController {
         if (StringUtil.isEmpty(pkproject)) {
             return "房产ID为空!";
         }
-        EnterMaterial material = enterMaterialService.findEnterMaterialByHouseId(pkproject);
-        String jsonString = JSON.toJSONString(material, SerializerFeature.WriteMapNullValue);
+        PropertyFilter propertyFilter = new PropertyFilter() {
+            @Override
+            public boolean apply(Object object, String name, Object value) {
+                if (name.equalsIgnoreCase("user")) {
+                    //false表示last字段将被排除在外
+                    return false;
+                }
+                if (name.equalsIgnoreCase("userId")) {
+                    //false表示last字段将被排除在外
+                    return false;
+                }
+                return true;
+            }
+        };
+        EnterMaterial material = enterMaterialService.findEnterMaterialBypkproject(pkproject.trim());
+
+        String jsonString = JSON.toJSONString(material, propertyFilter);
         return jsonString;
     }
 
-    /**
-     *
-     * @param pkproject
-     * @return
-     */
-    /*@RequestMapping("/downLoadEnterMaterial")
-    @ResponseBody
-    public String upLoadEnterMaterial(String pkproject) {
-        if (StringUtil.isEmpty(pkproject)) {
-            return "房产ID为空!";
-        }
-        EnterMaterial material = enterMaterialService.findEnterMaterialByHouseId(pkproject);
-        String jsonString = JSON.toJSONString(material, SerializerFeature.WriteMapNullValue);
-        return jsonString;
-    }*/
+
 
 /*
     *//**

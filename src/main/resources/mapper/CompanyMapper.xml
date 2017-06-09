@@ -30,10 +30,41 @@
   <select id="updateLogo">
   		UPDATE "T_Customer" SET LOGO=#{customer.LOGO}  WHERE "pk_customerid"=#{customer.pk_customerid}
   </select>
-  <select id="updatePhone">
+  <update id="updatePhone">
   	UPDATE "T_Customer" SET vpreferredtel=#{customer.vpreferredtel}  WHERE "pk_customerid"=#{customer.pk_customerid}
-  </select>
- <!--  <select id="updatePerfectInformation"></select> -->
+  </update>
+  <update id="updatePerfectInformation">
+  	UPDATE 
+  		T_PERFECT_INFORMATION
+	SET (
+		COMPANY_TYPE=#{perfectInformation.companyType},
+		HOUSE_PROPERTY_ID=#{perfectInformation.housePropertyId},
+		U_RAVINE_PROPERTY_ID=#{perfectInformation.URavinePropertyId},
+		COMPANY_ESTABLISH_TIME=#{perfectInformation.companyEstablishTime},
+		SIGN_IN_FUND=#{perfectInformation.signInFund},
+		INDUSTRY_INVOLVED_ID=#{perfectInformation.industryInvolvedId},
+		MAIN_PRODUCT=#{perfectInformation.mainProduct},
+		COMPANY_COVERAGE_ID=#{perfectInformation.companyCoverageId},
+		EMPLOYEE_NUMBER=#{perfectInformation.employeeNumber},
+		PROPERTY_TO_ACCESS=#{perfectInformation.propertyToAccess},
+		PROPERTY_TO_ACCESS_CONTACT=#{perfectInformation.propertyToAccessContact},
+		EMERGENCY_CONTACT_PERSON=#{perfectInformation.emergencyContactPerson},
+		EMERGENCY_CONTACT_NUMBER=#{perfectInformation.emergencyContactNumber},
+		IS_HIGH_NEW=#{perfectInformation.isHighNew},
+		HIGH_NEW_TYPE=#{perfectInformation.highNewType},
+		CERTIFICATE_TIME=#{perfectInformation.certificateTime},
+		PATENT_TYPE_ID=#{perfectInformation.patentTypeId},
+		PATENT_NUMBER=#{perfectInformation.patentNumber},
+		IS_UP_BAZAAR=#{perfectInformation.isUpBazaar},
+		UP_BAZAAR_TYPE_ID=#{perfectInformation.upBazaarTypeId},
+		HANG_BOARD_TIME=#{perfectInformation.hangBoardTime},
+		STOCK_CODE=#{perfectInformation.stockCode},
+		NOTES=#{perfectInformation.notes},
+		UPDATE_TIME=#{perfectInformation.updateTime}
+	)
+	WHERE
+		PERFECT_INFORMATION_ID = #{perfectInformation.perfectInformationId}
+  </update>
  
  
 </mapper>

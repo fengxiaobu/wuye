@@ -12,6 +12,6 @@ import java.util.Map;
 public interface IEnterMaterialService {
     List<Map<String, JsonFormat.Value>> findEnterMaterialList();
 
-    EnterMaterial findEnterMaterialByHouseId(String pkproject);
+    EnterMaterial findEnterMaterialBypkproject(String pkproject);
 
 }
