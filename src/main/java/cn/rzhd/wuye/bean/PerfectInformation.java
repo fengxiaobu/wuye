@@ -50,6 +50,10 @@ public class PerfectInformation implements Serializable{
 	 */
 	private Long industryInvolvedId;
 	/**
+	 * 在U谷中的属性
+	 */
+	private Long URavinePropertyId;
+	/**
 	 * 主营或主导产品
 	 */
 	private String mainProduct;
@@ -224,6 +228,13 @@ public class PerfectInformation implements Serializable{
 	*/
 	public void setIndustryInvolvedId(Long industryInvolvedId) {
 		this.industryInvolvedId = industryInvolvedId;
+	}
+	
+	public Long getURavinePropertyId() {
+	    return URavinePropertyId;
+	}
+	public void setURavinePropertyId(Long uRavinePropertyId) {
+	    URavinePropertyId = uRavinePropertyId;
 	}
 	/**
 	 * @return the mainProduct
