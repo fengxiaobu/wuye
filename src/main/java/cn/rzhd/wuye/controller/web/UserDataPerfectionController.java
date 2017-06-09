@@ -32,10 +32,24 @@ public class UserDataPerfectionController {
     @Autowired
     private IUserDataPerfectionService userDataPerfectionService;
     
+    /**
+     * 查询房产下拉菜单列表
+     * @param customer
+     * @return
+     */
     @RequestMapping(value="/findHouseListByCustomer")
     public String findHouseListByCustomer(Customer customer){
-	List<Map<String, Object>> findHouseListByCustomer = userDataPerfectionService.findHouseListByCustomer(customer);
-	return JsonUtils.objectToJson(findHouseListByCustomer);
+	if (customer==null || customer.getPk_customerid() == null||customer.getPk_customerid().equals("")) {
+	    return JsonUtils.objectToJson("客户主键不能为空");
+	}
+	
+	try {
+	    List<Map<String, Object>> findHouseListByCustomer = userDataPerfectionService.findHouseListByCustomer(customer);
+	    return JsonUtils.objectToJson(findHouseListByCustomer);
+	} catch (Exception e) {
+	    e.printStackTrace();
+	    return JsonUtils.objectToJson("服务器异常");
+	}
 	
     }
     /**
@@ -45,8 +59,16 @@ public class UserDataPerfectionController {
      */
     @RequestMapping(value="/userDataPerfection",method=RequestMethod.POST)
     public String AddUserDataPerfection(PerfectInformation perfectInformation){
-	userDataPerfectionService.addUserDataPerfection(perfectInformation);
-	return JsonUtils.objectToJson("success");
+	if (perfectInformation == null || perfectInformation.getPerfectInformationId()==null) {
+	    return JsonUtils.objectToJson("主键ID不能为空");
+	}
+	try {
+	    userDataPerfectionService.addUserDataPerfection(perfectInformation);
+	    return JsonUtils.objectToJson("success");
+	} catch (Exception e) {
+	    e.printStackTrace();
+	    return JsonUtils.objectToJson("服务器异常");
+	}
     }
     
 //    /**
