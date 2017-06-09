@@ -53,6 +53,12 @@ public class CustomerCentreController {
 	return JsonUtils.objectToJson("success");
     }
     
+    /**
+     * 修改资料
+     * @param perfectInformation
+     * @return
+     */
+    @RequestMapping(value="/updatePerfectInformation",method=RequestMethod.POST)
     public String updatePerfectInformation(PerfectInformation perfectInformation){
 	customerCentreService.updatePerfectInformation(perfectInformation);
 	return JsonUtils.objectToJson("success");
