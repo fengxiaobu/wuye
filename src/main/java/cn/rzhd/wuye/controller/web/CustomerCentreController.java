@@ -13,6 +13,16 @@ import cn.rzhd.wuye.bean.PerfectInformation;
 import cn.rzhd.wuye.service.ICustomerCentreService;
 import cn.rzhd.wuye.utils.JsonUtils;
 
+/**
+ * 
+© 2017 RZHD.CN
+@Package: cn.rzhd.wuye.controller.web
+@ClassName: CustomerCentreController
+@Description: 描述：个人中心
+@author: an-wei.xie@rzhd.cn
+@date: 2017年6月9日 上午11:39:06
+@version: V1.0
+ */
 @RestController
 @RequestMapping(value="/CustomerCentre",method=RequestMethod.POST)
 public class CustomerCentreController {
