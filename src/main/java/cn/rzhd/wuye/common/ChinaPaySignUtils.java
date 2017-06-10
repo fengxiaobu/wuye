@@ -19,7 +19,7 @@ public class ChinaPaySignUtils {
         SecssUtil secssUtil = new SecssUtil();
         //从默认配置文件初始化安全控件
         secssUtil.init();
-        System.out.println("未知错误测试-->" + secssUtil.getErrMsg());
+        System.out.println("证书" + secssUtil.getErrMsg());
         secssUtil.sign(myMap);
         if (!"00".equals(secssUtil.getErrCode())) {
             String msg="签名过程发生错误，错误信息为-->" + secssUtil.getErrMsg();

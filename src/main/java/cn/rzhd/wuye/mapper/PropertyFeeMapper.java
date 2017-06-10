@@ -18,6 +18,14 @@ public interface PropertyFeeMapper {
 
     List<PropertyFee> selectAll(FeeDataQuery query);
 
+    /**
+     * 入驻物业费用
+     *
+     * @param query
+     * @return
+     */
+    List<PropertyFee> rzselectAll(FeeDataQuery query);
+
     List<PropertyFee> selectAllArrears(ArrearsQuery query);
 
     List<Map<String,String>> selectForPay(ArrearsQuery query);

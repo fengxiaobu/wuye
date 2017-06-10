@@ -50,4 +50,40 @@ public class PrePayController {
         result.setRows(pageInfoList);
         return result;
     }
+
+    /**
+     * 入驻开发费
+     *
+     * @param query
+     * @return
+     */
+    @RequestMapping("/rzKfFeeList")
+    public PageDataGridResult RzKfFeeList(FeeDataQuery query) {
+        PageDataGridResult result = new PageDataGridResult();
+        PageHelper.startPage(query.getStartPage(), query.getPageSize());
+        List<KfFee> list = kfFeeService.selectAllRZ(query);
+        PageInfo pageInfo = new PageInfo(list);
+        List pageInfoList = pageInfo.getList();
+        result.setTotal(pageInfo.getTotal());
+        result.setRows(pageInfoList);
+        return result;
+    }
+
+    /**
+     * 入驻物业费用
+     *
+     * @param query
+     * @return
+     */
+    @RequestMapping("/rzPropertyFeeList")
+    public PageDataGridResult RzpropertyFeeList(FeeDataQuery query) {
+        PageDataGridResult result = new PageDataGridResult();
+        PageHelper.startPage(query.getStartPage(), query.getPageSize());
+        List<PropertyFee> list = propertyFeeService.rzselectAll(query);
+        PageInfo pageInfo = new PageInfo(list);
+        List pageInfoList = pageInfo.getList();
+        result.setTotal(pageInfo.getTotal());
+        result.setRows(pageInfoList);
+        return result;
+    }
 }
