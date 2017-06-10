@@ -37,8 +37,17 @@ public class HomePageController {
      */
     @RequestMapping(value="/findHouseByCustomer",method=RequestMethod.POST)
     public String findHomePageHouseByCustomer(Customer customer){
-	List<Map<String, Object>> findHouseByCutomer = homePageService.findHouseByCutomer(customer);
-	return JsonUtils.objectToJson(findHouseByCutomer);
+	if (customer==null || customer.getPk_customerid() == null||customer.getPk_customerid().equals("")) {
+	    return JsonUtils.objectToJson("客户主键不能为空");
+	}
+	try {
+	    List<Map<String, Object>> findHouseByCutomer = homePageService.findHouseByCutomer(customer);
+	    return JsonUtils.objectToJson(findHouseByCutomer);
+	} catch (Exception e) {
+	    e.printStackTrace();
+	    return JsonUtils.objectToJson("服务器异常");
+	}
+	
     }
     
     /**
@@ -48,8 +57,17 @@ public class HomePageController {
      */
     @RequestMapping(value="/findFeeListByCustomer",method=RequestMethod.POST)
     public String findFeeListByCustomer(Customer customer){
-	Map<String, Object> findFeeListByCustomerId = homePageService.findFeeListByCustomerId(customer);
-	return JsonUtils.objectToJson(findFeeListByCustomerId);
+	if (customer==null || customer.getPk_customerid() == null||customer.getPk_customerid().equals("")) {
+	    return JsonUtils.objectToJson("客户主键不能为空");
+	}
+	try {
+	    Map<String, Object> findFeeListByCustomerId = homePageService.findFeeListByCustomerId(customer);
+	    return JsonUtils.objectToJson(findFeeListByCustomerId);
+	} catch (Exception e) {
+	    e.printStackTrace();
+	    return JsonUtils.objectToJson("服务器异常");
+	}
+	
     }
     
     /**
@@ -59,9 +77,16 @@ public class HomePageController {
      */
     @RequestMapping(value="/findMessageNumByCutromer",method=RequestMethod.POST)
     public String findMessageNumByCutromer(Customer customer){
-	Integer findMessageNumByCustomer = homePageService.findMessageNumByCustomer(customer);
-	return JsonUtils.objectToJson(findMessageNumByCustomer);
-	
+	if (customer==null || customer.getPk_customerid() == null||customer.getPk_customerid().equals("")) {
+	    return JsonUtils.objectToJson("客户主键不能为空");
+	}
+	try {
+	    Integer findMessageNumByCustomer = homePageService.findMessageNumByCustomer(customer);
+	    return JsonUtils.objectToJson(findMessageNumByCustomer);
+	} catch (Exception e) {
+	    e.printStackTrace();
+	    return JsonUtils.objectToJson("服务器异常");
+	}
     }
     
     /**
@@ -71,8 +96,16 @@ public class HomePageController {
      */
     @RequestMapping(value="/findMessageByCustomer",method=RequestMethod.POST)
     public String findMessageByCustomer(Customer customer){
-	List<MessageManage> findMessageByCustomer = homePageService.findMessageByCustomer(customer);
-	return JsonUtils.objectToJson(findMessageByCustomer);
+	if (customer==null || customer.getPk_customerid() == null||customer.getPk_customerid().equals("")) {
+	    return JsonUtils.objectToJson("客户主键不能为空");
+	}
+	try {
+	    List<MessageManage> findMessageByCustomer = homePageService.findMessageByCustomer(customer);
+	    return JsonUtils.objectToJson(findMessageByCustomer);
+	} catch (Exception e) {
+	    e.printStackTrace();
+	    return JsonUtils.objectToJson("服务器异常");
+	}
 	
     }
     

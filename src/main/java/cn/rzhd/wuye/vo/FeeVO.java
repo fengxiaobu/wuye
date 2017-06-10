@@ -43,6 +43,8 @@ public class FeeVO implements Serializable {
 
 	private String vmemo;
 
+	private String nyjmny;
+
 	public String getPk_corp() {
 		return pk_corp;
 	}
@@ -178,4 +180,12 @@ public class FeeVO implements Serializable {
     public void setVmemo(String vmemo) {
         this.vmemo = vmemo;
     }
+
+	public String getNyjmny() {
+		return nyjmny;
+	}
+
+	public void setNyjmny(String nyjmny) {
+		this.nyjmny = nyjmny;
+	}
 }

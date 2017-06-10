@@ -46,7 +46,7 @@ public class PerfectInformation implements Serializable{
 	 */
 	private BigDecimal signInFund;
 	/**
-	 * 所属行业
+	 * 所属行业id
 	 */
 	private Long industryInvolvedId;
 	/**
@@ -58,7 +58,7 @@ public class PerfectInformation implements Serializable{
 	 */
 	private String mainProduct;
 	/**
-	 * 公司覆盖区域
+	 * 公司覆盖区域id
 	 */
 	private Long companyCoverageId;
 	/**
@@ -94,7 +94,7 @@ public class PerfectInformation implements Serializable{
 	 */
 	private Date certificateTime;
 	/**
-	 * 专利类型
+	 * 专利类型id
 	 */
 	private Long patentTypeId;
 	/**

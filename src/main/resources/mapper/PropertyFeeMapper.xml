@@ -16,6 +16,26 @@
         <result column="vmemo" property="vmemo" jdbcType="VARCHAR"/>
         <result column="nyshouldmny" property="nyshouldmny" jdbcType="VARCHAR"/>
     </resultMap>
+    <resultMap id="forPay" type="map">
+        <id column="pk_feetype" property="pkFeeType"/>
+        <result column="months" property="months"/>
+        <result column="feetype" property="feetype"/>
+        <result column="dbegin" property="beginDate"/>
+        <result column="dend" property="stopDate"/>
+        <result column="amount" property="sum"/>
+    </resultMap>
+
+    <sql id="arrearsSql">
+        <where>
+            AND "pk_house"=#{houseInfoId} AND "dshpay" &lt;= TO_CHAR(SYSDATE,'YYYY-MM-DD') AND "isrz" = 'N'
+            <if test="startDate != null and startDate != ''">
+                AND "dshpay" >= #{startDate}
+            </if>
+            <if test="endDate != null and startDate != ''">
+                AND "dshpay" &lt;= #{endDate}
+            </if>
+        </where>
+    </sql>
     <!--用于插入从ERP获取的数据-->
     <insert id="insert" parameterType="cn.rzhd.wuye.vo.FeeVO">
         INSERT INTO T_PROPERTY_FEE ("pk_corp", "pk_customerid", "pk_project",
@@ -24,13 +44,28 @@
                                     "dend", "dshpay", "vmemo",
                                     "nyshouldmny")
         VALUES (#{pk_corp,jdbcType=CHAR}, #{pk_customerid,jdbcType=CHAR}, #{pk_project,jdbcType=CHAR},
-                                         #{pk_house,jdbcType=CHAR}, #{pk_receivablesid,jdbcType=CHAR},
-                                         #{pk_feetype,jdbcType=CHAR},
-                                         #{feetype,jdbcType=VARCHAR}, #{actmonth,jdbcType=VARCHAR},
-                                         #{dbegin,jdbcType=VARCHAR},
-                                         #{dend,jdbcType=VARCHAR}, #{dshpay,jdbcType=VARCHAR},
+                                          #{pk_house,jdbcType=CHAR}, #{pk_receivablesid,jdbcType=CHAR},
+                                          #{pk_feetype,jdbcType=CHAR},
+                                          #{feetype,jdbcType=VARCHAR}, #{actmonth,jdbcType=VARCHAR},
+                                          #{dbegin,jdbcType=VARCHAR},
+                                          #{dend,jdbcType=VARCHAR}, #{dshpay,jdbcType=VARCHAR},
                 #{vmemo,jdbcType=VARCHAR},
                 #{nyshouldmny,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertRzFee" parameterType="cn.rzhd.wuye.vo.FeeVO">
+        INSERT INTO T_PROPERTY_FEE ("pk_corp", "pk_customerid", "pk_project",
+                                    "pk_house", "pk_receivablesid", "pk_feetype",
+                                    "feetype", "actmonth", "dbegin",
+                                    "dend", "dshpay", "vmemo",
+                                    "nyshouldmny","isrz","nyjmy")
+        VALUES (#{pk_corp,jdbcType=CHAR}, #{pk_customerid,jdbcType=CHAR}, #{pk_project,jdbcType=CHAR},
+                                          #{pk_house,jdbcType=CHAR}, #{pk_receivablesid,jdbcType=CHAR},
+                                          #{pk_feetype,jdbcType=CHAR},
+                                          #{feetype,jdbcType=VARCHAR}, #{actmonth,jdbcType=VARCHAR},
+                                          #{dbegin,jdbcType=VARCHAR},
+                                          #{dend,jdbcType=VARCHAR}, #{dshpay,jdbcType=VARCHAR},
+                #{vmemo,jdbcType=VARCHAR},
+                #{nyshouldmny,jdbcType=VARCHAR},'Y',#{nyjmny})
     </insert>
     <select id="selectAll" resultMap="BaseResultMap" resultType="cn.rzhd.wuye.vo.query.FeeDataQuery">
         SELECT
@@ -48,25 +83,44 @@
             "vmemo",
             "nyshouldmny"
         FROM T_PROPERTY_FEE
-        WHERE "pk_house"=#{houseInfoId} AND "dshpay" > TO_CHAR(SYSDATE,'YYYY-MM-DD')
+        WHERE "pk_house" = #{houseInfoId} AND "dshpay" > TO_CHAR(SYSDATE, 'YYYY-MM-DD')
     </select>
     <select id="selectAllArrears" resultMap="BaseResultMap" parameterType="cn.rzhd.wuye.vo.query.ArrearsQuery">
         SELECT
-            "pk_corp",
-            "pk_customerid",
-            "pk_project",
-            "pk_house",
-            "pk_receivablesid",
-            "pk_feetype",
+        "pk_corp",
+        "pk_customerid",
+        "pk_project",
+        "pk_house",
+        "pk_receivablesid",
+        "pk_feetype",
+        "feetype",
+        "actmonth",
+        "dbegin",
+        "dend",
+        "dshpay",
+        "vmemo",
+        "nyshouldmny"
+        FROM T_PROPERTY_FEE
+        <include refid="arrearsSql"/>
+    </select>
+    <select id="selectForPay" parameterType="cn.rzhd.wuye.vo.query.ArrearsQuery" resultMap="forPay">
+        SELECT
+            SUBSTR("dshpay", 1, 7) AS months,
             "feetype",
-            "actmonth",
             "dbegin",
             "dend",
-            "dshpay",
-            "vmemo",
-            "nyshouldmny"
-        FROM T_PROPERTY_FEE
-        WHERE "pk_house"=#{houseInfoId} AND "dshpay" &lt;= TO_CHAR(SYSDATE,'YYYY-MM-DD')
-        AND "dshpay" BETWEEN #{startDate} and #{endDate}
+            "pk_feetype",
+            SUM("nyshouldmny")-SUM(NVL("nmny",0))     AS amount
+        FROM
+            "T_PROPERTY_FEE"
+       <include refid="arrearsSql"/>
+        GROUP BY
+            SUBSTR("dshpay", 1, 7),
+            "feetype",
+            "dbegin",
+            "dend",
+            "pk_feetype"
+        ORDER BY
+            SUBSTR("dshpay", 1, 7)
     </select>
 </mapper>
