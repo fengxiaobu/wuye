@@ -20,7 +20,7 @@ import cn.rzhd.wuye.utils.JsonUtils;
 @version: V1.0
  */
 @RestController
-@RequestMapping("/messageManage")
+@RequestMapping("/dist/messageManage")
 public class MessageManageController {
     
     @Autowired

@@ -25,8 +25,8 @@ public class HouseInfoServiceImpl implements IHouseInfoService {
     HouseInfoMapper houseInfoMapper;
 
     @Override
-    public HouseInfo getById(Long id) {
-        return houseInfoMapper.getById(id);
+    public HouseInfo getById(String houseInfoId) {
+        return houseInfoMapper.getById(houseInfoId);
     }
 
     @Override
@@ -72,7 +72,7 @@ public class HouseInfoServiceImpl implements IHouseInfoService {
      * @return
      */
     @Override
-    public List<HouseInfo> selectByQuery(String customerid) {
+    public HouseInfo selectByQuery(String customerid) {
         return houseInfoMapper.selectByQuery(customerid);
     }
 }

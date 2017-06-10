@@ -5,316 +5,362 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 /**
-© 2017 RZHD.CN
-@Package: cn.rzhd.ldug.bean
-@ClassName: ProjectInfo
-@Description: 描述：项目信息
-@author: zhongchaojie@rzhd.cn
-@date: 2017年5月23日 下午4:05:35
-@version: V1.0
-*/
-public class ProjectInfo implements Serializable{
-	
-	private static final long serialVersionUID = 1L;
-	/**
-	 * erp公司主键
-	 */
-	private String pkCorp;
-	/**
-	 * 项目编码
-	 */
-	private String vcode;
-	/**
-	 * 项目简称
-	 */
-	private String vshortname;
-	/**
-	 * 责任公司
-	 */
-	private String pkResponsecorp;
-	/**
-	 * 内部编码
-	 */
-	private String vincode;
-	/**
-	 * 装修管理费单价
-	 */
-	private BigDecimal decorateManage;
-	/**
-	 * 出入证押金(个)
-	 */
-	private BigDecimal passcardPledge;
-	/**
-	 * 出入证工本费(个)
-	 */
-	private BigDecimal passcardCost;
-	/**
-	 * 装修面积,小于此值或大于等于此值分别计算押金单价
-	 */
-	private BigDecimal decorateArea;
-	/**
-	 * 小于设置的装修面积的押金单价
-	 */
-	private BigDecimal lessPledge;
-	/**
-	 * 大于等于设置的装修面积的押金单价
-	 */
-	private BigDecimal morePledge;
-	/**
-	 * 项目信息id
-	 */
-	private String pkProject;
+ * © 2017 RZHD.CN
+ *
+ * @Package: cn.rzhd.ldug.bean
+ * @ClassName: ProjectInfo
+ * @Description: 描述：项目信息
+ * @author: zhongchaojie@rzhd.cn
+ * @date: 2017年5月23日 下午4:05:35
+ * @version: V1.0
+ */
+public class ProjectInfo implements Serializable {
 
-	/**
-	 * 项目名称
-	 */
-	private String projectName;
-	/**
-	 * 项目地址
-	 */
-	private String projectAddress;
-	/**
-	 * 开发收款公司
-	 */
-	private String developmentCollectingCompany;	
-	/**
-	 * 开发收款账户
-	 */
-	private String developmentCollectingAccount;
-	/**
-	 * 物业收款公司
-	 */
-	private String propertyCollectingCompany;
-	/**
-	 * 物业收款账户
-	 */
-	private String propertyCollectingAccount;
-	/**
-	 * 水费单价
-	 */
-	private BigDecimal waterPrice;
-	/**
-	 * 电费单价
-	 */
-	private BigDecimal electricityPrice;
-	/**
-	 * 客服电话
-	 */
-	private String servicePhone;
-	/**
-	 * 项目电话
-	 */
-	private String objectPhone;
-	/**
-	 * 创建时间
-	 */
-	private Date creationTime;
-	/**
-	 * 修改时间
-	 */
-	private Date updateTime;
-	/**
-	 * 状态（0-正常，1-删除）
-	 */
-	private Integer status;
+    private static final long serialVersionUID = 1L;
+    /**
+     * erp公司主键
+     */
+    private String pkCorp;
+    /**
+     * 项目编码
+     */
+    private String vcode;
+    /**
+     * 项目简称
+     */
+    private String vshortname;
+    /**
+     * 责任公司
+     */
+    private String pkResponsecorp;
+    /**
+     * 内部编码
+     */
+    private String vincode;
+    /**
+     * 装修管理费单价
+     */
+    private BigDecimal decorateManage;
+    /**
+     * 出入证押金(个)
+     */
+    private BigDecimal passcardPledge;
+    /**
+     * 出入证工本费(个)
+     */
+    private BigDecimal passcardCost;
+    /**
+     * 装修面积,小于此值或大于等于此值分别计算押金单价
+     */
+    private BigDecimal decorateArea;
+    /**
+     * 小于设置的装修面积的押金单价
+     */
+    private BigDecimal lessPledge;
+    /**
+     * 大于等于设置的装修面积的押金单价
+     */
+    private BigDecimal morePledge;
+    /**
+     * 项目信息id
+     */
+    private String pkProject;
 
-	public String getPkCorp() {
-		return pkCorp;
-	}
+    /**
+     * 项目名称
+     */
+    private String projectName;
+    /**
+     * 项目地址
+     */
+    private String projectAddress;
+    /**
+     * 开发收款公司
+     */
+    private String developmentCollectingCompany;
+    /**
+     * 开发收款账户
+     */
+    private String developmentCollectingAccount;
+    /**
+     * 物业收款公司
+     */
+    private String propertyCollectingCompany;
+    /**
+     * 物业收款账户
+     */
+    private String propertyCollectingAccount;
+    /**
+     * 水费单价
+     */
+    private BigDecimal waterPrice;
+    /**
+     * 电费单价
+     */
+    private BigDecimal electricityPrice;
+    /**
+     * 客服电话
+     */
+    private String servicePhone;
+    /**
+     * 项目电话
+     */
+    private String objectPhone;
+    /**
+     * 创建时间
+     */
+    private Date creationTime;
+    /**
+     * 修改时间
+     */
+    private Date updateTime;
+    /**
+     * 状态（0-正常，1-删除）
+     */
+    private Integer status;
+    private Date startDate;
+    private Date endDate;
+    private BigDecimal firstMoney;
+    private BigDecimal everyMoney;
+    private Date updateDate;
 
-	public void setPkCorp(String pkCorp) {
-		this.pkCorp = pkCorp;
-	}
+    public String getPkCorp() {
+        return pkCorp;
+    }
 
-	public String getVcode() {
-		return vcode;
-	}
+    public void setPkCorp(String pkCorp) {
+        this.pkCorp = pkCorp;
+    }
 
-	public void setVcode(String vcode) {
-		this.vcode = vcode;
-	}
+    public String getVcode() {
+        return vcode;
+    }
 
-	public String getVshortname() {
-		return vshortname;
-	}
+    public void setVcode(String vcode) {
+        this.vcode = vcode;
+    }
 
-	public void setVshortname(String vshortname) {
-		this.vshortname = vshortname;
-	}
+    public String getVshortname() {
+        return vshortname;
+    }
 
-	public String getPkResponsecorp() {
-		return pkResponsecorp;
-	}
+    public void setVshortname(String vshortname) {
+        this.vshortname = vshortname;
+    }
 
-	public void setPkResponsecorp(String pkResponsecorp) {
-		this.pkResponsecorp = pkResponsecorp;
-	}
+    public String getPkResponsecorp() {
+        return pkResponsecorp;
+    }
 
-	public String getVincode() {
-		return vincode;
-	}
+    public void setPkResponsecorp(String pkResponsecorp) {
+        this.pkResponsecorp = pkResponsecorp;
+    }
 
-	public void setVincode(String vincode) {
-		this.vincode = vincode;
-	}
+    public String getVincode() {
+        return vincode;
+    }
 
-	public BigDecimal getDecorateManage() {
-		return decorateManage;
-	}
+    public void setVincode(String vincode) {
+        this.vincode = vincode;
+    }
 
-	public void setDecorateManage(BigDecimal decorateManage) {
-		this.decorateManage = decorateManage;
-	}
+    public BigDecimal getDecorateManage() {
+        return decorateManage;
+    }
 
-	public BigDecimal getPasscardPledge() {
-		return passcardPledge;
-	}
+    public void setDecorateManage(BigDecimal decorateManage) {
+        this.decorateManage = decorateManage;
+    }
 
-	public void setPasscardPledge(BigDecimal passcardPledge) {
-		this.passcardPledge = passcardPledge;
-	}
+    public BigDecimal getPasscardPledge() {
+        return passcardPledge;
+    }
 
-	public BigDecimal getPasscardCost() {
-		return passcardCost;
-	}
+    public void setPasscardPledge(BigDecimal passcardPledge) {
+        this.passcardPledge = passcardPledge;
+    }
 
-	public void setPasscardCost(BigDecimal passcardCost) {
-		this.passcardCost = passcardCost;
-	}
+    public BigDecimal getPasscardCost() {
+        return passcardCost;
+    }
 
-	public BigDecimal getDecorateArea() {
-		return decorateArea;
-	}
+    public void setPasscardCost(BigDecimal passcardCost) {
+        this.passcardCost = passcardCost;
+    }
 
-	public void setDecorateArea(BigDecimal decorateArea) {
-		this.decorateArea = decorateArea;
-	}
+    public BigDecimal getDecorateArea() {
+        return decorateArea;
+    }
 
-	public BigDecimal getLessPledge() {
-		return lessPledge;
-	}
+    public void setDecorateArea(BigDecimal decorateArea) {
+        this.decorateArea = decorateArea;
+    }
 
-	public void setLessPledge(BigDecimal lessPledge) {
-		this.lessPledge = lessPledge;
-	}
+    public BigDecimal getLessPledge() {
+        return lessPledge;
+    }
 
-	public BigDecimal getMorePledge() {
-		return morePledge;
-	}
+    public void setLessPledge(BigDecimal lessPledge) {
+        this.lessPledge = lessPledge;
+    }
 
-	public void setMorePledge(BigDecimal morePledge) {
-		this.morePledge = morePledge;
-	}
+    public BigDecimal getMorePledge() {
+        return morePledge;
+    }
 
-	public String getPkProject() {
-		return pkProject;
-	}
+    public void setMorePledge(BigDecimal morePledge) {
+        this.morePledge = morePledge;
+    }
 
-	public void setPkProject(String pkProject) {
-		this.pkProject = pkProject;
-	}
+    public String getPkProject() {
+        return pkProject;
+    }
 
-	public String getProjectName() {
-		return projectName;
-	}
+    public void setPkProject(String pkProject) {
+        this.pkProject = pkProject;
+    }
 
-	public void setProjectName(String projectName) {
-		this.projectName = projectName;
-	}
+    public String getProjectName() {
+        return projectName;
+    }
 
-	public String getProjectAddress() {
-		return projectAddress;
-	}
+    public void setProjectName(String projectName) {
+        this.projectName = projectName;
+    }
 
-	public void setProjectAddress(String projectAddress) {
-		this.projectAddress = projectAddress;
-	}
+    public String getProjectAddress() {
+        return projectAddress;
+    }
 
-	public String getDevelopmentCollectingCompany() {
-		return developmentCollectingCompany;
-	}
+    public void setProjectAddress(String projectAddress) {
+        this.projectAddress = projectAddress;
+    }
 
-	public void setDevelopmentCollectingCompany(String developmentCollectingCompany) {
-		this.developmentCollectingCompany = developmentCollectingCompany;
-	}
+    public String getDevelopmentCollectingCompany() {
+        return developmentCollectingCompany;
+    }
 
-	public String getDevelopmentCollectingAccount() {
-		return developmentCollectingAccount;
-	}
+    public void setDevelopmentCollectingCompany(String developmentCollectingCompany) {
+        this.developmentCollectingCompany = developmentCollectingCompany;
+    }
 
-	public void setDevelopmentCollectingAccount(String developmentCollectingAccount) {
-		this.developmentCollectingAccount = developmentCollectingAccount;
-	}
+    public String getDevelopmentCollectingAccount() {
+        return developmentCollectingAccount;
+    }
 
-	public String getPropertyCollectingCompany() {
-		return propertyCollectingCompany;
-	}
+    public void setDevelopmentCollectingAccount(String developmentCollectingAccount) {
+        this.developmentCollectingAccount = developmentCollectingAccount;
+    }
 
-	public void setPropertyCollectingCompany(String propertyCollectingCompany) {
-		this.propertyCollectingCompany = propertyCollectingCompany;
-	}
+    public String getPropertyCollectingCompany() {
+        return propertyCollectingCompany;
+    }
 
-	public String getPropertyCollectingAccount() {
-		return propertyCollectingAccount;
-	}
+    public void setPropertyCollectingCompany(String propertyCollectingCompany) {
+        this.propertyCollectingCompany = propertyCollectingCompany;
+    }
 
-	public void setPropertyCollectingAccount(String propertyCollectingAccount) {
-		this.propertyCollectingAccount = propertyCollectingAccount;
-	}
+    public String getPropertyCollectingAccount() {
+        return propertyCollectingAccount;
+    }
 
-	public BigDecimal getWaterPrice() {
-		return waterPrice;
-	}
+    public void setPropertyCollectingAccount(String propertyCollectingAccount) {
+        this.propertyCollectingAccount = propertyCollectingAccount;
+    }
 
-	public void setWaterPrice(BigDecimal waterPrice) {
-		this.waterPrice = waterPrice;
-	}
+    public BigDecimal getWaterPrice() {
+        return waterPrice;
+    }
 
-	public BigDecimal getElectricityPrice() {
-		return electricityPrice;
-	}
+    public void setWaterPrice(BigDecimal waterPrice) {
+        this.waterPrice = waterPrice;
+    }
 
-	public void setElectricityPrice(BigDecimal electricityPrice) {
-		this.electricityPrice = electricityPrice;
-	}
+    public BigDecimal getElectricityPrice() {
+        return electricityPrice;
+    }
 
-	public String getServicePhone() {
-		return servicePhone;
-	}
+    public void setElectricityPrice(BigDecimal electricityPrice) {
+        this.electricityPrice = electricityPrice;
+    }
 
-	public void setServicePhone(String servicePhone) {
-		this.servicePhone = servicePhone;
-	}
+    public String getServicePhone() {
+        return servicePhone;
+    }
 
-	public String getObjectPhone() {
-		return objectPhone;
-	}
+    public void setServicePhone(String servicePhone) {
+        this.servicePhone = servicePhone;
+    }
 
-	public void setObjectPhone(String objectPhone) {
-		this.objectPhone = objectPhone;
-	}
+    public String getObjectPhone() {
+        return objectPhone;
+    }
 
-	public Date getCreationTime() {
-		return creationTime;
-	}
+    public void setObjectPhone(String objectPhone) {
+        this.objectPhone = objectPhone;
+    }
 
-	public void setCreationTime(Date creationTime) {
-		this.creationTime = creationTime;
-	}
+    public Date getCreationTime() {
+        return creationTime;
+    }
 
-	public Date getUpdateTime() {
-		return updateTime;
-	}
+    public void setCreationTime(Date creationTime) {
+        this.creationTime = creationTime;
+    }
 
-	public void setUpdateTime(Date updateTime) {
-		this.updateTime = updateTime;
-	}
+    public Date getUpdateTime() {
+        return updateTime;
+    }
 
-	public Integer getStatus() {
-		return status;
-	}
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
 
-	public void setStatus(Integer status) {
-		this.status = status;
-	}
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
+    public BigDecimal getFirstMoney() {
+        return firstMoney;
+    }
+
+    public void setFirstMoney(BigDecimal firstMoney) {
+        this.firstMoney = firstMoney;
+    }
+
+    public BigDecimal getEveryMoney() {
+        return everyMoney;
+    }
+
+    public void setEveryMoney(BigDecimal everyMoney) {
+        this.everyMoney = everyMoney;
+    }
+
+    public Date getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(Date updateDate) {
+        this.updateDate = updateDate;
+    }
 }

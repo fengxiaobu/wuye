@@ -13,7 +13,7 @@ import java.util.List;
 @Mapper
 public interface HouseInfoMapper {
 
-    HouseInfo getById(Long id);
+    HouseInfo getById(String houseInfoId);
 
     List<HouseInfo> getAll();
 
@@ -23,6 +23,6 @@ public interface HouseInfoMapper {
 
     void delete(Long id);
 
-    List<HouseInfo> selectByQuery(@Param("customerid") String customerid);
+    HouseInfo selectByQuery(@Param("customerid") String customerid);
 
 }

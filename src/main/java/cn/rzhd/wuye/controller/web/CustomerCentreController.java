@@ -1,17 +1,16 @@
 package cn.rzhd.wuye.controller.web;
 
-import java.util.List;
-import java.util.Map;
-
+import cn.rzhd.wuye.bean.Customer;
+import cn.rzhd.wuye.bean.PerfectInformation;
+import cn.rzhd.wuye.service.ICustomerCentreService;
+import cn.rzhd.wuye.utils.JsonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import cn.rzhd.wuye.bean.Customer;
-import cn.rzhd.wuye.bean.PerfectInformation;
-import cn.rzhd.wuye.service.ICustomerCentreService;
-import cn.rzhd.wuye.utils.JsonUtils;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 
@@ -24,7 +23,7 @@ import cn.rzhd.wuye.utils.JsonUtils;
 @version: V1.0
  */
 @RestController
-@RequestMapping(value="/CustomerCentre",method=RequestMethod.POST)
+@RequestMapping(value="/dist/CustomerCentre",method=RequestMethod.POST)
 public class CustomerCentreController {
     
     @Autowired

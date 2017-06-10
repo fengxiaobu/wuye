@@ -1,11 +1,13 @@
 package cn.rzhd.wuye.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by hasee on 2017/6/1.
  */
-public class Customer {
+public class Customer implements Serializable{
+    private static final long serialVersionUID = 1L;
     
     /**
      * 公司主键

@@ -27,7 +27,7 @@ public class HouseInfoServiceTest {
 
     @Test
     public void getByIdTest(){
-        HouseInfo houseInfo = houseInfoService.getById(1L);
+        HouseInfo houseInfo = houseInfoService.getById("");
         System.out.println(houseInfo.getCustomerId());
     }
     
@@ -59,7 +59,6 @@ public class HouseInfoServiceTest {
         HouseInfo houseInfo = new HouseInfo();
         houseInfo.setCustomerId("xxx");
         houseInfo.setEnterStatus(1);
-        houseInfo.setErpHouseId("asdf");
         houseInfo.setHouseProperty("TestTest");
         houseInfo.setProjectInfoId("123");
         houseInfo.setStarLevel(3);
@@ -69,7 +68,7 @@ public class HouseInfoServiceTest {
 
     @Test
     public void updateTest(){
-        HouseInfo houseInfo = houseInfoService.getById(3L);
+        HouseInfo houseInfo = houseInfoService.getById("");
         houseInfo.setHouseProperty("测试修改!");
         houseInfoService.update(houseInfo);
     }

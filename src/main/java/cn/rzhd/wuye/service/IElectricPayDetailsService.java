@@ -1,8 +1,11 @@
 package cn.rzhd.wuye.service;
 
+import cn.rzhd.wuye.bean.Ammeter;
 import cn.rzhd.wuye.bean.ElectricFeePayDetails;
 import cn.rzhd.wuye.vo.query.UtilitiesQuery;
 
+import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -11,4 +14,10 @@ import java.util.List;
 public interface IElectricPayDetailsService {
 
     List<ElectricFeePayDetails> queryAll(UtilitiesQuery query);
+
+    List<Ammeter> getAmmeters(String houseInfoId);
+
+    void addDetails(ElectricFeePayDetails details);
+
+    BigDecimal getAstrictPaid(String houseInfoId, Date startDate,Date endDate);
 }

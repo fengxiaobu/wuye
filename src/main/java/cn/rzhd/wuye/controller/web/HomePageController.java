@@ -24,7 +24,7 @@ import cn.rzhd.wuye.utils.JsonUtils;
 @version: V1.0
  */
 @RestController
-@RequestMapping("/homePage")
+@RequestMapping("/dist/homePage")
 public class HomePageController {
 
     @Autowired

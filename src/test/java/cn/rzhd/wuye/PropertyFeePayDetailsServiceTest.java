@@ -20,7 +20,7 @@ public class PropertyFeePayDetailsServiceTest extends BaseTest{
     @Test
     public void queryAllTest(){
         PropertyFeePayDetailsQuery query = new PropertyFeePayDetailsQuery();
-        query.setHouseInfoId(123L);
+        query.setHouseInfoId("");
         query.setInvoiceStatus(0);
         PageHelper.startPage(1,5);
         List<PropertyFeePayDetails> list = mapper.queryAll(query);
