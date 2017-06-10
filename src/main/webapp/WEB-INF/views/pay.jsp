@@ -14,7 +14,7 @@
 </head>
 <body>
 <
-<form action="http://newpayment-test.chinapay.com/CTITS/service/rest/forward/sta/000000000017/0/0/0/0/0" method="post">
+<form action="${pageContext.request.contextPath}/pay" method="post">
 <%--<form action="http://newpayment-test.chinapay.com/CTITS/service/rest/page/nref/000000000017/0/0/0/0/0" method="post">--%>
     <table>
         <tr>
@@ -123,10 +123,10 @@
             <td>风控数据:</td>
             <td><input type="text" name="RiskData"/></td>
         </tr>--%>
-        <tr>
+       <%-- <tr>
             <td>签名:</td>
             <td><input type="text" name="Signature" value="fdsafsadfsa"/></td>
-        </tr>
+        </tr>--%>
     </table>
     <input type="submit" value="toPAy">
 </form>
