@@ -44,4 +44,13 @@ public interface IPropertyFeeService{
      * @return
      */
     Map<String,List> queryForPay(ArrearsQuery query);
+
+    /**
+     * 入驻物业费用
+     *
+     * @param query
+     * @return
+     */
+    List<PropertyFee> rzselectAll(FeeDataQuery query);
+
 }

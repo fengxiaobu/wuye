@@ -62,4 +62,15 @@ public class PropertyFeeServiceImpl implements IPropertyFeeService {
         return map;
     }
 
+    /**
+     * 入驻物业费用
+     *
+     * @param query
+     * @return
+     */
+    @Override
+    public List<PropertyFee> rzselectAll(FeeDataQuery query) {
+        return mapper.rzselectAll(query);
+    }
+
 }

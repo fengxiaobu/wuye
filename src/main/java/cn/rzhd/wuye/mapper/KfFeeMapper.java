@@ -21,6 +21,13 @@ public interface KfFeeMapper {
 
     List<KfFee> selectAll(FeeDataQuery query);
 
+    /**
+     * 入驻开发费
+     * @param query
+     * @return
+     */
+    List<KfFee> selectAllRZ(FeeDataQuery query);
+
     List<KfFee> selectAllArrears(ArrearsQuery query);
 
     List<Map<String,String>> selectForPay(ArrearsQuery query);
