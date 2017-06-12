@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.rzhd.wuye.mapper.RentContractMapper">
-    <select id="getById" parameterType="string" resultType="cn.rzhd.wuye.vo.PactVO">
+    <select id="getByPkId" parameterType="String" resultMap="rentContractMap">
         SELECT
             "pk_corp",
             "pk_customerid",
@@ -22,6 +22,21 @@
         FROM "T_Rent_Contract"
         WHERE "pk_pact" = #{pk_pact}
     </select>
+    <resultMap type="cn.rzhd.wuye.vo.PactVO" id="rentContractMap">
+    	<id property="pk_pact" column="pk_pact"/>
+    	<result property="house" column="house"/>
+    	<result property="nrentarea" column="nrentarea"/>
+    	<result property="dpactend" column="dpactend"/>
+    	<result property="dpactstart" column="dpactstart"/>
+    	<result property="nzlbzjmny" column="nzlbzjmny"/>
+    	<result property="nhtysmny" column="nhtysmny"/>
+    	<result property="nhtssmny" column="nhtssmny"/>
+    	<result property="dysdate" column="dysdate"/>
+    	<result property="nsbzjyjmny" column="nsbzjyjmny"/>
+    	
+    	
+    </resultMap>
+    
     <insert id="add" parameterType="cn.rzhd.wuye.vo.PactVO">
         INSERT INTO "T_Rent_Contract" ("pk_corp",
                                        "pk_customerid",

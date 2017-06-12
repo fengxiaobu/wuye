@@ -2,6 +2,7 @@ package cn.rzhd.wuye;
 
 import cn.rzhd.wuye.bean.HouseInfo;
 import cn.rzhd.wuye.common.WebService;
+import cn.rzhd.wuye.mapper.HouseInfoMapper;
 import cn.rzhd.wuye.service.IHouseInfoService;
 import cn.rzhd.wuye.utils.JsonUtils;
 import cn.rzhd.wuye.vo.HouseVO;

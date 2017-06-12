@@ -15,6 +15,8 @@ public interface ISellContractService {
      * @return  返回元素为SignVO的List
      */
     List<SignVO> getSellContract(String billType, String companyId);
+    
+    List<SignVO> getSellContract(String pk_sign);
 
     /**
      *

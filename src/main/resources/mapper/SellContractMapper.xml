@@ -4,25 +4,27 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.rzhd.wuye.mapper.SellContractMapper">
     <select id="getById" parameterType="string" resultType="cn.rzhd.wuye.vo.SignVO">
-        SELECT pk_corp,
-            pk_customerid,
-            pk_project,
-            pk_sign,
-            pk_house,
-            house,
-            nsellarea,
-            nprice,
-            nythisdiscountmny,
-            nytotalmnysign,
-            fpmcourse,
-            dbefinishdate,
-            nyshouldmny,
-            nyfactmny,
-            nyshouldinterestmny,
-            nyfactinterestmny
-        FROM T_Sell_Contract
-        WHERE pk_sign=#{pk_sign}
+	SELECT 
+	"pk_corp",
+	"pk_customerid",
+	"pk_project",
+	"pk_sign",
+	"pk_house",
+	"house",
+	"nsellarea",
+	"nprice",
+	"nythisdiscountmny",
+	"nytotalmnysign",
+	"fpmcourse",
+	"dbefinishdate",
+	"nyshouldmny",
+	"nyfactmny",
+	"nyshouldinterestmny",
+	"nyfactinterestmny"
+	FROM "T_Sell_Contract"
+	WHERE "pk_sign"=#{pk_sign}
     </select>
+    
     <insert id="add" parameterType="cn.rzhd.wuye.vo.SignVO">
         INSERT INTO "T_Sell_Contract" ("pk_corp",
                                      "pk_customerid",

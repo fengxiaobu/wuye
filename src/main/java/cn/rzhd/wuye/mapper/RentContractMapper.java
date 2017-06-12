@@ -1,6 +1,10 @@
 package cn.rzhd.wuye.mapper;
 
 import cn.rzhd.wuye.vo.PactVO;
+
+import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Mapper;
 
 /**
@@ -14,6 +18,8 @@ public interface RentContractMapper {
      * @return 租赁合同载体对象
      */
     PactVO getById(String pk_pact);
+    
+    List<PactVO> getByPkId(String pk_pact);
 
     void add(PactVO pactVO);
 }

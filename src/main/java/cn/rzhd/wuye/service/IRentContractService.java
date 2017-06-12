@@ -15,6 +15,10 @@ public interface IRentContractService {
      * @return
      */
     List<PactVO> getRentContract(String billType, String companyId);
+    
+    
+    List<PactVO> getRentContract(String pk_pact);
+    
 
     /**
      *

@@ -32,6 +32,26 @@ public class ProjectVO implements Serializable {
 	private String vdef8;// 备用字段8
 	private String vdef9;// 备用字段9
 	private String vdef10;// 备用字段10
+	
+	private String project_address;
+	private String object_phone;
+	
+
+	public String getProject_address() {
+		return project_address;
+	}
+
+	public void setProject_address(String project_address) {
+		this.project_address = project_address;
+	}
+
+	public String getObject_phone() {
+		return object_phone;
+	}
+
+	public void setObject_phone(String object_phone) {
+		this.object_phone = object_phone;
+	}
 
 	public String getPk_corp() {
 		return pk_corp;

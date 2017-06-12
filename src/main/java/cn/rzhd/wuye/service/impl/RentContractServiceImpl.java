@@ -50,4 +50,12 @@ public class RentContractServiceImpl implements IRentContractService {
     public void addRentContract(PactVO pactVO) {
         mapper.add(pactVO);
     }
+
+	@Override
+	public List<PactVO> getRentContract(String pk_pact) {
+		List<PactVO> byPkId = mapper.getByPkId(pk_pact);
+		return byPkId;
+	}
+
+	
 }

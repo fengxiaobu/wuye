@@ -50,10 +50,21 @@ public class HouseVO implements Serializable {
 	private String vdef8;// 备用字段8
 	private String vdef9;// 备用字段9
 	private String vdef10;// 备用字段10
+	
+	private ProjectVO projectVO;
+	
+	public ProjectVO getProjectVO() {
+		return projectVO;
+	}
+	
+	public void setProjectVO(ProjectVO projectVO) {
+		this.projectVO = projectVO;
+	}
 
 	public String getPk_corp() {
 		return pk_corp;
 	}
+
 
 	public void setPk_corp(String pk_corp) {
 		this.pk_corp = pk_corp;

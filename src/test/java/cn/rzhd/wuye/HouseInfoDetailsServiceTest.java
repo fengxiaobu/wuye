@@ -1,10 +1,14 @@
 package cn.rzhd.wuye;
 
 import cn.rzhd.wuye.common.WebService;
+import cn.rzhd.wuye.mapper.HouseInfoDetailsMapper;
 import cn.rzhd.wuye.service.IHouseInfoDetailsService;
 import cn.rzhd.wuye.utils.JsonUtils;
 import cn.rzhd.wuye.vo.*;
 import com.github.pagehelper.StringUtil;
+
+import java.util.List;
+
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -15,6 +19,17 @@ public class HouseInfoDetailsServiceTest extends BaseTest {
 
     @Autowired
     IHouseInfoDetailsService service;
+    @Autowired
+    HouseInfoDetailsMapper mapper;
+    
+    @Test
+    public void getByIdTest1(){
+    	String vhname= "总部大观3号地一期1号楼1单元 1813" ;
+		List<HouseVO> houseVOs = service.getHouseInfoDetails(vhname);
+		for (HouseVO houseVO : houseVOs) {
+			System.out.println(houseVO);
+		}
+    }
 
     @Test
     public void addHouseInfoDetailsTest(){

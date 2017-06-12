@@ -156,4 +156,37 @@
             "nrgardenarea"
         FROM T_HOUSE_INFO_DETAILS
     </select>
+    
+    <select id="getHouseInfoByName" parameterType="String" resultMap="houseVOMap">
+       SELECT 
+	       "pk_project",
+	       "project",
+	       "vhname",
+	       "situation",
+	       "nbuildarea",
+	       OBJECT_PHONE,
+	       PROJECT_ADDRESS,
+	       PK_PROJECT 
+       FROM 
+       		T_HOUSE_INFO_DETAILS 
+       LEFT JOIN 
+       		T_PROJECT_INFO 
+       ON 
+       		"pk_project"=PK_PROJECT 
+       WHERE 
+       		"vhname"=#{vhname}
+    </select>
+    
+    <resultMap type="cn.rzhd.wuye.vo.HouseVO" id="houseVOMap">
+    	<id property="pk_project" column="pk_project"/>
+    	<result property="project" column="project"/>
+    	<result property="vhname" column="vhname"/>
+    	<result property="situation" column="situation"/>
+    	<result property="nbuildarea" column="nbuildarea"/>
+    	<association property="projectVO" javaType="cn.rzhd.wuye.vo.ProjectVO">
+			<id property="pk_project" column="PK_PROJECT" />
+			<result property="object_phone" column="OBJECT_PHONE" />
+			<result property="project_address" column="PROJECT_ADDRESS" />
+	  </association>
+    </resultMap>
 </mapper>
