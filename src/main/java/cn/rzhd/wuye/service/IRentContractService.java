@@ -17,7 +17,7 @@ public interface IRentContractService {
     List<PactVO> getRentContract(String billType, String companyId);
     
     
-    List<PactVO> getRentContract(String pk_pact);
+    List<PactVO> getRentContract(String house);
     
 
     /**
@@ -25,4 +25,6 @@ public interface IRentContractService {
      * @param pactVO 存入租赁合同信息
      */
     void addRentContract(PactVO pactVO);
+    
+    List<PactVO> getBackAll();
 }
