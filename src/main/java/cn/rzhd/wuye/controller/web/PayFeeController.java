@@ -29,8 +29,6 @@ public class PayFeeController {
     @Autowired
     IPayFeeService payFeeService;
     @Autowired
-    IProjectInfoService projectInfoService;
-    @Autowired
     IHouseInfoService houseInfoService;
 
     /**

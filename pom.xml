@@ -324,6 +324,18 @@
             <version>1.6</version>
         </dependency>
 
+        <dependency>
+            <groupId>chinapay</groupId>
+            <artifactId>chinapayfilesecure</artifactId>
+            <version>1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>chinapay</groupId>
+            <artifactId>chinapaysecure</artifactId>
+            <version>1.0</version>
+        </dependency>
+
         <!-- https://mvnrepository.com/artifact/org.apache.tomcat/tomcat-util -->
         <!--   <dependency>
               <groupId>org.apache.tomcat</groupId>

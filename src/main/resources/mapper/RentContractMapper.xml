@@ -22,6 +22,11 @@
         FROM "T_Rent_Contract"
         WHERE "pk_pact" = #{pk_pact}
     </select>
+
+    <select id="queryByCustomer" parameterType="string" resultType="cn.rzhd.wuye.vo.PactVO">
+        SELECT DISTINCT "pk_house","house","pk_project" FROM "T_Rent_Contract" WHERE "pk_customerid"=#{customerId}
+    </select>
+
     <insert id="add" parameterType="cn.rzhd.wuye.vo.PactVO">
         INSERT INTO "T_Rent_Contract" ("pk_corp",
                                        "pk_customerid",

@@ -1,7 +1,6 @@
 package cn.rzhd.wuye;
 
 import cn.rzhd.wuye.bean.Customer;
-import cn.rzhd.wuye.bean.HouseInfo;
 import cn.rzhd.wuye.common.WebService;
 import cn.rzhd.wuye.service.ICustomerService;
 import cn.rzhd.wuye.utils.JsonUtils;
@@ -26,13 +25,13 @@ public class CustomerServiceTest extends BaseTest {
         cus.setVccode(username);
         String tempPassword="123456";
         cus.setPassword(tempPassword);
-        Customer customer = service.loginByPwd(cus);
-        System.out.println(customer);
-        List<HouseInfo> houseInfo = customer.getHouseInfos();
-        for (HouseInfo info : houseInfo) {
-            System.out.println(info.getHouseInfoId());
-            System.out.println(info.getHouseProperty());
-        }
+        List<Customer> customers = service.loginByPwd(cus);
+        System.out.println(customers);
+        //List<HouseInfo> houseInfo = customer.getHouseInfos();
+//        for (HouseInfo info : houseInfo) {
+//            System.out.println(info.getHouseInfoId());
+//            System.out.println(info.getHouseProperty());
+//        }
 
 
     }

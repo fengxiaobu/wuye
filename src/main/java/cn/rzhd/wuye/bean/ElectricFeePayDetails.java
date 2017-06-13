@@ -16,7 +16,7 @@ public class ElectricFeePayDetails implements Serializable {
     /**
      * 房产id
      */
-    private Long houseInfoId;
+    private String houseInfoId;
     
     /**
      * 客户名称
@@ -130,11 +130,11 @@ public class ElectricFeePayDetails implements Serializable {
         this.electricFeePayDetailsId = electricFeePayDetailsId;
     }
 
-    public Long getHouseInfoId() {
+    public String getHouseInfoId() {
         return houseInfoId;
     }
 
-    public void setHouseInfoId(Long houseInfoId) {
+    public void setHouseInfoId(String houseInfoId) {
         this.houseInfoId = houseInfoId;
     }
 

@@ -29,10 +29,23 @@
         <where>
             AND "pk_house"=#{houseInfoId} AND "dshpay" &lt;= TO_CHAR(SYSDATE,'YYYY-MM-DD') AND "isrz" = 'N'
             <if test="startDate != null and startDate != ''">
-                AND "dshpay" >= #{startDate}
+                AND SUBSTR("dshpay",1,7) >= SUBSTR(#{startDate},1,7)
             </if>
-            <if test="endDate != null and startDate != ''">
-                AND "dshpay" &lt;= #{endDate}
+            <if test="endDate != null and endDate != ''">
+                AND SUBSTR("dshpay",1,7) &lt;=
+                SUBSTR(to_char(to_date(substr(#{endDate},1,7),'YYYY-MM')+interval'1'month,'YYYY-MM'),1,7)
+            </if>
+        </where>
+    </sql>
+    <sql id="queryForPay">
+        <where>
+            AND "pk_house"=#{houseInfoId} AND "dshpay" &lt;= TO_CHAR(SYSDATE,'YYYY-MM-DD') AND "isrz" = 'N'
+            <if test="startDate != null and startDate != ''">
+                AND SUBSTR("dshpay",1,7) >= SUBSTR(#{startDate},1,7)
+            </if>
+            <if test="endDate != null and endDate != ''">
+                AND SUBSTR("dshpay",1,7) &lt;=
+                SUBSTR(to_char(to_date(#{endDate},'YYYY-MM-DD')+interval'1'month,'YYYY-MM-DD'),1,7)
             </if>
         </where>
     </sql>
@@ -57,7 +70,7 @@
                                     "pk_house", "pk_receivablesid", "pk_feetype",
                                     "feetype", "actmonth", "dbegin",
                                     "dend", "dshpay", "vmemo",
-                                    "nyshouldmny","isrz","nyjmy")
+                                    "nyshouldmny", "isrz", "nyjmy")
         VALUES (#{pk_corp,jdbcType=CHAR}, #{pk_customerid,jdbcType=CHAR}, #{pk_project,jdbcType=CHAR},
                                           #{pk_house,jdbcType=CHAR}, #{pk_receivablesid,jdbcType=CHAR},
                                           #{pk_feetype,jdbcType=CHAR},
@@ -65,7 +78,7 @@
                                           #{dbegin,jdbcType=VARCHAR},
                                           #{dend,jdbcType=VARCHAR}, #{dshpay,jdbcType=VARCHAR},
                 #{vmemo,jdbcType=VARCHAR},
-                #{nyshouldmny,jdbcType=VARCHAR},'Y',#{nyjmny})
+                #{nyshouldmny,jdbcType=VARCHAR}, 'Y', #{nyjmny})
     </insert>
     <select id="selectAll" resultMap="BaseResultMap" resultType="cn.rzhd.wuye.vo.query.FeeDataQuery">
         SELECT
@@ -101,7 +114,7 @@
             "vmemo",
             "nyshouldmny"
         FROM T_PROPERTY_FEE
-        WHERE "isrz"='Y' AND "pk_house" = #{houseInfoId}
+        WHERE "isrz" = 'Y' AND "pk_house" = #{houseInfoId}
     </select>
     <select id="selectAllArrears" resultMap="BaseResultMap" parameterType="cn.rzhd.wuye.vo.query.ArrearsQuery">
         SELECT
@@ -123,15 +136,15 @@
     </select>
     <select id="selectForPay" parameterType="cn.rzhd.wuye.vo.query.ArrearsQuery" resultMap="forPay">
         SELECT
-            SUBSTR("dshpay", 1, 7) AS months,
+            SUBSTR("dshpay", 1, 7)                   AS months,
             "feetype",
             "dbegin",
             "dend",
             "pk_feetype",
-            SUM("nyshouldmny")-SUM(NVL("nmny",0))     AS amount
+            SUM("nyshouldmny") - SUM(NVL("nmny", 0)) AS amount
         FROM
             "T_PROPERTY_FEE"
-       <include refid="arrearsSql"/>
+        <include refid="queryForPay"/>
         GROUP BY
             SUBSTR("dshpay", 1, 7),
             "feetype",

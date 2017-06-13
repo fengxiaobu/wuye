@@ -50,4 +50,9 @@ public class RentContractServiceImpl implements IRentContractService {
     public void addRentContract(PactVO pactVO) {
         mapper.add(pactVO);
     }
+
+    @Override
+    public List<PactVO> queryByCustomer(String customerId) {
+        return mapper.queryByCustomer(customerId);
+    }
 }

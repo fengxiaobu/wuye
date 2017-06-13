@@ -20,7 +20,7 @@ public interface CustomerMapper {
      * @param customer 将账号为客户编码  密码初始为MD5编码后的123456封装到Customer对象中
      * @return 账号密码吻合的Customer
      */
-    Customer loginByPwd(Customer customer);
+    List<Customer> loginByPwd(Customer customer);
     
     List<Map<String, Value>> findCustomerList(@Param("pageStartRow") Integer pageStartRow,@Param("pageEndRow") Integer pageEndRow);
     
