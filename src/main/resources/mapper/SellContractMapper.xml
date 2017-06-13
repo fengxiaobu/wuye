@@ -22,7 +22,7 @@
 	"nyshouldinterestmny",
 	"nyfactinterestmny"
 	FROM "T_Sell_Contract"
-	WHERE "pk_sign"=#{pk_sign}
+	WHERE "house"=#{house}
     </select>
     
     <insert id="add" parameterType="cn.rzhd.wuye.vo.SignVO">

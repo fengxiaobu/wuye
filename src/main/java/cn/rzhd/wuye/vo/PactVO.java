@@ -40,6 +40,25 @@ public class PactVO implements Serializable {
 	private String ndef4;// 备用字段4
 	private String ndef5;// 备用字段5
 
+	private CustomerVO customerVO;
+	private ProjectVO projectVO;
+
+	public CustomerVO getCustomerVO() {
+		return customerVO;
+	}
+
+	public void setCustomerVO(CustomerVO customerVO) {
+		this.customerVO = customerVO;
+	}
+
+	public ProjectVO getProjectVO() {
+		return projectVO;
+	}
+
+	public void setProjectVO(ProjectVO projectVO) {
+		this.projectVO = projectVO;
+	}
+
 	public String getPk_corp() {
 		return pk_corp;
 	}
@@ -234,21 +253,11 @@ public class PactVO implements Serializable {
 
 	@Override
 	public String toString() {
-		return "PactVO{" +
-				"pk_corp='" + pk_corp + '\'' +
-				", pk_customerid='" + pk_customerid + '\'' +
-				", pk_project='" + pk_project + '\'' +
-				", pk_pact='" + pk_pact + '\'' +
-				", pk_house='" + pk_house + '\'' +
-				", house='" + house + '\'' +
-				", nrentarea='" + nrentarea + '\'' +
-				", dpactend='" + dpactend + '\'' +
-				", dpactstart='" + dpactstart + '\'' +
-				", nzlbzjmny='" + nzlbzjmny + '\'' +
-				", nhtysmny='" + nhtysmny + '\'' +
-				", nhtssmny='" + nhtssmny + '\'' +
-				", dysdate='" + dysdate + '\'' +
-				", nsbzjyjmny='" + nsbzjyjmny + '\'' +
-				'}';
+		return "PactVO{" + "pk_corp='" + pk_corp + '\'' + ", pk_customerid='" + pk_customerid + '\'' + ", pk_project='"
+				+ pk_project + '\'' + ", pk_pact='" + pk_pact + '\'' + ", pk_house='" + pk_house + '\'' + ", house='"
+				+ house + '\'' + ", nrentarea='" + nrentarea + '\'' + ", dpactend='" + dpactend + '\''
+				+ ", dpactstart='" + dpactstart + '\'' + ", nzlbzjmny='" + nzlbzjmny + '\'' + ", nhtysmny='" + nhtysmny
+				+ '\'' + ", nhtssmny='" + nhtssmny + '\'' + ", dysdate='" + dysdate + '\'' + ", nsbzjyjmny='"
+				+ nsbzjyjmny + '\'' + '}';
 	}
 }
