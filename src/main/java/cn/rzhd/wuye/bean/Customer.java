@@ -1,7 +1,6 @@
 package cn.rzhd.wuye.bean;
 
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * Created by hasee on 2017/6/1.
@@ -88,7 +87,6 @@ public class Customer implements Serializable{
     /**
      * 房产信息主键及房产名
      */
-    private List<HouseInfo> houseInfos;
 
     public String getPk_corp() {
         return pk_corp;
@@ -240,14 +238,6 @@ public class Customer implements Serializable{
 
     public void setBindingPhone(String bindingPhone) {
         this.bindingPhone = bindingPhone;
-    }
-
-    public List<HouseInfo> getHouseInfos() {
-        return houseInfos;
-    }
-
-    public void setHouseInfos(List<HouseInfo> houseInfos) {
-        this.houseInfos = houseInfos;
     }
 
     @Override

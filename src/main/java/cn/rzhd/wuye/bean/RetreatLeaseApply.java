@@ -24,7 +24,7 @@ public class RetreatLeaseApply implements Serializable{
 	/**
 	 * 房产id
 	 */
-	private Long houseInfoId;
+	private String houseInfoId;
 	/**
 	 * 房产编号
 	 */
@@ -230,17 +230,12 @@ public class RetreatLeaseApply implements Serializable{
 	public void setRetreatLeaseApplyId(Long retreatLeaseApplyId) {
 		this.retreatLeaseApplyId = retreatLeaseApplyId;
 	}
-	/**
-	 * @return the houseInfoId
-	 */
-	public Long getHouseInfoId() {
+
+	public String getHouseInfoId() {
 		return houseInfoId;
 	}
-	/*
-	@param houseInfoId the houseInfoId to set
-	*/
-	public void setHouseInfoId(Long houseInfoId) {
+
+	public void setHouseInfoId(String houseInfoId) {
 		this.houseInfoId = houseInfoId;
 	}
-	
 }

@@ -9,8 +9,8 @@ import java.text.SimpleDateFormat;
 public class BaseQuery {
     protected SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     private Long id;
-    private Integer startPage;
-    private Integer pageSize;
+    private Integer startPage = 1;
+    private Integer pageSize = 10;
 
     public Long getId() {
         return id;

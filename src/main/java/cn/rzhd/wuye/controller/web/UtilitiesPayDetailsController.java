@@ -34,9 +34,9 @@ public class UtilitiesPayDetailsController {
     @RequestMapping("/getList")
     public PageDataGridResult getList(UtilitiesQuery query){
 
-        PageHelper.startPage(query.getStartPage(),query.getPageSize());
-
+        PageHelper.startPage(query.getStartPage(),query.getPageSize()/2);
         List<WaterRatePayDetails> waterList = waterService.getAllByQuery(query);
+        PageHelper.startPage(query.getStartPage(),query.getPageSize()/2);
         List<ElectricFeePayDetails> electricList = electricService.queryAll(query);
 
         List result = new ArrayList();

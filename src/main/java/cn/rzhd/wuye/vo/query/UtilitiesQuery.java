@@ -9,7 +9,7 @@ public class UtilitiesQuery extends BaseQuery {
     /**
      * 房产信息主键
      */
-    private Long houseInfoId;
+    private String houseInfoId;
     /**
      * 时间段起始时间
      */
@@ -19,11 +19,11 @@ public class UtilitiesQuery extends BaseQuery {
      */
     private String endDate;
 
-    public Long getHouseInfoId() {
+    public String getHouseInfoId() {
         return houseInfoId;
     }
 
-    public void setHouseInfoId(Long houseInfoId) {
+    public void setHouseInfoId(String houseInfoId) {
         this.houseInfoId = houseInfoId;
     }
 

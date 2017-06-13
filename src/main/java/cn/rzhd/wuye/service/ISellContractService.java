@@ -21,4 +21,8 @@ public interface ISellContractService {
      * @param signVO 通过Webservice获取并处理得到的销售合同对象
      */
     void addSellContract(SignVO signVO);
+    /**
+     * 通过客户ID查询合同信息
+     */
+    List<SignVO> queryByCustomer(String customerId);
 }

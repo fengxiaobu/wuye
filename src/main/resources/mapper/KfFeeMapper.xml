@@ -30,10 +30,23 @@
         <where>
             AND "pk_house"=#{houseInfoId} AND "dshpay" &lt;= TO_CHAR(SYSDATE,'YYYY-MM-DD') AND "isrz" = 'N'
             <if test="startDate != null and startDate != ''">
-                AND "dshpay" >= #{startDate}
+                AND SUBSTR("dshpay",1,7) >= #{startDate}
             </if>
-            <if test="endDate != null and startDate != ''">
-                AND "dshpay" &lt;= #{endDate}
+            <if test="endDate != null and endDate != ''">
+                AND SUBSTR("dshpay",1,7) &lt;= SUBSTR(to_char(to_date(substr(#{endDate},1,7),'YYYY-MM')+interval'1'month,'YYYY-MM'),1,7)
+            </if>
+        </where>
+    </sql>
+
+    <sql id="queryForPay">
+        <where>
+            AND "pk_house"=#{houseInfoId} AND "dshpay" &lt;= TO_CHAR(SYSDATE,'YYYY-MM-DD') AND "isrz" = 'N'
+            <if test="startDate != null and startDate != ''">
+                AND SUBSTR("dshpay",1,7) >= SUBSTR(#{startDate},1,7)
+            </if>
+            <if test="endDate != null and endDate != ''">
+                AND SUBSTR("dshpay",1,7) &lt;=
+                SUBSTR(to_char(to_date(#{endDate},'YYYY-MM-DD')+interval'1'month,'YYYY-MM-DD'),1,7)
             </if>
         </where>
     </sql>
@@ -121,8 +134,7 @@
             "vmemo",
             "nyshouldmny"
         FROM "T_KF_Fee"
-        WHERE "pk_house"=#{houseInfoId} AND "dshpay" &lt;= TO_CHAR(SYSDATE,'YYYY-MM-DD')
-              AND "dshpay" BETWEEN #{startDate} and #{endDate}
+        <include refid="arrearsSql"/>
     </select>
     <select id="selectForPay" parameterType="cn.rzhd.wuye.vo.query.ArrearsQuery" resultMap="forPay">
         SELECT
@@ -134,7 +146,7 @@
         SUM("nyshouldmny")-SUM(NVL("nmny",0))     AS amount
         FROM
         "T_KF_Fee"
-        <include refid="arrearsSql"/>
+        <include refid="queryForPay"/>
         GROUP BY
         SUBSTR("dshpay", 1, 7),
         "feetype",

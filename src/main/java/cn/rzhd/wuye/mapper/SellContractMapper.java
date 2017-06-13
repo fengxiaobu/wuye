@@ -22,4 +22,8 @@ public interface SellContractMapper {
      * @param signVO 获取数据后得到的销售合同载体对象
      */
     void add(SignVO signVO);
+    /**
+     * 通过客户ID查询销售合同
+     */
+    List<SignVO> queryByCustomer(String customerId);
 }

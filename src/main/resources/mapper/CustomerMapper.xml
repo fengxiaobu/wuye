@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" 
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="cn.rzhd.wuye.mapper.CustomerMapper">
-    
+
     <resultMap id="customerMap" type="cn.rzhd.wuye.bean.Customer">
         <id property="pk_customerid" column="pk_customerid"/>
         <result property="pk_corp" column="pk_corp"/>
@@ -23,91 +23,104 @@
         <result property="companyType" column="Company_Type"/>
         <result property="password" column="Password"/>
         <result property="bindingPhone" column="Binding_Phone"/>
-        <collection property="houseInfos" javaType="list" column="houseInfoId" ofType="cn.rzhd.wuye.bean.HouseInfo">
-            <id property="houseInfoId" column="houseInfoId"/>
-            <result property="houseProperty" column="houseProperty"/>
-        </collection>
     </resultMap>
     <select id="loginByPwd" parameterType="cn.rzhd.wuye.bean.Customer" resultMap="customerMap">
-        SELECT c."pk_corp",
-            c."pk_customerid",
-            c."fccategory",
-            c."vccode",
-            c."vcname",
-            c."vpcnamespell",
-            c."vpreferredtel",
-            c."vccardnum",
-            c."vcaddress",
-            c."ccpostalcode",
-            c."dregdate",
-            c."vregplace",
-            c."vmemcardno",
-            c."vpcemail",
-            c."nproperty",
-            c."LOGO",
-            c."Company_Type",
-            c."Password",
-            c."Binding_Phone",
-            h."HOUSE_INFO_ID" AS houseInfoId,
-            h.HOUSE_PROPERTY AS houseProperty
-        FROM "T_Customer" c LEFT JOIN T_HOUSE_INFO h ON h.CUSTOMER_ID=c."pk_customerid"
-        WHERE c."vccode" = #{vccode} AND c."Password" = #{password}
-    </select>
-    
-     <!-- 用户列表分页查询 -->
-   <select id="findCustomerList" resultMap="customerMap" >
-        SELECT * FROM (  SELECT C.*, ROWNUM RN  
-        	FROM (SELECT * FROM "T_Customer") C ) 
-        		WHERE RN BETWEEN #{pageStartRow} AND #{pageEndRow}
-    </select>
-   <!-- 用户列表条件查询 -->
-   <select id="findCustomerByCondition" resultMap="customerMap">
-   
-   		SELECT * FROM (  SELECT C.*, ROWNUM RN  
-        	FROM (SELECT * FROM "T_Customer" 
-   				WHERE "vcname" LIKE CONCAT(CONCAT('%',#{condition}),'%') or 
-   					"Binding_Phone" LIKE CONCAT(CONCAT('%',#{condition}),'%')) C ) 
-        		WHERE RN BETWEEN #{pageStartRow} AND 
-        			#{pageEndRow}
-   </select>
-   
-   <!-- 添加用户 -->
-   <insert id="addCustomer">
-   		insert into "T_Customer" ("pk_corp","pk_customerid","fccategory","vccode","vcname",
-   		"vpcnamespell","vpreferredtel","vccardnum","vcaddress","ccpostalcode","dregdate",
-   		"vregplace","vmemcardno","vpcemail","nproperty") 
-   			VALUES 
-   				(#{customerVo.pk_corp},#{customerVo.pk_customerid},#{customerVo.fccategory}
-   				,#{customerVo.vccode},#{customerVo.vcname},#{customerVo.vpcnamespell}
-   				,#{customerVo.vpreferredtel},#{customerVo.vccardnum},#{customerVo.vcaddress}
-   				,#{customerVo.ccpostalcode},#{customerVo.dregdate},#{customerVo.vregplace}
-   				,#{customerVo.vmemcardno},#{customerVo.vpcemail},#{customerVo.nproperty})
-   </insert>
-   <!-- 用户信息修改 操作-->
-   <update id="updateCustomer" >
-        update "T_Customer" set 
-        "pk_corp"= #{customerVo.pk_corp}, "fccategory"=#{customerVo.fccategory},
-        "vccode"=#{customerVo.vccode},"vcname"=#{customerVo.vcname},"vpcnamespell"=#{customerVo.vpcnamespell},
-        "vpreferredtel"=#{customerVo.vpreferredtel},"vccardnum"=#{customerVo.vccardnum},"vcaddress"=#{customerVo.vcaddress},
-        "ccpostalcode"=#{customerVo.ccpostalcode},"dregdate"=#{customerVo.dregdate},"vregplace"=#{customerVo.vregplace},
-        "vmemcardno"=#{customerVo.vmemcardno},"vpcemail"=#{customerVo.vpcemail},"nproperty"=#{customerVo.nproperty}  
-        	where "pk_customerid"= #{customerVo.pk_customerid} 
-   </update>
-   
-   <!-- 用户信息删除操作 -->
-    <delete id="delCustomerById">
-    	DELETE FROM "T_Customer" WHERE "pk_customerid"= #{customerVo.pk_customerid}
-    </delete>
-    
-    <!--  查询信息是否已经保存 -->
-    <select id="findCustomerIsRepetitionByErpId" resultType="cn.rzhd.wuye.bean.Customer">
-    	select * from "T_Customer" where "pk_customerid"= #{customerVo.pk_customerid}
-    
+        SELECT
+            DISTINCT
+            "pk_customerid",
+            "pk_corp",
+            "fccategory",
+            "vccode",
+            "vcname",
+            "vpcnamespell",
+            "vpreferredtel",
+            "vccardnum",
+            "vcaddress",
+            "ccpostalcode",
+            "dregdate",
+            "vregplace",
+            "vmemcardno",
+            "vpcemail",
+            "nproperty",
+            "LOGO",
+            "Company_Type",
+            "Password",
+            "Binding_Phone"
+        FROM "T_Customer"
+        WHERE "vccode" = #{vccode} AND "Password" = #{password}
     </select>
 
-        <!--临时用于拉取数据的查询所有-->
-    <select id="getAll" resultMap="customerMap">
-        SELECT * FROM "T_Customer"
+    <!-- 用户列表分页查询 -->
+    <select id="findCustomerList" resultMap="customerMap">
+        SELECT *
+        FROM (SELECT
+                  C.*,
+                  ROWNUM RN
+              FROM (SELECT *
+                    FROM "T_Customer") C)
+        WHERE RN BETWEEN #{pageStartRow} AND #{pageEndRow}
     </select>
-    
+    <!-- 用户列表条件查询 -->
+    <select id="findCustomerByCondition" resultMap="customerMap">
+
+        SELECT *
+        FROM (SELECT
+                  C.*,
+                  ROWNUM RN
+              FROM (SELECT *
+                    FROM "T_Customer"
+                    WHERE "vcname" LIKE CONCAT(CONCAT('%', #{condition}), '%') OR
+                          "Binding_Phone" LIKE CONCAT(CONCAT('%', #{condition}), '%')) C)
+        WHERE RN BETWEEN #{pageStartRow} AND
+        #{pageEndRow}
+    </select>
+
+    <!-- 添加用户 -->
+    <insert id="addCustomer">
+        INSERT INTO "T_Customer" ("pk_corp", "pk_customerid", "fccategory", "vccode", "vcname",
+                                  "vpcnamespell", "vpreferredtel", "vccardnum", "vcaddress", "ccpostalcode", "dregdate",
+                                  "vregplace", "vmemcardno", "vpcemail", "nproperty")
+        VALUES
+            (#{customerVo.pk_corp}, #{customerVo.pk_customerid}, #{customerVo.fccategory}
+                , #{customerVo.vccode}, #{customerVo.vcname}, #{customerVo.vpcnamespell}
+                , #{customerVo.vpreferredtel}, #{customerVo.vccardnum}, #{customerVo.vcaddress}
+                , #{customerVo.ccpostalcode}, #{customerVo.dregdate}, #{customerVo.vregplace}
+                , #{customerVo.vmemcardno}, #{customerVo.vpcemail}, #{customerVo.nproperty})
+    </insert>
+    <!-- 用户信息修改 操作-->
+    <update id="updateCustomer">
+        UPDATE "T_Customer"
+        SET
+            "pk_corp"       = #{customerVo.pk_corp}, "fccategory" = #{customerVo.fccategory},
+            "vccode"        = #{customerVo.vccode}, "vcname" = #{customerVo.vcname},
+            "vpcnamespell"  = #{customerVo.vpcnamespell},
+            "vpreferredtel" = #{customerVo.vpreferredtel}, "vccardnum" = #{customerVo.vccardnum},
+            "vcaddress"     = #{customerVo.vcaddress},
+            "ccpostalcode"  = #{customerVo.ccpostalcode}, "dregdate" = #{customerVo.dregdate},
+            "vregplace"     = #{customerVo.vregplace},
+            "vmemcardno"    = #{customerVo.vmemcardno}, "vpcemail" = #{customerVo.vpcemail},
+            "nproperty"     = #{customerVo.nproperty}
+        WHERE "pk_customerid" = #{customerVo.pk_customerid}
+    </update>
+
+    <!-- 用户信息删除操作 -->
+    <delete id="delCustomerById">
+        DELETE FROM "T_Customer"
+        WHERE "pk_customerid" = #{customerVo.pk_customerid}
+    </delete>
+
+    <!--  查询信息是否已经保存 -->
+    <select id="findCustomerIsRepetitionByErpId" resultType="cn.rzhd.wuye.bean.Customer">
+        SELECT *
+        FROM "T_Customer"
+        WHERE "pk_customerid" = #{customerVo.pk_customerid}
+
+    </select>
+
+    <!--临时用于拉取数据的查询所有-->
+    <select id="getAll" resultMap="customerMap">
+        SELECT *
+        FROM "T_Customer"
+    </select>
+
 </mapper>
