@@ -23,7 +23,7 @@
             <result column="CREATION_TIME" property="creationTime"/>
             <result column="UPDATE_TIME" property="updateTime"/>
             <result column="CUSTOMER_ID" property="customerId"/>
-            <association property="projectInfo" javaType="cn.rzhd.wuye.bean.ProjectInfo">
+            <association property="projectInfo" javaType="cn.rzhd.wuye.bean.ProjectInfo" column="PROJECT_INFO_ID">
                 <id column="PK_PROJECT" property="pkProject"/>
                 <result column="PROJECT_NAME" property="projectName"/>
                 <result column="PROJECT_ADDRESS" property="projectAddress"/>
@@ -53,13 +53,15 @@
         </association>
     </resultMap>
     <!-- 单表查询info数据根据ID -->
-    <select id="getEnterApplyByID" resultType="cn.rzhd.wuye.bean.EnterApply">
+    <select id="getEnterApplyByID" resultMap="enterApplyMap">
         SELECT * FROM
         T_ENTER_APPLY apply,
         T_HOUSE_INFO house,
         T_PROJECT_INFO project
         WHERE
         apply.HOUSE_INFO_ID=house.HOUSE_INFO_ID
+        AND
+        house.PROJECT_INFO_ID=project.PK_PROJECT
         AND
             apply.ENTER_APPLY_ID=#{enterApplyId}
     </select>
@@ -84,6 +86,8 @@
         T_PROJECT_INFO project
         WHERE
         apply.HOUSE_INFO_ID=house.HOUSE_INFO_ID
+        AND
+        house.PROJECT_INFO_ID=project.PK_PROJECT
         <if test="startDate != null">
             <if test="endDate != null">
                 AND BETWEEN apply.APPLY_TIME=to_date(#{startDate},'yyyy-mm-dd')
@@ -102,14 +106,29 @@
     <!-- 用户信息修改 操作-->
     <update id="updateEnterApply" parameterType="cn.rzhd.wuye.bean.EnterApply">
        update T_ENTER_APPLY
-      set HOUSE_INFO_ID = #{houseInfoId},
-      CLIENT_NAME = #{clientName},
-      APPLY_TIME = #{applyTime},
-      AUDIT_STATUS = #{auditStatus},
-      ENTER_ADVICE_NOTE = #{enterAdviceNote},
-      NOTES = #{notes},
-      CREATION_TIME = #{creationTime},
-      UPDATE_TIME = #{updateTime}
+        set
+        <if test="CLIENT_NAME != null">
+            CLIENT_NAME = #{clientName},
+        </if>
+
+        <if test="HOUSE_INFO_ID != null">
+            HOUSE_INFO_ID = #{houseInfoId},
+        </if>
+        <if test="AUDIT_STATUS != null">
+            AUDIT_STATUS = #{auditStatus},
+        </if>
+        <if test="ENTER_ADVICE_NOTE != null">
+            ENTER_ADVICE_NOTE = #{enterAdviceNote},
+        </if>
+        <if test="NOTES != null">
+            NOTES = #{notes},
+        </if>
+        <if test="CREATION_TIME != null">
+            CREATION_TIME = #{creationTime},
+        </if>
+        <if test="UPDATE_TIME != null">
+            UPDATE_TIME = #{updateTime}
+        </if>
     where ENTER_APPLY_ID = #{enterApplyId}
     </update>
     <!--添加入驻申请-->

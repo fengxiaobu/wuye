@@ -3,8 +3,8 @@ package cn.rzhd.wuye.controller;
 import cn.rzhd.wuye.bean.EnterApply;
 import cn.rzhd.wuye.service.IEnterApplyService;
 import cn.rzhd.wuye.utils.JsonUtils;
+import cn.rzhd.wuye.utils.StringTimeUtil;
 import cn.rzhd.wuye.vo.query.EnterApplyQuery;
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -26,6 +26,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.lang.reflect.InvocationTargetException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -42,19 +43,6 @@ import java.util.Map;
 public class EnterApplyController {
     @Autowired
     IEnterApplyService enterApplyService;
-
-    /**
-     * 根据ID查询
-     *
-     * @return
-     */
-    @RequestMapping("/getEnterApplyByID")
-    @ResponseBody
-    public String getEnterApplyByID() {
-        EnterApply enterApply = enterApplyService.getEnterApplyByID(156156156L);
-        String jsonString = JSON.toJSONString(enterApply);
-        return jsonString;
-    }
 
     /**
      * 查询接口
@@ -97,7 +85,6 @@ public class EnterApplyController {
         PageHelper.startPage(pageNum, pageSize);
         List<Map<String, JsonFormat.Value>> enterApplyList = enterApplyService.findEnterApplyList();
         Page page = (Page) enterApplyList;
-        //System.out.println(JSONObject.toJSONString(page,SerializerFeature.WriteMapNullValue));
         System.out.println("page:" + page.getTotal());
         model.addAttribute("enterApplyList", enterApplyList);
 
@@ -106,15 +93,18 @@ public class EnterApplyController {
     }
 
     /**
-     * 入驻申请编辑
+     * 入驻申请审核
      *
      * @return
      */
     @RequestMapping(value = "/enterApplyEdit", method = RequestMethod.GET)
-    public String toEnterApplyAdd(Model model, Long enterApplyId) {
-        EnterApply enterApply = enterApplyService.getEnterApplyByID(enterApplyId);
-
-        model.addAttribute("enterApply", enterApply);
+    public String toEnterApplyAdd(Model model, Long enterApplyId) throws InvocationTargetException, IllegalAccessException {
+        List<Map<String, JsonFormat.Value>> enterApplyList = enterApplyService.getEnterApplyByID(enterApplyId);
+        Map<String, JsonFormat.Value> map = new HashMap<>();
+        if (enterApplyList.size() == 1) {
+            map = enterApplyList.get(0);
+        }
+        model.addAttribute("enterApply", map);
         return "forbusiness/enterApplyEdit";
     }
 
@@ -127,7 +117,7 @@ public class EnterApplyController {
      */
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     public String search(Model model, EnterApplyQuery enterApplyQuery) {
-        //   System.out.println("enterApplyQuery = " + enterApplyQuery.toString());
+        System.out.println("日期+++++++++++"+StringTimeUtil.parse(enterApplyQuery.getStartDate()));
         PageHelper.startPage(1, 5);
         List<Map<String, JsonFormat.Value>> enterApplyList = enterApplyService.findEnterApplyByQuery(enterApplyQuery);
         Page page = (Page) enterApplyList;
@@ -146,6 +136,9 @@ public class EnterApplyController {
      */
     @RequestMapping("/updateEnterApply")
     public String updateEnterApply(Model model, EnterApply enterApply) {
+        //获取当前时间
+        Date date = new Date();
+        enterApply.setUpdateTime(date);
         enterApplyService.updateEnterApply(enterApply);
         //查询更新数据
         PageHelper.startPage(1, 5);
@@ -157,7 +150,11 @@ public class EnterApplyController {
         return "forbusiness/enterApplyList";
     }
 
-
+    /**
+     * 入驻申请
+     * @param enterApply
+     * @return
+     */
     @RequestMapping("/insertEnterApply")
     @ResponseBody
     public Map insertEnterApply(EnterApply enterApply) {
@@ -177,6 +174,8 @@ public class EnterApplyController {
             Date date = new Date();
             enterApply.setApplyTime(date);
             enterApply.setCreationTime(date);
+            //初始化审核状态
+            enterApply.setAuditStatus(0);
             System.out.println("enterApply = " + enterApply);
             enterApplyService.insertEnterApply(enterApply);
             result.put("state", "1");

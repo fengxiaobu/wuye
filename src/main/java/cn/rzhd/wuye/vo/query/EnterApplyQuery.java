@@ -9,26 +9,25 @@ public class EnterApplyQuery {
     /**
      * 项目名称
      */
-    private String projectName;
+    private String projectName = null;
     /**
      * 客户姓名
      */
-    private String clientName;
+    private String clientName = null;
     /**
      * 申请开始时间
      */
-    private String startDate;
+    private String startDate = null;
     /**
      * 申请结束时间
      */
-    private String endDate;
+    private String endDate = null;
 
     public String getProjectName() {
-        if (projectName != null) {
-            return projectName;
+        if (projectName == null || "" == projectName) {
+            return null;
         }
-        return null;
-
+        return projectName;
     }
 
     public void setProjectName(String projectName) {
@@ -36,11 +35,10 @@ public class EnterApplyQuery {
     }
 
     public String getClientName() {
-        if (clientName != null) {
-            return clientName;
+        if (clientName == null || "" == clientName) {
+            return null;
         }
-        return null;
-
+        return clientName;
     }
 
     public void setClientName(String clientName) {
@@ -48,10 +46,10 @@ public class EnterApplyQuery {
     }
 
     public String getStartDate() {
-        if (startDate != null) {
-            return startDate;
+        if (startDate == null || "" == startDate) {
+            return null;
         }
-        return null;
+        return startDate;
     }
 
     public void setStartDate(String startDate) {
@@ -59,11 +57,10 @@ public class EnterApplyQuery {
     }
 
     public String getEndDate() {
-        if (endDate != null) {
-            return endDate;
+        if (endDate == null || "" == endDate) {
+            return null;
         }
-        return null;
-
+        return endDate;
     }
 
     public void setEndDate(String endDate) {

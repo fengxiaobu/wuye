@@ -1,9 +1,13 @@
 package cn.rzhd.wuye.controller;
 
+import cn.rzhd.wuye.common.ChinaPayHelper;
 import cn.rzhd.wuye.common.ChinaPaySignUtils;
 import cn.rzhd.wuye.common.RequestVO;
 import cn.rzhd.wuye.utils.BeanUtils;
-import com.chinapay.secss.SecssUtil;
+import cn.rzhd.wuye.utils.HttpUtils;
+import com.xiaoleilu.hutool.util.RandomUtil;
+import jodd.http.HttpRequest;
+import jodd.http.HttpResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,28 +31,84 @@ public class ChinaPay {
     @RequestMapping("/pay")
     public String toChinaPay(Model model,RequestVO requestVO, HttpServletRequest req, HttpServletResponse resp) throws IOException {
         //前台页面传过来的
-        //Map<String, Object> requestData = new HashMap<String, Object>();
-        requestVO.setMerPageUrl("http://127.0.0.1:52211/index");
-        Map<String, Object> objectMap = BeanUtils.objectToMap(requestVO);
-        ChinaPaySignUtils chinaPaySignUtils = new ChinaPaySignUtils();
-        SecssUtil secssUtil=new SecssUtil();
-        secssUtil.sign(objectMap);
+        ChinaPayHelper chinaPayHelper = new ChinaPayHelper();
+        requestVO.setRemoteAddr(HttpUtils.getIpAddr(req));
+        requestVO.setMerOrderNo(RandomUtil.randomString(32));
+        requestVO.setBankInstNo("700000000000017");
+        requestVO.setCommodityMsg("物业测试");
+        requestVO.setMerResv("交易商品");
+        // requestVO.setAcqCode("");
+        RequestVO vo = chinaPayHelper.getSign(requestVO);
 
-        Map<String, Object> sign = chinaPaySignUtils.sign(objectMap);
+        Map<String, Object> objectMap = BeanUtils.objectToMap(vo);
+        Map<String, Object> sign = ChinaPaySignUtils.sign(objectMap);
         resp.setCharacterEncoding("UTF-8");
-        StringBuffer sb = new StringBuffer();
+
+        //签名
         model.addAttribute("Signature",sign.get("sign"));
-        model.addAttribute("Version",requestVO.getVersion());
-        model.addAttribute("MerId",requestVO.getMerId());
-        model.addAttribute("MerOrderNo",requestVO.getMerOrderNo());
-        model.addAttribute("TranDate",requestVO.getTranDate());
-        model.addAttribute("TranTime",requestVO.getTranTime());
-        model.addAttribute("OrderAmt",requestVO.getOrderAmt());
-        model.addAttribute("BusiType",requestVO.getBusiType());
-        model.addAttribute("MerBgUrl",requestVO.getMerBgUrl());
-        model.addAttribute("RemoteAddr",requestVO.getRemoteAddr());
-        model.addAttribute("TranType",requestVO.getTranType());
-        model.addAttribute("MerPageUrl",requestVO.getMerPageUrl());
+        //版本
+        model.addAttribute("Version", vo.getVersion());
+        //接入类型
+        model.addAttribute("AccessType", vo.getAccessType());
+        //交易超时
+        model.addAttribute("PayTimeOut", vo.getPayTimeOut());
+        //商户号
+        model.addAttribute("MerId", vo.getMerId());
+        //商户商品ID
+        model.addAttribute("MerOrderNo", vo.getMerOrderNo());
+        //交易日期
+        model.addAttribute("TranDate", vo.getTranDate());
+        //交易时间
+        model.addAttribute("TranTime", vo.getTranTime());
+        //交易金额
+        model.addAttribute("OrderAmt", vo.getOrderAmt());
+        //业务类型
+        model.addAttribute("BusiType", vo.getBusiType());
+        //商户后台通知地址
+        model.addAttribute("MerBgUrl", vo.getMerBgUrl());
+        //防钓鱼客户浏览器IP
+        model.addAttribute("RemoteAddr", vo.getRemoteAddr());
+        //交易类型
+        model.addAttribute("TranType", vo.getTranType());
+        ////商户前台通知地址
+        model.addAttribute("MerPageUrl", vo.getMerPageUrl());
+        //交易币种
+        model.addAttribute("CurryNo", vo.getCurryNo());
+        //收单机构号
+        //model.addAttribute("AcqCode", vo.getAcqCode());
+        //支付机构代码
+        model.addAttribute("BankInstNo", vo.getBankInstNo());
+        //商品信息
+        model.addAttribute("CommodityMsg", vo.getCommodityMsg());
+        //商户私有域 原样返回
+        model.addAttribute("MerResv", vo.getMerResv());
+        //交易时间戳
+        model.addAttribute("TimeStamp", vo.getTimeStamp());
+        //model.addAttribute("TranReserved",vo.getTranReserved());
         return "toChinaPay";
+    }
+
+    @RequestMapping("/sendpay")
+    public void pay(RequestVO requestVO, HttpServletRequest req) throws IOException {
+        //前台页面传过来的
+        ChinaPayHelper chinaPayHelper = new ChinaPayHelper();
+        requestVO.setRemoteAddr(HttpUtils.getIpAddr(req));
+        requestVO.setMerOrderNo(RandomUtil.randomString(32));
+        requestVO.setBankInstNo("700000000000017");
+        requestVO.setCommodityMsg("物业测试");
+        requestVO.setMerResv("交易商品");
+        // requestVO.setAcqCode("");
+        RequestVO vo = chinaPayHelper.getSign(requestVO);
+
+        Map<String, Object> objectMap = BeanUtils.objectToMap(vo);
+        Map<String, Object> sign = ChinaPaySignUtils.sign(objectMap);
+        objectMap.put("Signature", sign.get("sign"));
+        HttpResponse response = HttpRequest.post("http://newpayment-test.chinapay.com/CTITS/service/rest/page/nref/000000000017/0/0/0/0/0")
+                .form(objectMap).send();
+        String s = response.bodyText();
+        System.out.println("s = " + s);
+        //ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(bytes);
+       // HttpResponse.readFrom(byteArrayInputStream);
+
     }
 }

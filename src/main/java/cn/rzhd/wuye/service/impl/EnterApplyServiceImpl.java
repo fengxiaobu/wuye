@@ -31,7 +31,7 @@ public class EnterApplyServiceImpl implements IEnterApplyService {
      * @return
      */
     @Override
-    public EnterApply getEnterApplyByID(Long enterApplyId) {
+    public List<Map<String, JsonFormat.Value>> getEnterApplyByID(Long enterApplyId) {
         RequesterVO requesterVO=new RequesterVO();
         requesterVO.setKey("liando");
         requesterVO.setBilltype(LiandoServiceConstant.DATA_TYPE_CORP);
