@@ -32,6 +32,7 @@
         <result column="FIRSTMNY" property="firstMoney"/>
         <result column="EVERYMNY" property="everyMoney"/>
         <result column="UPDATEDATE" property="updateDate"/>
+        <result column="ASTRICTSTATUS" property="astrictStatus"/>
     </resultMap>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
         DELETE FROM T_PROJECT_INFO
@@ -109,7 +110,8 @@
             ENDDATE,
             FIRSTMNY,
             EVERYMNY,
-            UPDATEDATE
+            UPDATEDATE,
+            ASTRICTSTATUS
         FROM T_PROJECT_INFO
         WHERE PK_PROJECT = #{pkProject,jdbcType=CHAR}
     </select>

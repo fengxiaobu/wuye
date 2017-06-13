@@ -20,4 +20,6 @@ public interface ElectricFeePayDetailsMapper {
     void insert(ElectricFeePayDetails details);
 
     BigDecimal getAstrictPaid(@Param("houseInfoId") String houseInfoId, @Param("startDate") Date startDate, @Param("endDate") Date endDate);
+
+    ElectricFeePayDetails getLastRecords(UtilitiesQuery query);
 }

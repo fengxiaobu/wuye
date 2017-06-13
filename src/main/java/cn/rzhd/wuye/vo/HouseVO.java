@@ -1,6 +1,10 @@
 package cn.rzhd.wuye.vo;
 
+import cn.rzhd.wuye.bean.ProjectInfo;
+
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.Date;
 
 /**
  * 房产数据VO
@@ -40,13 +44,13 @@ public class HouseVO implements Serializable {
 	private String nrbuildarea;// 实测建筑面积
 	private String nrunderlinearea;// 实测地下室面积
 	private String nrgardenarea;// 实测花园面积
-	private String vdef1;// 备用字段1
-	private String vdef2;// 备用字段2
-	private String vdef3;// 备用字段3
-	private String vdef4;// 备用字段4
-	private String vdef5;// 备用字段5
-	private String vdef6;// 备用字段6
-	private String vdef7;// 备用字段7
+	private Date startDate;// 限制缴费起始时间
+	private Date endDate;// 限制缴费截止时间
+	private BigDecimal firstMoney;// 首次限制缴费金额
+	private BigDecimal everyMoney;// 每月限制缴费金额
+	private String astrictStatus;// 限制缴费状态Y--启用,N--禁用
+	private Date updateDate;// 更新时间
+	private ProjectInfo projectInfo;//关联的项目信息
 	private String vdef8;// 备用字段8
 	private String vdef9;// 备用字段9
 	private String vdef10;// 备用字段10
@@ -275,60 +279,60 @@ public class HouseVO implements Serializable {
 		this.nrgardenarea = nrgardenarea;
 	}
 
-	public String getVdef1() {
-		return vdef1;
+	public Date getStartDate() {
+		return startDate;
 	}
 
-	public void setVdef1(String vdef1) {
-		this.vdef1 = vdef1;
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
 	}
 
-	public String getVdef2() {
-		return vdef2;
+	public Date getEndDate() {
+		return endDate;
 	}
 
-	public void setVdef2(String vdef2) {
-		this.vdef2 = vdef2;
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
 	}
 
-	public String getVdef3() {
-		return vdef3;
+	public BigDecimal getFirstMoney() {
+		return firstMoney;
 	}
 
-	public void setVdef3(String vdef3) {
-		this.vdef3 = vdef3;
+	public void setFirstMoney(BigDecimal firstMoney) {
+		this.firstMoney = firstMoney;
 	}
 
-	public String getVdef4() {
-		return vdef4;
+	public BigDecimal getEveryMoney() {
+		return everyMoney;
 	}
 
-	public void setVdef4(String vdef4) {
-		this.vdef4 = vdef4;
+	public void setEveryMoney(BigDecimal everyMoney) {
+		this.everyMoney = everyMoney;
 	}
 
-	public String getVdef5() {
-		return vdef5;
+	public String getAstrictStatus() {
+		return astrictStatus;
 	}
 
-	public void setVdef5(String vdef5) {
-		this.vdef5 = vdef5;
+	public void setAstrictStatus(String astrictStatus) {
+		this.astrictStatus = astrictStatus;
 	}
 
-	public String getVdef6() {
-		return vdef6;
+	public Date getUpdateDate() {
+		return updateDate;
 	}
 
-	public void setVdef6(String vdef6) {
-		this.vdef6 = vdef6;
+	public void setUpdateDate(Date updateDate) {
+		this.updateDate = updateDate;
 	}
 
-	public String getVdef7() {
-		return vdef7;
+	public ProjectInfo getProjectInfo() {
+		return projectInfo;
 	}
 
-	public void setVdef7(String vdef7) {
-		this.vdef7 = vdef7;
+	public void setProjectInfo(ProjectInfo projectInfo) {
+		this.projectInfo = projectInfo;
 	}
 
 	public String getVdef8() {

@@ -26,4 +26,9 @@ public class WaterPayDetailsServiceImpl implements IWaterPayDetailsService {
         }
         return null;
     }
+
+    @Override
+    public WaterRatePayDetails getLastRecords(UtilitiesQuery query) {
+        return mapper.getLastRecords(query);
+    }
 }

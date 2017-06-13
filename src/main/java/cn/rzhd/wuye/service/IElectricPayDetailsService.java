@@ -20,4 +20,6 @@ public interface IElectricPayDetailsService {
     void addDetails(ElectricFeePayDetails details);
 
     BigDecimal getAstrictPaid(String houseInfoId, Date startDate,Date endDate);
+
+    ElectricFeePayDetails getLastRecords(UtilitiesQuery query);
 }

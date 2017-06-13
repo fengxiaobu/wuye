@@ -47,7 +47,7 @@
             "Password",
             "Binding_Phone"
         FROM "T_Customer"
-        WHERE "vccode" = #{vccode} AND "Password" = #{password}
+        WHERE "vccode" = #{vccode} AND "Password" = #{password} AND "fccategory"=1
     </select>
 
     <!-- 用户列表分页查询 -->

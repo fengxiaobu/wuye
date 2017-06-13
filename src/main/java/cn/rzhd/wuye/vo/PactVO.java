@@ -29,7 +29,7 @@ public class PactVO implements Serializable {
 	private String nhtssmny;// 合同已收总金额
 	private String dysdate;// 首笔租金应收款日期
 	private String nsbzjyjmny;// 首笔租金应交金额
-	private String vdef1;// 备用文本字段1
+	private String projectName;// 项目名称
 	private String vdef2;// 备用文本字段2
 	private String vdef3;// 备用文本字段3
 	private String vdef4;// 备用文本字段4
@@ -152,12 +152,12 @@ public class PactVO implements Serializable {
 		this.nsbzjyjmny = nsbzjyjmny;
 	}
 
-	public String getVdef1() {
-		return vdef1;
+	public String getProjectName() {
+		return projectName;
 	}
 
-	public void setVdef1(String vdef1) {
-		this.vdef1 = vdef1;
+	public void setProjectName(String projectName) {
+		this.projectName = projectName;
 	}
 
 	public String getVdef2() {

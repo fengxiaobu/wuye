@@ -15,8 +15,6 @@ public class PayFeeQuery {
     private BigDecimal waterPrice;//水费单价
     private BigDecimal electricPrice;//电费单价
     private String[] houseInfoIds;//客户名下所关联的所有房产,用于判断是否有物业欠费
-    private BigDecimal firstMoney;//首次限缴金额
-    private BigDecimal everyMoney;//每月限缴金额
 
     public String getHouseInfoId() {
         return houseInfoId;
@@ -90,19 +88,4 @@ public class PayFeeQuery {
         this.houseInfoIds = houseInfoIds;
     }
 
-    public BigDecimal getFirstMoney() {
-        return firstMoney;
-    }
-
-    public void setFirstMoney(BigDecimal firstMoney) {
-        this.firstMoney = firstMoney;
-    }
-
-    public BigDecimal getEveryMoney() {
-        return everyMoney;
-    }
-
-    public void setEveryMoney(BigDecimal everyMoney) {
-        this.everyMoney = everyMoney;
-    }
 }

@@ -27,7 +27,7 @@
 
     <sql id="arrearsSql">
         <where>
-            AND "pk_house"=#{houseInfoId} AND "dshpay" &lt;= TO_CHAR(SYSDATE,'YYYY-MM-DD') AND "isrz" = 'N'
+            AND "pk_house"=#{houseInfoId} AND "pk_customerid"=#{pk_customerId} AND "dshpay" &lt;= TO_CHAR(SYSDATE,'YYYY-MM-DD') AND "isrz" = 'N'
             <if test="startDate != null and startDate != ''">
                 AND SUBSTR("dshpay",1,7) >= SUBSTR(#{startDate},1,7)
             </if>
@@ -39,7 +39,7 @@
     </sql>
     <sql id="queryForPay">
         <where>
-            AND "pk_house"=#{houseInfoId} AND "dshpay" &lt;= TO_CHAR(SYSDATE,'YYYY-MM-DD') AND "isrz" = 'N'
+            AND "pk_house"=#{houseInfoId} AND "pk_customerid"=#{pk_customerId} AND "dshpay" &lt;= TO_CHAR(SYSDATE,'YYYY-MM-DD') AND "isrz" = 'N'
             <if test="startDate != null and startDate != ''">
                 AND SUBSTR("dshpay",1,7) >= SUBSTR(#{startDate},1,7)
             </if>

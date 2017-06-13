@@ -2,9 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="cn.rzhd.wuye.mapper.HouseInfoDetailsMapper">
     <resultMap id="BaseResultMap" type="cn.rzhd.wuye.vo.HouseVO">
-        <id column="pk_house" property="pkHouse" jdbcType="CHAR"/>
-        <result column="pk_corp" property="pkCorp" jdbcType="CHAR"/>
-        <result column="pk_project" property="pkProject" jdbcType="VARCHAR"/>
+        <id column="pk_house" property="pk_house" jdbcType="CHAR"/>
+        <result column="pk_corp" property="pk_corp" jdbcType="CHAR"/>
         <result column="project" property="project" jdbcType="VARCHAR"/>
         <result column="building" property="building" jdbcType="VARCHAR"/>
         <result column="ifloor" property="ifloor" jdbcType="VARCHAR"/>
@@ -30,6 +29,13 @@
         <result column="nrbuildarea" property="nrbuildarea" jdbcType="VARCHAR"/>
         <result column="nrunderlinearea" property="nrunderlinearea" jdbcType="VARCHAR"/>
         <result column="nrgardenarea" property="nrgardenarea" jdbcType="VARCHAR"/>
+        <result column="STARTDATE" property="startDate"/>
+        <result column="ENDDATE" property="endDate"/>
+        <result column="FIRSTMNY" property="firstMoney"/>
+        <result column="EVERYMNY" property="everyMoney"/>
+        <result column="ASTRICTSTATUS" property="astrictStatus"/>
+        <result column="UPDATEDATE" property="updateDate"/>
+        <association property="projectInfo" column="pk_project" javaType="cn.rzhd.wuye.bean.ProjectInfo" select="cn.rzhd.wuye.mapper.ProjectInfoMapper.selectByPrimaryKey"/>
     </resultMap>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
         DELETE FROM T_HOUSE_INFO_DETAILS
@@ -120,9 +126,15 @@
             "nrinarea",
             "nrbuildarea",
             "nrunderlinearea",
-            "nrgardenarea"
+            "nrgardenarea",
+            STARTDATE,
+            ENDDATE,
+            FIRSTMNY,
+            EVERYMNY,
+            ASTRICTSTATUS,
+            UPDATEDATE
         FROM T_HOUSE_INFO_DETAILS
-        WHERE "pk_house" = #{pkHouse,jdbcType=CHAR}
+        WHERE "pk_house" = #{pkHouse}
     </select>
     <select id="selectAll" resultMap="BaseResultMap">
         SELECT

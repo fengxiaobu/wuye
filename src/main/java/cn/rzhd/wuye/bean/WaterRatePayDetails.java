@@ -105,7 +105,10 @@ public class WaterRatePayDetails implements Serializable{
      * 修改时间
      */
     private Date updateTime;
-	
+	/**
+	 * 客户主键
+	 */
+	private String customerId;
 	/**
 	 * @return the clientName
 	 */
@@ -365,5 +368,13 @@ public class WaterRatePayDetails implements Serializable{
 
 	public void setHouseInfoId(String houseInfoId) {
 		this.houseInfoId = houseInfoId;
+	}
+
+	public String getCustomerId() {
+		return customerId;
+	}
+
+	public void setCustomerId(String customerId) {
+		this.customerId = customerId;
 	}
 }

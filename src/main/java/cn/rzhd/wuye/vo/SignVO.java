@@ -31,7 +31,7 @@ public class SignVO implements Serializable {
 	private String nyfactmny;// 实收金额
 	private String nyshouldinterestmny;// 应收利息
 	private String nyfactinterestmny;// 实收利息
-	private String vdef1;// 备用文本字段1
+	private String projectName;//项目名称
 	private String vdef2;// 备用文本字段2
 	private String vdef3;// 备用文本字段3
 	private String vdef4;// 备用文本字段4
@@ -170,12 +170,12 @@ public class SignVO implements Serializable {
 		this.nyfactinterestmny = nyfactinterestmny;
 	}
 
-	public String getVdef1() {
-		return vdef1;
+	public String getProjectName() {
+		return projectName;
 	}
 
-	public void setVdef1(String vdef1) {
-		this.vdef1 = vdef1;
+	public void setProjectName(String projectName) {
+		this.projectName = projectName;
 	}
 
 	public String getVdef2() {

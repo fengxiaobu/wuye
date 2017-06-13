@@ -24,7 +24,7 @@
     </select>
 
     <select id="queryByCustomer" parameterType="string" resultType="cn.rzhd.wuye.vo.PactVO">
-        SELECT DISTINCT "pk_house","house","pk_project" FROM "T_Rent_Contract" WHERE "pk_customerid"=#{customerId}
+        SELECT DISTINCT "pk_house","house","pk_project","pk_customerid",p.VSHORTNAME AS projectName FROM "T_Rent_Contract" JOIN T_PROJECT_INFO p ON "pk_project"=p.PK_PROJECT WHERE "pk_customerid"=#{customerId}
     </select>
 
     <insert id="add" parameterType="cn.rzhd.wuye.vo.PactVO">

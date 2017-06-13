@@ -22,7 +22,7 @@ public interface IPayFeeService {
      * @param query
      * @return Map中两个key,status代表是否允许进入支付界面,msg代表不允许的提示信息
      */
-    Map<String, String> payElectricFee(PayFeeQuery query);
+    Map<String, Object> payElectricFee(PayFeeQuery query);
 
     /**
      * 用于得出限制缴费额度
