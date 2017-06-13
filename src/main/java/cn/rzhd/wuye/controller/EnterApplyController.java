@@ -213,9 +213,9 @@ public class EnterApplyController {
     }
 
 
-    @RequestMapping("/upLoadEnterApply")
+    @RequestMapping("/downLoad")
     @ResponseBody
-    public String dwonLoadEnterApply(HttpServletResponse response, String filePath) {
+    public String downLoad(HttpServletResponse response, String filePath) {
         Map result = new HashMap();
         try {
             String[] fp = filePath.split("\\\\");
@@ -248,7 +248,7 @@ public class EnterApplyController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "";
+        return "OK";
     }
 
 

@@ -1,12 +1,9 @@
 package cn.rzhd.wuye.controller;
 
+import cn.rzhd.wuye.service.ITypeRefinementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import cn.rzhd.wuye.bean.vo.TypeRefinementVo;
-import cn.rzhd.wuye.service.ITypeRefinementService;
-import cn.rzhd.wuye.utils.JsonUtils;
 
 /**
  * 
@@ -30,7 +27,7 @@ public class TypeRefinementController {
      * @param typeRefinement
      * @return
      */
-    @RequestMapping(value="/addTypeRefinement",method=RequestMethod.POST)
+   /* @RequestMapping(value="/addTypeRefinement",method=RequestMethod.POST)
     public String addTypeRefinement(TypeRefinementVo typeRefinementVo){
 	if (typeRefinementVo == null) {
 	    return JsonUtils.objectToJson("数据无效");
@@ -43,5 +40,5 @@ public class TypeRefinementController {
 	    return JsonUtils.objectToJson("异常");
 	}
 	
-    }
+    }*/
 }
