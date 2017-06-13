@@ -30,5 +30,47 @@ public class StringTimeUtil {
 		}
 		return date ;
 	}
+
+	/**
+	 * 交易日期
+	 *
+	 * @param time
+	 * @return
+	 */
+	public static String TranDate(Date time) {
+		String timeStr = null;
+		if (time != null) {
+			timeStr = new SimpleDateFormat("yyyyMMdd").format(time);
+		}
+		return timeStr;
+	}
+
+	/**
+	 * 交易时间
+	 *
+	 * @param time
+	 * @return
+	 */
+	public static String TranTime(Date time) {
+		String timeStr = null;
+		if (time != null) {
+			timeStr = new SimpleDateFormat("HHmmss").format(time);
+		}
+		return timeStr;
+	}
+
+	/**
+	 * 时间戳
+	 * @param time
+	 * @return
+	 */
+	public static String TimeStamp(Date time) {
+		String timeStr = null;
+		if (time != null) {
+			timeStr = new SimpleDateFormat("yyyyMMddHHmmss").format(time);
+		}
+		return timeStr;
+	}
+
 	
 }

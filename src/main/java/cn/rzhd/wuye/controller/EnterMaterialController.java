@@ -50,11 +50,11 @@ public class EnterMaterialController {
      * @param pkproject
      * @return
      */
-    @RequestMapping("/findEnterMaterialByHouseId")
+    @RequestMapping("/findEnterMaterialBypkproject")
     @ResponseBody
     public String findEnterMaterialByHouseId(String pkproject) {
         if (StringUtil.isEmpty(pkproject)) {
-            return "房产ID为空!";
+            return "项目ID为空!";
         }
         PropertyFilter propertyFilter = new PropertyFilter() {
             @Override

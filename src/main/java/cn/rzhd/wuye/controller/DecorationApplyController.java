@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.*;
@@ -71,8 +70,6 @@ public class DecorationApplyController {
     public @ResponseBody
     String batchUpload(HttpServletRequest request, DecorationMaterial decorationMaterial, DecorationApply decorationApply, DecorateDetail decorateDetail) {
         try {
-            //文件上传
-            String s = fileUpload(request);
             //装修申请
             decorationApplyService.insertDecorationApply(decorationApply);
             //装修明细
@@ -85,6 +82,8 @@ public class DecorationApplyController {
         }
 
     }
+
+
 
     /**
      *
@@ -114,32 +113,4 @@ public class DecorationApplyController {
         }
     }
 
-    /**
-     * 文件上传
-     *
-     * @param request
-     * @return
-     */
-    private String fileUpload(HttpServletRequest request) {
-        List<MultipartFile> files = ((MultipartHttpServletRequest) request).getFiles("file");
-        MultipartFile file = null;
-        BufferedOutputStream stream = null;
-        for (int i = 0; i < files.size(); ++i) {
-            file = files.get(i);
-            if (!file.isEmpty()) {
-                try {
-                    byte[] bytes = file.getBytes();
-                    stream = new BufferedOutputStream(new FileOutputStream(new File(file.getOriginalFilename())));
-                    stream.write(bytes);
-                    stream.close();
-                } catch (Exception e) {
-                    stream = null;
-                    return "上传失败" + i + " => " + e.getMessage();
-                }
-            } else {
-                return "上传失败 " + i + "文件是空的.";
-            }
-        }
-        return "上传成功!";
-    }
 }

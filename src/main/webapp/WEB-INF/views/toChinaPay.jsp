@@ -57,13 +57,48 @@
             <td><input type="text" name="RemoteAddr" value="${RemoteAddr}"/></td>
         </tr>
         <tr>
+            <td>签名:</td>
             <td><input name="Signature" type="hidden" value="${Signature}"></td>
         </tr>
         <tr>
+            <td>交易类型:</td>
             <td><input name="TranType" type="hidden" value="${TranType}"></td>
         </tr>
         <tr>
+            <td>商户前台通知地址:</td>
             <td><input name="MerPageUrl" type="hidden" value="${MerPageUrl}"></td>
+        </tr>
+        <tr>
+            <td>接入类型:</td>
+            <td><input name="AccessType" type="hidden" value="${AccessType}"></td>
+        </tr>
+        <tr>
+            <td>PayTimeOut:</td>
+            <td><input name="PayTimeOut" type="hidden" value="${PayTimeOut}"></td>
+        </tr>
+        <tr>
+            <td>CurryNo:</td>
+            <td><input name="CurryNo" type="hidden" value="${CurryNo}"></td>
+        </tr>
+       <%-- <tr>
+            <td>AcqCode:</td>
+            <td><input name="AcqCode" type="hidden" value="${AcqCode}"></td>
+        </tr>--%>
+        <tr>
+            <td>BankInstNo:</td>
+            <td><input name="BankInstNo" type="hidden" value="${BankInstNo}"></td>
+        </tr>
+        <tr>
+            <td>CommodityMsg:</td>
+            <td><input name="CommodityMsg" type="hidden" value="${CommodityMsg}"></td>
+        </tr>
+        <tr>
+            <td>MerResv:</td>
+            <td><input name="MerResv" type="hidden" value="${MerResv}"></td>
+        </tr>
+        <tr>
+            <td>TimeStamp:</td>
+            <td><input name="TimeStamp" type="hidden" value="${TimeStamp}"></td>
         </tr>
 
     </table>

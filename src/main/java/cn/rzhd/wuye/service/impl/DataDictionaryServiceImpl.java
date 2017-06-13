@@ -33,7 +33,15 @@ public class DataDictionaryServiceImpl implements IDataDictionaryService {
 		typeDifferentiateMapper.addTypeDifferentiate(typeDifferentiate);
 	}
 	
-	
+
     }
+
+	@Override
+	public TypeDifferentiate findTypeDifferentiateNameIsRepeat(String typeDifferentiateName) {
+		if (typeDifferentiateName == null || "".equals(typeDifferentiateName)) {
+			return null;
+		}
+		return typeDifferentiateMapper.findTypeDifferentiateNameIsRepeat(typeDifferentiateName);
+	}
 
 }

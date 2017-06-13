@@ -4,5 +4,7 @@ import cn.rzhd.wuye.bean.TypeDifferentiate;
 
 public interface IDataDictionaryService {
 
-    public void addType(TypeDifferentiate typeDifferentiate);
+     void addType(TypeDifferentiate typeDifferentiate);
+
+    TypeDifferentiate findTypeDifferentiateNameIsRepeat(String typeDifferentiateName);
 }
