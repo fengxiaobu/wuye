@@ -93,6 +93,10 @@ public class KfFeePayDetails implements Serializable {
      * 修改时间
      */
     private Date updateTime;
+    /**
+     * 客户主键
+     */
+    private String customerId;
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
@@ -264,6 +268,14 @@ public class KfFeePayDetails implements Serializable {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public String getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
     }
 
     @Override

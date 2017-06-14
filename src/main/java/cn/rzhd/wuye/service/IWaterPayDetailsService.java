@@ -12,4 +12,6 @@ import java.util.List;
 public interface IWaterPayDetailsService {
 
     List<WaterRatePayDetails> getAllByQuery(UtilitiesQuery query);
+
+    WaterRatePayDetails getLastRecords(UtilitiesQuery query);
 }

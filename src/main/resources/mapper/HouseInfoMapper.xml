@@ -61,7 +61,7 @@
             ASTRICTSTATUS,
             UPDATEDATE
         FROM T_HOUSE_INFO
-        WHERE HOUSE_INFO_ID = #{id}
+        WHERE HOUSE_INFO_ID = #{houseInfoId}
     </select>
 
     <select id="getAll" resultMap="houseInfoMap">

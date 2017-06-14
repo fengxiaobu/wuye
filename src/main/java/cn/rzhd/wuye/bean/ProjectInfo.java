@@ -123,6 +123,7 @@ public class ProjectInfo implements Serializable {
     private BigDecimal firstMoney;
     private BigDecimal everyMoney;
     private Date updateDate;
+    private String astrictStatus;
 
     public String getPkCorp() {
         return pkCorp;
@@ -362,5 +363,13 @@ public class ProjectInfo implements Serializable {
 
     public void setUpdateDate(Date updateDate) {
         this.updateDate = updateDate;
+    }
+
+    public String getAstrictStatus() {
+        return astrictStatus;
+    }
+
+    public void setAstrictStatus(String astrictStatus) {
+        this.astrictStatus = astrictStatus;
     }
 }

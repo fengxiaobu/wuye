@@ -1,10 +1,13 @@
 package cn.rzhd.wuye.controller.web;
 
 import cn.rzhd.wuye.bean.Ammeter;
+import cn.rzhd.wuye.bean.ElectricFeePayDetails;
 import cn.rzhd.wuye.bean.HouseInfo;
+import cn.rzhd.wuye.bean.WaterRatePayDetails;
 import cn.rzhd.wuye.service.*;
 import cn.rzhd.wuye.vo.query.ArrearsQuery;
 import cn.rzhd.wuye.vo.query.PayFeeQuery;
+import cn.rzhd.wuye.vo.query.UtilitiesQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,15 +24,17 @@ import java.util.Map;
 @RequestMapping("/dist/payFee")
 public class PayFeeController {
     @Autowired
-    IPropertyFeeService propertyService;
+    private IPropertyFeeService propertyService;
     @Autowired
-    IKfFeeService kfService;
+    private IKfFeeService kfService;
     @Autowired
-    IElectricPayDetailsService electricPayDetailsService;
+    private IElectricPayDetailsService electricPayDetailsService;
     @Autowired
-    IPayFeeService payFeeService;
+    private IPayFeeService payFeeService;
     @Autowired
-    IHouseInfoService houseInfoService;
+    private IHouseInfoService houseInfoService;
+    @Autowired
+    private IWaterPayDetailsService waterPayDetailsService;
 
     /**
      * 用于展示物业欠费记录
@@ -58,10 +63,9 @@ public class PayFeeController {
      * @return
      */
     @RequestMapping("/utilitiesPurchase")
-    public Map<String,String> utilitiesPurchase(PayFeeQuery query){
-        Map<String, String> map = payFeeService.payElectricFee(query);
-        BigDecimal bigDecimal = payFeeService.payWaterFee(query);
-        String waterFee = "水费金额为:"+payFeeService.payWaterFee(query)+"元";
+    public Map<String,Object> utilitiesPurchase(PayFeeQuery query){
+        Map<String, Object> map = payFeeService.payElectricFee(query);
+        BigDecimal waterFee = payFeeService.payWaterFee(query);
         map.put("waterFee",waterFee);
         return map;
     }
@@ -83,5 +87,17 @@ public class PayFeeController {
         map.put("electricityPrice",electricityPrice);
         return map;
     }
-
+    @RequestMapping("/isArrears")
+    public Map<String,List> isArrears(PayFeeQuery query){
+        return payFeeService.isArrears(query);
+    }
+    @RequestMapping("/payFeeRecords")
+    public Map<String,Object> payFeeRecords(UtilitiesQuery query){
+        ElectricFeePayDetails electricRecord = electricPayDetailsService.getLastRecords(query);
+        WaterRatePayDetails waterRecord = waterPayDetailsService.getLastRecords(query);
+        Map<String,Object> map = new HashMap<>();
+        map.put("electric",electricRecord);
+        map.put("water",waterRecord);
+        return map;
+    }
 }

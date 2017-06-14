@@ -29,4 +29,9 @@ public class HouseInfoDetailsServiceImpl implements IHouseInfoDetailsService {
             mapper.insert(houseInfoDetails);
         }
     }
+
+    @Override
+    public HouseVO selectById(String pkHouse) {
+        return mapper.selectByPrimaryKey(pkHouse);
+    }
 }

@@ -52,4 +52,9 @@ public class ElectricPayDetailsServiceImpl implements IElectricPayDetailsService
     public BigDecimal getAstrictPaid(String houseInfoId, Date startDate,Date endDate) {
         return mapper.getAstrictPaid(houseInfoId,startDate,endDate);
     }
+
+    @Override
+    public ElectricFeePayDetails getLastRecords(UtilitiesQuery query) {
+        return mapper.getLastRecords(query);
+    }
 }

@@ -1,15 +1,12 @@
 package cn.rzhd.wuye.mapper;
 
-import java.util.List;
-import java.util.Map;
-
+import cn.rzhd.wuye.bean.Customer;
+import cn.rzhd.wuye.bean.MessageManage;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-import cn.rzhd.wuye.bean.Customer;
-import cn.rzhd.wuye.bean.MessageManage;
-import cn.rzhd.wuye.bean.vo.KfFeeHouseInfoDetailsVo;
-import cn.rzhd.wuye.bean.vo.PropertyFeeHouseInfoDetailsVo;
+import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface HomePageMapper {
@@ -22,7 +19,7 @@ public interface HomePageMapper {
     
     List<Map<String, Object>> findPropertyFeeListByCustomerId(@Param("customer")Customer customer);
     
-    <T> T findMessageNumByCustomer(@Param("customer")Customer customer);
+    <T> T findMessageNumByCustomer(Customer customer);
     
     List<MessageManage> findMessageByCustomer(@Param("customer")Customer customer);
 }

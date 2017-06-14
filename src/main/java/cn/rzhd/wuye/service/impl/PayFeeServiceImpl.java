@@ -1,11 +1,11 @@
 package cn.rzhd.wuye.service.impl;
 
-import cn.rzhd.wuye.bean.HouseInfo;
 import cn.rzhd.wuye.bean.PropertyFee;
 import cn.rzhd.wuye.service.IElectricPayDetailsService;
-import cn.rzhd.wuye.service.IHouseInfoService;
+import cn.rzhd.wuye.service.IHouseInfoDetailsService;
 import cn.rzhd.wuye.service.IPayFeeService;
 import cn.rzhd.wuye.service.IPropertyFeeService;
+import cn.rzhd.wuye.vo.HouseVO;
 import cn.rzhd.wuye.vo.query.ArrearsQuery;
 import cn.rzhd.wuye.vo.query.PayFeeQuery;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +24,7 @@ public class PayFeeServiceImpl implements IPayFeeService {
     @Autowired
     IPropertyFeeService propertyFeeService;
     @Autowired
-    IHouseInfoService houseInfoService;
+    IHouseInfoDetailsService houseInfoDetailsService;
     @Autowired
     IElectricPayDetailsService electricPayDetailsService;
 
@@ -71,75 +71,99 @@ public class PayFeeServiceImpl implements IPayFeeService {
     }
 
     @Override
-    public Map<String, String> payElectricFee(PayFeeQuery query) {
-        Map<String, String> map = new HashMap<>();
+    public Map<String, Object> payElectricFee(PayFeeQuery query) {
+        Map<String, Object> map = new HashMap<>();
         Map<String, Object> amountLeft = amountLeft(query);
-
-        Date startDate = (Date) amountLeft.get("startDate");
-        Date endDate = (Date) amountLeft.get("endDate");
-        BigDecimal firstMoney = (BigDecimal) amountLeft.get("firstMoney");
-        BigDecimal everyMoney = (BigDecimal) amountLeft.get("everyMoney");
-
+        //先计算缴费的金额
         BigDecimal money;
-        BigDecimal paid = electricPayDetailsService.getAstrictPaid(query.getHouseInfoId(), (Date) amountLeft.get("starDate"), (Date) amountLeft.get("endDate"));
-        firstMoney = firstMoney.subtract(paid);
-        everyMoney = everyMoney.subtract(paid);
-
-
         if ("yuan".equals(query.getElectricCountBy())) {
             money = new BigDecimal(query.getElectricAmount());
         } else if ("du".equals(query.getElectricCountBy())) {
-            BigDecimal i = query.getElectricPrice()
+            money = query.getElectricPrice()
                     .multiply(new BigDecimal(query.getMultiply()))
                     .multiply(new BigDecimal(query.getElectricAmount()));
-            money = i;
         } else {
             map.put("msg", "请选择正确的计费方式");
             return map;
         }
+        //判断是否要进行限制缴费判断
+        if (!amountLeft.containsKey("msg") && "Y".equals(amountLeft.get("isAstrict"))){
+            Map<String, List> arrears = isArrears(query);
+            Date startDate = (Date) amountLeft.get("startDate");
+            Date endDate = (Date) amountLeft.get("endDate");
+            BigDecimal firstMoney = (BigDecimal) amountLeft.get("firstMoney");
+            BigDecimal everyMoney = (BigDecimal) amountLeft.get("everyMoney");
 
-        Date now = new Date();
-        if (now.before(endDate) && now.after(startDate)) {
-            if (money.compareTo(firstMoney) == -1 || money.compareTo(firstMoney) == 0) {
-                map.put("status", "true");
-                return map;
-            } else if (money.compareTo(firstMoney) == 1) {
-                map.put("status", "false");
-                map.put("msg", "已超出限额,本月电费限额" + firstMoney + "元");
-                return map;
-            }
-        } else if (now.after(endDate)) {
-            if (money.compareTo(everyMoney) == -1 || money.compareTo(everyMoney) == 0) {
-                map.put("status", "true");
-                return map;
-            } else if (money.compareTo(everyMoney) == 1) {
-                map.put("status", "false");
-                map.put("msg", "已超出限额,本月电费限额" + everyMoney + "元");
-                return map;
+            BigDecimal paid = electricPayDetailsService.getAstrictPaid(query.getHouseInfoId(), (Date) amountLeft.get("starDate"), (Date) amountLeft.get("endDate"));
+
+            //核心逻辑
+            //获取当前系统时间
+            Date now = new Date();
+            //判断当前时间是否在限制期内
+            if (now.before(endDate) && now.after(startDate) && !arrears.get("before30").isEmpty()) {
+                if (firstMoney!=null){
+                    firstMoney = firstMoney.subtract(paid);
+                    if (money.compareTo(firstMoney) == -1 || money.compareTo(firstMoney) == 0) {
+                        map.put("status", true);
+                        map.put("electricFee",money);
+                        return map;
+                    } else if (money.compareTo(firstMoney) == 1) {
+                        map.put("status", false);
+                        map.put("msg", "已超出限额,本月电费限额" + firstMoney + "元");
+                        return map;
+                    }
+                }else{
+                    map.put("electricFee",money);
+                    map.put("status","true");
+                }
+            } else if (now.after(endDate)) {
+                if (everyMoney!=null){
+                    everyMoney = everyMoney.subtract(paid);
+                    if (money.compareTo(everyMoney) == -1 || money.compareTo(everyMoney) == 0) {
+                        map.put("status", true);
+                        map.put("electricFee",money);
+                        return map;
+                    } else if (money.compareTo(everyMoney) == 1) {
+                        map.put("status", false);
+                        map.put("msg", "已超出限额,本月电费限额" + everyMoney + "元");
+                        return map;
+                    }
+                }else{
+                    map.put("electricFee",money);
+                    map.put("stauts",true);
+                }
             }
         }
-        return null;
+        amountLeft.put("status",true);
+        amountLeft.put("electricFee",money);
+        return amountLeft;
     }
 
     @Override
     public Map<String, Object> amountLeft(PayFeeQuery query) {
         Map<String, Object> map = new HashMap<>();
-        HouseInfo houseInfo = houseInfoService.selectByQuery(query.getHouseInfoId());
-        if ("Y".equals(houseInfo.getAstrictStatus())) {
-            map.put("first", houseInfo.getFirstMoney());
-            map.put("every", houseInfo.getEveryMoney());
-            map.put("startDate", houseInfo.getStartDate());
-            map.put("endDate", houseInfo.getEndDate());
-            return map;
-        } else {
-            BigDecimal firstMoney = houseInfo.getProjectInfo().getFirstMoney();
-            BigDecimal everyMoney = houseInfo.getProjectInfo().getEveryMoney();
-            map.put("first", firstMoney);
-            map.put("every", everyMoney);
-            map.put("startDate", houseInfo.getProjectInfo().getStartDate());
-            map.put("endDate", houseInfo.getProjectInfo().getEndDate());
-            return map;
+        HouseVO houseInfo = houseInfoDetailsService.selectById(query.getHouseInfoId());
+        if(houseInfo!=null){
+            if ("Y".equals(houseInfo.getAstrictStatus())) {
+                map.put("first", houseInfo.getFirstMoney());
+                map.put("every", houseInfo.getEveryMoney());
+                map.put("startDate", houseInfo.getStartDate());
+                map.put("endDate", houseInfo.getEndDate());
+                map.put("isAstrict",houseInfo.getAstrictStatus());
+                return map;
+            } else {
+                BigDecimal firstMoney = houseInfo.getProjectInfo().getFirstMoney();
+                BigDecimal everyMoney = houseInfo.getProjectInfo().getEveryMoney();
+                map.put("first", firstMoney);
+                map.put("every", everyMoney);
+                map.put("startDate", houseInfo.getProjectInfo().getStartDate());
+                map.put("endDate", houseInfo.getProjectInfo().getEndDate());
+                map.put("isAstrict",houseInfo.getProjectInfo().getAstrictStatus());
+                return map;
+            }
         }
+        map.put("msg","查无此房产!");
+        return map;
     }
 
     @Override
