@@ -3,7 +3,7 @@
 <mapper namespace="cn.rzhd.wuye.mapper.PropertyFeePayDetailsMapper">
     <sql id="whereSql">
         <where>
-            AND HOUSE_INFO_ID = #{houseInfoId} AND PAY_TIME BETWEEN to_date(#{startDate},'YYYY-MM-DD') and to_date(#{endDate},'YYYY-MM-DD')
+            AND HOUSE_INFO_ID = #{houseInfoId} AND CUSTOMER_ID=#{customerId} AND PAY_TIME BETWEEN to_date(#{startDate},'YYYY-MM-DD') and to_date(#{endDate},'YYYY-MM-DD')
         </where>
     </sql>
 
@@ -29,6 +29,7 @@
         <result property="payTime" column="PAY_TIME"/>
         <result property="carteTime" column="CARTE_TIME"/>
         <result property="updateTime" column="UPDATE_TIME"/>
+        <result property="customerId" column="CUSTOMER_ID"/>
     </resultMap>
 
 
@@ -54,7 +55,8 @@
         INVOICE_COMPANY,
         PAY_TIME,
         CARTE_TIME,
-        UPDATE_TIME
+        UPDATE_TIME,
+        CUSTOMER_ID
         FROM T_PROPERTY_FEE_PAY_DETAILS
         <include refid="whereSql"/>
     </select>

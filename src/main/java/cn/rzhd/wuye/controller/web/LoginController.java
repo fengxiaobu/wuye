@@ -2,10 +2,14 @@ package cn.rzhd.wuye.controller.web;
 
 import cn.rzhd.wuye.bean.Customer;
 import cn.rzhd.wuye.service.ICustomerService;
+import cn.rzhd.wuye.service.IRentContractService;
 import cn.rzhd.wuye.utils.JsonResult;
+import cn.rzhd.wuye.vo.PactVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * Created by hasee on 2017/6/1.
@@ -15,6 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class LoginController {
     @Autowired
     ICustomerService customerService;
+    @Autowired
+    IRentContractService rentContractService;
 
     /**
      *
@@ -23,12 +29,29 @@ public class LoginController {
      */
     @RequestMapping("/login")
     public JsonResult login(Customer customer){
-        Customer loginCustomer = customerService.loginByPwd(customer);
-        if (loginCustomer == null){
-            return new JsonResult("账号或密码错误!");
+        List<Customer> customers = customerService.loginByPwd(customer);
+        if (customers.isEmpty()){
+            return new JsonResult("客户不存在!!!");
         }else{
             JsonResult result = new JsonResult();
-            result.getData().add(loginCustomer);
+            //只取租赁客户
+            for (Customer cus : customers) {
+                List<PactVO> pactVOS = rentContractService.queryByCustomer(cus.getPk_customerid());
+                cus.getHouseInfos().addAll(pactVOS);
+            }
+            result.getData().addAll(customers);
+
+//            for (Customer cus : customers) {
+//                String customerid = cus.getPk_customerid();
+//                List<SignVO> signVOS = sellContractService.queryByCustomer(cus.getPk_customerid());
+//                //List<PactVO> pactVOS = rentContractService.queryByCustomer(cus.getPk_customerid());
+//                if (!signVOS.isEmpty()){
+//                    result.getData().add(signVOS);
+//                }
+////                if (!pactVOS.isEmpty()){
+////                    result.getData().add(pactVOS);
+////                }
+//            }
             return result;
         }
     }

@@ -10,10 +10,10 @@ import java.util.List;
 public interface IHouseInfoService {
     /**
      * 通过HouseInfoId查询获取本地存放的HouseInfo数据
-     * @param id
+     * @param houseInfoId
      * @return  返回HouseInfo对象
      */
-    HouseInfo getById(Long id);
+    HouseInfo getById(String houseInfoId);
     /**
      * 获取HouseInfo所有记录
      * @return 返回HouseInfo的List
@@ -43,5 +43,5 @@ public interface IHouseInfoService {
      * @param customerid 客户ID
      * @return
      */
-    List<HouseInfo> selectByQuery( String customerid);
+    HouseInfo selectByQuery(String customerid);
 }

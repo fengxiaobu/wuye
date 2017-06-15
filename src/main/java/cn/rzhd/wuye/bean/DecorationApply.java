@@ -34,7 +34,7 @@ public class DecorationApply implements Serializable {
     /**
      * 房产id
      */
-    private Long houseInfoId;
+    private String houseInfoId;
     
     /**
      * 客户名称
@@ -154,11 +154,11 @@ public class DecorationApply implements Serializable {
         this.decorationApplyId = decorationApplyId;
     }
 
-    public Long getHouseInfoId() {
+    public String getHouseInfoId() {
         return houseInfoId;
     }
 
-    public void setHouseInfoId(Long houseInfoId) {
+    public void setHouseInfoId(String houseInfoId) {
         this.houseInfoId = houseInfoId;
     }
 

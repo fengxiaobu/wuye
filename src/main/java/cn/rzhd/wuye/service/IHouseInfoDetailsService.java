@@ -15,6 +15,11 @@ public interface IHouseInfoDetailsService {
      * @param houseInfoDetails
      */
     void saveHouseInfoDetails(HouseVO houseInfoDetails) throws Exception;
+<<<<<<< HEAD
     
     List<HouseVO> getHouseInfoDetails(String vhname);
+=======
+
+    HouseVO selectById(String pkHouse);
+>>>>>>> abbbe119b4e270093b02bacdd5bf922ec7aa8e04
 }

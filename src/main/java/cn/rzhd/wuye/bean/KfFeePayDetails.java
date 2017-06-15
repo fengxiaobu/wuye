@@ -16,7 +16,7 @@ public class KfFeePayDetails implements Serializable {
     /**
      * 房产id
      */
-    private Long houseInfoId;
+    private String houseInfoId;
     /**
      * 客户名称
      */
@@ -93,6 +93,10 @@ public class KfFeePayDetails implements Serializable {
      * 修改时间
      */
     private Date updateTime;
+    /**
+     * 客户主键
+     */
+    private String customerId;
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
@@ -106,11 +110,11 @@ public class KfFeePayDetails implements Serializable {
         this.kfFeePayDetailsId = kfFeePayDetailsId;
     }
 
-    public Long getHouseInfoId() {
+    public String getHouseInfoId() {
         return houseInfoId;
     }
 
-    public void setHouseInfoId(Long houseInfoId) {
+    public void setHouseInfoId(String houseInfoId) {
         this.houseInfoId = houseInfoId;
     }
 
@@ -264,6 +268,14 @@ public class KfFeePayDetails implements Serializable {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public String getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
     }
 
     @Override

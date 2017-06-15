@@ -1,6 +1,7 @@
 package cn.rzhd.wuye.bean;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -17,13 +18,9 @@ public class HouseInfo implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	/**
-	 * 房产信息id
+	 * 房产id
 	 */
 	private String houseInfoId;
-	/**
-	 * erp房产id
-	 */
-	private String erpHouseId;
 	/**
 	 * 项目id
 	 */
@@ -60,6 +57,30 @@ public class HouseInfo implements Serializable{
 	 * 项目信息
 	 */
 	private ProjectInfo projectInfo;
+	/**
+	 * 限制缴费起始日期
+	 */
+	private Date startDate;
+	/**
+	 * 限制缴费截止日期
+	 */
+	private Date endDate;
+	/**
+	 * 首次限缴金额
+	 */
+	private BigDecimal firstMoney;
+	/**
+	 * 每次限缴金额
+	 */
+	private BigDecimal everyMoney;
+	/**
+	 * 限缴状态(Y--启用,N--禁用)
+	 */
+	private String astrictStatus;
+	/**
+	 * 缴费限制更新日期
+	 */
+	private Date updateDate;
 
 	public ProjectInfo getProjectInfo() {
 		return projectInfo;
@@ -70,19 +91,6 @@ public class HouseInfo implements Serializable{
 	}
 
 
-	/**
-	 * @return the erpHouseId
-	 */
-	public String getErpHouseId() {
-		return erpHouseId;
-	}
-	/*
-	@param erpHouseId the erpHouseId to set
-	*/
-	public void setErpHouseId(String erpHouseId) {
-		this.erpHouseId = erpHouseId;
-	}
-	
 	/**
 	 * @return the houseProperty
 	 */
@@ -172,16 +180,59 @@ public class HouseInfo implements Serializable{
 		this.projectInfoId = projectInfoId;
 	}
 
-	/**
-	 * @return the projectInfoId
-	 */
-
-
 	public String getCustomerId() {
 		return customerId;
 	}
 
 	public void setCustomerId(String customerId) {
 		this.customerId = customerId;
+	}
+
+	public Date getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+	public Date getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
+
+	public BigDecimal getFirstMoney() {
+		return firstMoney;
+	}
+
+	public void setFirstMoney(BigDecimal firstMoney) {
+		this.firstMoney = firstMoney;
+	}
+
+	public BigDecimal getEveryMoney() {
+		return everyMoney;
+	}
+
+	public void setEveryMoney(BigDecimal everyMoney) {
+		this.everyMoney = everyMoney;
+	}
+
+	public String getAstrictStatus() {
+		return astrictStatus;
+	}
+
+	public void setAstrictStatus(String astrictStatus) {
+		this.astrictStatus = astrictStatus;
+	}
+
+	public Date getUpdateDate() {
+		return updateDate;
+	}
+
+	public void setUpdateDate(Date updateDate) {
+		this.updateDate = updateDate;
 	}
 }

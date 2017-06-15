@@ -25,6 +25,13 @@ public interface IRentContractService {
      * @param pactVO 存入租赁合同信息
      */
     void addRentContract(PactVO pactVO);
+<<<<<<< HEAD
     
     List<PactVO> getBackAll();
+=======
+    /**
+     * 通过客户ID查询租赁合同信息
+     */
+    List<PactVO> queryByCustomer(String customerId);
+>>>>>>> abbbe119b4e270093b02bacdd5bf922ec7aa8e04
 }

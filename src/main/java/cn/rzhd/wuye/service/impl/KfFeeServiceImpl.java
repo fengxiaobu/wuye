@@ -62,5 +62,16 @@ public class KfFeeServiceImpl implements IKfFeeService {
         return map;
     }
 
+    /**
+     * 入驻开发费
+     *
+     * @param query
+     * @return
+     */
+    @Override
+    public List<KfFee> selectAllRZ(FeeDataQuery query) {
+        return mapper.selectAllRZ(query);
+    }
+
 
 }

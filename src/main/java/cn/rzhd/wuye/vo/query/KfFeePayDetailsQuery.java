@@ -10,7 +10,7 @@ public class KfFeePayDetailsQuery extends BaseQuery{
     /**
      * 房产信息ID
      */
-    private Long houseInfoId;
+    private String houseInfoId;
     /**
      * 缴费日期起始时间
      */
@@ -24,11 +24,11 @@ public class KfFeePayDetailsQuery extends BaseQuery{
      */
     private Integer invoiceStatus;
 
-    public Long getHouseInfoId() {
+    public String getHouseInfoId() {
         return houseInfoId;
     }
 
-    public void setHouseInfoId(Long houseInfoId) {
+    public void setHouseInfoId(String houseInfoId) {
         this.houseInfoId = houseInfoId;
     }
 

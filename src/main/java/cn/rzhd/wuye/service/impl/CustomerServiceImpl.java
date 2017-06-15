@@ -8,6 +8,8 @@ import cn.rzhd.wuye.vo.CustomerVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by hasee on 2017/6/1.
  */
@@ -22,7 +24,7 @@ public class CustomerServiceImpl implements ICustomerService {
      * @return
      */
     @Override
-    public Customer loginByPwd(Customer customer) {
+    public List<Customer> loginByPwd(Customer customer) {
         customer.setPassword(MD5Utils.md5(customer.getPassword()));
         return mapper.loginByPwd(customer);
     }

@@ -16,7 +16,7 @@ public interface IEnterApplyService {
      * @param enterApplyId
      * @return
      */
-    EnterApply getEnterApplyByID(Long enterApplyId);
+    List<Map<String, JsonFormat.Value>> getEnterApplyByID(Long enterApplyId);
 
     /**
      * 获取所有入驻申请信息

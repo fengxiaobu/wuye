@@ -1,6 +1,9 @@
 package cn.rzhd.wuye.bean;
 
-public class Company {
+import java.io.Serializable;
+
+public class Company implements Serializable{
+    private static final long serialVersionUID = 1L;
     private String pkCorp;
 
     private String fathercorp;

@@ -1,11 +1,16 @@
 package cn.rzhd.wuye.bean;
 
+import cn.rzhd.wuye.vo.PactVO;
+
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by hasee on 2017/6/1.
  */
-public class Customer {
+public class Customer implements Serializable{
+    private static final long serialVersionUID = 1L;
     
     /**
      * 公司主键
@@ -86,7 +91,7 @@ public class Customer {
     /**
      * 房产信息主键及房产名
      */
-    private List<HouseInfo> houseInfos;
+    private List<PactVO> houseInfos = new ArrayList<>();
 
     public String getPk_corp() {
         return pk_corp;
@@ -240,11 +245,11 @@ public class Customer {
         this.bindingPhone = bindingPhone;
     }
 
-    public List<HouseInfo> getHouseInfos() {
+    public List<PactVO> getHouseInfos() {
         return houseInfos;
     }
 
-    public void setHouseInfos(List<HouseInfo> houseInfos) {
+    public void setHouseInfos(List<PactVO> houseInfos) {
         this.houseInfos = houseInfos;
     }
 

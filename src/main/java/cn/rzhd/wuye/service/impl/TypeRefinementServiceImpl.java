@@ -25,39 +25,39 @@ public class TypeRefinementServiceImpl implements ITypeRefinementService {
     @Autowired
     private TypeDifferentiateMapper difMapper;
     
-    @Override
+/*    @Override
     public void addTypeRefinement(TypeRefinementVo typeRefinementVo) {
-	TypeRefinement typeRefinement = new TypeRefinement();
-	
-	TypeRefinement nameIsRepeat = mapper.findTypeRefinementNameIsRepeat(typeRefinementVo.getTypeRefinementName());
-	if (nameIsRepeat != null ) {
-	    //执行修改操作
+		TypeRefinement typeRefinement = new TypeRefinement();
+
+		TypeRefinement nameIsRepeat = mapper.findTypeRefinementNameIsRepeat(typeRefinementVo.getTypeRefinementName());
+		if (nameIsRepeat != null ) {
+			//执行修改操作
 //	    nameIsRepeat.setTypeRefinementId(nameIsRepeat.getTypeDifferentiateId());
-	    nameIsRepeat.setStatus(typeRefinementVo.getStatus());
-	    nameIsRepeat.setNote(typeRefinementVo.getNote());
-	    nameIsRepeat.setUpdateTime(new Date());
-	    mapper.updatetypeRefinementById(nameIsRepeat);
-	    
-	}else {
-	    //执行新建操作
-	    Long findRefinementId = mapper.findRefinementId();
-	    if (findRefinementId == null || findRefinementId == 0) {
-		typeRefinement.setTypeRefinementId(Long.valueOf("1"));
-	    }else {
-		typeRefinement.setTypeRefinementId(findRefinementId+1);
-	    }
-	    
+			nameIsRepeat.setStatus(typeRefinementVo.getStatus());
+			nameIsRepeat.setNote(typeRefinementVo.getNote());
+			nameIsRepeat.setUpdateTime(new Date());
+			mapper.updatetypeRefinementById(nameIsRepeat);
+
+		}else {
+			//执行新建操作
+			Long findRefinementId = mapper.findRefinementId();
+			if (findRefinementId == null || findRefinementId == 0) {
+				typeRefinement.setTypeRefinementId(Long.valueOf("1"));
+			}else {
+				typeRefinement.setTypeRefinementId(findRefinementId+1);
+			}
+
 //	    TypeDifferentiate typeDifferentiate = mapper.findTypeDifferentiateIdByName(typeRefinementVo.getTypeDifferentiateName());
-	    TypeDifferentiate typeDifferentiate = difMapper.findTypeDifferentiateNameIsRepeat(typeRefinementVo.getTypeDifferentiateName());
-	    typeRefinement.setTypeDifferentiateId(typeDifferentiate.getTypeDifferentiateId());
-	    typeRefinement.setTypeRefinementName(typeRefinementVo.getTypeRefinementName());
-	    typeRefinement.setStatus(typeRefinementVo.getStatus());
-	    typeRefinement.setNote(typeRefinementVo.getNote());
-	    typeRefinement.setCreateTime(new Date());
-	    mapper.addTypeRefinementName(typeRefinement);
-	    
-	}
-	
-    }
+			TypeDifferentiate typeDifferentiate = difMapper.findTypeDifferentiateNameIsRepeat(typeRefinementVo.getTypeDifferentiateName());
+			typeRefinement.setTypeDifferentiateId(typeDifferentiate.getTypeDifferentiateId());
+			typeRefinement.setTypeRefinementName(typeRefinementVo.getTypeRefinementName());
+			typeRefinement.setStatus(typeRefinementVo.getStatus());
+			typeRefinement.setNote(typeRefinementVo.getNote());
+			typeRefinement.setCreateTime(new Date());
+			mapper.addTypeRefinementName(typeRefinement);
+
+		}
+
+	}*/
 
 }

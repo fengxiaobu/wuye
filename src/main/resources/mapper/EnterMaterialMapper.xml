@@ -87,8 +87,7 @@
             T_PROJECT_INFO pro
         WHERE
             mater.USER_ID = tuser.USER_ID
-        AND mater.HOUSE_INFO_ID = house.HOUSE_INFO_ID
-        AND house.PROJECT_INFO_ID = pro.PK_PROJECT
+        AND mater.PK_PROJECT= house.PROJECT_INFO_ID
     </select>
 
     <!--入驻申请列表条件查询-->

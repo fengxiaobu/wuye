@@ -311,6 +311,49 @@
             <artifactId>bcprov-jdk15on</artifactId>
             <version>1.47</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.5</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/commons-beanutils/commons-beanutils -->
+        <dependency>
+            <groupId>commons-beanutils</groupId>
+            <artifactId>commons-beanutils</artifactId>
+            <version>1.6</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.xiaoleilu</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>3.0.5</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.jodd/jodd-core -->
+        <dependency>
+            <groupId>org.jodd</groupId>
+            <artifactId>jodd-core</artifactId>
+            <version>3.8.6</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.jodd/jodd-http -->
+        <dependency>
+            <groupId>org.jodd</groupId>
+            <artifactId>jodd-http</artifactId>
+            <version>3.8.6</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>chinapay</groupId>
+            <artifactId>chinapayfilesecure</artifactId>
+            <version>1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>chinapay</groupId>
+            <artifactId>chinapaysecure</artifactId>
+            <version>1.0</version>
+        </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.apache.tomcat/tomcat-util -->
         <!--   <dependency>
@@ -318,6 +361,7 @@
               <artifactId>tomcat-util-scan</artifactId>
               <version>8.0.44</version>
           </dependency> -->
+
 
     </dependencies>
     <build>

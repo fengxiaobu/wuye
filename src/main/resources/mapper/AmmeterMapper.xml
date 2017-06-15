@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.rzhd.wuye.mapper.AmmeterMapper">
+    <resultMap id="baseMap" type="cn.rzhd.wuye.bean.Ammeter">
+        <id property="id" column="id"/>
+        <result property="pk_project" column="pk_project"/>
+        <result property="pk_house" column="pk_house"/>
+        <result property="ammeter_no" column="ammeter_no"/>
+        <result property="ammeter_name" column="ammeter_name"/>
+        <result property="multiply" column="multiply"/>
+        <result property="projectName" column="projectName"/>
+        <result property="propertyName" column="propertyName"/>
+    </resultMap>
+    <select id="queryAmmeters" parameterType="string" resultMap="baseMap">
+        select "id",
+            "pk_project",
+            "pk_house",
+            "ammeter_no",
+            "ammeter_name",
+            "multiply"
+        FROM "T_Ammeter"
+        WHERE "pk_house"=#{houseInfoId}
+    </select>
+    <select id="getAllAmmeters" resultType="cn.rzhd.wuye.bean.Ammeter">
+        select a."id",
+            a."pk_project",
+            p."project" AS projectName,
+            a."pk_house",
+            p."vhname" AS propertyName,
+            a."ammeter_no",
+            a."ammeter_name",
+            a."multiply"
+        FROM "T_Ammeter" a JOIN T_HOUSE_INFO_DETAILS p ON p."pk_house"=a."pk_house"
+    </select>
+</mapper>

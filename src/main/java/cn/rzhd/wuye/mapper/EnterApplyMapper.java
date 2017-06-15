@@ -16,7 +16,7 @@ import java.util.Map;
 @Mapper
 public interface EnterApplyMapper{
 
-    EnterApply getEnterApplyByID(@Param("enterApplyId") Long enterApplyId);
+    List<Map<String, JsonFormat.Value>> getEnterApplyByID(@Param("enterApplyId") Long enterApplyId);
 
     List<Map<String, JsonFormat.Value>>  findEnterApplyList();
 

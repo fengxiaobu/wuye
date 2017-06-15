@@ -24,7 +24,7 @@ public class WaterRatePayDetails implements Serializable{
 	/**
 	 * 房产ID
 	 */
-	private Long houseInfoId;
+	private String houseInfoId;
 	/**
 	 * 客户名称
 	 */
@@ -105,7 +105,10 @@ public class WaterRatePayDetails implements Serializable{
      * 修改时间
      */
     private Date updateTime;
-	
+	/**
+	 * 客户主键
+	 */
+	private String customerId;
 	/**
 	 * @return the clientName
 	 */
@@ -358,18 +361,20 @@ public class WaterRatePayDetails implements Serializable{
 	public void setWaterRatePayDetailsId(Long waterRatePayDetailsId) {
 		this.waterRatePayDetailsId = waterRatePayDetailsId;
 	}
-	/**
-	 * @return the houseInfoId
-	 */
-	public Long getHouseInfoId() {
+
+	public String getHouseInfoId() {
 		return houseInfoId;
 	}
-	/*
-	@param houseInfoId the houseInfoId to set
-	*/
-	public void setHouseInfoId(Long houseInfoId) {
+
+	public void setHouseInfoId(String houseInfoId) {
 		this.houseInfoId = houseInfoId;
 	}
-    
-    
+
+	public String getCustomerId() {
+		return customerId;
+	}
+
+	public void setCustomerId(String customerId) {
+		this.customerId = customerId;
+	}
 }

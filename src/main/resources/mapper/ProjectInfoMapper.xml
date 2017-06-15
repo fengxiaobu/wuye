@@ -27,6 +27,12 @@
         <result column="DECORATE_AREA" property="decorateArea" jdbcType="DECIMAL"/>
         <result column="LESS_PLEDGE" property="lessPledge" jdbcType="DECIMAL"/>
         <result column="MORE_PLEDGE" property="morePledge" jdbcType="DECIMAL"/>
+        <result column="STARTDATE" property="startDate"/>
+        <result column="ENDDATE" property="endDate"/>
+        <result column="FIRSTMNY" property="firstMoney"/>
+        <result column="EVERYMNY" property="everyMoney"/>
+        <result column="UPDATEDATE" property="updateDate"/>
+        <result column="ASTRICTSTATUS" property="astrictStatus"/>
     </resultMap>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
         DELETE FROM T_PROJECT_INFO
@@ -65,7 +71,12 @@
             PASSCARD_COST                  = #{passcardCost,jdbcType=DECIMAL},
             DECORATE_AREA                  = #{decorateArea,jdbcType=DECIMAL},
             LESS_PLEDGE                    = #{lessPledge,jdbcType=DECIMAL},
-            MORE_PLEDGE                    = #{morePledge,jdbcType=DECIMAL}
+            MORE_PLEDGE                    = #{morePledge,jdbcType=DECIMAL},
+            STARTDATE                      = #{startDate,jdbcType=DATE},
+            ENDDATE                        = #{endDate,jdbcType=DATE},
+            FIRSTMNY                       = #{firstMoney,jdbcType=DECIMAL},
+            EVERYMNY                       = #{everyMoney,jdbcType=DECIMAL},
+            UPDATEDATE                     = #{updateDate,jdbcType=DATE}
         WHERE PK_PROJECT = #{pkProject,jdbcType=CHAR}
     </update>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
@@ -94,7 +105,13 @@
             PASSCARD_COST,
             DECORATE_AREA,
             LESS_PLEDGE,
-            MORE_PLEDGE
+            MORE_PLEDGE,
+            STARTDATE,
+            ENDDATE,
+            FIRSTMNY,
+            EVERYMNY,
+            UPDATEDATE,
+            ASTRICTSTATUS
         FROM T_PROJECT_INFO
         WHERE PK_PROJECT = #{pkProject,jdbcType=CHAR}
     </select>
@@ -124,19 +141,24 @@
             PASSCARD_COST,
             DECORATE_AREA,
             LESS_PLEDGE,
-            MORE_PLEDGE
+            MORE_PLEDGE,
+            STARTDATE,
+            ENDDATE,
+            FIRSTMNY,
+            EVERYMNY,
+            UPDATEDATE
         FROM T_PROJECT_INFO
     </select>
     <update id="updateByERP" parameterType="cn.rzhd.wuye.vo.ProjectVO">
         UPDATE T_PROJECT_INFO
         SET
-            PK_CORP=#{pk_corp},
-            vcode=#{vcode},
-            PROJECT_NAME=#{vname},
-            vshortname=#{vshortname},
-            PK_RESPONSECORP=#{pk_responsecorp},
-            vincode=#{vincode}
-        WHERE PK_PROJECT=#{pk_project}
+            PK_CORP         = #{pk_corp},
+            vcode           = #{vcode},
+            PROJECT_NAME    = #{vname},
+            vshortname      = #{vshortname},
+            PK_RESPONSECORP = #{pk_responsecorp},
+            vincode         = #{vincode}
+        WHERE PK_PROJECT = #{pk_project}
     </update>
 
 </mapper>

@@ -24,7 +24,7 @@ public class RentPayDetails implements Serializable{
 	/**
 	 * 房产id
 	 */
-	private Long houseInfoId;
+	private String houseInfoId;
 	/**
 	 * 客户名称
 	 */
@@ -342,17 +342,12 @@ public class RentPayDetails implements Serializable{
 	public void setRentPayDetailsId(Long rentPayDetailsId) {
 		this.rentPayDetailsId = rentPayDetailsId;
 	}
-	/**
-	 * @return the houseInfoId
-	 */
-	public Long getHouseInfoId() {
+
+	public String getHouseInfoId() {
 		return houseInfoId;
 	}
-	/*
-	@param houseInfoId the houseInfoId to set
-	*/
-	public void setHouseInfoId(Long houseInfoId) {
+
+	public void setHouseInfoId(String houseInfoId) {
 		this.houseInfoId = houseInfoId;
 	}
-
 }

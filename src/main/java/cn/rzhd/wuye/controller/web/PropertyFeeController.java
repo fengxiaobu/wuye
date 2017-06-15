@@ -23,9 +23,9 @@ import java.util.List;
 public class PropertyFeeController {
 
     @Autowired
-    IPropertyFeePayDetailsService propertyFeePayDetailsService;
+    private IPropertyFeePayDetailsService propertyFeePayDetailsService;
     @Autowired
-    IKfFeePayDetailsService kfFeePayDetailsService;
+    private IKfFeePayDetailsService kfFeePayDetailsService;
 
     /**
      *
@@ -34,8 +34,11 @@ public class PropertyFeeController {
      */
     @RequestMapping("/records/propertyList")
     public PageDataGridResult propertyList(PropertyFeePayDetailsQuery query){
+        //设置分页的firstPage,和pageSize;
         PageHelper.startPage(query.getStartPage(),query.getPageSize());
+        //直接执行查询
         List<PropertyFeePayDetails> list = propertyFeePayDetailsService.queryAll(query);
+        //new PageInfo对象,将得出的List传入,得到的pageInfo就是一个分页对象,里面有数据,还有总条数等数据
         PageInfo pageInfo = new PageInfo(list);
         PageDataGridResult result = new PageDataGridResult();
         result.setRows(pageInfo.getList());

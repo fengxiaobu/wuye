@@ -8,16 +8,16 @@ import java.text.SimpleDateFormat;
 
 public class BaseQuery {
     protected SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-    private Long id;
-    private Integer startPage;
-    private Integer pageSize;
+    private String customerId;
+    private Integer startPage = 1;
+    private Integer pageSize = 10;
 
-    public Long getId() {
-        return id;
+    public String getCustomerId() {
+        return customerId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
     }
 
     public Integer getStartPage() {

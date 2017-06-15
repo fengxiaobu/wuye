@@ -2,6 +2,7 @@ package cn.rzhd.wuye.utils;
 
 import org.junit.Test;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -18,10 +19,8 @@ public class HttpUtils {
     /**
      * 向指定URL发送GET方法的请求
      *
-     * @param url
-     *            发送请求的URL
-     * @param param
-     *            请求参数，请求参数应该是 name1=value1&name2=value2 的形式。
+     * @param url   发送请求的URL
+     * @param param 请求参数，请求参数应该是 name1=value1&name2=value2 的形式。
      * @return URL 所代表远程资源的响应结果
      */
     public static String sendGet(String url, String param) {
@@ -70,6 +69,25 @@ public class HttpUtils {
     }
 
     /**
+     * 获取IP
+     * @param request
+     * @return
+     */
+    public static String getIpAddr(HttpServletRequest request) {
+        String ip = request.getHeader("x-forwarded-for");
+        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+            ip = request.getHeader("Proxy-Client-IP");
+        }
+        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+            ip = request.getHeader("WL-Proxy-Client-IP");
+        }
+        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+            ip = request.getRemoteAddr();
+        }
+        return ip;
+    }
+
+    /**
      * 向指定 URL 发送POST方法的请求
      *
      * @param url   发送请求的 URL
@@ -115,19 +133,19 @@ public class HttpUtils {
                 if (out != null) {
                     out.close();
                 }
-                if(in!=null){
+                if (in != null) {
                     in.close();
                 }
-            } catch(IOException ex) {
+            } catch (IOException ex) {
                 ex.printStackTrace();
             }
         }
         return result;
     }
-@Test
-public void test(){
 
-    String s = this.sendPost("http://127.0.0.1:52211/user/pullUserInfo", "");
-    System.out.println("s = " + s);
-}
+    @Test
+    public void test() {
+        String s=this.sendPost("http://localhost:8092/dist/type/findTypeDifferentiateName", "typeDifferentiateName=企业在U谷中的属性");
+        System.out.println(s);
+    }
 }

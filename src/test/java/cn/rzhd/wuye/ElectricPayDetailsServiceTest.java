@@ -19,7 +19,7 @@ public class ElectricPayDetailsServiceTest extends BaseTest {
     @Test
     public void queryAllTest(){
         UtilitiesQuery query = new UtilitiesQuery();
-        query.setHouseInfoId(123L);
+        query.setHouseInfoId("");
         List<ElectricFeePayDetails> list = service.queryAll(query);
         for (ElectricFeePayDetails details : list) {
             System.out.println(details);

@@ -24,7 +24,15 @@
 	FROM "T_Sell_Contract"
 	WHERE "house"=#{house}
     </select>
+<<<<<<< HEAD
     
+=======
+
+    <select id="queryByCustomer" parameterType="string" resultType="cn.rzhd.wuye.vo.SignVO">
+        SELECT DISTINCT "pk_house","house","pk_project",p.VSHORTNAME AS projectName FROM  "T_Sell_Contract" JOIN T_PROJECT_INFO p ON "pk_project"=p.PK_PROJECT WHERE "pk_customerid"=#{customerId}
+    </select>
+
+>>>>>>> abbbe119b4e270093b02bacdd5bf922ec7aa8e04
     <insert id="add" parameterType="cn.rzhd.wuye.vo.SignVO">
         INSERT INTO "T_Sell_Contract" ("pk_corp",
                                      "pk_customerid",
