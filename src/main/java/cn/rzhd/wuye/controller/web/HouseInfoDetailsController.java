@@ -14,7 +14,7 @@ import cn.rzhd.wuye.vo.HouseVO;
  *
  */
 @RestController
-@RequestMapping("/houseInfo/houseInfoDetails")
+@RequestMapping("/dist/houseInfo/houseInfoDetails")
 public class HouseInfoDetailsController {
 	@Autowired
 	IHouseInfoDetailsService houseInfoDetailsService;

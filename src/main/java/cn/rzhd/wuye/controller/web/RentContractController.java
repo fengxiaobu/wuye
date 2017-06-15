@@ -14,7 +14,7 @@ import cn.rzhd.wuye.vo.PactVO;
  *
  */
 @RestController
-@RequestMapping("/rent/contract")
+@RequestMapping("/dist/rent/contract")
 public class RentContractController {
 	@Autowired
 	IRentContractService rentContractService;
