@@ -51,10 +51,6 @@ public class RentContractServiceImpl implements IRentContractService {
         mapper.add(pactVO);
     }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 4f8b17e814637763d74f8a19872d8719dc4cb379
 	@Override
 	public List<PactVO> getRentContract(String house) {
 		List<PactVO> byPkId = mapper.getByPkId(house);
@@ -67,10 +63,7 @@ public class RentContractServiceImpl implements IRentContractService {
 		return pactVOAll;
 	}
 
-<<<<<<< HEAD
-	
-=======
->>>>>>> 4f8b17e814637763d74f8a19872d8719dc4cb379
+
 
     @Override
     public List<PactVO> queryByCustomer(String customerId) {

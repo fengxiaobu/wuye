@@ -32,25 +32,16 @@ public class HouseInfoDetailsServiceImpl implements IHouseInfoDetailsService {
         }
     }
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 4f8b17e814637763d74f8a19872d8719dc4cb379
 	@Override
 	public List<HouseVO> getHouseInfoDetails(String vhname) {
 		List<HouseVO> houseInfoNames = mapper.getHouseInfoByName(vhname);
 		return houseInfoNames;
 	}
-<<<<<<< HEAD
 
-=======
->>>>>>> 4f8b17e814637763d74f8a19872d8719dc4cb379
     @Override
     public HouseVO selectById(String pkHouse) {
         return mapper.selectByPrimaryKey(pkHouse);
     }
-<<<<<<< HEAD
 
-=======
->>>>>>> 4f8b17e814637763d74f8a19872d8719dc4cb379
 }

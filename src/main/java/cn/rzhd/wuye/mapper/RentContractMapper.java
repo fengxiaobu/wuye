@@ -25,19 +25,10 @@ public interface RentContractMapper {
 
     void add(PactVO pactVO);
 
-<<<<<<< HEAD
-    
     List<PactVO> getAll();
 
-=======
-    List<PactVO> getAll();
->>>>>>> 4f8b17e814637763d74f8a19872d8719dc4cb379
     /**
      * 通过客户ID查询租赁合同信息
      */
     List<PactVO> queryByCustomer(String customerId);
-<<<<<<< HEAD
-
-=======
->>>>>>> 4f8b17e814637763d74f8a19872d8719dc4cb379
 }
