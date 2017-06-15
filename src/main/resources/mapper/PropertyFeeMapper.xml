@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="cn.rzhd.wuye.mapper.PropertyFeeMapper">
-    <resultMap id="BaseResultMap" type="cn.rzhd.wuye.bean.PropertyFee">
+    <resultMap id="baseResultMap" type="cn.rzhd.wuye.bean.PropertyFee">
         <result column="pk_corp" property="pk_corp" jdbcType="CHAR"/>
         <result column="pk_customerid" property="pk_customerid" jdbcType="CHAR"/>
         <result column="pk_project" property="pk_project" jdbcType="CHAR"/>
@@ -27,7 +27,7 @@
 
     <sql id="arrearsSql">
         <where>
-            AND "pk_house"=#{houseInfoId} AND "pk_customerid"=#{pk_customerId} AND "dshpay" &lt;= TO_CHAR(SYSDATE,'YYYY-MM-DD') AND "isrz" = 'N'
+            AND "pk_house"='${houseInfoId}' AND "pk_customerid"='${customerId}' AND "dshpay" &lt;= TO_CHAR(SYSDATE,'YYYY-MM-DD') AND "isrz" = 'N'
             <if test="startDate != null and startDate != ''">
                 AND SUBSTR("dshpay",1,7) >= SUBSTR(#{startDate},1,7)
             </if>
@@ -39,7 +39,7 @@
     </sql>
     <sql id="queryForPay">
         <where>
-            AND "pk_house"=#{houseInfoId} AND "pk_customerid"=#{pk_customerId} AND "dshpay" &lt;= TO_CHAR(SYSDATE,'YYYY-MM-DD') AND "isrz" = 'N'
+            AND "pk_house"=#{houseInfoId} AND "pk_customerid"=#{customerId} AND "dshpay" &lt;= TO_CHAR(SYSDATE,'YYYY-MM-DD') AND "isrz" = 'N'
             <if test="startDate != null and startDate != ''">
                 AND SUBSTR("dshpay",1,7) >= SUBSTR(#{startDate},1,7)
             </if>
@@ -80,7 +80,7 @@
                 #{vmemo,jdbcType=VARCHAR},
                 #{nyshouldmny,jdbcType=VARCHAR}, 'Y', #{nyjmny})
     </insert>
-    <select id="selectAll" resultMap="BaseResultMap" resultType="cn.rzhd.wuye.vo.query.FeeDataQuery">
+    <select id="selectAll" resultMap="baseResultMap" resultType="cn.rzhd.wuye.vo.query.FeeDataQuery">
         SELECT
             "pk_corp",
             "pk_customerid",
@@ -98,7 +98,7 @@
         FROM T_PROPERTY_FEE
         WHERE "pk_house" = #{houseInfoId} AND "dshpay" > TO_CHAR(SYSDATE, 'YYYY-MM-DD')
     </select>
-    <select id="rzselectAll" resultMap="BaseResultMap" resultType="cn.rzhd.wuye.vo.query.FeeDataQuery">
+    <select id="rzselectAll" resultMap="baseResultMap" resultType="cn.rzhd.wuye.vo.query.FeeDataQuery">
         SELECT
             "pk_corp",
             "pk_customerid",
@@ -116,7 +116,7 @@
         FROM T_PROPERTY_FEE
         WHERE "isrz" = 'Y' AND "pk_house" = #{houseInfoId}
     </select>
-    <select id="selectAllArrears" resultMap="BaseResultMap" parameterType="cn.rzhd.wuye.vo.query.ArrearsQuery">
+    <select id="selectAllArrears" resultMap="baseResultMap" parameterType="cn.rzhd.wuye.vo.query.ArrearsQuery">
         SELECT
         "pk_corp",
         "pk_customerid",

@@ -2,9 +2,7 @@ package cn.rzhd.wuye.controller.web;
 
 import cn.rzhd.wuye.bean.Customer;
 import cn.rzhd.wuye.service.ICustomerService;
-import cn.rzhd.wuye.service.IProjectInfoService;
 import cn.rzhd.wuye.service.IRentContractService;
-import cn.rzhd.wuye.service.ISellContractService;
 import cn.rzhd.wuye.utils.JsonResult;
 import cn.rzhd.wuye.vo.PactVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,11 +20,7 @@ public class LoginController {
     @Autowired
     ICustomerService customerService;
     @Autowired
-    ISellContractService sellContractService;
-    @Autowired
     IRentContractService rentContractService;
-    @Autowired
-    IProjectInfoService projectInfoService;
 
     /**
      *
@@ -45,8 +39,7 @@ public class LoginController {
                 List<PactVO> pactVOS = rentContractService.queryByCustomer(cus.getPk_customerid());
                 cus.getHouseInfos().addAll(pactVOS);
             }
-
-            result.getData().add(customers);
+            result.getData().addAll(customers);
 
 //            for (Customer cus : customers) {
 //                String customerid = cus.getPk_customerid();

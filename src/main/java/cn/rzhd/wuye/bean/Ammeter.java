@@ -9,7 +9,9 @@ public class Ammeter implements Serializable {
     private static final long serialVersionUID = 1L;
     private Long id;
     private String pk_project;
+    private String projectName;
     private String pk_house;
+    private String propertyName;
     private String ammeter_no;
     private String ammeter_name;
     private Integer multiply;
@@ -60,5 +62,21 @@ public class Ammeter implements Serializable {
 
     public void setMultiply(Integer multiply) {
         this.multiply = multiply;
+    }
+
+    public String getProjectName() {
+        return projectName;
+    }
+
+    public void setProjectName(String projectName) {
+        this.projectName = projectName;
+    }
+
+    public String getPropertyName() {
+        return propertyName;
+    }
+
+    public void setPropertyName(String propertyName) {
+        this.propertyName = propertyName;
     }
 }

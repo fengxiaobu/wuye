@@ -43,11 +43,13 @@ public class PayFeeServiceImpl implements IPayFeeService {
 
         Date thirtyDate = new Date();
         thirtyDate.setTime(thirtyDate.getTime() - 2592000000L);
-
+        arrearsQuery.setStartDate(null);
+        arrearsQuery.setEndDate(null);
         try {
             for (String houseInfoId : houseInfoIds) {
                 query.setHouseInfoId(houseInfoId);
                 arrearsQuery.setHouseInfoId(houseInfoId);
+                arrearsQuery.setCustomerId(query.getCustomerId());
                 List<PropertyFee> propertyFees = propertyFeeService.queryAllArrears(arrearsQuery);
                 //时间超过60天的记录
                 for (PropertyFee fee : propertyFees) {
@@ -87,12 +89,12 @@ public class PayFeeServiceImpl implements IPayFeeService {
             return map;
         }
         //判断是否要进行限制缴费判断
-        if (!amountLeft.containsKey("msg") && "Y".equals(amountLeft.get("isAstrict"))){
+        if (!amountLeft.containsKey("msg") && "Y".equals(amountLeft.get("isAstrict"))) {
             Map<String, List> arrears = isArrears(query);
             Date startDate = (Date) amountLeft.get("startDate");
             Date endDate = (Date) amountLeft.get("endDate");
-            BigDecimal firstMoney = (BigDecimal) amountLeft.get("firstMoney");
-            BigDecimal everyMoney = (BigDecimal) amountLeft.get("everyMoney");
+            BigDecimal firstMoney = (BigDecimal) amountLeft.get("first");
+            BigDecimal everyMoney = (BigDecimal) amountLeft.get("every");
 
             BigDecimal paid = electricPayDetailsService.getAstrictPaid(query.getHouseInfoId(), (Date) amountLeft.get("starDate"), (Date) amountLeft.get("endDate"));
 
@@ -100,42 +102,44 @@ public class PayFeeServiceImpl implements IPayFeeService {
             //获取当前系统时间
             Date now = new Date();
             //判断当前时间是否在限制期内
-            if (now.before(endDate) && now.after(startDate) && !arrears.get("before30").isEmpty()) {
-                if (firstMoney!=null){
-                    firstMoney = firstMoney.subtract(paid);
+            List before30 = arrears.get("before30");
+            if ((!now.after(endDate) && !now.before(startDate)) && !before30.isEmpty()) {
+                if (firstMoney != null) {
+
+                    firstMoney = firstMoney.subtract((paid == null) ? new BigDecimal(0) : paid);
                     if (money.compareTo(firstMoney) == -1 || money.compareTo(firstMoney) == 0) {
                         map.put("status", true);
-                        map.put("electricFee",money);
+                        map.put("electricFee", money);
                         return map;
                     } else if (money.compareTo(firstMoney) == 1) {
                         map.put("status", false);
                         map.put("msg", "已超出限额,本月电费限额" + firstMoney + "元");
                         return map;
                     }
-                }else{
-                    map.put("electricFee",money);
-                    map.put("status","true");
+                } else {
+                    map.put("electricFee", money);
+                    map.put("status", "true");
                 }
             } else if (now.after(endDate)) {
-                if (everyMoney!=null){
-                    everyMoney = everyMoney.subtract(paid);
+                if (everyMoney != null) {
+                    everyMoney = everyMoney.subtract((paid == null) ? new BigDecimal(0) : paid);
                     if (money.compareTo(everyMoney) == -1 || money.compareTo(everyMoney) == 0) {
                         map.put("status", true);
-                        map.put("electricFee",money);
+                        map.put("electricFee", money);
                         return map;
                     } else if (money.compareTo(everyMoney) == 1) {
                         map.put("status", false);
                         map.put("msg", "已超出限额,本月电费限额" + everyMoney + "元");
                         return map;
                     }
-                }else{
-                    map.put("electricFee",money);
-                    map.put("stauts",true);
+                } else {
+                    map.put("electricFee", money);
+                    map.put("stauts", true);
                 }
             }
         }
-        amountLeft.put("status",true);
-        amountLeft.put("electricFee",money);
+        amountLeft.put("status", true);
+        amountLeft.put("electricFee", money);
         return amountLeft;
     }
 
@@ -143,13 +147,13 @@ public class PayFeeServiceImpl implements IPayFeeService {
     public Map<String, Object> amountLeft(PayFeeQuery query) {
         Map<String, Object> map = new HashMap<>();
         HouseVO houseInfo = houseInfoDetailsService.selectById(query.getHouseInfoId());
-        if(houseInfo!=null){
+        if (houseInfo != null) {
             if ("Y".equals(houseInfo.getAstrictStatus())) {
                 map.put("first", houseInfo.getFirstMoney());
                 map.put("every", houseInfo.getEveryMoney());
                 map.put("startDate", houseInfo.getStartDate());
                 map.put("endDate", houseInfo.getEndDate());
-                map.put("isAstrict",houseInfo.getAstrictStatus());
+                map.put("isAstrict", houseInfo.getAstrictStatus());
                 return map;
             } else {
                 BigDecimal firstMoney = houseInfo.getProjectInfo().getFirstMoney();
@@ -158,20 +162,20 @@ public class PayFeeServiceImpl implements IPayFeeService {
                 map.put("every", everyMoney);
                 map.put("startDate", houseInfo.getProjectInfo().getStartDate());
                 map.put("endDate", houseInfo.getProjectInfo().getEndDate());
-                map.put("isAstrict",houseInfo.getProjectInfo().getAstrictStatus());
+                map.put("isAstrict", houseInfo.getProjectInfo().getAstrictStatus());
                 return map;
             }
         }
-        map.put("msg","查无此房产!");
+        map.put("msg", "查无此房产!");
         return map;
     }
 
     @Override
     public BigDecimal payWaterFee(PayFeeQuery query) {
         BigDecimal result = new BigDecimal("-99999");
-        if("yuan".equals(query.getWaterCountBy())){
+        if ("yuan".equals(query.getWaterCountBy())) {
             result = new BigDecimal(query.getWaterAmout());
-        }else if("ton".equals(query.getWaterCountBy())){
+        } else if ("ton".equals(query.getWaterCountBy())) {
             result = new BigDecimal(query.getWaterAmout()).multiply(query.getWaterPrice());
         }
         return result;

@@ -2,9 +2,9 @@ package cn.rzhd.wuye.controller.web;
 
 import cn.rzhd.wuye.bean.Ammeter;
 import cn.rzhd.wuye.bean.ElectricFeePayDetails;
-import cn.rzhd.wuye.bean.HouseInfo;
 import cn.rzhd.wuye.bean.WaterRatePayDetails;
 import cn.rzhd.wuye.service.*;
+import cn.rzhd.wuye.vo.HouseVO;
 import cn.rzhd.wuye.vo.query.ArrearsQuery;
 import cn.rzhd.wuye.vo.query.PayFeeQuery;
 import cn.rzhd.wuye.vo.query.UtilitiesQuery;
@@ -32,9 +32,11 @@ public class PayFeeController {
     @Autowired
     private IPayFeeService payFeeService;
     @Autowired
-    private IHouseInfoService houseInfoService;
+    private IHouseInfoDetailsService houseInfoDetailsService;
     @Autowired
     private IWaterPayDetailsService waterPayDetailsService;
+    @Autowired
+    private IAmmeterService ammeterService;
 
     /**
      * 用于展示物业欠费记录
@@ -78,19 +80,34 @@ public class PayFeeController {
     @RequestMapping("/getAmmeters")
     public Map<String,Object> getAmmeters(String houseInfoId){
         Map<String,Object> map = new HashMap<>();
-        List<Ammeter> ammeters = electricPayDetailsService.getAmmeters(houseInfoId);
-        HouseInfo houseInfo = houseInfoService.getById(houseInfoId);
-        BigDecimal waterPrice = houseInfo.getProjectInfo().getWaterPrice();
-        BigDecimal electricityPrice = houseInfo.getProjectInfo().getElectricityPrice();
-        map.put("ammeters",ammeters);
-        map.put("waterPrice",waterPrice);
-        map.put("electricityPrice",electricityPrice);
+        List<Ammeter> ammeters = ammeterService.getAmmeters(houseInfoId);
+        HouseVO houseInfo = houseInfoDetailsService.selectById(houseInfoId);
+        if (houseInfo!=null){
+            BigDecimal waterPrice = houseInfo.getProjectInfo().getWaterPrice();
+            BigDecimal electricityPrice = houseInfo.getProjectInfo().getElectricityPrice();
+            map.put("waterPrice",waterPrice);
+            map.put("electricityPrice",electricityPrice);
+            map.put("ammeters",ammeters);
+        }
+        map.put("msg","房产不存在!");
         return map;
     }
+
+    /**
+     * 查询是否欠费
+     * @param query
+     * @return
+     */
     @RequestMapping("/isArrears")
     public Map<String,List> isArrears(PayFeeQuery query){
         return payFeeService.isArrears(query);
     }
+
+    /**
+     * 查询上次缴费记录
+     * @param query
+     * @return
+     */
     @RequestMapping("/payFeeRecords")
     public Map<String,Object> payFeeRecords(UtilitiesQuery query){
         ElectricFeePayDetails electricRecord = electricPayDetailsService.getLastRecords(query);
