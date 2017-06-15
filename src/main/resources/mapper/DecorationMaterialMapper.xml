@@ -14,8 +14,8 @@
     <insert id="insert" parameterType="cn.rzhd.wuye.bean.DecorationMaterial" >
         insert into T_DECORATION_MATERIAL (DECORATION_MATERIAL_ID, DECORATION_APPLY_ID,
         MATERIAL_NAME, MATERIAL_ADDRESS)
-        values (#{decorationMaterialId,jdbcType=DECIMAL}, #{decorationApplyId,jdbcType=DECIMAL},
-        #{materialName,jdbcType=OTHER}, #{materialAddress,jdbcType=OTHER})
+        values (T_ENTER_APPLY_ID_SEQ.Nextval, #{decorationApplyId},
+        #{materialName}, #{materialAddress})
     </insert>
     <update id="updateByPrimaryKey" parameterType="cn.rzhd.wuye.bean.DecorationMaterial" >
         update T_DECORATION_MATERIAL
@@ -33,4 +33,5 @@
         select DECORATION_MATERIAL_ID, DECORATION_APPLY_ID, MATERIAL_NAME, MATERIAL_ADDRESS
         from T_DECORATION_MATERIAL
     </select>
+
 </mapper>

@@ -23,7 +23,11 @@ import java.util.Map;
  * @date: 2017年6月9日 上午11:39:06
  * @version: V1.0
  */
+<<<<<<< HEAD
 @RestController
+=======
+
+>>>>>>> 4f8b17e814637763d74f8a19872d8719dc4cb379
 @RequestMapping(value="/dist/CustomerCentre",method=RequestMethod.POST)
 public class CustomerCentreController {
 

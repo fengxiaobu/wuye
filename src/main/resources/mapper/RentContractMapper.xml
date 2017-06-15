@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="cn.rzhd.wuye.mapper.RentContractMapper">
 
+<<<<<<< HEAD
     <select id="getAll" resultMap="RentContractBackMap">
         SELECT
             P.PROJECT_NAME,
@@ -41,6 +42,48 @@
     </resultMap>
 
 
+=======
+	<select id="getAll"  resultMap="RentContractBackMap">
+		SELECT
+			P .PROJECT_NAME,
+			r."house",
+			c."vcname",
+			r."dpactstart",
+			r."dpactend",
+			r."dysdate",
+			r."nsbzjyjmny",
+			r."nhtssmny",
+			r."nzlbzjmny",
+			r."nhtysmny"
+		FROM
+			"T_Rent_Contract" r
+		LEFT JOIN T_PROJECT_INFO P ON r."pk_project" = P .PK_PROJECT
+		LEFT JOIN "T_Customer" c ON r."pk_customerid" = c."pk_customerid"
+	</select> 
+	
+	<resultMap type="cn.rzhd.wuye.vo.PactVO" id="RentContractBackMap">
+		<id property="pk_project" column="pk_project"/>
+		<result property="house" column="house"/>
+    	<result property="dpactend" column="dpactend"/>
+    	<result property="dpactstart" column="dpactstart"/>
+    	<result property="nzlbzjmny" column="nzlbzjmny"/>
+    	<result property="nhtysmny" column="nhtysmny"/>
+    	<result property="nhtssmny" column="nhtssmny"/>
+    	<result property="dysdate" column="dysdate"/>
+    	<result property="nsbzjyjmny" column="nsbzjyjmny"/>
+		<association property="customerVO" javaType="cn.rzhd.wuye.vo.CustomerVO">
+			<id property="pk_customerid" column="pk_customerid" />
+			<result property="vcname" column="vcname" />
+	 	</association>
+	 	<association property="projectVO" javaType="cn.rzhd.wuye.vo.ProjectVO">
+			<id property="pk_project" column="PK_PROJECT" />
+			<result property="project_name" column="PROJECT_NAME" />
+	 	</association>
+	</resultMap>
+	
+	
+	
+>>>>>>> 4f8b17e814637763d74f8a19872d8719dc4cb379
     <select id="getByPkId" parameterType="String" resultMap="rentContractMap">
         SELECT
             "pk_corp",
@@ -74,8 +117,12 @@
 
 
     </resultMap>
+<<<<<<< HEAD
 
 
+=======
+  
+>>>>>>> 4f8b17e814637763d74f8a19872d8719dc4cb379
     <select id="queryByCustomer" parameterType="string" resultType="cn.rzhd.wuye.vo.PactVO">
         SELECT DISTINCT
             "pk_house",

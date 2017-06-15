@@ -3,30 +3,30 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="cn.rzhd.wuye.mapper.DecorationApplyMapper">
     <resultMap id="DecorationApplyMapper" type="java.util.Map">
-        <id column="DECORATION_APPLY_ID" property="decorationApplyId" jdbcType="DECIMAL" />
-        <result column="HOUSE_INFO_ID" property="houseInfoId" jdbcType="DECIMAL" />
-        <result column="CLIENT_NAME" property="clientName" jdbcType="OTHER" />
-        <result column="APPLY_TIME" property="applyTime" jdbcType="DATE" />
-        <result column="ANTIPATE_TIME" property="antipateTime" jdbcType="DATE" />
-        <result column="LOCALE_CUSTODIAN" property="localeCustodian" jdbcType="OTHER" />
-        <result column="LOCALE_CUSTODIAN_PHONE" property="localeCustodianPhone" jdbcType="VARCHAR" />
-        <result column="DECORATION_PARTS" property="decorationParts" jdbcType="OTHER" />
-        <result column="DECORATE_AREA" property="decorateArea" jdbcType="FLOAT" />
-        <result column="CONSTRUCT_PEOPLE_NUMBER" property="constructPeopleNumber" jdbcType="DECIMAL" />
-        <result column="DECORATION_COMPANY" property="decorationCompany" jdbcType="OTHER" />
-        <result column="DECORATION_LEADER" property="decorationLeader" jdbcType="OTHER" />
-        <result column="DECORATION_ LEADER_PHONE" property="decorationLeaderPhone" jdbcType="VARCHAR" />
-        <result column="DECORATION_DEPOSIT" property="decorationDeposit" jdbcType="DECIMAL" />
-        <result column="DECORATION_MANAGEMENT_COST" property="decorationManagementCost" jdbcType="DECIMAL" />
-        <result column="PASS_PAPERS_COST" property="passPapersCost" jdbcType="DECIMAL" />
-        <result column="PASS_PAPERS_DEPOSIT" property="passPapersDeposit" jdbcType="DECIMAL" />
-        <result column="AUDIT_STATUS" property="auditStatus" jdbcType="DECIMAL" />
-        <result column="FEEDBACK1" property="feedback1" jdbcType="OTHER" />
-        <result column="FEEDBACK2" property="feedback2" jdbcType="OTHER" />
-        <result column="IS_SPECIAL_DECORATION" property="isSpecialDecoration" jdbcType="DECIMAL" />
-        <result column="SPECIAL_DECORATION_FILE" property="specialDecorationFile" jdbcType="OTHER" />
-        <result column="CREATION_TIME" property="creationTime" jdbcType="DATE" />
-        <result column="UPDATE_TIME" property="updateTime" jdbcType="DATE" />
+        <id column="DECORATION_APPLY_ID" property="decorationApplyId" jdbcType="DECIMAL"/>
+        <result column="HOUSE_INFO_ID" property="houseInfoId" jdbcType="DECIMAL"/>
+        <result column="CLIENT_NAME" property="clientName" jdbcType="OTHER"/>
+        <result column="APPLY_TIME" property="applyTime" jdbcType="DATE"/>
+        <result column="ANTIPATE_TIME" property="antipateTime" jdbcType="DATE"/>
+        <result column="LOCALE_CUSTODIAN" property="localeCustodian" jdbcType="OTHER"/>
+        <result column="LOCALE_CUSTODIAN_PHONE" property="localeCustodianPhone" jdbcType="VARCHAR"/>
+        <result column="DECORATION_PARTS" property="decorationParts" jdbcType="OTHER"/>
+        <result column="DECORATE_AREA" property="decorateArea" jdbcType="FLOAT"/>
+        <result column="CONSTRUCT_PEOPLE_NUMBER" property="constructPeopleNumber" jdbcType="DECIMAL"/>
+        <result column="DECORATION_COMPANY" property="decorationCompany" jdbcType="OTHER"/>
+        <result column="DECORATION_LEADER" property="decorationLeader" jdbcType="OTHER"/>
+        <result column="DECORATION_ LEADER_PHONE" property="decorationLeaderPhone" jdbcType="VARCHAR"/>
+        <result column="DECORATION_DEPOSIT" property="decorationDeposit" jdbcType="DECIMAL"/>
+        <result column="DECORATION_MANAGEMENT_COST" property="decorationManagementCost" jdbcType="DECIMAL"/>
+        <result column="PASS_PAPERS_COST" property="passPapersCost" jdbcType="DECIMAL"/>
+        <result column="PASS_PAPERS_DEPOSIT" property="passPapersDeposit" jdbcType="DECIMAL"/>
+        <result column="AUDIT_STATUS" property="auditStatus" jdbcType="DECIMAL"/>
+        <result column="FEEDBACK1" property="feedback1" jdbcType="OTHER"/>
+        <result column="FEEDBACK2" property="feedback2" jdbcType="OTHER"/>
+        <result column="IS_SPECIAL_DECORATION" property="isSpecialDecoration" jdbcType="DECIMAL"/>
+        <result column="SPECIAL_DECORATION_FILE" property="specialDecorationFile" jdbcType="OTHER"/>
+        <result column="CREATION_TIME" property="creationTime" jdbcType="DATE"/>
+        <result column="UPDATE_TIME" property="updateTime" jdbcType="DATE"/>
         <association property="houseInfo" javaType="cn.rzhd.wuye.bean.HouseInfo">
             <id column="ERP_HOUSE_ID" property="erpHouseId"/>
             <result column="HOUSE_INFO_ID" property="houseInfoId"/>
@@ -67,83 +67,88 @@
             </association>
         </association>
     </resultMap>
-    <!-- 单表查询info数据根据ID -->
-    <select id="getDecorationApplyById" resultType="cn.rzhd.wuye.bean.DecorationApply">
-        SELECT * FROM
-        T_ENTER_APPLY apply,
-        T_HOUSE_INFO house,
-        T_PROJECT_INFO project
-        WHERE
-        apply.HOUSE_INFO_ID=house.HOUSE_INFO_ID
-        AND
-        apply.ENTER_APPLY_ID=#{enterApplyId}
-    </select>
-    <!-- 入驻申请列表分页查询 -->
-    <select id="findDecorationApplyList" resultMap="DecorationApplyMapper">
-        SELECT apply.ENTER_APPLY_ID,project.PROJECT_NAME,house.HOUSE_PROPERTY,apply.CLIENT_NAME,apply.APPLY_TIME,apply.AUDIT_STATUS FROM
-        T_ENTER_APPLY  apply,
-        T_HOUSE_INFO house,
-        T_PROJECT_INFO project
-        WHERE
-        apply.HOUSE_INFO_ID=house.HOUSE_INFO_ID
-        AND
-        house.PROJECT_INFO_ID=project.PK_PROJECT
-    </select>
-    <!-- 入驻申请列表条件查询 -->
-    <select id="findDecorationApplyListByQuery" parameterType="cn.rzhd.wuye.vo.query.EnterApplyQuery" resultMap="DecorationApplyMapper">
-        SELECT
-        apply.ENTER_APPLY_ID,project.PROJECT_NAME,house.HOUSE_PROPERTY,apply.CLIENT_NAME,apply.APPLY_TIME,apply.AUDIT_STATUS
-        FROM
-        T_ENTER_APPLY apply,
-        T_HOUSE_INFO house,
-        T_PROJECT_INFO project
-        WHERE
-        apply.HOUSE_INFO_ID=house.HOUSE_INFO_ID
-        <if test="startDate != null">
-            AND apply.APPLY_TIME=to_date(#{startDate},'YYYY-MM-DD')
-            <if test="endDate != null">
-                AND apply.APPLY_TIME=to_date(#{endDate},'YYYY-MM-DD')
-            </if>
-        </if>
-        <if test="clientName != null">
-            AND CLIENT_NAME=#{clientName}
-        </if>
-        <if test="projectName != null">
-            AND PROJECT_NAME=#{projectName}
-        </if>
 
-    </select>
-
-    <!-- 用户信息修改 操作-->
-    <update id="updateEnterApply" parameterType="cn.rzhd.wuye.bean.EnterApply">
-        update T_ENTER_APPLY
-        set HOUSE_INFO_ID = #{houseInfoId},
-        CLIENT_NAME = #{clientName},
-        APPLY_TIME = #{applyTime},
-        AUDIT_STATUS = #{auditStatus},
-        ENTER_ADVICE_NOTE = #{enterAdviceNote},
-        NOTES = #{notes},
-        CREATION_TIME = #{creationTime},
-        UPDATE_TIME = #{updateTime}
-        where ENTER_APPLY_ID = #{enterApplyId}
-    </update>
-    <!--添加入驻申请-->
-    <insert id="insertEnterApply" useGeneratedKeys="true" keyProperty="ENTER_APPLY_ID" parameterType="cn.rzhd.wuye.bean.EnterApply">
-        <selectKey resultType="long" order="BEFORE" keyProperty="ENTER_APPLY_ID">
-            SELECT T_ENTER_APPLY_ID_SEQ.Nextval as ID from DUAL
-        </selectKey>
-        insert into T_ENTER_APPLY (ENTER_APPLY_ID, HOUSE_INFO_ID, CLIENT_NAME,
-        APPLY_TIME, AUDIT_STATUS, ENTER_ADVICE_NOTE,
-        NOTES, CREATION_TIME, UPDATE_TIME
-        )
-        values (#{enterApplyId}, #{houseInfoId}, #{clientName},
-        #{applyTime}, #{auditStatus}, #{enterAdviceNote},
-        #{notes}, #{creationTime}, #{updateTime}
-        )
+    <update id="updateByPrimaryKey" parameterType="cn.rzhd.wuye.bean.DecorationApply">
+    update T_DECORATION_APPLY
+    set HOUSE_INFO_ID = #{houseInfoId,jdbcType=DECIMAL},
+      CLIENT_NAME = #{clientName,jdbcType=OTHER},
+      APPLY_TIME = #{applyTime,jdbcType=DATE},
+      ANTIPATE_TIME = #{antipateTime,jdbcType=DATE},
+      LOCALE_CUSTODIAN = #{localeCustodian,jdbcType=OTHER},
+      LOCALE_CUSTODIAN_PHONE = #{localeCustodianPhone,jdbcType=VARCHAR},
+      DECORATION_PARTS = #{decorationParts,jdbcType=OTHER},
+      DECORATE_AREA = #{decorateArea,jdbcType=FLOAT},
+      CONSTRUCT_PEOPLE_NUMBER = #{constructPeopleNumber,jdbcType=DECIMAL},
+      DECORATION_COMPANY = #{decorationCompany,jdbcType=OTHER},
+      DECORATION_LEADER = #{decorationLeader,jdbcType=OTHER},
+      "DECORATION_ LEADER_PHONE" = #{decorationLeaderPhone,jdbcType=VARCHAR},
+      DECORATION_DEPOSIT = #{decorationDeposit,jdbcType=DECIMAL},
+      DECORATION_MANAGEMENT_COST = #{decorationManagementCost,jdbcType=DECIMAL},
+      PASS_PAPERS_COST = #{passPapersCost,jdbcType=DECIMAL},
+      PASS_PAPERS_DEPOSIT = #{passPapersDeposit,jdbcType=DECIMAL},
+      AUDIT_STATUS = #{auditStatus,jdbcType=DECIMAL},
+      FEEDBACK1 = #{feedback1,jdbcType=OTHER},
+      FEEDBACK2 = #{feedback2,jdbcType=OTHER},
+      IS_SPECIAL_DECORATION = #{isSpecialDecoration,jdbcType=DECIMAL},
+      SPECIAL_DECORATION_FILE = #{specialDecorationFile,jdbcType=OTHER},
+      CREATION_TIME = #{creationTime,jdbcType=DATE},
+      UPDATE_TIME = #{updateTime,jdbcType=DATE}
+    where DECORATION_APPLY_ID = #{decorationApplyId,jdbcType=DECIMAL}
+  </update>
+    <!--添加装修申请-->
+    <insert id="insert" parameterType="cn.rzhd.wuye.bean.DecorationApply" >
+         insert into T_DECORATION_APPLY (DECORATION_APPLY_ID, HOUSE_INFO_ID, CLIENT_NAME,
+      APPLY_TIME, ANTIPATE_TIME, LOCALE_CUSTODIAN,
+      LOCALE_CUSTODIAN_PHONE, DECORATION_PARTS, DECORATE_AREA,
+      CONSTRUCT_PEOPLE_NUMBER, DECORATION_COMPANY,
+      DECORATION_LEADER, "DECORATION_ LEADER_PHONE",
+      DECORATION_DEPOSIT, DECORATION_MANAGEMENT_COST,
+      PASS_PAPERS_COST, PASS_PAPERS_DEPOSIT, AUDIT_STATUS,
+      FEEDBACK1, FEEDBACK2, IS_SPECIAL_DECORATION,
+      SPECIAL_DECORATION_FILE, CREATION_TIME, UPDATE_TIME
+      )
+    values (#{decorationApplyId,jdbcType=DECIMAL}, #{houseInfoId,jdbcType=DECIMAL}, #{clientName,jdbcType=OTHER},
+      #{applyTime,jdbcType=DATE}, #{antipateTime,jdbcType=DATE}, #{localeCustodian,jdbcType=OTHER},
+      #{localeCustodianPhone,jdbcType=VARCHAR}, #{decorationParts,jdbcType=OTHER}, #{decorateArea,jdbcType=FLOAT},
+      #{constructPeopleNumber,jdbcType=DECIMAL}, #{decorationCompany,jdbcType=OTHER},
+      #{decorationLeader,jdbcType=OTHER}, #{decorationLeaderPhone,jdbcType=VARCHAR},
+      #{decorationDeposit,jdbcType=DECIMAL}, #{decorationManagementCost,jdbcType=DECIMAL},
+      #{passPapersCost,jdbcType=DECIMAL}, #{passPapersDeposit,jdbcType=DECIMAL}, #{auditStatus,jdbcType=DECIMAL},
+      #{feedback1,jdbcType=OTHER}, #{feedback2,jdbcType=OTHER}, #{isSpecialDecoration,jdbcType=DECIMAL},
+      #{specialDecorationFile,jdbcType=OTHER}, #{creationTime,jdbcType=DATE}, #{updateTime,jdbcType=DATE}
+      )
     </insert>
-    <!-- 入驻信息删除操作 -->
-    <delete id="deleteEnterApply">
-        delete from T_ENTER_APPLY
-        where ENTER_APPLY_ID = #{enterApplyId}
-    </delete>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from T_DECORATION_APPLY
+    where DECORATION_APPLY_ID = #{decorationApplyId,jdbcType=DECIMAL}
+  </delete>
+    <select id="selectByPrimaryKey" resultMap="DecorationApplyMapper" parameterType="java.lang.Long" >
+        select DECORATION_APPLY_ID, HOUSE_INFO_ID, CLIENT_NAME, APPLY_TIME, ANTIPATE_TIME,
+        LOCALE_CUSTODIAN, LOCALE_CUSTODIAN_PHONE, DECORATION_PARTS, DECORATE_AREA, CONSTRUCT_PEOPLE_NUMBER,
+        DECORATION_COMPANY, DECORATION_LEADER, "DECORATION_ LEADER_PHONE", DECORATION_DEPOSIT,
+        DECORATION_MANAGEMENT_COST, PASS_PAPERS_COST, PASS_PAPERS_DEPOSIT, AUDIT_STATUS,
+        FEEDBACK1, FEEDBACK2, IS_SPECIAL_DECORATION, SPECIAL_DECORATION_FILE, CREATION_TIME,
+        UPDATE_TIME
+        from T_DECORATION_APPLY
+        where DECORATION_APPLY_ID = #{decorationApplyId,jdbcType=DECIMAL}
+    </select>
+    <select id="findDecorationApplyList" resultMap="DecorationApplyMapper" >
+        select DECORATION_APPLY_ID, HOUSE_INFO_ID, CLIENT_NAME, APPLY_TIME, ANTIPATE_TIME,
+        LOCALE_CUSTODIAN, LOCALE_CUSTODIAN_PHONE, DECORATION_PARTS, DECORATE_AREA, CONSTRUCT_PEOPLE_NUMBER,
+        DECORATION_COMPANY, DECORATION_LEADER, "DECORATION_ LEADER_PHONE", DECORATION_DEPOSIT,
+        DECORATION_MANAGEMENT_COST, PASS_PAPERS_COST, PASS_PAPERS_DEPOSIT, AUDIT_STATUS,
+        FEEDBACK1, FEEDBACK2, IS_SPECIAL_DECORATION, SPECIAL_DECORATION_FILE, CREATION_TIME,
+        UPDATE_TIME
+        from T_DECORATION_APPLY
+    </select>
+    <select id="findDecorationApplyListByQuery" resultMap="DecorationApplyMapper" >
+        select DECORATION_APPLY_ID, HOUSE_INFO_ID, CLIENT_NAME, APPLY_TIME, ANTIPATE_TIME,
+        LOCALE_CUSTODIAN, LOCALE_CUSTODIAN_PHONE, DECORATION_PARTS, DECORATE_AREA, CONSTRUCT_PEOPLE_NUMBER,
+        DECORATION_COMPANY, DECORATION_LEADER, "DECORATION_ LEADER_PHONE", DECORATION_DEPOSIT,
+        DECORATION_MANAGEMENT_COST, PASS_PAPERS_COST, PASS_PAPERS_DEPOSIT, AUDIT_STATUS,
+        FEEDBACK1, FEEDBACK2, IS_SPECIAL_DECORATION, SPECIAL_DECORATION_FILE, CREATION_TIME,
+        UPDATE_TIME
+        from T_DECORATION_APPLY
+    </select>
 </mapper>

@@ -12,6 +12,7 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.github.pagehelper.StringUtil;
+import com.xiaoleilu.hutool.io.FileUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
@@ -43,6 +44,8 @@ import java.util.Map;
 public class EnterApplyController {
     @Autowired
     IEnterApplyService enterApplyService;
+    @Value("${fileDir}")
+    private String fileDir;
 
     /**
      * 查询接口
@@ -104,6 +107,7 @@ public class EnterApplyController {
         if (enterApplyList.size() == 1) {
             map = enterApplyList.get(0);
         }
+
         model.addAttribute("enterApply", map);
         return "forbusiness/enterApplyEdit";
     }
@@ -117,7 +121,7 @@ public class EnterApplyController {
      */
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     public String search(Model model, EnterApplyQuery enterApplyQuery) {
-        System.out.println("日期+++++++++++"+StringTimeUtil.parse(enterApplyQuery.getStartDate()));
+        System.out.println("日期+++++++++++" + StringTimeUtil.parse(enterApplyQuery.getStartDate()));
         PageHelper.startPage(1, 5);
         List<Map<String, JsonFormat.Value>> enterApplyList = enterApplyService.findEnterApplyByQuery(enterApplyQuery);
         Page page = (Page) enterApplyList;
@@ -152,6 +156,7 @@ public class EnterApplyController {
 
     /**
      * 入驻申请
+     *
      * @param enterApply
      * @return
      */
@@ -189,7 +194,6 @@ public class EnterApplyController {
 
     }
 
-
     /**
      * 删除入驻信息
      *
@@ -212,11 +216,11 @@ public class EnterApplyController {
         return "forbusiness/enterApplyList";
     }
 
-
     @RequestMapping("/downLoad")
     @ResponseBody
     public String downLoad(HttpServletResponse response, String filePath) {
         Map result = new HashMap();
+        response.setCharacterEncoding("utf-8");
         try {
             String[] fp = filePath.split("\\\\");
             String fileName = fp[fp.length - 1];// 文件名称
@@ -251,10 +255,6 @@ public class EnterApplyController {
         return "OK";
     }
 
-
-    @Value("${fileDir}")
-    private String fileDir;
-
     // 文件上传
     @RequestMapping("/fileUpload")
     @ResponseBody
@@ -265,7 +265,9 @@ public class EnterApplyController {
         String serviceName = file.getOriginalFilename().substring(0, file.getOriginalFilename().lastIndexOf(".")) + file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
         System.out.println("serviceName = " + serviceName);
         System.out.println("fileDir = " + fileDir);
-        File tempFile = new File(fileDir + dateDir + File.separator + serviceName);
+        File file1 = FileUtil.file(fileDir);
+
+        File tempFile = new File( file1.separator + dateDir + File.separator + serviceName);
         if (!tempFile.getParentFile().exists()) {
             tempFile.getParentFile().mkdirs();
         }

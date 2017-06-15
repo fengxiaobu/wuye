@@ -24,4 +24,8 @@ public interface HouseInfoMapper {
     void delete(Long id);
 
     HouseInfo selectByQuery(@Param("customerid") String customerid);
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4f8b17e814637763d74f8a19872d8719dc4cb379
 }

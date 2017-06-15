@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.rzhd.wuye.mapper.RetreatLeaseApplyMapper" >
+    <resultMap id="BaseResultMap" type="cn.rzhd.wuye.bean.RetreatLeaseApply" >
+        <id column="RETREAT_LEASE_APPLY_ID" property="retreatLeaseApplyId" jdbcType="DECIMAL" />
+        <result column="HOUSE_INFO_ID" property="houseInfoId" jdbcType="DECIMAL" />
+        <result column="HOUSE_NUMBER" property="houseNumber" jdbcType="OTHER" />
+        <result column="HOUSE_ACREAGE" property="houseAcreage" jdbcType="FLOAT" />
+        <result column="LEASE_START_TIME" property="leaseStartTime" jdbcType="DATE" />
+        <result column="LEASE_END_TIME" property="leaseEndTime" jdbcType="DATE" />
+        <result column="TYPE" property="type" jdbcType="DECIMAL" />
+        <result column="RETREAT_LEASE_TIME" property="retreatLeaseTime" jdbcType="DATE" />
+        <result column="RETREAT_LEASE_TYPE" property="retreatLeaseType" jdbcType="DATE" />
+        <result column="ARREARS_RENT" property="arrearsRent" jdbcType="DECIMAL" />
+        <result column="LEASE_DEPOSIT" property="leaseDeposit" jdbcType="DECIMAL" />
+        <result column="PERMIT_RETREAT_LEASE_DEPOSIT" property="permitRetreatLeaseDeposit" jdbcType="DECIMAL" />
+        <result column="CREATION_TIME" property="creationTime" jdbcType="DATE" />
+        <result column="UPDATE_TIME" property="updateTime" jdbcType="DATE" />
+    </resultMap>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+        delete from T_RETREAT_LEASE_APPLY
+        where RETREAT_LEASE_APPLY_ID = #{retreatLeaseApplyId,jdbcType=DECIMAL}
+    </delete>
+    <insert id="insert" parameterType="cn.rzhd.wuye.bean.RetreatLeaseApply" >
+        insert into T_RETREAT_LEASE_APPLY (RETREAT_LEASE_APPLY_ID, HOUSE_INFO_ID,
+        HOUSE_NUMBER, HOUSE_ACREAGE, LEASE_START_TIME,
+        LEASE_END_TIME, TYPE, RETREAT_LEASE_TIME,
+        RETREAT_LEASE_TYPE, ARREARS_RENT, LEASE_DEPOSIT,
+        PERMIT_RETREAT_LEASE_DEPOSIT, CREATION_TIME, UPDATE_TIME
+        )
+        values (T_ENTER_APPLY_ID_SEQ.Nextval, #{houseInfoId,jdbcType=DECIMAL},
+        #{houseNumber,jdbcType=OTHER}, #{houseAcreage,jdbcType=FLOAT}, #{leaseStartTime,jdbcType=DATE},
+        #{leaseEndTime,jdbcType=DATE}, #{type,jdbcType=DECIMAL}, #{retreatLeaseTime,jdbcType=DATE},
+        #{retreatLeaseType,jdbcType=DATE}, #{arrearsRent,jdbcType=DECIMAL}, #{leaseDeposit,jdbcType=DECIMAL},
+        #{permitRetreatLeaseDeposit,jdbcType=DECIMAL}, #{creationTime,jdbcType=DATE}, #{updateTime,jdbcType=DATE}
+        )
+    </insert>
+    <update id="updateByPrimaryKey" parameterType="cn.rzhd.wuye.bean.RetreatLeaseApply" >
+        update T_RETREAT_LEASE_APPLY
+        set HOUSE_INFO_ID = #{houseInfoId,jdbcType=DECIMAL},
+        HOUSE_NUMBER = #{houseNumber,jdbcType=OTHER},
+        HOUSE_ACREAGE = #{houseAcreage,jdbcType=FLOAT},
+        LEASE_START_TIME = #{leaseStartTime,jdbcType=DATE},
+        LEASE_END_TIME = #{leaseEndTime,jdbcType=DATE},
+        TYPE = #{type,jdbcType=DECIMAL},
+        RETREAT_LEASE_TIME = #{retreatLeaseTime,jdbcType=DATE},
+        RETREAT_LEASE_TYPE = #{retreatLeaseType,jdbcType=DATE},
+        ARREARS_RENT = #{arrearsRent,jdbcType=DECIMAL},
+        LEASE_DEPOSIT = #{leaseDeposit,jdbcType=DECIMAL},
+        PERMIT_RETREAT_LEASE_DEPOSIT = #{permitRetreatLeaseDeposit,jdbcType=DECIMAL},
+        CREATION_TIME = #{creationTime,jdbcType=DATE},
+        UPDATE_TIME = #{updateTime,jdbcType=DATE}
+        where RETREAT_LEASE_APPLY_ID = #{retreatLeaseApplyId,jdbcType=DECIMAL}
+    </update>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+        select RETREAT_LEASE_APPLY_ID, HOUSE_INFO_ID, HOUSE_NUMBER, HOUSE_ACREAGE, LEASE_START_TIME,
+        LEASE_END_TIME, TYPE, RETREAT_LEASE_TIME, RETREAT_LEASE_TYPE, ARREARS_RENT, LEASE_DEPOSIT,
+        PERMIT_RETREAT_LEASE_DEPOSIT, CREATION_TIME, UPDATE_TIME
+        from T_RETREAT_LEASE_APPLY
+        where RETREAT_LEASE_APPLY_ID = #{retreatLeaseApplyId,jdbcType=DECIMAL}
+    </select>
+    <select id="selectAll" resultMap="BaseResultMap" >
+        select RETREAT_LEASE_APPLY_ID, HOUSE_INFO_ID, HOUSE_NUMBER, HOUSE_ACREAGE, LEASE_START_TIME,
+        LEASE_END_TIME, TYPE, RETREAT_LEASE_TIME, RETREAT_LEASE_TYPE, ARREARS_RENT, LEASE_DEPOSIT,
+        PERMIT_RETREAT_LEASE_DEPOSIT, CREATION_TIME, UPDATE_TIME
+        from T_RETREAT_LEASE_APPLY
+    </select>
+</mapper>

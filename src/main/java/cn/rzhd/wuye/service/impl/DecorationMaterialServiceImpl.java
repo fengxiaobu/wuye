@@ -70,4 +70,5 @@ public class DecorationMaterialServiceImpl implements IDecorationMaterialService
     public int updateByPrimaryKey(DecorationMaterial record) {
         return decorationMaterialMapper.updateByPrimaryKey(record);
     }
+
 }

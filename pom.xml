@@ -1,4 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>cn.rzhd.ldug</groupId>
@@ -323,11 +323,10 @@
             <artifactId>commons-beanutils</artifactId>
             <version>1.6</version>
         </dependency>
-
         <dependency>
             <groupId>com.xiaoleilu</groupId>
             <artifactId>hutool-all</artifactId>
-            <version>3.0.5</version>
+            <version>3.0.7</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.jodd/jodd-core -->
         <dependency>
@@ -341,8 +340,6 @@
             <artifactId>jodd-http</artifactId>
             <version>3.8.6</version>
         </dependency>
-
-
         <dependency>
             <groupId>chinapay</groupId>
             <artifactId>chinapayfilesecure</artifactId>
@@ -361,8 +358,6 @@
               <artifactId>tomcat-util-scan</artifactId>
               <version>8.0.44</version>
           </dependency> -->
-
-
     </dependencies>
     <build>
         <plugins>
