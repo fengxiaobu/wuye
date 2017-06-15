@@ -13,7 +13,7 @@ import java.util.List;
  *
  */
 @RestController
-@RequestMapping("/houseInfo/houseInfoDetails")
+@RequestMapping("/dist/houseInfo/houseInfoDetails")
 public class HouseInfoDetailsController {
 	@Autowired
 	IHouseInfoDetailsService houseInfoDetailsService;

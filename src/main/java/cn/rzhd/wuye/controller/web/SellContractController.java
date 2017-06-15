@@ -14,7 +14,7 @@ import cn.rzhd.wuye.vo.SignVO;
  *
  */
 @RestController
-@RequestMapping("/sell/contract")
+@RequestMapping("/dist/sell/contract")
 public class SellContractController {
 	@Autowired
 	ISellContractService sellContractService;
