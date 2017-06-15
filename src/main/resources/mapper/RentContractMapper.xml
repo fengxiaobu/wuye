@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.rzhd.wuye.mapper.RentContractMapper">
 
-	<select id="getAll" parameterType="cn.rzhd.wuye.vo.query.RentContractQuery" resultMap="RentContractBackMap">
+	<select id="getAll"  resultMap="RentContractBackMap">
 		SELECT
 			P .PROJECT_NAME,
 			r."house",
@@ -63,7 +63,6 @@
         FROM "T_Rent_Contract"
         WHERE "house" = #{house}
     </select>
-<<<<<<< HEAD
     <resultMap type="cn.rzhd.wuye.vo.PactVO" id="rentContractMap">
     	<id property="pk_pact" column="pk_pact"/>
     	<result property="house" column="house"/>
@@ -79,13 +78,10 @@
     	
     </resultMap>
   
-=======
-
     <select id="queryByCustomer" parameterType="string" resultType="cn.rzhd.wuye.vo.PactVO">
         SELECT DISTINCT "pk_house","house","pk_project","pk_customerid",p.VSHORTNAME AS projectName FROM "T_Rent_Contract" JOIN T_PROJECT_INFO p ON "pk_project"=p.PK_PROJECT WHERE "pk_customerid"=#{customerId}
     </select>
 
->>>>>>> abbbe119b4e270093b02bacdd5bf922ec7aa8e04
     <insert id="add" parameterType="cn.rzhd.wuye.vo.PactVO">
         INSERT INTO "T_Rent_Contract" ("pk_corp",
                                        "pk_customerid",
