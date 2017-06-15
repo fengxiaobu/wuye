@@ -11,4 +11,6 @@ import java.util.List;
 @Mapper
 public interface AmmeterMapper {
     List<Ammeter> queryAmmeters(String houseInfoId);
+
+    List<Ammeter> getAllAmmeters();
 }

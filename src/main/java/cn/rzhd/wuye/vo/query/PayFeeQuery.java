@@ -6,6 +6,7 @@ import java.math.BigDecimal;
  * Created by hasee on 2017/6/10.
  */
 public class PayFeeQuery {
+    private String customerId;//客户ID
     private String houseInfoId;//房产ID
     private Integer multiply;//电表倍数
     private Integer electricAmount;//电费表单输入的数字(金额或度数)
@@ -88,4 +89,11 @@ public class PayFeeQuery {
         this.houseInfoIds = houseInfoIds;
     }
 
+    public String getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
+    }
 }

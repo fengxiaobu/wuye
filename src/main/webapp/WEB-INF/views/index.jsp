@@ -280,8 +280,7 @@
 
                             <li class="panel" role="tab">
                                 <div class="panel-header">
-                                    <a data-toggle="collapse" target="main"
-                                       href="#collapse_five_018">电表</a>
+                                    <a target="main" href="${pageContext.request.contextPath}/system/ammeterIndex">电表</a>
                                 </div>
                             </li>
                         </ul>

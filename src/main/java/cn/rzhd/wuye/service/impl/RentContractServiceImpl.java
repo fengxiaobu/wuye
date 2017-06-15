@@ -51,8 +51,24 @@ public class RentContractServiceImpl implements IRentContractService {
         mapper.add(pactVO);
     }
 
+<<<<<<< HEAD
+	@Override
+	public List<PactVO> getRentContract(String house) {
+		List<PactVO> byPkId = mapper.getByPkId(house);
+		return byPkId;
+	}
+
+	@Override
+	public List<PactVO> getBackAll() {
+		List<PactVO> pactVOAll = mapper.getAll();
+		return pactVOAll;
+	}
+
+	
+=======
     @Override
     public List<PactVO> queryByCustomer(String customerId) {
         return mapper.queryByCustomer(customerId);
     }
+>>>>>>> abbbe119b4e270093b02bacdd5bf922ec7aa8e04
 }

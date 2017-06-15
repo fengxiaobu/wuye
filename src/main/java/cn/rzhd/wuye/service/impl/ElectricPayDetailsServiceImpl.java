@@ -1,6 +1,5 @@
 package cn.rzhd.wuye.service.impl;
 
-import cn.rzhd.wuye.bean.Ammeter;
 import cn.rzhd.wuye.bean.ElectricFeePayDetails;
 import cn.rzhd.wuye.mapper.AmmeterMapper;
 import cn.rzhd.wuye.mapper.ElectricFeePayDetailsMapper;
@@ -32,11 +31,6 @@ public class ElectricPayDetailsServiceImpl implements IElectricPayDetailsService
             return mapper.selectAll(query);
         }
         return null;
-    }
-
-    @Override
-    public List<Ammeter> getAmmeters(String houseInfoId) {
-        return ammeterMapper.queryAmmeters(houseInfoId);
     }
 
     /**

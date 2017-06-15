@@ -15,4 +15,6 @@ public interface HouseInfoDetailsMapper {
     List<HouseVO> selectAll();
 
     int updateByPrimaryKey(HouseVO record);
+    
+    List<HouseVO> getHouseInfoByName(String vhname);
 }

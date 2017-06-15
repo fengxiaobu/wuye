@@ -123,5 +123,4 @@
     <delete id="delete" parameterType="long">
         DELETE FROM T_HOUSE_INFO WHERE HOUSE_INFO_ID=#{id}
     </delete>
-
 </mapper>

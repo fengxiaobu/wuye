@@ -25,6 +25,16 @@ public class SellContractServiceTest extends BaseTest {
         }
 
     }
+    
+    @Test
+    public void getSellContractTest1(){
+        String pk_sign = "1077XX1000000000B1TY";
+		List<SignVO> sellContract = service.getSellContract(pk_sign );
+        for (SignVO signVO : sellContract) {
+            System.out.println(signVO);
+        }
+
+    }
 
     @Test
     public void getCompanyId(){

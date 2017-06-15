@@ -11,28 +11,30 @@ import cn.rzhd.wuye.utils.JsonUtils;
 
 /**
  * 
-© 2017 RZHD.CN
-@Package: cn.rzhd.wuye.controller.web
-@ClassName: MessageManageController
-@Description: 描述：通知管理
-@author: an-wei.xie@rzhd.cn
-@date: 2017年6月9日 上午11:38:48
-@version: V1.0
+ * © 2017 RZHD.CN
+ * 
+ * @Package: cn.rzhd.wuye.controller.web
+ * @ClassName: MessageManageController
+ * @Description: 描述：通知管理
+ * @author: an-wei.xie@rzhd.cn
+ * @date: 2017年6月9日 上午11:38:48
+ * @version: V1.0
  */
 @RestController
 @RequestMapping("/dist/messageManage")
 public class MessageManageController {
-    
-    @Autowired
-    private IMessageManageService messageManageService;
 
-    /**
-     * 入驻通知
-     * @return
-     */
-    @RequestMapping(value="/findEnterMessage",method=RequestMethod.POST)
-    public String findEnterMessage(){
-	MessageManage findEnterMessage = messageManageService.findEnterMessage();
-	return JsonUtils.objectToJson(findEnterMessage);
-    }
+	@Autowired
+	private IMessageManageService messageManageService;
+
+	/**
+	 * 入驻通知
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "/findEnterMessage", method = RequestMethod.POST)
+	public String findEnterMessage() {
+		MessageManage findEnterMessage = messageManageService.findEnterMessage();
+		return JsonUtils.objectToJson(findEnterMessage);
+	}
 }

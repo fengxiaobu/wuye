@@ -40,7 +40,7 @@ public class IDUtils {
 	/**
 	 * id生成
 	 */
-	public static String genId15() {
+	public static Long genId15() {
 		//取当前时间的长整形值包含毫秒
 		long millis = System.currentTimeMillis();
 		//long millis = System.nanoTime();
@@ -48,7 +48,8 @@ public class IDUtils {
 		Random random = new Random();
 		int end2 = random.nextInt(99);
 		//如果不足两位前面补0
-		return millis + String.format("%02d", end2);
+		String s = millis + String.format("%02d", end2);
+		return Long.parseLong(s);
 	}
 
 	public static  Long genLongUID(){

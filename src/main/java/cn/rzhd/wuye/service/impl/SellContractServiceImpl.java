@@ -52,8 +52,16 @@ public class SellContractServiceImpl implements ISellContractService {
         mapper.add(signVO);
     }
 
+<<<<<<< HEAD
+	@Override
+	public List<SignVO> getSellContract(String house) {
+		List<SignVO> signVOs = mapper.getById(house);
+		return signVOs;
+	}
+=======
     @Override
     public List<SignVO> queryByCustomer(String customerId) {
         return mapper.queryByCustomer(customerId);
     }
+>>>>>>> abbbe119b4e270093b02bacdd5bf922ec7aa8e04
 }
