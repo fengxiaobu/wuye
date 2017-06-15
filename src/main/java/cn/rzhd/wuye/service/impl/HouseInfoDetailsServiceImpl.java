@@ -34,8 +34,8 @@ public class HouseInfoDetailsServiceImpl implements IHouseInfoDetailsService {
 
 
 	@Override
-	public List<HouseVO> getHouseInfoDetails(String vhname) {
-		List<HouseVO> houseInfoNames = mapper.getHouseInfoByName(vhname);
+	public List<HouseVO> getHouseInfoDetails(String pk_house) {
+		List<HouseVO> houseInfoNames = mapper.getHouseInfoByName(pk_house);
 		return houseInfoNames;
 	}
 

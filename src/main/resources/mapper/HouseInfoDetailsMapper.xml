@@ -172,6 +172,7 @@
     <select id="getHouseInfoByName" parameterType="String" resultMap="houseVOMap">
        SELECT 
 	       "pk_project",
+	       "pk_house",
 	       "project",
 	       "vhname",
 	       "situation",
@@ -184,9 +185,9 @@
        LEFT JOIN 
        		T_PROJECT_INFO 
        ON 
-       		"pk_project"=PK_PROJECT 
+       		"pk_project"=PK_PROJECT
        WHERE 
-       		"vhname"=#{vhname}
+       		"pk_house"=#{pk_house}
     </select>
     
     <resultMap type="cn.rzhd.wuye.vo.HouseVO" id="houseVOMap">

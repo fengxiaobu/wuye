@@ -71,6 +71,10 @@ public class ElectricFeeInvoiceDeta implements Serializable {
      * 修改时间
      */
     private Date updateTime;
+    /**
+     * 电费缴费记录ID
+     */
+    private Long electricFeePayDetailsId;
 
     public Long getElectricChargeInvoiceDeta() {
         return electricChargeInvoiceDeta;
@@ -159,5 +163,12 @@ public class ElectricFeeInvoiceDeta implements Serializable {
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
-    
+
+    public Long getElectricFeePayDetailsId() {
+        return electricFeePayDetailsId;
+    }
+
+    public void setElectricFeePayDetailsId(Long electricFeePayDetailsId) {
+        this.electricFeePayDetailsId = electricFeePayDetailsId;
+    }
 }
