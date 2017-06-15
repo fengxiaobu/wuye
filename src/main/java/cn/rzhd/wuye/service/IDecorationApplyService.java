@@ -11,15 +11,15 @@ import java.util.Map;
  * luopa 在 2017/6/7 创建.
  */
 public interface IDecorationApplyService {
+    int deleteByPrimaryKey(Long decorationApplyId);
+
+    int insert(DecorationApply record);
+
+    DecorationApply selectByPrimaryKey(Long decorationApplyId);
+
+    int updateByPrimaryKey(DecorationApply record);
+
     List<Map<String, JsonFormat.Value>> findDecorationApplyList();
 
     List<Map<String, JsonFormat.Value>> findDecorationApplyListByQuery(EnterApplyQuery enterApplyQuery);
-
-    Long insertDecorationApply(DecorationApply decorationApply);
-
-    int updateDecorationApply(DecorationApply decorationApply);
-
-    int deleteDecorationApply( Long decorationApplyId);
-
-    DecorationApply getDecorationApplyById(Long decorationApplyId);
 }

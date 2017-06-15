@@ -5,18 +5,115 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 /**
-© 2017 RZHD.CN
-@Package: cn.rzhd.ldug.bean
-@ClassName: DecorationApply
-@Description: 描述：装修申请表
-@author: an-wei.xie@rzhd.cn
-@date: 2017年5月23日 上午11:33:13
-@version: V1.0
+ * © 2017 RZHD.CN
+ *
+ * @Package: cn.rzhd.ldug.bean
+ * @ClassName: DecorationApply
+ * @Description: 描述：装修申请表
+ * @author: an-wei.xie@rzhd.cn
+ * @date: 2017年5月23日 上午11:33:13
+ * @version: V1.0
  */
 public class DecorationApply implements Serializable {
 
     private static final long serialVersionUID = 1L;
     private HouseInfo houseInfo;
+    /**
+     * 主键
+     */
+    private Long decorationApplyId;
+    /**
+     * 房产id
+     */
+    private String houseInfoId;
+    /**
+     * 客户名称
+     */
+    private String clientName;
+    /**
+     * 申请日期
+     */
+    private Date applyTime;
+    /**
+     * 预计工期
+     */
+    private Date antipateTime;
+    /**
+     * 现场管理人
+     */
+    private String localeCustodian;
+    /**
+     * 现场管理人联系电话
+     */
+    private String localeCustodianPhone;
+    /**
+     * 装修部位
+     */
+    private String decorationParts;
+    /**
+     * 装修面积
+     */
+    private Float decorateArea;
+    /**
+     * 施工人数
+     */
+    private Integer constructPeopleNumber;
+    /**
+     * 装修公司
+     */
+    private String decorationCompany;
+    /**
+     * 装修负责人
+     */
+    private String decorationLeader;
+    /**
+     * 装修负责人电话
+     */
+    private String decorationLeaderPhone;
+    /**
+     * 装修押金
+     */
+    private BigDecimal decorationDeposit;
+    /**
+     * 装修管理费
+     */
+    private BigDecimal decorationManagementCost;
+    /**
+     * 出入证工本费
+     */
+    private BigDecimal passPapersCost;
+    /**
+     * 出入证押金
+     */
+    private BigDecimal passPapersDeposit;
+    /**
+     * 审核状态 0-通过,1-未通过，2-未审核
+     */
+    private Integer auditStatus;
+    /**
+     * 反馈意见1
+     */
+    private String feedback1;
+    /**
+     * 反馈意见2
+     */
+    private String feedback2;
+    /**
+     * 是否特殊装修(0-不是，1-是)
+     */
+    private Integer isSpecialDecoration;
+    /**
+     * 特殊装修文件
+     */
+    private String specialDecorationFile;
+    /**
+     * 创建时间
+     */
+    private Date creationTime;
+    /**
+     * 修改时间
+     */
+    private Date updateTime;
 
     public HouseInfo getHouseInfo() {
         return houseInfo;
@@ -25,126 +122,6 @@ public class DecorationApply implements Serializable {
     public void setHouseInfo(HouseInfo houseInfo) {
         this.houseInfo = houseInfo;
     }
-
-    /**
-     * 主键
-     */
-    private Long decorationApplyId;
-    
-    /**
-     * 房产id
-     */
-    private String houseInfoId;
-    
-    /**
-     * 客户名称
-     */
-    private String clientName;
-    
-    /**
-     * 申请日期
-     */
-    private Date applyTime;
-    
-    /**
-     * 预计工期
-     */
-    private Date antipateTime;
-    
-    /**
-     * 现场管理人
-     */
-    private String localeCustodian;
-    
-    /**
-     * 现场管理人联系电话
-     */
-    private String localeCustodianPhone;
-    
-    /**
-     * 装修部位
-     */
-    private String decorationParts;
-    
-    /**
-     * 装修面积
-     */
-    private Float decorateArea;
-    
-    /**
-     * 施工人数
-     */
-    private Integer constructPeopleNumber;
-    
-    /**
-     * 装修公司
-     */
-    private String decorationCompany;
-    
-    /**
-     * 装修负责人
-     */
-    private String decorationLeader;
-    
-    /**
-     * 装修负责人电话
-     */
-    private String decorationLeaderPhone;
-    
-    /**
-     * 装修押金
-     */
-    private BigDecimal decorationDeposit;
-    
-    /**
-     * 装修管理费
-     */
-    private BigDecimal decorationManagementCost;
-    
-    /**
-     * 出入证工本费
-     */
-    private BigDecimal passPapersCost;
-    
-    /**
-     * 出入证押金
-     */
-    private BigDecimal passPapersDeposit;
-    
-    /**
-     * 审核状态 0-通过,1-未通过，2-未审核
-     */
-    private Integer auditStatus;
-    
-    /**
-     * 反馈意见1
-     */
-    private String feedback1;
-    
-    /**
-     * 反馈意见2
-     */
-    private String feedback2;
-    
-    /**
-     * 是否特殊装修(0-不是，1-是)
-     */
-    private Integer isSpecialDecoration;
-    
-    /**
-     * 特殊装修文件
-     */
-    private String specialDecorationFile;
-    
-    /**
-     * 创建时间
-     */
-    private Date creationTime;
-    
-    /**
-     * 修改时间
-     */
-    private Date updateTime;
 
     public Long getDecorationApplyId() {
         return decorationApplyId;
@@ -337,7 +314,6 @@ public class DecorationApply implements Serializable {
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
-    
-    
+
 
 }

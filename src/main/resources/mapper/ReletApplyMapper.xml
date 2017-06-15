@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.rzhd.wuye.mapper.ReletApplyMapper" >
+    <resultMap id="BaseResultMap" type="cn.rzhd.wuye.bean.ReletApply" >
+        <id column="RELET_APPLY_ID" property="reletApplyId" jdbcType="DECIMAL" />
+        <result column="HOUSE_INFO_ID" property="houseInfoId" jdbcType="DECIMAL" />
+        <result column="CLIENT_NAME" property="clientName" jdbcType="OTHER" />
+        <result column="HOUSE_ACREAGE" property="houseAcreage" jdbcType="FLOAT" />
+        <result column="LEASE_START_TIME" property="leaseStartTime" jdbcType="DATE" />
+        <result column="LEASE_END_TIME" property="leaseEndTime" jdbcType="DATE" />
+        <result column="TYPE" property="type" jdbcType="DECIMAL" />
+        <result column="RETREA_TIME" property="retreaTime" jdbcType="DATE" />
+        <result column="RETREA_TYPE" property="retreaType" jdbcType="DATE" />
+        <result column="SINGLE_PRICE" property="singlePrice" jdbcType="DECIMAL" />
+        <result column="SUBTOTAL" property="subtotal" jdbcType="DECIMAL" />
+        <result column="PRIVILEGE_SUM" property="privilegeSum" jdbcType="DECIMAL" />
+        <result column="LEASE_DEPOSIT" property="leaseDeposit" jdbcType="DECIMAL" />
+        <result column="TOTAL" property="total" jdbcType="DECIMAL" />
+        <result column="CREATION_TIME" property="creationTime" jdbcType="DATE" />
+        <result column="UPDATE_TIME" property="updateTime" jdbcType="DATE" />
+    </resultMap>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+        delete from T_RELET_APPLY
+        where RELET_APPLY_ID = #{reletApplyId,jdbcType=DECIMAL}
+    </delete>
+    <insert id="insert" parameterType="cn.rzhd.wuye.bean.ReletApply" >
+        insert into T_RELET_APPLY (RELET_APPLY_ID, HOUSE_INFO_ID, CLIENT_NAME,
+        HOUSE_ACREAGE, LEASE_START_TIME, LEASE_END_TIME,
+        TYPE, RETREA_TIME, RETREA_TYPE,
+        SINGLE_PRICE, SUBTOTAL, PRIVILEGE_SUM,
+        LEASE_DEPOSIT, TOTAL, CREATION_TIME,
+        UPDATE_TIME)
+        values (T_ENTER_APPLY_ID_SEQ.Nextval, #{houseInfoId,jdbcType=DECIMAL}, #{clientName,jdbcType=OTHER},
+        #{houseAcreage,jdbcType=FLOAT}, #{leaseStartTime,jdbcType=DATE}, #{leaseEndTime,jdbcType=DATE},
+        #{type,jdbcType=DECIMAL}, #{retreaTime,jdbcType=DATE}, #{retreaType,jdbcType=DATE},
+        #{singlePrice,jdbcType=DECIMAL}, #{subtotal,jdbcType=DECIMAL}, #{privilegeSum,jdbcType=DECIMAL},
+        #{leaseDeposit,jdbcType=DECIMAL}, #{total,jdbcType=DECIMAL}, #{creationTime,jdbcType=DATE},
+        #{updateTime,jdbcType=DATE})
+    </insert>
+    <update id="updateByPrimaryKey" parameterType="cn.rzhd.wuye.bean.ReletApply" >
+        update T_RELET_APPLY
+        set HOUSE_INFO_ID = #{houseInfoId,jdbcType=DECIMAL},
+        CLIENT_NAME = #{clientName,jdbcType=OTHER},
+        HOUSE_ACREAGE = #{houseAcreage,jdbcType=FLOAT},
+        LEASE_START_TIME = #{leaseStartTime,jdbcType=DATE},
+        LEASE_END_TIME = #{leaseEndTime,jdbcType=DATE},
+        TYPE = #{type,jdbcType=DECIMAL},
+        RETREA_TIME = #{retreaTime,jdbcType=DATE},
+        RETREA_TYPE = #{retreaType,jdbcType=DATE},
+        SINGLE_PRICE = #{singlePrice,jdbcType=DECIMAL},
+        SUBTOTAL = #{subtotal,jdbcType=DECIMAL},
+        PRIVILEGE_SUM = #{privilegeSum,jdbcType=DECIMAL},
+        LEASE_DEPOSIT = #{leaseDeposit,jdbcType=DECIMAL},
+        TOTAL = #{total,jdbcType=DECIMAL},
+        CREATION_TIME = #{creationTime,jdbcType=DATE},
+        UPDATE_TIME = #{updateTime,jdbcType=DATE}
+        where RELET_APPLY_ID = #{reletApplyId,jdbcType=DECIMAL}
+    </update>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+        select RELET_APPLY_ID, HOUSE_INFO_ID, CLIENT_NAME, HOUSE_ACREAGE, LEASE_START_TIME,
+        LEASE_END_TIME, TYPE, RETREA_TIME, RETREA_TYPE, SINGLE_PRICE, SUBTOTAL, PRIVILEGE_SUM,
+        LEASE_DEPOSIT, TOTAL, CREATION_TIME, UPDATE_TIME
+        from T_RELET_APPLY
+        where RELET_APPLY_ID = #{reletApplyId,jdbcType=DECIMAL}
+    </select>
+    <select id="selectAll" resultMap="BaseResultMap" >
+        select RELET_APPLY_ID, HOUSE_INFO_ID, CLIENT_NAME, HOUSE_ACREAGE, LEASE_START_TIME,
+        LEASE_END_TIME, TYPE, RETREA_TIME, RETREA_TYPE, SINGLE_PRICE, SUBTOTAL, PRIVILEGE_SUM,
+        LEASE_DEPOSIT, TOTAL, CREATION_TIME, UPDATE_TIME
+        from T_RELET_APPLY
+    </select>
+</mapper>

@@ -15,7 +15,7 @@ import java.util.Date;
 @version: V1.0
  */
 public class ReletApply implements Serializable{
-	
+
 	private static final long serialVersionUID = 1L;
 	/**
 	 * 续租申请id

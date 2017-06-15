@@ -50,7 +50,18 @@ public class IDUtils {
 		//如果不足两位前面补0
 		return millis + String.format("%02d", end2);
 	}
-	
+
+	public static  Long genLongUID(){
+		//取当前时间的长整形值包含毫秒
+		long millis1 = System.currentTimeMillis();
+		long millis2 = System.nanoTime();
+		//加上三位随机数
+		Random random = new Random();
+		int end3 = random.nextInt(999);
+		String str = millis1+millis2 + String.format("%03d", end3);
+        Long aLong = Long.valueOf(str);
+        return  aLong;
+    }
 	public static void main(String[] args) {
 		for(int i=0;i< 100;i++)
 		System.out.println(genId15());

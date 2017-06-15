@@ -12,24 +12,24 @@ import java.io.Serializable;
 @version: V1.0
  */
 public class DecorationMaterial implements Serializable {
-    
+
     private static final long serialVersionUID = 1L;
-    
+
     /**
      * 主键
      */
     private Long decorationMaterialId;
-    
+
     /**
      * 装修申请表id
      */
     private Long decorationApplyId;
-    
+
     /**
      * 资料名称
      */
     private String materialName;
-    
+
     /**
      * 资料地址
      */
@@ -66,7 +66,7 @@ public class DecorationMaterial implements Serializable {
     public void setMaterialAddress(String materialAddress) {
         this.materialAddress = materialAddress;
     }
-    
-    
+
+
 
 }

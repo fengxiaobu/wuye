@@ -15,8 +15,8 @@
     <insert id="insert" parameterType="cn.rzhd.wuye.bean.DecorationNotice">
         insert into T_DECORATION_NOTICE (DECORATION_NOTICE_ID, TITLE, CONTENT,
         CREATION_TIME, UPDATE_TIME)
-        values (#{decorationNoticeId,jdbcType=DECIMAL}, #{title,jdbcType=OTHER}, #{content,jdbcType=OTHER},
-        #{creationTime,jdbcType=DATE}, #{updateTime,jdbcType=DATE})
+        values (T_ENTER_APPLY_ID_SEQ.Nextval, #{title}, #{content,},
+        #{creationTime}, #{updateTime})
     </insert>
     <update id="updateByPrimaryKey" parameterType="cn.rzhd.wuye.bean.DecorationNotice">
         update T_DECORATION_NOTICE
