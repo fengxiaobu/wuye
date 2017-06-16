@@ -3,10 +3,12 @@ package cn.rzhd.wuye.service.impl;
 import cn.rzhd.wuye.bean.DecorationMaterial;
 import cn.rzhd.wuye.mapper.DecorationMaterialMapper;
 import cn.rzhd.wuye.service.IDecorationMaterialService;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * luopa 在 2017/6/7 创建.
@@ -69,6 +71,16 @@ public class DecorationMaterialServiceImpl implements IDecorationMaterialService
     @Override
     public int updateByPrimaryKey(DecorationMaterial record) {
         return decorationMaterialMapper.updateByPrimaryKey(record);
+    }
+
+    /**
+     * 查询资料
+     * @param decorationApplyId
+     * @return
+     */
+    @Override
+    public List<Map<String, JsonFormat.Value>> findByQuery(Long decorationApplyId) {
+        return null;
     }
 
 }

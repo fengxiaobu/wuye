@@ -77,25 +77,4 @@ public class EnterMaterialController {
         return jsonString;
     }
 
-
-
-/*
-    *//**
-     * 房产资料下载
-     *
-     * @param houseInfoId
-     * @return
-     *//*
-    @RequestMapping("/downLoadEnterMaterial")
-    @ResponseBody
-    public String downLoadEnterMaterial(String houseInfoId) {
-        if (houseInfoId == null || houseInfoId == "") {
-            return "房产ID为空!";
-        }
-        EnterMaterial material = enterMaterialService.findEnterMaterialByHouseId(houseInfoId);
-        String jsonString = JSON.toJSONString(material, SerializerFeature.WriteMapNullValue);
-        return jsonString;
-    }*/
-
-
 }

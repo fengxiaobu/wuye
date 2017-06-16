@@ -3,6 +3,7 @@ package cn.rzhd.wuye.bean;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 /**
  * © 2017 RZHD.CN
@@ -35,9 +36,9 @@ public class DecorationApply implements Serializable {
      */
     private Date applyTime;
     /**
-     * 预计工期
+     * 预计工天
      */
-    private Date antipateTime;
+    private Integer antipateTime;
     /**
      * 现场管理人
      */
@@ -114,6 +115,61 @@ public class DecorationApply implements Serializable {
      * 修改时间
      */
     private Date updateTime;
+    /**
+     * 装修详情
+     */
+    private List<DecorateDetail> decorateDetailList;
+    /**
+     * 装修资料
+     */
+    private List<DecorationMaterial> decorationMaterialList;
+
+    public List<DecorateDetail> getDecorateDetailList() {
+        return decorateDetailList;
+    }
+
+    public void setDecorateDetailList(List<DecorateDetail> decorateDetailList) {
+        this.decorateDetailList = decorateDetailList;
+    }
+
+    public List<DecorationMaterial> getDecorationMaterialList() {
+        return decorationMaterialList;
+    }
+
+    public void setDecorationMaterialList(List<DecorationMaterial> decorationMaterialList) {
+        this.decorationMaterialList = decorationMaterialList;
+    }
+
+    @Override
+    public String toString() {
+        return "DecorationApply{" +
+                "houseInfo=" + houseInfo +
+                ", decorationApplyId=" + decorationApplyId +
+                ", houseInfoId='" + houseInfoId + '\'' +
+                ", clientName='" + clientName + '\'' +
+                ", applyTime=" + applyTime +
+                ", antipateTime=" + antipateTime +
+                ", localeCustodian='" + localeCustodian + '\'' +
+                ", localeCustodianPhone='" + localeCustodianPhone + '\'' +
+                ", decorationParts='" + decorationParts + '\'' +
+                ", decorateArea=" + decorateArea +
+                ", constructPeopleNumber=" + constructPeopleNumber +
+                ", decorationCompany='" + decorationCompany + '\'' +
+                ", decorationLeader='" + decorationLeader + '\'' +
+                ", decorationLeaderPhone='" + decorationLeaderPhone + '\'' +
+                ", decorationDeposit=" + decorationDeposit +
+                ", decorationManagementCost=" + decorationManagementCost +
+                ", passPapersCost=" + passPapersCost +
+                ", passPapersDeposit=" + passPapersDeposit +
+                ", auditStatus=" + auditStatus +
+                ", feedback1='" + feedback1 + '\'' +
+                ", feedback2='" + feedback2 + '\'' +
+                ", isSpecialDecoration=" + isSpecialDecoration +
+                ", specialDecorationFile='" + specialDecorationFile + '\'' +
+                ", creationTime=" + creationTime +
+                ", updateTime=" + updateTime +
+                '}';
+    }
 
     public HouseInfo getHouseInfo() {
         return houseInfo;
@@ -155,11 +211,11 @@ public class DecorationApply implements Serializable {
         this.applyTime = applyTime;
     }
 
-    public Date getAntipateTime() {
+    public Integer getAntipateTime() {
         return antipateTime;
     }
 
-    public void setAntipateTime(Date antipateTime) {
+    public void setAntipateTime(Integer antipateTime) {
         this.antipateTime = antipateTime;
     }
 

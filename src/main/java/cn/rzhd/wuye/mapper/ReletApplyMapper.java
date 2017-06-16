@@ -2,6 +2,7 @@ package cn.rzhd.wuye.mapper;
 
 import cn.rzhd.wuye.bean.ReletApply;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -11,11 +12,11 @@ import java.util.List;
  */
 @Mapper
 public interface ReletApplyMapper {
-    int deleteByPrimaryKey(Long reletApplyId);
+    int deleteByPrimaryKey(@Param("reletApplyId") Long reletApplyId);
 
     int insert(ReletApply record);
 
-    ReletApply selectByPrimaryKey(Long reletApplyId);
+    ReletApply selectByPrimaryKey(@Param("reletApplyId") Long reletApplyId);
 
     List<ReletApply> selectAll();
 
