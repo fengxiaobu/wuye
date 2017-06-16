@@ -60,10 +60,10 @@
             <td>签名:</td>
             <td><input name="Signature" type="hidden" value="${Signature}"></td>
         </tr>
-        <tr>
+        <%--<tr>
             <td>交易类型:</td>
             <td><input name="TranType" type="hidden" value="${TranType}"></td>
-        </tr>
+        </tr>--%>
         <tr>
             <td>商户前台通知地址:</td>
             <td><input name="MerPageUrl" type="hidden" value="${MerPageUrl}"></td>

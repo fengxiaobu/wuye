@@ -6,11 +6,10 @@ import cn.rzhd.wuye.common.RequestVO;
 import cn.rzhd.wuye.utils.BeanUtils;
 import cn.rzhd.wuye.utils.HttpUtils;
 import com.xiaoleilu.hutool.util.RandomUtil;
-import jodd.http.HttpRequest;
-import jodd.http.HttpResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -89,12 +88,13 @@ public class ChinaPay {
     }
 
     @RequestMapping("/sendpay")
-    public void pay(RequestVO requestVO, HttpServletRequest req) throws IOException {
+    @ResponseBody
+    public  Map<String, Object> pay(RequestVO requestVO, HttpServletRequest req) throws IOException {
         //前台页面传过来的
         ChinaPayHelper chinaPayHelper = new ChinaPayHelper();
         requestVO.setRemoteAddr(HttpUtils.getIpAddr(req));
         requestVO.setMerOrderNo(RandomUtil.randomString(32));
-        requestVO.setBankInstNo("700000000000017");
+        //requestVO.setBankInstNo("700000000000017");
         requestVO.setCommodityMsg("物业测试");
         requestVO.setMerResv("交易商品");
         // requestVO.setAcqCode("");
@@ -103,12 +103,6 @@ public class ChinaPay {
         Map<String, Object> objectMap = BeanUtils.objectToMap(vo);
         Map<String, Object> sign = ChinaPaySignUtils.sign(objectMap);
         objectMap.put("Signature", sign.get("sign"));
-        HttpResponse response = HttpRequest.post("http://newpayment-test.chinapay.com/CTITS/service/rest/page/nref/000000000017/0/0/0/0/0")
-                .form(objectMap).send();
-        String s = response.bodyText();
-        System.out.println("s = " + s);
-        //ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(bytes);
-       // HttpResponse.readFrom(byteArrayInputStream);
-
+        return objectMap;
     }
 }
