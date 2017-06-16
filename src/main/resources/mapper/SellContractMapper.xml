@@ -22,7 +22,7 @@
             "nyshouldinterestmny",
             "nyfactinterestmny"
         FROM "T_Sell_Contract"
-        WHERE "house" = #{house}
+        WHERE "pk_sign" = #{pk_sign}
     </select>
 
     <select id="queryByCustomer" parameterType="string" resultType="cn.rzhd.wuye.vo.SignVO">

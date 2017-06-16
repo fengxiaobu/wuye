@@ -16,7 +16,7 @@ public interface ISellContractService {
      */
     List<SignVO> getSellContract(String billType, String companyId);
     
-    List<SignVO> getSellContract(String house);
+    List<SignVO> getSellContract(String pk_sign);
 
     /**
      *
