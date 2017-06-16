@@ -119,6 +119,50 @@ public class DecorationApplyController {
     }
 
     /**
+     * 查询审核结果
+     *
+     * @param decorationApplyId
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("/findDecorationApplyByID")
+    public Map<String, Object> findDecorationApplyByID(Long decorationApplyId) {
+        Map<String, Object> result = new HashMap<>();
+        if (decorationApplyId == null) {
+            result.put("state", "0");
+            result.put("msg", "ID不能为空!");
+            return result;
+        }
+        DecorationApply decorationApply = decorationApplyService.selectByPrimaryKey(decorationApplyId);
+        result.put("state", "1");
+        result.put("data", decorationApply);
+        return result;
+    }
+
+    /**
+     * 审核装修申请
+     *
+     * @param decorationApply
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("/updateDecorationApply")
+    public Map<String, String> updateDecorationApply(DecorationApply decorationApply) {
+        Map<String, String> result = new HashMap<>();
+        if (decorationApply.getDecorationApplyId() == null) {
+            result.put("state", "0");
+            result.put("msg", "ID不能为空!");
+            return result;
+        }
+
+        int i = decorationApplyService.updateByPrimaryKey(decorationApply);
+        System.out.println("i = " + i);
+        result.put("state", "1");
+
+        return result;
+    }
+
+    /**
      * 获取所有装修申请
      *
      * @return

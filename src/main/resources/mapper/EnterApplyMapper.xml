@@ -107,26 +107,26 @@
     <update id="updateEnterApply" parameterType="cn.rzhd.wuye.bean.EnterApply">
        update T_ENTER_APPLY
         set
-        <if test="CLIENT_NAME != null">
+        <if test="clientName != null">
             CLIENT_NAME = #{clientName},
         </if>
 
-        <if test="HOUSE_INFO_ID != null">
+        <if test="houseInfoId != null">
             HOUSE_INFO_ID = #{houseInfoId},
         </if>
-        <if test="AUDIT_STATUS != null">
+        <if test="auditStatus != null">
             AUDIT_STATUS = #{auditStatus},
         </if>
-        <if test="ENTER_ADVICE_NOTE != null">
+        <if test="enterAdviceNote != null">
             ENTER_ADVICE_NOTE = #{enterAdviceNote},
         </if>
-        <if test="NOTES != null">
+        <if test="notes != null">
             NOTES = #{notes},
         </if>
-        <if test="CREATION_TIME != null">
+        <if test="creationTime != null">
             CREATION_TIME = #{creationTime},
         </if>
-        <if test="UPDATE_TIME != null">
+        <if test="updateTime != null">
             UPDATE_TIME = #{updateTime}
         </if>
     where ENTER_APPLY_ID = #{enterApplyId}
