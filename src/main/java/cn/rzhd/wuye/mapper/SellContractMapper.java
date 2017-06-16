@@ -26,4 +26,6 @@ public interface SellContractMapper {
      * 通过客户ID查询销售合同
      */
     List<SignVO> queryByCustomer(String customerId);
+    
+    List<SignVO> getAll();
 }

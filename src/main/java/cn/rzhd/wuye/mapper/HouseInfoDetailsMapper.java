@@ -17,4 +17,6 @@ public interface HouseInfoDetailsMapper {
     int updateByPrimaryKey(HouseVO record);
     
     List<HouseVO> getHouseInfoByName(String vhname);
+    
+    List<HouseVO> getAll();
 }

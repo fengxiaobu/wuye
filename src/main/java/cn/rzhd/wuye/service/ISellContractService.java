@@ -27,4 +27,9 @@ public interface ISellContractService {
      * 通过客户ID查询合同信息
      */
     List<SignVO> queryByCustomer(String customerId);
+    
+    /**
+     * 后台展示列表
+     */
+    List<SignVO> getBackAll();
 }

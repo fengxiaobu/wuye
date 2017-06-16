@@ -64,4 +64,10 @@ public class SellContractServiceImpl implements ISellContractService {
         return mapper.queryByCustomer(customerId);
     }
 
+	@Override
+	public List<SignVO> getBackAll() {
+		List<SignVO> signVOAll = mapper.getAll();
+		return signVOAll;
+	}
+
 }
