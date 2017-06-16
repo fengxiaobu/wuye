@@ -36,7 +36,7 @@
         <result column="ASTRICTSTATUS" property="astrictStatus"/>
         <result column="UPDATEDATE" property="updateDate"/>
         <association property="projectInfo" column="pk_project" javaType="cn.rzhd.wuye.bean.ProjectInfo" select="cn.rzhd.wuye.mapper.ProjectInfoMapper.selectByPrimaryKey"/>
-    </resultMap>
+	</resultMap>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
         DELETE FROM T_HOUSE_INFO_DETAILS
         WHERE "pk_house" = #{pkHouse,jdbcType=CHAR}
@@ -197,10 +197,9 @@
     	<result property="situation" column="situation"/>
     	<result property="nbuildarea" column="nbuildarea"/>
     	<association property="projectVO" javaType="cn.rzhd.wuye.vo.ProjectVO">
-			<id property="pk_project" column="PK_PROJECT" />
-			<result property="object_phone" column="OBJECT_PHONE" />
-			<result property="project_address" column="PROJECT_ADDRESS" />
-	  	</association>
+			<id property="pk_project" column="pk_project"/>
+			<result property="vname" column="PROJECT_NAME"/>
+    	</association>
     </resultMap>
     
     <select id="getAll" resultMap="houseVOBackMap">
@@ -245,5 +244,5 @@
 			<result property="nythisdiscountmny" column="nythisdiscountmny" />
 			<result property="nytotalmnysign" column="nytotalmnysign" />
 	  	</association>
-    </resultMap>
+	  </resultMap>
 </mapper>
