@@ -54,6 +54,10 @@ public class PropertyFeeInvoiceDetails implements Serializable{
 	 */
 	private Long propFeeInvoiceDetailsId;
 	/**
+	 * 物业缴费记录ID
+	 */
+	private Long propertyFeePayDetailsId;
+	/**
 	 * @return the invoiceType
 	 */
 	public Integer getInvoiceType() {
