@@ -62,6 +62,10 @@ public class WaterRateInvoiceDetails implements Serializable{
 	 */
 	private Date updateTime;
 	/**
+	 * 水费缴费记录ID
+	 */
+	private Long waterRatePayDetailsId;
+	/**
 	 * @return the invoiceType
 	 */
 	public Integer getInvoiceType() {
@@ -193,5 +197,12 @@ public class WaterRateInvoiceDetails implements Serializable{
 	public void setWaterRateInvoiceDetailsId(Long waterRateInvoiceDetailsId) {
 		this.waterRateInvoiceDetailsId = waterRateInvoiceDetailsId;
 	}
-	
+
+	public Long getWaterRatePayDetailsId() {
+		return waterRatePayDetailsId;
+	}
+
+	public void setWaterRatePayDetailsId(Long waterRatePayDetailsId) {
+		this.waterRatePayDetailsId = waterRatePayDetailsId;
+	}
 }

@@ -24,6 +24,7 @@ import java.util.Map;
  * @version: V1.0
  */
 
+@RestController
 @RequestMapping(value="/dist/CustomerCentre",method=RequestMethod.POST)
 public class CustomerCentreController {
 

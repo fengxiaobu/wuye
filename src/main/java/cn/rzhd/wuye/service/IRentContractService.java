@@ -17,7 +17,7 @@ public interface IRentContractService {
     List<PactVO> getRentContract(String billType, String companyId);
     
     
-    List<PactVO> getRentContract(String house);
+    List<PactVO> getRentContract(String pk_pact);
     
 
     /**
@@ -32,4 +32,5 @@ public interface IRentContractService {
      * 通过客户ID查询租赁合同信息
      */
     List<PactVO> queryByCustomer(String customerId);
+
 }

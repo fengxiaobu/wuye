@@ -14,14 +14,14 @@ import cn.rzhd.wuye.vo.SignVO;
  *
  */
 @RestController
-@RequestMapping("/sell/contract")
+@RequestMapping("/dist/sell/contract")
 public class SellContractController {
 	@Autowired
 	ISellContractService sellContractService;
 	
 	@RequestMapping("/getSellContractlist")
-	public List<SignVO> getSellContract(String house){
-        List<SignVO> sellContractList = sellContractService.getSellContract(house);
+	public List<SignVO> getSellContract(String pk_sign){
+        List<SignVO> sellContractList = sellContractService.getSellContract(pk_sign);
         return sellContractList;
     } 
 }

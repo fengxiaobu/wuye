@@ -3,11 +3,10 @@ package cn.rzhd.wuye.service.impl;
 import cn.rzhd.wuye.mapper.HouseInfoDetailsMapper;
 import cn.rzhd.wuye.service.IHouseInfoDetailsService;
 import cn.rzhd.wuye.vo.HouseVO;
-
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * Created by hasee on 2017/6/5.
@@ -33,13 +32,22 @@ public class HouseInfoDetailsServiceImpl implements IHouseInfoDetailsService {
         }
     }
 
+
 	@Override
-	public List<HouseVO> getHouseInfoDetails(String vhname) {
-		List<HouseVO> houseInfoNames = mapper.getHouseInfoByName(vhname);
+	public List<HouseVO> getHouseInfoDetails(String pk_house) {
+		List<HouseVO> houseInfoNames = mapper.getHouseInfoByName(pk_house);
 		return houseInfoNames;
 	}
+
     @Override
     public HouseVO selectById(String pkHouse) {
         return mapper.selectByPrimaryKey(pkHouse);
     }
+
+	@Override
+	public List<HouseVO> getBackAll() {
+		List<HouseVO> houseVOs = mapper.getAll();
+		return houseVOs;
+	}
+
 }

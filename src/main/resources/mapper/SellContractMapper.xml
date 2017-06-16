@@ -4,51 +4,94 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.rzhd.wuye.mapper.SellContractMapper">
     <select id="getById" parameterType="string" resultType="cn.rzhd.wuye.vo.SignVO">
-	SELECT 
-	"pk_corp",
-	"pk_customerid",
-	"pk_project",
-	"pk_sign",
-	"pk_house",
-	"house",
-	"nsellarea",
-	"nprice",
-	"nythisdiscountmny",
-	"nytotalmnysign",
-	"fpmcourse",
-	"dbefinishdate",
-	"nyshouldmny",
-	"nyfactmny",
-	"nyshouldinterestmny",
-	"nyfactinterestmny"
-	FROM "T_Sell_Contract"
-	WHERE "house"=#{house}
+        SELECT
+            "pk_corp",
+            "pk_customerid",
+            "pk_project",
+            "pk_sign",
+            "pk_house",
+            "house",
+            "nsellarea",
+            "nprice",
+            "nythisdiscountmny",
+            "nytotalmnysign",
+            "fpmcourse",
+            "dbefinishdate",
+            "nyshouldmny",
+            "nyfactmny",
+            "nyshouldinterestmny",
+            "nyfactinterestmny"
+        FROM "T_Sell_Contract"
+        WHERE "pk_sign" = #{pk_sign}
     </select>
 
     <select id="queryByCustomer" parameterType="string" resultType="cn.rzhd.wuye.vo.SignVO">
-        SELECT DISTINCT "pk_house","house","pk_project",p.VSHORTNAME AS projectName FROM  "T_Sell_Contract" JOIN T_PROJECT_INFO p ON "pk_project"=p.PK_PROJECT WHERE "pk_customerid"=#{customerId}
+        SELECT DISTINCT
+            "pk_house",
+            "house",
+            "pk_project",
+            p.VSHORTNAME AS projectName
+        FROM "T_Sell_Contract"
+            JOIN T_PROJECT_INFO p ON "pk_project" = p.PK_PROJECT
+        WHERE "pk_customerid" = #{customerId}
     </select>
 
     <insert id="add" parameterType="cn.rzhd.wuye.vo.SignVO">
         INSERT INTO "T_Sell_Contract" ("pk_corp",
-                                     "pk_customerid",
-                                     "pk_project",
-                                     "pk_sign",
-                                     "pk_house",
-                                     "house",
-                                     "nsellarea",
-                                     "nprice",
-                                     "nythisdiscountmny",
-                                     "nytotalmnysign",
-                                     "fpmcourse",
-                                     "dbefinishdate",
-                                     "nyshouldmny",
-                                     "nyfactmny",
-                                     "nyshouldinterestmny",
-                                     "nyfactinterestmny")
-                VALUES (#{pk_corp},#{pk_customerid},#{pk_project},#{pk_sign},#{pk_house},#{house},#{nsellarea},
-                        #{nprice},#{nythisdiscountmny},#{nytotalmnysign},#{fpmcourse},#{dbefinishdate},#{nyshouldmny},
-                        #{nyfactmny},#{nyshouldinterestmny},#{nyfactinterestmny})
+                                       "pk_customerid",
+                                       "pk_project",
+                                       "pk_sign",
+                                       "pk_house",
+                                       "house",
+                                       "nsellarea",
+                                       "nprice",
+                                       "nythisdiscountmny",
+                                       "nytotalmnysign",
+                                       "fpmcourse",
+                                       "dbefinishdate",
+                                       "nyshouldmny",
+                                       "nyfactmny",
+                                       "nyshouldinterestmny",
+                                       "nyfactinterestmny")
+        VALUES (#{pk_corp}, #{pk_customerid}, #{pk_project}, #{pk_sign}, #{pk_house}, #{house}, #{nsellarea},
+                            #{nprice}, #{nythisdiscountmny}, #{nytotalmnysign}, #{fpmcourse}, #{dbefinishdate},
+                #{nyshouldmny},
+                #{nyfactmny}, #{nyshouldinterestmny}, #{nyfactinterestmny})
     </insert>
+    
+    <select id="getAll" resultMap="sellContractBackMap">
+    	SELECT
+			s."pk_house",
+			P.PROJECT_NAME,
+			p.VCODE,
+			c."vcname",
+			s."nsellarea",
+			s."nprice",
+			s."nythisdiscountmny",
+			s."nytotalmnysign",
+			s."fpmcourse"
+		FROM
+			"T_Sell_Contract" s 
+		LEFT JOIN T_PROJECT_INFO p on s."pk_project"=p.PK_PROJECT
+		LEFT JOIN "T_Customer" c on  s."pk_customerid" = c."pk_customerid"
+    </select>
+    
+    <resultMap type="cn.rzhd.wuye.vo.SignVO" id="sellContractBackMap">
+    	<id property="pk_house" column="pk_house"/>
+    	<result property="nsellarea" column="nsellarea"/>
+    	<result property="nprice" column="nprice"/>
+    	<result property="nythisdiscountmny" column="nythisdiscountmny"/>
+    	<result property="nytotalmnysign" column="nytotalmnysign"/>
+    	<result property="fpmcourse" column="fpmcourse"/>
+		<association property="customerVO" javaType="cn.rzhd.wuye.vo.CustomerVO">
+			<id property="pk_customerid" column="pk_customerid" />
+			<result property="vcname" column="vcname" />
+	 	</association>
+	 	<association property="projectVO" javaType="cn.rzhd.wuye.vo.ProjectVO">
+			<id property="pk_project" column="PK_PROJECT" />
+			<result property="vname" column="PROJECT_NAME" />
+			<result property="vcode" column="VCODE" />
+	 	</association>
+    </resultMap>
 
 </mapper>

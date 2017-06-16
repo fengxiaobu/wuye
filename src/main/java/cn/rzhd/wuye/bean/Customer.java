@@ -92,6 +92,18 @@ public class Customer implements Serializable{
      * 房产信息主键及房产名
      */
     private List<PactVO> houseInfos = new ArrayList<>();
+    /**
+     * 当前入驻流程状态(0-未办理,1-完成完善资料,2-完成资料提交,3-完成审核,4-完成入驻费用交纳)
+     */
+    private Integer currentFlow;
+    /**
+     * 当前进行入驻流程的房产ID
+     */
+    private String currentHouseId;
+    /**
+     * 是否已完成一次入驻(Y--是,N--否)
+     */
+    private String alreadyFinish;
 
     public String getPk_corp() {
         return pk_corp;
@@ -253,29 +265,27 @@ public class Customer implements Serializable{
         this.houseInfos = houseInfos;
     }
 
-    @Override
-    public String toString() {
-        return "Customer{" +
-                "pk_corp='" + pk_corp + '\'' +
-                ", pk_customerid='" + pk_customerid + '\'' +
-                ", fccategory='" + fccategory + '\'' +
-                ", vccode='" + vccode + '\'' +
-                ", vcname='" + vcname + '\'' +
-                ", vpcnamespell='" + vpcnamespell + '\'' +
-                ", vpreferredtel='" + vpreferredtel + '\'' +
-                ", vccardnum='" + vccardnum + '\'' +
-                ", vcaddress='" + vcaddress + '\'' +
-                ", ccpostalcode='" + ccpostalcode + '\'' +
-                ", dregdate='" + dregdate + '\'' +
-                ", vregplace='" + vregplace + '\'' +
-                ", vmemcardno='" + vmemcardno + '\'' +
-                ", vpcemail='" + vpcemail + '\'' +
-                ", nproperty='" + nproperty + '\'' +
-                ", LOGO='" + LOGO + '\'' +
-                ", companyType='" + companyType + '\'' +
-                ", password='" + password + '\'' +
-                ", bindingPhone='" + bindingPhone + '\'' +
-                '}';
+    public Integer getCurrentFlow() {
+        return currentFlow;
     }
 
+    public void setCurrentFlow(Integer currentFlow) {
+        this.currentFlow = currentFlow;
+    }
+
+    public String getCurrentHouseId() {
+        return currentHouseId;
+    }
+
+    public void setCurrentHouseId(String currentHouseId) {
+        this.currentHouseId = currentHouseId;
+    }
+
+    public String getAlreadyFinish() {
+        return alreadyFinish;
+    }
+
+    public void setAlreadyFinish(String alreadyFinish) {
+        this.alreadyFinish = alreadyFinish;
+    }
 }

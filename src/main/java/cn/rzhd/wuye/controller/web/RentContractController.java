@@ -14,14 +14,14 @@ import cn.rzhd.wuye.vo.PactVO;
  *
  */
 @RestController
-@RequestMapping("/rent/contract")
+@RequestMapping("/dist/rent/contract")
 public class RentContractController {
 	@Autowired
 	IRentContractService rentContractService;
 	
 	@RequestMapping("/getRentContractlist")
-	public List<PactVO> getRentContract(String house){
-        List<PactVO> rentContractlist = rentContractService.getRentContract(house);
+	public List<PactVO> getRentContract(String pk_pact){
+        List<PactVO> rentContractlist = rentContractService.getRentContract(pk_pact);
        
         return rentContractlist;
     } 

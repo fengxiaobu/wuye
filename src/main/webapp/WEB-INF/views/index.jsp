@@ -135,21 +135,21 @@
                     </div>
                     <div class="collapse panel-collapse" id="collapse_three_011" role="tablist">
                         <ul class="panel-group level02" id="aside_three_011">
+                        	<li class="panel" role="tab">
+                                <div class="panel-header">
+                                    <a href="${pageContext.request.contextPath}/dist/houseInfoDetailsBack/getHouseInfoDetailsList?pageNum=1&pageSize=10" target="main">房产信息</a>
+                                </div>
+                            </li>
+                        
                             <li class="panel" role="tab">
                                 <div class="panel-header">
-                                    <a data-toggle="collapse" data-parent="#aside_three_011" href="#">销售合同表</a>
+                                    <a href="${pageContext.request.contextPath}/dist/sellContractBack/getSellContractList?pageNum=1&pageSize=10" target="main">销售合同表</a>
                                 </div>
                             </li>
 
                             <li class="panel" role="tab">
                                 <div class="panel-header">
-                                    <a href="/houseInfo/index" target="main">房产信息</a>
-                                </div>
-                            </li>
-
-                            <li class="panel" role="tab">
-                                <div class="panel-header">
-                                    <a data-toggle="collapse" data-parent="#aside_three_02" href="#">租赁合同表</a>
+                                    <a href="${pageContext.request.contextPath}/dist/rentContractBack/getRentContractList?pageNum=1&pageSize=10" target="main">租赁合同表</a>
                                 </div>
                             </li>
                         </ul>

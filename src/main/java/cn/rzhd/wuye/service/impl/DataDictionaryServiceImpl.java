@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 
-@Service("dataDictionaryService")
+@Service
 public class DataDictionaryServiceImpl implements IDataDictionaryService {
 
     @Autowired

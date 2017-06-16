@@ -21,11 +21,12 @@ public interface RentContractMapper {
      */
     PactVO getById(String pk_pact);
     
-    List<PactVO> getByPkId(String house);
+    List<PactVO> getByPkId(String pk_pact);
 
     void add(PactVO pactVO);
 
     List<PactVO> getAll();
+
     /**
      * 通过客户ID查询租赁合同信息
      */

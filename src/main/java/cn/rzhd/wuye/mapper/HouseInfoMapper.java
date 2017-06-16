@@ -1,8 +1,6 @@
 package cn.rzhd.wuye.mapper;
 
 import cn.rzhd.wuye.bean.HouseInfo;
-import cn.rzhd.wuye.vo.HouseVO;
-
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

@@ -54,8 +54,8 @@ public class SellContractServiceImpl implements ISellContractService {
 
 
 	@Override
-	public List<SignVO> getSellContract(String house) {
-		List<SignVO> signVOs = mapper.getById(house);
+	public List<SignVO> getSellContract(String pk_sign) {
+		List<SignVO> signVOs = mapper.getById(pk_sign);
 		return signVOs;
 	}
 
@@ -63,5 +63,11 @@ public class SellContractServiceImpl implements ISellContractService {
     public List<SignVO> queryByCustomer(String customerId) {
         return mapper.queryByCustomer(customerId);
     }
+
+	@Override
+	public List<SignVO> getBackAll() {
+		List<SignVO> signVOAll = mapper.getAll();
+		return signVOAll;
+	}
 
 }

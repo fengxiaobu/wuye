@@ -15,7 +15,7 @@ public interface SellContractMapper {
      * @param pk_sign ERP系统中销售合同主键
      * @return  返回销售合同载体对象
      */
-    List<SignVO> getById(String house);
+    List<SignVO> getById(String pk_sign);
 
     /**
      * 将销售合同对象存入本地数据库
@@ -26,4 +26,6 @@ public interface SellContractMapper {
      * 通过客户ID查询销售合同
      */
     List<SignVO> queryByCustomer(String customerId);
+    
+    List<SignVO> getAll();
 }

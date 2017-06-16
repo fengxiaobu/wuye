@@ -7,6 +7,8 @@ import cn.rzhd.wuye.utils.JsonUtils;
 import cn.rzhd.wuye.vo.*;
 import com.github.pagehelper.StringUtil;
 
+import static org.junit.Assert.*;
+
 import java.util.List;
 
 import org.junit.Test;
@@ -30,6 +32,15 @@ public class HouseInfoDetailsServiceTest extends BaseTest {
 			System.out.println(houseVO);
 		}
     }
+    
+    @Test
+	public void getAll() throws Exception {
+		List<HouseVO> houseVOs = service.getBackAll();
+		for (HouseVO houseVO : houseVOs) {
+			String vhcode = houseVO.getVhcode();
+			System.out.println(vhcode);
+		}
+	}
 
     @Test
     public void addHouseInfoDetailsTest(){

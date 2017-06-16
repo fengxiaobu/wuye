@@ -29,9 +29,10 @@ public class RentContractServiceTest extends BaseTest {
 	@Test
 	public void getRentContractTest1() {
 		String pk_pact = "1031XX100000000YVGOE";
-		List<PactVO> byPkId = service.getRentContract(pk_pact);
-		for (PactVO pactVO : byPkId) {
-			System.out.println(byPkId);
+		List<PactVO> backAll = service.getBackAll();
+		for (PactVO pactVO : backAll) {
+			String vname = pactVO.getProjectVO().getVname();
+			System.out.println(vname);
 		}
 	}
 
