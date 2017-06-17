@@ -9,6 +9,7 @@ import cn.rzhd.wuye.vo.query.ArrearsQuery;
 import cn.rzhd.wuye.vo.query.PayFeeQuery;
 import cn.rzhd.wuye.vo.query.UtilitiesQuery;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -44,8 +45,8 @@ public class PayFeeController {
      * @return
      */
     @RequestMapping("/propertyFee")
-    public Map<String,List> propertyFee(ArrearsQuery query){
-        Map<String, List> map = propertyService.queryForPay(query);
+    public Map<String,Object> propertyFee(ArrearsQuery query){
+        Map<String, Object> map = propertyService.queryForPay(query);
         return map;
     }
 
@@ -78,7 +79,7 @@ public class PayFeeController {
      * @return
      */
     @RequestMapping("/getAmmeters")
-    public Map<String,Object> getAmmeters(String houseInfoId){
+    public Map<String,Object> getAmmeters(@RequestBody String houseInfoId){
         Map<String,Object> map = new HashMap<>();
         List<Ammeter> ammeters = ammeterService.getAmmeters(houseInfoId);
         HouseVO houseInfo = houseInfoDetailsService.selectById(houseInfoId);
