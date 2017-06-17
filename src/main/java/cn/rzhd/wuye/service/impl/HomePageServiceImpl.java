@@ -3,8 +3,9 @@ package cn.rzhd.wuye.service.impl;
 import cn.rzhd.wuye.bean.Customer;
 import cn.rzhd.wuye.bean.MessageManage;
 import cn.rzhd.wuye.mapper.HomePageMapper;
+import cn.rzhd.wuye.mapper.HouseInfoDetailsMapper;
 import cn.rzhd.wuye.service.IHomePageService;
-import cn.rzhd.wuye.vo.PactVO;
+import cn.rzhd.wuye.vo.HouseVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +29,8 @@ public class HomePageServiceImpl implements IHomePageService {
 
     @Autowired
     private HomePageMapper mapper;
+    @Autowired
+    private HouseInfoDetailsMapper houseInfoMapper;
 
     public List<Map<String, Object>> findHouseByCutomer(Customer customer) {
         List<Map<String, Object>> findHomePageHouseByCustomer = mapper.findHomePageHouseByCustomer(customer);
@@ -36,35 +39,34 @@ public class HomePageServiceImpl implements IHomePageService {
     }
 
     @Override
-    public List<Map<String, Object>> findFeeListByCustomerId(Customer customer) {
-        List<PactVO> houseInfos = customer.getHouseInfos();
+    public List<Map<String, Object>> findFeeListByCustomerId(String customerId, String houseInfoId) {
+
         List<Map<String, Object>> result = new ArrayList<>();
 
         Map<String, Object> map;
-        for (PactVO houseInfo : houseInfos) {
-            map = new HashMap<>();
-            String customerId = houseInfo.getPk_customerid();
-            String houseInfoId = houseInfo.getPk_house();
 
-            List<Map<String, Object>> kf = mapper.findKfFeeListByCustomerId(customerId, houseInfoId);
-            List<Map<String, Object>> property = mapper.findPropertyFeeListByCustomerId(customerId, houseInfoId);
+        map = new HashMap<>();
 
-            Double kfFeeSum = 0.0;
-            for (Map<String, Object> kfmap : kf) {
-                kfFeeSum = Double.parseDouble(kfmap.get("nyshouldmny").toString()) + kfFeeSum;
-            }
+        HouseVO houseInfo = houseInfoMapper.selectByPrimaryKey(houseInfoId);
+        List<Map<String, Object>> kf = mapper.findKfFeeListByCustomerId(customerId, houseInfoId);
+        List<Map<String, Object>> property = mapper.findPropertyFeeListByCustomerId(customerId, houseInfoId);
 
-            Double propertyFeeSum = 0.0;
-            for (Map<String, Object> propertymap : property) {
-                propertyFeeSum = Double.parseDouble(propertymap.get("nyshouldmny").toString()) + propertyFeeSum;
-            }
-            map.put("house", houseInfo);
-            map.put("kfFee", kf);
-            map.put("propertyFee", property);
-            map.put("kfFeeSum", kfFeeSum);
-            map.put("propertyFeeSum", propertyFeeSum);
-            result.add(map);
+        Double kfFeeSum = 0.0;
+        for (Map<String, Object> kfmap : kf) {
+            kfFeeSum = Double.parseDouble(kfmap.get("nyshouldmny").toString()) + kfFeeSum;
         }
+
+        Double propertyFeeSum = 0.0;
+        for (Map<String, Object> propertymap : property) {
+            propertyFeeSum = Double.parseDouble(propertymap.get("nyshouldmny").toString()) + propertyFeeSum;
+        }
+        map.put("house", houseInfo);
+        map.put("kfFee", kf);
+        map.put("propertyFee", property);
+        map.put("kfFeeSum", kfFeeSum);
+        map.put("propertyFeeSum", propertyFeeSum);
+        result.add(map);
+
 
         return result;
     }

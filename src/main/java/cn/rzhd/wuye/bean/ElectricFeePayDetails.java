@@ -1,5 +1,8 @@
 package cn.rzhd.wuye.bean;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -43,6 +46,7 @@ public class ElectricFeePayDetails implements Serializable {
     /**
      * 开始日期
      */
+
     private Date startDate;
 
     /**
@@ -180,7 +184,7 @@ public class ElectricFeePayDetails implements Serializable {
     public void setPayMonth(String payMonth) {
         this.payMonth = payMonth;
     }
-
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     public Date getStartDate() {
         return startDate;
     }
@@ -188,7 +192,7 @@ public class ElectricFeePayDetails implements Serializable {
     public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
-
+    @JsonFormat(pattern = "yyyy-MM-dd")
     public Date getEndDate() {
         return endDate;
     }

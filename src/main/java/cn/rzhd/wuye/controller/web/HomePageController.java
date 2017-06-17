@@ -3,8 +3,11 @@ package cn.rzhd.wuye.controller.web;
 
 import cn.rzhd.wuye.bean.Customer;
 import cn.rzhd.wuye.bean.MessageManage;
+import cn.rzhd.wuye.service.ICustomerService;
 import cn.rzhd.wuye.service.IHomePageService;
+import cn.rzhd.wuye.service.IRentContractService;
 import cn.rzhd.wuye.utils.JsonUtils;
+import cn.rzhd.wuye.vo.PactVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,6 +34,10 @@ public class HomePageController {
 
     @Autowired
     private IHomePageService homePageService;
+    @Autowired
+    private IRentContractService rentContractService;
+    @Autowired
+    private ICustomerService customerService;
 
     /**
      * 根据客户id查询房产信息
@@ -56,19 +63,39 @@ public class HomePageController {
     /**
      * 根据客户查询相关费用清单
      *
-     * @param customer
+     * @param customerId
      * @return
      */
     @RequestMapping(value = "/findFeeListByCustomer", method = RequestMethod.POST)
-    public String findFeeListByCustomer(Customer customer) {
-
-        try {
-            Map<String, Object> findFeeListByCustomerId = homePageService.findFeeListByCustomerId(customer);
-            return JsonUtils.objectToJson(findFeeListByCustomerId);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return JsonUtils.objectToJson("服务器异常");
+    public String findFeeListByCustomer(@RequestBody String customerId) {
+//        Map<String,Object> map = new HashMap<>();
+//        try {
+//            for (Customer customer : customers) {
+//                Map<String, Object> findFeeListByCustomerId = homePageService.findFeeListByCustomerId(customer);
+//                map.putAll(findFeeListByCustomerId);
+//            }
+//
+//            return JsonUtils.objectToJson(map);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return JsonUtils.objectToJson("服务器异常");
+//        }
+        if (customerId==null || "".equals(customerId.trim())){
+            return JsonUtils.objectToJson("客户主键不能为空!");
         }
+        String[] split = customerId.split(",");
+        List<Map<String,Object>> result = new ArrayList<>();
+        for (String s : split) {
+            List<PactVO> pactVOS = rentContractService.queryByCustomer(s);
+            for (PactVO pactVO : pactVOS) {
+                String pk_house = pactVO.getPk_house();
+                String pk_customerid = pactVO.getPk_customerid();
+                List<Map<String, Object>> list = homePageService.findFeeListByCustomerId(pk_customerid, pk_house);
+                result.addAll(list);
+            }
+
+        }
+        return JsonUtils.objectToJson(result);
     }
 
     /**
