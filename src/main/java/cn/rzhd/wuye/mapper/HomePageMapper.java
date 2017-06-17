@@ -19,7 +19,7 @@ public interface HomePageMapper {
     
     List<Map<String, Object>> findPropertyFeeListByCustomerId(@Param("customer")Customer customer);
     
-    <T> T findMessageNumByCustomer(Customer customer);
+    <T> T findMessageNumByCustomer(String customerId);
     
-    List<MessageManage> findMessageByCustomer(@Param("customer")Customer customer);
+    List<MessageManage> findMessageByCustomer(String customerId);
 }

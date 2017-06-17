@@ -41,7 +41,6 @@
 			NOTES,
 			STATUS,
 			CARTE_TIME
-			
 		)
 	VALUES
 	(#{perfectInformation.perfectInformationId},

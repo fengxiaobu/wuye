@@ -34,20 +34,18 @@ public class HomePageController {
     /**
      * 根据客户id查询房产信息
      *
-     * @param customers
+     * @param customer
      * @return
      */
     @RequestMapping(value = "/findHouseByCustomer", method = RequestMethod.POST)
-    public String findHomePageHouseByCustomer(Customer[] customers) {
-        if (customers == null || customers.length == 0) {
+    public String findHomePageHouseByCustomer(Customer customer) {
+        if (customer == null) {
             return JsonUtils.objectToJson("客户主键不能为空");
         }
         try {
             List<Map<String, Object>> result = new ArrayList<>();
-            for (Customer customer : customers) {
-                List<Map<String, Object>> findHouseByCutomer = homePageService.findHouseByCutomer(customer);
-                result.addAll(findHouseByCutomer);
-            }
+            List<Map<String, Object>> findHouseByCutomer = homePageService.findHouseByCutomer(customer);
+            result.addAll(findHouseByCutomer);
             return JsonUtils.objectToJson(result);
         } catch (Exception e) {
             e.printStackTrace();
@@ -59,42 +57,38 @@ public class HomePageController {
     /**
      * 根据客户查询相关费用清单
      *
-     * @param customers
+     * @param customer
      * @return
      */
     @RequestMapping(value = "/findFeeListByCustomer", method = RequestMethod.POST)
-    public String findFeeListByCustomer(Customer[] customers) {
-        if (customers == null || customers.length == 0) {
-            return JsonUtils.objectToJson("客户主键不能为空");
-        }
+    public String findFeeListByCustomer(Customer customer) {
+
         try {
             List<Map<String, Object>> result = new ArrayList<>();
-            for (Customer customer : customers) {
-                Map<String, Object> findFeeListByCustomerId = homePageService.findFeeListByCustomerId(customer);
-                result.add(findFeeListByCustomerId);
-            }
+            Map<String, Object> findFeeListByCustomerId = homePageService.findFeeListByCustomerId(customer);
+            result.add(findFeeListByCustomerId);
             return JsonUtils.objectToJson(result);
         } catch (Exception e) {
             e.printStackTrace();
             return JsonUtils.objectToJson("服务器异常");
         }
-
     }
 
     /**
      * 查询未读信息数
      *
-     * @param customers
+     * @param customerid
      * @return
      */
     @RequestMapping(value = "/findMessageNumByCutromer", method = RequestMethod.POST)
-    public String findMessageNumByCutromer(Customer[] customers) {
-        if (customers == null || customers.length == 0) {
+    public String findMessageNumByCutromer(String customerid) {
+        if (customerid == null || "".equals(customerid.trim())) {
             return JsonUtils.objectToJson("客户主键不能为空");
         }
+        String[] strings = customerid.split(",");
         try {
             Integer number = 0;
-            for (Customer customer : customers) {
+            for (String customer : strings) {
                 Integer findMessageNumByCustomer = homePageService.findMessageNumByCustomer(customer);
                 number += findMessageNumByCustomer;
             }
@@ -108,21 +102,21 @@ public class HomePageController {
     /**
      * 查询通知消息的标题列表
      *
-     * @param customers
+     * @param customerid
      * @return
      */
     @RequestMapping(value = "/findMessageByCustomer", method = RequestMethod.POST)
-    public String findMessageByCustomer(Customer[] customers) {
-        if (customers == null || customers.length==0) {
+    public String findMessageByCustomer(String customerid) {
+        if (customerid == null || "".equals(customerid.trim())) {
             return JsonUtils.objectToJson("客户主键不能为空");
         }
+        String[] strings = customerid.split(",");
         try {
             List<MessageManage> result = new ArrayList<>();
-            for (Customer customer : customers) {
-                List<MessageManage> findMessageByCustomer = homePageService.findMessageByCustomer(customer);
+            for (String customerId : strings) {
+                List<MessageManage> findMessageByCustomer = homePageService.findMessageByCustomer(customerId);
                 result.addAll(findMessageByCustomer);
             }
-
             return JsonUtils.objectToJson(result);
         } catch (Exception e) {
             e.printStackTrace();

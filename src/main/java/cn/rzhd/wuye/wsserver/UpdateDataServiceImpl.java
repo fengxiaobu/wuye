@@ -13,11 +13,14 @@ import com.github.pagehelper.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.jws.WebService;
+
 /**
  * Created by hasee on 2017/6/6.
  */
 
 @Component
+@WebService(endpointInterface = "cn.rzhd.wuye.wsserver.IUpdateDataService")
 public class UpdateDataServiceImpl implements IUpdateDataService {
     @Autowired
     private ICompanyService companyService;

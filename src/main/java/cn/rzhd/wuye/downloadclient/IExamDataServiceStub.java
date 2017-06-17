@@ -1,19 +1,29 @@
 /**
- * IMsgReceiveServiceStub.java
+ * IExamDataServiceStub.java
  * <p>
  * This file was auto-generated from WSDL
  * by the Apache Axis2 version: 1.5.4  Built on : Dec 19, 2010 (08:18:42 CET)
  */
-package cn.rzhd.wuye.wsclient;
+package cn.rzhd.wuye.downloadclient;
 
 
 
         /*
-        *  IMsgReceiveServiceStub java implementation
+        *  IExamDataServiceStub java implementation
         */
 
 
-public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
+import org.apache.axiom.om.OMDataSource;
+import org.apache.axiom.om.OMElement;
+import org.apache.axiom.om.OMFactory;
+import org.apache.axis2.databinding.ADBDataSource;
+import org.apache.axis2.databinding.ADBException;
+import org.apache.axis2.databinding.utils.writer.MTOMAwareXMLStreamWriter;
+
+import javax.xml.namespace.QName;
+import javax.xml.stream.XMLStreamException;
+
+public class IExamDataServiceStub extends org.apache.axis2.client.Stub {
     private static int counter = 0;
     protected org.apache.axis2.description.AxisOperation[] _operations;
     //hashmaps to keep the fault mapping
@@ -24,11 +34,11 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
 
     /**
-     *Constructor that takes in a configContext
+     * Constructor that takes in a configContext
      */
 
-    public IMsgReceiveServiceStub(org.apache.axis2.context.ConfigurationContext configurationContext,
-                                  java.lang.String targetEndpoint)
+    public IExamDataServiceStub(org.apache.axis2.context.ConfigurationContext configurationContext,
+                                java.lang.String targetEndpoint)
             throws org.apache.axis2.AxisFault {
         this(configurationContext, targetEndpoint, false);
     }
@@ -36,8 +46,8 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
     /**
      * Constructor that takes in a configContext  and useseperate listner
      */
-    public IMsgReceiveServiceStub(org.apache.axis2.context.ConfigurationContext configurationContext,
-                                  java.lang.String targetEndpoint, boolean useSeparateListener)
+    public IExamDataServiceStub(org.apache.axis2.context.ConfigurationContext configurationContext,
+                                java.lang.String targetEndpoint, boolean useSeparateListener)
             throws org.apache.axis2.AxisFault {
         //To populate AxisService
         populateAxisService();
@@ -56,9 +66,9 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
     /**
      * Default Constructor
      */
-    public IMsgReceiveServiceStub(org.apache.axis2.context.ConfigurationContext configurationContext) throws org.apache.axis2.AxisFault {
+    public IExamDataServiceStub(org.apache.axis2.context.ConfigurationContext configurationContext) throws org.apache.axis2.AxisFault {
 
-        this(configurationContext, "http://ceshi.liando.cn:9088/uapws/service/nc.itf.msgtonc.IMsgReceiveService");
+        this(configurationContext, "http://ceshi.liando.cn:9088/uapws/service/nc.itf.exam.IExamDataService");
 
     }
 
@@ -66,16 +76,16 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
     /**
      * Default Constructor
      */
-    public IMsgReceiveServiceStub() throws org.apache.axis2.AxisFault {
+    public IExamDataServiceStub() throws org.apache.axis2.AxisFault {
 
-        this("http://ceshi.liando.cn:9088/uapws/service/nc.itf.msgtonc.IMsgReceiveService");
+        this("http://ceshi.liando.cn:9088/uapws/service/nc.itf.exam.IExamDataService");
 
     }
 
     /**
      * Constructor taking the target endpoint
      */
-    public IMsgReceiveServiceStub(java.lang.String targetEndpoint) throws org.apache.axis2.AxisFault {
+    public IExamDataServiceStub(java.lang.String targetEndpoint) throws org.apache.axis2.AxisFault {
         this(null, targetEndpoint);
     }
 
@@ -91,7 +101,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
     private void populateAxisService() throws org.apache.axis2.AxisFault {
 
         //creating the Service with a unique name
-        _service = new org.apache.axis2.description.AxisService("IMsgReceiveService" + getUniqueSuffix());
+        _service = new org.apache.axis2.description.AxisService("IExamDataService" + getUniqueSuffix());
         addAnonymousOperations();
 
         //creating the operations
@@ -102,7 +112,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
         __operation = new org.apache.axis2.description.OutInAxisOperation();
 
 
-        __operation.setName(new javax.xml.namespace.QName("http://msgtonc.itf.nc/IMsgReceiveService", "msgReceive"));
+        __operation.setName(new javax.xml.namespace.QName("http://exam.itf.nc/IExamDataService", "getBaseData"));
         _service.addOperation(__operation);
 
 
@@ -114,9 +124,9 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
     //populates the faults
     private void populateFaults() {
 
-        faultExceptionNameMap.put(new javax.xml.namespace.QName("http://ws.uap.nc/lang", "Exception"), "cn.rzhd.wuye.wsclient.Exception");
-        faultExceptionClassNameMap.put(new javax.xml.namespace.QName("http://ws.uap.nc/lang", "Exception"), "cn.rzhd.wuye.wsclient.Exception");
-        faultMessageMap.put(new javax.xml.namespace.QName("http://ws.uap.nc/lang", "Exception"), "cn.rzhd.wuye.wsclient.IMsgReceiveServiceStub$ExceptionE");
+        faultExceptionNameMap.put(new javax.xml.namespace.QName("http://ws.uap.nc/lang", "Exception"), "Exception");
+        faultExceptionClassNameMap.put(new javax.xml.namespace.QName("http://ws.uap.nc/lang", "Exception"), "Exception");
+        faultMessageMap.put(new javax.xml.namespace.QName("http://ws.uap.nc/lang", "Exception"), "IExamDataServiceStub$ExceptionE");
 
 
     }
@@ -124,26 +134,25 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
     /**
      * Auto generated method signature
      *
-     * @see cn.rzhd.wuye.wsclient.IMsgReceiveServiceStub#msgReceive
-     * @param msgReceive
-
-     * @throws cn.rzhd.wuye.wsclient.Exception :
+     * @param getBaseData
+     * @throws cn.rzhd.wuye.uploadclient.Exception :
+     * @see IExamDataServiceStub#getBaseData
      */
 
 
-    public cn.rzhd.wuye.wsclient.IMsgReceiveServiceStub.MsgReceiveResponse msgReceive(
+    public cn.rzhd.wuye.downloadclient.IExamDataServiceStub.GetBaseDataResponse getBaseData(
 
-            cn.rzhd.wuye.wsclient.IMsgReceiveServiceStub.MsgReceive msgReceive)
+            cn.rzhd.wuye.downloadclient.IExamDataServiceStub.GetBaseData getBaseData)
 
 
             throws java.rmi.RemoteException
 
 
-            , cn.rzhd.wuye.wsclient.Exception {
+            , cn.rzhd.wuye.uploadclient.Exception {
         org.apache.axis2.context.MessageContext _messageContext = null;
         try {
             org.apache.axis2.client.OperationClient _operationClient = _serviceClient.createClient(_operations[0].getName());
-            _operationClient.getOptions().setAction("urn:msgReceive");
+            _operationClient.getOptions().setAction("urn:getBaseData");
             _operationClient.getOptions().setExceptionToBeThrownOnSOAPFault(true);
 
 
@@ -159,9 +168,9 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
 
             env = toEnvelope(getFactory(_operationClient.getOptions().getSoapVersionURI()),
-                    msgReceive,
-                    optimizeContent(new javax.xml.namespace.QName("http://msgtonc.itf.nc/IMsgReceiveService",
-                            "msgReceive")));
+                    getBaseData,
+                    optimizeContent(new javax.xml.namespace.QName("http://exam.itf.nc/IExamDataService",
+                            "getBaseData")));
 
             //adding SOAP soap_headers
             _serviceClient.addHeadersToEnvelope(env);
@@ -182,11 +191,11 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
             java.lang.Object object = fromOM(
                     _returnEnv.getBody().getFirstElement(),
-                    cn.rzhd.wuye.wsclient.IMsgReceiveServiceStub.MsgReceiveResponse.class,
+                    cn.rzhd.wuye.downloadclient.IExamDataServiceStub.GetBaseDataResponse.class,
                     getEnvelopeNamespaces(_returnEnv));
 
 
-            return (cn.rzhd.wuye.wsclient.IMsgReceiveServiceStub.MsgReceiveResponse) object;
+            return (cn.rzhd.wuye.downloadclient.IExamDataServiceStub.GetBaseDataResponse) object;
 
         } catch (org.apache.axis2.AxisFault f) {
 
@@ -207,8 +216,8 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
                                 new java.lang.Class[]{messageClass});
                         m.invoke(ex, new java.lang.Object[]{messageObject});
 
-                        if (ex instanceof cn.rzhd.wuye.wsclient.Exception) {
-                            throw (cn.rzhd.wuye.wsclient.Exception) ex;
+                        if (ex instanceof cn.rzhd.wuye.uploadclient.Exception) {
+                            throw (cn.rzhd.wuye.uploadclient.Exception) ex;
                         }
 
 
@@ -244,7 +253,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
     }
 
     /**
-     *  A utility method that copies the namepaces from the SOAPEnvelope
+     * A utility method that copies the namepaces from the SOAPEnvelope
      */
     private java.util.Map getEnvelopeNamespaces(org.apache.axiom.soap.SOAPEnvelope env) {
         java.util.Map returnMap = new java.util.HashMap();
@@ -270,12 +279,12 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
         return false;
     }
 
-    private org.apache.axiom.om.OMElement toOM(cn.rzhd.wuye.wsclient.IMsgReceiveServiceStub.MsgReceive param, boolean optimizeContent)
+    private org.apache.axiom.om.OMElement toOM(cn.rzhd.wuye.downloadclient.IExamDataServiceStub.GetBaseData param, boolean optimizeContent)
             throws org.apache.axis2.AxisFault {
 
 
         try {
-            return param.getOMElement(cn.rzhd.wuye.wsclient.IMsgReceiveServiceStub.MsgReceive.MY_QNAME,
+            return param.getOMElement(cn.rzhd.wuye.downloadclient.IExamDataServiceStub.GetBaseData.MY_QNAME,
                     org.apache.axiom.om.OMAbstractFactory.getOMFactory());
         } catch (org.apache.axis2.databinding.ADBException e) {
             throw org.apache.axis2.AxisFault.makeFault(e);
@@ -284,12 +293,12 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
     }
 
-    private org.apache.axiom.om.OMElement toOM(cn.rzhd.wuye.wsclient.IMsgReceiveServiceStub.MsgReceiveResponse param, boolean optimizeContent)
+    private org.apache.axiom.om.OMElement toOM(cn.rzhd.wuye.downloadclient.IExamDataServiceStub.GetBaseDataResponse param, boolean optimizeContent)
             throws org.apache.axis2.AxisFault {
 
 
         try {
-            return param.getOMElement(cn.rzhd.wuye.wsclient.IMsgReceiveServiceStub.MsgReceiveResponse.MY_QNAME,
+            return param.getOMElement(cn.rzhd.wuye.downloadclient.IExamDataServiceStub.GetBaseDataResponse.MY_QNAME,
                     org.apache.axiom.om.OMAbstractFactory.getOMFactory());
         } catch (org.apache.axis2.databinding.ADBException e) {
             throw org.apache.axis2.AxisFault.makeFault(e);
@@ -298,12 +307,12 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
     }
 
-    private org.apache.axiom.om.OMElement toOM(cn.rzhd.wuye.wsclient.IMsgReceiveServiceStub.ExceptionE param, boolean optimizeContent)
+    private org.apache.axiom.om.OMElement toOM(cn.rzhd.wuye.downloadclient.IExamDataServiceStub.ExceptionE param, boolean optimizeContent)
             throws org.apache.axis2.AxisFault {
 
 
         try {
-            return param.getOMElement(cn.rzhd.wuye.wsclient.IMsgReceiveServiceStub.ExceptionE.MY_QNAME,
+            return param.getOMElement(cn.rzhd.wuye.downloadclient.IExamDataServiceStub.ExceptionE.MY_QNAME,
                     org.apache.axiom.om.OMAbstractFactory.getOMFactory());
         } catch (org.apache.axis2.databinding.ADBException e) {
             throw org.apache.axis2.AxisFault.makeFault(e);
@@ -312,14 +321,14 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
     }
 
-    private org.apache.axiom.soap.SOAPEnvelope toEnvelope(org.apache.axiom.soap.SOAPFactory factory, cn.rzhd.wuye.wsclient.IMsgReceiveServiceStub.MsgReceive param, boolean optimizeContent)
+    private org.apache.axiom.soap.SOAPEnvelope toEnvelope(org.apache.axiom.soap.SOAPFactory factory, cn.rzhd.wuye.downloadclient.IExamDataServiceStub.GetBaseData param, boolean optimizeContent)
             throws org.apache.axis2.AxisFault {
 
 
         try {
 
             org.apache.axiom.soap.SOAPEnvelope emptyEnvelope = factory.getDefaultEnvelope();
-            emptyEnvelope.getBody().addChild(param.getOMElement(cn.rzhd.wuye.wsclient.IMsgReceiveServiceStub.MsgReceive.MY_QNAME, factory));
+            emptyEnvelope.getBody().addChild(param.getOMElement(cn.rzhd.wuye.downloadclient.IExamDataServiceStub.GetBaseData.MY_QNAME, factory));
             return emptyEnvelope;
         } catch (org.apache.axis2.databinding.ADBException e) {
             throw org.apache.axis2.AxisFault.makeFault(e);
@@ -329,7 +338,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
     }
 
     /**
-     *  get the default envelope
+     * get the default envelope
      */
     private org.apache.axiom.soap.SOAPEnvelope toEnvelope(org.apache.axiom.soap.SOAPFactory factory) {
         return factory.getDefaultEnvelope();
@@ -342,23 +351,23 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
         try {
 
-            if (cn.rzhd.wuye.wsclient.IMsgReceiveServiceStub.MsgReceive.class.equals(type)) {
+            if (cn.rzhd.wuye.downloadclient.IExamDataServiceStub.GetBaseData.class.equals(type)) {
 
-                return cn.rzhd.wuye.wsclient.IMsgReceiveServiceStub.MsgReceive.Factory.parse(param.getXMLStreamReaderWithoutCaching());
-
-
-            }
-
-            if (cn.rzhd.wuye.wsclient.IMsgReceiveServiceStub.MsgReceiveResponse.class.equals(type)) {
-
-                return cn.rzhd.wuye.wsclient.IMsgReceiveServiceStub.MsgReceiveResponse.Factory.parse(param.getXMLStreamReaderWithoutCaching());
+                return cn.rzhd.wuye.downloadclient.IExamDataServiceStub.GetBaseData.Factory.parse(param.getXMLStreamReaderWithoutCaching());
 
 
             }
 
-            if (cn.rzhd.wuye.wsclient.IMsgReceiveServiceStub.ExceptionE.class.equals(type)) {
+            if (cn.rzhd.wuye.downloadclient.IExamDataServiceStub.GetBaseDataResponse.class.equals(type)) {
 
-                return cn.rzhd.wuye.wsclient.IMsgReceiveServiceStub.ExceptionE.Factory.parse(param.getXMLStreamReaderWithoutCaching());
+                return cn.rzhd.wuye.downloadclient.IExamDataServiceStub.GetBaseDataResponse.Factory.parse(param.getXMLStreamReaderWithoutCaching());
+
+
+            }
+
+            if (cn.rzhd.wuye.downloadclient.IExamDataServiceStub.ExceptionE.class.equals(type)) {
+
+                return cn.rzhd.wuye.downloadclient.IExamDataServiceStub.ExceptionE.Factory.parse(param.getXMLStreamReaderWithoutCaching());
 
 
             }
@@ -369,7 +378,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
         return null;
     }
 
-    //http://ceshi.liando.cn:9088/uapws/service/nc.itf.msgtonc.IMsgReceiveService
+    //http://ceshi.liando.cn:9088/uapws/service/nc.itf.exam.IExamDataService
     public static class RuntimeException extends Exception
             implements org.apache.axis2.databinding.ADBBean {
         /* This type was generated from the piece of schema that had
@@ -389,6 +398,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * isReaderMTOMAware
+         *
          * @return true if the reader supports MTOM
          */
         public static boolean isReaderMTOMAware(javax.xml.stream.XMLStreamReader reader) {
@@ -404,20 +414,19 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
 
         /**
-         *
          * @param parentQName
          * @param factory
          * @return org.apache.axiom.om.OMElement
          */
-        public org.apache.axiom.om.OMElement getOMElement(
-                final javax.xml.namespace.QName parentQName,
-                final org.apache.axiom.om.OMFactory factory) throws org.apache.axis2.databinding.ADBException {
+        public OMElement getOMElement(
+                final QName parentQName,
+                final OMFactory factory) throws ADBException {
 
 
-            org.apache.axiom.om.OMDataSource dataSource =
-                    new org.apache.axis2.databinding.ADBDataSource(this, parentQName) {
+            OMDataSource dataSource =
+                    new ADBDataSource(this, parentQName) {
 
-                        public void serialize(org.apache.axis2.databinding.utils.writer.MTOMAwareXMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException {
+                        public void serialize(MTOMAwareXMLStreamWriter xmlWriter) throws XMLStreamException {
                             RuntimeException.this.serialize(parentQName, factory, xmlWriter);
                         }
                     };
@@ -591,7 +600,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
         }
 
         /**
-         *  method to handle Qnames
+         * method to handle Qnames
          */
 
         private void writeQName(javax.xml.namespace.QName qname,
@@ -678,7 +687,6 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * databinding method to get an XML representation of this object
-         *
          */
         public javax.xml.stream.XMLStreamReader getPullParser(javax.xml.namespace.QName qName)
                 throws org.apache.axis2.databinding.ADBException {
@@ -730,7 +738,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
 
         /**
-         *  Factory class that keeps the parse method
+         * Factory class that keeps the parse method
          */
         public static class Factory {
 
@@ -738,9 +746,9 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
             /**
              * static method to create the object
              * Precondition:  If this object is an element, the current or next start element starts this object and any intervening reader events are ignorable
-             *                If this object is not an element, it is a complex type and the reader is at the event just after the outer start element
+             * If this object is not an element, it is a complex type and the reader is at the event just after the outer start element
              * Postcondition: If this object is an element, the reader is positioned at its end element
-             *                If this object is a complex type, the reader is positioned at the end element of its outer element
+             * If this object is a complex type, the reader is positioned at the end element of its outer element
              */
             public static RuntimeException parse(javax.xml.stream.XMLStreamReader reader) throws java.lang.Exception {
                 RuntimeException object =
@@ -889,6 +897,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * isReaderMTOMAware
+         *
          * @return true if the reader supports MTOM
          */
         public static boolean isReaderMTOMAware(javax.xml.stream.XMLStreamReader reader) {
@@ -904,6 +913,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * Auto generated getter method
+         *
          * @return StackTraceElement
          */
         public StackTraceElement getStackTraceElement() {
@@ -912,6 +922,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * Auto generated setter method
+         *
          * @param param StackTraceElement
          */
         public void setStackTraceElement(StackTraceElement param) {
@@ -922,7 +933,6 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
         }
 
         /**
-         *
          * @param parentQName
          * @param factory
          * @return org.apache.axiom.om.OMElement
@@ -1024,7 +1034,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
         }
 
         /**
-         *  method to handle Qnames
+         * method to handle Qnames
          */
 
         private void writeQName(javax.xml.namespace.QName qname,
@@ -1111,7 +1121,6 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * databinding method to get an XML representation of this object
-         *
          */
         public javax.xml.stream.XMLStreamReader getPullParser(javax.xml.namespace.QName qName)
                 throws org.apache.axis2.databinding.ADBException {
@@ -1124,7 +1133,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
 
         /**
-         *  Factory class that keeps the parse method
+         * Factory class that keeps the parse method
          */
         public static class Factory {
 
@@ -1132,9 +1141,9 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
             /**
              * static method to create the object
              * Precondition:  If this object is an element, the current or next start element starts this object and any intervening reader events are ignorable
-             *                If this object is not an element, it is a complex type and the reader is at the event just after the outer start element
+             * If this object is not an element, it is a complex type and the reader is at the event just after the outer start element
              * Postcondition: If this object is an element, the reader is positioned at its end element
-             *                If this object is a complex type, the reader is positioned at the end element of its outer element
+             * If this object is a complex type, the reader is positioned at the end element of its outer element
              */
             public static StackTraceElementE parse(javax.xml.stream.XMLStreamReader reader) throws java.lang.Exception {
                 StackTraceElementE object =
@@ -1206,6 +1215,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * isReaderMTOMAware
+         *
          * @return true if the reader supports MTOM
          */
         public static boolean isReaderMTOMAware(javax.xml.stream.XMLStreamReader reader) {
@@ -1221,7 +1231,6 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
 
         /**
-         *
          * @param parentQName
          * @param factory
          * @return org.apache.axiom.om.OMElement
@@ -1408,7 +1417,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
         }
 
         /**
-         *  method to handle Qnames
+         * method to handle Qnames
          */
 
         private void writeQName(javax.xml.namespace.QName qname,
@@ -1495,7 +1504,6 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * databinding method to get an XML representation of this object
-         *
          */
         public javax.xml.stream.XMLStreamReader getPullParser(javax.xml.namespace.QName qName)
                 throws org.apache.axis2.databinding.ADBException {
@@ -1547,7 +1555,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
 
         /**
-         *  Factory class that keeps the parse method
+         * Factory class that keeps the parse method
          */
         public static class Factory {
 
@@ -1555,9 +1563,9 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
             /**
              * static method to create the object
              * Precondition:  If this object is an element, the current or next start element starts this object and any intervening reader events are ignorable
-             *                If this object is not an element, it is a complex type and the reader is at the event just after the outer start element
+             * If this object is not an element, it is a complex type and the reader is at the event just after the outer start element
              * Postcondition: If this object is an element, the reader is positioned at its end element
-             *                If this object is a complex type, the reader is positioned at the end element of its outer element
+             * If this object is a complex type, the reader is positioned at the end element of its outer element
              */
             public static NullPointerException parse(javax.xml.stream.XMLStreamReader reader) throws java.lang.Exception {
                 NullPointerException object =
@@ -1706,6 +1714,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * isReaderMTOMAware
+         *
          * @return true if the reader supports MTOM
          */
         public static boolean isReaderMTOMAware(javax.xml.stream.XMLStreamReader reader) {
@@ -1721,6 +1730,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * Auto generated getter method
+         *
          * @return java.lang.String
          */
         public java.lang.String getStackTraceElement() {
@@ -1729,6 +1739,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * Auto generated setter method
+         *
          * @param param StackTraceElement
          */
         public void setStackTraceElement(java.lang.String param) {
@@ -1745,7 +1756,6 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
         }
 
         /**
-         *
          * @param parentQName
          * @param factory
          * @return org.apache.axiom.om.OMElement
@@ -1889,7 +1899,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
         }
 
         /**
-         *  method to handle Qnames
+         * method to handle Qnames
          */
 
         private void writeQName(javax.xml.namespace.QName qname,
@@ -1976,7 +1986,6 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * databinding method to get an XML representation of this object
-         *
          */
         public javax.xml.stream.XMLStreamReader getPullParser(javax.xml.namespace.QName qName)
                 throws org.apache.axis2.databinding.ADBException {
@@ -1994,7 +2003,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
 
         /**
-         *  Factory class that keeps the parse method
+         * Factory class that keeps the parse method
          */
         public static class Factory {
 
@@ -2025,9 +2034,9 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
             /**
              * static method to create the object
              * Precondition:  If this object is an element, the current or next start element starts this object and any intervening reader events are ignorable
-             *                If this object is not an element, it is a complex type and the reader is at the event just after the outer start element
+             * If this object is not an element, it is a complex type and the reader is at the event just after the outer start element
              * Postcondition: If this object is an element, the reader is positioned at its end element
-             *                If this object is a complex type, the reader is positioned at the end element of its outer element
+             * If this object is a complex type, the reader is positioned at the end element of its outer element
              */
             public static StackTraceElement parse(javax.xml.stream.XMLStreamReader reader) throws java.lang.Exception {
                 StackTraceElement object =
@@ -2102,6 +2111,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * isReaderMTOMAware
+         *
          * @return true if the reader supports MTOM
          */
         public static boolean isReaderMTOMAware(javax.xml.stream.XMLStreamReader reader) {
@@ -2117,7 +2127,6 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
 
         /**
-         *
          * @param parentQName
          * @param factory
          * @return org.apache.axiom.om.OMElement
@@ -2304,7 +2313,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
         }
 
         /**
-         *  method to handle Qnames
+         * method to handle Qnames
          */
 
         private void writeQName(javax.xml.namespace.QName qname,
@@ -2391,7 +2400,6 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * databinding method to get an XML representation of this object
-         *
          */
         public javax.xml.stream.XMLStreamReader getPullParser(javax.xml.namespace.QName qName)
                 throws org.apache.axis2.databinding.ADBException {
@@ -2443,7 +2451,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
 
         /**
-         *  Factory class that keeps the parse method
+         * Factory class that keeps the parse method
          */
         public static class Factory {
 
@@ -2451,9 +2459,9 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
             /**
              * static method to create the object
              * Precondition:  If this object is an element, the current or next start element starts this object and any intervening reader events are ignorable
-             *                If this object is not an element, it is a complex type and the reader is at the event just after the outer start element
+             * If this object is not an element, it is a complex type and the reader is at the event just after the outer start element
              * Postcondition: If this object is an element, the reader is positioned at its end element
-             *                If this object is a complex type, the reader is positioned at the end element of its outer element
+             * If this object is a complex type, the reader is positioned at the end element of its outer element
              */
             public static IllegalArgumentException parse(javax.xml.stream.XMLStreamReader reader) throws java.lang.Exception {
                 IllegalArgumentException object =
@@ -2579,6 +2587,465 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
     }
 
+    public static class GetBaseData
+            implements org.apache.axis2.databinding.ADBBean {
+
+        public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName(
+                "http://exam.itf.nc/IExamDataService",
+                "getBaseData",
+                "ns2");
+        /**
+         * field for String
+         */
+
+
+        protected java.lang.String localString;
+        /*  This tracker boolean wil be used to detect whether the user called the set method
+                          *   for this attribute. It will be used to determine whether to include this field
+                           *   in the serialized XML
+                           */
+        protected boolean localStringTracker = false;
+
+        private static java.lang.String generatePrefix(java.lang.String namespace) {
+            if (namespace.equals("http://exam.itf.nc/IExamDataService")) {
+                return "ns2";
+            }
+            return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
+        }
+
+        /**
+         * isReaderMTOMAware
+         *
+         * @return true if the reader supports MTOM
+         */
+        public static boolean isReaderMTOMAware(javax.xml.stream.XMLStreamReader reader) {
+            boolean isReaderMTOMAware = false;
+
+            try {
+                isReaderMTOMAware = java.lang.Boolean.TRUE.equals(reader.getProperty(org.apache.axiom.om.OMConstants.IS_DATA_HANDLERS_AWARE));
+            } catch (java.lang.IllegalArgumentException e) {
+                isReaderMTOMAware = false;
+            }
+            return isReaderMTOMAware;
+        }
+
+        /**
+         * Auto generated getter method
+         *
+         * @return java.lang.String
+         */
+        public java.lang.String getString() {
+            return localString;
+        }
+
+        /**
+         * Auto generated setter method
+         *
+         * @param param String
+         */
+        public void setString(java.lang.String param) {
+
+            if (param != null) {
+                //update the setting tracker
+                localStringTracker = true;
+            } else {
+                localStringTracker = true;
+
+            }
+
+            this.localString = param;
+
+
+        }
+
+        /**
+         * @param parentQName
+         * @param factory
+         * @return org.apache.axiom.om.OMElement
+         */
+        public org.apache.axiom.om.OMElement getOMElement(
+                final javax.xml.namespace.QName parentQName,
+                final org.apache.axiom.om.OMFactory factory) throws org.apache.axis2.databinding.ADBException {
+
+
+            org.apache.axiom.om.OMDataSource dataSource =
+                    new org.apache.axis2.databinding.ADBDataSource(this, MY_QNAME) {
+
+                        public void serialize(org.apache.axis2.databinding.utils.writer.MTOMAwareXMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException {
+                            GetBaseData.this.serialize(MY_QNAME, factory, xmlWriter);
+                        }
+                    };
+            return new org.apache.axiom.om.impl.llom.OMSourcedElementImpl(
+                    MY_QNAME, factory, dataSource);
+
+        }
+
+        public void serialize(final javax.xml.namespace.QName parentQName,
+                              final org.apache.axiom.om.OMFactory factory,
+                              org.apache.axis2.databinding.utils.writer.MTOMAwareXMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException, org.apache.axis2.databinding.ADBException {
+            serialize(parentQName, factory, xmlWriter, false);
+        }
+
+        public void serialize(final javax.xml.namespace.QName parentQName,
+                              final org.apache.axiom.om.OMFactory factory,
+                              org.apache.axis2.databinding.utils.writer.MTOMAwareXMLStreamWriter xmlWriter,
+                              boolean serializeType)
+                throws javax.xml.stream.XMLStreamException, org.apache.axis2.databinding.ADBException {
+
+
+            java.lang.String prefix = null;
+            java.lang.String namespace = null;
+
+
+            prefix = parentQName.getPrefix();
+            namespace = parentQName.getNamespaceURI();
+
+            if ((namespace != null) && (namespace.trim().length() > 0)) {
+                java.lang.String writerPrefix = xmlWriter.getPrefix(namespace);
+                if (writerPrefix != null) {
+                    xmlWriter.writeStartElement(namespace, parentQName.getLocalPart());
+                } else {
+                    if (prefix == null) {
+                        prefix = generatePrefix(namespace);
+                    }
+
+                    xmlWriter.writeStartElement(prefix, parentQName.getLocalPart(), namespace);
+                    xmlWriter.writeNamespace(prefix, namespace);
+                    xmlWriter.setPrefix(prefix, namespace);
+                }
+            } else {
+                xmlWriter.writeStartElement(parentQName.getLocalPart());
+            }
+
+            if (serializeType) {
+
+
+                java.lang.String namespacePrefix = registerPrefix(xmlWriter, "http://exam.itf.nc/IExamDataService");
+                if ((namespacePrefix != null) && (namespacePrefix.trim().length() > 0)) {
+                    writeAttribute("xsi", "http://www.w3.org/2001/XMLSchema-instance", "type",
+                            namespacePrefix + ":getBaseData",
+                            xmlWriter);
+                } else {
+                    writeAttribute("xsi", "http://www.w3.org/2001/XMLSchema-instance", "type",
+                            "getBaseData",
+                            xmlWriter);
+                }
+
+
+            }
+            if (localStringTracker) {
+                namespace = "";
+                if (!namespace.equals("")) {
+                    prefix = xmlWriter.getPrefix(namespace);
+
+                    if (prefix == null) {
+                        prefix = generatePrefix(namespace);
+
+                        xmlWriter.writeStartElement(prefix, "string", namespace);
+                        xmlWriter.writeNamespace(prefix, namespace);
+                        xmlWriter.setPrefix(prefix, namespace);
+
+                    } else {
+                        xmlWriter.writeStartElement(namespace, "string");
+                    }
+
+                } else {
+                    xmlWriter.writeStartElement("string");
+                }
+
+
+                if (localString == null) {
+                    // write the nil attribute
+
+                    writeAttribute("xsi", "http://www.w3.org/2001/XMLSchema-instance", "nil", "1", xmlWriter);
+
+                } else {
+
+
+                    xmlWriter.writeCharacters(localString);
+
+                }
+
+                xmlWriter.writeEndElement();
+            }
+            xmlWriter.writeEndElement();
+
+
+        }
+
+        /**
+         * Util method to write an attribute with the ns prefix
+         */
+        private void writeAttribute(java.lang.String prefix, java.lang.String namespace, java.lang.String attName,
+                                    java.lang.String attValue, javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException {
+            if (xmlWriter.getPrefix(namespace) == null) {
+                xmlWriter.writeNamespace(prefix, namespace);
+                xmlWriter.setPrefix(prefix, namespace);
+
+            }
+
+            xmlWriter.writeAttribute(namespace, attName, attValue);
+
+        }
+
+        /**
+         * Util method to write an attribute without the ns prefix
+         */
+        private void writeAttribute(java.lang.String namespace, java.lang.String attName,
+                                    java.lang.String attValue, javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException {
+            if (namespace.equals("")) {
+                xmlWriter.writeAttribute(attName, attValue);
+            } else {
+                registerPrefix(xmlWriter, namespace);
+                xmlWriter.writeAttribute(namespace, attName, attValue);
+            }
+        }
+
+
+        /**
+         * Util method to write an attribute without the ns prefix
+         */
+        private void writeQNameAttribute(java.lang.String namespace, java.lang.String attName,
+                                         javax.xml.namespace.QName qname, javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException {
+
+            java.lang.String attributeNamespace = qname.getNamespaceURI();
+            java.lang.String attributePrefix = xmlWriter.getPrefix(attributeNamespace);
+            if (attributePrefix == null) {
+                attributePrefix = registerPrefix(xmlWriter, attributeNamespace);
+            }
+            java.lang.String attributeValue;
+            if (attributePrefix.trim().length() > 0) {
+                attributeValue = attributePrefix + ":" + qname.getLocalPart();
+            } else {
+                attributeValue = qname.getLocalPart();
+            }
+
+            if (namespace.equals("")) {
+                xmlWriter.writeAttribute(attName, attributeValue);
+            } else {
+                registerPrefix(xmlWriter, namespace);
+                xmlWriter.writeAttribute(namespace, attName, attributeValue);
+            }
+        }
+
+        /**
+         * method to handle Qnames
+         */
+
+        private void writeQName(javax.xml.namespace.QName qname,
+                                javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException {
+            java.lang.String namespaceURI = qname.getNamespaceURI();
+            if (namespaceURI != null) {
+                java.lang.String prefix = xmlWriter.getPrefix(namespaceURI);
+                if (prefix == null) {
+                    prefix = generatePrefix(namespaceURI);
+                    xmlWriter.writeNamespace(prefix, namespaceURI);
+                    xmlWriter.setPrefix(prefix, namespaceURI);
+                }
+
+                if (prefix.trim().length() > 0) {
+                    xmlWriter.writeCharacters(prefix + ":" + org.apache.axis2.databinding.utils.ConverterUtil.convertToString(qname));
+                } else {
+                    // i.e this is the default namespace
+                    xmlWriter.writeCharacters(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(qname));
+                }
+
+            } else {
+                xmlWriter.writeCharacters(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(qname));
+            }
+        }
+
+        private void writeQNames(javax.xml.namespace.QName[] qnames,
+                                 javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException {
+
+            if (qnames != null) {
+                // we have to store this data until last moment since it is not possible to write any
+                // namespace data after writing the charactor data
+                java.lang.StringBuffer stringToWrite = new java.lang.StringBuffer();
+                java.lang.String namespaceURI = null;
+                java.lang.String prefix = null;
+
+                for (int i = 0; i < qnames.length; i++) {
+                    if (i > 0) {
+                        stringToWrite.append(" ");
+                    }
+                    namespaceURI = qnames[i].getNamespaceURI();
+                    if (namespaceURI != null) {
+                        prefix = xmlWriter.getPrefix(namespaceURI);
+                        if ((prefix == null) || (prefix.length() == 0)) {
+                            prefix = generatePrefix(namespaceURI);
+                            xmlWriter.writeNamespace(prefix, namespaceURI);
+                            xmlWriter.setPrefix(prefix, namespaceURI);
+                        }
+
+                        if (prefix.trim().length() > 0) {
+                            stringToWrite.append(prefix).append(":").append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(qnames[i]));
+                        } else {
+                            stringToWrite.append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(qnames[i]));
+                        }
+                    } else {
+                        stringToWrite.append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(qnames[i]));
+                    }
+                }
+                xmlWriter.writeCharacters(stringToWrite.toString());
+            }
+
+        }
+
+
+        /**
+         * Register a namespace prefix
+         */
+        private java.lang.String registerPrefix(javax.xml.stream.XMLStreamWriter xmlWriter, java.lang.String namespace) throws javax.xml.stream.XMLStreamException {
+            java.lang.String prefix = xmlWriter.getPrefix(namespace);
+
+            if (prefix == null) {
+                prefix = generatePrefix(namespace);
+
+                while (xmlWriter.getNamespaceContext().getNamespaceURI(prefix) != null) {
+                    prefix = org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
+                }
+
+                xmlWriter.writeNamespace(prefix, namespace);
+                xmlWriter.setPrefix(prefix, namespace);
+            }
+
+            return prefix;
+        }
+
+
+        /**
+         * databinding method to get an XML representation of this object
+         */
+        public javax.xml.stream.XMLStreamReader getPullParser(javax.xml.namespace.QName qName)
+                throws org.apache.axis2.databinding.ADBException {
+
+
+            java.util.ArrayList elementList = new java.util.ArrayList();
+            java.util.ArrayList attribList = new java.util.ArrayList();
+
+            if (localStringTracker) {
+                elementList.add(new javax.xml.namespace.QName("",
+                        "string"));
+
+                elementList.add(localString == null ? null :
+                        org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localString));
+            }
+
+            return new org.apache.axis2.databinding.utils.reader.ADBXMLStreamReaderImpl(qName, elementList.toArray(), attribList.toArray());
+
+
+        }
+
+
+        /**
+         * Factory class that keeps the parse method
+         */
+        public static class Factory {
+
+
+            /**
+             * static method to create the object
+             * Precondition:  If this object is an element, the current or next start element starts this object and any intervening reader events are ignorable
+             * If this object is not an element, it is a complex type and the reader is at the event just after the outer start element
+             * Postcondition: If this object is an element, the reader is positioned at its end element
+             * If this object is a complex type, the reader is positioned at the end element of its outer element
+             */
+            public static GetBaseData parse(javax.xml.stream.XMLStreamReader reader) throws java.lang.Exception {
+                GetBaseData object =
+                        new GetBaseData();
+
+                int event;
+                java.lang.String nillableValue = null;
+                java.lang.String prefix = "";
+                java.lang.String namespaceuri = "";
+                try {
+
+                    while (!reader.isStartElement() && !reader.isEndElement())
+                        reader.next();
+
+
+                    if (reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "type") != null) {
+                        java.lang.String fullTypeName = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
+                                "type");
+                        if (fullTypeName != null) {
+                            java.lang.String nsPrefix = null;
+                            if (fullTypeName.indexOf(":") > -1) {
+                                nsPrefix = fullTypeName.substring(0, fullTypeName.indexOf(":"));
+                            }
+                            nsPrefix = nsPrefix == null ? "" : nsPrefix;
+
+                            java.lang.String type = fullTypeName.substring(fullTypeName.indexOf(":") + 1);
+
+                            if (!"getBaseData".equals(type)) {
+                                //find namespace for the prefix
+                                java.lang.String nsUri = reader.getNamespaceContext().getNamespaceURI(nsPrefix);
+                                return (GetBaseData) ExtensionMapper.getTypeObject(
+                                        nsUri, type, reader);
+                            }
+
+
+                        }
+
+
+                    }
+
+
+                    // Note all attributes that were handled. Used to differ normal attributes
+                    // from anyAttributes.
+                    java.util.Vector handledAttributes = new java.util.Vector();
+
+
+                    reader.next();
+
+
+                    while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
+
+                    if (reader.isStartElement() && new javax.xml.namespace.QName("", "string").equals(reader.getName())) {
+
+                        nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
+                        if (!"true".equals(nillableValue) && !"1".equals(nillableValue)) {
+
+                            java.lang.String content = reader.getElementText();
+
+                            object.setString(
+                                    org.apache.axis2.databinding.utils.ConverterUtil.convertToString(content));
+
+                        } else {
+
+
+                            reader.getElementText(); // throw away text nodes if any.
+                        }
+
+                        reader.next();
+
+                    }  // End of if for expected property start element
+
+                    else {
+
+                    }
+
+                    while (!reader.isStartElement() && !reader.isEndElement())
+                        reader.next();
+
+                    if (reader.isStartElement())
+                        // A start element we are not expecting indicates a trailing invalid property
+                        throw new org.apache.axis2.databinding.ADBException("Unexpected subelement " + reader.getLocalName());
+
+
+                } catch (javax.xml.stream.XMLStreamException e) {
+                    throw new java.lang.Exception(e);
+                }
+
+                return object;
+            }
+
+        }//end of factory class
+
+
+    }
+
     public static class Exception extends Throwable
             implements org.apache.axis2.databinding.ADBBean {
         /* This type was generated from the piece of schema that had
@@ -2598,6 +3065,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * isReaderMTOMAware
+         *
          * @return true if the reader supports MTOM
          */
         public static boolean isReaderMTOMAware(javax.xml.stream.XMLStreamReader reader) {
@@ -2613,7 +3081,6 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
 
         /**
-         *
          * @param parentQName
          * @param factory
          * @return org.apache.axiom.om.OMElement
@@ -2800,7 +3267,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
         }
 
         /**
-         *  method to handle Qnames
+         * method to handle Qnames
          */
 
         private void writeQName(javax.xml.namespace.QName qname,
@@ -2887,7 +3354,6 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * databinding method to get an XML representation of this object
-         *
          */
         public javax.xml.stream.XMLStreamReader getPullParser(javax.xml.namespace.QName qName)
                 throws org.apache.axis2.databinding.ADBException {
@@ -2939,7 +3405,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
 
         /**
-         *  Factory class that keeps the parse method
+         * Factory class that keeps the parse method
          */
         public static class Factory {
 
@@ -2947,9 +3413,9 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
             /**
              * static method to create the object
              * Precondition:  If this object is an element, the current or next start element starts this object and any intervening reader events are ignorable
-             *                If this object is not an element, it is a complex type and the reader is at the event just after the outer start element
+             * If this object is not an element, it is a complex type and the reader is at the event just after the outer start element
              * Postcondition: If this object is an element, the reader is positioned at its end element
-             *                If this object is a complex type, the reader is positioned at the end element of its outer element
+             * If this object is a complex type, the reader is positioned at the end element of its outer element
              */
             public static Exception parse(javax.xml.stream.XMLStreamReader reader) throws java.lang.Exception {
                 Exception object =
@@ -3098,6 +3564,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * isReaderMTOMAware
+         *
          * @return true if the reader supports MTOM
          */
         public static boolean isReaderMTOMAware(javax.xml.stream.XMLStreamReader reader) {
@@ -3113,6 +3580,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * Auto generated getter method
+         *
          * @return IllegalArgumentException
          */
         public IllegalArgumentException getIllegalArgumentException() {
@@ -3121,6 +3589,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * Auto generated setter method
+         *
          * @param param IllegalArgumentException
          */
         public void setIllegalArgumentException(IllegalArgumentException param) {
@@ -3131,7 +3600,6 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
         }
 
         /**
-         *
          * @param parentQName
          * @param factory
          * @return org.apache.axiom.om.OMElement
@@ -3233,7 +3701,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
         }
 
         /**
-         *  method to handle Qnames
+         * method to handle Qnames
          */
 
         private void writeQName(javax.xml.namespace.QName qname,
@@ -3320,7 +3788,6 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * databinding method to get an XML representation of this object
-         *
          */
         public javax.xml.stream.XMLStreamReader getPullParser(javax.xml.namespace.QName qName)
                 throws org.apache.axis2.databinding.ADBException {
@@ -3333,7 +3800,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
 
         /**
-         *  Factory class that keeps the parse method
+         * Factory class that keeps the parse method
          */
         public static class Factory {
 
@@ -3341,9 +3808,9 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
             /**
              * static method to create the object
              * Precondition:  If this object is an element, the current or next start element starts this object and any intervening reader events are ignorable
-             *                If this object is not an element, it is a complex type and the reader is at the event just after the outer start element
+             * If this object is not an element, it is a complex type and the reader is at the event just after the outer start element
              * Postcondition: If this object is an element, the reader is positioned at its end element
-             *                If this object is a complex type, the reader is positioned at the end element of its outer element
+             * If this object is a complex type, the reader is positioned at the end element of its outer element
              */
             public static IllegalArgumentExceptionE parse(javax.xml.stream.XMLStreamReader reader) throws java.lang.Exception {
                 IllegalArgumentExceptionE object =
@@ -3419,6 +3886,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * isReaderMTOMAware
+         *
          * @return true if the reader supports MTOM
          */
         public static boolean isReaderMTOMAware(javax.xml.stream.XMLStreamReader reader) {
@@ -3434,6 +3902,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * Auto generated getter method
+         *
          * @return NullPointerException
          */
         public NullPointerException getNullPointerException() {
@@ -3442,6 +3911,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * Auto generated setter method
+         *
          * @param param NullPointerException
          */
         public void setNullPointerException(NullPointerException param) {
@@ -3452,7 +3922,6 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
         }
 
         /**
-         *
          * @param parentQName
          * @param factory
          * @return org.apache.axiom.om.OMElement
@@ -3554,7 +4023,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
         }
 
         /**
-         *  method to handle Qnames
+         * method to handle Qnames
          */
 
         private void writeQName(javax.xml.namespace.QName qname,
@@ -3641,7 +4110,6 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * databinding method to get an XML representation of this object
-         *
          */
         public javax.xml.stream.XMLStreamReader getPullParser(javax.xml.namespace.QName qName)
                 throws org.apache.axis2.databinding.ADBException {
@@ -3654,7 +4122,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
 
         /**
-         *  Factory class that keeps the parse method
+         * Factory class that keeps the parse method
          */
         public static class Factory {
 
@@ -3662,9 +4130,9 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
             /**
              * static method to create the object
              * Precondition:  If this object is an element, the current or next start element starts this object and any intervening reader events are ignorable
-             *                If this object is not an element, it is a complex type and the reader is at the event just after the outer start element
+             * If this object is not an element, it is a complex type and the reader is at the event just after the outer start element
              * Postcondition: If this object is an element, the reader is positioned at its end element
-             *                If this object is a complex type, the reader is positioned at the end element of its outer element
+             * If this object is a complex type, the reader is positioned at the end element of its outer element
              */
             public static NullPointerExceptionE parse(javax.xml.stream.XMLStreamReader reader) throws java.lang.Exception {
                 NullPointerExceptionE object =
@@ -3740,6 +4208,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * isReaderMTOMAware
+         *
          * @return true if the reader supports MTOM
          */
         public static boolean isReaderMTOMAware(javax.xml.stream.XMLStreamReader reader) {
@@ -3755,6 +4224,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * Auto generated getter method
+         *
          * @return Exception
          */
         public Exception getException() {
@@ -3763,6 +4233,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * Auto generated setter method
+         *
          * @param param Exception
          */
         public void setException(Exception param) {
@@ -3773,7 +4244,6 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
         }
 
         /**
-         *
          * @param parentQName
          * @param factory
          * @return org.apache.axiom.om.OMElement
@@ -3875,7 +4345,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
         }
 
         /**
-         *  method to handle Qnames
+         * method to handle Qnames
          */
 
         private void writeQName(javax.xml.namespace.QName qname,
@@ -3962,7 +4432,6 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * databinding method to get an XML representation of this object
-         *
          */
         public javax.xml.stream.XMLStreamReader getPullParser(javax.xml.namespace.QName qName)
                 throws org.apache.axis2.databinding.ADBException {
@@ -3975,7 +4444,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
 
         /**
-         *  Factory class that keeps the parse method
+         * Factory class that keeps the parse method
          */
         public static class Factory {
 
@@ -3983,9 +4452,9 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
             /**
              * static method to create the object
              * Precondition:  If this object is an element, the current or next start element starts this object and any intervening reader events are ignorable
-             *                If this object is not an element, it is a complex type and the reader is at the event just after the outer start element
+             * If this object is not an element, it is a complex type and the reader is at the event just after the outer start element
              * Postcondition: If this object is an element, the reader is positioned at its end element
-             *                If this object is a complex type, the reader is positioned at the end element of its outer element
+             * If this object is a complex type, the reader is positioned at the end element of its outer element
              */
             public static ExceptionE parse(javax.xml.stream.XMLStreamReader reader) throws java.lang.Exception {
                 ExceptionE object =
@@ -4038,12 +4507,12 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
     }
 
-    public static class MsgReceiveResponse
+    public static class GetBaseDataResponse
             implements org.apache.axis2.databinding.ADBBean {
 
         public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName(
-                "http://msgtonc.itf.nc/IMsgReceiveService",
-                "msgReceiveResponse",
+                "http://exam.itf.nc/IExamDataService",
+                "getBaseDataResponse",
                 "ns2");
         /**
          * field for _return
@@ -4058,7 +4527,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
         protected boolean local_returnTracker = false;
 
         private static java.lang.String generatePrefix(java.lang.String namespace) {
-            if (namespace.equals("http://msgtonc.itf.nc/IMsgReceiveService")) {
+            if (namespace.equals("http://exam.itf.nc/IExamDataService")) {
                 return "ns2";
             }
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
@@ -4066,6 +4535,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * isReaderMTOMAware
+         *
          * @return true if the reader supports MTOM
          */
         public static boolean isReaderMTOMAware(javax.xml.stream.XMLStreamReader reader) {
@@ -4081,6 +4551,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * Auto generated getter method
+         *
          * @return java.lang.String
          */
         public java.lang.String get_return() {
@@ -4089,6 +4560,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * Auto generated setter method
+         *
          * @param param _return
          */
         public void set_return(java.lang.String param) {
@@ -4107,7 +4579,6 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
         }
 
         /**
-         *
          * @param parentQName
          * @param factory
          * @return org.apache.axiom.om.OMElement
@@ -4121,7 +4592,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
                     new org.apache.axis2.databinding.ADBDataSource(this, MY_QNAME) {
 
                         public void serialize(org.apache.axis2.databinding.utils.writer.MTOMAwareXMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException {
-                            MsgReceiveResponse.this.serialize(MY_QNAME, factory, xmlWriter);
+                            GetBaseDataResponse.this.serialize(MY_QNAME, factory, xmlWriter);
                         }
                     };
             return new org.apache.axiom.om.impl.llom.OMSourcedElementImpl(
@@ -4170,14 +4641,14 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
             if (serializeType) {
 
 
-                java.lang.String namespacePrefix = registerPrefix(xmlWriter, "http://msgtonc.itf.nc/IMsgReceiveService");
+                java.lang.String namespacePrefix = registerPrefix(xmlWriter, "http://exam.itf.nc/IExamDataService");
                 if ((namespacePrefix != null) && (namespacePrefix.trim().length() > 0)) {
                     writeAttribute("xsi", "http://www.w3.org/2001/XMLSchema-instance", "type",
-                            namespacePrefix + ":msgReceiveResponse",
+                            namespacePrefix + ":getBaseDataResponse",
                             xmlWriter);
                 } else {
                     writeAttribute("xsi", "http://www.w3.org/2001/XMLSchema-instance", "type",
-                            "msgReceiveResponse",
+                            "getBaseDataResponse",
                             xmlWriter);
                 }
 
@@ -4279,7 +4750,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
         }
 
         /**
-         *  method to handle Qnames
+         * method to handle Qnames
          */
 
         private void writeQName(javax.xml.namespace.QName qname,
@@ -4366,7 +4837,6 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * databinding method to get an XML representation of this object
-         *
          */
         public javax.xml.stream.XMLStreamReader getPullParser(javax.xml.namespace.QName qName)
                 throws org.apache.axis2.databinding.ADBException {
@@ -4390,7 +4860,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
 
         /**
-         *  Factory class that keeps the parse method
+         * Factory class that keeps the parse method
          */
         public static class Factory {
 
@@ -4398,13 +4868,13 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
             /**
              * static method to create the object
              * Precondition:  If this object is an element, the current or next start element starts this object and any intervening reader events are ignorable
-             *                If this object is not an element, it is a complex type and the reader is at the event just after the outer start element
+             * If this object is not an element, it is a complex type and the reader is at the event just after the outer start element
              * Postcondition: If this object is an element, the reader is positioned at its end element
-             *                If this object is a complex type, the reader is positioned at the end element of its outer element
+             * If this object is a complex type, the reader is positioned at the end element of its outer element
              */
-            public static MsgReceiveResponse parse(javax.xml.stream.XMLStreamReader reader) throws java.lang.Exception {
-                MsgReceiveResponse object =
-                        new MsgReceiveResponse();
+            public static GetBaseDataResponse parse(javax.xml.stream.XMLStreamReader reader) throws java.lang.Exception {
+                GetBaseDataResponse object =
+                        new GetBaseDataResponse();
 
                 int event;
                 java.lang.String nillableValue = null;
@@ -4428,10 +4898,10 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
                             java.lang.String type = fullTypeName.substring(fullTypeName.indexOf(":") + 1);
 
-                            if (!"msgReceiveResponse".equals(type)) {
+                            if (!"getBaseDataResponse".equals(type)) {
                                 //find namespace for the prefix
                                 java.lang.String nsUri = reader.getNamespaceContext().getNamespaceURI(nsPrefix);
-                                return (MsgReceiveResponse) ExtensionMapper.getTypeObject(
+                                return (GetBaseDataResponse) ExtensionMapper.getTypeObject(
                                         nsUri, type, reader);
                             }
 
@@ -4519,6 +4989,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * isReaderMTOMAware
+         *
          * @return true if the reader supports MTOM
          */
         public static boolean isReaderMTOMAware(javax.xml.stream.XMLStreamReader reader) {
@@ -4534,6 +5005,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * Auto generated getter method
+         *
          * @return Throwable
          */
         public Throwable getThrowable() {
@@ -4542,6 +5014,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * Auto generated setter method
+         *
          * @param param Throwable
          */
         public void setThrowable(Throwable param) {
@@ -4552,7 +5025,6 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
         }
 
         /**
-         *
          * @param parentQName
          * @param factory
          * @return org.apache.axiom.om.OMElement
@@ -4654,7 +5126,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
         }
 
         /**
-         *  method to handle Qnames
+         * method to handle Qnames
          */
 
         private void writeQName(javax.xml.namespace.QName qname,
@@ -4741,7 +5213,6 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * databinding method to get an XML representation of this object
-         *
          */
         public javax.xml.stream.XMLStreamReader getPullParser(javax.xml.namespace.QName qName)
                 throws org.apache.axis2.databinding.ADBException {
@@ -4754,7 +5225,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
 
         /**
-         *  Factory class that keeps the parse method
+         * Factory class that keeps the parse method
          */
         public static class Factory {
 
@@ -4762,9 +5233,9 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
             /**
              * static method to create the object
              * Precondition:  If this object is an element, the current or next start element starts this object and any intervening reader events are ignorable
-             *                If this object is not an element, it is a complex type and the reader is at the event just after the outer start element
+             * If this object is not an element, it is a complex type and the reader is at the event just after the outer start element
              * Postcondition: If this object is an element, the reader is positioned at its end element
-             *                If this object is a complex type, the reader is positioned at the end element of its outer element
+             * If this object is a complex type, the reader is positioned at the end element of its outer element
              */
             public static ThrowableE parse(javax.xml.stream.XMLStreamReader reader) throws java.lang.Exception {
                 ThrowableE object =
@@ -4803,464 +5274,6 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
                             reader.next();
                         }
                     }  // end of while loop
-
-
-                } catch (javax.xml.stream.XMLStreamException e) {
-                    throw new java.lang.Exception(e);
-                }
-
-                return object;
-            }
-
-        }//end of factory class
-
-
-    }
-
-    public static class MsgReceive
-            implements org.apache.axis2.databinding.ADBBean {
-
-        public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName(
-                "http://msgtonc.itf.nc/IMsgReceiveService",
-                "msgReceive",
-                "ns2");
-        /**
-         * field for String
-         */
-
-
-        protected java.lang.String localString;
-        /*  This tracker boolean wil be used to detect whether the user called the set method
-                          *   for this attribute. It will be used to determine whether to include this field
-                           *   in the serialized XML
-                           */
-        protected boolean localStringTracker = false;
-
-        private static java.lang.String generatePrefix(java.lang.String namespace) {
-            if (namespace.equals("http://msgtonc.itf.nc/IMsgReceiveService")) {
-                return "ns2";
-            }
-            return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
-        }
-
-        /**
-         * isReaderMTOMAware
-         * @return true if the reader supports MTOM
-         */
-        public static boolean isReaderMTOMAware(javax.xml.stream.XMLStreamReader reader) {
-            boolean isReaderMTOMAware = false;
-
-            try {
-                isReaderMTOMAware = java.lang.Boolean.TRUE.equals(reader.getProperty(org.apache.axiom.om.OMConstants.IS_DATA_HANDLERS_AWARE));
-            } catch (java.lang.IllegalArgumentException e) {
-                isReaderMTOMAware = false;
-            }
-            return isReaderMTOMAware;
-        }
-
-        /**
-         * Auto generated getter method
-         * @return java.lang.String
-         */
-        public java.lang.String getString() {
-            return localString;
-        }
-
-        /**
-         * Auto generated setter method
-         * @param param String
-         */
-        public void setString(java.lang.String param) {
-
-            if (param != null) {
-                //update the setting tracker
-                localStringTracker = true;
-            } else {
-                localStringTracker = true;
-
-            }
-
-            this.localString = param;
-
-
-        }
-
-        /**
-         *
-         * @param parentQName
-         * @param factory
-         * @return org.apache.axiom.om.OMElement
-         */
-        public org.apache.axiom.om.OMElement getOMElement(
-                final javax.xml.namespace.QName parentQName,
-                final org.apache.axiom.om.OMFactory factory) throws org.apache.axis2.databinding.ADBException {
-
-
-            org.apache.axiom.om.OMDataSource dataSource =
-                    new org.apache.axis2.databinding.ADBDataSource(this, MY_QNAME) {
-
-                        public void serialize(org.apache.axis2.databinding.utils.writer.MTOMAwareXMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException {
-                            MsgReceive.this.serialize(MY_QNAME, factory, xmlWriter);
-                        }
-                    };
-            return new org.apache.axiom.om.impl.llom.OMSourcedElementImpl(
-                    MY_QNAME, factory, dataSource);
-
-        }
-
-        public void serialize(final javax.xml.namespace.QName parentQName,
-                              final org.apache.axiom.om.OMFactory factory,
-                              org.apache.axis2.databinding.utils.writer.MTOMAwareXMLStreamWriter xmlWriter)
-                throws javax.xml.stream.XMLStreamException, org.apache.axis2.databinding.ADBException {
-            serialize(parentQName, factory, xmlWriter, false);
-        }
-
-        public void serialize(final javax.xml.namespace.QName parentQName,
-                              final org.apache.axiom.om.OMFactory factory,
-                              org.apache.axis2.databinding.utils.writer.MTOMAwareXMLStreamWriter xmlWriter,
-                              boolean serializeType)
-                throws javax.xml.stream.XMLStreamException, org.apache.axis2.databinding.ADBException {
-
-
-            java.lang.String prefix = null;
-            java.lang.String namespace = null;
-
-
-            prefix = parentQName.getPrefix();
-            namespace = parentQName.getNamespaceURI();
-
-            if ((namespace != null) && (namespace.trim().length() > 0)) {
-                java.lang.String writerPrefix = xmlWriter.getPrefix(namespace);
-                if (writerPrefix != null) {
-                    xmlWriter.writeStartElement(namespace, parentQName.getLocalPart());
-                } else {
-                    if (prefix == null) {
-                        prefix = generatePrefix(namespace);
-                    }
-
-                    xmlWriter.writeStartElement(prefix, parentQName.getLocalPart(), namespace);
-                    xmlWriter.writeNamespace(prefix, namespace);
-                    xmlWriter.setPrefix(prefix, namespace);
-                }
-            } else {
-                xmlWriter.writeStartElement(parentQName.getLocalPart());
-            }
-
-            if (serializeType) {
-
-
-                java.lang.String namespacePrefix = registerPrefix(xmlWriter, "http://msgtonc.itf.nc/IMsgReceiveService");
-                if ((namespacePrefix != null) && (namespacePrefix.trim().length() > 0)) {
-                    writeAttribute("xsi", "http://www.w3.org/2001/XMLSchema-instance", "type",
-                            namespacePrefix + ":msgReceive",
-                            xmlWriter);
-                } else {
-                    writeAttribute("xsi", "http://www.w3.org/2001/XMLSchema-instance", "type",
-                            "msgReceive",
-                            xmlWriter);
-                }
-
-
-            }
-            if (localStringTracker) {
-                namespace = "";
-                if (!namespace.equals("")) {
-                    prefix = xmlWriter.getPrefix(namespace);
-
-                    if (prefix == null) {
-                        prefix = generatePrefix(namespace);
-
-                        xmlWriter.writeStartElement(prefix, "string", namespace);
-                        xmlWriter.writeNamespace(prefix, namespace);
-                        xmlWriter.setPrefix(prefix, namespace);
-
-                    } else {
-                        xmlWriter.writeStartElement(namespace, "string");
-                    }
-
-                } else {
-                    xmlWriter.writeStartElement("string");
-                }
-
-
-                if (localString == null) {
-                    // write the nil attribute
-
-                    writeAttribute("xsi", "http://www.w3.org/2001/XMLSchema-instance", "nil", "1", xmlWriter);
-
-                } else {
-
-
-                    xmlWriter.writeCharacters(localString);
-
-                }
-
-                xmlWriter.writeEndElement();
-            }
-            xmlWriter.writeEndElement();
-
-
-        }
-
-        /**
-         * Util method to write an attribute with the ns prefix
-         */
-        private void writeAttribute(java.lang.String prefix, java.lang.String namespace, java.lang.String attName,
-                                    java.lang.String attValue, javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException {
-            if (xmlWriter.getPrefix(namespace) == null) {
-                xmlWriter.writeNamespace(prefix, namespace);
-                xmlWriter.setPrefix(prefix, namespace);
-
-            }
-
-            xmlWriter.writeAttribute(namespace, attName, attValue);
-
-        }
-
-        /**
-         * Util method to write an attribute without the ns prefix
-         */
-        private void writeAttribute(java.lang.String namespace, java.lang.String attName,
-                                    java.lang.String attValue, javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException {
-            if (namespace.equals("")) {
-                xmlWriter.writeAttribute(attName, attValue);
-            } else {
-                registerPrefix(xmlWriter, namespace);
-                xmlWriter.writeAttribute(namespace, attName, attValue);
-            }
-        }
-
-
-        /**
-         * Util method to write an attribute without the ns prefix
-         */
-        private void writeQNameAttribute(java.lang.String namespace, java.lang.String attName,
-                                         javax.xml.namespace.QName qname, javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException {
-
-            java.lang.String attributeNamespace = qname.getNamespaceURI();
-            java.lang.String attributePrefix = xmlWriter.getPrefix(attributeNamespace);
-            if (attributePrefix == null) {
-                attributePrefix = registerPrefix(xmlWriter, attributeNamespace);
-            }
-            java.lang.String attributeValue;
-            if (attributePrefix.trim().length() > 0) {
-                attributeValue = attributePrefix + ":" + qname.getLocalPart();
-            } else {
-                attributeValue = qname.getLocalPart();
-            }
-
-            if (namespace.equals("")) {
-                xmlWriter.writeAttribute(attName, attributeValue);
-            } else {
-                registerPrefix(xmlWriter, namespace);
-                xmlWriter.writeAttribute(namespace, attName, attributeValue);
-            }
-        }
-
-        /**
-         *  method to handle Qnames
-         */
-
-        private void writeQName(javax.xml.namespace.QName qname,
-                                javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException {
-            java.lang.String namespaceURI = qname.getNamespaceURI();
-            if (namespaceURI != null) {
-                java.lang.String prefix = xmlWriter.getPrefix(namespaceURI);
-                if (prefix == null) {
-                    prefix = generatePrefix(namespaceURI);
-                    xmlWriter.writeNamespace(prefix, namespaceURI);
-                    xmlWriter.setPrefix(prefix, namespaceURI);
-                }
-
-                if (prefix.trim().length() > 0) {
-                    xmlWriter.writeCharacters(prefix + ":" + org.apache.axis2.databinding.utils.ConverterUtil.convertToString(qname));
-                } else {
-                    // i.e this is the default namespace
-                    xmlWriter.writeCharacters(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(qname));
-                }
-
-            } else {
-                xmlWriter.writeCharacters(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(qname));
-            }
-        }
-
-        private void writeQNames(javax.xml.namespace.QName[] qnames,
-                                 javax.xml.stream.XMLStreamWriter xmlWriter) throws javax.xml.stream.XMLStreamException {
-
-            if (qnames != null) {
-                // we have to store this data until last moment since it is not possible to write any
-                // namespace data after writing the charactor data
-                java.lang.StringBuffer stringToWrite = new java.lang.StringBuffer();
-                java.lang.String namespaceURI = null;
-                java.lang.String prefix = null;
-
-                for (int i = 0; i < qnames.length; i++) {
-                    if (i > 0) {
-                        stringToWrite.append(" ");
-                    }
-                    namespaceURI = qnames[i].getNamespaceURI();
-                    if (namespaceURI != null) {
-                        prefix = xmlWriter.getPrefix(namespaceURI);
-                        if ((prefix == null) || (prefix.length() == 0)) {
-                            prefix = generatePrefix(namespaceURI);
-                            xmlWriter.writeNamespace(prefix, namespaceURI);
-                            xmlWriter.setPrefix(prefix, namespaceURI);
-                        }
-
-                        if (prefix.trim().length() > 0) {
-                            stringToWrite.append(prefix).append(":").append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(qnames[i]));
-                        } else {
-                            stringToWrite.append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(qnames[i]));
-                        }
-                    } else {
-                        stringToWrite.append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(qnames[i]));
-                    }
-                }
-                xmlWriter.writeCharacters(stringToWrite.toString());
-            }
-
-        }
-
-
-        /**
-         * Register a namespace prefix
-         */
-        private java.lang.String registerPrefix(javax.xml.stream.XMLStreamWriter xmlWriter, java.lang.String namespace) throws javax.xml.stream.XMLStreamException {
-            java.lang.String prefix = xmlWriter.getPrefix(namespace);
-
-            if (prefix == null) {
-                prefix = generatePrefix(namespace);
-
-                while (xmlWriter.getNamespaceContext().getNamespaceURI(prefix) != null) {
-                    prefix = org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
-                }
-
-                xmlWriter.writeNamespace(prefix, namespace);
-                xmlWriter.setPrefix(prefix, namespace);
-            }
-
-            return prefix;
-        }
-
-
-        /**
-         * databinding method to get an XML representation of this object
-         *
-         */
-        public javax.xml.stream.XMLStreamReader getPullParser(javax.xml.namespace.QName qName)
-                throws org.apache.axis2.databinding.ADBException {
-
-
-            java.util.ArrayList elementList = new java.util.ArrayList();
-            java.util.ArrayList attribList = new java.util.ArrayList();
-
-            if (localStringTracker) {
-                elementList.add(new javax.xml.namespace.QName("",
-                        "string"));
-
-                elementList.add(localString == null ? null :
-                        org.apache.axis2.databinding.utils.ConverterUtil.convertToString(localString));
-            }
-
-            return new org.apache.axis2.databinding.utils.reader.ADBXMLStreamReaderImpl(qName, elementList.toArray(), attribList.toArray());
-
-
-        }
-
-
-        /**
-         *  Factory class that keeps the parse method
-         */
-        public static class Factory {
-
-
-            /**
-             * static method to create the object
-             * Precondition:  If this object is an element, the current or next start element starts this object and any intervening reader events are ignorable
-             *                If this object is not an element, it is a complex type and the reader is at the event just after the outer start element
-             * Postcondition: If this object is an element, the reader is positioned at its end element
-             *                If this object is a complex type, the reader is positioned at the end element of its outer element
-             */
-            public static MsgReceive parse(javax.xml.stream.XMLStreamReader reader) throws java.lang.Exception {
-                MsgReceive object =
-                        new MsgReceive();
-
-                int event;
-                java.lang.String nillableValue = null;
-                java.lang.String prefix = "";
-                java.lang.String namespaceuri = "";
-                try {
-
-                    while (!reader.isStartElement() && !reader.isEndElement())
-                        reader.next();
-
-
-                    if (reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "type") != null) {
-                        java.lang.String fullTypeName = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
-                                "type");
-                        if (fullTypeName != null) {
-                            java.lang.String nsPrefix = null;
-                            if (fullTypeName.indexOf(":") > -1) {
-                                nsPrefix = fullTypeName.substring(0, fullTypeName.indexOf(":"));
-                            }
-                            nsPrefix = nsPrefix == null ? "" : nsPrefix;
-
-                            java.lang.String type = fullTypeName.substring(fullTypeName.indexOf(":") + 1);
-
-                            if (!"msgReceive".equals(type)) {
-                                //find namespace for the prefix
-                                java.lang.String nsUri = reader.getNamespaceContext().getNamespaceURI(nsPrefix);
-                                return (MsgReceive) ExtensionMapper.getTypeObject(
-                                        nsUri, type, reader);
-                            }
-
-
-                        }
-
-
-                    }
-
-
-                    // Note all attributes that were handled. Used to differ normal attributes
-                    // from anyAttributes.
-                    java.util.Vector handledAttributes = new java.util.Vector();
-
-
-                    reader.next();
-
-
-                    while (!reader.isStartElement() && !reader.isEndElement()) reader.next();
-
-                    if (reader.isStartElement() && new javax.xml.namespace.QName("", "string").equals(reader.getName())) {
-
-                        nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance", "nil");
-                        if (!"true".equals(nillableValue) && !"1".equals(nillableValue)) {
-
-                            java.lang.String content = reader.getElementText();
-
-                            object.setString(
-                                    org.apache.axis2.databinding.utils.ConverterUtil.convertToString(content));
-
-                        } else {
-
-
-                            reader.getElementText(); // throw away text nodes if any.
-                        }
-
-                        reader.next();
-
-                    }  // End of if for expected property start element
-
-                    else {
-
-                    }
-
-                    while (!reader.isStartElement() && !reader.isEndElement())
-                        reader.next();
-
-                    if (reader.isStartElement())
-                        // A start element we are not expecting indicates a trailing invalid property
-                        throw new org.apache.axis2.databinding.ADBException("Unexpected subelement " + reader.getLocalName());
 
 
                 } catch (javax.xml.stream.XMLStreamException e) {
@@ -5430,6 +5443,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * isReaderMTOMAware
+         *
          * @return true if the reader supports MTOM
          */
         public static boolean isReaderMTOMAware(javax.xml.stream.XMLStreamReader reader) {
@@ -5445,6 +5459,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * Auto generated getter method
+         *
          * @return java.lang.String
          */
         public java.lang.String getDatasource() {
@@ -5453,6 +5468,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * Auto generated setter method
+         *
          * @param param Datasource
          */
         public void setDatasource(java.lang.String param) {
@@ -5472,6 +5488,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * Auto generated getter method
+         *
          * @return java.lang.String
          */
         public java.lang.String getCorpCode() {
@@ -5480,6 +5497,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * Auto generated setter method
+         *
          * @param param CorpCode
          */
         public void setCorpCode(java.lang.String param) {
@@ -5499,6 +5517,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * Auto generated getter method
+         *
          * @return java.lang.String
          */
         public java.lang.String getUserCode() {
@@ -5507,6 +5526,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * Auto generated setter method
+         *
          * @param param UserCode
          */
         public void setUserCode(java.lang.String param) {
@@ -5526,6 +5546,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * Auto generated getter method
+         *
          * @return java.lang.String
          */
         public java.lang.String getLoginDate() {
@@ -5534,6 +5555,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * Auto generated setter method
+         *
          * @param param LoginDate
          */
         public void setLoginDate(java.lang.String param) {
@@ -5553,6 +5575,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * Auto generated getter method
+         *
          * @return java.lang.String
          */
         public java.lang.String getClientHost() {
@@ -5561,6 +5584,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * Auto generated setter method
+         *
          * @param param ClientHost
          */
         public void setClientHost(java.lang.String param) {
@@ -5580,6 +5604,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * Auto generated getter method
+         *
          * @return java.lang.String
          */
         public java.lang.String getLangCode() {
@@ -5588,6 +5613,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * Auto generated setter method
+         *
          * @param param LangCode
          */
         public void setLangCode(java.lang.String param) {
@@ -5606,7 +5632,6 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
         }
 
         /**
-         *
          * @param parentQName
          * @param factory
          * @return org.apache.axiom.om.OMElement
@@ -5953,7 +5978,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
         }
 
         /**
-         *  method to handle Qnames
+         * method to handle Qnames
          */
 
         private void writeQName(javax.xml.namespace.QName qname,
@@ -6040,7 +6065,6 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * databinding method to get an XML representation of this object
-         *
          */
         public javax.xml.stream.XMLStreamReader getPullParser(javax.xml.namespace.QName qName)
                 throws org.apache.axis2.databinding.ADBException {
@@ -6117,7 +6141,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
 
         /**
-         *  Factory class that keeps the parse method
+         * Factory class that keeps the parse method
          */
         public static class Factory {
 
@@ -6125,9 +6149,9 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
             /**
              * static method to create the object
              * Precondition:  If this object is an element, the current or next start element starts this object and any intervening reader events are ignorable
-             *                If this object is not an element, it is a complex type and the reader is at the event just after the outer start element
+             * If this object is not an element, it is a complex type and the reader is at the event just after the outer start element
              * Postcondition: If this object is an element, the reader is positioned at its end element
-             *                If this object is a complex type, the reader is positioned at the end element of its outer element
+             * If this object is a complex type, the reader is positioned at the end element of its outer element
              */
             public static Urc parse(javax.xml.stream.XMLStreamReader reader) throws java.lang.Exception {
                 Urc object =
@@ -6313,6 +6337,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * isReaderMTOMAware
+         *
          * @return true if the reader supports MTOM
          */
         public static boolean isReaderMTOMAware(javax.xml.stream.XMLStreamReader reader) {
@@ -6328,6 +6353,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * Auto generated getter method
+         *
          * @return java.lang.String
          */
         public java.lang.String getMessage() {
@@ -6336,6 +6362,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * Auto generated setter method
+         *
          * @param param Message
          */
         public void setMessage(java.lang.String param) {
@@ -6355,6 +6382,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * Auto generated getter method
+         *
          * @return StackTraceElement[]
          */
         public StackTraceElement[] getStackTrace() {
@@ -6363,6 +6391,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * Auto generated setter method
+         *
          * @param param StackTrace
          */
         public void setStackTrace(StackTraceElement[] param) {
@@ -6390,6 +6419,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * Auto generated add method for the array for convenience
+         *
          * @param param StackTraceElement
          */
         public void addStackTrace(StackTraceElement param) {
@@ -6412,7 +6442,6 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
         }
 
         /**
-         *
          * @param parentQName
          * @param factory
          * @return org.apache.axiom.om.OMElement
@@ -6603,7 +6632,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
         }
 
         /**
-         *  method to handle Qnames
+         * method to handle Qnames
          */
 
         private void writeQName(javax.xml.namespace.QName qname,
@@ -6690,7 +6719,6 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * databinding method to get an XML representation of this object
-         *
          */
         public javax.xml.stream.XMLStreamReader getPullParser(javax.xml.namespace.QName qName)
                 throws org.apache.axis2.databinding.ADBException {
@@ -6739,7 +6767,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
 
         /**
-         *  Factory class that keeps the parse method
+         * Factory class that keeps the parse method
          */
         public static class Factory {
 
@@ -6747,9 +6775,9 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
             /**
              * static method to create the object
              * Precondition:  If this object is an element, the current or next start element starts this object and any intervening reader events are ignorable
-             *                If this object is not an element, it is a complex type and the reader is at the event just after the outer start element
+             * If this object is not an element, it is a complex type and the reader is at the event just after the outer start element
              * Postcondition: If this object is an element, the reader is positioned at its end element
-             *                If this object is a complex type, the reader is positioned at the end element of its outer element
+             * If this object is a complex type, the reader is positioned at the end element of its outer element
              */
             public static Throwable parse(javax.xml.stream.XMLStreamReader reader) throws java.lang.Exception {
                 Throwable object =
@@ -6906,6 +6934,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * isReaderMTOMAware
+         *
          * @return true if the reader supports MTOM
          */
         public static boolean isReaderMTOMAware(javax.xml.stream.XMLStreamReader reader) {
@@ -6921,6 +6950,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * Auto generated getter method
+         *
          * @return RuntimeException
          */
         public RuntimeException getRuntimeException() {
@@ -6929,6 +6959,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * Auto generated setter method
+         *
          * @param param RuntimeException
          */
         public void setRuntimeException(RuntimeException param) {
@@ -6939,7 +6970,6 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
         }
 
         /**
-         *
          * @param parentQName
          * @param factory
          * @return org.apache.axiom.om.OMElement
@@ -7041,7 +7071,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
         }
 
         /**
-         *  method to handle Qnames
+         * method to handle Qnames
          */
 
         private void writeQName(javax.xml.namespace.QName qname,
@@ -7128,7 +7158,6 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * databinding method to get an XML representation of this object
-         *
          */
         public javax.xml.stream.XMLStreamReader getPullParser(javax.xml.namespace.QName qName)
                 throws org.apache.axis2.databinding.ADBException {
@@ -7141,7 +7170,7 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
 
 
         /**
-         *  Factory class that keeps the parse method
+         * Factory class that keeps the parse method
          */
         public static class Factory {
 
@@ -7149,9 +7178,9 @@ public class IMsgReceiveServiceStub extends org.apache.axis2.client.Stub {
             /**
              * static method to create the object
              * Precondition:  If this object is an element, the current or next start element starts this object and any intervening reader events are ignorable
-             *                If this object is not an element, it is a complex type and the reader is at the event just after the outer start element
+             * If this object is not an element, it is a complex type and the reader is at the event just after the outer start element
              * Postcondition: If this object is an element, the reader is positioned at its end element
-             *                If this object is a complex type, the reader is positioned at the end element of its outer element
+             * If this object is a complex type, the reader is positioned at the end element of its outer element
              */
             public static RuntimeExceptionE parse(javax.xml.stream.XMLStreamReader reader) throws java.lang.Exception {
                 RuntimeExceptionE object =
