@@ -16,7 +16,7 @@ public interface ISellContractService {
      */
     List<SignVO> getSellContract(String billType, String companyId);
     
-    List<SignVO> getSellContract(String house);
+    List<SignVO> getSellContract(String pk_sign);
 
     /**
      *
@@ -27,4 +27,9 @@ public interface ISellContractService {
      * 通过客户ID查询合同信息
      */
     List<SignVO> queryByCustomer(String customerId);
+    
+    /**
+     * 后台展示列表
+     */
+    List<SignVO> getBackAll();
 }

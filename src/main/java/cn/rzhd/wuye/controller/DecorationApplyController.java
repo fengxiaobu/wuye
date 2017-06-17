@@ -4,6 +4,7 @@ import cn.rzhd.wuye.bean.DecorateDetail;
 import cn.rzhd.wuye.bean.DecorationApply;
 import cn.rzhd.wuye.bean.DecorationMaterial;
 import cn.rzhd.wuye.bean.DecorationNotice;
+import cn.rzhd.wuye.bean.vo.ResousVO;
 import cn.rzhd.wuye.service.IDecorateDetailService;
 import cn.rzhd.wuye.service.IDecorationApplyService;
 import cn.rzhd.wuye.service.IDecorationMaterialService;
@@ -68,21 +69,27 @@ public class DecorationApplyController {
         return jsonString;
     }
 
+
+    /**
+     * 装修资料
+     */
+    //public List<Map<String, Value>>
     /**
      * 装修申请
-     *
-     * @param request return
      */
     @RequestMapping(value = "/upload/batch", method = RequestMethod.POST)
     public @ResponseBody
-    Map<String, String> batchUpload(HttpServletRequest request, DecorationMaterial decorationMaterial, DecorationApply decorationApply, DecorateDetail decorateDetail) {
+    Map<String, String> batchUpload(ResousVO resousVO) {
+        System.out.println("resousVO = " + resousVO);
         Map<String, String> result = new HashMap<>();
+        Date date = new Date();
+        DecorationApply decorationApply = new DecorationApply();
         Long aLong = IDUtils.genLongUID();
         decorationApply.setDecorationApplyId(aLong);
-        decorateDetail.setDecorationApplyId(aLong);
-        decorateDetail.setDecorateDetailId(aLong);
         decorationApply.setAuditStatus(0);
         decorationApply.setIsSpecialDecoration(0);
+        decorationApply.setApplyTime(date);
+        decorationApply.setCreationTime(date);
         System.out.println("aLong = " + aLong);
         try {
             if (decorationApply.getDecorateArea() != null) {
@@ -98,24 +105,83 @@ public class DecorationApplyController {
                 decorationApply.setPassPapersCost(new BigDecimal(decorationApply.getConstructPeopleNumber() * 10));
                 //出入证押金
                 decorationApply.setPassPapersDeposit(new BigDecimal(decorationApply.getConstructPeopleNumber() * 10));
+                //装修申请
+                decorationApplyService.insert(decorationApply);
+                for (int i = 0; i < resousVO.getDecorateDetailList().size(); i++) {
+                    DecorateDetail decorateDetail = new DecorateDetail();
+                    decorateDetail.setDecorationApplyId(aLong);
+                    decorateDetail.setDecorateDetailId(IDUtils.genLongUID());
+                    decorateDetail.setDetailOrder(i + 1L);
+                    decorateDetail.setDetailContent(resousVO.getDecorateDetailList().get(i).getDetailContent());
+                    //装修明细
+                    decorateDetailService.insert(decorateDetail);
+                }
+                for (int i = 0; i < resousVO.getDecorationMaterialList().size(); i++) {
+                    DecorationMaterial decorationMaterial = new DecorationMaterial();
+                    decorationMaterial.setDecorationApplyId(aLong);
+                    decorationMaterial.setDecorationMaterialId(IDUtils.genLongUID());
+                    decorationMaterial.setMaterialAddress(resousVO.getDecorationMaterialList().get(i).getMaterialAddress());
+                    decorationMaterial.setMaterialName(resousVO.getDecorationMaterialList().get(i).getMaterialName());
+                    //装修资料
+                    decorationMaterialService.insert(decorationMaterial);
+                }
+            } else {
+                result.put("state", "0");
+                result.put("msg", "申请失败 数据不完整");
+                return result;
             }
-
-            //装修申请
-            decorationApplyService.insert(decorationApply);
-            //装修明细
-            decorateDetailService.insert(decorateDetail);
-            //装修资料
-            decorationMaterialService.insert(decorationMaterial);
-            result.put("state", "1");
-            result.put("msg", "申请成功");
-            return result;
-
         } catch (Exception e) {
             result.put("state", "0");
             result.put("msg", "申请失败" + e.getMessage());
             return result;
         }
+        result.put("state", "1");
+        result.put("msg", "申请成功");
+        return result;
+    }
 
+    /**
+     * 查询审核结果
+     *
+     * @param decorationApplyId
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("/findDecorationApplyByID")
+    public Map<String, Object> findDecorationApplyByID(Long decorationApplyId) {
+        Map<String, Object> result = new HashMap<>();
+        if (decorationApplyId == null) {
+            result.put("state", "0");
+            result.put("msg", "ID不能为空!");
+            return result;
+        }
+        DecorationApply decorationApply = decorationApplyService.selectByPrimaryKey(decorationApplyId);
+        result.put("state", "1");
+        result.put("data", decorationApply);
+        return result;
+    }
+
+    /**
+     * 审核装修申请
+     *
+     * @param decorationApply
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("/updateDecorationApply")
+    public Map<String, String> updateDecorationApply(DecorationApply decorationApply) {
+        Map<String, String> result = new HashMap<>();
+        if (decorationApply.getDecorationApplyId() == null) {
+            result.put("state", "0");
+            result.put("msg", "ID不能为空!");
+            return result;
+        }
+
+        int i = decorationApplyService.updateByPrimaryKey(decorationApply);
+        System.out.println("i = " + i);
+        result.put("state", "1");
+
+        return result;
     }
 
     /**

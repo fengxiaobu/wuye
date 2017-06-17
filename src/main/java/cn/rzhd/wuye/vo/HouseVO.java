@@ -56,7 +56,25 @@ public class HouseVO implements Serializable {
 	private String vdef10;// 备用字段10
 	
 	private ProjectVO projectVO;
+	private CustomerVO customerVO;
+	private SignVO signVO;
 	
+	public CustomerVO getCustomerVO() {
+		return customerVO;
+	}
+
+	public void setCustomerVO(CustomerVO customerVO) {
+		this.customerVO = customerVO;
+	}
+
+	public SignVO getSignVO() {
+		return signVO;
+	}
+
+	public void setSignVO(SignVO signVO) {
+		this.signVO = signVO;
+	}
+
 	public ProjectVO getProjectVO() {
 		return projectVO;
 	}

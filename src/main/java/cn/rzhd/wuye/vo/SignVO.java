@@ -41,6 +41,25 @@ public class SignVO implements Serializable {
 	private String ndef3;// 备用数值字段3
 	private String ndef4;// 备用数值字段4
 	private String ndef5;// 备用数值字段5
+	
+	private CustomerVO customerVO;
+	private ProjectVO projectVO;
+
+	public CustomerVO getCustomerVO() {
+		return customerVO;
+	}
+
+	public void setCustomerVO(CustomerVO customerVO) {
+		this.customerVO = customerVO;
+	}
+
+	public ProjectVO getProjectVO() {
+		return projectVO;
+	}
+
+	public void setProjectVO(ProjectVO projectVO) {
+		this.projectVO = projectVO;
+	}
 
 	public String getPk_corp() {
 		return pk_corp;

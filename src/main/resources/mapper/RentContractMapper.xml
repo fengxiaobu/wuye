@@ -4,7 +4,7 @@
 
 	<select id="getAll"  resultMap="RentContractBackMap">
 		SELECT
-			P .PROJECT_NAME,
+			P.PROJECT_NAME,
 			r."house",
 			c."vcname",
 			r."dpactstart",
@@ -60,7 +60,7 @@
             "dysdate",
             "nsbzjyjmny"
         FROM "T_Rent_Contract"
-        WHERE "house" = #{house}
+        WHERE "pk_pact" = #{pk_pact}
     </select>
     <resultMap type="cn.rzhd.wuye.vo.PactVO" id="rentContractMap">
         <id property="pk_pact" column="pk_pact"/>

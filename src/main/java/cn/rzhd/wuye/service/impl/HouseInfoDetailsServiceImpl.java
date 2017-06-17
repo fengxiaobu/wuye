@@ -44,4 +44,10 @@ public class HouseInfoDetailsServiceImpl implements IHouseInfoDetailsService {
         return mapper.selectByPrimaryKey(pkHouse);
     }
 
+	@Override
+	public List<HouseVO> getBackAll() {
+		List<HouseVO> houseVOs = mapper.getAll();
+		return houseVOs;
+	}
+
 }

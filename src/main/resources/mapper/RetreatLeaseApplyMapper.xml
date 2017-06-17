@@ -28,7 +28,7 @@
         RETREAT_LEASE_TYPE, ARREARS_RENT, LEASE_DEPOSIT,
         PERMIT_RETREAT_LEASE_DEPOSIT, CREATION_TIME, UPDATE_TIME
         )
-        values (T_ENTER_APPLY_ID_SEQ.Nextval, #{houseInfoId,jdbcType=DECIMAL},
+        values (#{retreatLeaseApplyId}, #{houseInfoId,jdbcType=DECIMAL},
         #{houseNumber,jdbcType=OTHER}, #{houseAcreage,jdbcType=FLOAT}, #{leaseStartTime,jdbcType=DATE},
         #{leaseEndTime,jdbcType=DATE}, #{type,jdbcType=DECIMAL}, #{retreatLeaseTime,jdbcType=DATE},
         #{retreatLeaseType,jdbcType=DATE}, #{arrearsRent,jdbcType=DECIMAL}, #{leaseDeposit,jdbcType=DECIMAL},

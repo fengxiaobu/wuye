@@ -46,13 +46,13 @@ public class ReletApply implements Serializable{
 	 */
 	private Integer type;
 	/**
-	 * 续租日期
+	 * 续租开始日期
 	 */
 	private Date retreaTime;
 	/**
 	 * 续租类型
 	 */
-	private Date retreaType;
+	private String retreaType;
 	/**
 	 * 租金单价
 	 */
@@ -81,7 +81,19 @@ public class ReletApply implements Serializable{
 	 * 修改时间
 	 */
 	private Date updateTime;
-	
+	/**
+	 * 续租结束时间
+	 */
+	private Date retreaEndTime;
+
+	public Date getRetreaEndTime() {
+		return retreaEndTime;
+	}
+
+	public void setRetreaEndTime(Date retreaEndTime) {
+		this.retreaEndTime = retreaEndTime;
+	}
+
 	/**
 	 * @return the clientName
 	 */
@@ -157,13 +169,13 @@ public class ReletApply implements Serializable{
 	/**
 	 * @return the retreaType
 	 */
-	public Date getRetreaType() {
+	public String getRetreaType() {
 		return retreaType;
 	}
 	/*
 	@param retreaType the retreaType to set
 	*/
-	public void setRetreaType(Date retreaType) {
+	public void setRetreaType(String retreaType) {
 		this.retreaType = retreaType;
 	}
 	/**

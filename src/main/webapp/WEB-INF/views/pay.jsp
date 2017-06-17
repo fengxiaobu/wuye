@@ -14,7 +14,7 @@
 </head>
 <body>
 
-<form action="${pageContext.request.contextPath}/sendpay" method="post">
+<form action="${pageContext.request.contextPath}/pay" method="post">
     <table>
         <tr>
             <td>商户订单号:</td>

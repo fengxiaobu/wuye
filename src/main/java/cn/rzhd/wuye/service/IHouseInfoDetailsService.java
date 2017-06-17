@@ -21,5 +21,10 @@ public interface IHouseInfoDetailsService {
 
 
     HouseVO selectById(String pkHouse);
+    
+    /**
+     *	获取后台房产数据
+     */
+    List<HouseVO> getBackAll();
 
 }
