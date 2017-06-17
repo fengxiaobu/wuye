@@ -53,14 +53,14 @@
             T_PROPERTY_FEE PF
             LEFT JOIN T_HOUSE_INFO_DETAILS HID ON PF."pk_house" = HID."pk_house"
         WHERE
-            PF."pk_customerid" = ${customer.pk_customerid }
+            PF."pk_customerid" = ${customer.pk_customerid}
     </select>
 
     <!-- 查询消息通知未读条数 -->
-    <select id="findMessageNumByCustomer" parameterType="cn.rzhd.wuye.bean.Customer" resultType="java.lang.Integer">
+    <select id="findMessageNumByCustomer" parameterType="string" resultType="java.lang.Integer">
         SELECT COUNT(MM.MESSAGE_MANAGE_ID)
         FROM T_MESSAGE_MANAGE MM LEFT JOIN T_CUSTOMER_MESSAGE CM ON MM.MESSAGE_MANAGE_ID = CM.CUTROMER_MESSAGE_ID
-        WHERE CM.CUSTOMER_ID = #{pk_customerid} AND CM.READ_STATUS = 0
+        WHERE CM.CUSTOMER_ID = #{customerId} AND CM.READ_STATUS = 0
     </select>
 
     <resultMap id="messageList" type="cn.rzhd.wuye.bean.MessageManage">
@@ -72,7 +72,7 @@
     </resultMap>
 
     <!-- 查询消息通知详情 -->
-    <select id="findMessageByCustomer" resultMap="messageList">
+    <select id="findMessageByCustomer" parameterType="string" resultMap="messageList">
         SELECT
             MM.MESSAGE_MANAGE_ID,
             MM.TITLE,
@@ -83,7 +83,7 @@
             T_MESSAGE_MANAGE MM
             LEFT JOIN T_CUSTOMER_MESSAGE CM ON MM.MESSAGE_MANAGE_ID = CM.MESSAGE_ID
         WHERE
-            CM.CUSTOMER_ID = ${customer.pk_customerid}
+            CM.CUSTOMER_ID = ${customerId}
             AND CM.READ_STATUS = 0
     </select>
 

@@ -1,7 +1,9 @@
 package cn.rzhd.wuye.common;
 
+import cn.rzhd.wuye.downloadclient.IExamDataServiceStub;
+import cn.rzhd.wuye.uploadclient.IMsgReceiveServiceStub;
+import cn.rzhd.wuye.utils.JsonUtils;
 import cn.rzhd.wuye.vo.RequesterVO;
-import cn.rzhd.wuye.wsclient.IExamDataServiceStub;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
@@ -30,5 +32,26 @@ public class WebService {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static String msgRecieve(RequesterVO requesterVO){
+        String aReturn = null;
+        try {
+            //获取方法
+            IMsgReceiveServiceStub iMsgReceiveServiceStub = new IMsgReceiveServiceStub();
+            //获取请求载体
+            IMsgReceiveServiceStub.MsgReceive msgReceive = new IMsgReceiveServiceStub.MsgReceive();
+            //将传入请求对象转换为Json字符串
+            String s = JsonUtils.objectToJson(requesterVO);
+            //设置请求参数
+            msgReceive.setString(s);
+            //传入请求载体并调用Webservice方法
+            IMsgReceiveServiceStub.MsgReceiveResponse msgReceiveResponse = iMsgReceiveServiceStub.msgReceive(msgReceive);
+            //获得相应Json字符串
+            aReturn = msgReceiveResponse.get_return();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return aReturn;
     }
 }

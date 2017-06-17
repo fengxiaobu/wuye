@@ -8,8 +8,8 @@ public interface IHomePageService {
     
     public <T> T findFeeListByCustomerId(Customer customer);
     
-    public <T> T findMessageNumByCustomer(Customer customer);
+    public <T> T findMessageNumByCustomer(String customerId);
     
-    public <T> T findMessageByCustomer(Customer customer);
+    public <T> T findMessageByCustomer(String customerId);
 
 }

@@ -4,7 +4,7 @@
  * This file was auto-generated from WSDL
  * by the Apache Axis2 version: 1.5.4  Built on : Dec 19, 2010 (08:18:42 CET)
  */
-package cn.rzhd.wuye.wsclient;
+package cn.rzhd.wuye.downloadclient;
 
 
 
@@ -135,20 +135,20 @@ public class IExamDataServiceStub extends org.apache.axis2.client.Stub {
      * Auto generated method signature
      *
      * @param getBaseData
-     * @throws cn.rzhd.wuye.wsclient.Exception :
+     * @throws cn.rzhd.wuye.uploadclient.Exception :
      * @see IExamDataServiceStub#getBaseData
      */
 
 
-    public cn.rzhd.wuye.wsclient.IExamDataServiceStub.GetBaseDataResponse getBaseData(
+    public cn.rzhd.wuye.downloadclient.IExamDataServiceStub.GetBaseDataResponse getBaseData(
 
-            cn.rzhd.wuye.wsclient.IExamDataServiceStub.GetBaseData getBaseData)
+            cn.rzhd.wuye.downloadclient.IExamDataServiceStub.GetBaseData getBaseData)
 
 
             throws java.rmi.RemoteException
 
 
-            , cn.rzhd.wuye.wsclient.Exception {
+            , cn.rzhd.wuye.uploadclient.Exception {
         org.apache.axis2.context.MessageContext _messageContext = null;
         try {
             org.apache.axis2.client.OperationClient _operationClient = _serviceClient.createClient(_operations[0].getName());
@@ -191,11 +191,11 @@ public class IExamDataServiceStub extends org.apache.axis2.client.Stub {
 
             java.lang.Object object = fromOM(
                     _returnEnv.getBody().getFirstElement(),
-                    cn.rzhd.wuye.wsclient.IExamDataServiceStub.GetBaseDataResponse.class,
+                    cn.rzhd.wuye.downloadclient.IExamDataServiceStub.GetBaseDataResponse.class,
                     getEnvelopeNamespaces(_returnEnv));
 
 
-            return (cn.rzhd.wuye.wsclient.IExamDataServiceStub.GetBaseDataResponse) object;
+            return (cn.rzhd.wuye.downloadclient.IExamDataServiceStub.GetBaseDataResponse) object;
 
         } catch (org.apache.axis2.AxisFault f) {
 
@@ -216,8 +216,8 @@ public class IExamDataServiceStub extends org.apache.axis2.client.Stub {
                                 new java.lang.Class[]{messageClass});
                         m.invoke(ex, new java.lang.Object[]{messageObject});
 
-                        if (ex instanceof cn.rzhd.wuye.wsclient.Exception) {
-                            throw (cn.rzhd.wuye.wsclient.Exception) ex;
+                        if (ex instanceof cn.rzhd.wuye.uploadclient.Exception) {
+                            throw (cn.rzhd.wuye.uploadclient.Exception) ex;
                         }
 
 
@@ -279,12 +279,12 @@ public class IExamDataServiceStub extends org.apache.axis2.client.Stub {
         return false;
     }
 
-    private org.apache.axiom.om.OMElement toOM(cn.rzhd.wuye.wsclient.IExamDataServiceStub.GetBaseData param, boolean optimizeContent)
+    private org.apache.axiom.om.OMElement toOM(cn.rzhd.wuye.downloadclient.IExamDataServiceStub.GetBaseData param, boolean optimizeContent)
             throws org.apache.axis2.AxisFault {
 
 
         try {
-            return param.getOMElement(cn.rzhd.wuye.wsclient.IExamDataServiceStub.GetBaseData.MY_QNAME,
+            return param.getOMElement(cn.rzhd.wuye.downloadclient.IExamDataServiceStub.GetBaseData.MY_QNAME,
                     org.apache.axiom.om.OMAbstractFactory.getOMFactory());
         } catch (org.apache.axis2.databinding.ADBException e) {
             throw org.apache.axis2.AxisFault.makeFault(e);
@@ -293,12 +293,12 @@ public class IExamDataServiceStub extends org.apache.axis2.client.Stub {
 
     }
 
-    private org.apache.axiom.om.OMElement toOM(cn.rzhd.wuye.wsclient.IExamDataServiceStub.GetBaseDataResponse param, boolean optimizeContent)
+    private org.apache.axiom.om.OMElement toOM(cn.rzhd.wuye.downloadclient.IExamDataServiceStub.GetBaseDataResponse param, boolean optimizeContent)
             throws org.apache.axis2.AxisFault {
 
 
         try {
-            return param.getOMElement(cn.rzhd.wuye.wsclient.IExamDataServiceStub.GetBaseDataResponse.MY_QNAME,
+            return param.getOMElement(cn.rzhd.wuye.downloadclient.IExamDataServiceStub.GetBaseDataResponse.MY_QNAME,
                     org.apache.axiom.om.OMAbstractFactory.getOMFactory());
         } catch (org.apache.axis2.databinding.ADBException e) {
             throw org.apache.axis2.AxisFault.makeFault(e);
@@ -307,12 +307,12 @@ public class IExamDataServiceStub extends org.apache.axis2.client.Stub {
 
     }
 
-    private org.apache.axiom.om.OMElement toOM(cn.rzhd.wuye.wsclient.IExamDataServiceStub.ExceptionE param, boolean optimizeContent)
+    private org.apache.axiom.om.OMElement toOM(cn.rzhd.wuye.downloadclient.IExamDataServiceStub.ExceptionE param, boolean optimizeContent)
             throws org.apache.axis2.AxisFault {
 
 
         try {
-            return param.getOMElement(cn.rzhd.wuye.wsclient.IExamDataServiceStub.ExceptionE.MY_QNAME,
+            return param.getOMElement(cn.rzhd.wuye.downloadclient.IExamDataServiceStub.ExceptionE.MY_QNAME,
                     org.apache.axiom.om.OMAbstractFactory.getOMFactory());
         } catch (org.apache.axis2.databinding.ADBException e) {
             throw org.apache.axis2.AxisFault.makeFault(e);
@@ -321,14 +321,14 @@ public class IExamDataServiceStub extends org.apache.axis2.client.Stub {
 
     }
 
-    private org.apache.axiom.soap.SOAPEnvelope toEnvelope(org.apache.axiom.soap.SOAPFactory factory, cn.rzhd.wuye.wsclient.IExamDataServiceStub.GetBaseData param, boolean optimizeContent)
+    private org.apache.axiom.soap.SOAPEnvelope toEnvelope(org.apache.axiom.soap.SOAPFactory factory, cn.rzhd.wuye.downloadclient.IExamDataServiceStub.GetBaseData param, boolean optimizeContent)
             throws org.apache.axis2.AxisFault {
 
 
         try {
 
             org.apache.axiom.soap.SOAPEnvelope emptyEnvelope = factory.getDefaultEnvelope();
-            emptyEnvelope.getBody().addChild(param.getOMElement(cn.rzhd.wuye.wsclient.IExamDataServiceStub.GetBaseData.MY_QNAME, factory));
+            emptyEnvelope.getBody().addChild(param.getOMElement(cn.rzhd.wuye.downloadclient.IExamDataServiceStub.GetBaseData.MY_QNAME, factory));
             return emptyEnvelope;
         } catch (org.apache.axis2.databinding.ADBException e) {
             throw org.apache.axis2.AxisFault.makeFault(e);
@@ -351,23 +351,23 @@ public class IExamDataServiceStub extends org.apache.axis2.client.Stub {
 
         try {
 
-            if (cn.rzhd.wuye.wsclient.IExamDataServiceStub.GetBaseData.class.equals(type)) {
+            if (cn.rzhd.wuye.downloadclient.IExamDataServiceStub.GetBaseData.class.equals(type)) {
 
-                return cn.rzhd.wuye.wsclient.IExamDataServiceStub.GetBaseData.Factory.parse(param.getXMLStreamReaderWithoutCaching());
-
-
-            }
-
-            if (cn.rzhd.wuye.wsclient.IExamDataServiceStub.GetBaseDataResponse.class.equals(type)) {
-
-                return cn.rzhd.wuye.wsclient.IExamDataServiceStub.GetBaseDataResponse.Factory.parse(param.getXMLStreamReaderWithoutCaching());
+                return cn.rzhd.wuye.downloadclient.IExamDataServiceStub.GetBaseData.Factory.parse(param.getXMLStreamReaderWithoutCaching());
 
 
             }
 
-            if (cn.rzhd.wuye.wsclient.IExamDataServiceStub.ExceptionE.class.equals(type)) {
+            if (cn.rzhd.wuye.downloadclient.IExamDataServiceStub.GetBaseDataResponse.class.equals(type)) {
 
-                return cn.rzhd.wuye.wsclient.IExamDataServiceStub.ExceptionE.Factory.parse(param.getXMLStreamReaderWithoutCaching());
+                return cn.rzhd.wuye.downloadclient.IExamDataServiceStub.GetBaseDataResponse.Factory.parse(param.getXMLStreamReaderWithoutCaching());
+
+
+            }
+
+            if (cn.rzhd.wuye.downloadclient.IExamDataServiceStub.ExceptionE.class.equals(type)) {
+
+                return cn.rzhd.wuye.downloadclient.IExamDataServiceStub.ExceptionE.Factory.parse(param.getXMLStreamReaderWithoutCaching());
 
 
             }

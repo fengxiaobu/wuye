@@ -5,6 +5,7 @@ import cn.rzhd.wuye.common.WebService;
 import cn.rzhd.wuye.service.ICompanyService;
 import cn.rzhd.wuye.service.IKfFeeService;
 import cn.rzhd.wuye.service.IPropertyFeeService;
+import cn.rzhd.wuye.uploadclient.Exception;
 import cn.rzhd.wuye.utils.FirstAndLastDay;
 import cn.rzhd.wuye.utils.JsonUtils;
 import cn.rzhd.wuye.utils.MD5Utils;
@@ -13,6 +14,7 @@ import com.github.pagehelper.StringUtil;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.rmi.RemoteException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -135,7 +137,10 @@ public class ServiceTest extends BaseTest {
                 }
             }
         }
+    }
 
+    @Test
+    public void testUpload() throws RemoteException, Exception {
 
     }
 }

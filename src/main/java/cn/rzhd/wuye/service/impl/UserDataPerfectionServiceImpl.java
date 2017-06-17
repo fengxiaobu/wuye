@@ -31,22 +31,12 @@ public class UserDataPerfectionServiceImpl implements IUserDataPerfectionService
 
     @Override
     public void addUserDataPerfection(PerfectInformation perfectInformation) {
-	
-	Integer findMaxPerfectInformationId = mapper.findMaxPerfectInformationId();
-	
-	if(findMaxPerfectInformationId == 0){
-	    perfectInformation.setPerfectInformationId(1l);
-	}else {
-	    perfectInformation.setPerfectInformationId(Long.parseLong((String.valueOf(findMaxPerfectInformationId+1))));
-	}
-//	perfectInformation.setPerfectInformationId(1l);
 	perfectInformation.setStatus(0);
 	perfectInformation.setCarteTime(new Date());
 //	perfectInformation.setCompanyEstablishTime(new Date());
 //	perfectInformation.setCertificateTime(new Date());
 //	perfectInformation.setHangBoardTime(new Date());
 	mapper.addUserDataPerfection(perfectInformation);
-	
     }
 
 //    @Override

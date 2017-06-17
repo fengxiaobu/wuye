@@ -6,11 +6,11 @@
  * by the Apache Axis2 version: 1.5.4  Built on : Dec 19, 2010 (08:18:42 CET)
  */
 
-package cn.rzhd.wuye.downloadclient;
+package cn.rzhd.wuye.uploadclient;
 
 public class Exception extends java.lang.Exception{
     
-    private cn.rzhd.wuye.downloadclient.IExamDataServiceStub.ExceptionE faultMessage;
+    private IMsgReceiveServiceStub.ExceptionE faultMessage;
 
     
         public Exception() {
@@ -30,11 +30,11 @@ public class Exception extends java.lang.Exception{
         }
     
 
-    public void setFaultMessage(cn.rzhd.wuye.downloadclient.IExamDataServiceStub.ExceptionE msg){
+    public void setFaultMessage(IMsgReceiveServiceStub.ExceptionE msg){
        faultMessage = msg;
     }
     
-    public cn.rzhd.wuye.downloadclient.IExamDataServiceStub.ExceptionE getFaultMessage(){
+    public IMsgReceiveServiceStub.ExceptionE getFaultMessage(){
        return faultMessage;
     }
 }

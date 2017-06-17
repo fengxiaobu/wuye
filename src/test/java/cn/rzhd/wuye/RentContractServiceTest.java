@@ -1,7 +1,6 @@
 package cn.rzhd.wuye;
 
 import cn.rzhd.wuye.common.WebService;
-import cn.rzhd.wuye.mapper.RentContractMapper;
 import cn.rzhd.wuye.service.IRentContractService;
 import cn.rzhd.wuye.utils.JsonUtils;
 import cn.rzhd.wuye.vo.*;
@@ -65,7 +64,6 @@ public class RentContractServiceTest extends BaseTest {
 
 					}
 				}
-
 			}
 		}
 	}

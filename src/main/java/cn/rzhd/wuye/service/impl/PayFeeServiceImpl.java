@@ -37,10 +37,10 @@ public class PayFeeServiceImpl implements IPayFeeService {
         List<PropertyFee> before60 = new ArrayList<>();
         List<PropertyFee> before30 = new ArrayList<>();
         ArrearsQuery arrearsQuery = new ArrearsQuery();
-
+        //获取当前日期并提前两个月
         Date sixtyDay = new Date();
         sixtyDay.setTime(sixtyDay.getTime() - 5184000000L);
-
+        //获取当前日期并提前一个月
         Date thirtyDate = new Date();
         thirtyDate.setTime(thirtyDate.getTime() - 2592000000L);
         arrearsQuery.setStartDate(null);
@@ -95,31 +95,39 @@ public class PayFeeServiceImpl implements IPayFeeService {
             Date endDate = (Date) amountLeft.get("endDate");
             BigDecimal firstMoney = (BigDecimal) amountLeft.get("first");
             BigDecimal everyMoney = (BigDecimal) amountLeft.get("every");
-
+            //获取已缴金额,为限制缴费时间段中已交费用的总和
             BigDecimal paid = electricPayDetailsService.getAstrictPaid(query.getHouseInfoId(), (Date) amountLeft.get("starDate"), (Date) amountLeft.get("endDate"));
 
             //核心逻辑
             //获取当前系统时间
             Date now = new Date();
-            //判断当前时间是否在限制期内
+            //获取欠费满一个月不满两个月的缴费记录
             List before30 = arrears.get("before30");
+            //判断当前时间是否在限制期内
+            //如果在时间期限内,并且有欠费满一个月不满两个月的缴费记录
             if ((!now.after(endDate) && !now.before(startDate)) && !before30.isEmpty()) {
+                //如果有首次限缴金额,则使用首次限缴金额计算
+                //限缴金额为后台系统设置值-已付金额
                 if (firstMoney != null) {
-
                     firstMoney = firstMoney.subtract((paid == null) ? new BigDecimal(0) : paid);
+                    //如果缴费金额小于等于限制金额
                     if (money.compareTo(firstMoney) == -1 || money.compareTo(firstMoney) == 0) {
+                        //通过,并返回电费金额
                         map.put("status", true);
                         map.put("electricFee", money);
                         return map;
+                        //否则不通过,并返回本月限购金额
                     } else if (money.compareTo(firstMoney) == 1) {
                         map.put("status", false);
                         map.put("msg", "已超出限额,本月电费限额" + firstMoney + "元");
                         return map;
                     }
                 } else {
+                    //如果没有设置首次限额,则认为没有设置限制,直接通过
                     map.put("electricFee", money);
                     map.put("status", "true");
                 }
+                //如果超过两个月,以下逻辑和上面相似
             } else if (now.after(endDate)) {
                 if (everyMoney != null) {
                     everyMoney = everyMoney.subtract((paid == null) ? new BigDecimal(0) : paid);
@@ -148,6 +156,7 @@ public class PayFeeServiceImpl implements IPayFeeService {
         Map<String, Object> map = new HashMap<>();
         HouseVO houseInfo = houseInfoDetailsService.selectById(query.getHouseInfoId());
         if (houseInfo != null) {
+            //如果该房产有单独限制,则采用该房产的限制条件
             if ("Y".equals(houseInfo.getAstrictStatus())) {
                 map.put("first", houseInfo.getFirstMoney());
                 map.put("every", houseInfo.getEveryMoney());
@@ -155,6 +164,7 @@ public class PayFeeServiceImpl implements IPayFeeService {
                 map.put("endDate", houseInfo.getEndDate());
                 map.put("isAstrict", houseInfo.getAstrictStatus());
                 return map;
+                //否则采用项目限制
             } else {
                 BigDecimal firstMoney = houseInfo.getProjectInfo().getFirstMoney();
                 BigDecimal everyMoney = houseInfo.getProjectInfo().getEveryMoney();
