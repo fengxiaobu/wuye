@@ -15,9 +15,9 @@ public interface HomePageMapper {
     
 //    <T> T findFeeListByHouseId(@Param("houseId")String houseId);
     
-    List<Map<String, Object>> findKfFeeListByCustomerId(Customer customer);
+    List<Map<String, Object>> findKfFeeListByCustomerId(@Param("customerId")String customerId,@Param("houseInfoId")String houseInfoId);
     
-    List<Map<String, Object>> findPropertyFeeListByCustomerId(@Param("customer")Customer customer);
+    List<Map<String, Object>> findPropertyFeeListByCustomerId(@Param("customerId")String customerId,@Param("houseInfoId")String houseInfoId);
     
     <T> T findMessageNumByCustomer(String customerId);
     
