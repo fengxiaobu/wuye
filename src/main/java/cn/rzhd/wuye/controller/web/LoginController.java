@@ -31,16 +31,15 @@ public class LoginController {
     IRetreatLeaseApplyService retreatLeaseApplyService;
 
     /**
-     *
      * @param customer 通过Customer对象将vccode账号,password密码(未加密)封装起来
-     * @return json对象,包含房产id及房产名称
+     * @return json对象, 包含房产id及房产名称
      */
     @RequestMapping("/login")
-    public JsonResult login(Customer customer){
+    public JsonResult login(Customer customer) {
         List<Customer> customers = customerService.loginByPwd(customer);
-        if (customers.isEmpty()){
+        if (customers.isEmpty()) {
             return new JsonResult("客户不存在!!!");
-        }else{
+        } else {
             JsonResult result = new JsonResult();
             //只取租赁客户
             for (Customer cus : customers) {
@@ -48,11 +47,11 @@ public class LoginController {
                 for (PactVO vo : pactVOS) {
                     ReletApply reletApply = reletApplyService.findReletApply(vo.getPk_house());
                     RetreatLeaseApply retreatLeaseApply = retreatLeaseApplyService.findRetreatLeaseApply(vo.getPk_house());
-                    if (reletApply!=null){
+                    if (reletApply != null) {
                         vo.setContractStatus("1");
-                    }else if(retreatLeaseApply!=null){
+                    } else if (retreatLeaseApply != null) {
                         vo.setContractStatus("-1");
-                    }else{
+                    } else {
                         vo.setContractStatus("0");
                     }
                 }
