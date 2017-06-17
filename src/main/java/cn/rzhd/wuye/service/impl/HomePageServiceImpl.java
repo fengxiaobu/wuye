@@ -69,7 +69,6 @@ public class HomePageServiceImpl implements IHomePageService {
 
     @Override
     public List<MessageManage> findMessageByCustomer(String customerId) {
-	
 	List<MessageManage> findMessageByCustomer = mapper.findMessageByCustomer(customerId);
 	return findMessageByCustomer;
     }

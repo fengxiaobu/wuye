@@ -41,17 +41,7 @@ public class ElectricFeeInvoiceDeta implements Serializable {
      * 电费开票额度
      */
     private BigDecimal electricFeeInvoiceSum;
-    
-    /**
-     * 基本物业费
-     */
-    private BigDecimal basicPropertyFee;
-    
-    /**
-     * 物业费开票额度
-     */
-    private BigDecimal propertyFeeInvoiceSum;
-    
+
     /**
      * 三方协议
      */
@@ -75,6 +65,10 @@ public class ElectricFeeInvoiceDeta implements Serializable {
      * 电费缴费记录ID
      */
     private Long electricFeePayDetailsId;
+    /**
+     * 发票生效状态(Y--生效,N--未生效)
+     */
+    private String status = "N";
 
     public Long getElectricChargeInvoiceDeta() {
         return electricChargeInvoiceDeta;
@@ -116,22 +110,6 @@ public class ElectricFeeInvoiceDeta implements Serializable {
         this.electricFeeInvoiceSum = electricFeeInvoiceSum;
     }
 
-    public BigDecimal getBasicPropertyFee() {
-        return basicPropertyFee;
-    }
-
-    public void setBasicPropertyFee(BigDecimal basicPropertyFee) {
-        this.basicPropertyFee = basicPropertyFee;
-    }
-
-    public BigDecimal getPropertyFeeInvoiceSum() {
-        return propertyFeeInvoiceSum;
-    }
-
-    public void setPropertyFeeInvoiceSum(BigDecimal propertyFeeInvoiceSum) {
-        this.propertyFeeInvoiceSum = propertyFeeInvoiceSum;
-    }
-
     public String getTripleAgreement() {
         return tripleAgreement;
     }
@@ -170,5 +148,13 @@ public class ElectricFeeInvoiceDeta implements Serializable {
 
     public void setElectricFeePayDetailsId(Long electricFeePayDetailsId) {
         this.electricFeePayDetailsId = electricFeePayDetailsId;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

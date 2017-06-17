@@ -30,7 +30,7 @@ public class PactVO implements Serializable {
 	private String dysdate;// 首笔租金应收款日期
 	private String nsbzjyjmny;// 首笔租金应交金额
 	private String projectName;// 项目名称
-	private String vdef2;// 备用文本字段2
+	private String contractStatus;// 合同状态-1--退租,0--正常,1--续租
 	private String vdef3;// 备用文本字段3
 	private String vdef4;// 备用文本字段4
 	private String vdef5;// 备用文本字段5
@@ -179,12 +179,12 @@ public class PactVO implements Serializable {
 		this.projectName = projectName;
 	}
 
-	public String getVdef2() {
-		return vdef2;
+	public String getContractStatus() {
+		return contractStatus;
 	}
 
-	public void setVdef2(String vdef2) {
-		this.vdef2 = vdef2;
+	public void setContractStatus(String contractStatus) {
+		this.contractStatus = contractStatus;
 	}
 
 	public String getVdef3() {
@@ -251,13 +251,5 @@ public class PactVO implements Serializable {
 		this.ndef5 = ndef5;
 	}
 
-	@Override
-	public String toString() {
-		return "PactVO{" + "pk_corp='" + pk_corp + '\'' + ", pk_customerid='" + pk_customerid + '\'' + ", pk_project='"
-				+ pk_project + '\'' + ", pk_pact='" + pk_pact + '\'' + ", pk_house='" + pk_house + '\'' + ", house='"
-				+ house + '\'' + ", nrentarea='" + nrentarea + '\'' + ", dpactend='" + dpactend + '\''
-				+ ", dpactstart='" + dpactstart + '\'' + ", nzlbzjmny='" + nzlbzjmny + '\'' + ", nhtysmny='" + nhtysmny
-				+ '\'' + ", nhtssmny='" + nhtssmny + '\'' + ", dysdate='" + dysdate + '\'' + ", nsbzjyjmny='"
-				+ nsbzjyjmny + '\'' + '}';
-	}
+
 }

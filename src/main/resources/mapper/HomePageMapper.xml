@@ -38,7 +38,7 @@
             "T_KF_Fee" KF
             LEFT JOIN T_HOUSE_INFO_DETAILS HID ON KF."pk_house" = HID."pk_house"
         WHERE
-            KF."pk_customerid" = ${pk_customerid}
+            KF."pk_customerid" = #{pk_customerid}
     </select>
 
     <!-- 物业费用查询 -->
@@ -53,7 +53,7 @@
             T_PROPERTY_FEE PF
             LEFT JOIN T_HOUSE_INFO_DETAILS HID ON PF."pk_house" = HID."pk_house"
         WHERE
-            PF."pk_customerid" = ${customer.pk_customerid}
+            PF."pk_customerid" = #{customer.pk_customerid}
     </select>
 
     <!-- 查询消息通知未读条数 -->
@@ -83,7 +83,7 @@
             T_MESSAGE_MANAGE MM
             LEFT JOIN T_CUSTOMER_MESSAGE CM ON MM.MESSAGE_MANAGE_ID = CM.MESSAGE_ID
         WHERE
-            CM.CUSTOMER_ID = ${customerId}
+            CM.CUSTOMER_ID = #{customerId}
             AND CM.READ_STATUS = 0
     </select>
 

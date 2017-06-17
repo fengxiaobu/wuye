@@ -77,19 +77,19 @@ public class HomePageController {
     /**
      * 查询未读信息数
      *
-     * @param customerid
+     * @param pk_customerid
      * @return
      */
     @RequestMapping(value = "/findMessageNumByCutromer", method = RequestMethod.POST)
-    public String findMessageNumByCutromer(String customerid) {
-        if (customerid == null || "".equals(customerid.trim())) {
+    public String findMessageNumByCutromer(String pk_customerid) {
+        if (pk_customerid == null || "".equals(pk_customerid.trim())) {
             return JsonUtils.objectToJson("客户主键不能为空");
         }
-        String[] strings = customerid.split(",");
+        String[] strings = pk_customerid.split(",");
         try {
             Integer number = 0;
             for (String customer : strings) {
-                Integer findMessageNumByCustomer = homePageService.findMessageNumByCustomer(customer);
+                Integer findMessageNumByCustomer = homePageService.findMessageNumByCustomer(customer.trim());
                 number += findMessageNumByCustomer;
             }
             return JsonUtils.objectToJson(number);
@@ -102,19 +102,19 @@ public class HomePageController {
     /**
      * 查询通知消息的标题列表
      *
-     * @param customerid
+     * @param pk_customerid
      * @return
      */
     @RequestMapping(value = "/findMessageByCustomer", method = RequestMethod.POST)
-    public String findMessageByCustomer(String customerid) {
-        if (customerid == null || "".equals(customerid.trim())) {
+    public String findMessageByCustomer(String pk_customerid) {
+        if (pk_customerid == null || "".equals(pk_customerid.trim())) {
             return JsonUtils.objectToJson("客户主键不能为空");
         }
-        String[] strings = customerid.split(",");
+        String[] strings = pk_customerid.split(",");
         try {
             List<MessageManage> result = new ArrayList<>();
             for (String customerId : strings) {
-                List<MessageManage> findMessageByCustomer = homePageService.findMessageByCustomer(customerId);
+                List<MessageManage> findMessageByCustomer = homePageService.findMessageByCustomer(customerId.trim());
                 result.addAll(findMessageByCustomer);
             }
             return JsonUtils.objectToJson(result);
