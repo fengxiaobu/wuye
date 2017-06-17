@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="cn.rzhd.wuye.mapper.ReletApplyMapper" >
-    <resultMap id="BaseResultMap" type="cn.rzhd.wuye.bean.ReletApply" >
-        <id column="RELET_APPLY_ID" property="reletApplyId"  />
-        <result column="HOUSE_INFO_ID" property="houseInfoId"  />
-        <result column="CLIENT_NAME" property="clientName"  />
-        <result column="HOUSE_ACREAGE" property="houseAcreage"  />
-        <result column="LEASE_START_TIME" property="leaseStartTime" />
-        <result column="LEASE_END_TIME" property="leaseEndTime" />
-        <result column="TYPE" property="type"  />
-        <result column="RETREA_TIME" property="retreaTime" />
-        <result column="RETREA_TYPE" property="retreaType" />
-        <result column="SINGLE_PRICE" property="singlePrice"  />
-        <result column="SUBTOTAL" property="subtotal"  />
-        <result column="PRIVILEGE_SUM" property="privilegeSum"  />
-        <result column="LEASE_DEPOSIT" property="leaseDeposit"  />
-        <result column="TOTAL" property="total"  />
-        <result column="CREATION_TIME" property="creationTime" />
-        <result column="UPDATE_TIME" property="updateTime" />
-        <result column="RETREA_END_TIME" property="retreaEndTime" />
+<mapper namespace="cn.rzhd.wuye.mapper.ReletApplyMapper">
+    <resultMap id="BaseResultMap" type="cn.rzhd.wuye.bean.ReletApply">
+        <id column="RELET_APPLY_ID" property="reletApplyId"/>
+        <result column="HOUSE_INFO_ID" property="houseInfoId"/>
+        <result column="CLIENT_NAME" property="clientName"/>
+        <result column="HOUSE_ACREAGE" property="houseAcreage"/>
+        <result column="LEASE_START_TIME" property="leaseStartTime"/>
+        <result column="LEASE_END_TIME" property="leaseEndTime"/>
+        <result column="TYPE" property="type"/>
+        <result column="RETREA_TIME" property="retreaTime"/>
+        <result column="RETREA_TYPE" property="retreaType"/>
+        <result column="SINGLE_PRICE" property="singlePrice"/>
+        <result column="SUBTOTAL" property="subtotal"/>
+        <result column="PRIVILEGE_SUM" property="privilegeSum"/>
+        <result column="LEASE_DEPOSIT" property="leaseDeposit"/>
+        <result column="TOTAL" property="total"/>
+        <result column="CREATION_TIME" property="creationTime"/>
+        <result column="UPDATE_TIME" property="updateTime"/>
+        <result column="RETREA_END_TIME" property="retreaEndTime"/>
     </resultMap>
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
         delete from T_RELET_APPLY
         where RELET_APPLY_ID = #{reletApplyId}
     </delete>
-    <insert id="insert" parameterType="cn.rzhd.wuye.bean.ReletApply" >
+    <insert id="insert" parameterType="cn.rzhd.wuye.bean.ReletApply">
         insert into T_RELET_APPLY (RELET_APPLY_ID, HOUSE_INFO_ID, CLIENT_NAME,
         HOUSE_ACREAGE, LEASE_START_TIME, LEASE_END_TIME,
         TYPE, RETREA_TIME, RETREA_TYPE,
@@ -38,7 +38,7 @@
         #{leaseDeposit}, #{total}, #{creationTime},
         #{updateTime},#{retreaEndTime})
     </insert>
-    <update id="updateByPrimaryKey" parameterType="cn.rzhd.wuye.bean.ReletApply" >
+    <update id="updateByPrimaryKey" parameterType="cn.rzhd.wuye.bean.ReletApply">
         update T_RELET_APPLY
         set HOUSE_INFO_ID = #{houseInfoId},
         CLIENT_NAME = #{clientName},
@@ -58,24 +58,25 @@
         RETREA_END_TIME=#{retreaEndTime}
         where RELET_APPLY_ID = #{reletApplyId}
     </update>
-    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
         select RELET_APPLY_ID, HOUSE_INFO_ID, CLIENT_NAME, HOUSE_ACREAGE, LEASE_START_TIME,
         LEASE_END_TIME, TYPE, RETREA_TIME, RETREA_TYPE, SINGLE_PRICE, SUBTOTAL, PRIVILEGE_SUM,
         LEASE_DEPOSIT, TOTAL, CREATION_TIME, UPDATE_TIME,RETREA_END_TIME
         from T_RELET_APPLY
         where RELET_APPLY_ID = #{reletApplyId}
     </select>
-    <select id="selectAll" resultMap="BaseResultMap" >
+    <select id="selectAll" resultMap="BaseResultMap">
         select RELET_APPLY_ID, HOUSE_INFO_ID, CLIENT_NAME, HOUSE_ACREAGE, LEASE_START_TIME,
         LEASE_END_TIME, TYPE, RETREA_TIME, RETREA_TYPE, SINGLE_PRICE, SUBTOTAL, PRIVILEGE_SUM,
         LEASE_DEPOSIT, TOTAL, CREATION_TIME, UPDATE_TIME,RETREA_END_TIME
         from T_RELET_APPLY
     </select>
-<!--
-    <select id="selectAll" resultMap="BaseResultMap" >
+
+    <select id="findReletApply" resultMap="BaseResultMap">
         select RELET_APPLY_ID, HOUSE_INFO_ID, CLIENT_NAME, HOUSE_ACREAGE, LEASE_START_TIME,
         LEASE_END_TIME, TYPE, RETREA_TIME, RETREA_TYPE, SINGLE_PRICE, SUBTOTAL, PRIVILEGE_SUM,
         LEASE_DEPOSIT, TOTAL, CREATION_TIME, UPDATE_TIME,RETREA_END_TIME
         from T_RELET_APPLY
-    </select>-->
+        WHERE HOUSE_INFO_ID=#{houseIfoId}
+    </select>
 </mapper>

@@ -1,7 +1,6 @@
 package cn.rzhd.wuye.service;
 
 import cn.rzhd.wuye.bean.RetreatLeaseApply;
-import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -10,7 +9,7 @@ import java.util.List;
  * 退租申请
  */
 public interface IRetreatLeaseApplyService {
-    int deleteByPrimaryKey(@Param("retreatLeaseApplyId") Long retreatLeaseApplyId);
+    int deleteByPrimaryKey(Long retreatLeaseApplyId);
 
     int insert(RetreatLeaseApply record);
 
@@ -19,4 +18,6 @@ public interface IRetreatLeaseApplyService {
     List<RetreatLeaseApply> selectAll();
 
     int updateByPrimaryKey(RetreatLeaseApply record);
+
+    RetreatLeaseApply findRetreatLeaseApply(String houseInfoId);
 }

@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.net.URLDecoder;
+import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -28,7 +31,7 @@ public class ChinaPay {
     }
 
     @RequestMapping("/pay")
-    public String toChinaPay(Model model,RequestVO requestVO, HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    public String toChinaPay(Model model, RequestVO requestVO, HttpServletRequest req, HttpServletResponse resp) throws IOException {
         //前台页面传过来的
         ChinaPayHelper chinaPayHelper = new ChinaPayHelper();
         requestVO.setRemoteAddr(HttpUtils.getIpAddr(req));
@@ -40,11 +43,16 @@ public class ChinaPay {
         RequestVO vo = chinaPayHelper.getSign(requestVO);
 
         Map<String, Object> objectMap = BeanUtils.objectToMap(vo);
+        for (String s : objectMap.keySet()) {
+            System.out.println("name = " + s + "    value=" + objectMap.get(s));
+
+        }
+        System.out.println("objectMap = " + objectMap);
         Map<String, Object> sign = ChinaPaySignUtils.sign(objectMap);
         resp.setCharacterEncoding("UTF-8");
 
         //签名
-        model.addAttribute("Signature",sign.get("sign"));
+        model.addAttribute("Signature", sign.get("sign"));
         //版本
         model.addAttribute("Version", vo.getVersion());
         //接入类型
@@ -87,22 +95,87 @@ public class ChinaPay {
         return "toChinaPay";
     }
 
-    @RequestMapping("/sendpay")
+    @RequestMapping("/dist/sendpay")
     @ResponseBody
-    public  Map<String, Object> pay(RequestVO requestVO, HttpServletRequest req) throws IOException {
+    public Map<String, Object> pay(RequestVO requestVO, HttpServletRequest req) throws IOException {
         //前台页面传过来的
         ChinaPayHelper chinaPayHelper = new ChinaPayHelper();
         requestVO.setRemoteAddr(HttpUtils.getIpAddr(req));
         requestVO.setMerOrderNo(RandomUtil.randomString(32));
         //requestVO.setBankInstNo("700000000000017");
-        requestVO.setCommodityMsg("物业测试");
-        requestVO.setMerResv("交易商品");
-        // requestVO.setAcqCode("");
+        //requestVO.setCommodityMsg("物业测试");
+        //requestVO.setMerResv("交易商品");
+        // requestVO.setAcqCode("");//收单机构号
         RequestVO vo = chinaPayHelper.getSign(requestVO);
 
         Map<String, Object> objectMap = BeanUtils.objectToMap(vo);
         Map<String, Object> sign = ChinaPaySignUtils.sign(objectMap);
         objectMap.put("Signature", sign.get("sign"));
+        objectMap.put("postUrl","http://newpayment-test.chinapay.com/CTITS/service/rest/page/nref/000000000017/0/0/0/0/0");
         return objectMap;
+    }
+
+    @RequestMapping("/bgReturn")
+    public void bgReturn(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        request.setCharacterEncoding("utf-8");
+        response.setCharacterEncoding("utf-8");
+        //解析 返回报文
+        Enumeration<String> requestNames = request.getParameterNames();
+        Map<String, String> resultMap = new HashMap<>();
+        while (requestNames.hasMoreElements()) {
+            String name = requestNames.nextElement();
+            String value = request.getParameter(name);
+            value = URLDecoder.decode(value, "UTF-8");
+            resultMap.put(name, value);
+        }
+
+        //验证签名
+        if (ChinaPayHelper.verify(resultMap)) {
+            response.getWriter().write("success  返回报文解析成功");
+        } else {
+            response.getWriter().write("fail");
+        }
+    }
+
+    /**
+     * 前台解析报文
+     *
+     * @param request
+     * @param response
+     * @throws IOException
+     */
+    @RequestMapping("/pgReturn")
+    @ResponseBody
+    public Map<String, Object> pgReturn(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        request.setCharacterEncoding("utf-8");
+        response.setCharacterEncoding("utf-8");
+        //解析 返回报文
+        Enumeration<String> requestNames = request.getParameterNames();
+        Map<String, String> resultMap = new HashMap<>();
+        Map<String, Object> result = new HashMap<>();
+        while (requestNames.hasMoreElements()) {
+            String name = requestNames.nextElement();
+            String value = request.getParameter(name);
+            resultMap.put(name, value);
+        }
+
+        //验证签名
+        if (ChinaPayHelper.verify(resultMap)) {
+            result.put("state", "success");
+            result.put("data", resultMap);
+            //response.getWriter().write("success  返回报文解析成功");
+
+        } else {
+            // response.getWriter().write("fail");
+            result.put("state", "fail");
+            result.put("data", resultMap);
+        }
+       /* for(Map.Entry<String, String> entry:resultMap.entrySet()){
+            System.out.println("entry" + entry.getKey()+"   "+entry.getValue());
+            request.setAttribute(entry.getKey(), entry.getValue());
+        }*/
+
+        //转发请求到页面
+        return result;
     }
 }

@@ -21,4 +21,7 @@ public interface RetreatLeaseApplyMapper {
     List<RetreatLeaseApply> selectAll();
 
     int updateByPrimaryKey(RetreatLeaseApply record);
+
+    RetreatLeaseApply findRetreatLeaseApply(@Param("houseInfoId") String houseInfoId);
+
 }

@@ -41,4 +41,9 @@ public class ReletApplyServiceImpl implements IReletApplyService {
     public int updateByPrimaryKey(ReletApply record) {
         return reletApplyMapper.updateByPrimaryKey(record);
     }
+
+    @Override
+    public ReletApply findReletApply(String houseInfoId) {
+        return reletApplyMapper.findReletApply(houseInfoId);
+    }
 }
