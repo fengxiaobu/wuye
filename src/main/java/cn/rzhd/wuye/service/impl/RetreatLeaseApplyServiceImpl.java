@@ -41,4 +41,9 @@ public class RetreatLeaseApplyServiceImpl implements IRetreatLeaseApplyService {
     public int updateByPrimaryKey(RetreatLeaseApply record) {
         return retreatLeaseApplyMapper.updateByPrimaryKey(record);
     }
+
+    @Override
+    public RetreatLeaseApply findRetreatLeaseApply(String houseInfoId) {
+        return retreatLeaseApplyMapper.findRetreatLeaseApply(houseInfoId);
+    }
 }

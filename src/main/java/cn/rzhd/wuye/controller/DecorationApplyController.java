@@ -74,6 +74,7 @@ public class DecorationApplyController {
      * 装修资料
      */
     //public List<Map<String, Value>>
+
     /**
      * 装修申请
      */
@@ -214,7 +215,8 @@ public class DecorationApplyController {
         String dateDir2 = df2.format(new Date());// new Date()为获取当前系统时间
         String serviceName = file.getOriginalFilename().substring(0, file.getOriginalFilename().lastIndexOf(".")) + file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
 
-        File tempFile = new File(savePath + dateDir1 + "\\" + dateDir2 + File.separator + serviceName);
+        File tempFile = new File(savePath + dateDir1 + "/" + dateDir2 + File.separator + serviceName);
+        String path = "/upload/" + dateDir1 + "/" + dateDir2 + File.separator + serviceName;
         if (!tempFile.getParentFile().exists()) {
             tempFile.getParentFile().mkdirs();
         }
@@ -238,7 +240,7 @@ public class DecorationApplyController {
             }
             result.put("state", "1");
             result.put("msg", "上传成功");
-            result.put("url", tempFile.toString());
+            result.put("url", path);
             return result;
         } else {
             result.put("state", "0");

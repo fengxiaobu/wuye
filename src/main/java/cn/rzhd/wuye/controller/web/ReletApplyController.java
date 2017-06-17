@@ -5,7 +5,7 @@ import cn.rzhd.wuye.bean.RetreatLeaseApply;
 import cn.rzhd.wuye.service.IReletApplyService;
 import cn.rzhd.wuye.service.IRetreatLeaseApplyService;
 import cn.rzhd.wuye.utils.IDUtils;
-import jodd.util.StringUtil;
+import com.github.pagehelper.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,7 +19,7 @@ import java.util.Map;
  * 退租续租
  */
 
-@RestController("/dist")
+@RestController
 public class ReletApplyController {
     @Autowired
     IReletApplyService reletApplyService;
@@ -32,7 +32,7 @@ public class ReletApplyController {
      * @param reletApply
      * @return
      */
-    @RequestMapping("/insertReletApply")
+    @RequestMapping("/dist/insertReletApply")
     public Map<String, Object> insertReletApply(ReletApply reletApply) {
         Map<String, Object> result = new HashMap<>();
         Date date = new Date();
@@ -64,7 +64,7 @@ public class ReletApplyController {
      * @param retreatLeaseApply
      * @return
      */
-    @RequestMapping("/insertRetreatLease")
+    @RequestMapping("/dist/insertRetreatLease")
     public Map<String, Object> insertRetreatLeaseApply(RetreatLeaseApply retreatLeaseApply) {
         Map<String, Object> result = new HashMap<>();
         Date date = new Date();
@@ -87,4 +87,31 @@ public class ReletApplyController {
         return result;
     }
 
+    @RequestMapping("/dist/findReletApply")
+    public Map<String, Object> findReletApply(String houseInfoId) {
+        Map<String, Object> result = new HashMap<>();
+        if (StringUtil.isEmpty(houseInfoId)) {
+            result.put("date", "0");
+            result.put("msg", "房产ID不能为空");
+            return result;
+        }
+        ReletApply reletApply = reletApplyService.findReletApply(houseInfoId);
+        result.put("date", "1");
+        result.put("data", reletApply);
+        return result;
+    }
+
+    @RequestMapping("/dist/findRetreatLease")
+    public Map<String, Object> findRetreatLease(String houseInfoId) {
+        Map<String, Object> result = new HashMap<>();
+        if (StringUtil.isEmpty(houseInfoId)) {
+            result.put("date", "0");
+            result.put("msg", "房产ID不能为空");
+            return result;
+        }
+        RetreatLeaseApply retreatLeaseApply = retreatLeaseApplyService.findRetreatLeaseApply(houseInfoId);
+        result.put("date", "1");
+        result.put("data", retreatLeaseApply);
+        return result;
+    }
 }

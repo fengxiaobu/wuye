@@ -1,10 +1,12 @@
 package cn.rzhd.wuye.common;
 
 import cn.rzhd.wuye.utils.StringTimeUtil;
+import com.chinapay.secss.SecssUtil;
 import org.springframework.core.io.support.PropertiesLoaderUtils;
 
 import java.io.IOException;
 import java.util.Date;
+import java.util.Map;
 import java.util.Properties;
 
 /**
@@ -35,5 +37,16 @@ public class ChinaPayHelper {
         return requestVO;
     }
 
-
+    public static boolean verify(Map map){
+        SecssUtil secssUtil = new SecssUtil();
+        //从默认配置文件初始化安全控件
+        secssUtil.init();
+        System.out.println("证书" + secssUtil.getErrMsg());
+        secssUtil.verify(map);
+        System.out.println(secssUtil.getErrCode());
+        System.out.println(secssUtil.getErrMsg());
+        if("00".equals(secssUtil.getErrCode()))
+            return true;
+        return false;
+    }
 }

@@ -21,4 +21,6 @@ public interface ReletApplyMapper {
     List<ReletApply> selectAll();
 
     int updateByPrimaryKey(ReletApply record);
+
+    ReletApply findReletApply(@Param("houseInfoId") String houseInfoId);
 }
