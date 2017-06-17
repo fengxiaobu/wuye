@@ -6,6 +6,7 @@ import cn.rzhd.wuye.bean.MessageManage;
 import cn.rzhd.wuye.service.IHomePageService;
 import cn.rzhd.wuye.utils.JsonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -43,10 +44,8 @@ public class HomePageController {
             return JsonUtils.objectToJson("客户主键不能为空");
         }
         try {
-            List<Map<String, Object>> result = new ArrayList<>();
             List<Map<String, Object>> findHouseByCutomer = homePageService.findHouseByCutomer(customer);
-            result.addAll(findHouseByCutomer);
-            return JsonUtils.objectToJson(result);
+            return JsonUtils.objectToJson(findHouseByCutomer);
         } catch (Exception e) {
             e.printStackTrace();
             return JsonUtils.objectToJson("服务器异常");
@@ -64,10 +63,8 @@ public class HomePageController {
     public String findFeeListByCustomer(Customer customer) {
 
         try {
-            List<Map<String, Object>> result = new ArrayList<>();
             Map<String, Object> findFeeListByCustomerId = homePageService.findFeeListByCustomerId(customer);
-            result.add(findFeeListByCustomerId);
-            return JsonUtils.objectToJson(result);
+            return JsonUtils.objectToJson(findFeeListByCustomerId);
         } catch (Exception e) {
             e.printStackTrace();
             return JsonUtils.objectToJson("服务器异常");
@@ -81,7 +78,7 @@ public class HomePageController {
      * @return
      */
     @RequestMapping(value = "/findMessageNumByCutromer", method = RequestMethod.POST)
-    public String findMessageNumByCutromer(String pk_customerid) {
+    public String findMessageNumByCutromer(@RequestBody String pk_customerid) {
         if (pk_customerid == null || "".equals(pk_customerid.trim())) {
             return JsonUtils.objectToJson("客户主键不能为空");
         }
@@ -105,8 +102,8 @@ public class HomePageController {
      * @param pk_customerid
      * @return
      */
-    @RequestMapping(value = "/findMessageByCustomer", method = RequestMethod.POST)
-    public String findMessageByCustomer(String pk_customerid) {
+    @RequestMapping(value = "/findMessageByCustomer",method = RequestMethod.POST)
+    public String findMessageByCustomer(@RequestBody String pk_customerid) {
         if (pk_customerid == null || "".equals(pk_customerid.trim())) {
             return JsonUtils.objectToJson("客户主键不能为空");
         }

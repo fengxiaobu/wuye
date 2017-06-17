@@ -36,35 +36,37 @@ public class HomePageServiceImpl implements IHomePageService {
     }
 
     @Override
-    public Map<String, Object> findFeeListByCustomerId(Customer customer) {
+    public List<Map<String, Object>> findFeeListByCustomerId(Customer customer) {
         List<PactVO> houseInfos = customer.getHouseInfos();
-        List<Map<String, Object>> kfFeeList = new ArrayList<>();
-        List<Map<String, Object>> propertyFeeList = new ArrayList<>();
+        List<Map<String, Object>> result = new ArrayList<>();
+
+        Map<String, Object> map;
         for (PactVO houseInfo : houseInfos) {
+            map = new HashMap<>();
             String customerId = houseInfo.getPk_customerid();
             String houseInfoId = houseInfo.getPk_house();
-            kfFeeList.addAll(mapper.findKfFeeListByCustomerId(customerId, houseInfoId));
-            propertyFeeList.addAll(mapper.findPropertyFeeListByCustomerId(customerId, houseInfoId));
 
+            List<Map<String, Object>> kf = mapper.findKfFeeListByCustomerId(customerId, houseInfoId);
+            List<Map<String, Object>> property = mapper.findPropertyFeeListByCustomerId(customerId, houseInfoId);
+
+            Double kfFeeSum = 0.0;
+            for (Map<String, Object> kfmap : kf) {
+                kfFeeSum = Double.parseDouble(kfmap.get("nyshouldmny").toString()) + kfFeeSum;
+            }
+
+            Double propertyFeeSum = 0.0;
+            for (Map<String, Object> propertymap : property) {
+                propertyFeeSum = Double.parseDouble(propertymap.get("nyshouldmny").toString()) + propertyFeeSum;
+            }
+            map.put("house", houseInfo);
+            map.put("kfFee", kf);
+            map.put("propertyFee", property);
+            map.put("kfFeeSum", kfFeeSum);
+            map.put("propertyFeeSum", propertyFeeSum);
+            result.add(map);
         }
 
-        Double kfFeeSum = 0.0;
-        for (Map<String, Object> map : kfFeeList) {
-            kfFeeSum = Double.parseDouble(map.get("nyshouldmny").toString()) + kfFeeSum;
-        }
-
-        Double propertyFeeSum = 0.0;
-        for (Map<String, Object> map : propertyFeeList) {
-            propertyFeeSum = Double.parseDouble(map.get("nyshouldmny").toString()) + propertyFeeSum;
-        }
-
-        Map<String, Object> feeMap = new HashMap<>();
-        feeMap.put("kfFeeList", kfFeeList);
-        feeMap.put("kfFeeSum", kfFeeSum);
-        feeMap.put("propertyFeeList", propertyFeeList);
-        feeMap.put("propertyFeeSum", propertyFeeSum);
-
-        return feeMap;
+        return result;
     }
 
     @Override
@@ -78,6 +80,5 @@ public class HomePageServiceImpl implements IHomePageService {
         List<MessageManage> findMessageByCustomer = mapper.findMessageByCustomer(customerId);
         return findMessageByCustomer;
     }
-
 
 }

@@ -43,7 +43,7 @@ public interface IPropertyFeeService{
      * @param query
      * @return
      */
-    Map<String,List> queryForPay(ArrearsQuery query);
+    Map<String, Object> queryForPay(ArrearsQuery query);
 
     /**
      * 入驻物业费用
