@@ -15,10 +15,7 @@ import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -80,7 +77,7 @@ public class DecorationApplyController {
      */
     @RequestMapping(value = "/upload/batch", method = RequestMethod.POST)
     public @ResponseBody
-    Map<String, String> batchUpload(ResousVO resousVO) {
+    Map<String, String> batchUpload(@RequestBody ResousVO resousVO) {
         System.out.println("resousVO = " + resousVO);
         Map<String, String> result = new HashMap<>();
         Date date = new Date();

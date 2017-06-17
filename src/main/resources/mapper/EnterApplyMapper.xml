@@ -4,7 +4,7 @@
 <mapper namespace="cn.rzhd.wuye.mapper.EnterApplyMapper">
     <resultMap id="enterApplyMap" type="java.util.Map">
         <id column="ENTER_APPLY_ID" property="enterApplyId"/>
-        <result column="HOUSE_INFO_ID" property="houseInfoId"/>
+        <result column="HOUSE_INFO_ID" property="houseId"/>
         <result column="CLIENT_NAME" property="clientName"/>
         <result column="APPLY_TIME" property="applyTime"/>
         <result column="AUDIT_STATUS" property="auditStatus"/>
@@ -111,8 +111,8 @@
             CLIENT_NAME = #{clientName},
         </if>
 
-        <if test="houseInfoId != null">
-            HOUSE_INFO_ID = #{houseInfoId},
+        <if test="houseId != null">
+            HOUSE_INFO_ID = #{houseId},
         </if>
         <if test="auditStatus != null">
             AUDIT_STATUS = #{auditStatus},
@@ -137,7 +137,7 @@
       APPLY_TIME, AUDIT_STATUS, ENTER_ADVICE_NOTE,
       NOTES, CREATION_TIME, UPDATE_TIME
       )
-    values (T_ENTER_APPLY_ID_SEQ.Nextval, #{houseInfoId}, #{clientName},
+    values (T_ENTER_APPLY_ID_SEQ.Nextval, #{houseId}, #{clientName},
       #{applyTime}, #{auditStatus}, #{enterAdviceNote},
       #{notes}, #{creationTime}, #{updateTime}
       )

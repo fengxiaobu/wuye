@@ -23,7 +23,7 @@ public class EnterApply implements Serializable {
     /**
      * 房产id
      */
-    private String houseInfoId;
+    private String houseId;
     /**
      * 客户名称
      */
@@ -57,6 +57,78 @@ public class EnterApply implements Serializable {
      */
     private HouseInfo houseInfo;
 
+    public Long getEnterApplyId() {
+        return enterApplyId;
+    }
+
+    public void setEnterApplyId(Long enterApplyId) {
+        this.enterApplyId = enterApplyId;
+    }
+
+    public String getHouseId() {
+        return houseId;
+    }
+
+    public void setHouseId(String houseId) {
+        this.houseId = houseId;
+    }
+
+    public String getClientName() {
+        return clientName;
+    }
+
+    public void setClientName(String clientName) {
+        this.clientName = clientName;
+    }
+
+    public Date getApplyTime() {
+        return applyTime;
+    }
+
+    public void setApplyTime(Date applyTime) {
+        this.applyTime = applyTime;
+    }
+
+    public Integer getAuditStatus() {
+        return auditStatus;
+    }
+
+    public void setAuditStatus(Integer auditStatus) {
+        this.auditStatus = auditStatus;
+    }
+
+    public String getEnterAdviceNote() {
+        return enterAdviceNote;
+    }
+
+    public void setEnterAdviceNote(String enterAdviceNote) {
+        this.enterAdviceNote = enterAdviceNote;
+    }
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
+
+    public Date getCreationTime() {
+        return creationTime;
+    }
+
+    public void setCreationTime(Date creationTime) {
+        this.creationTime = creationTime;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
+
     public HouseInfo getHouseInfo() {
         return houseInfo;
     }
@@ -65,137 +137,11 @@ public class EnterApply implements Serializable {
         this.houseInfo = houseInfo;
     }
 
-    /**
-     * @return the enterApplyId
-     */
-    public Long getEnterApplyId() {
-        return enterApplyId;
-    }
-
-    /*
-    @param enterApplyId the enterApplyId to set
-    */
-    public void setEnterApplyId(Long enterApplyId) {
-        this.enterApplyId = enterApplyId;
-    }
-
-    /**
-     * @return the houseInfoId
-     */
-    public String getHouseInfoId() {
-        return houseInfoId;
-    }
-
-    /*
-    @param houseInfoId the houseInfoId to set
-    */
-    public void setHouseInfoId(String houseInfoId) {
-        this.houseInfoId = houseInfoId;
-    }
-
-    /**
-     * @return the clientName
-     */
-    public String getClientName() {
-        return clientName;
-    }
-
-    /*
-    @param clientName the clientName to set
-    */
-    public void setClientName(String clientName) {
-        this.clientName = clientName;
-    }
-
-    /**
-     * @return the applyTime
-     */
-    public Date getApplyTime() {
-        return applyTime;
-    }
-
-    /*
-    @param applyTime the applyTime to set
-    */
-    public void setApplyTime(Date applyTime) {
-        this.applyTime = applyTime;
-    }
-
-    /**
-     * @return the auditStatus
-     */
-    public Integer getAuditStatus() {
-        return auditStatus;
-    }
-
-    /*
-    @param auditStatus the auditStatus to set
-    */
-    public void setAuditStatus(Integer auditStatus) {
-        this.auditStatus = auditStatus;
-    }
-
-    /**
-     * @return the enterAdviceNote
-     */
-    public String getEnterAdviceNote() {
-        return enterAdviceNote;
-    }
-
-    /*
-    @param enterAdviceNote the enterAdviceNote to set
-    */
-    public void setEnterAdviceNote(String enterAdviceNote) {
-        this.enterAdviceNote = enterAdviceNote;
-    }
-
-    /**
-     * @return the notes
-     */
-    public String getNotes() {
-        return notes;
-    }
-
-    /*
-    @param notes the notes to set
-    */
-    public void setNotes(String notes) {
-        this.notes = notes;
-    }
-
-    /**
-     * @return the creationTime
-     */
-    public Date getCreationTime() {
-        return creationTime;
-    }
-
-    /*
-    @param creationTime the creationTime to set
-    */
-    public void setCreationTime(Date creationTime) {
-        this.creationTime = creationTime;
-    }
-
-    /**
-     * @return the updateTime
-     */
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    /*
-    @param updateTime the updateTime to set
-    */
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
-    }
-
     @Override
     public String toString() {
         return "EnterApply{" +
                 "enterApplyId=" + enterApplyId +
-                ", houseInfoId='" + houseInfoId + '\'' +
+                ", houseInfoId='" + houseId + '\'' +
                 ", clientName='" + clientName + '\'' +
                 ", applyTime=" + applyTime +
                 ", auditStatus=" + auditStatus +

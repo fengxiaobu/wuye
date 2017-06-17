@@ -18,10 +18,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -162,9 +159,10 @@ public class EnterApplyController {
      */
     @RequestMapping("/insertEnterApply")
     @ResponseBody
-    public Map insertEnterApply(EnterApply enterApply) {
+    public Map insertEnterApply(@RequestBody  EnterApply enterApply) {
+        System.out.println("enterApply = " + enterApply);
         Map result = new HashMap();
-        if (StringUtil.isEmpty(enterApply.getHouseInfoId())) {
+        if (StringUtil.isEmpty(enterApply.getHouseId())) {
             result.put("state", "0");
             result.put("msg", "房产ID不能为空!");
             return result;
@@ -267,7 +265,7 @@ public class EnterApplyController {
         System.out.println("fileDir = " + fileDir);
         File file1 = FileUtil.file(fileDir);
 
-        File tempFile = new File( file1.separator + dateDir + File.separator + serviceName);
+        File tempFile = new File(file1.separator + dateDir + File.separator + serviceName);
         if (!tempFile.getParentFile().exists()) {
             tempFile.getParentFile().mkdirs();
         }
