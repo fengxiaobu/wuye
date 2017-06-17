@@ -3,6 +3,7 @@ package cn.rzhd.wuye.bean;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 /**
 © 2017 RZHD.CN
@@ -104,6 +105,7 @@ public class PropertyFeePayDetails implements Serializable{
 	 * 客户主键
 	 */
 	private String customerId;
+	private List<PropertyFeeInvoiceDetails> invoices;
 	
 	/**
 	 * @return the clientName
@@ -362,30 +364,11 @@ public class PropertyFeePayDetails implements Serializable{
 		this.customerId = customerId;
 	}
 
-	@Override
-	public String toString() {
-		return "PropertyFeePayDetails{" +
-				"propertyFeePayDetails=" + propertyFeePayDetails +
-				", houseInfoId=" + houseInfoId +
-				", clientName='" + clientName + '\'' +
-				", costType='" + costType + '\'' +
-				", payManner='" + payManner + '\'' +
-				", payMonth=" + payMonth +
-				", startDate=" + startDate +
-				", endDate=" + endDate +
-				", payable=" + payable +
-				", paidIn=" + paidIn +
-				", voucherNumber='" + voucherNumber + '\'' +
-				", invoice='" + invoice + '\'' +
-				", invoiceNumber='" + invoiceNumber + '\'' +
-				", invoiceNotes='" + invoiceNotes + '\'' +
-				", invoiceStatus=" + invoiceStatus +
-				", collectingCompany='" + collectingCompany + '\'' +
-				", collectingAccount='" + collectingAccount + '\'' +
-				", invoiceCompany='" + invoiceCompany + '\'' +
-				", payTime=" + payTime +
-				", carteTime=" + carteTime +
-				", updateTime=" + updateTime +
-				'}';
+	public List<PropertyFeeInvoiceDetails> getInvoices() {
+		return invoices;
+	}
+
+	public void setInvoices(List<PropertyFeeInvoiceDetails> invoices) {
+		this.invoices = invoices;
 	}
 }

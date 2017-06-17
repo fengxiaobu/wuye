@@ -3,6 +3,7 @@ package cn.rzhd.wuye.bean;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 /**
  * 
@@ -109,6 +110,8 @@ public class WaterRatePayDetails implements Serializable{
 	 * 客户主键
 	 */
 	private String customerId;
+
+	private List<WaterRateInvoiceDetails> invoices;
 	/**
 	 * @return the clientName
 	 */
@@ -376,5 +379,13 @@ public class WaterRatePayDetails implements Serializable{
 
 	public void setCustomerId(String customerId) {
 		this.customerId = customerId;
+	}
+
+	public List<WaterRateInvoiceDetails> getInvoices() {
+		return invoices;
+	}
+
+	public void setInvoices(List<WaterRateInvoiceDetails> invoices) {
+		this.invoices = invoices;
 	}
 }

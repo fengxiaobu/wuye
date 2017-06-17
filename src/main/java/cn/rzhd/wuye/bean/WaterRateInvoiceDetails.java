@@ -30,21 +30,14 @@ public class WaterRateInvoiceDetails implements Serializable{
 	 */
 	private String invoiceCompany;
 	/**
-	 * 基本电费
+	 * 基本水费
 	 */
-	private BigDecimal basicElectricCharge;
+	private BigDecimal basicWaterFee;
 	/**
-	 * 电费开票额度
+	 * 水费开票额度
 	 */
-	private BigDecimal electricChargeInvoiceSum;
-	/**
-	 * 基本物业费
-	 */
-	private BigDecimal basicPropertyFee;
-	/**
-	 * 物业费开票额度
-	 */
-	private BigDecimal propertyFeeInvoiceSum;
+	private BigDecimal basicWaterFeeInvoiceSum;
+
 	/**
 	 * 三方协议
 	 */
@@ -65,6 +58,10 @@ public class WaterRateInvoiceDetails implements Serializable{
 	 * 水费缴费记录ID
 	 */
 	private Long waterRatePayDetailsId;
+	/**
+	 * 发票生效状态(Y--生效,N-未生效)
+	 */
+	private String status = "N";
 	/**
 	 * @return the invoiceType
 	 */
@@ -89,54 +86,23 @@ public class WaterRateInvoiceDetails implements Serializable{
 	public void setInvoiceCompany(String invoiceCompany) {
 		this.invoiceCompany = invoiceCompany;
 	}
-	/**
-	 * @return the basicElectricCharge
-	 */
-	public BigDecimal getBasicElectricCharge() {
-		return basicElectricCharge;
+
+	public BigDecimal getBasicWaterFee() {
+		return basicWaterFee;
 	}
-	/*
-	@param basicElectricCharge the basicElectricCharge to set
-	*/
-	public void setBasicElectricCharge(BigDecimal basicElectricCharge) {
-		this.basicElectricCharge = basicElectricCharge;
+
+	public void setBasicWaterFee(BigDecimal basicWaterFee) {
+		this.basicWaterFee = basicWaterFee;
 	}
-	/**
-	 * @return the electricChargeInvoiceSum
-	 */
-	public BigDecimal getElectricChargeInvoiceSum() {
-		return electricChargeInvoiceSum;
+
+	public BigDecimal getBasicWaterFeeInvoiceSum() {
+		return basicWaterFeeInvoiceSum;
 	}
-	/*
-	@param electricChargeInvoiceSum the electricChargeInvoiceSum to set
-	*/
-	public void setElectricChargeInvoiceSum(BigDecimal electricChargeInvoiceSum) {
-		this.electricChargeInvoiceSum = electricChargeInvoiceSum;
+
+	public void setBasicWaterFeeInvoiceSum(BigDecimal basicWaterFeeInvoiceSum) {
+		this.basicWaterFeeInvoiceSum = basicWaterFeeInvoiceSum;
 	}
-	/**
-	 * @return the basicPropertyFee
-	 */
-	public BigDecimal getBasicPropertyFee() {
-		return basicPropertyFee;
-	}
-	/*
-	@param basicPropertyFee the basicPropertyFee to set
-	*/
-	public void setBasicPropertyFee(BigDecimal basicPropertyFee) {
-		this.basicPropertyFee = basicPropertyFee;
-	}
-	/**
-	 * @return the propertyFeeInvoiceSum
-	 */
-	public BigDecimal getPropertyFeeInvoiceSum() {
-		return propertyFeeInvoiceSum;
-	}
-	/*
-	@param propertyFeeInvoiceSum the propertyFeeInvoiceSum to set
-	*/
-	public void setPropertyFeeInvoiceSum(BigDecimal propertyFeeInvoiceSum) {
-		this.propertyFeeInvoiceSum = propertyFeeInvoiceSum;
-	}
+
 	/**
 	 * @return the tripleAgreement
 	 */
@@ -204,5 +170,13 @@ public class WaterRateInvoiceDetails implements Serializable{
 
 	public void setWaterRatePayDetailsId(Long waterRatePayDetailsId) {
 		this.waterRatePayDetailsId = waterRatePayDetailsId;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 }

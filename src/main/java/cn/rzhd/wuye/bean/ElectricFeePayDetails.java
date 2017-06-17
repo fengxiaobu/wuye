@@ -2,7 +2,9 @@ package cn.rzhd.wuye.bean;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class ElectricFeePayDetails implements Serializable {
 
@@ -126,6 +128,10 @@ public class ElectricFeePayDetails implements Serializable {
      * 客户主键
      */
     private String customerId;
+    /**
+     * 一条缴费记录下的发票
+     */
+    private List<ElectricFeeInvoiceDeta> invoices = new ArrayList<>();
 
     public Long getElectricFeePayDetailsId() {
         return electricFeePayDetailsId;
@@ -325,5 +331,13 @@ public class ElectricFeePayDetails implements Serializable {
 
     public void setCustomerId(String customerId) {
         this.customerId = customerId;
+    }
+
+    public List<ElectricFeeInvoiceDeta> getInvoices() {
+        return invoices;
+    }
+
+    public void setInvoices(List<ElectricFeeInvoiceDeta> invoices) {
+        this.invoices = invoices;
     }
 }
