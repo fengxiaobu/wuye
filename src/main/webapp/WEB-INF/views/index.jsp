@@ -299,8 +299,7 @@
                         <ul class="panel-group level02" id="aside_six_011">
                             <li class="panel" role="tab">
                                 <div class="panel-header">
-                                    <a data-toggle="collapse" data-parent="#"
-                                       href="#collapse_six_018">通知列表</a>
+                                    <a href="${pageContext.request.contextPath}/dist/messageManageBack/getMessageManageList?pageNum=1&pageSize=10" target="main">通知列表</a>
                                 </div>
                                 <div class="panel-header">
                                     <a data-toggle="collapse" data-parent="#"
