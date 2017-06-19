@@ -4,6 +4,8 @@ import cn.rzhd.wuye.vo.SignVO;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 /**
  * Created by hasee on 2017/5/26.
  */
@@ -16,7 +18,7 @@ public interface ISellContractService {
      */
     List<SignVO> getSellContract(String billType, String companyId);
     
-    List<SignVO> getSellContract(String pk_sign);
+    List<SignVO> getSellContractByCustomer(@Param("pk_customerid")String pk_customerid,@Param("pk_sign")String pk_sign);
 
     /**
      *

@@ -45,22 +45,27 @@
 
     <select id="getByPkId" parameterType="String" resultMap="rentContractMap">
         SELECT
-            "pk_corp",
-            "pk_customerid",
-            "pk_project",
-            "pk_pact",
-            "pk_house",
-            "house",
-            "nrentarea",
-            "dpactend",
-            "dpactstart",
-            "nzlbzjmny",
-            "nhtysmny",
-            "nhtssmny",
-            "dysdate",
-            "nsbzjyjmny"
-        FROM "T_Rent_Contract"
-        WHERE "pk_pact" = #{pk_pact}
+            r."pk_corp",
+            r."pk_customerid",
+            r."pk_project",
+            r."pk_pact",
+            r."pk_house",
+            r."house",
+            r."nrentarea",
+            r."dpactend",
+            r."dpactstart",
+            r."nzlbzjmny",
+            r."nhtysmny",
+            r."nhtssmny",
+            r."dysdate",
+            r."nsbzjyjmny"
+        FROM "T_Rent_Contract" r 
+        LEFT JOIN "T_Customer" c
+        ON 
+			r."pk_customerid" = c."pk_customerid"
+        WHERE 
+        s."pk_customerid"=#{pk_customerid}
+        AND "pk_pact" = #{pk_pact}
     </select>
     <resultMap type="cn.rzhd.wuye.vo.PactVO" id="rentContractMap">
         <id property="pk_pact" column="pk_pact"/>
@@ -73,8 +78,6 @@
         <result property="nhtssmny" column="nhtssmny"/>
         <result property="dysdate" column="dysdate"/>
         <result property="nsbzjyjmny" column="nsbzjyjmny"/>
-
-
     </resultMap>
 
     <select id="queryByCustomer" parameterType="string" resultType="cn.rzhd.wuye.vo.PactVO">
