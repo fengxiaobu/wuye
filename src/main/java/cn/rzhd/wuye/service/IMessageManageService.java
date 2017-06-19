@@ -18,4 +18,9 @@ public interface IMessageManageService {
 	 * @return 查询单个通知
 	 */
 	MessageManage getMessageManage(Long message_manage_id);
+
+	/**
+	 * @param 批量删除
+	 */
+	void DeleteMessageManages(String[] message_manage_id);
 }

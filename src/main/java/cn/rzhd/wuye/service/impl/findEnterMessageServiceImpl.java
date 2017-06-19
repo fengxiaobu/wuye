@@ -32,4 +32,9 @@ public class findEnterMessageServiceImpl implements IMessageManageService {
 		return manage;
 	}
 
+	@Override
+	public void DeleteMessageManages(String[] message_manage_id) {
+		mapper.deleteInfoArray(message_manage_id);
+	}
+
 }

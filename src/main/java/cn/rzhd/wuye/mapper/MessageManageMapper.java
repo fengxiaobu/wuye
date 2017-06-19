@@ -14,4 +14,9 @@ public interface MessageManageMapper {
 	List<MessageManage> getAllMessage();
 
 	MessageManage selectOne(Long message_manage_id);
+
+	/**
+	 * @param 批量删除
+	 */
+	void deleteInfoArray(String[] message_manage_id);
 }

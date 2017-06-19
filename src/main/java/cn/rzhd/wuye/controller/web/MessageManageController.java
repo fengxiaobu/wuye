@@ -57,4 +57,9 @@ public class MessageManageController {
 		MessageManage messageManage = messageManageService.getMessageManage(message_manage_id);
 		return messageManage;
 	}
+
+	@RequestMapping("/deleteMessageManages")
+	public void DeleteMessageManages(String[] message_manage_id) {
+		messageManageService.DeleteMessageManages(message_manage_id);
+	}
 }
