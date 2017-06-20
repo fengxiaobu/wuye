@@ -15,7 +15,7 @@ public class PayFeeQuery {
     private String waterCountBy;//水费选择的计费方式(金额或吨数)
     private BigDecimal waterPrice;//水费单价
     private BigDecimal electricPrice;//电费单价
-    private String[] houseInfoIds;//客户名下所关联的所有房产,用于判断是否有物业欠费
+    private String houseInfoIds;//客户名下所关联的所有房产,用于判断是否有物业欠费
 
     public String getHouseInfoId() {
         return houseInfoId;
@@ -81,11 +81,11 @@ public class PayFeeQuery {
         this.electricPrice = electricPrice;
     }
 
-    public String[] getHouseInfoIds() {
+    public String getHouseInfoIds() {
         return houseInfoIds;
     }
 
-    public void setHouseInfoIds(String[] houseInfoIds) {
+    public void setHouseInfoIds(String houseInfoIds) {
         this.houseInfoIds = houseInfoIds;
     }
 

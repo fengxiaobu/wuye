@@ -38,7 +38,7 @@ public class LoginController {
     public JsonResult login(Customer customer) {
         List<Customer> customers = customerService.loginByPwd(customer);
         if (customers.isEmpty()) {
-            return new JsonResult("客户不存在!!!");
+            return new JsonResult("账号或密码错误!!!");
         } else {
             JsonResult result = new JsonResult();
             //只取租赁客户

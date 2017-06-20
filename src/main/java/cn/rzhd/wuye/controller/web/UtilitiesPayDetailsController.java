@@ -1,9 +1,7 @@
 package cn.rzhd.wuye.controller.web;
 
-import cn.rzhd.wuye.bean.ElectricFeePayDetails;
-import cn.rzhd.wuye.bean.WaterRatePayDetails;
-import cn.rzhd.wuye.service.IElectricPayDetailsService;
-import cn.rzhd.wuye.service.IWaterPayDetailsService;
+import cn.rzhd.wuye.bean.UtilitiesDetails;
+import cn.rzhd.wuye.service.IUtilitiesService;
 import cn.rzhd.wuye.utils.PageDataGridResult;
 import cn.rzhd.wuye.vo.query.UtilitiesQuery;
 import com.github.pagehelper.PageHelper;
@@ -12,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -22,9 +19,7 @@ import java.util.List;
 @RequestMapping("/dist/utilities")
 public class UtilitiesPayDetailsController {
     @Autowired
-    IWaterPayDetailsService waterService;
-    @Autowired
-    IElectricPayDetailsService electricService;
+    IUtilitiesService service;
 
     /**
      *
@@ -33,16 +28,8 @@ public class UtilitiesPayDetailsController {
      */
     @RequestMapping("/getList")
     public PageDataGridResult getList(UtilitiesQuery query){
-
-        PageHelper.startPage(query.getStartPage(),query.getPageSize()/2);
-        List<WaterRatePayDetails> waterList = waterService.getAllByQuery(query);
-        PageHelper.startPage(query.getStartPage(),query.getPageSize()/2);
-        List<ElectricFeePayDetails> electricList = electricService.queryAll(query);
-
-        List result = new ArrayList();
-        result.addAll(waterList);
-        result.addAll(electricList);
-
+        PageHelper.startPage(query.getStartPage(),query.getPageSize());
+        List<UtilitiesDetails> result = service.queryAll(query);
         PageInfo pageInfo = new PageInfo(result);
         PageDataGridResult pageResult = new PageDataGridResult();
         pageResult.setTotal(pageInfo.getTotal());
@@ -50,6 +37,5 @@ public class UtilitiesPayDetailsController {
 
         return pageResult;
     }
-
 
 }

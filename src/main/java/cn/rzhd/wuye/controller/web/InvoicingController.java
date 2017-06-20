@@ -1,15 +1,22 @@
 package cn.rzhd.wuye.controller.web;
 
-import cn.rzhd.wuye.bean.*;
-import cn.rzhd.wuye.service.IElectricFeeInvoiceService;
+import cn.rzhd.wuye.bean.PropertyFeeInvoiceDetails;
+import cn.rzhd.wuye.bean.PropertyFeePayDetails;
+import cn.rzhd.wuye.bean.UtilitiesDetails;
+import cn.rzhd.wuye.bean.UtilitiesInvoice;
 import cn.rzhd.wuye.service.IPropertyFeeInvoiceService;
-import cn.rzhd.wuye.service.IWaterFeeInvoiceService;
+import cn.rzhd.wuye.service.IPropertyFeePayDetailsService;
+import cn.rzhd.wuye.service.IUtilitiesInvoiceService;
+import cn.rzhd.wuye.service.IUtilitiesService;
 import cn.rzhd.wuye.utils.IDUtils;
+import com.alibaba.fastjson.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by hasee on 2017/6/17.
@@ -18,45 +25,51 @@ import java.util.List;
 @RequestMapping("/dist/invoicing")
 public class InvoicingController {
     @Autowired
-    IElectricFeeInvoiceService electricFeeInvoiceService;
-    @Autowired
     IPropertyFeeInvoiceService propertyFeeInvoiceService;
     @Autowired
-    IWaterFeeInvoiceService waterFeeInvoiceService;
-
-    @RequestMapping("/electric")
-    public void electric(ElectricFeePayDetails electricFeePayDetails) {
-        Long id = IDUtils.genLongUID();
-        electricFeePayDetails.setElectricFeePayDetailsId(id);
-        List<ElectricFeeInvoiceDeta> invoices = electricFeePayDetails.getInvoices();
-        for (ElectricFeeInvoiceDeta invoice : invoices) {
-            Long aLong = IDUtils.genLongUID();
-            invoice.setElectricChargeInvoiceDeta(aLong);
-            electricFeeInvoiceService.addInvoice(invoice);
-        }
-    }
+    IPropertyFeePayDetailsService propertyFeePayDetailsService;
+    @Autowired
+    IUtilitiesInvoiceService utilitiesInvoiceService;
+    @Autowired
+    IUtilitiesService utilitiesService;
 
     @RequestMapping("/property")
-    public void property(PropertyFeePayDetails propertyFeePayDetails) {
+    public Long property(PropertyFeePayDetails propertyFeePayDetails) {
         Long id = IDUtils.genLongUID();
         propertyFeePayDetails.setPropertyFeePayDetails(id);
         List<PropertyFeeInvoiceDetails> invoices = propertyFeePayDetails.getInvoices();
         for (PropertyFeeInvoiceDetails invoice : invoices) {
             Long aLong = IDUtils.genLongUID();
             invoice.setPropFeeInvoiceDetailsId(aLong);
+            invoice.setPropertyFeePayDetailsId(id);
             propertyFeeInvoiceService.addInvoice(invoice);
         }
+        propertyFeePayDetailsService.addDetails(propertyFeePayDetails);
+        return id;
     }
 
-    @RequestMapping("/water")
-    public void water(WaterRatePayDetails waterRatePayDetails) {
+    @RequestMapping("/utilities")
+    public Long utilities(UtilitiesDetails details) {
         Long id = IDUtils.genLongUID();
-        waterRatePayDetails.setWaterRatePayDetailsId(id);
-        List<WaterRateInvoiceDetails> invoices = waterRatePayDetails.getInvoices();
-        for (WaterRateInvoiceDetails invoice : invoices) {
+        details.setUtilitiesDetailsId(id);
+        List<UtilitiesInvoice> invoices = details.getInvoices();
+        for (UtilitiesInvoice invoice : invoices) {
             Long aLong = IDUtils.genLongUID();
-            invoice.setWaterRateInvoiceDetailsId(aLong);
-            waterFeeInvoiceService.addInvoice(invoice);
+            invoice.setUtilitiesInvoiceId(aLong);
+            invoice.setUtilitiesDetailsId(id);
+            utilitiesInvoiceService.addInvoice(invoice);
+        }
+        utilitiesService.addDetails(details);
+        return id;
+    }
+
+    @RequestMapping("/changeStatus")
+    public void changeStatus(HttpServletRequest req){
+        String orderStatus = req.getParameter("OrderStatus");
+        String tranReserved = req.getParameter("TranReserved");
+        Map map = (Map) JSON.parse(tranReserved);
+        if("0001".equals(orderStatus)){
+
         }
     }
 }

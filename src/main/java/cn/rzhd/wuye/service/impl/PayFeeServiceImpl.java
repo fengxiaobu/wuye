@@ -33,7 +33,8 @@ public class PayFeeServiceImpl implements IPayFeeService {
     @Override
     public Map<String, List> isArrears(PayFeeQuery query) {
         Map<String, List> map = new HashMap<>();
-        String[] houseInfoIds = query.getHouseInfoIds();
+        String houseInfoIds = query.getHouseInfoIds();
+        String[] strings = houseInfoIds.split(",");
         List<PropertyFee> before60 = new ArrayList<>();
         List<PropertyFee> before30 = new ArrayList<>();
         ArrearsQuery arrearsQuery = new ArrearsQuery();
@@ -46,7 +47,7 @@ public class PayFeeServiceImpl implements IPayFeeService {
         arrearsQuery.setStartDate(null);
         arrearsQuery.setEndDate(null);
         try {
-            for (String houseInfoId : houseInfoIds) {
+            for (String houseInfoId : strings) {
                 query.setHouseInfoId(houseInfoId);
                 arrearsQuery.setHouseInfoId(houseInfoId);
                 arrearsQuery.setCustomerId(query.getCustomerId());

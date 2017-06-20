@@ -6,6 +6,7 @@ import cn.rzhd.wuye.utils.FirstAndLastDay;
  * Created by hasee on 2017/6/8.
  */
 public class ArrearsQuery extends BaseQuery {
+
     /**
      * 房产信息ID
      */
