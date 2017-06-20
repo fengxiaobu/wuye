@@ -54,8 +54,8 @@ public class SellContractServiceImpl implements ISellContractService {
 
 
 	@Override
-	public List<SignVO> getSellContract(String pk_sign) {
-		List<SignVO> signVOs = mapper.getById(pk_sign);
+	public List<SignVO> getSellContractByCustomer(String pk_customerid,String pk_sign){
+		List<SignVO> signVOs = mapper.getById(pk_customerid,pk_sign);
 		return signVOs;
 	}
 

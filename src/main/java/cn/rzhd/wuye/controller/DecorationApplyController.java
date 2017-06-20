@@ -207,7 +207,7 @@ public class DecorationApplyController {
 
         String savePath = request.getServletContext().getRealPath("/upload/");
         SimpleDateFormat df1 = new SimpleDateFormat("yyyy_MM_dd");// 设置日期格式
-        SimpleDateFormat df2 = new SimpleDateFormat("HH_mm_ss");// 设置日期格式
+        SimpleDateFormat df2 = new SimpleDateFormat("HH_mm_ss_SSSS");// 设置日期格式
         String dateDir1 = df1.format(new Date());// new Date()为获取当前系统时间
         String dateDir2 = df2.format(new Date());// new Date()为获取当前系统时间
         String serviceName = file.getOriginalFilename().substring(0, file.getOriginalFilename().lastIndexOf(".")) + file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));

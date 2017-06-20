@@ -1,5 +1,7 @@
 package cn.rzhd.wuye.controller.web;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -36,5 +38,28 @@ public class MessageManageController {
 	public String findEnterMessage() {
 		MessageManage findEnterMessage = messageManageService.findEnterMessage();
 		return JsonUtils.objectToJson(findEnterMessage);
+	}
+
+	/**
+	 * 通知列表
+	 */
+	@RequestMapping("/messageManageList")
+	public List<MessageManage> MessageManage() {
+		List<MessageManage> MessageManages = messageManageService.getAllMessage();
+		return MessageManages;
+	}
+
+	/**
+	 * 入住办理通知
+	 */
+	@RequestMapping("/messageManageNotice")
+	public MessageManage MessageManageNotice(Long message_manage_id) {
+		MessageManage messageManage = messageManageService.getMessageManage(message_manage_id);
+		return messageManage;
+	}
+
+	@RequestMapping("/deleteMessageManages")
+	public void DeleteMessageManages(String[] message_manage_id) {
+		messageManageService.DeleteMessageManages(message_manage_id);
 	}
 }

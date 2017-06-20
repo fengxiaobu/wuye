@@ -22,16 +22,17 @@ import cn.rzhd.wuye.vo.PactVO;
 public class RentContractBackController {
 	@Autowired
 	IRentContractService rentContractService;
-	
-    @RequestMapping("/getRentContractList")
-    public String rentContractList(Model model, Integer pageNum, Integer pageSize) {
-    	PageHelper.startPage(pageNum, pageSize);
-    	List<PactVO> PactVOs = rentContractService.getBackAll();
-    	
-    	Page page = (Page) PactVOs;
-        model.addAttribute("rentContractList", PactVOs);
 
-        model.addAttribute("pages", page.getPages());
-        return "contract/rent";
-    }
+	@RequestMapping("/getRentContractList")
+	public String rentContractList(Model model, Integer pageNum, Integer pageSize) {
+		PageHelper.startPage(pageNum, pageSize);
+		List<PactVO> pactVOs = rentContractService.getBackAll();
+		System.out.println(pactVOs.size());
+
+		Page page = (Page) pactVOs;
+		model.addAttribute("rentContractList", pactVOs);
+
+		model.addAttribute("pages", page.getPages());
+		return "contract/rent";
+	}
 }

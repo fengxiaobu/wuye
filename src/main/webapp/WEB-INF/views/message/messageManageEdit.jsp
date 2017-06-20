@@ -11,8 +11,8 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css">
 </head>
 <body>
-<div class="container-fluid">
-    <div class="row-fluid">
+<div class="container">
+    <div class="row">
         <!-- 路径导航 开始 -->
         <div class="col-xs-12">
             <ol class="breadcrumb">
@@ -25,8 +25,8 @@
         <div class="col-xs-12">
             <div class="panel panel-default tudiqianyue">
                 <form class="form-horizontal" action="${pageContext.request.contextPath}/dist/enterApply/updateEnterApply" method="post">
-                    <div style="margin-top: 50px"></div>
-                    <div class="form-group">
+                    <div class="form-group" style="margin-top: 50px">
+                        <input type="hidden" name="enterApplyId" value="${enterApply.enterApplyId}"/>
                         <label class="col-sm-2 control-label">项目名称:</label>
                         <div class="col-sm-10">
                             <label class="col-sm-2 control-label">${enterApply.houseInfo.projectInfo.projectName}</label>
@@ -138,17 +138,17 @@
                             <label>
                                 <input type="radio" name="auditStatus" id="optionsRadios1"
                                        <c:if test="${enterApply.auditStatus eq 0}">checked="checked"</c:if>
-                                       value="${enterApply.auditStatus}"/>未审核
+                                       value="0"/>未审核
                             </label>
                             <label>
                                 <input type="radio" name="auditStatus" id="optionsRadios2"
                                        <c:if test="${enterApply.auditStatus eq 1}">checked="checked"</c:if>
-                                       value="${enterApply.auditStatus}"/>已通过
+                                       value="1"/>已通过
                             </label>
                             <label>
                                 <input type="radio" name="auditStatus" id="optionsRadios3"
                                        <c:if test="${enterApply.auditStatus eq 2}">checked="checked"</c:if>
-                                       value="${enterApply.auditStatus}"/>未通过
+                                       value="2"/>未通过
                             </label>
                         </div>
                     </div>
@@ -160,7 +160,7 @@
                             </label>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" style="margin-left:360px">
                         <button type="submit" class="btn btn-default">保存</button>
                     </div>
                 </form>
