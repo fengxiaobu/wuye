@@ -11,5 +11,11 @@ public interface ICustomerCentreService {
     
     void updatePhone(Customer customer);
     
+    /**
+     * @param customerId
+     * @return 通过当前客户id拿到对应的详细资料
+     */
+    PerfectInformation getPerfectInformation(String customerId);
+    
     void updatePerfectInformation(PerfectInformation perfectInformation);
 }
