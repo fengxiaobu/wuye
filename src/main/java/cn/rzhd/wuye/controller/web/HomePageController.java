@@ -82,7 +82,6 @@ public class HomePageController {
                 List<Map<String, Object>> list = homePageService.findFeeListByCustomerId(pk_customerid, pk_house);
                 result.addAll(list);
             }
-
         }
         return result;
     }
