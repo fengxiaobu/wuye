@@ -117,7 +117,7 @@ public class ChinaPay {
         return objectMap;
     }*/
 
-    @RequestMapping(value = "/dist/sendpay")
+    @RequestMapping(value = "/dist/sendpay",produces = "application/x-www-form-urlencoded;charset=utf-8")
     public  @ResponseBody
     Map<String, Object> pay(String OrderAmt, String CommodityMsg, String MerResv, String BankInstNo) throws IOException {
       RequestVO requestVO = new RequestVO();

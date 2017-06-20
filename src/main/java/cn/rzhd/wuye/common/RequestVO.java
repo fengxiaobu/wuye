@@ -6,7 +6,6 @@ import java.io.Serializable;
  * luopa 在 2017/6/1 创建.
  */
 public class RequestVO implements Serializable {
-    private static final long serialVersionUID = 1L;
     //版本号
     private String Version;
     // 接入类型
