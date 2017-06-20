@@ -20,7 +20,7 @@ public interface IKfFeeService {
 
     List<KfFee> queryAllArrears(ArrearsQuery query);
 
-    Map<String,List> queryForPay(ArrearsQuery query);
+    Map<String, Object> queryForPay(ArrearsQuery query);
 
     /**
      * 入驻开发费

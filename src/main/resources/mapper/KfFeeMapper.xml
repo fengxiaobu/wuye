@@ -24,6 +24,8 @@
         <result column="dbegin" property="beginDate"/>
         <result column="dend" property="stopDate"/>
         <result column="amount" property="sum"/>
+        <result column="nyshouldmny" property="shouldmny"/>
+        <result column="shouldSum" property="shouldSum"/>
     </resultMap>
 
     <sql id="arrearsSql">
@@ -143,7 +145,8 @@
         "dbegin",
         "dend",
         "pk_feetype",
-        SUM("nyshouldmny")-SUM(NVL("nmny",0))     AS amount
+        SUM("nyshouldmny") - SUM(NVL("nmny", 0)) AS amount,
+        SUM("nyshouldmny") AS shouldSum
         FROM
         "T_KF_Fee"
         <include refid="queryForPay"/>
@@ -152,7 +155,8 @@
         "feetype",
         "dbegin",
         "dend",
-        "pk_feetype"
+        "pk_feetype",
+        "nyshouldmny"
         ORDER BY
         SUBSTR("dshpay", 1, 7)
     </select>

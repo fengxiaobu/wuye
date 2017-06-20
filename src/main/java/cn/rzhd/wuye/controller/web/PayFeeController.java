@@ -2,6 +2,7 @@ package cn.rzhd.wuye.controller.web;
 
 import cn.rzhd.wuye.bean.Ammeter;
 import cn.rzhd.wuye.bean.ElectricFeePayDetails;
+import cn.rzhd.wuye.bean.HouseInfo;
 import cn.rzhd.wuye.bean.WaterRatePayDetails;
 import cn.rzhd.wuye.service.*;
 import cn.rzhd.wuye.vo.HouseVO;
@@ -56,8 +57,8 @@ public class PayFeeController {
      * @return
      */
     @RequestMapping("/kfFee")
-    public Map<String,List> kfFee(ArrearsQuery query){
-        Map<String, List> map = kfService.queryForPay(query);
+    public Map<String,Object> kfFee(ArrearsQuery query){
+        Map<String, Object> map = kfService.queryForPay(query);
         return map;
     }
 
@@ -75,17 +76,17 @@ public class PayFeeController {
 
     /**
      * AJAX获取不同房产所拥有的电表信息及水电单价
-     * @param houseInfoId
+     * @param houseInfo
      * @return
      */
     @RequestMapping("/getAmmeters")
-    public Map<String,Object> getAmmeters(@RequestBody String houseInfoId){
+    public Map<String,Object> getAmmeters(@RequestBody HouseInfo houseInfo){
         Map<String,Object> map = new HashMap<>();
-        List<Ammeter> ammeters = ammeterService.getAmmeters(houseInfoId);
-        HouseVO houseInfo = houseInfoDetailsService.selectById(houseInfoId);
-        if (houseInfo!=null){
-            BigDecimal waterPrice = houseInfo.getProjectInfo().getWaterPrice();
-            BigDecimal electricityPrice = houseInfo.getProjectInfo().getElectricityPrice();
+        List<Ammeter> ammeters = ammeterService.getAmmeters(houseInfo.getHouseInfoId());
+        HouseVO house = houseInfoDetailsService.selectById(houseInfo.getHouseInfoId());
+        if (house!=null){
+            BigDecimal waterPrice = house.getProjectInfo().getWaterPrice();
+            BigDecimal electricityPrice = house.getProjectInfo().getElectricityPrice();
             map.put("waterPrice",waterPrice);
             map.put("electricityPrice",electricityPrice);
             map.put("ammeters",ammeters);

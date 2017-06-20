@@ -1,8 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="cn.rzhd.wuye.mapper.MessageManageMapper" >
-  <select id="findEnterMessage" resultType="cn.rzhd.wuye.bean.MessageManage">
-  	SELECT * FROM T_MESSAGE_MANAGE WHERE TYPE='入驻通知'
-  </select>
- 
+<mapper namespace="cn.rzhd.wuye.mapper.MessageManageMapper">
+	<select id="findEnterMessage" resultType="cn.rzhd.wuye.bean.MessageManage">
+		SELECT * FROM T_MESSAGE_MANAGE WHERE TYPE='入驻通知'
+	</select>
+	
+	<select id="getAllMessage" resultType="cn.rzhd.wuye.bean.MessageManage">
+		SELECT * FROM T_MESSAGE_MANAGE
+	</select>
+	
+	<select id="selectOne" parameterType="Long" resultType="cn.rzhd.wuye.bean.MessageManage">
+		SELECT * FROM T_MESSAGE_MANAGE WHERE MESSAGE_MANAGE_ID=#{messageManageId}
+	</select>
+	
+	 <delete id="deleteInfoArray" >
+        DELETE FROM T_MESSAGE_MANAGE WHERE MESSAGE_MANAGE_ID in
+        <foreach collection="array" open="(" close=")" separator="," item="message_manage_id">
+            #{message_manage_id}
+        </foreach>
+    </delete>
+	
 </mapper>

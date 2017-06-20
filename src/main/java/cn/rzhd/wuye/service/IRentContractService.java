@@ -17,7 +17,7 @@ public interface IRentContractService {
     List<PactVO> getRentContract(String billType, String companyId);
     
     
-    List<PactVO> getRentContract(String pk_pact);
+    List<PactVO> getRentContractByCustomer(String pk_pact,String pk_customerid);
     
 
     /**

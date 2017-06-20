@@ -2,11 +2,14 @@ package cn.rzhd.wuye.service;
 
 import cn.rzhd.wuye.bean.Customer;
 
+import java.util.List;
+import java.util.Map;
+
 public interface IHomePageService {
 
     public <T> T findHouseByCutomer(Customer customer);
-    
-    public <T> T findFeeListByCustomerId(Customer customer);
+
+    List<Map<String, Object>> findFeeListByCustomerId(String pk_customerId, String pk_house);
     
     public <T> T findMessageNumByCustomer(String customerId);
     

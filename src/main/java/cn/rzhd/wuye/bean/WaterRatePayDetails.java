@@ -1,5 +1,8 @@
 package cn.rzhd.wuye.bean;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -163,6 +166,7 @@ public class WaterRatePayDetails implements Serializable{
 	/**
 	 * @return the startDate
 	 */
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	public Date getStartDate() {
 		return startDate;
 	}
@@ -175,6 +179,7 @@ public class WaterRatePayDetails implements Serializable{
 	/**
 	 * @return the endDate
 	 */
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	public Date getEndDate() {
 		return endDate;
 	}
