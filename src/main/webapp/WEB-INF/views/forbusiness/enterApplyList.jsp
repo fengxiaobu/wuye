@@ -82,7 +82,7 @@
                             <c:if test="${enterApply.auditStatus eq 1}">已通过</c:if>
                             <c:if test="${enterApply.auditStatus eq 2}">未通过</c:if>
                         </td>
-                        <td><a class="btn btn-info" href="#" role="button">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;<a
+                        <td><a class="btn btn-info" href="${pageContext.request.contextPath}/dist/enterApply/deleteEnterApply?enterApplyId=${enterApply.enterApplyId}" role="button">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;<a
                                 class="btn btn-info"
                                 href="${pageContext.request.contextPath}/dist/enterApply/enterApplyEdit?enterApplyId=${enterApply.enterApplyId}"
                                 role="button">编辑</a></td>
@@ -93,8 +93,8 @@
             <div align="center">
                 <ul class="pagination">
                     <li><a href="${pageContext.request.contextPath}/dist/enterApply/enterApplyList?pageNum=1&pageSize=1" target="main">&laquo;</a></li>
-                        <c:forEach begin="1" end="${total}" step="1" varStatus="page">
-                            <li><a href="${pageContext.request.contextPath}/dist/enterApply/enterApplyList?pageNum=1&pageSize=1">${page.index}</a></li>
+                        <c:forEach begin="1" end="${total/5}" step="1" varStatus="page">
+                            <li><a href="${pageContext.request.contextPath}/dist/enterApply/enterApplyList?pageNum=1&pageSize=1">${page.count}</a></li>
                         </c:forEach>
                     <li><a href="#">&raquo;</a></li>
                 </ul>

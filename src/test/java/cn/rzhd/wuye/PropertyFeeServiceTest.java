@@ -51,10 +51,10 @@ public class PropertyFeeServiceTest extends BaseTest {
     public void queryTest(){
         ArrearsQuery query = new ArrearsQuery();
         query.setHouseInfoId("1028XX1000000001N2UC");
-        Map<String, List> map = service.queryForPay(query);
+        Map<String, Object> map = service.queryForPay(query);
         if (map!=null){
-            List current = map.get("current");
-            List past = map.get("past");
+            List current = (List) map.get("current");
+            List past = (List) map.get("past");
             if (current!=null && past!=null){
                 for (Object o : current) {
                     System.out.println(o);

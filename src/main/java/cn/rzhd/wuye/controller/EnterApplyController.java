@@ -210,7 +210,7 @@ public class EnterApplyController {
         Page page = (Page) enterApplyList;
         System.out.println(JSONObject.toJSONString(page, SerializerFeature.WriteMapNullValue));
         model.addAttribute("enterApplyList", enterApplyList);
-        model.addAttribute("pages", page.getPages());
+        model.addAttribute("total", page.getTotal());
         return "forbusiness/enterApplyList";
     }
 
