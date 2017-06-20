@@ -1,12 +1,14 @@
 package cn.rzhd.wuye.vo.query;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 
 /**
  * Created by hasee on 2017/5/31.
  */
 
-public class BaseQuery {
+public class BaseQuery implements Serializable{
+    protected static final long serialVersionUID = 1L;
     protected SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     private String customerId;
     private Integer startPage = 1;

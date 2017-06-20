@@ -7,6 +7,7 @@
         </where>
     </sql>
 
+
     <resultMap id="propertyFeePayDetailsMapper" type="cn.rzhd.wuye.bean.PropertyFeePayDetails">
         <id property="propertyFeePayDetails" column="PROPERTY_FEE_PAY_DETAILS_ID"/>
         <result property="houseInfoId" column="HOUSE_INFO_ID"/>
@@ -31,6 +32,37 @@
         <result property="updateTime" column="UPDATE_TIME"/>
         <result property="customerId" column="CUSTOMER_ID"/>
     </resultMap>
+
+    <insert id="insert" parameterType="cn.rzhd.wuye.bean.PropertyFeePayDetails">
+        INSERT INTO T_PROPERTY_FEE_PAY_DETAILS (PROPERTY_FEE_PAY_DETAILS_ID,
+                                                HOUSE_INFO_ID,
+                                                CLIENT_NAME,
+                                                COST_TYPE,
+                                                PAY_MANNER,
+                                                PAY_MONTH,
+                                                START_DATE,
+                                                END_DATE,
+                                                PAYABLE,
+                                                PAID_IN,
+                                                VOUCHER_NUMBER,
+                                                INVOICE,
+                                                INVOICE_NUMBER,
+                                                INVOICE_NOTES,
+                                                INVOICE_STATUS,
+                                                COLLECTING_COMPANY,
+                                                COLLECTING_ACCOUNT,
+                                                INVOICE_COMPANY,
+                                                PAY_TIME,
+                                                CARTE_TIME,
+                                                UPDATE_TIME,
+                                                CUSTOMER_ID)
+                VALUES (#{propertyFeePayDetails},#{houseInfoId},#{clientName},#{costType},#{payManner},
+                        #{payMonth},#{startDate},#{endDate},#{payable},#{paidIn},#{voucherNumber},#{invoice},
+                        #{invoiceNumber},#{invoiceNotes},#{invoiceStatus},#{collectingCompany},#{collectingAccount},
+                        #{invoiceCompany},#{payTime},#{carteTime},#{updateTime},#{customerId}
+                        )
+
+    </insert>
 
 
     <select id="queryAll" parameterType="cn.rzhd.wuye.vo.query.PropertyFeePayDetailsQuery"

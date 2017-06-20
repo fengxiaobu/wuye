@@ -1,11 +1,8 @@
 package cn.rzhd.wuye.mapper;
 
 import cn.rzhd.wuye.vo.PactVO;
-
-import java.util.List;
-import java.util.Map;
-
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -30,5 +27,5 @@ public interface RentContractMapper {
     /**
      * 通过客户ID查询租赁合同信息
      */
-    List<PactVO> queryByCustomer(String customerId);
+    List<PactVO> queryByCustomer(@Param("customerId") String customerId);
 }

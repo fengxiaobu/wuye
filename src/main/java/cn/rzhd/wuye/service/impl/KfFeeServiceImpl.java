@@ -52,25 +52,25 @@ public class KfFeeServiceImpl implements IKfFeeService {
         //设置条件查询当月欠费
         query.setStartDate(sdf.format(FirstAndLastDay.getFirstDay()));
         query.setEndDate(sdf.format(FirstAndLastDay.getNow()));
-        List<Map<String, String>> current = mapper.selectForPay(query);
+        List<Map<String, Object>> current = mapper.selectForPay(query);
         //设置条件查询以往欠费
         query.setStartDate(null);
         query.setEndDate(sdf.format(FirstAndLastDay.getFirstDay()));
-        List<Map<String, String>> past = mapper.selectForPay(query);
+        List<Map<String, Object>> past = mapper.selectForPay(query);
 
         BigDecimal currentSum = new BigDecimal(0);
         BigDecimal pastSum = new BigDecimal(0);
-        for (Map<String, String> currentMap : current) {
-            currentSum.add(new BigDecimal(currentMap.get("sum")));
-            currentSum.add(new BigDecimal(currentMap.get("shouldSum")));
+        for (Map<String, Object> currentMap : current) {
+            currentSum=currentSum.add((BigDecimal)currentMap.get("shouldSum"));
         }
-        for (Map<String, String> pastMap : past) {
-            pastSum.add(new BigDecimal(pastMap.get("sum")));
-            pastSum.add(new BigDecimal(pastMap.get("shouldSum")));
+        for (Map<String, Object> pastMap : past) {
+            pastSum=pastSum.add((BigDecimal)pastMap.get("sum"));
         }
         //放入Map
         map.put("current",current);
+        map.put("currentSum",currentSum);
         map.put("past",past);
+        map.put("pastSum",pastSum);
         return map;
     }
 

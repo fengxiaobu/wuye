@@ -30,5 +30,5 @@ public interface KfFeeMapper {
 
     List<KfFee> selectAllArrears(ArrearsQuery query);
 
-    List<Map<String,String>> selectForPay(ArrearsQuery query);
+    List<Map<String,Object>> selectForPay(ArrearsQuery query);
 }
