@@ -44,4 +44,10 @@ public class CustomerCentreServiceImpl implements ICustomerCentreService {
 		mapper.updatePerfectInformation(perfectInformation);
 
 	}
+
+	@Override
+	public PerfectInformation getPerfectInformation(String customerId) {
+		PerfectInformation perfectInformation = mapper.findInfoById(customerId);
+		return perfectInformation;
+	}
 }

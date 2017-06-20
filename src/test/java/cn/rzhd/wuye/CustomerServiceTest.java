@@ -1,13 +1,19 @@
 package cn.rzhd.wuye;
 
 import cn.rzhd.wuye.bean.Customer;
+import cn.rzhd.wuye.bean.PerfectInformation;
 import cn.rzhd.wuye.common.WebService;
+import cn.rzhd.wuye.mapper.CustomerCentreMapper;
+import cn.rzhd.wuye.mapper.CustomerMapper;
+import cn.rzhd.wuye.service.ICustomerCentreService;
 import cn.rzhd.wuye.service.ICustomerService;
 import cn.rzhd.wuye.utils.JsonUtils;
 import cn.rzhd.wuye.vo.*;
 import com.github.pagehelper.StringUtil;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import static org.junit.Assert.*;
 
 import java.util.List;
 
@@ -17,6 +23,12 @@ import java.util.List;
 public class CustomerServiceTest extends BaseTest {
     @Autowired
     ICustomerService service;
+    @Autowired
+    ICustomerCentreService customerCentreService;
+    @Autowired
+    CustomerCentreMapper mapper;
+    
+    
 
     @Test
     public void loginTest(){
@@ -78,4 +90,19 @@ public class CustomerServiceTest extends BaseTest {
 
         }
     }
+    
+    @Test
+	public void test() throws Exception {
+    	String customerId="123456";
+		PerfectInformation perfectInformation = mapper.findInfoById(customerId);
+		System.out.println(perfectInformation);
+	}
+    
+    @Test
+	public void testName() throws Exception {
+		List<PerfectInformation> all = mapper.getAll();
+		for (PerfectInformation perfectInformation : all) {
+			System.out.println(perfectInformation);
+		}
+	}
 }

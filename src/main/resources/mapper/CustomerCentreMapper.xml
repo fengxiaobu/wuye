@@ -27,9 +27,52 @@
 		WHERE
 			HI.CUSTOMER_ID = #{customer.pk_customerid}
   </select>
-  <select id="updateLogo">
-  		UPDATE "T_Customer" SET LOGO=#{customer.LOGO}  WHERE "pk_customerid"=#{customer.pk_customerid}
+  
+  <select id="getAll" resultMap="InfoMap">
+  	 SELECT *  FROM T_PERFECT_INFORMATION
   </select>
+  
+    
+  
+	  <select id="findInfoById" parameterType="String" resultMap="InfoMap">
+	  		SELECT * FROM T_PERFECT_INFORMATION WHERE trim(CUSTOMER_ID) = #{customerId,jdbcType=CHAR}
+	  </select>
+  
+    <resultMap type="cn.rzhd.wuye.bean.PerfectInformation" id="InfoMap">
+		<id property="customerId" column="CUSTOMER_ID"/>
+		<result property="houseInfoId" column="HOUSE_INFO_ID"/>
+		<result property="companyType" column="COMPANY_TYPE"/>
+		<result property="perfectInformationId" column="PERFECT_INFORMATION_ID"/>
+		<result property="housePropertyId" column="HOUSE_PROPERTY_ID"/>
+		<result property="companyEstablishTime" column="COMPANY_ESTABLISH_TIME"/>
+		<result property="signInFund" column="SIGN_IN_FUND"/>
+		<result property="industryInvolvedId" column="INDUSTRY_INVOLVED_ID"/>
+		<result property="mainProduct" column="MAIN_PRODUCT"/>
+		<result property="companyCoverageId" column="COMPANY_COVERAGE_ID"/>
+		<result property="employeeNumber" column="EMPLOYEE_NUMBER"/>
+		<result property="propertyToAccess" column="PROPERTY_TO_ACCESS"/>
+		<result property="propertyToAccessContact" column="PROPERTY_TO_ACCESS_CONTACT"/>
+		<result property="emergencyContactPerson" column="EMERGENCY_CONTACT_PERSON"/>
+		<result property="emergencyContactNumber" column="EMERGENCY_CONTACT_NUMBER"/>
+		<result property="isHighNew" column="IS_HIGH_NEW"/>
+		<result property="highNewType" column="HIGH_NEW_TYPE"/>
+		<result property="certificateTime" column="CERTIFICATE_TIME"/>
+		<result property="patentTypeId" column="PATENT_TYPE_ID"/>
+		<result property="patentNumber" column="PATENT_NUMBER"/>
+		<result property="isUpBazaar" column="IS_UP_BAZAAR"/>
+		<result property="upBazaarTypeId" column="UP_BAZAAR_TYPE_ID"/>
+		<result property="hangBoardTime" column="HANG_BOARD_TIME"/>
+		<result property="stockCode" column="STOCK_CODE"/>
+		<result property="notes" column="NOTES"/>
+		<result property="status" column="STATUS"/>
+		<result property="carteTime" column="CARTE_TIME"/>
+		<result property="updateTime" column="UPDATE_TIME"/>
+		<result property="URavinePropertyId" column="U_RAVINE_PROPERTY_ID"/>
+	</resultMap>
+  
+  <update id="updateLogo">
+  		UPDATE "T_Customer" SET LOGO=#{customer.LOGO}  WHERE "pk_customerid"=#{customer.pk_customerid}
+  </update>
   <update id="updatePhone">
   	UPDATE "T_Customer" SET vpreferredtel=#{customer.vpreferredtel}  WHERE "pk_customerid"=#{customer.pk_customerid}
   </update>
@@ -65,6 +108,6 @@
 	WHERE
 		PERFECT_INFORMATION_ID = #{perfectInformation.perfectInformationId}
   </update>
- 
- 
+  
+ 	
 </mapper>

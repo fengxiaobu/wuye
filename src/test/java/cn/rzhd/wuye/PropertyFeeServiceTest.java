@@ -28,7 +28,7 @@ public class PropertyFeeServiceTest extends BaseTest {
     ICompanyService companyService;
 
     @Test
-    public void addPropertyFeeTest(){
+    public void addPropertyFeeTest() {
         List<Company> list = companyService.getAll();
         RequesterVO req = new RequesterVO();
         req.setKey(LiandoServiceConstant.SERVICE_KEY);
@@ -38,7 +38,7 @@ public class PropertyFeeServiceTest extends BaseTest {
             req.setPk_corp(pkCorp);
             String baseData = WebService.getBaseData(req);
             ResponseVO responseVO = JsonUtils.jsonToPojo(baseData, ResponseVO.class);
-            if ("Y".equals(responseVO.getIssuccess()) && StringUtil.isEmpty(responseVO.getErrorinfo())){
+            if ("Y".equals(responseVO.getIssuccess()) && StringUtil.isEmpty(responseVO.getErrorinfo())) {
                 FeeVO[] vos = responseVO.getFeedata();
                 for (FeeVO vo : vos) {
                     service.addPropertyFee(vo);
@@ -47,15 +47,17 @@ public class PropertyFeeServiceTest extends BaseTest {
             }
         }
     }
+
+
     @Test
-    public void queryTest(){
+    public void queryTest() {
         ArrearsQuery query = new ArrearsQuery();
         query.setHouseInfoId("1028XX1000000001N2UC");
         Map<String, Object> map = service.queryForPay(query);
-        if (map!=null){
+        if (map != null) {
             List current = (List) map.get("current");
             List past = (List) map.get("past");
-            if (current!=null && past!=null){
+            if (current != null && past != null) {
                 for (Object o : current) {
                     System.out.println(o);
                 }
@@ -81,5 +83,41 @@ public class PropertyFeeServiceTest extends BaseTest {
 //
 //            }
 //        }
+//    }
+/*
+    @Test
+    public void queryTest() {
+        ArrearsQuery query = new ArrearsQuery();
+        query.setHouseInfoId("1028XX1000000001N2UC");
+        Map<String, Object> map = service.queryForPay(query);
+        if (map != null) {
+            List current = (List) map.get("current");
+            List past = (List) map.get("past");
+            if (current != null && past != null) {
+                for (Object o : current) {
+                    System.out.println(o);
+                }
+                for (Object o : past) {
+                    System.out.println(o);
+                }
+
+            }
+        }*/
+        // ArrearsQuery query = new ArrearsQuery();
+        // query.setHouseInfoId("1028XX1000000001N2UC");
+        // Map<String, Object> stringObjectMap = service.queryForPay(query);
+        // if (stringObjectMap!=null){
+        // List current = stringObjectMap.get("current");
+        // List past = stringObjectMap.get("past");
+        // if (current!=null && past!=null){
+        // for (Object o : current) {
+        // System.out.println(o);
+        // }
+        // for (Object o : past) {
+        // System.out.println(o);
+        // }
+        //
+        // }
+        // }
     }
 }

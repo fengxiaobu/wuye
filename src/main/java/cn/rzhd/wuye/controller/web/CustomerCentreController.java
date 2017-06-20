@@ -4,13 +4,23 @@ import cn.rzhd.wuye.bean.Customer;
 import cn.rzhd.wuye.bean.PerfectInformation;
 import cn.rzhd.wuye.service.ICustomerCentreService;
 import cn.rzhd.wuye.utils.JsonUtils;
+import cn.rzhd.wuye.utils.UploadHead;
+
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
+
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * 
@@ -25,8 +35,8 @@ import java.util.Map;
  */
 
 @RestController
-@RequestMapping(value="/dist/CustomerCentre",method=RequestMethod.POST)
-public class CustomerCentreController {
+@RequestMapping(value = "/dist/CustomerCentre", method = RequestMethod.POST)
+public class CustomerCentreController extends HttpServlet {
 
 	@Autowired
 	private ICustomerCentreService customerCentreService;
@@ -49,10 +59,11 @@ public class CustomerCentreController {
 	 * @param customer
 	 * @return
 	 */
+
 	@RequestMapping(value = "/updateLogo", method = RequestMethod.POST)
-	public String updateLogo(Customer customer) {
+	public void updateLogo(Customer customer, MultipartFile file, HttpServletRequest request) {
+		UploadHead.uploadPic(file, request);
 		customerCentreService.updateLogo(customer);
-		return JsonUtils.objectToJson("success");
 	}
 
 	/**
@@ -74,9 +85,9 @@ public class CustomerCentreController {
 	 * @return
 	 */
 	@RequestMapping(value = "/updatePerfectInformation", method = RequestMethod.POST)
-	public String updatePerfectInformation(PerfectInformation perfectInformation) {
+	public void updatePerfectInformation(PerfectInformation perfectInformation,String customerId) {
+		perfectInformation = customerCentreService.getPerfectInformation(customerId);
 		customerCentreService.updatePerfectInformation(perfectInformation);
-		return JsonUtils.objectToJson("success");
 	}
 
 }
