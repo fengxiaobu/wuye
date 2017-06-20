@@ -1,10 +1,12 @@
 package cn.rzhd.wuye.common;
 
+import java.io.Serializable;
+
 /**
  * luopa 在 2017/6/1 创建.
  */
-public class RequestVO {
-
+public class RequestVO implements Serializable {
+    private static final long serialVersionUID = 1L;
     //版本号
     private String Version;
     // 接入类型
@@ -274,5 +276,38 @@ public class RequestVO {
 
     public void setSignature(String signature) {
         Signature = signature;
+    }
+
+    @Override
+    public String toString() {
+        return "RequestVO{" +
+                "Version='" + Version + '\'' +
+                ", AccessType='" + AccessType + '\'' +
+                ", InstuId='" + InstuId + '\'' +
+                ", AcqCode='" + AcqCode + '\'' +
+                ", MerId='" + MerId + '\'' +
+                ", MerOrderNo='" + MerOrderNo + '\'' +
+                ", TranDate='" + TranDate + '\'' +
+                ", TranTime='" + TranTime + '\'' +
+                ", OrderAmt='" + OrderAmt + '\'' +
+                ", TranType='" + TranType + '\'' +
+                ", BusiType='" + BusiType + '\'' +
+                ", CurryNo='" + CurryNo + '\'' +
+                ", SplitType='" + SplitType + '\'' +
+                ", SplitMethod='" + SplitMethod + '\'' +
+                ", MerSplitMsg='" + MerSplitMsg + '\'' +
+                ", BankInstNo='" + BankInstNo + '\'' +
+                ", MerPageUrl='" + MerPageUrl + '\'' +
+                ", MerBgUrl='" + MerBgUrl + '\'' +
+                ", CommodityMsg='" + CommodityMsg + '\'' +
+                ", MerResv='" + MerResv + '\'' +
+                ", TranReserved='" + TranReserved + '\'' +
+                ", CardTranData='" + CardTranData + '\'' +
+                ", PayTimeOut='" + PayTimeOut + '\'' +
+                ", TimeStamp='" + TimeStamp + '\'' +
+                ", RemoteAddr='" + RemoteAddr + '\'' +
+                ", RiskData='" + RiskData + '\'' +
+                ", Signature='" + Signature + '\'' +
+                '}';
     }
 }

@@ -52,10 +52,10 @@
             <td><input type="text" name="MerBgUrl" value="${MerBgUrl}"/></td>
         </tr>
 
-        <tr>
+       <%-- <tr>
             <td>防钓鱼客户浏览器IP:</td>
             <td><input type="text" name="RemoteAddr" value="${RemoteAddr}"/></td>
-        </tr>
+        </tr>--%>
         <tr>
             <td>签名:</td>
             <td><input name="Signature" type="hidden" value="${Signature}"></td>

@@ -9,11 +9,13 @@ import cn.rzhd.wuye.vo.FeeVO;
 import cn.rzhd.wuye.vo.LiandoServiceConstant;
 import cn.rzhd.wuye.vo.RequesterVO;
 import cn.rzhd.wuye.vo.ResponseVO;
+import cn.rzhd.wuye.vo.query.ArrearsQuery;
 import com.github.pagehelper.StringUtil;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by hasee on 2017/6/6.
@@ -47,7 +49,6 @@ public class PropertyFeeServiceTest extends BaseTest {
     }
     @Test
     public void queryTest(){
-<<<<<<< HEAD
         ArrearsQuery query = new ArrearsQuery();
         query.setHouseInfoId("1028XX1000000001N2UC");
         Map<String, Object> map = service.queryForPay(query);
@@ -64,7 +65,6 @@ public class PropertyFeeServiceTest extends BaseTest {
 
             }
         }
-=======
 //        ArrearsQuery query = new ArrearsQuery();
 //        query.setHouseInfoId("1028XX1000000001N2UC");
 //        Map<String, Object> stringObjectMap = service.queryForPay(query);
@@ -81,6 +81,5 @@ public class PropertyFeeServiceTest extends BaseTest {
 //
 //            }
 //        }
->>>>>>> 1541aaec0ea96dd5e8ea6f6e729698a238fe4ca1
     }
 }

@@ -5,21 +5,21 @@
     <resultMap id="enterMterial" type="cn.rzhd.wuye.bean.EnterMaterial">
         <id column="ENTER_MATERIAL_ID" property="enterMaterialId"/>
         <result column="PK_PROJECT" property="pkProject"/>
-        <result column="MATERIAL_NAME" property="materialName"  />
-        <result column="MATERIAL_ADDRESS" property="materialAddress" />
+        <result column="MATERIAL_NAME" property="materialName"/>
+        <result column="MATERIAL_ADDRESS" property="materialAddress"/>
         <result column="BASIC_INFO" property="basicInfo"/>
-        <result column="NOTES" property="notes" />
-        <result column="USER_ID" property="userId" />
+        <result column="NOTES" property="notes"/>
+        <result column="USER_ID" property="userId"/>
         <result column="UPDATE_TIME" property="updateTime"/>
     </resultMap>
     <resultMap id="enterMaterialMap" type="java.util.Map">
         <id column="ENTER_MATERIAL_ID" property="enterMaterialId"/>
         <result column="PK_PROJECT" property="pkProject"/>
-        <result column="MATERIAL_NAME" property="materialName"  />
-        <result column="MATERIAL_ADDRESS" property="materialAddress" />
+        <result column="MATERIAL_NAME" property="materialName"/>
+        <result column="MATERIAL_ADDRESS" property="materialAddress"/>
         <result column="BASIC_INFO" property="basicInfo"/>
-        <result column="NOTES" property="notes" />
-        <result column="USER_ID" property="userId" />
+        <result column="NOTES" property="notes"/>
+        <result column="USER_ID" property="userId"/>
         <result column="UPDATE_TIME" property="updateTime"/>
         <association property="user" javaType="cn.rzhd.wuye.bean.User">
             <id column="USER_ID" property="userId"/>
@@ -75,7 +75,7 @@
 
     <!-- 入驻资料列表分页查询 -->
     <select id="findEnterMaterial" resultMap="enterMaterialMap">
-         SELECT
+        SELECT
             tuser.USERNAME,
             mater.MATERIAL_NAME,
             mater.UPDATE_TIME,
@@ -83,18 +83,24 @@
         FROM
             T_ENTER_MATERIAL mater,
             T_USER tuser,
-            T_HOUSE_INFO house,
             T_PROJECT_INFO pro
         WHERE
-            mater.USER_ID = tuser.USER_ID
-        AND mater.PK_PROJECT= house.PROJECT_INFO_ID
+            mater.PK_PROJECT = pro.PK_PROJECT
+            AND mater.USER_ID = tuser.USER_ID
     </select>
 
     <!--入驻申请列表条件查询-->
     <select id="findEnterMaterialBypkproject" resultMap="enterMterial">
-         select ENTER_MATERIAL_ID, PK_PROJECT, MATERIAL_NAME, MATERIAL_ADDRESS, BASIC_INFO,
-    NOTES, USER_ID, UPDATE_TIME
-    from T_ENTER_MATERIAL
-              where PK_PROJECT ='${pkproject}'
-      </select>
+        SELECT
+            ENTER_MATERIAL_ID,
+            PK_PROJECT,
+            MATERIAL_NAME,
+            MATERIAL_ADDRESS,
+            BASIC_INFO,
+            NOTES,
+            USER_ID,
+            UPDATE_TIME
+        FROM T_ENTER_MATERIAL
+        WHERE PK_PROJECT = '${pkproject}'
+    </select>
 </mapper>

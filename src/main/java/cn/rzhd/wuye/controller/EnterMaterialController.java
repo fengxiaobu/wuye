@@ -1,7 +1,9 @@
 package cn.rzhd.wuye.controller;
 
 import cn.rzhd.wuye.bean.EnterMaterial;
+import cn.rzhd.wuye.bean.ProjectInfo;
 import cn.rzhd.wuye.service.IEnterMaterialService;
+import cn.rzhd.wuye.service.IProjectInfoService;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.PropertyFilter;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -25,6 +27,8 @@ import java.util.Map;
 public class EnterMaterialController {
     @Autowired
     IEnterMaterialService enterMaterialService;
+    @Autowired
+    IProjectInfoService projectInfoService;
 
     @RequestMapping("/findEnterMaterialList")
     public String findEnterMaterialList(Model model, Integer pageNum, Integer pageSize) {
@@ -39,8 +43,9 @@ public class EnterMaterialController {
     }
 
     @RequestMapping("/toEnterMaterialAdd")
-    public String toEnterMaterialAdd() {
-
+    public String toEnterMaterialAdd(Model model) {
+        List<ProjectInfo> projectInfos = projectInfoService.selectPKAndName();
+        model.addAttribute("projectInfos",projectInfos);
         return "forbusiness/enterMaterialAdd";
     }
 
@@ -76,5 +81,9 @@ public class EnterMaterialController {
         String jsonString = JSON.toJSONString(material, propertyFilter);
         return jsonString;
     }
+   @RequestMapping("/")
+    public String toEnterMaterial(){
 
+        return "forbusiness/enterApplyEdit";
+    }
 }
