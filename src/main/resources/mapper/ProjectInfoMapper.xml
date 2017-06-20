@@ -149,6 +149,12 @@
             UPDATEDATE
         FROM T_PROJECT_INFO
     </select>
+    <select id="selectPKAndName" resultMap="BaseResultMap">
+        SELECT
+            PK_PROJECT,
+            PROJECT_NAME
+        FROM T_PROJECT_INFO
+    </select>
     <update id="updateByERP" parameterType="cn.rzhd.wuye.vo.ProjectVO">
         UPDATE T_PROJECT_INFO
         SET

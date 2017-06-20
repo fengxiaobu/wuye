@@ -36,6 +36,8 @@
                         <span style="margin-right: 50px"><input style="height: 35px;width: 220px;" type="text"  name="endDate" placeholder="&nbsp;&nbsp;结束时间"></span>
                         <span style="margin-right: 50px"><input style="height: 35px;width: 220px;" type="text"  name="projectName" placeholder="&nbsp;&nbsp;项目名称,资料包名称,用户名"></span>
                         <button class="btn btn-default" style="background-color: #5bc0de" type="submit"><span class="glyphicon glyphicon-search">搜素</span></button>
+                        <a target="main" href="${pageContext.request.contextPath}/dist/enterMaterial/toEnterMaterialAdd" class="btn btn-info" type="button"><span class="glyphicon glyphicon-plus"></span>新增
+                        </a>
                     </form>
                 </div>
                 <div class="col-xs-12">
@@ -68,7 +70,7 @@
                         <td><input type="checkbox" value=""></td>
                         <td>${status.index+1}</td>
                         <td>${enterMaterial.houseInfo.projectInfo.projectName}</td>
-                        <td>${enterMaterial.houseInfo.houseProperty}</td>
+                        <td>${enterMaterial.materialName}</td>
                         <td>${enterMaterial.user.username}</td>
                         <td><fmt:formatDate value="${enterMaterial.updateTime }" pattern="yyyy-MM-dd"/></td>
                         <td><a class="btn btn-info" href="#" role="button">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;<a
