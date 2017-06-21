@@ -87,5 +87,10 @@ public class DecorationApplyServiceImpl implements IDecorationApplyService {
         return decorationApplyMapper.findDecorationApplyListByQuery(enterApplyQuery);
     }
 
+    @Override
+    public DecorationApply findDecorationApplyByHouseId(String houseInfoId) {
+        return decorationApplyMapper.findDecorationApplyByHouseId(houseInfoId);
+    }
+
 
 }

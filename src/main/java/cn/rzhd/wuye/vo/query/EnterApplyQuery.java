@@ -5,7 +5,7 @@ package cn.rzhd.wuye.vo.query;
  *
  * 入驻申请
  */
-public class EnterApplyQuery {
+public class  EnterApplyQuery {
     /**
      * 项目名称
      */

@@ -2,11 +2,38 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="cn.rzhd.wuye.mapper.DecorationApplyMapper">
+    <resultMap id="BaseResultMap" type="cn.rzhd.wuye.bean.DecorationApply">
+        <id column="DECORATION_APPLY_ID" property="decorationApplyId"/>
+        <result column="HOUSE_INFO_ID" property="houseInfoId"/>
+        <result column="CLIENT_NAME" property="clientName"/>
+        <result column="APPLY_TIME" property="applyTime"/>
+        <result column="ANTIPATE_TIME" property="antipateTime"/>
+        <result column="LOCALE_CUSTODIAN" property="localeCustodian"/>
+        <result column="LOCALE_CUSTODIAN_PHONE" property="localeCustodianPhone"/>
+        <result column="DECORATION_PARTS" property="decorationParts"/>
+        <result column="DECORATE_AREA" property="decorateArea"/>
+        <result column="CONSTRUCT_PEOPLE_NUMBER" property="constructPeopleNumber"/>
+        <result column="DECORATION_COMPANY" property="decorationCompany"/>
+        <result column="DECORATION_LEADER" property="decorationLeader"/>
+        <result column="DECORATION_ LEADER_PHONE" property="decorationLeaderPhone"/>
+        <result column="DECORATION_DEPOSIT" property="decorationDeposit"/>
+        <result column="DECORATION_MANAGEMENT_COST" property="decorationManagementCost"/>
+        <result column="PASS_PAPERS_COST" property="passPapersCost"/>
+        <result column="PASS_PAPERS_DEPOSIT" property="passPapersDeposit"/>
+        <result column="AUDIT_STATUS" property="auditStatus"/>
+        <result column="FEEDBACK1" property="feedback1"/>
+        <result column="FEEDBACK2" property="feedback2"/>
+        <result column="IS_SPECIAL_DECORATION" property="isSpecialDecoration"/>
+        <result column="SPECIAL_DECORATION_FILE" property="specialDecorationFile"/>
+        <result column="CREATION_TIME" property="creationTime"/>
+        <result column="UPDATE_TIME" property="updateTime"/>
+    </resultMap>
+
     <resultMap id="DecorationApplyMapper" type="java.util.Map">
         <id column="DECORATION_APPLY_ID" property="decorationApplyId"/>
         <result column="HOUSE_INFO_ID" property="houseInfoId"/>
         <result column="CLIENT_NAME" property="clientName"/>
-        <result column="CUSTOMERID" property="customerId"/>
+        <!--<result column="CUSTOMERID" property="customerId"/>-->
         <result column="APPLY_TIME" property="applyTime"/>
         <result column="ANTIPATE_TIME" property="antipateTime"/>
         <result column="LOCALE_CUSTODIAN" property="localeCustodian"/>
@@ -70,87 +97,149 @@
     </resultMap>
 
     <update id="updateByPrimaryKey" parameterType="cn.rzhd.wuye.bean.DecorationApply">
-    update T_DECORATION_APPLY
-    set HOUSE_INFO_ID = #{houseInfoId},
-      CLIENT_NAME = #{clientName},
-      APPLY_TIME = #{applyTime},
-      ANTIPATE_TIME = #{antipateTime},
-      LOCALE_CUSTODIAN = #{localeCustodian,},
-      LOCALE_CUSTODIAN_PHONE = #{localeCustodianPhone},
-      DECORATION_PARTS = #{decorationParts},
-      DECORATE_AREA = #{decorateArea},
-      CONSTRUCT_PEOPLE_NUMBER = #{constructPeopleNumber},
-      DECORATION_COMPANY = #{decorationCompany},
-      DECORATION_LEADER = #{decorationLeader},
-      "DECORATION_ LEADER_PHONE" = #{decorationLeaderPhone},
-      DECORATION_DEPOSIT = #{decorationDeposit},
-      DECORATION_MANAGEMENT_COST = #{decorationManagementCost},
-      PASS_PAPERS_COST = #{passPapersCost},
-      PASS_PAPERS_DEPOSIT = #{passPapersDeposit},
-      AUDIT_STATUS = #{auditStatus},
-      FEEDBACK1 = #{feedback1},
-      FEEDBACK2 = #{feedback2},
-      IS_SPECIAL_DECORATION = #{isSpecialDecoration},
-      SPECIAL_DECORATION_FILE = #{specialDecorationFile},
-      CREATION_TIME = #{creationTime},
-      UPDATE_TIME = #{updateTime},
-      CUSTOMERID=#{customerId}
-    where DECORATION_APPLY_ID = #{decorationApplyId}
-  </update>
+        UPDATE T_DECORATION_APPLY
+        SET HOUSE_INFO_ID              = #{houseInfoId},
+            CLIENT_NAME                = #{clientName},
+            APPLY_TIME                 = #{applyTime},
+            ANTIPATE_TIME              = #{antipateTime},
+            LOCALE_CUSTODIAN           = #{localeCustodian,},
+            LOCALE_CUSTODIAN_PHONE     = #{localeCustodianPhone},
+            DECORATION_PARTS           = #{decorationParts},
+            DECORATE_AREA              = #{decorateArea},
+            CONSTRUCT_PEOPLE_NUMBER    = #{constructPeopleNumber},
+            DECORATION_COMPANY         = #{decorationCompany},
+            DECORATION_LEADER          = #{decorationLeader},
+            "DECORATION_ LEADER_PHONE" = #{decorationLeaderPhone},
+            DECORATION_DEPOSIT         = #{decorationDeposit},
+            DECORATION_MANAGEMENT_COST = #{decorationManagementCost},
+            PASS_PAPERS_COST           = #{passPapersCost},
+            PASS_PAPERS_DEPOSIT        = #{passPapersDeposit},
+            AUDIT_STATUS               = #{auditStatus},
+            FEEDBACK1                  = #{feedback1},
+            FEEDBACK2                  = #{feedback2},
+            IS_SPECIAL_DECORATION      = #{isSpecialDecoration},
+            SPECIAL_DECORATION_FILE    = #{specialDecorationFile},
+            CREATION_TIME              = #{creationTime},
+            UPDATE_TIME                = #{updateTime}
+        WHERE DECORATION_APPLY_ID = #{decorationApplyId}
+    </update>
     <!--添加装修申请-->
     <insert id="insert" parameterType="cn.rzhd.wuye.bean.DecorationApply">
-         insert into T_DECORATION_APPLY (DECORATION_APPLY_ID, HOUSE_INFO_ID, CLIENT_NAME,
-      APPLY_TIME, ANTIPATE_TIME, LOCALE_CUSTODIAN,
-      LOCALE_CUSTODIAN_PHONE, DECORATION_PARTS, DECORATE_AREA,
-      CONSTRUCT_PEOPLE_NUMBER, DECORATION_COMPANY,
-      DECORATION_LEADER, "DECORATION_ LEADER_PHONE",
-      DECORATION_DEPOSIT, DECORATION_MANAGEMENT_COST,
-      PASS_PAPERS_COST, PASS_PAPERS_DEPOSIT, AUDIT_STATUS,
-      FEEDBACK1, FEEDBACK2, IS_SPECIAL_DECORATION,
-      SPECIAL_DECORATION_FILE, CREATION_TIME, UPDATE_TIME,CURRENT_ID
-      )
-    values (#{decorationApplyId}, #{houseInfoId}, #{clientName,},
-      #{applyTime}, #{antipateTime}, #{localeCustodian,},
-      #{localeCustodianPhone}, #{decorationParts}, #{decorateArea},
-      #{constructPeopleNumber}, #{decorationCompany,},
-      #{decorationLeader}, #{decorationLeaderPhone},
-      #{decorationDeposit}, #{decorationManagementCost},
-      #{passPapersCost}, #{passPapersDeposit}, #{auditStatus},
-      #{feedback1}, #{feedback2}, #{isSpecialDecoration},
-      #{specialDecorationFile}, #{creationTime}, #{updateTime},#{customerId}
-      )
+        INSERT INTO T_DECORATION_APPLY (DECORATION_APPLY_ID, HOUSE_INFO_ID, CLIENT_NAME,
+                                        APPLY_TIME, ANTIPATE_TIME, LOCALE_CUSTODIAN,
+                                        LOCALE_CUSTODIAN_PHONE, DECORATION_PARTS, DECORATE_AREA,
+                                        CONSTRUCT_PEOPLE_NUMBER, DECORATION_COMPANY,
+                                        DECORATION_LEADER, "DECORATION_ LEADER_PHONE",
+                                        DECORATION_DEPOSIT, DECORATION_MANAGEMENT_COST,
+                                        PASS_PAPERS_COST, PASS_PAPERS_DEPOSIT, AUDIT_STATUS,
+                                        FEEDBACK1, FEEDBACK2, IS_SPECIAL_DECORATION,
+                                        SPECIAL_DECORATION_FILE, CREATION_TIME, UPDATE_TIME, CURRENT_ID
+        )
+        VALUES (#{decorationApplyId}, #{houseInfoId}, #{clientName,},
+                                      #{applyTime}, #{antipateTime}, #{localeCustodian,},
+                                      #{localeCustodianPhone}, #{decorationParts}, #{decorateArea},
+                                      #{constructPeopleNumber}, #{decorationCompany,},
+            #{decorationLeader}, #{decorationLeaderPhone},
+            #{decorationDeposit}, #{decorationManagementCost},
+            #{passPapersCost}, #{passPapersDeposit}, #{auditStatus},
+            #{feedback1}, #{feedback2}, #{isSpecialDecoration},
+                #{specialDecorationFile}, #{creationTime}, #{updateTime}, #{customerId}
+        )
     </insert>
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from T_DECORATION_APPLY
-    where DECORATION_APPLY_ID = #{decorationApplyId}
-  </delete>
-    <select id="selectByPrimaryKey" resultMap="DecorationApplyMapper" parameterType="java.lang.Long">
-        select DECORATION_APPLY_ID, HOUSE_INFO_ID, CLIENT_NAME, APPLY_TIME, ANTIPATE_TIME,
-        LOCALE_CUSTODIAN, LOCALE_CUSTODIAN_PHONE, DECORATION_PARTS, DECORATE_AREA, CONSTRUCT_PEOPLE_NUMBER,
-        DECORATION_COMPANY, DECORATION_LEADER, "DECORATION_ LEADER_PHONE", DECORATION_DEPOSIT,
-        DECORATION_MANAGEMENT_COST, PASS_PAPERS_COST, PASS_PAPERS_DEPOSIT, AUDIT_STATUS,
-        FEEDBACK1, FEEDBACK2, IS_SPECIAL_DECORATION, SPECIAL_DECORATION_FILE, CREATION_TIME,
-        UPDATE_TIME,CUSTOMERID
-        from T_DECORATION_APPLY
-        where DECORATION_APPLY_ID = #{decorationApplyId}
+        DELETE FROM T_DECORATION_APPLY
+        WHERE DECORATION_APPLY_ID = #{decorationApplyId}
+    </delete>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        SELECT
+            DECORATION_APPLY_ID,
+            HOUSE_INFO_ID,
+            CLIENT_NAME,
+            APPLY_TIME,
+            ANTIPATE_TIME,
+            LOCALE_CUSTODIAN,
+            LOCALE_CUSTODIAN_PHONE,
+            DECORATION_PARTS,
+            DECORATE_AREA,
+            CONSTRUCT_PEOPLE_NUMBER,
+            DECORATION_COMPANY,
+            DECORATION_LEADER,
+            "DECORATION_ LEADER_PHONE",
+            DECORATION_DEPOSIT,
+            DECORATION_MANAGEMENT_COST,
+            PASS_PAPERS_COST,
+            PASS_PAPERS_DEPOSIT,
+            AUDIT_STATUS,
+            FEEDBACK1,
+            FEEDBACK2,
+            IS_SPECIAL_DECORATION,
+            SPECIAL_DECORATION_FILE,
+            CREATION_TIME,
+            UPDATE_TIME
+        FROM T_DECORATION_APPLY
+        WHERE DECORATION_APPLY_ID = #{decorationApplyId}
     </select>
     <select id="findDecorationApplyList" resultMap="DecorationApplyMapper">
-        select DECORATION_APPLY_ID, HOUSE_INFO_ID, CLIENT_NAME, APPLY_TIME, ANTIPATE_TIME,
-        LOCALE_CUSTODIAN, LOCALE_CUSTODIAN_PHONE, DECORATION_PARTS, DECORATE_AREA, CONSTRUCT_PEOPLE_NUMBER,
-        DECORATION_COMPANY, DECORATION_LEADER, "DECORATION_ LEADER_PHONE", DECORATION_DEPOSIT,
-        DECORATION_MANAGEMENT_COST, PASS_PAPERS_COST, PASS_PAPERS_DEPOSIT, AUDIT_STATUS,
-        FEEDBACK1, FEEDBACK2, IS_SPECIAL_DECORATION, SPECIAL_DECORATION_FILE, CREATION_TIME,CUSTOMERID,
-        UPDATE_TIME
-        from T_DECORATION_APPLY
+        SELECT
+            DECORATION_APPLY_ID,
+            HOUSE_INFO_ID,
+            CLIENT_NAME,
+            APPLY_TIME,
+            ANTIPATE_TIME,
+            LOCALE_CUSTODIAN,
+            LOCALE_CUSTODIAN_PHONE,
+            DECORATION_PARTS,
+            DECORATE_AREA,
+            CONSTRUCT_PEOPLE_NUMBER,
+            DECORATION_COMPANY,
+            DECORATION_LEADER,
+            "DECORATION_ LEADER_PHONE",
+            DECORATION_DEPOSIT,
+            DECORATION_MANAGEMENT_COST,
+            PASS_PAPERS_COST,
+            PASS_PAPERS_DEPOSIT,
+            AUDIT_STATUS,
+            FEEDBACK1,
+            FEEDBACK2,
+            IS_SPECIAL_DECORATION,
+            SPECIAL_DECORATION_FILE,
+            CREATION_TIME,
+            UPDATE_TIME
+        FROM T_DECORATION_APPLY
     </select>
     <select id="findDecorationApplyListByQuery" resultMap="DecorationApplyMapper">
-        select DECORATION_APPLY_ID, HOUSE_INFO_ID, CLIENT_NAME, APPLY_TIME, ANTIPATE_TIME,
-        LOCALE_CUSTODIAN, LOCALE_CUSTODIAN_PHONE, DECORATION_PARTS, DECORATE_AREA, CONSTRUCT_PEOPLE_NUMBER,
-        DECORATION_COMPANY, DECORATION_LEADER, "DECORATION_ LEADER_PHONE", DECORATION_DEPOSIT,
-        DECORATION_MANAGEMENT_COST, PASS_PAPERS_COST, PASS_PAPERS_DEPOSIT, AUDIT_STATUS,
-        FEEDBACK1, FEEDBACK2, IS_SPECIAL_DECORATION, SPECIAL_DECORATION_FILE, CREATION_TIME,
-        UPDATE_TIME,CUSTOMERID
-        from T_DECORATION_APPLY
+        SELECT
+            DECORATION_APPLY_ID,
+            HOUSE_INFO_ID,
+            CLIENT_NAME,
+            APPLY_TIME,
+            ANTIPATE_TIME,
+            LOCALE_CUSTODIAN,
+            LOCALE_CUSTODIAN_PHONE,
+            DECORATION_PARTS,
+            DECORATE_AREA,
+            CONSTRUCT_PEOPLE_NUMBER,
+            DECORATION_COMPANY,
+            DECORATION_LEADER,
+            "DECORATION_ LEADER_PHONE",
+            DECORATION_DEPOSIT,
+            DECORATION_MANAGEMENT_COST,
+            PASS_PAPERS_COST,
+            PASS_PAPERS_DEPOSIT,
+            AUDIT_STATUS,
+            FEEDBACK1,
+            FEEDBACK2,
+            IS_SPECIAL_DECORATION,
+            SPECIAL_DECORATION_FILE,
+            CREATION_TIME,
+            UPDATE_TIME
+        FROM T_DECORATION_APPLY
+    </select>
+    <select id="findDecorationApplyByHouseId" resultMap="BaseResultMap">
+        SELECT *
+        FROM T_DECORATION_APPLY
+        WHERE
+            HOUSE_INFO_ID = '${houseInfoId}'
     </select>
 </mapper>
