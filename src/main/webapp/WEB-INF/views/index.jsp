@@ -302,8 +302,7 @@
                                     <a href="${pageContext.request.contextPath}/dist/messageManageBack/getMessageManageList?pageNum=1&pageSize=10" target="main">通知列表</a>
                                 </div>
                                 <div class="panel-header">
-                                    <a data-toggle="collapse" data-parent="#"
-                                       href="#collapse_six_018">发布通知</a>
+                                    <a href="${pageContext.request.contextPath}/dist/messageManageBack/messageManageEdit" target="main">发布通知</a>
                                 </div>
                             </li>
                         </ul>

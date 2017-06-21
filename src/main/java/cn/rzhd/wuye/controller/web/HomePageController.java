@@ -3,7 +3,6 @@ package cn.rzhd.wuye.controller.web;
 
 import cn.rzhd.wuye.bean.Customer;
 import cn.rzhd.wuye.bean.MessageManage;
-import cn.rzhd.wuye.service.ICustomerService;
 import cn.rzhd.wuye.service.IHomePageService;
 import cn.rzhd.wuye.service.IRentContractService;
 import cn.rzhd.wuye.vo.PactVO;
@@ -35,8 +34,6 @@ public class HomePageController {
     private IHomePageService homePageService;
     @Autowired
     private IRentContractService rentContractService;
-    @Autowired
-    private ICustomerService customerService;
 
     /**
      * 根据客户id查询房产信息
@@ -83,7 +80,8 @@ public class HomePageController {
                 result.addAll(list);
             }
         }
-        return result;
+        List<Map<String, Object>> maps = result.subList(0, 1);
+        return maps;
     }
 
     /**
@@ -122,9 +120,5 @@ public class HomePageController {
             result.addAll(findMessageByCustomer);
         }
         return result;
-
-
     }
-
-
 }

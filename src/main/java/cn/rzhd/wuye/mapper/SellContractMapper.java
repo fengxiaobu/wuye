@@ -29,4 +29,8 @@ public interface SellContractMapper {
     List<SignVO> queryByCustomer(String customerId);
     
     List<SignVO> getAll();
+    
+    List<String> getAllHouse(String pk_customerid);
+    
+    List<SignVO> getByName(@Param("house")String house,@Param("pk_customerid")String pk_customerid);
 }

@@ -1,6 +1,7 @@
 package cn.rzhd.wuye;
 
 import cn.rzhd.wuye.common.WebService;
+import cn.rzhd.wuye.mapper.SellContractMapper;
 import cn.rzhd.wuye.service.ISellContractService;
 import cn.rzhd.wuye.utils.JsonUtils;
 import cn.rzhd.wuye.vo.*;
@@ -18,6 +19,8 @@ import java.util.List;
 public class SellContractServiceTest extends BaseTest {
 	@Autowired
 	ISellContractService service;
+	@Autowired
+	SellContractMapper mapper;
 
 	@Test
 	public void getSellContractTest() {
@@ -27,13 +30,22 @@ public class SellContractServiceTest extends BaseTest {
 		}
 
 	}
+	
+	@Test
+	public void test1() throws Exception {
+		String pk_customerid = "1004XX100000002EINE1";
+		List<String> allHouse = mapper.getAllHouse(pk_customerid);
+		for (String string : allHouse) {
+			System.out.println(string);
+		}
+	}
 
 	@Test
 	public void testGetSell() throws Exception {
+		String house="济南长清1号地二期10号楼1单元101";
 		String pk_customerid = "1004XX100000002EINE1";
-		String pk_sign = "1077XX10000000011KPD";
-		List<SignVO> signVOs = service.getSellContractByCustomer(pk_customerid, pk_sign);
-		for (SignVO signVO : signVOs) {
+		List<SignVO> byName = mapper.getByName(house, pk_customerid);
+		for (SignVO signVO : byName) {
 			System.out.println(signVO);
 		}
 	}

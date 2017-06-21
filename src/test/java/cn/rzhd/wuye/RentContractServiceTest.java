@@ -7,6 +7,8 @@ import cn.rzhd.wuye.vo.*;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import static org.junit.Assert.*;
+
 import java.util.List;
 
 /**
@@ -23,6 +25,16 @@ public class RentContractServiceTest extends BaseTest {
 			System.out.println(pactVO);
 		}
 
+	}
+	
+	@Test
+	public void test1() throws Exception {
+		String pk_pact = "11111111";
+		String pk_customerid = "123456";
+		List<PactVO> pactVOs = service.getRentContractByCustomer(pk_pact, pk_customerid);
+		for (PactVO pactVO : pactVOs) {
+			System.out.println(pactVO);
+		}
 	}
 
 	@Test

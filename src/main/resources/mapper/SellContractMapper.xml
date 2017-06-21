@@ -40,6 +40,14 @@
 		JOIN T_PROJECT_INFO p ON "pk_project" = p.PK_PROJECT
 		WHERE "pk_customerid" = #{customerId}
 	</select>
+	
+	<select id="getAllHouse" parameterType="String" resultType="String">
+		SELECT DISTINCT "house" FROM "T_Sell_Contract" WHERE "pk_customerid"=#{pk_customerid}
+	</select>
+	
+	<select id="getByName" parameterType="String" resultType="cn.rzhd.wuye.vo.SignVO">
+			SELECT * FROM "T_Sell_Contract" WHERE "house"=#{house}  AND "pk_customerid"=#{pk_customerid}
+	</select>
 
 	<insert id="add" parameterType="cn.rzhd.wuye.vo.SignVO">
 		INSERT INTO "T_Sell_Contract" ("pk_corp",

@@ -34,4 +34,8 @@ public interface ISellContractService {
      * 后台展示列表
      */
     List<SignVO> getBackAll();
+    
+    List<String> getAllName(String pk_customerid);
+    
+    List<SignVO> getByName(String house,String pk_customerid);
 }

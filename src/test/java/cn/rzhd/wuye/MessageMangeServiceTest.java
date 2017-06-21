@@ -1,7 +1,5 @@
 package cn.rzhd.wuye;
 
-import static org.junit.Assert.*;
-
 import java.util.List;
 
 import org.junit.Test;
@@ -30,4 +28,11 @@ public class MessageMangeServiceTest extends BaseTest {
 		mapper.deleteInfoArray(message_manage_id );
 	}
 	
+	@Test
+	public void testType() throws Exception {
+		List<String> allType = mapper.getAllType();
+		for (String type : allType) {
+			System.out.println(type);
+		}
+	}
 }

@@ -23,4 +23,6 @@ public interface IMessageManageService {
 	 * @param 批量删除
 	 */
 	void DeleteMessageManages(String[] message_manage_id);
+	
+	List<String> getAllType();
 }
