@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -21,7 +22,7 @@ public interface RentContractMapper {
      */
     PactVO getById(String pk_pact);
     
-    List<PactVO> getByPkId(String pk_pact,String pk_customerid);
+    List<PactVO> getByPkId(@Param("pk_pact")String pk_pact,@Param("pk_customerid")String pk_customerid);
 
     void add(PactVO pactVO);
 

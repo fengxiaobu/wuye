@@ -19,4 +19,6 @@ public interface MessageManageMapper {
 	 * @param 批量删除
 	 */
 	void deleteInfoArray(String[] message_manage_id);
+	
+	List<String> getAllType();
 }

@@ -70,4 +70,17 @@ public class SellContractServiceImpl implements ISellContractService {
 		return signVOAll;
 	}
 
+	@Override
+	public List<String> getAllName(String pk_customerid) {
+		List<String> houses = mapper.getAllHouse(pk_customerid);
+		return houses;
+	}
+
+	@Override
+	public List<SignVO> getByName(String house, String pk_customerid) {
+		List<SignVO> signVOs = mapper.getByName(house, pk_customerid);
+		return signVOs;
+	}
+
+
 }
