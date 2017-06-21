@@ -35,4 +35,6 @@ public interface CustomerMapper {
     void addCustomer(@Param("customerVo") CustomerVO customerVo);
 
     List<Customer> getAll();
+    
+    
 }

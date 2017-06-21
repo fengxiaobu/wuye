@@ -13,6 +13,12 @@
     <title>首页</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/js/libs/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css">
+    
+<script type="text/javascript">
+	function logout() {
+		location.href="/loginOut";
+	}
+</script>
 </head>
 <body>
 
@@ -27,12 +33,12 @@
                     <div class="user-container">
                         <div class="user-photo-wrap"><img src="${pageContext.request.contextPath}/imgs_test/timg.jpg" alt="..."
                                                           class="img-circle user-photo"></div>
-                        <div class="user-name">风吹乱了夏天</div>
+                        <div class="user-name">${user.realname}</div>
                     </div>
                     <button class="btn btn-default" type="button"><span
                             class="glyphicon glyphicon-bullhorn"></span><span class="badge">4</span>消息
                     </button>
-                    <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-off"></span>退出
+                    <button class="btn btn-default" type="button" onclick="logout()"><span class="glyphicon glyphicon-off"></span>退出
                     </button>
                 </div>
             </div>
