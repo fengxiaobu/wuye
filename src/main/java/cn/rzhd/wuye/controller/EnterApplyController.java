@@ -1,10 +1,15 @@
 package cn.rzhd.wuye.controller;
 
 import cn.rzhd.wuye.bean.EnterApply;
+import cn.rzhd.wuye.bean.KfFee;
+import cn.rzhd.wuye.bean.PropertyFee;
 import cn.rzhd.wuye.service.IEnterApplyService;
+import cn.rzhd.wuye.service.IKfFeeService;
+import cn.rzhd.wuye.service.IPropertyFeeService;
 import cn.rzhd.wuye.utils.JsonUtils;
 import cn.rzhd.wuye.utils.StringTimeUtil;
 import cn.rzhd.wuye.vo.query.EnterApplyQuery;
+import cn.rzhd.wuye.vo.query.FeeDataQuery;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -18,7 +23,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -41,6 +49,10 @@ import java.util.Map;
 public class EnterApplyController {
     @Autowired
     IEnterApplyService enterApplyService;
+    @Autowired
+    IPropertyFeeService propertyFeeService;
+    @Autowired
+    IKfFeeService kfFeeService;
     @Value("${fileDir}")
     private String fileDir;
 
@@ -98,9 +110,16 @@ public class EnterApplyController {
      * @return
      */
     @RequestMapping(value = "/enterApplyEdit", method = RequestMethod.GET)
-    public String toEnterApplyAdd(Model model, Long enterApplyId) throws InvocationTargetException, IllegalAccessException {
+    public String toEnterApplyAdd(Model model, Long enterApplyId,String houseInfoId ) throws InvocationTargetException, IllegalAccessException {
+        FeeDataQuery query=new FeeDataQuery();
+        query.setHouseInfoId(houseInfoId);
         List<Map<String, JsonFormat.Value>> enterApplyList = enterApplyService.getEnterApplyByID(enterApplyId);
         Map<String, JsonFormat.Value> map = new HashMap<>();
+        //入住开发费
+        List<KfFee> kfFeeList = kfFeeService.selectAllRZ(query);
+        //入住物业费
+        List<PropertyFee> propertyFeeList = propertyFeeService.rzselectAll(query);
+
         if (enterApplyList.size() == 1) {
             map = enterApplyList.get(0);
         }
@@ -159,7 +178,7 @@ public class EnterApplyController {
      */
     @RequestMapping("/insertEnterApply")
     @ResponseBody
-    public Map insertEnterApply(@RequestBody  EnterApply enterApply) {
+    public Map insertEnterApply(EnterApply enterApply) {
         System.out.println("enterApply = " + enterApply);
         Map result = new HashMap();
         if (StringUtil.isEmpty(enterApply.getHouseId())) {

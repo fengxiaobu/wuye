@@ -15,6 +15,7 @@ import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -160,6 +161,35 @@ public class DecorationApplyController {
     }
 
     /**
+     * 根据房产编码查询审核结果
+     *
+     * @param houseInfoId
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("/findDecorationApplyByHouseId")
+    public Map<String, Object> findDecorationApplyByHouseId(String houseInfoId) {
+        Map<String, Object> result = new HashMap<>();
+        if (houseInfoId == null) {
+            result.put("state", "0");
+            result.put("msg", "ID不能为空!");
+            return result;
+        }
+        DecorationApply decorationApply = decorationApplyService.findDecorationApplyByHouseId(houseInfoId);
+        if (decorationApply != null) {
+            result.put("state", "1");
+            result.put("data", decorationApply);
+        } else if (decorationApply == null) {
+            result.put("state", "0");
+            result.put("data", "null");
+        } else {
+            result.put("state", "0");
+            result.put("msg", "错误");
+        }
+        return result;
+    }
+
+    /**
      * 审核装修申请
      *
      * @param decorationApply
@@ -245,5 +275,21 @@ public class DecorationApplyController {
             return result;
         }
     }
+
+    @RequestMapping("/toDecorationApplyList")
+    public String toDecorationApplyList(Model model) {
+        List<Map<String, JsonFormat.Value>> decorationApplyList = decorationApplyService.findDecorationApplyList();
+        model.addAttribute("decorationApply", decorationApplyList);
+        return "decoration/decorationApplyList";
+    }
+
+    @RequestMapping("/toDecorationApplyEdit")
+    public String toDecorationApplyEdit(Model model, Long decorationApplyId) {
+        DecorationApply decorationApply = decorationApplyService.selectByPrimaryKey(decorationApplyId);
+
+        model.addAttribute("decorationApply", decorationApply);
+        return "decoration/decorationApplyEdit";
+    }
+
 
 }

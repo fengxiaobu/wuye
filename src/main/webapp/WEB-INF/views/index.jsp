@@ -168,20 +168,20 @@
                         <ul class="panel-group level02" id="aside_four_02">
                             <li class="panel" role="tab">
                                 <div class="panel-header">
-                                    <a href="${pageContext.request.contextPath}/dist/enterApply/enterApplyList?pageNum=1&pageSize=5" target="main">入驻申请</a>
+                                    <a href="${pageContext.request.contextPath}/dist/enterApply/enterApplyList?pageNum=1&pageSize=5" target="main">入住申请</a>
                                 </div>
                             </li>
 
                             <li class="panel" role="tab">
                                 <div class="panel-header">
-                                    <a target="main" href="${pageContext.request.contextPath}/dist/enterMaterial/findEnterMaterialList?pageNum=1&pageSize=5">入驻资料列表</a>
+                                    <a target="main" href="${pageContext.request.contextPath}/dist/enterMaterial/findEnterMaterialList?pageNum=1&pageSize=5">入住资料列表</a>
                                 </div>
 
                             </li>
 
                             <li class="panel" role="tab">
                                 <div class="panel-header">
-                                    <a data-toggle="collapse" target="main" href="#">装修申请</a>
+                                    <a target="main" href="${pageContext.request.contextPath}/dist/toDecorationApplyList">装修申请</a>
                                 </div>
 
                             </li>
@@ -250,7 +250,7 @@
                                     <a data-toggle="collapse" target="main" href="#">系统设置</a>
                                 </div>
                                 <div class="panel-header">
-                                    <a data-toggle="collapse" target="main"  href="#">入驻完成-提示信息</a>
+                                    <a data-toggle="collapse" target="main"  href="#">入住完成-提示信息</a>
                                 </div>
                             </li>
 

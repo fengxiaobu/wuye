@@ -17,7 +17,7 @@
     <ol class="breadcrumb">
         <li><a href="#">首页</a></li>
         <li><a href="#">业务办理</a></li>
-        <li class="active">入住申请列表</li>
+        <li class="active">装修申请列表</li>
     </ol>
 </div>
 <!-- 路径导航 结束 -->
@@ -26,7 +26,7 @@
     </div>
     <div class="panel panel-default tudiqianyue">
         <div class="panel-heading">
-            <div class="col-xs-4">入住申请列表</div>
+            <div class="col-xs-4">装修申请列表</div>
             <div class="col-xs-8 panel-oprerate">
                 <div class="col-xs-6dd">
                     <form action="${pageContext.request.contextPath}/dist/enterApply/search" method="post">
@@ -68,31 +68,59 @@
                     <th rowspan="2">项目名称<br/></th>
                     <th rowspan="2">房产</th>
                     <th rowspan="2">客户名称</th>
+                  <%--  <th rowspan="2">楼号</th>--%>
                     <th rowspan="2">申请日期</th>
-                    <th rowspan="2">审核状态</th>
+                    <th rowspan="2">预计工期</th>
+                    <th rowspan="2">现场管理人</th>
+                    <th rowspan="2">现场管理人联系方式</th>
+                    <th rowspan="2">装修部位</th>
+                    <th rowspan="2">装修面积</th>
+                    <th rowspan="2">施工人数</th>
+                    <th rowspan="2">装修公司</th>
+                    <th rowspan="2">装修负责人</th>
+                    <th rowspan="2">装修负责人联系方式</th>
+                    <th rowspan="2">装修押金</th>
+                    <th rowspan="2">装修管理费</th>
+                    <th rowspan="2">出入证工本费</th>
+                    <th rowspan="2">出入证押金</th>
+                    <th rowspan="2">状态</th>
                     <th rowspan="2">操作</th>
                 </tr>
                 </thead>
                 <tbody class="tudiqianyue-tbody">
 
-                <c:forEach items="${enterApplyList}" var="enterApply" varStatus="status">
+                <c:forEach items="${decorationApply}" var="decora" varStatus="status">
                     <tr class="tudiqianyue-tdtr">
                         <td><input type="checkbox" value=""></td>
                         <td>${status.index+1}</td>
-                        <td>${enterApply.houseInfo.projectInfo.projectName}</td>
-                        <td>${enterApply.houseInfo.houseProperty}</td>
-                        <td>${enterApply.clientName}</td>
-                        <td><fmt:formatDate value="${enterApply.applyTime }" pattern="yyyy-MM-dd"/></td>
+                        <td>${decora.houseInfo.projectInfo.projectName}</td>
+                        <td>${decora.houseInfo.houseProperty}</td>
+                        <td>${decora.clientName}</td>
+                      <%--  <td>${decora.clientName}</td>--%>
+                        <td><fmt:formatDate value="${decora.applyTime }" pattern="yyyy-MM-dd"/></td>
+                        <td>${decora.antipateTime}&nbsp;天</td>
+                        <td>${decora.localeCustodian}</td>
+                        <td>${decora.localeCustodianPhone}</td>
+                        <td>${decora.decorationParts}</td>
+                        <td>${decora.decorateArea}</td>
+                        <td>${decora.constructPeopleNumber}&nbsp;人</td>
+                        <td>${decora.decorationCompany}</td>
+                        <td>${decora.decorationLeader}</td>
+                        <td>${decora.decorationLeaderPhone}&nbsp;人</td>
+                        <td>${decora.decorationDeposit}</td>
+                        <td>${decora.decorationManagementCost}</td>
+                        <td>${decora.passPapersCost}&nbsp;人</td>
+                        <td>${decora.passPapersDeposit}</td>
                         <td>
-                            <c:if test="${enterApply.auditStatus eq 0}">未审核</c:if>
-                            <c:if test="${enterApply.auditStatus eq 1}">已通过</c:if>
-                            <c:if test="${enterApply.auditStatus eq 2}">未通过</c:if>
+                            <c:if test="${decora.auditStatus eq 0}">未审核</c:if>
+                            <c:if test="${decora.auditStatus eq 1}">已通过</c:if>
+                            <c:if test="${decora.auditStatus eq 2}">未通过</c:if>
                         </td>
                         <td><a class="btn btn-info"
                                href="${pageContext.request.contextPath}/dist/enterApply/deleteEnterApply?enterApplyId=${enterApply.enterApplyId}"
                                role="button">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;<a
                                 class="btn btn-info"
-                                href="${pageContext.request.contextPath}/dist/enterApply/enterApplyEdit?enterApplyId=${enterApply.enterApplyId}&houseInfoId=${enterApply.houseId}"
+                                href="${pageContext.request.contextPath}/dist/enterApply/enterApplyEdit?enterApplyId=${enterApply.enterApplyId}"
                                 role="button">编辑</a></td>
                     </tr>
                 </c:forEach>
@@ -102,7 +130,7 @@
                 <ul class="pagination">
                     <li><a href="${pageContext.request.contextPath}/dist/enterApply/enterApplyList?pageNum=1&pageSize=1"
                            target="main">&laquo;</a></li>
-                    <c:forEach begin="1" end="${total>5?total/5:1}" step="1" varStatus="page">
+                    <c:forEach begin="1" end="${total/5}" step="1" varStatus="page">
                         <li>
                             <a href="${pageContext.request.contextPath}/dist/enterApply/enterApplyList?pageNum=1&pageSize=1">${page.count}</a>
                         </li>

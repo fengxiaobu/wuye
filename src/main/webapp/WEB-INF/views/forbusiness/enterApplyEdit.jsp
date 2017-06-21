@@ -51,7 +51,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">入驻通知</label>
+                        <label class="col-sm-2 control-label">入住通知</label>
                         <div class="col-sm-10">
                             <img src="${enterApply.enterAdviceNote}" name="enterAdviceNote">
                             <a target="main" href="${pageContext.request.contextPath}/enterApply/toEnterApplyAdd" class="btn btn-info" type="button"><span class="glyphicon glyphicon-arrow-down"></span>下载图片
