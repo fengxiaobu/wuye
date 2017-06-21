@@ -26,7 +26,7 @@ public class ChinaPayHelper {
         requestVO.setMerPageUrl(properties.getProperty("pay.MerPageUrl"));
         requestVO.setMerBgUrl(properties.getProperty("pay.MerBgUrl"));
         requestVO.setPayTimeOut(properties.getProperty("pay.PayTimeOut"));
-        //requestVO.setTranType(properties.getProperty("pay.TranType"));
+        requestVO.setTranType(properties.getProperty("pay.TranType"));
 
         Date date = new Date();
         String tranDate = StringTimeUtil.TranDate(date);

@@ -1,9 +1,6 @@
 package cn.rzhd.wuye.controller.web;
 
-import cn.rzhd.wuye.bean.Ammeter;
-import cn.rzhd.wuye.bean.ElectricFeePayDetails;
-import cn.rzhd.wuye.bean.HouseInfo;
-import cn.rzhd.wuye.bean.WaterRatePayDetails;
+import cn.rzhd.wuye.bean.*;
 import cn.rzhd.wuye.service.*;
 import cn.rzhd.wuye.vo.HouseVO;
 import cn.rzhd.wuye.vo.query.ArrearsQuery;
@@ -30,15 +27,13 @@ public class PayFeeController {
     @Autowired
     private IKfFeeService kfService;
     @Autowired
-    private IElectricPayDetailsService electricPayDetailsService;
-    @Autowired
     private IPayFeeService payFeeService;
     @Autowired
     private IHouseInfoDetailsService houseInfoDetailsService;
     @Autowired
-    private IWaterPayDetailsService waterPayDetailsService;
-    @Autowired
     private IAmmeterService ammeterService;
+    @Autowired
+    private IUtilitiesService utilitiesService;
 
     /**
      * 用于展示物业欠费记录
@@ -46,7 +41,7 @@ public class PayFeeController {
      * @return
      */
     @RequestMapping("/propertyFee")
-    public Map<String,Object> propertyFee(ArrearsQuery query){
+    public Map<String,Object> propertyFee(@RequestBody ArrearsQuery query){
         Map<String, Object> map = propertyService.queryForPay(query);
         return map;
     }
@@ -57,7 +52,7 @@ public class PayFeeController {
      * @return
      */
     @RequestMapping("/kfFee")
-    public Map<String,Object> kfFee(ArrearsQuery query){
+    public Map<String,Object> kfFee(@RequestBody ArrearsQuery query){
         Map<String, Object> map = kfService.queryForPay(query);
         return map;
     }
@@ -90,8 +85,9 @@ public class PayFeeController {
             map.put("waterPrice",waterPrice);
             map.put("electricityPrice",electricityPrice);
             map.put("ammeters",ammeters);
+        }else{
+            map.put("msg","房产不存在!");
         }
-        map.put("msg","房产不存在!");
         return map;
     }
 
@@ -112,11 +108,7 @@ public class PayFeeController {
      */
     @RequestMapping("/payFeeRecords")
     public Map<String,Object> payFeeRecords(UtilitiesQuery query){
-        ElectricFeePayDetails electricRecord = electricPayDetailsService.getLastRecords(query);
-        WaterRatePayDetails waterRecord = waterPayDetailsService.getLastRecords(query);
-        Map<String,Object> map = new HashMap<>();
-        map.put("electric",electricRecord);
-        map.put("water",waterRecord);
-        return map;
+        Map<String, Object> records = utilitiesService.getLastRecords(query);
+        return records;
     }
 }

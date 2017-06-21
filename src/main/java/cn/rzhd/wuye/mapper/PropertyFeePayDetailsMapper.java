@@ -18,4 +18,6 @@ public interface PropertyFeePayDetailsMapper {
      * @return  缴费记录详情List
      */
     List<PropertyFeePayDetails> queryAll(PropertyFeePayDetailsQuery query);
+
+    void insert(PropertyFeePayDetails details);
 }

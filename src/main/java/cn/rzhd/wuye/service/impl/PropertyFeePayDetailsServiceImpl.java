@@ -31,4 +31,9 @@ public class PropertyFeePayDetailsServiceImpl implements IPropertyFeePayDetailsS
         }
         return null;
     }
+
+    @Override
+    public void addDetails(PropertyFeePayDetails details) {
+        mapper.insert(details);
+    }
 }

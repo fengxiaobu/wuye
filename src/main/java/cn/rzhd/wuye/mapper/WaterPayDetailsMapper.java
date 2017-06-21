@@ -14,6 +14,5 @@ public interface WaterPayDetailsMapper {
 
     List<WaterRatePayDetails> getAllByQuery(UtilitiesQuery query);
 
-
     WaterRatePayDetails getLastRecords(UtilitiesQuery query);
 }

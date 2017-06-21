@@ -6,7 +6,6 @@ import cn.rzhd.wuye.bean.MessageManage;
 import cn.rzhd.wuye.service.ICustomerService;
 import cn.rzhd.wuye.service.IHomePageService;
 import cn.rzhd.wuye.service.IRentContractService;
-import cn.rzhd.wuye.utils.JsonUtils;
 import cn.rzhd.wuye.vo.PactVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -46,17 +45,10 @@ public class HomePageController {
      * @return
      */
     @RequestMapping(value = "/findHouseByCustomer", method = RequestMethod.POST)
-    public String findHomePageHouseByCustomer(Customer customer) {
-        if (customer == null) {
-            return JsonUtils.objectToJson("客户主键不能为空");
-        }
-        try {
-            List<Map<String, Object>> findHouseByCutomer = homePageService.findHouseByCutomer(customer);
-            return JsonUtils.objectToJson(findHouseByCutomer);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return JsonUtils.objectToJson("服务器异常");
-        }
+    public List<Map<String, Object>> findHomePageHouseByCustomer(Customer customer) {
+
+        List<Map<String, Object>> findHouseByCutomer = homePageService.findHouseByCutomer(customer);
+        return findHouseByCutomer;
 
     }
 
@@ -67,7 +59,7 @@ public class HomePageController {
      * @return
      */
     @RequestMapping(value = "/findFeeListByCustomer", method = RequestMethod.POST)
-    public String findFeeListByCustomer(@RequestBody String customerId) {
+    public List<Map<String, Object>> findFeeListByCustomer(@RequestBody String customerId) {
 //        Map<String,Object> map = new HashMap<>();
 //        try {
 //            for (Customer customer : customers) {
@@ -80,11 +72,8 @@ public class HomePageController {
 //            e.printStackTrace();
 //            return JsonUtils.objectToJson("服务器异常");
 //        }
-        if (customerId==null || "".equals(customerId.trim())){
-            return JsonUtils.objectToJson("客户主键不能为空!");
-        }
         String[] split = customerId.split(",");
-        List<Map<String,Object>> result = new ArrayList<>();
+        List<Map<String, Object>> result = new ArrayList<>();
         for (String s : split) {
             List<PactVO> pactVOS = rentContractService.queryByCustomer(s);
             for (PactVO pactVO : pactVOS) {
@@ -93,9 +82,8 @@ public class HomePageController {
                 List<Map<String, Object>> list = homePageService.findFeeListByCustomerId(pk_customerid, pk_house);
                 result.addAll(list);
             }
-
         }
-        return JsonUtils.objectToJson(result);
+        return result;
     }
 
     /**
@@ -105,22 +93,16 @@ public class HomePageController {
      * @return
      */
     @RequestMapping(value = "/findMessageNumByCutromer", method = RequestMethod.POST)
-    public String findMessageNumByCutromer(@RequestBody String pk_customerid) {
-        if (pk_customerid == null || "".equals(pk_customerid.trim())) {
-            return JsonUtils.objectToJson("客户主键不能为空");
-        }
+    public Integer findMessageNumByCutromer(@RequestBody String pk_customerid) {
+
         String[] strings = pk_customerid.split(",");
-        try {
-            Integer number = 0;
-            for (String customer : strings) {
-                Integer findMessageNumByCustomer = homePageService.findMessageNumByCustomer(customer.trim());
-                number += findMessageNumByCustomer;
-            }
-            return JsonUtils.objectToJson(number);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return JsonUtils.objectToJson("服务器异常");
+
+        Integer number = 0;
+        for (String customer : strings) {
+            Integer findMessageNumByCustomer = homePageService.findMessageNumByCustomer(customer.trim());
+            number += findMessageNumByCustomer;
         }
+        return number;
     }
 
     /**
@@ -129,23 +111,18 @@ public class HomePageController {
      * @param pk_customerid
      * @return
      */
-    @RequestMapping(value = "/findMessageByCustomer",method = RequestMethod.POST)
-    public String findMessageByCustomer(@RequestBody String pk_customerid) {
-        if (pk_customerid == null || "".equals(pk_customerid.trim())) {
-            return JsonUtils.objectToJson("客户主键不能为空");
-        }
+    @RequestMapping(value = "/findMessageByCustomer", method = RequestMethod.POST)
+    public List<MessageManage> findMessageByCustomer(@RequestBody String pk_customerid) {
+
         String[] strings = pk_customerid.split(",");
-        try {
-            List<MessageManage> result = new ArrayList<>();
-            for (String customerId : strings) {
-                List<MessageManage> findMessageByCustomer = homePageService.findMessageByCustomer(customerId.trim());
-                result.addAll(findMessageByCustomer);
-            }
-            return JsonUtils.objectToJson(result);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return JsonUtils.objectToJson("服务器异常");
+
+        List<MessageManage> result = new ArrayList<>();
+        for (String customerId : strings) {
+            List<MessageManage> findMessageByCustomer = homePageService.findMessageByCustomer(customerId.trim());
+            result.addAll(findMessageByCustomer);
         }
+        return result;
+
 
     }
 

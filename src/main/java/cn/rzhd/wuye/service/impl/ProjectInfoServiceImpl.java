@@ -7,6 +7,8 @@ import cn.rzhd.wuye.vo.ProjectVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by hasee on 2017/6/5.
  */
@@ -15,14 +17,15 @@ public class ProjectInfoServiceImpl implements IProjectInfoService {
 
     @Autowired
     ProjectInfoMapper mapper;
+
     @Override
     public void addProjectInfo(ProjectVO projectVO) {
         mapper.insert(projectVO);
     }
 
     @Override
-    public void saveProjectInfo(ProjectVO projectVO) throws Exception{
-      //  ProjectVO one = mapper.selectByPrimaryKey(projectVO.getPk_project());
+    public void saveProjectInfo(ProjectVO projectVO) throws Exception {
+        //  ProjectVO one = mapper.selectByPrimaryKey(projectVO.getPk_project());
       /*  if(one!=null){
             mapper.updateByERP(projectVO);
         }else{
@@ -39,6 +42,16 @@ public class ProjectInfoServiceImpl implements IProjectInfoService {
     @Override
     public ProjectInfo selectByPrimaryKey(String pkProject) {
         return mapper.selectByPrimaryKey(pkProject);
+    }
+
+    /**
+     * 获取项目ID名称
+     *
+     * @return
+     */
+    @Override
+    public List<ProjectInfo> selectPKAndName() {
+        return mapper.selectPKAndName();
     }
 
 

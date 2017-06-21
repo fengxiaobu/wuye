@@ -16,7 +16,7 @@
 <%--<form action="${pageContext.request.contextPath}/pay" method="post">--%>
 <h2>正在前往银联....</h2>
 <form action="http://newpayment-test.chinapay.com/CTITS/service/rest/page/nref/000000000017/0/0/0/0/0" method="post">
-    <table  style="display: none">
+    <table style="display: none">
         <tr>
             <td>版本号:</td>
             <td><input type="text" name="Version" value="${Version}"/></td>
@@ -60,10 +60,10 @@
             <td>签名:</td>
             <td><input name="Signature" type="hidden" value="${Signature}"></td>
         </tr>
-        <%--<tr>
+        <tr>
             <td>交易类型:</td>
             <td><input name="TranType" type="hidden" value="${TranType}"></td>
-        </tr>--%>
+        </tr>
         <tr>
             <td>商户前台通知地址:</td>
             <td><input name="MerPageUrl" type="hidden" value="${MerPageUrl}"></td>
@@ -80,10 +80,10 @@
             <td>CurryNo:</td>
             <td><input name="CurryNo" type="hidden" value="${CurryNo}"></td>
         </tr>
-       <%-- <tr>
-            <td>AcqCode:</td>
-            <td><input name="AcqCode" type="hidden" value="${AcqCode}"></td>
-        </tr>--%>
+        <%-- <tr>
+             <td>AcqCode:</td>
+             <td><input name="AcqCode" type="hidden" value="${AcqCode}"></td>
+         </tr>--%>
         <tr>
             <td>BankInstNo:</td>
             <td><input name="BankInstNo" type="hidden" value="${BankInstNo}"></td>
@@ -100,7 +100,6 @@
             <td>TimeStamp:</td>
             <td><input name="TimeStamp" type="hidden" value="${TimeStamp}"></td>
         </tr>
-
     </table>
     <input type="submit" style="display: none" id="toCHinaPay" value="toPAy">
 </form>

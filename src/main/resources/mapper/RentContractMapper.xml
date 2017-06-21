@@ -47,18 +47,18 @@
         SELECT * FROM "T_Rent_Contract" WHERE trim("pk_customerid")=#{pk_customerid,jdbcType=CHAR} AND trim("pk_pact") = #{pk_pact,jdbcType=CHAR}
     </select>
 
-    <select id="queryByCustomer" parameterType="string" resultType="cn.rzhd.wuye.vo.PactVO">
+    <select id="queryByCustomer" resultType="cn.rzhd.wuye.vo.PactVO">
         SELECT DISTINCT
             "pk_house",
             "house",
-            "pk_project",
+            "pk_project" AS pkProject,
             SERVICE_PHONE,
             OBJECT_PHONE,
             "pk_customerid",
             p.VSHORTNAME AS projectName
         FROM "T_Rent_Contract"
             JOIN T_PROJECT_INFO p ON "pk_project" = p.PK_PROJECT
-        WHERE "pk_customerid" = #{customerId}
+        WHERE "pk_customerid" = '${customerId}'
     </select>
 
     <insert id="add" parameterType="cn.rzhd.wuye.vo.PactVO">

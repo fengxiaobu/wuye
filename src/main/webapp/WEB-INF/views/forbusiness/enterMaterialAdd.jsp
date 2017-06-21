@@ -1,10 +1,12 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
     <title>首页</title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/js/libs/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css"
+          href="${pageContext.request.contextPath}/js/libs/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css">
 </head>
 <body>
@@ -22,31 +24,28 @@
     <div class="panel panel-default">
     </div>
     <div class="panel panel-default tudiqianyue">
-        <form class="form-horizontal" action="" method="post" >
+        <form class="form-horizontal" action="" method="post">
             <div style="margin-top: 50px"></div>
             <div class="form-group">
                 <label class="col-sm-2 control-label">项目名称:</label>
                 <div class="col-sm-10">
-                   <select name="" style="width: 100px">
-                       <option value=""></option>
-                   </select>
+                    <select name="pkProject" style="width: 100px">
+                        <c:forEach items="${projectInfos}" var="pro">
+                            <option value="${pro.pkProject}">${pro.projectName}</option>
+                        </c:forEach>
+                    </select>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-2 control-label">资料包名称:</label>
                 <div class="col-sm-10">
-                    <input type="text" name="" value=""/>
+                    <input type="text" name="materialName"/>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-2 control-label">请选择上传的资料包:</label>
                 <div class="col-sm-10">
-                    <input type="file" name="">
-                </div>
-                <div class="col-sm-10" style="margin-top: 10px">
-                    <a class="btn btn-info" type="button">上传资料
-                    </a>&nbsp;&nbsp;<a class="btn btn-info" type="button">下载资料
-                </a>
+                    <input type="file" name="file"/> <input type="button" value="上传" onclick="doUpload()"/>
                 </div>
             </div>
             <div class="form-group">
@@ -70,18 +69,18 @@
             <div class="form-group">
                 <label class="col-sm-2 control-label">更新日期:</label>
                 <div class="col-sm-10">
-                   <input type="datetime-local">
+                    <input type="datetime-local">
                 </div>
             </div>
             <div class="form-group">
-                    <button type="submit" style="margin-left: 250px;width: 100px" class="btn btn-default">保存</button>
-                </div>
+                <button type="submit" style="margin-left: 250px;width: 100px" class="btn btn-default">保存</button>
+            </div>
         </form>
     </div>
 </div>
 
 </body>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/libs/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-2.1.4.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/libs/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript">
     var tableEdit = {
@@ -154,67 +153,7 @@
             });
         },
     };
-    // function tableEdit(option) {
-    // 	if($(".tudiqianyue").is(".tableedit")) {
-    // 		$(".tudiqianyue-tdtr").find("td").css({
-    // 			"border": "",
-    // 			"background": ""
-    // 		});
-    // 	}
-    // 	$(".tudiqianyue").addClass("tableedit");
-    // 	var tr = $(".tudiqianyue-tdtr").length;
-    // 	$(".tudiqianyue-tdtr").each(function(_index,_this) {
-    // 		var trIndex = _index;
-    // 		console.log(_index)
-    // 		$(this).find("td").each(function(_index,_this) {
-    // 			var tdIndex = _index;
-    // 			// $(this).attr("contenteditable","true");
-    // 			if(tdIndex == option.start) {
-    // 				$(this).css({"border-left": "2px solid red"});
-    // 			}
-    // 			if(tdIndex == option.end) {
-    // 				$(this).css({"border-right": "2px solid red"});
-    // 			}
-    // 			if(trIndex == 0 && tdIndex >= option.start && tdIndex <= option.end) {
-    // 				$(this).css({"border-top": "3px solid red"})
-    // 			}
-    // 			if(trIndex == tr-1 && tdIndex >= option.start && tdIndex <= option.end) {
-    // 				$(this).css({"border-bottom": "3px solid red"})
-    // 			}
-    // 			if(tdIndex >= option.start && tdIndex <= option.end) {
-    // 				$(this).css({"background":"#fff"}).attr("contenteditable","true");
-    // 			}
-    // 		});
-    // 	});
 
-    // 	function close() {
-    // 		$(".tudiqianyue").removeClass("tableedit");
-    // 		$(".tudiqianyue-tdtr").each(function(_index,_this) {
-    // 			var trIndex = _index;
-    // 			console.log(_index)
-    // 			$(this).find("td").each(function(_index,_this) {
-    // 				var tdIndex = _index;
-    // 				// $(this).attr("contenteditable","true");
-    // 				if(tdIndex == option.start) {
-    // 					$(this).css({"border-left": ""})
-    // 				}
-    // 				if(tdIndex == option.end) {
-    // 					$(this).css({"border-right": ""})
-    // 				}
-    // 				if(trIndex == 0 && tdIndex >= option.start && tdIndex <= option.end) {
-    // 					$(this).css({"border-top": ""})
-    // 				}
-    // 				if(trIndex == tr-1 && tdIndex >= option.start && tdIndex <= option.end) {
-    // 					$(this).css({"border-bottom": ""})
-    // 				}
-    // 				if(tdIndex >= option.start && tdIndex <= option.end) {
-    // 					$(this).css({"background":"#fff"}).attr("contenteditable","false");
-    // 				}
-    // 			});
-    // 		});
-    // 	};
-    // 	return close;
-    // }
 
     $("#edit-xieyi").click(function () {
         tableEdit.content({
@@ -238,5 +177,27 @@
     $("#tudiqianyue-remove").click(function () {
 
     });
+</script>
+
+<script>
+    function doUpload() {
+        var formData = new FormData($("#uploadForm")[0]);
+        alert("");
+        $.ajax({
+            url: 'http://127.0.0.1:8092/dist/upload',
+            type: 'POST',
+            data: formData,
+            async: false,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (returndata) {
+                alert(returndata);
+            },
+            error: function (returndata) {
+                alert(returndata);
+            }
+        });
+    }
 </script>
 </html>

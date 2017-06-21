@@ -5,6 +5,7 @@ import cn.rzhd.wuye.vo.ProjectVO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+
 @Mapper
 public interface ProjectInfoMapper {
     int deleteByPrimaryKey(String pkProject);
@@ -14,6 +15,8 @@ public interface ProjectInfoMapper {
     ProjectInfo selectByPrimaryKey(String pkProject);
 
     List<ProjectVO> selectAll();
+
+    List<ProjectInfo> selectPKAndName();
 
     void updateByPrimaryKey(ProjectVO record);
 

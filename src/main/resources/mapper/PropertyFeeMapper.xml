@@ -41,13 +41,13 @@
     </sql>
     <sql id="queryForPay">
         <where>
-            AND "pk_house"=#{houseInfoId} AND "pk_customerid"=#{customerId} AND "dshpay" &lt;= TO_CHAR(SYSDATE,'YYYY-MM-DD') AND "isrz" = 'N'
+            AND "pk_house"='${houseInfoId}' AND "pk_customerid"='${customerId}' AND "dshpay" &lt;= TO_CHAR(SYSDATE,'YYYY-MM-DD') AND "isrz" = 'N'
             <if test="startDate != null and startDate != ''">
-                AND SUBSTR("dshpay",1,7) >= SUBSTR(#{startDate},1,7)
+                AND SUBSTR("dshpay",1,7) >= SUBSTR('${startDate}',1,7)
             </if>
             <if test="endDate != null and endDate != ''">
                 AND SUBSTR("dshpay",1,7) &lt;=
-                SUBSTR(to_char(to_date(#{endDate},'YYYY-MM-DD')+interval'1'month,'YYYY-MM-DD'),1,7)
+                SUBSTR(to_char(to_date('${endDate}','YYYY-MM-DD')+interval'1'month,'YYYY-MM-DD'),1,7)
             </if>
         </where>
     </sql>

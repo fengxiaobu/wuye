@@ -17,4 +17,6 @@ public interface IPropertyFeePayDetailsService {
      * @return
      */
     List<PropertyFeePayDetails> queryAll(PropertyFeePayDetailsQuery query);
+
+    void addDetails(PropertyFeePayDetails details);
 }

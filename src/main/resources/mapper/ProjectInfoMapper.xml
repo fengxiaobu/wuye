@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="cn.rzhd.wuye.mapper.ProjectInfoMapper">
     <resultMap id="BaseResultMap" type="cn.rzhd.wuye.bean.ProjectInfo">
-        <id column="PK_PROJECT" property="pkProject" jdbcType="CHAR"/>
+        <id column="pkProject" property="pkProject" jdbcType="CHAR"/>
         <result column="PROJECT_NAME" property="projectName" jdbcType="OTHER"/>
         <result column="PROJECT_ADDRESS" property="projectAddress" jdbcType="OTHER"/>
         <result column="DEVELOPMENT_COLLECTING_COMPANY" property="developmentCollectingCompany" jdbcType="OTHER"/>
@@ -113,7 +113,7 @@
             UPDATEDATE,
             ASTRICTSTATUS
         FROM T_PROJECT_INFO
-        WHERE PK_PROJECT = #{pkProject,jdbcType=CHAR}
+        WHERE PK_PROJECT = #{pkProject}
     </select>
     <select id="selectAll" resultMap="BaseResultMap">
         SELECT
@@ -147,6 +147,12 @@
             FIRSTMNY,
             EVERYMNY,
             UPDATEDATE
+        FROM T_PROJECT_INFO
+    </select>
+    <select id="selectPKAndName" resultMap="BaseResultMap">
+        SELECT
+            PK_PROJECT,
+            PROJECT_NAME
         FROM T_PROJECT_INFO
     </select>
     <update id="updateByERP" parameterType="cn.rzhd.wuye.vo.ProjectVO">
