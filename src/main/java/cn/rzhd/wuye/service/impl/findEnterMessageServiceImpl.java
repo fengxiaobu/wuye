@@ -37,4 +37,10 @@ public class findEnterMessageServiceImpl implements IMessageManageService {
 		mapper.deleteInfoArray(message_manage_id);
 	}
 
+	@Override
+	public List<String> getAllType() {
+		List<String> allType = mapper.getAllType();
+		return allType;
+	}
+
 }

@@ -41,6 +41,17 @@ public class MessageManageBackController {
 	 */
 	@RequestMapping(value = "/messageManageEdit", method = RequestMethod.GET)
 	public String save(Model model, Long message_manage_id) throws Exception {
+		if (message_manage_id != null) {
+
+			MessageManage messageManage = messageManageService.getMessageManage(message_manage_id);
+			List<String> Types = messageManageService.getAllType();
+			
+			model.addAttribute(messageManage);
+			model.addAttribute("typeList", Types);
+		}
+		
 		return "message/messageManageEdit";
 	}
+	
+	
 }

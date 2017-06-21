@@ -18,10 +18,16 @@ import cn.rzhd.wuye.vo.SignVO;
 public class SellContractController {
 	@Autowired
 	ISellContractService sellContractService;
-	
+
 	@RequestMapping("/getSellContractlist")
-	public List<SignVO> getSellContract(String pk_sign,String pk_customerid){
-        List<SignVO> sellContractList = sellContractService.getSellContractByCustomer(pk_customerid, pk_sign);
-        return sellContractList;
-    } 
+	public List<SignVO> getSellContract(String house, String pk_customerid) {
+		List<SignVO> sellContractList = sellContractService.getByName(house, pk_customerid);
+		return sellContractList;
+	}
+
+	@RequestMapping("/getSellContractName")
+	public List<String> getSellContractName(String pk_customerid) {
+		List<String> allName = sellContractService.getAllName(pk_customerid);
+		return allName;
+	}
 }
