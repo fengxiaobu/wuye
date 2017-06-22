@@ -7,6 +7,4 @@ import cn.rzhd.wuye.bean.PropertyFeeInvoiceDetails;
  */
 public interface IPropertyFeeInvoiceService {
     void addInvoice(PropertyFeeInvoiceDetails invoice);
-
-    void changeStatus(Long detailsId);
 }

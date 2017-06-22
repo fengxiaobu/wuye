@@ -13,5 +13,6 @@ public interface IEnterMaterialService {
     List<Map<String, JsonFormat.Value>> findEnterMaterialList();
 
     EnterMaterial findEnterMaterialBypkproject(String pkproject);
+    EnterMaterial findEnterMaterialByKey(Long enterMaterialId);
 
 }

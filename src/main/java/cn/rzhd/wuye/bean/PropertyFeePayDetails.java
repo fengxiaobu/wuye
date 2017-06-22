@@ -15,7 +15,6 @@ import java.util.List;
 @version: V1.0
 */
 public class PropertyFeePayDetails implements Serializable{
-	
 	private static final long serialVersionUID = 1L;
 	/**
 	 * 物业缴费详情id
@@ -40,7 +39,7 @@ public class PropertyFeePayDetails implements Serializable{
 	/**
 	 * 缴费月份
 	 */
-	private Integer payMonth;
+	private String payMonth;
 	/**
 	 * 开始日期
 	 */
@@ -105,7 +104,14 @@ public class PropertyFeePayDetails implements Serializable{
 	 * 客户主键
 	 */
 	private String customerId;
+	/**
+	 * 此次缴费所要开的发票
+	 */
 	private List<PropertyFeeInvoiceDetails> invoices;
+    /**
+     * 缴费记录是否生效(Y--生效,N--未生效)
+     */
+	private String status = "N";
 	
 	/**
 	 * @return the clientName
@@ -142,18 +148,6 @@ public class PropertyFeePayDetails implements Serializable{
 	*/
 	public void setPayManner(String payManner) {
 		this.payManner = payManner;
-	}
-	/**
-	 * @return the payMonth
-	 */
-	public Integer getPayMonth() {
-		return payMonth;
-	}
-	/*
-	@param payMonth the payMonth to set
-	*/
-	public void setPayMonth(Integer payMonth) {
-		this.payMonth = payMonth;
 	}
 	/**
 	 * @return the startDate
@@ -371,4 +365,20 @@ public class PropertyFeePayDetails implements Serializable{
 	public void setInvoices(List<PropertyFeeInvoiceDetails> invoices) {
 		this.invoices = invoices;
 	}
+
+	public String getPayMonth() {
+		return payMonth;
+	}
+
+	public void setPayMonth(String payMonth) {
+		this.payMonth = payMonth;
+	}
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }

@@ -24,7 +24,7 @@
     <div class="panel panel-default">
     </div>
     <div class="panel panel-default tudiqianyue">
-        <form class="form-horizontal" action="" method="post">
+        <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
             <div style="margin-top: 50px"></div>
             <div class="form-group">
                 <label class="col-sm-2 control-label">项目名称:</label>
@@ -45,7 +45,7 @@
             <div class="form-group">
                 <label class="col-sm-2 control-label">请选择上传的资料包:</label>
                 <div class="col-sm-10">
-                    <input type="file" name="file"/> <input type="button" value="上传" onclick="doUpload()"/>
+                    <input type="file" name="file"/>
                 </div>
             </div>
             <div class="form-group">
@@ -179,25 +179,4 @@
     });
 </script>
 
-<script>
-    function doUpload() {
-        var formData = new FormData($("#uploadForm")[0]);
-        alert("");
-        $.ajax({
-            url: 'http://127.0.0.1:8092/dist/upload',
-            type: 'POST',
-            data: formData,
-            async: false,
-            cache: false,
-            contentType: false,
-            processData: false,
-            success: function (returndata) {
-                alert(returndata);
-            },
-            error: function (returndata) {
-                alert(returndata);
-            }
-        });
-    }
-</script>
 </html>

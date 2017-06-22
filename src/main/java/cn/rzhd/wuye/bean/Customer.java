@@ -95,7 +95,7 @@ public class Customer implements Serializable{
     /**
      * 当前入驻流程状态(0-未办理,1-完成完善资料,2-完成资料提交,3-完成审核,4-完成入驻费用交纳)
      */
-    private Integer currentFlow;
+    private Integer currentFlow = 0;
     /**
      * 当前进行入驻流程的房产ID
      */

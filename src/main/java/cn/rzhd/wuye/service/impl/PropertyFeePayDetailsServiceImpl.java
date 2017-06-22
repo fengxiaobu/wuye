@@ -36,4 +36,9 @@ public class PropertyFeePayDetailsServiceImpl implements IPropertyFeePayDetailsS
     public void addDetails(PropertyFeePayDetails details) {
         mapper.insert(details);
     }
+
+    @Override
+    public void changeStatus(Long id) {
+        mapper.changeStatus(id);
+    }
 }

@@ -19,9 +19,4 @@ public class PropertyFeeInvoiceServiceImpl implements IPropertyFeeInvoiceService
     public void addInvoice(PropertyFeeInvoiceDetails invoice) {
         mapper.addInvoice(invoice);
     }
-
-    @Override
-    public void changeStatus(Long detailsId) {
-        mapper.changeStatus(detailsId);
-    }
 }

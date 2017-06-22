@@ -283,7 +283,7 @@ public class DecorationApplyController {
         return "decoration/decorationApplyList";
     }
 
-    @RequestMapping("/toDecorationApplyEdit")
+    @RequestMapping("toDecorationApply")
     public String toDecorationApplyEdit(Model model, Long decorationApplyId) {
         DecorationApply decorationApply = decorationApplyService.selectByPrimaryKey(decorationApplyId);
 

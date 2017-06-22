@@ -18,6 +18,7 @@ public class EnterMaterialServiceImpl implements IEnterMaterialService {
 
     @Autowired
     private EnterMaterialMapper enterMaterialMapper;
+
     @Override
     public List<Map<String, JsonFormat.Value>> findEnterMaterialList() {
 
@@ -26,11 +27,17 @@ public class EnterMaterialServiceImpl implements IEnterMaterialService {
 
     /**
      * 获取项目信息(资料夹)
+     *
      * @param pkproject
      * @return
      */
     @Override
     public EnterMaterial findEnterMaterialBypkproject(String pkproject) {
         return enterMaterialMapper.findEnterMaterialBypkproject(pkproject);
+    }
+
+    @Override
+    public EnterMaterial findEnterMaterialByKey(Long enterMaterialId) {
+        return enterMaterialMapper.findEnterMaterialByKey(enterMaterialId);
     }
 }

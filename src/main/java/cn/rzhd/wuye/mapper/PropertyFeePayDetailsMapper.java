@@ -20,4 +20,6 @@ public interface PropertyFeePayDetailsMapper {
     List<PropertyFeePayDetails> queryAll(PropertyFeePayDetailsQuery query);
 
     void insert(PropertyFeePayDetails details);
+
+    void changeStatus(Long id);
 }

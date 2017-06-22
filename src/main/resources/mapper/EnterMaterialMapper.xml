@@ -81,12 +81,21 @@
             mater.UPDATE_TIME,
             pro.PROJECT_NAME
         FROM
-            T_ENTER_MATERIAL mater,
-            T_USER tuser,
-            T_PROJECT_INFO pro
-        WHERE
-            mater.PK_PROJECT = pro.PK_PROJECT
-            AND mater.USER_ID = tuser.USER_ID
+            T_ENTER_MATERIAL mater
+            LEFT JOIN T_USER tuser ON mater.USER_ID = tuser.USER_ID
+            LEFT JOIN T_PROJECT_INFO pro ON mater.PK_PROJECT = pro.PK_PROJECT
+    </select>
+    <select id="findEnterMaterialByKey" resultType="cn.rzhd.wuye.bean.EnterMaterial">
+        SELECT
+            tuser.USERNAME,
+            mater.MATERIAL_NAME,
+            mater.UPDATE_TIME,
+            pro.PROJECT_NAME
+        FROM
+            T_ENTER_MATERIAL mater
+            LEFT JOIN T_USER tuser ON mater.USER_ID = tuser.USER_ID
+            LEFT JOIN T_PROJECT_INFO pro ON mater.PK_PROJECT = pro.PK_PROJECT
+        WHERE mater.ENTER_MATERIAL_ID=#{enterMaterialId}
     </select>
 
     <!--入驻申请列表条件查询-->

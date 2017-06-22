@@ -3,6 +3,7 @@ package cn.rzhd.wuye.bean;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by hasee on 2017/6/1.
@@ -22,17 +23,13 @@ public class KfFeePayDetails implements Serializable {
      */
     private String clientName;
     /**
-     * 费用类型
-     */
-    private String costType;
-    /**
      * 支付方式
      */
     private String payManner;
     /**
      * 缴费月份
      */
-    private Integer payMonth;
+    private String payMonth;
     /**
      * 开始日期
      */
@@ -97,10 +94,14 @@ public class KfFeePayDetails implements Serializable {
      * 客户主键
      */
     private String customerId;
-
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
-    }
+    /**
+     * 缴费记录关联的发票记录
+     */
+    private List<KfFeeInvoice> invoices;
+    /**
+     * 缴费记录是否生效(Y--生效,N--未生效)
+     */
+    private String status;
 
     public Long getKfFeePayDetailsId() {
         return kfFeePayDetailsId;
@@ -126,14 +127,6 @@ public class KfFeePayDetails implements Serializable {
         this.clientName = clientName;
     }
 
-    public String getCostType() {
-        return costType;
-    }
-
-    public void setCostType(String costType) {
-        this.costType = costType;
-    }
-
     public String getPayManner() {
         return payManner;
     }
@@ -142,11 +135,11 @@ public class KfFeePayDetails implements Serializable {
         this.payManner = payManner;
     }
 
-    public Integer getPayMonth() {
+    public String getPayMonth() {
         return payMonth;
     }
 
-    public void setPayMonth(Integer payMonth) {
+    public void setPayMonth(String payMonth) {
         this.payMonth = payMonth;
     }
 
@@ -278,30 +271,19 @@ public class KfFeePayDetails implements Serializable {
         this.customerId = customerId;
     }
 
-    @Override
-    public String toString() {
-        return "KfFeePayDetails{" +
-                "kfFeePayDetailsId=" + kfFeePayDetailsId +
-                ", houseInfoId=" + houseInfoId +
-                ", clientName='" + clientName + '\'' +
-                ", costType='" + costType + '\'' +
-                ", payManner='" + payManner + '\'' +
-                ", payMonth=" + payMonth +
-                ", startDate=" + startDate +
-                ", endDate=" + endDate +
-                ", payable=" + payable +
-                ", paidIn=" + paidIn +
-                ", voucherNumber='" + voucherNumber + '\'' +
-                ", invoice='" + invoice + '\'' +
-                ", invoiceNumber='" + invoiceNumber + '\'' +
-                ", invoiceNotes='" + invoiceNotes + '\'' +
-                ", invoiceStatus=" + invoiceStatus +
-                ", collectingCompany='" + collectingCompany + '\'' +
-                ", collectingAccount='" + collectingAccount + '\'' +
-                ", invoiceCompany='" + invoiceCompany + '\'' +
-                ", payTime=" + payTime +
-                ", carteTime=" + carteTime +
-                ", updateTime=" + updateTime +
-                '}';
+    public List<KfFeeInvoice> getInvoices() {
+        return invoices;
+    }
+
+    public void setInvoices(List<KfFeeInvoice> invoices) {
+        this.invoices = invoices;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }
