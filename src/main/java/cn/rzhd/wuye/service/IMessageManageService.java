@@ -25,4 +25,6 @@ public interface IMessageManageService {
 	void DeleteMessageManages(String[] message_manage_id);
 	
 	List<String> getAllType();
+	
+	void deleteMsg(String message_manage_id);
 }

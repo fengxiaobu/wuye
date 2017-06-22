@@ -21,4 +21,6 @@ public interface MessageManageMapper {
 	void deleteInfoArray(String[] message_manage_id);
 	
 	List<String> getAllType();
+	
+	void deleteOne(String message_manage_id);
 }

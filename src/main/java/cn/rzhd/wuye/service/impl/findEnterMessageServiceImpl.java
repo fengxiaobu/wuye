@@ -43,4 +43,9 @@ public class findEnterMessageServiceImpl implements IMessageManageService {
 		return allType;
 	}
 
+	@Override
+	public void deleteMsg(String message_manage_id) {
+		mapper.deleteOne(message_manage_id);
+	}
+
 }
