@@ -1,9 +1,11 @@
 package cn.rzhd.wuye.controller;
 
 import cn.rzhd.wuye.bean.EnterApply;
+import cn.rzhd.wuye.bean.HouseInfo;
 import cn.rzhd.wuye.bean.KfFee;
 import cn.rzhd.wuye.bean.PropertyFee;
 import cn.rzhd.wuye.service.IEnterApplyService;
+import cn.rzhd.wuye.service.IHouseInfoService;
 import cn.rzhd.wuye.service.IKfFeeService;
 import cn.rzhd.wuye.service.IPropertyFeeService;
 import cn.rzhd.wuye.utils.JsonUtils;
@@ -53,6 +55,9 @@ public class EnterApplyController {
     IPropertyFeeService propertyFeeService;
     @Autowired
     IKfFeeService kfFeeService;
+    @Autowired
+    IHouseInfoService houseInfoService;
+
     @Value("${fileDir}")
     private String fileDir;
 
@@ -110,8 +115,8 @@ public class EnterApplyController {
      * @return
      */
     @RequestMapping(value = "/enterApplyEdit", method = RequestMethod.GET)
-    public String toEnterApplyAdd(Model model, Long enterApplyId,String houseInfoId ) throws InvocationTargetException, IllegalAccessException {
-        FeeDataQuery query=new FeeDataQuery();
+    public String toEnterApplyAdd(Model model, Long enterApplyId, String houseInfoId) throws InvocationTargetException, IllegalAccessException {
+        FeeDataQuery query = new FeeDataQuery();
         query.setHouseInfoId(houseInfoId);
         List<Map<String, JsonFormat.Value>> enterApplyList = enterApplyService.getEnterApplyByID(enterApplyId);
         Map<String, JsonFormat.Value> map = new HashMap<>();
@@ -156,17 +161,25 @@ public class EnterApplyController {
      */
     @RequestMapping("/updateEnterApply")
     public String updateEnterApply(Model model, EnterApply enterApply) {
-        //获取当前时间
-        Date date = new Date();
-        enterApply.setUpdateTime(date);
-        enterApplyService.updateEnterApply(enterApply);
-        //查询更新数据
-        PageHelper.startPage(1, 5);
-        List<Map<String, JsonFormat.Value>> enterApplyList = enterApplyService.findEnterApplyList();
-        Page page = (Page) enterApplyList;
-        System.out.println(JSONObject.toJSONString(page, SerializerFeature.WriteMapNullValue));
-        model.addAttribute("enterApplyList", enterApplyList);
-        model.addAttribute("total", page.getTotal());
+        try {
+            //修改申请状态
+            HouseInfo houseInfo = houseInfoService.getById(enterApply.getHouseId());
+            houseInfo.setEnterApplyState("2");
+            houseInfoService.update(houseInfo);
+            //获取当前时间
+            Date date = new Date();
+            enterApply.setUpdateTime(date);
+            enterApplyService.updateEnterApply(enterApply);
+            //查询更新数据
+            PageHelper.startPage(1, 5);
+            List<Map<String, JsonFormat.Value>> enterApplyList = enterApplyService.findEnterApplyList();
+            Page page = (Page) enterApplyList;
+           // System.out.println(JSONObject.toJSONString(page, SerializerFeature.WriteMapNullValue));
+            model.addAttribute("enterApplyList", enterApplyList);
+            model.addAttribute("total", page.getTotal());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return "forbusiness/enterApplyList";
     }
 
@@ -202,13 +215,16 @@ public class EnterApplyController {
             enterApplyService.insertEnterApply(enterApply);
             result.put("state", "1");
             result.put("msg", "成功!");
+            //修改申请状态
+            HouseInfo houseInfo = houseInfoService.getById(enterApply.getHouseId());
+            houseInfo.setEnterApplyState("1");
+            houseInfoService.update(houseInfo);
             return result;
         } catch (Exception e) {
             result.put("state", "0");
             result.put("msg", "入驻申请失败!  " + e.getMessage());
             return result;
         }
-
     }
 
     /**

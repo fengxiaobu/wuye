@@ -24,9 +24,11 @@
         <!-- 路径导航 结束 -->
         <div class="col-xs-12">
             <div class="panel panel-default tudiqianyue">
-                <form class="form-horizontal" action="${pageContext.request.contextPath}/dist/enterApply/updateEnterApply" method="post">
+                <form class="form-horizontal"
+                      action="${pageContext.request.contextPath}/dist/enterApply/updateEnterApply" method="post">
                     <div class="form-group" style="margin-top: 50px">
                         <input type="hidden" name="enterApplyId" value="${enterApply.enterApplyId}"/>
+                        <input type="hidden" name="houseId" value="${enterApply.houseId}"/>
                         <label class="col-sm-2 control-label">项目名称:</label>
                         <div class="col-sm-10">
                             <label class="col-sm-2 control-label">${enterApply.houseInfo.projectInfo.projectName}</label>
@@ -54,7 +56,8 @@
                         <label class="col-sm-2 control-label">入住通知</label>
                         <div class="col-sm-10">
                             <img src="${enterApply.enterAdviceNote}" name="enterAdviceNote">
-                            <a target="main" href="${pageContext.request.contextPath}/enterApply/toEnterApplyAdd" class="btn btn-info" type="button"><span class="glyphicon glyphicon-arrow-down"></span>下载图片
+                            <a target="main" href="${pageContext.request.contextPath}/enterApply/toEnterApplyAdd"
+                               class="btn btn-info" type="button"><span class="glyphicon glyphicon-arrow-down"></span>下载图片
                             </a>
                         </div>
                     </div>

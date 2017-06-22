@@ -1,13 +1,12 @@
 package cn.rzhd.wuye.controller.interceptor;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import cn.rzhd.wuye.bean.User;
+import cn.rzhd.wuye.utils.UserContext;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-import cn.rzhd.wuye.bean.User;
-import cn.rzhd.wuye.utils.UserContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 public class AuthInterceptor implements HandlerInterceptor {
 	private static final String LOGINURI = "/login";
@@ -27,16 +26,16 @@ public class AuthInterceptor implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		System.out.println(111111111);
+		//System.out.println(111111111);
 
 		User loginUser = UserContext.getUser();
 		String requestURI = request.getRequestURI();
 
-		if (loginUser == null && !requestURI.equals(LOGINURI)) {
+	/*	if (loginUser == null && !requestURI.equals(LOGINURI)) {
 
 			response.sendRedirect("/login.jsp");
 			return false;
-		}
+		}*/
 
 		return true;
 	}

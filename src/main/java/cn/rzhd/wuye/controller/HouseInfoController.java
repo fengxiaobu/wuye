@@ -12,7 +12,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by zhongchaojie on 2017/5/25.
@@ -26,8 +29,8 @@ public class HouseInfoController {
     IHouseInfoService houseInfoService;
     @Autowired
     IProjectInfoService projectInfoService;
+
     /**
-     *
      * @return
      */
     @RequestMapping("/list")
@@ -50,11 +53,10 @@ public class HouseInfoController {
     }
 
     /**
-     *
-     * @return 返回跳转路径,用于跳转到HouseInfo页面
+     * @return 返回跳转路径, 用于跳转到HouseInfo页面
      */
     @RequestMapping("/index")
-    public String houseInfo(){
+    public String houseInfo() {
         return "houseinfo/houseList";
     }
 
@@ -71,6 +73,36 @@ public class HouseInfoController {
         ProjectInfo projectInfo = projectInfoService.selectByPrimaryKey(projectInfoId);
         String jsonString = JSON.toJSONString(projectInfo, SerializerFeature.WriteMapNullValue);
         return jsonString;
+    }
+
+    /**
+     * 获取所有房产状态
+     *
+     * @param houseInfoIds
+     * @return
+     */
+    @RequestMapping("/selectHouseInfoByKey")
+    @ResponseBody
+    public Map<String, Object> selectHouseInfoByKey(String[] houseInfoIds) {
+        Map<String, Object> result = new HashMap<>();
+        if (houseInfoIds == null || houseInfoIds.length < 0) {
+            result.put("state", "0");
+            result.put("msg", "ID不能为空!");
+            return result;
+        }
+        Map<String, String> house = new HashMap<>();
+        List<Map> list = new ArrayList<>();
+        for (String houseInfoId : houseInfoIds) {
+            HouseInfo houseInfo = houseInfoService.getById(houseInfoId);
+            house.put("houseInfoId", houseInfo.getHouseInfoId());
+            house.put("enterApplyState", houseInfo.getEnterApplyState());
+            house.put("decorationApplyState", houseInfo.getDecorationApplyState());
+            list.add(house);
+        }
+
+        result.put("state", "1");
+        result.put("data", list);
+        return result;
     }
 
 }
