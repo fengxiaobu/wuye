@@ -27,118 +27,118 @@
                 <form class="form-horizontal"
                       action="${pageContext.request.contextPath}/dist/enterApply/updateEnterApply" method="post">
                     <div class="form-group" style="margin-top: 50px">
-                        <input type="hidden" name="enterApplyId" value="${enterApply.enterApplyId}"/>
+                        <input type="hidden" name="enterApplyId" value="${decorationApply.decorationApplyId}"/>
                         <label class="col-sm-2 control-label">项目名称:</label>
                         <div class="col-sm-10">
-                            <label class="col-sm-2 control-label">${enterApply.houseInfo.projectInfo.projectName}</label>
+                            <label class="col-sm-2 control-label">${decorationApply.houseInfo.projectInfo.projectName}</label>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">房产信息:</label>
                         <div class="col-sm-10">
-                            <label class="col-sm-2 control-label">${enterApply.houseInfo.houseProperty}</label>
+                            <label class="col-sm-2 control-label">${decorationApply.houseInfo.houseProperty}</label>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">客户名称:</label>
                         <div class="col-sm-10">
-                            <label class="col-sm-2 control-label">${enterApply.clientName}</label>
+                            <input type="text" name="clientName" value="${decorationApply.clientName}"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">楼号:</label>
                         <div class="col-sm-10">
-                            <label class="col-sm-2 control-label">${enterApply.clientName}</label>
+                            <input type="text" name="houseInfoId" value="${decorationApply.houseInfoId}"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">申请时间:</label>
                         <div class="col-sm-10">
-                            <label class="col-sm-2 control-label">${enterApply.applyTime}</label>
+                            <input type="text" name="applyTime" value="<fmt:formatDate value="${decorationApply.applyTime }" pattern="yyyy-MM-dd HH:dd:ss"/>"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">预计工期:</label>
                         <div class="col-sm-10">
-                            <label class="col-sm-2 control-label">${enterApply.applyTime}</label>
+                            <input type="text" name="antipateTime" value="${decorationApply.antipateTime}"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">现场管理人:</label>
                         <div class="col-sm-10">
-                            <label class="col-sm-2 control-label">${enterApply.applyTime}</label>
+                            <input type="text" name="localeCustodian" value="${decorationApply.localeCustodian}"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">现场管理人联系方式:</label>
                         <div class="col-sm-10">
-                            <label class="col-sm-2 control-label">${enterApply.applyTime}</label>
+                            <input type="text" name="localeCustodianPhone" value="${decorationApply.localeCustodianPhone}"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">装修部位:</label>
                         <div class="col-sm-10">
-                            <label class="col-sm-2 control-label">${enterApply.applyTime}</label>
+                            <input type="text" name="decorationParts" value="${decorationApply.decorationParts}"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">装修面积:</label>
                         <div class="col-sm-10">
-                            <label class="col-sm-2 control-label">${enterApply.applyTime}</label>
+                            <input type="text" name="decorateArea" value="${decorationApply.decorateArea}"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">施工人数:</label>
                         <div class="col-sm-10">
-                            <label class="col-sm-2 control-label">${enterApply.applyTime}</label>
+                            <input type="text" name="constructPeopleNumber" value="${decorationApply.constructPeopleNumber}"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">装修公司:</label>
                         <div class="col-sm-10">
-                            <label class="col-sm-2 control-label">${enterApply.applyTime}</label>
+                            <input type="text" name="decorationCompany" value="${decorationApply.decorationCompany}"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">装修负责人:</label>
                         <div class="col-sm-10">
-                            <label class="col-sm-2 control-label">${enterApply.applyTime}</label>
+                            <input type="text" name="decorationLeader" value="${decorationApply.decorationLeader}"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">装修负责人联系方式:</label>
                         <div class="col-sm-10">
-                            <label class="col-sm-2 control-label">${enterApply.applyTime}</label>
+                            <input type="text" name="decorationLeaderPhone" value="${decorationApply.decorationLeaderPhone}"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">装修押金:</label>
                         <div class="col-sm-10">
-                            <label class="col-sm-2 control-label">${enterApply.applyTime}</label>
+                            <input type="text" name="decorationDeposit" value="${decorationApply.decorationDeposit}"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">装修管理费:</label>
                         <div class="col-sm-10">
-                            <label class="col-sm-2 control-label">${enterApply.applyTime}</label>
+                            <input type="text" name="decorationManagementCost" value="${decorationApply.decorationManagementCost}"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">出入证工本费:</label>
                         <div class="col-sm-10">
-                            <label class="col-sm-2 control-label">${enterApply.applyTime}</label>
+                            <input type="text" name="passPapersCost" value="${decorationApply.passPapersCost}"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">出入证押金:</label>
                         <div class="col-sm-10">
-                            <label class="col-sm-2 control-label">${enterApply.applyTime}</label>
+                            <input type="text" name="passPapersDeposit" value="${decorationApply.passPapersDeposit}"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">附件:</label>
                         <div class="col-sm-10">
-                            <label class="col-sm-2 control-label">${enterApply.applyTime}</label>
+                           批量下载
                         </div>
                     </div>
                     <div class="form-group">
@@ -172,7 +172,7 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">反馈意见:</label>
                         <div class="col-sm-10">
-                            <label class="col-sm-2 control-label">${enterApply.applyTime}</label>
+                            <label class="col-sm-2 control-label"></label>
                         </div>
                     </div>
                     <div class="form-group">
@@ -194,26 +194,18 @@
                         <div class="col-sm-10 radio">
                             <label>
                                 <input type="radio" name="auditStatus" id="optionsRadios1"
-                                       <c:if test="${enterApply.auditStatus eq 0}">checked="checked"</c:if>
+                                       <c:if test="${decorationApply.auditStatus eq 0}">checked="checked"</c:if>
                                        value="0"/>未审核
                             </label>
                             <label>
                                 <input type="radio" name="auditStatus" id="optionsRadios2"
-                                       <c:if test="${enterApply.auditStatus eq 1}">checked="checked"</c:if>
+                                       <c:if test="${decorationApply.auditStatus eq 1}">checked="checked"</c:if>
                                        value="1"/>已通过
                             </label>
                             <label>
                                 <input type="radio" name="auditStatus" id="optionsRadios3"
-                                       <c:if test="${enterApply.auditStatus eq 2}">checked="checked"</c:if>
+                                       <c:if test="${decorationApply.auditStatus eq 2}">checked="checked"</c:if>
                                        value="2"/>未通过
-                            </label>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">审核信息:</label>
-                        <div class="col-sm-10">
-                            <label class="col-sm-2 control-label">
-                                <textarea name="notes" cols="30" rows="10">${enterApply.notes}</textarea>
                             </label>
                         </div>
                     </div>

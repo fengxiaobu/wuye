@@ -25,6 +25,7 @@
         <form class="form-horizontal" action="" method="post" >
             <div style="margin-top: 50px"></div>
             <div class="form-group">
+                <input type="hidden" name="" value="${enterMaterial.enterMaterialId}"/>
                 <label class="col-sm-2 control-label">项目名称:</label>
                 <div class="col-sm-10">
                    <select name="" style="width: 100px">

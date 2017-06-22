@@ -45,7 +45,7 @@ public class EnterMaterialController {
     @RequestMapping("/toEnterMaterialAdd")
     public String toEnterMaterialAdd(Model model) {
         List<ProjectInfo> projectInfos = projectInfoService.selectPKAndName();
-        model.addAttribute("projectInfos",projectInfos);
+        model.addAttribute("projectInfos", projectInfos);
         return "forbusiness/enterMaterialAdd";
     }
 
@@ -81,9 +81,12 @@ public class EnterMaterialController {
         String jsonString = JSON.toJSONString(material, propertyFilter);
         return jsonString;
     }
-   @RequestMapping("/")
-    public String toEnterMaterial(){
 
+    @RequestMapping("/toEnterMaterial")
+    public String toEnterMaterial(Long enterMaterialId, Model model) {
+        EnterMaterial enterMaterialByKey = enterMaterialService.findEnterMaterialByKey(enterMaterialId);
+        model.addAttribute("enterMaterial", enterMaterialByKey);
         return "forbusiness/enterApplyEdit";
     }
+
 }
