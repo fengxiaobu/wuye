@@ -28,7 +28,22 @@
 		WHERE s."pk_customerid"=#{pk_customerid}
 				AND s."pk_sign"=#{pk_sign}
 	</select>
-
+	<select id="getCusId" parameterType="String" resultType="cn.rzhd.wuye.vo.SignVO">
+		SELECT
+			*
+		FROM
+			"T_Sell_Contract"
+		WHERE
+			"pk_customerid" = (
+				SELECT DISTINCT
+					"pk_customerid"
+				FROM
+					"T_Customer"
+				WHERE
+					"vccode" = #{vccode}
+				AND "fccategory" = '0'
+			)
+	</select>
 	<select id="queryByCustomer" parameterType="string"
 		resultType="cn.rzhd.wuye.vo.SignVO">
 		SELECT DISTINCT
@@ -40,15 +55,12 @@
 		JOIN T_PROJECT_INFO p ON "pk_project" = p.PK_PROJECT
 		WHERE "pk_customerid" = #{customerId}
 	</select>
-	
 	<select id="getAllHouse" parameterType="String" resultType="String">
 		SELECT DISTINCT "house" FROM "T_Sell_Contract" WHERE "pk_customerid"=#{pk_customerid}
 	</select>
-	
 	<select id="getByName" parameterType="String" resultType="cn.rzhd.wuye.vo.SignVO">
 			SELECT * FROM "T_Sell_Contract" WHERE "house"=#{house}  AND "pk_customerid"=#{pk_customerid}
 	</select>
-
 	<insert id="add" parameterType="cn.rzhd.wuye.vo.SignVO">
 		INSERT INTO "T_Sell_Contract" ("pk_corp",
 		"pk_customerid",
@@ -73,7 +85,6 @@
 		#{nyshouldmny},
 		#{nyfactmny}, #{nyshouldinterestmny}, #{nyfactinterestmny})
 	</insert>
-
 	<select id="getAll" resultMap="sellContractBackMap">
 		SELECT
 		s."pk_house",
@@ -91,7 +102,6 @@
 		LEFT JOIN
 		"T_Customer" c on s."pk_customerid" = c."pk_customerid"
 	</select>
-
 	<resultMap type="cn.rzhd.wuye.vo.SignVO" id="sellContractBackMap">
 		<id property="pk_house" column="pk_house" />
 		<result property="nsellarea" column="nsellarea" />
@@ -109,9 +119,4 @@
 			<result property="vcode" column="VCODE" />
 		</association>
 	</resultMap>
-
-	<update id="update" parameterType="cn.rzhd.wuye.vo.SignVO">
-
-	</update>
-
 </mapper>

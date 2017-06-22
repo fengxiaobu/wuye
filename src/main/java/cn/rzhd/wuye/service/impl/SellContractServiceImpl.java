@@ -82,5 +82,11 @@ public class SellContractServiceImpl implements ISellContractService {
 		return signVOs;
 	}
 
+	@Override
+	public List<SignVO> getByVccode(String vccode) {
+		List<SignVO> signVOs = mapper.getCusId(vccode);
+		return signVOs;
+	}
+
 
 }

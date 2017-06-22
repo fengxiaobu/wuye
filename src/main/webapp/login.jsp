@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css">
     
 	<style type="text/css">
+		
 		body {
 			background: url(${pageContext.request.contextPath}/imgs/login_bg.jpg);
 		}
@@ -100,6 +101,11 @@
 			height: 100%;
 		}
 	</style>
+<script type="text/javascript">
+	if (window != top) {
+		top.location.href = window.location.href;
+	}
+</script>
 </head>
 <body>
 	<!-- 登录-v2 开始 -->

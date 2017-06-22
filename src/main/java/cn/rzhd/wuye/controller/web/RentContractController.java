@@ -18,11 +18,11 @@ import cn.rzhd.wuye.vo.PactVO;
 public class RentContractController {
 	@Autowired
 	IRentContractService rentContractService;
-	
+
 	@RequestMapping("/getRentContractlist")
-	public List<PactVO> getRentContract(String pk_pact,String pk_customerid){
-        List<PactVO> rentContractlist = rentContractService.getRentContract(pk_pact, pk_customerid);
-       
-        return rentContractlist;
-    } 
+	public List<PactVO> getRentContract(String[] pk_customerid) {
+		List<PactVO> rentContractlist = rentContractService.getRentContractByCustomer(pk_customerid);
+
+		return rentContractlist;
+	}
 }
