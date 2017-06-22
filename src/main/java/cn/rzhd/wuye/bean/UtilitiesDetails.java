@@ -21,10 +21,6 @@ public class UtilitiesDetails implements Serializable {
      */
     private String clientName;
     /**
-     * 费用类型
-     */
-    private String costType;
-    /**
      * 缴费方式
      */
     private String payManner;
@@ -143,14 +139,6 @@ public class UtilitiesDetails implements Serializable {
 
     public void setClientName(String clientName) {
         this.clientName = clientName;
-    }
-
-    public String getCostType() {
-        return costType;
-    }
-
-    public void setCostType(String costType) {
-        this.costType = costType;
     }
 
     public String getPayManner() {

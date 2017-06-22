@@ -97,7 +97,7 @@
             "nrgardenarea"    = #{nrgardenarea,jdbcType=VARCHAR}
         WHERE "pk_house" = #{pk_house,jdbcType=CHAR}
     </update>
-    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap">
         SELECT
             "pk_house",
             "pk_corp",
@@ -134,7 +134,7 @@
             ASTRICTSTATUS,
             UPDATEDATE
         FROM T_HOUSE_INFO_DETAILS
-        WHERE "pk_house" = #{pkHouse}
+        WHERE "pk_house" = '${pkHouse}'
     </select>
     <select id="selectAll" resultMap="BaseResultMap">
         SELECT

@@ -1,14 +1,8 @@
 package cn.rzhd.wuye.controller;
 
-import cn.rzhd.wuye.bean.DecorateDetail;
-import cn.rzhd.wuye.bean.DecorationApply;
-import cn.rzhd.wuye.bean.DecorationMaterial;
-import cn.rzhd.wuye.bean.DecorationNotice;
+import cn.rzhd.wuye.bean.*;
 import cn.rzhd.wuye.bean.vo.ResousVO;
-import cn.rzhd.wuye.service.IDecorateDetailService;
-import cn.rzhd.wuye.service.IDecorationApplyService;
-import cn.rzhd.wuye.service.IDecorationMaterialService;
-import cn.rzhd.wuye.service.IDecorationNoticeService;
+import cn.rzhd.wuye.service.*;
 import cn.rzhd.wuye.utils.IDUtils;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;
@@ -48,6 +42,9 @@ public class DecorationApplyController {
     //装修申请
     @Autowired
     IDecorationApplyService decorationApplyService;
+    //房产服务
+    @Autowired
+    IHouseInfoService houseInfoService;
 
     /**
      * 装修须知
@@ -78,7 +75,7 @@ public class DecorationApplyController {
      */
     @RequestMapping(value = "/upload/batch", method = RequestMethod.POST)
     public @ResponseBody
-    Map<String, String> batchUpload(@RequestBody ResousVO resousVO) {
+    Map<String, String> batchUpload(ResousVO resousVO) {
         System.out.println("resousVO = " + resousVO);
         Map<String, String> result = new HashMap<>();
         Date date = new Date();
@@ -134,6 +131,10 @@ public class DecorationApplyController {
             result.put("msg", "申请失败" + e.getMessage());
             return result;
         }
+        //修改申请状态
+        HouseInfo houseInfo = houseInfoService.getById(resousVO.getDecorationApply().getHouseInfoId());
+        houseInfo.setDecorationApplyState("1");
+        houseInfoService.update(houseInfo);
         result.put("state", "1");
         result.put("msg", "申请成功");
         return result;
@@ -206,6 +207,12 @@ public class DecorationApplyController {
         }
 
         int i = decorationApplyService.updateByPrimaryKey(decorationApply);
+        if (i > 0) {
+            //修改申请状态
+            HouseInfo houseInfo = houseInfoService.getById(decorationApply.getHouseInfoId());
+            houseInfo.setDecorationApplyState("2");
+            houseInfoService.update(houseInfo);
+        }
         System.out.println("i = " + i);
         result.put("state", "1");
 

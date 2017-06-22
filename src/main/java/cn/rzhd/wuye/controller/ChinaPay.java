@@ -172,7 +172,7 @@ public class ChinaPay {
      * @throws IOException
      */
     @RequestMapping("/pgReturn")
-    public String pgReturn(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void pgReturn(HttpServletRequest request, HttpServletResponse response) throws IOException {
         request.setCharacterEncoding("utf-8");
         response.setCharacterEncoding("utf-8");
         //解析 返回报文
@@ -196,12 +196,33 @@ public class ChinaPay {
             result.put("state", "fail");
             result.put("data", resultMap);
         }
+        request.setAttribute("pay", result);
        /* for(Map.Entry<String, String> entry:resultMap.entrySet()){
             System.out.println("entry" + entry.getKey()+"   "+entry.getValue());
             request.setAttribute(entry.getKey(), entry.getValue());
         }*/
-
+        //response.getWriter().write(result.toString());
+        System.out.println("延签");
+        request.getSession().setAttribute("pay", result);
         //转发请求到页面
-        return "forward:wuye/dist/index";
+        //return "forward:dist/pay";
     }
+
+    @RequestMapping("/dist/pay")
+    @ResponseBody
+    public Map<String, Object> getResponsePay(HttpServletRequest request) {
+        Map<String, Object> result = new HashMap<>();
+        Object pay = request.getSession().getAttribute("pay");
+        if (pay == null) {
+            result.put("state", "0");
+            result.put("msg", "未获取到数据!");
+            return result;
+        }
+        result.put("state", "1");
+        result.put("data", pay);
+        request.getSession().removeAttribute("pay");
+        System.out.println("删除session");
+        return result;
+    }
+
 }
