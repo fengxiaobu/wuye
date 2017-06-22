@@ -4,15 +4,18 @@
     <sql id="whereSql">
         <where>
             AND HOUSE_INFO_ID = #{houseInfoId} AND CUSTOMER_ID=#{customerId} AND PAY_TIME BETWEEN to_date(#{startDate},'YYYY-MM-DD') and to_date(#{endDate},'YYYY-MM-DD')
+            AND STATUS='Y'
         </where>
     </sql>
+    <update id="changeStatus" parameterType="long">
+        UPDATE T_PROPERTY_FEE_PAY_DETAILS SET STATUS = 'Y' WHERE PROPERTY_FEE_PAY_DETAILS_ID=#{id}
+    </update>
 
 
     <resultMap id="propertyFeePayDetailsMapper" type="cn.rzhd.wuye.bean.PropertyFeePayDetails">
         <id property="propertyFeePayDetails" column="PROPERTY_FEE_PAY_DETAILS_ID"/>
         <result property="houseInfoId" column="HOUSE_INFO_ID"/>
         <result property="clientName" column="CLIENT_NAME"/>
-        <result property="costType" column="COST_TYPE"/>
         <result property="payManner" column="PAY_MANNER"/>
         <result property="payMonth" column="PAY_MONTH"/>
         <result property="startDate" column="START_DATE"/>
@@ -31,13 +34,13 @@
         <result property="carteTime" column="CARTE_TIME"/>
         <result property="updateTime" column="UPDATE_TIME"/>
         <result property="customerId" column="CUSTOMER_ID"/>
+        <result property="status" column="STATUS"/>
     </resultMap>
 
     <insert id="insert" parameterType="cn.rzhd.wuye.bean.PropertyFeePayDetails">
         INSERT INTO T_PROPERTY_FEE_PAY_DETAILS (PROPERTY_FEE_PAY_DETAILS_ID,
                                                 HOUSE_INFO_ID,
                                                 CLIENT_NAME,
-                                                COST_TYPE,
                                                 PAY_MANNER,
                                                 PAY_MONTH,
                                                 START_DATE,
@@ -55,11 +58,12 @@
                                                 PAY_TIME,
                                                 CARTE_TIME,
                                                 UPDATE_TIME,
-                                                CUSTOMER_ID)
-                VALUES (#{propertyFeePayDetails},#{houseInfoId},#{clientName},#{costType},#{payManner},
+                                                CUSTOMER_ID,
+                                                STATUS)
+                VALUES (#{propertyFeePayDetails},#{houseInfoId},#{clientName},#{payManner},
                         #{payMonth},#{startDate},#{endDate},#{payable},#{paidIn},#{voucherNumber},#{invoice},
                         #{invoiceNumber},#{invoiceNotes},#{invoiceStatus},#{collectingCompany},#{collectingAccount},
-                        #{invoiceCompany},#{payTime},#{carteTime},#{updateTime},#{customerId}
+                        #{invoiceCompany},#{payTime},#{carteTime},#{updateTime},#{customerId},#{status}
                         )
 
     </insert>
@@ -70,7 +74,6 @@
         SELECT PROPERTY_FEE_PAY_DETAILS_ID,
         HOUSE_INFO_ID,
         CLIENT_NAME,
-        COST_TYPE,
         PAY_MANNER,
         PAY_MONTH,
         START_DATE,
@@ -88,7 +91,8 @@
         PAY_TIME,
         CARTE_TIME,
         UPDATE_TIME,
-        CUSTOMER_ID
+        CUSTOMER_ID,
+        STATUS
         FROM T_PROPERTY_FEE_PAY_DETAILS
         <include refid="whereSql"/>
     </select>

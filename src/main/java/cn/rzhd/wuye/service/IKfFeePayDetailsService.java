@@ -12,4 +12,8 @@ import java.util.List;
 public interface IKfFeePayDetailsService {
 
     List<KfFeePayDetails> queryAll(KfFeePayDetailsQuery query);
+
+    void addDetails(KfFeePayDetails details);
+
+    void changeStatus(Long id);
 }

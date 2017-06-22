@@ -27,10 +27,8 @@
                     <div class="user-container">
                         <div class="user-photo-wrap"><img src="${pageContext.request.contextPath}/imgs_test/timg.jpg" alt="..."
                                                           class="img-circle user-photo"></div>
-                        <div class="user-name">风吹乱了夏天</div>
+                        <div class="user-name">${userInSession.name}</div>
                     </div>
-                    <button class="btn btn-default" type="button"><span
-                            class="glyphicon glyphicon-bullhorn"></span><span class="badge">4</span>消息
                     </button>
                     <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-off"></span>退出
                     </button>
@@ -83,7 +81,7 @@
                             <li class="panel" role="tab">
                                 <div class="panel-header">
                                     <a data-toggle="collapse" data-parent="#"
-                                       href="#">物业费用</a>
+                                       href="${pageContext.request.contextPath}/">物业费用</a>
                                 </div>
                                 <div class="panel-header">
                                     <a data-toggle="collapse" data-parent="#"

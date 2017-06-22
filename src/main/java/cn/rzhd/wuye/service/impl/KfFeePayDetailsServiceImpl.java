@@ -25,4 +25,14 @@ public class KfFeePayDetailsServiceImpl implements IKfFeePayDetailsService {
         }
         return null;
     }
+
+    @Override
+    public void addDetails(KfFeePayDetails details) {
+        mapper.insert(details);
+    }
+
+    @Override
+    public void changeStatus(Long id) {
+        mapper.changeStatus(id);
+    }
 }
