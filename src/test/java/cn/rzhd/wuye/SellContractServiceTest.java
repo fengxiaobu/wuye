@@ -30,7 +30,7 @@ public class SellContractServiceTest extends BaseTest {
 		}
 
 	}
-	
+
 	@Test
 	public void test1() throws Exception {
 		String pk_customerid = "1004XX100000002EINE1";
@@ -41,11 +41,14 @@ public class SellContractServiceTest extends BaseTest {
 	}
 
 	@Test
+	public void test2() throws Exception {
+	}
+
+	@Test
 	public void testGetSell() throws Exception {
-		String house="济南长清1号地二期10号楼1单元101";
-		String pk_customerid = "1004XX100000002EINE1";
-		List<SignVO> byName = mapper.getByName(house, pk_customerid);
-		for (SignVO signVO : byName) {
+
+		List<SignVO> cusId = mapper.getCusId("941Y16093004203");
+		for (SignVO signVO : cusId) {
 			System.out.println(signVO);
 		}
 	}

@@ -8,61 +8,117 @@ import java.util.List;
 public class UtilitiesDetails implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
+    /**
+     * 水电缴费记录主键
+     */
     private Long utilitiesDetailsId;
-
+    /**
+     * 房产主键
+     */
     private String houseInfoId;
-
+    /**
+     * 客户名称
+     */
     private String clientName;
-
+    /**
+     * 费用类型
+     */
     private String costType;
-
+    /**
+     * 缴费方式
+     */
     private String payManner;
-
+    /**
+     * 缴费月份
+     */
     private String payMonth;
-
+    /**
+     * 起始日期
+     */
     private Date startDate;
-
+    /**
+     * 截止日期
+     */
     private Date endDate;
-
+    /**
+     * 应缴金额
+     */
     private BigDecimal payable;
-
+    /**
+     * 实缴金额
+     */
     private BigDecimal paidIn;
-
+    /**
+     * 单据号
+     */
     private String voucherNumber;
-
+    /**
+     * ERP发票所需ID
+     */
     private String invoice;
-
+    /**
+     * 发票号
+     */
     private String invoiceNumber;
-
+    /**
+     * 发票备注
+     */
     private String invoiceNotes;
-
+    /**
+     * 开票状态(0-已开，1-未开,2-不开)
+     */
     private Integer invoiceStatus;
-
+    /**
+     * 收款公司
+     */
     private String collectingCompany;
-
+    /**
+     * 收款账户
+     */
     private String collectingAccount;
-
+    /**
+     * 开票公司
+     */
     private String invoiceCompany;
-
+    /**
+     * 交费日期
+     */
     private Date payTime;
-
+    /**
+     * 电表号
+     */
     private String ammeterNumber;
-
+    /**
+     * 倍率
+     */
     private Integer multiplyingPower;
-
+    /**
+     * 电力度数
+     */
     private Integer electricPower;
-
+    /**
+     * 记录创建时间
+     */
     private Date carteTime;
-
+    /**
+     * 记录修改时间
+     */
     private Date updateTime;
-
+    /**
+     * 客户ID
+     */
     private String customerId;
-
+    /**
+     * 水吨数
+     */
     private Integer tunnage;
-
+    /**
+     * 缴费记录所关联的发票
+     */
     private List<UtilitiesInvoice> invoices;
-
+    /**
+     * 缴费记录是否生效(Y--生效,N--未生效)
+     */
     private String status = "N";
 
     public Long getUtilitiesDetailsId() {

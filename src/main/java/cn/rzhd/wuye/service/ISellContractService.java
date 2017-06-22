@@ -38,4 +38,6 @@ public interface ISellContractService {
     List<String> getAllName(String pk_customerid);
     
     List<SignVO> getByName(String house,String pk_customerid);
+    
+    List<SignVO> getByVccode(String vccode);
 }

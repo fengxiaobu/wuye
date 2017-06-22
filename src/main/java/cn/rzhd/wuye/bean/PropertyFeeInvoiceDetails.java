@@ -58,10 +58,6 @@ public class PropertyFeeInvoiceDetails implements Serializable{
 	 */
 	private Long propertyFeePayDetailsId;
 	/**
-	 * 发票生效状态(Y--生效,N--未生效)
-	 */
-	private String status = "N";
-	/**
 	 * @return the invoiceType
 	 */
 	public Integer getInvoiceType() {
@@ -176,13 +172,5 @@ public class PropertyFeeInvoiceDetails implements Serializable{
 
 	public void setPropertyFeePayDetailsId(Long propertyFeePayDetailsId) {
 		this.propertyFeePayDetailsId = propertyFeePayDetailsId;
-	}
-
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
 	}
 }

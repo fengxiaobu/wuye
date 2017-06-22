@@ -20,9 +20,9 @@ public class SellContractController {
 	ISellContractService sellContractService;
 
 	@RequestMapping("/getSellContractlist")
-	public List<SignVO> getSellContract(String house, String pk_customerid) {
-		List<SignVO> sellContractList = sellContractService.getByName(house, pk_customerid);
-		return sellContractList;
+	public List<SignVO> getSellContract(String vccode) {
+		List<SignVO> signVOs = sellContractService.getByVccode(vccode);
+		return signVOs;
 	}
 
 	@RequestMapping("/getSellContractName")

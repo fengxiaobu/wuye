@@ -3,15 +3,45 @@
 <mapper namespace="cn.rzhd.wuye.mapper.KfFeePayDetailsMapper">
     <sql id="whereSql">
         <where>
-            AND HOUSE_INFO_ID = #{houseInfoId} AND CUSTOMER_ID=#{customerId} AND PAY_TIME BETWEEN to_date(#{startDate},'YYYY-MM-DD') and to_date(#{endDate},'YYYY-MM-DD')
+            AND HOUSE_INFO_ID = #{houseInfoId} AND CUSTOMER_ID=#{customerId} AND PAY_TIME BETWEEN
+            to_date(#{startDate},'YYYY-MM-DD') and to_date(#{endDate},'YYYY-MM-DD')
         </where>
     </sql>
+    <insert id="insert" parameterType="cn.rzhd.wuye.bean.KfFeePayDetails">
+        INSERT INTO T_KF_FEE_PAY_DETAILS (KF_FEE_PAY_DETAILS_ID,
+                                          HOUSE_INFO_ID,
+                                          CLIENT_NAME,
+                                          PAY_MANNER,
+                                          PAY_MONTH,
+                                          START_DATE,
+                                          END_DATE,
+                                          PAYABLE,
+                                          PAID_IN,
+                                          VOUCHER_NUMBER,
+                                          INVOICE,
+                                          INVOICE_NUMBER,
+                                          INVOICE_NOTES,
+                                          INVOICE_STATUS,
+                                          COLLECTING_COMPANY,
+                                          COLLECTING_ACCOUNT,
+                                          INVOICE_COMPANY,
+                                          PAY_TIME,
+                                          CARTE_TIME,
+                                          UPDATE_TIME,CUSTOMER_ID)
+        VALUES
+            (#{kfFeePayDetailsId}, #{houseInfoId}, #{clientName}, #{payManner}, #{payMonth}, #{startDate},
+                                   #{endDate}, #{payable}, #{paidIn}, #{voucherNumber},
+                #{invoice}, #{invoiceNumber}, #{invoiceNotes}, #{invoiceStatus}, #{collectingCompany},
+                #{collectingAccount}, #{invoiceCompany}, #{payTime}, #{carteTime}, #{updateTime},#{customerId})
+    </insert>
+    <update id="changeStatus" parameterType="long">
+        UPDATE T_KF_FEE_PAY_DETAILS SET STATUS = 'Y' WHERE KF_FEE_PAY_DETAILS_ID=#{id}
+    </update>
 
     <resultMap id="KfFeePayDetailsMapper" type="cn.rzhd.wuye.bean.KfFeePayDetails">
         <id property="kfFeePayDetailsId" column="KF_FEE_PAY_DETAILS_ID"/>
         <result property="houseInfoId" column="HOUSE_INFO_ID"/>
         <result property="clientName" column="CLIENT_NAME"/>
-        <result property="costType" column="COST_TYPE"/>
         <result property="payManner" column="PAY_MANNER"/>
         <result property="payMonth" column="PAY_MONTH"/>
         <result property="startDate" column="START_DATE"/>
@@ -38,7 +68,6 @@
         SELECT KF_FEE_PAY_DETAILS_ID,
         HOUSE_INFO_ID,
         CLIENT_NAME,
-        COST_TYPE,
         PAY_MANNER,
         PAY_MONTH,
         START_DATE,
@@ -55,7 +84,8 @@
         INVOICE_COMPANY,
         PAY_TIME,
         CARTE_TIME,
-        UPDATE_TIME
+        UPDATE_TIME,
+        CUSTOMER_ID
         FROM T_KF_FEE_PAY_DETAILS
         <include refid="whereSql"/>
     </select>

@@ -9,34 +9,43 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class AuthInterceptor implements HandlerInterceptor {
-	private static final String LOGINURI = "/login";
+    private static final String LOGINURI = "/login";
 
-	@Override
-	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
-			ModelAndView modelAndView) throws Exception {
+    @Override
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
+                           ModelAndView modelAndView) throws Exception {
 
-	}
+    }
 
-	@Override
-	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
-			throws Exception {
+    @Override
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
+            throws Exception {
 
-	}
+    }
 
-	@Override
-	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
-			throws Exception {
-		//System.out.println(111111111);
+    @Override
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
+            throws Exception {
+        //System.out.println(111111111);
 
-		User loginUser = UserContext.getUser();
-		String requestURI = request.getRequestURI();
+        User loginUser = UserContext.getUser();
+        String requestURI = request.getRequestURI();
 
 	/*	if (loginUser == null && !requestURI.equals(LOGINURI)) {
 
 			response.sendRedirect("/login.jsp");
 			return false;
-		}*/
+		}
 
-		return true;
-	}
+		User loginUser = UserContext.getUser();
+		String requestURI = request.getRequestURI();
+
+		if (loginUser == null && !requestURI.equals(LOGINURI)) {
+
+			response.sendRedirect("/login.jsp");
+			return false;
+		}
+*/
+        return true;
+    }
 }

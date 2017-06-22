@@ -19,4 +19,6 @@ public interface IPropertyFeePayDetailsService {
     List<PropertyFeePayDetails> queryAll(PropertyFeePayDetailsQuery query);
 
     void addDetails(PropertyFeePayDetails details);
+
+    void changeStatus(Long id);
 }

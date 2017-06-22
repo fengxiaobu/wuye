@@ -5,7 +5,6 @@
         <id column="UTILITIES_DETAILS_ID" property="utilitiesDetailsId"/>
         <result column="HOUSE_INFO_ID" property="houseInfoId"/>
         <result column="CLIENT_NAME" property="clientName"/>
-        <result column="COST_TYPE" property="costType"/>
         <result column="PAY_MANNER" property="payManner"/>
         <result column="PAY_MONTH" property="payMonth"/>
         <result column="START_DATE" property="startDate"/>
@@ -28,15 +27,14 @@
         <result column="UPDATE_TIME" property="updateTime"/>
         <result column="CUSTOMER_ID" property="customerId"/>
         <result column="TUNNAGE" property="tunnage"/>
-        <result column=""/>
+        <result column="STATUS" property="status"/>
     </resultMap>
     <delete id="deleteByPrimaryKey" parameterType="long">
         DELETE FROM T_UTILITIES_DETAILS
         WHERE UTILITIES_DETAILS_ID = #{utilitiesDetailsId}
     </delete>
     <insert id="insert" parameterType="cn.rzhd.wuye.bean.UtilitiesDetails">
-        INSERT INTO T_UTILITIES_DETAILS (UTILITIES_DETAILS_ID, HOUSE_INFO_ID, CLIENT_NAME,
-                                         COST_TYPE, PAY_MANNER, PAY_MONTH,
+        INSERT INTO T_UTILITIES_DETAILS (UTILITIES_DETAILS_ID, HOUSE_INFO_ID, CLIENT_NAME, PAY_MANNER, PAY_MONTH,
                                          START_DATE, END_DATE, PAYABLE,
                                          PAID_IN, VOUCHER_NUMBER, INVOICE,
                                          INVOICE_NUMBER, INVOICE_NOTES, INVOICE_STATUS,
@@ -45,7 +43,7 @@
                                          ELECTRIC_POWER, CARTE_TIME, UPDATE_TIME,
                                          CUSTOMER_ID, TUNNAGE, STATUS)
         VALUES (#{utilitiesDetailsId}, #{houseInfoId}, #{clientName},
-                                       #{costType}, #{payManner}, #{payMonth},
+                                        #{payManner}, #{payMonth},
                                        #{startDate}, #{endDate}, #{payable},
                                        #{paidIn}, #{voucherNumber}, #{invoice},
                                                                     #{invoiceNumber}, #{invoiceNotes}, #{invoiceStatus},
@@ -59,7 +57,6 @@
         UPDATE T_UTILITIES_DETAILS
         SET HOUSE_INFO_ID      = #{houseInfoId},
             CLIENT_NAME        = #{clientName},
-            COST_TYPE          = #{costType},
             PAY_MANNER         = #{payManner},
             PAY_MONTH          = #{payMonth},
             START_DATE         = #{startDate},
@@ -86,14 +83,15 @@
         WHERE UTILITIES_DETAILS_ID = #{utilitiesDetailsId}
     </update>
     <update id="changeStatus" parameterType="cn.rzhd.wuye.bean.UtilitiesDetails">
-        UPDATE T_UTILITIES_DETAILS SET STATUS='Y' WHERE UTILITIES_DETAILS_ID=#{utilitiesDetailsId}
+        UPDATE T_UTILITIES_DETAILS
+        SET STATUS = 'Y'
+        WHERE UTILITIES_DETAILS_ID = #{utilitiesDetailsId}
     </update>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="long">
         SELECT
             UTILITIES_DETAILS_ID,
             HOUSE_INFO_ID,
             CLIENT_NAME,
-            COST_TYPE,
             PAY_MANNER,
             PAY_MONTH,
             START_DATE,
@@ -125,7 +123,6 @@
             UTILITIES_DETAILS_ID,
             HOUSE_INFO_ID,
             CLIENT_NAME,
-            COST_TYPE,
             PAY_MANNER,
             PAY_MONTH,
             START_DATE,
@@ -159,7 +156,6 @@
             UTILITIES_DETAILS_ID,
             HOUSE_INFO_ID,
             CLIENT_NAME,
-            COST_TYPE,
             PAY_MANNER,
             PAY_MONTH,
             START_DATE,
@@ -188,7 +184,6 @@
                  UTILITIES_DETAILS_ID,
                  HOUSE_INFO_ID,
                  CLIENT_NAME,
-                 COST_TYPE,
                  PAY_MANNER,
                  PAY_MONTH,
                  START_DATE,
@@ -223,7 +218,6 @@
             UTILITIES_DETAILS_ID,
             HOUSE_INFO_ID,
             CLIENT_NAME,
-            COST_TYPE,
             PAY_MANNER,
             PAY_MONTH,
             START_DATE,
@@ -252,7 +246,6 @@
                  UTILITIES_DETAILS_ID,
                  HOUSE_INFO_ID,
                  CLIENT_NAME,
-                 COST_TYPE,
                  PAY_MANNER,
                  PAY_MONTH,
                  START_DATE,
@@ -278,7 +271,7 @@
                  STATUS
              FROM T_UTILITIES_DETAILS
              WHERE CUSTOMER_ID = '${customerId}' AND HOUSE_INFO_ID = '${houseInfoId}' AND TUNNAGE IS NOT NULL
-             AND STATUS = 'Y'
+                   AND STATUS = 'Y'
              ORDER BY PAY_TIME DESC)
         WHERE ROWNUM = 1
     </select>

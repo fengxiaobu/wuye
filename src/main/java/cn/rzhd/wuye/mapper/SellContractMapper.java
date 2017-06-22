@@ -33,4 +33,6 @@ public interface SellContractMapper {
     List<String> getAllHouse(String pk_customerid);
     
     List<SignVO> getByName(@Param("house")String house,@Param("pk_customerid")String pk_customerid);
+
+    List<SignVO> getCusId(String vccode);
 }

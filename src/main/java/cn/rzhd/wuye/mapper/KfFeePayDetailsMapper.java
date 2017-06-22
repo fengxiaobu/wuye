@@ -12,4 +12,8 @@ import java.util.List;
 @Mapper
 public interface KfFeePayDetailsMapper {
     List<KfFeePayDetails> queryAll(KfFeePayDetailsQuery query);
+
+    void insert(KfFeePayDetails details);
+
+    void changeStatus(Long id);
 }

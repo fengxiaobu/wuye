@@ -18,7 +18,7 @@ public interface RentContractMapper {
      */
     PactVO getById(String pk_pact);
     
-    List<PactVO> getByPkId(@Param("pk_pact")String pk_pact,@Param("pk_customerid")String pk_customerid);
+    List<PactVO> getByPkId(String[] pk_customerid);
 
     void add(PactVO pactVO);
 

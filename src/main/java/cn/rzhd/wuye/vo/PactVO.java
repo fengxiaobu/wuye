@@ -39,6 +39,8 @@ public class PactVO implements Serializable {
 	private String ndef3;// 备用字段3
 	private String ndef4;// 备用字段4
 	private String ndef5;// 备用字段5
+	
+	private String state;
 
 	private CustomerVO customerVO;
 	private ProjectVO projectVO;
@@ -250,6 +252,15 @@ public class PactVO implements Serializable {
 	public void setNdef5(String ndef5) {
 		this.ndef5 = ndef5;
 	}
+	
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
 
 	@Override
 	public String toString() {
@@ -259,9 +270,8 @@ public class PactVO implements Serializable {
 				+ nhtysmny + ", nhtssmny=" + nhtssmny + ", dysdate=" + dysdate + ", nsbzjyjmny=" + nsbzjyjmny
 				+ ", projectName=" + projectName + ", contractStatus=" + contractStatus + ", vdef3=" + vdef3
 				+ ", vdef4=" + vdef4 + ", vdef5=" + vdef5 + ", ndef1=" + ndef1 + ", ndef2=" + ndef2 + ", ndef3=" + ndef3
-				+ ", ndef4=" + ndef4 + ", ndef5=" + ndef5 + ", customerVO=" + customerVO + ", projectVO=" + projectVO
-				+ "]";
+				+ ", ndef4=" + ndef4 + ", ndef5=" + ndef5 + ", state=" + state + ", customerVO=" + customerVO
+				+ ", projectVO=" + projectVO + "]";
 	}
-
 
 }
