@@ -2,6 +2,7 @@ package cn.rzhd.wuye.mapper;
 
 import cn.rzhd.wuye.bean.PropertyFeePayDetails;
 import cn.rzhd.wuye.vo.query.PropertyFeePayDetailsQuery;
+import cn.rzhd.wuye.vo.query.PropertyRecordsQuery;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -22,4 +23,6 @@ public interface PropertyFeePayDetailsMapper {
     void insert(PropertyFeePayDetails details);
 
     void changeStatus(Long id);
+
+    List<PropertyFeePayDetails> queryByProject(PropertyRecordsQuery query);
 }

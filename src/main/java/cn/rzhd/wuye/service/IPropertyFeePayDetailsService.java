@@ -2,6 +2,7 @@ package cn.rzhd.wuye.service;
 
 import cn.rzhd.wuye.bean.PropertyFeePayDetails;
 import cn.rzhd.wuye.vo.query.PropertyFeePayDetailsQuery;
+import cn.rzhd.wuye.vo.query.PropertyRecordsQuery;
 
 import java.util.List;
 
@@ -21,4 +22,6 @@ public interface IPropertyFeePayDetailsService {
     void addDetails(PropertyFeePayDetails details);
 
     void changeStatus(Long id);
+
+    List<PropertyFeePayDetails> queryByProject(PropertyRecordsQuery query);
 }

@@ -145,14 +145,6 @@ public class UtilitiesDetails implements Serializable {
         this.clientName = clientName;
     }
 
-    public String getCostType() {
-        return costType;
-    }
-
-    public void setCostType(String costType) {
-        this.costType = costType;
-    }
-
     public String getPayManner() {
         return payManner;
     }
@@ -343,5 +335,13 @@ public class UtilitiesDetails implements Serializable {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getCostType() {
+        return costType;
+    }
+
+    public void setCostType(String costType) {
+        this.costType = costType;
     }
 }

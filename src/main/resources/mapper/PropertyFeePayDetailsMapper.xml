@@ -16,6 +16,7 @@
         <id property="propertyFeePayDetails" column="PROPERTY_FEE_PAY_DETAILS_ID"/>
         <result property="houseInfoId" column="HOUSE_INFO_ID"/>
         <result property="clientName" column="CLIENT_NAME"/>
+        <result property="costType" column="FEETYPE"/>
         <result property="payManner" column="PAY_MANNER"/>
         <result property="payMonth" column="PAY_MONTH"/>
         <result property="startDate" column="START_DATE"/>
@@ -41,6 +42,7 @@
         INSERT INTO T_PROPERTY_FEE_PAY_DETAILS (PROPERTY_FEE_PAY_DETAILS_ID,
                                                 HOUSE_INFO_ID,
                                                 CLIENT_NAME,
+                                                FEETYPE,
                                                 PAY_MANNER,
                                                 PAY_MONTH,
                                                 START_DATE,
@@ -60,7 +62,7 @@
                                                 UPDATE_TIME,
                                                 CUSTOMER_ID,
                                                 STATUS)
-                VALUES (#{propertyFeePayDetails},#{houseInfoId},#{clientName},#{payManner},
+                VALUES (#{propertyFeePayDetails},#{houseInfoId},#{clientName},#{costType},#{payManner},
                         #{payMonth},#{startDate},#{endDate},#{payable},#{paidIn},#{voucherNumber},#{invoice},
                         #{invoiceNumber},#{invoiceNotes},#{invoiceStatus},#{collectingCompany},#{collectingAccount},
                         #{invoiceCompany},#{payTime},#{carteTime},#{updateTime},#{customerId},#{status}
@@ -74,6 +76,7 @@
         SELECT PROPERTY_FEE_PAY_DETAILS_ID,
         HOUSE_INFO_ID,
         CLIENT_NAME,
+        FEETYPE,
         PAY_MANNER,
         PAY_MONTH,
         START_DATE,
@@ -95,5 +98,48 @@
         STATUS
         FROM T_PROPERTY_FEE_PAY_DETAILS
         <include refid="whereSql"/>
+    </select>
+    <sql id="records">
+        <where>
+            AND HOUSE_INFO_ID IN (select "pk_house" from T_HOUSE_INFO_DETAILS WHERE "pk_project"=#{projectId})
+            <if test="startDate != null and endDate != null">
+                AND PAY_TIME &gt;= startDate AND PAY_TIME &lt;= endDate
+            </if>
+            <if test="feeType != null">
+                AND FEETYPE=#{feeType}
+            </if>
+            <if test="payManner != null">
+                AND PAY_MANNER=#{payManner}
+            </if>
+            <if test="keyWords != null AND keyWords != ''">
+            </if>
+        </where>
+    </sql>
+    <select id="queryByProject" parameterType="cn.rzhd.wuye.vo.query.PropertyRecordsQuery">
+        SELECT PROPERTY_FEE_PAY_DETAILS_ID,
+            HOUSE_INFO_ID,
+            CLIENT_NAME,
+            FEETYPE,
+            PAY_MANNER,
+            PAY_MONTH,
+            START_DATE,
+            END_DATE,
+            PAYABLE,
+            PAID_IN,
+            VOUCHER_NUMBER,
+            INVOICE,
+            INVOICE_NUMBER,
+            INVOICE_NOTES,
+            INVOICE_STATUS,
+            COLLECTING_COMPANY,
+            COLLECTING_ACCOUNT,
+            INVOICE_COMPANY,
+            PAY_TIME,
+            CARTE_TIME,
+            UPDATE_TIME,
+            CUSTOMER_ID,
+            STATUS,
+            FEETYPE
+        FROM T_PROPERTY_FEE_PAY_DETAILS
     </select>
 </mapper>

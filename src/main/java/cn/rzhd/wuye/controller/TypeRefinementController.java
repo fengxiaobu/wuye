@@ -1,26 +1,44 @@
 package cn.rzhd.wuye.controller;
 
-import cn.rzhd.wuye.service.ITypeRefinementService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import java.util.List;
 
-/**
- * 
-© 2017 RZHD.CN
-@Package: cn.rzhd.wuye.controller
-@ClassName: TypeRefinementController
-@Description: 描述：类型细化
-@author: an-wei.xie@rzhd.cn
-@date: 2017年5月26日 下午3:52:51
-@version: V1.0
- */
-@RestController
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+
+import cn.rzhd.wuye.bean.TypeRefinement;
+import cn.rzhd.wuye.service.ITypeDifferentiateService;
+import cn.rzhd.wuye.service.ITypeRefinementService;
+
+@Controller
 @RequestMapping("/typeRefinement")
 public class TypeRefinementController {
     
     @Autowired
-    private ITypeRefinementService typeRefinementService;
+    ITypeRefinementService typeRefinementService;
+    @Autowired
+    ITypeDifferentiateService typeDifferentiateService;
+    
+    @RequestMapping("/getTypeData")
+    public String sellContractList(Model model, Integer pageNum, Integer pageSize, Integer typeDifferentiateId) {
+    	PageHelper.startPage(pageNum, pageSize);
+    	List<TypeRefinement> typeRefinements = typeRefinementService.getDataList(typeDifferentiateId);
+    	for (TypeRefinement typeRefinement : typeRefinements) {
+			System.out.println(typeRefinement);
+		}
+    	String name = typeDifferentiateService.getDataName(typeDifferentiateId).getTypeDifferentiateName();
+    	Page page = (Page) typeRefinements;
+    	
+        model.addAttribute("typeRefinements", typeRefinements);
+        model.addAttribute("name",name);
+
+        model.addAttribute("pages", page.getPages());
+        return "type/data";
+    }
     
     /**
      * 

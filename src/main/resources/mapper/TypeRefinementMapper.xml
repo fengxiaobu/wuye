@@ -46,4 +46,21 @@
     			TYPE_REFINEMENT_ID = #{typeRefinement.typeRefinementId} 
     </update>
     
+    <sql id="allType">
+    	TYPE_REFINEMENT_ID  typeRefinementId,
+		TYPE_DIFFERENTIATE_ID typeDifferentiateId,
+		TYPE_REFINEMENT_NAME typeRefinementName,
+		NOTE note,
+		STATUS status,
+		CREATE_TIME createTime,
+		UPDATE_TIME updateTime
+    </sql>
+    
+    <select id="getDataList" parameterType="int" resultType="cn.rzhd.wuye.bean.TypeRefinement" >
+    	SELECT <include refid="allType" /> FROM T_TYPE_REFINEMENT where TYPE_DIFFERENTIATE_ID = #{typeDifferentiateId}
+    </select>
+    
+    
+    
+    
 </mapper>

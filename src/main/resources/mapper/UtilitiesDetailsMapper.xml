@@ -5,6 +5,7 @@
         <id column="UTILITIES_DETAILS_ID" property="utilitiesDetailsId"/>
         <result column="HOUSE_INFO_ID" property="houseInfoId"/>
         <result column="CLIENT_NAME" property="clientName"/>
+        <result column="FEE_TYPE" property="costType"/>
         <result column="PAY_MANNER" property="payManner"/>
         <result column="PAY_MONTH" property="payMonth"/>
         <result column="START_DATE" property="startDate"/>
@@ -34,7 +35,7 @@
         WHERE UTILITIES_DETAILS_ID = #{utilitiesDetailsId}
     </delete>
     <insert id="insert" parameterType="cn.rzhd.wuye.bean.UtilitiesDetails">
-        INSERT INTO T_UTILITIES_DETAILS (UTILITIES_DETAILS_ID, HOUSE_INFO_ID, CLIENT_NAME, PAY_MANNER, PAY_MONTH,
+        INSERT INTO T_UTILITIES_DETAILS (UTILITIES_DETAILS_ID, HOUSE_INFO_ID, CLIENT_NAME, FEE_TYPE, PAY_MANNER, PAY_MONTH,
                                          START_DATE, END_DATE, PAYABLE,
                                          PAID_IN, VOUCHER_NUMBER, INVOICE,
                                          INVOICE_NUMBER, INVOICE_NOTES, INVOICE_STATUS,
@@ -42,8 +43,8 @@
                                          PAY_TIME, AMMETER_NUMBER, MULTIPLYING_POWER,
                                          ELECTRIC_POWER, CARTE_TIME, UPDATE_TIME,
                                          CUSTOMER_ID, TUNNAGE, STATUS)
-        VALUES (#{utilitiesDetailsId}, #{houseInfoId}, #{clientName},
-                                        #{payManner}, #{payMonth},
+        VALUES (#{utilitiesDetailsId}, #{houseInfoId}, #{clientName}, #{costType},
+                                       #{payManner}, #{payMonth},
                                        #{startDate}, #{endDate}, #{payable},
                                        #{paidIn}, #{voucherNumber}, #{invoice},
                                                                     #{invoiceNumber}, #{invoiceNotes}, #{invoiceStatus},
@@ -57,6 +58,7 @@
         UPDATE T_UTILITIES_DETAILS
         SET HOUSE_INFO_ID      = #{houseInfoId},
             CLIENT_NAME        = #{clientName},
+            FEE_TYPE           = #{costType},
             PAY_MANNER         = #{payManner},
             PAY_MONTH          = #{payMonth},
             START_DATE         = #{startDate},
@@ -92,6 +94,7 @@
             UTILITIES_DETAILS_ID,
             HOUSE_INFO_ID,
             CLIENT_NAME,
+            FEE_TYPE,
             PAY_MANNER,
             PAY_MONTH,
             START_DATE,
@@ -123,6 +126,7 @@
             UTILITIES_DETAILS_ID,
             HOUSE_INFO_ID,
             CLIENT_NAME,
+            FEE_TYPE,
             PAY_MANNER,
             PAY_MONTH,
             START_DATE,
@@ -156,6 +160,7 @@
             UTILITIES_DETAILS_ID,
             HOUSE_INFO_ID,
             CLIENT_NAME,
+            FEE_TYPE,
             PAY_MANNER,
             PAY_MONTH,
             START_DATE,
@@ -184,6 +189,7 @@
                  UTILITIES_DETAILS_ID,
                  HOUSE_INFO_ID,
                  CLIENT_NAME,
+                 FEE_TYPE,
                  PAY_MANNER,
                  PAY_MONTH,
                  START_DATE,
@@ -218,6 +224,7 @@
             UTILITIES_DETAILS_ID,
             HOUSE_INFO_ID,
             CLIENT_NAME,
+            FEE_TYPE,
             PAY_MANNER,
             PAY_MONTH,
             START_DATE,
@@ -246,6 +253,7 @@
                  UTILITIES_DETAILS_ID,
                  HOUSE_INFO_ID,
                  CLIENT_NAME,
+                 FEE_TYPE,
                  PAY_MANNER,
                  PAY_MONTH,
                  START_DATE,

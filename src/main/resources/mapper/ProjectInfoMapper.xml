@@ -81,6 +81,7 @@
     </update>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
         SELECT
+            DISTINCT
             PK_PROJECT,
             PROJECT_NAME,
             PROJECT_ADDRESS,

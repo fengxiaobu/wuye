@@ -2,6 +2,7 @@ package cn.rzhd.wuye.mapper;
 
 import cn.rzhd.wuye.bean.Ammeter;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -10,7 +11,7 @@ import java.util.List;
  */
 @Mapper
 public interface AmmeterMapper {
-    List<Ammeter> queryAmmeters(String houseInfoId);
+    List<Ammeter> queryAmmeters(@Param("houseInfoId") String houseInfoId);
 
     List<Ammeter> getAllAmmeters();
 }

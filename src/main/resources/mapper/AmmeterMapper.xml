@@ -11,7 +11,7 @@
         <result property="projectName" column="projectName"/>
         <result property="propertyName" column="propertyName"/>
     </resultMap>
-    <select id="queryAmmeters" parameterType="string" resultMap="baseMap">
+    <select id="queryAmmeters" resultMap="baseMap">
         select "id",
             "pk_project",
             "pk_house",
@@ -19,7 +19,7 @@
             "ammeter_name",
             "multiply"
         FROM "T_Ammeter"
-        WHERE "pk_house"=#{houseInfoId}
+        WHERE "pk_house"='${houseInfoId}'
     </select>
     <select id="getAllAmmeters" resultType="cn.rzhd.wuye.bean.Ammeter">
         select a."id",
