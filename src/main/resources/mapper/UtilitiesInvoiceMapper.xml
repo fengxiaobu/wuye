@@ -10,7 +10,6 @@
     <result column="CARTE_TIME" property="carteTime"/>
     <result column="UPDATE_TIME" property="updateTime"/>
     <result column="UTILITIES_DETAILS_ID" property="utilitiesDetailsId"/>
-    <result column="STATUS" property="status"/>
     <result column="BASIC_ELECTRIC_FEE" property="basicElectricFee"/>
     <result column="BASIC_ELECTRIC_INVOICE_SUM" property="basicElectricInvoiceSum"/>
   </resultMap>
@@ -22,12 +21,12 @@
     insert into T_UTILITIES_INVOICE (UTILITIES_INVOICE_ID, INVOICE_TYPE, 
       INVOICE_COMPANY, BASIC_WATER_FEE, BASIC_WATER_INVOICE_SUM, 
       CARTE_TIME, UPDATE_TIME, UTILITIES_DETAILS_ID, 
-      STATUS, BASIC_ELECTRIC_FEE, BASIC_ELECTRIC_INVOICE_SUM
+       BASIC_ELECTRIC_FEE, BASIC_ELECTRIC_INVOICE_SUM
       )
     values (#{utilitiesInvoiceId}, #{invoiceType},
       #{invoiceCompany}, #{basicWaterFee}, #{basicWaterInvoiceSum},
       #{carteTime}, #{updateTime}, #{utilitiesDetailsId},
-      #{status}, #{basicElectricFee}, #{basicElectricInvoiceSum}
+       #{basicElectricFee}, #{basicElectricInvoiceSum}
       )
   </insert>
   <update id="updateByPrimaryKey" parameterType="cn.rzhd.wuye.bean.UtilitiesInvoice" >
@@ -39,20 +38,19 @@
       CARTE_TIME = #{carteTime},
       UPDATE_TIME = #{updateTime},
       UTILITIES_DETAILS_ID = #{utilitiesDetailsId},
-      STATUS = #{status},
       BASIC_ELECTRIC_FEE = #{basicElectricFee},
       BASIC_ELECTRIC_INVOICE_SUM = #{basicElectricInvoiceSum}
     where UTILITIES_INVOICE_ID = #{utilitiesInvoiceId}
   </update>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="long" >
     select UTILITIES_INVOICE_ID, INVOICE_TYPE, INVOICE_COMPANY, BASIC_WATER_FEE, BASIC_WATER_INVOICE_SUM, 
-    CARTE_TIME, UPDATE_TIME, UTILITIES_DETAILS_ID, STATUS, BASIC_ELECTRIC_FEE, BASIC_ELECTRIC_INVOICE_SUM
+    CARTE_TIME, UPDATE_TIME, UTILITIES_DETAILS_ID,  BASIC_ELECTRIC_FEE, BASIC_ELECTRIC_INVOICE_SUM
     from T_UTILITIES_INVOICE
     where UTILITIES_INVOICE_ID = #{utilitiesInvoiceId}
   </select>
   <select id="selectAll" resultMap="BaseResultMap" >
     select UTILITIES_INVOICE_ID, INVOICE_TYPE, INVOICE_COMPANY, BASIC_WATER_FEE, BASIC_WATER_INVOICE_SUM, 
-    CARTE_TIME, UPDATE_TIME, UTILITIES_DETAILS_ID, STATUS, BASIC_ELECTRIC_FEE, BASIC_ELECTRIC_INVOICE_SUM
+    CARTE_TIME, UPDATE_TIME, UTILITIES_DETAILS_ID,  BASIC_ELECTRIC_FEE, BASIC_ELECTRIC_INVOICE_SUM
     from T_UTILITIES_INVOICE
   </select>
 </mapper>

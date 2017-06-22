@@ -108,7 +108,6 @@ public class PayFeeController {
      */
     @RequestMapping("/payFeeRecords")
     public Map<String,Object> payFeeRecords(UtilitiesQuery query){
-        Map<String, Object> records = utilitiesService.getLastRecords(query);
-        return records;
+        return utilitiesService.getLastRecords(query);
     }
 }

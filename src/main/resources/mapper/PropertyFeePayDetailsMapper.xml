@@ -96,4 +96,40 @@
         FROM T_PROPERTY_FEE_PAY_DETAILS
         <include refid="whereSql"/>
     </select>
+    <sql id="records">
+        <where>
+            AND HOUSE_INFO_ID IN (select "pk_house" from T_HOUSE_INFO_DETAILS WHERE "pk_project"=#{projectId})
+            <if test="startDate != null and endDate != null">
+                AND PAY_TIME &gt;= startDate AND PAY_TIME &lt;= endDate
+            </if>
+            <if test="feeType != null">
+                AND FEE
+            </if>
+        </where>
+    </sql>
+    <select id="queryByProject" parameterType="cn.rzhd.wuye.vo.query.PropertyRecordsQuery">
+        SELECT PROPERTY_FEE_PAY_DETAILS_ID,
+            HOUSE_INFO_ID,
+            CLIENT_NAME,
+            PAY_MANNER,
+            PAY_MONTH,
+            START_DATE,
+            END_DATE,
+            PAYABLE,
+            PAID_IN,
+            VOUCHER_NUMBER,
+            INVOICE,
+            INVOICE_NUMBER,
+            INVOICE_NOTES,
+            INVOICE_STATUS,
+            COLLECTING_COMPANY,
+            COLLECTING_ACCOUNT,
+            INVOICE_COMPANY,
+            PAY_TIME,
+            CARTE_TIME,
+            UPDATE_TIME,
+            CUSTOMER_ID,
+            STATUS
+        FROM T_PROPERTY_FEE_PAY_DETAILS
+    </select>
 </mapper>

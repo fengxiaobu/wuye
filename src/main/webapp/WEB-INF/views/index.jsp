@@ -88,8 +88,7 @@
                         <ul class="panel-group level02" id="aside_two_02">
                             <li class="panel" role="tab">
                                 <div class="panel-header">
-                                    <a data-toggle="collapse" data-parent="#"
-                                       href="#">物业费用</a>
+                                    <a href="${pageContext.request.contextPath}/propertyRecords/index" target="main">物业费用</a>
                                 </div>
                                 <div class="panel-header">
                                     <a data-toggle="collapse" data-parent="#"
