@@ -29,14 +29,14 @@ public class AuthInterceptor implements HandlerInterceptor {
 			throws Exception {
 		System.out.println(111111111);
 
-		User loginUser = UserContext.getUser();
-		String requestURI = request.getRequestURI();
-
-		if (loginUser == null && !requestURI.equals(LOGINURI)) {
-
-			response.sendRedirect("/login.jsp");
-			return false;
-		}
+//		User loginUser = UserContext.getUser();
+//		String requestURI = request.getRequestURI();
+//
+//		if (loginUser == null && !requestURI.equals(LOGINURI)) {
+//
+//			response.sendRedirect("/login.jsp");
+//			return false;
+//		}
 
 		return true;
 	}
