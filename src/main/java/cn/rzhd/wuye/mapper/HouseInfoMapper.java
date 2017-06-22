@@ -8,12 +8,11 @@ import java.util.List;
 
 /**
  * Created by zhongchaojie on 2017/5/25.
- *
  */
 @Mapper
 public interface HouseInfoMapper {
 
-    HouseInfo getById(String houseInfoId);
+    HouseInfo getById(@Param("houseInfoId") String houseInfoId);
 
     List<HouseInfo> getAll();
 
