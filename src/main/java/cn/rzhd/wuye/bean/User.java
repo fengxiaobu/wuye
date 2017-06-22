@@ -14,114 +14,131 @@ import java.io.Serializable;
  */
 public class User implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    /**
-     * 用户id
-     */
-    private Long userId;
-    /**
-     *用户名
-     */
-    private String username;
-    /**
-     * 正式姓名
-     */
-    private String realname;
-    /**
-     * 工号
-     */
-    private String workNo;
-    /**
-     * 所属项目
-     */
-    private String projectBelong;
-    /**
-     * 性别  (0--女,1--男)
-     */
-    private Short gender;
-    /**
-     * 性别  (0--女,1--男)
-     */
-    private Short status;
-    /**
-     * 备注
-     */
-    private String note;
-    /**
-     * 权限角色主键
-     */
-    private Long role;
+	/**
+	 * 用户id
+	 */
+	private Long userId;
+	/**
+	 * 用户名
+	 */
+	private String username;
+	/**
+	 * 正式姓名
+	 */
+	private String realname;
+	/**
+	 * 工号
+	 */
+	private String workNo;
+	/**
+	 * 所属项目
+	 */
+	private String projectBelong;
+	/**
+	 * 性别 (0--女,1--男)
+	 */
+	private Short gender;
+	/**
+	 * 性别 (0--女,1--男)
+	 */
+	private Short status;
+	/**
+	 * 备注
+	 */
+	private String note;
+	/**
+	 * 权限角色主键
+	 */
+	private Long role;
 
-    public Long getUserId() {
-        return userId;
-    }
+	private String password;
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
+	public Long getUserId() {
+		return userId;
+	}
 
-    public String getUsername() {
-        return username;
-    }
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+	public String getUsername() {
+		return username;
+	}
 
-    public String getRealname() {
-        return realname;
-    }
+	public void setUsername(String username) {
+		this.username = username;
+	}
 
-    public void setRealname(String realname) {
-        this.realname = realname;
-    }
+	public String getRealname() {
+		return realname;
+	}
 
-    public String getWorkNo() {
-        return workNo;
-    }
+	public void setRealname(String realname) {
+		this.realname = realname;
+	}
 
-    public void setWorkNo(String workNo) {
-        this.workNo = workNo;
-    }
+	public String getWorkNo() {
+		return workNo;
+	}
 
-    public String getProjectBelong() {
-        return projectBelong;
-    }
+	public void setWorkNo(String workNo) {
+		this.workNo = workNo;
+	}
 
-    public void setProjectBelong(String projectBelong) {
-        this.projectBelong = projectBelong;
-    }
+	public String getProjectBelong() {
+		return projectBelong;
+	}
 
-    public Short getGender() {
-        return gender;
-    }
+	public void setProjectBelong(String projectBelong) {
+		this.projectBelong = projectBelong;
+	}
 
-    public void setGender(Short gender) {
-        this.gender = gender;
-    }
+	public Short getGender() {
+		return gender;
+	}
 
-    public Short getStatus() {
-        return status;
-    }
+	public void setGender(Short gender) {
+		this.gender = gender;
+	}
 
-    public void setStatus(Short status) {
-        this.status = status;
-    }
+	public Short getStatus() {
+		return status;
+	}
 
-    public String getNote() {
-        return note;
-    }
+	public void setStatus(Short status) {
+		this.status = status;
+	}
 
-    public void setNote(String note) {
-        this.note = note;
-    }
+	public String getNote() {
+		return note;
+	}
 
-    public Long getRole() {
-        return role;
-    }
+	public void setNote(String note) {
+		this.note = note;
+	}
 
-    public void setRole(Long role) {
-        this.role = role;
-    }
+	public Long getRole() {
+		return role;
+	}
+
+	public void setRole(Long role) {
+		this.role = role;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	@Override
+	public String toString() {
+		return "User [userId=" + userId + ", username=" + username + ", realname=" + realname + ", workNo=" + workNo
+				+ ", projectBelong=" + projectBelong + ", gender=" + gender + ", status=" + status + ", note=" + note
+				+ ", role=" + role + ", password=" + password + "]";
+	}
 }

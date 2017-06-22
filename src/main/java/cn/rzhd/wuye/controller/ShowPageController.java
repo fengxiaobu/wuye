@@ -1,16 +1,16 @@
 package cn.rzhd.wuye.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
- * luopa 在 2017/5/25 创建.
- * 显示首页
+ * luopa 在 2017/5/25 创建. 显示首页
  */
 @Controller
 public class ShowPageController {
-    @RequestMapping("/index")
-    public String showIndex() {
-        return "index";
-    }
+	@RequestMapping("/index")
+	public String showIndex(Model model) {
+		return "index";
+	}
 }

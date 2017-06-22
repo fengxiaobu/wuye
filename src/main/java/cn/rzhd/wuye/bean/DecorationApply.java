@@ -31,10 +31,7 @@ public class DecorationApply implements Serializable {
      * 客户名称
      */
     private String clientName;
-    /**
-     * 客户ID
-     */
-    private String customerId;
+
     /**
      * 申请日期
      */
@@ -127,14 +124,6 @@ public class DecorationApply implements Serializable {
      * 装修资料
      */
     private List<DecorationMaterial> decorationMaterialList;
-
-    public String getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(String customerId) {
-        this.customerId = customerId;
-    }
 
     public List<DecorateDetail> getDecorateDetailList() {
         return decorateDetailList;

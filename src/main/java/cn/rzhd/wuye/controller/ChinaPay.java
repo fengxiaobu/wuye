@@ -118,16 +118,16 @@ public class ChinaPay {
     }*/
 
     @RequestMapping(value = "/dist/sendpay")
-    public  @ResponseBody
-    Map<String, Object> pay(String OrderAmt, String CommodityMsg, String MerResv, String BankInstNo) throws IOException {
-      RequestVO requestVO = new RequestVO();
-      requestVO.setOrderAmt(OrderAmt);
+    public @ResponseBody
+    Map<String, Object> pay(HttpServletRequest req, String OrderAmt, String CommodityMsg, String MerResv, String BankInstNo) throws IOException {
+        RequestVO requestVO = new RequestVO();
+        requestVO.setOrderAmt(OrderAmt);
         requestVO.setCommodityMsg(CommodityMsg);
         requestVO.setMerResv(MerResv);
         requestVO.setBankInstNo(BankInstNo);
         //前台页面传过来的
         ChinaPayHelper chinaPayHelper = new ChinaPayHelper();
-        //requestVO.setRemoteAddr(HttpUtils.getIpAddr(req));
+        requestVO.setRemoteAddr(HttpUtils.getIpAddr(req));
         requestVO.setMerOrderNo(RandomUtil.randomString(32));
         //requestVO.setBankInstNo("700000000000017");
         //requestVO.setCommodityMsg("物业测试");
@@ -202,6 +202,6 @@ public class ChinaPay {
         }*/
 
         //转发请求到页面
-        return "forward:";
+        return "forward:wuye/dist/index";
     }
 }

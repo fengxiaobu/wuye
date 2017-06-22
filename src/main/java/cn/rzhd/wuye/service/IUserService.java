@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonFormat.Value;
 
+import cn.rzhd.wuye.bean.User;
 import cn.rzhd.wuye.vo.CustomerVO;
 
 public interface IUserService {
@@ -13,4 +14,6 @@ public interface IUserService {
     public void updateCustomer(CustomerVO customerVo);
     public void delCustomer(Long customerId);
     public String ERPAllCustomerPull();
+    
+    User getLoger(String username,String password);
 }

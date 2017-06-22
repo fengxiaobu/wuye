@@ -29,27 +29,19 @@ public class UserController {
     private IUserService userService;
     
     /**
-     * 用户列表分页查询
-     * @param pageNum	当前页码
-     * @param pageSize	每页长度
-     * @return	json
-     */
-    @RequestMapping(value = "/findUserList",method = RequestMethod.POST)
-    public String findUserList(Integer pageNum,Integer pageSize){
-	if (pageNum == null || pageNum <= 0) {
-	    return JsonUtils.objectToJson("当前页码无效");
-	}
-	if (pageSize == null || pageSize <= 0) {
-	    return JsonUtils.objectToJson("每页显示条数无效");
-	}
-	try {
-	    List<Map<String, Value>> findUserList = userService.findCustomerList(pageNum, pageSize);
-	    return JsonUtils.objectToJson(findUserList);
-	} catch (Exception e) {
-	    System.err.println("用户列表分页查询失败");
-	    e.printStackTrace();
-	    return JsonUtils.objectToJson("异常");
-	}
+	 * 用户列表分页查询
+	 * 
+	 * @param pageNum
+	 *            当前页码
+	 * @param pageSize
+	 *            每页长度
+	 * @return json
+	 */
+	@RequestMapping(value = "/findUserList", method = RequestMethod.POST)
+	public String findUserList(Integer pageNum, Integer pageSize) {
+		
+		
+		return "user/userList";
     }
     
     /**
@@ -131,6 +123,6 @@ public class UserController {
 	String erpAllUserPull = userService.ERPAllCustomerPull();
 	return JsonUtils.objectToJson(erpAllUserPull);
 	
-    }
-    
+	}
+
 }

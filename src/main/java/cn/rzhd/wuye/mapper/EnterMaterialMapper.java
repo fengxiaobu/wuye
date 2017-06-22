@@ -17,14 +17,24 @@ import java.util.Map;
 public interface EnterMaterialMapper {
     /**
      * 查询入驻资料夹
+     *
      * @return
      */
     List<Map<String, JsonFormat.Value>> findEnterMaterial();
 
     /**
      * 根据房产ID查询入驻资料信息
+     *
      * @param pkproject
      * @return
      */
     EnterMaterial findEnterMaterialBypkproject(@Param("pkproject") String pkproject);
+
+    /**
+     * 根据ID查询入驻资料信息
+     *
+     * @param enterMaterialId
+     * @return
+     */
+    EnterMaterial findEnterMaterialByKey(@Param("enterMaterialId") Long enterMaterialId);
 }

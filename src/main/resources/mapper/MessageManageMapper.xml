@@ -23,5 +23,9 @@
     <select id="getAllType" resultType="String">
     	SELECT DISTINCT "TYPE" FROM T_MESSAGE_MANAGE
     </select>
+    
+	<delete id="deleteOne" parameterType="String">
+		 DELETE FROM T_MESSAGE_MANAGE WHERE MESSAGE_MANAGE_ID = #{message_manage_id}
+	</delete>    
 	
 </mapper>
