@@ -1,56 +1,74 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="cn.rzhd.wuye.mapper.UtilitiesInvoiceMapper" >
-  <resultMap id="BaseResultMap" type="cn.rzhd.wuye.bean.UtilitiesInvoice" >
-    <id column="UTILITIES_INVOICE_ID" property="utilitiesInvoiceId"/>
-    <result column="INVOICE_TYPE" property="invoiceType"/>
-    <result column="INVOICE_COMPANY" property="invoiceCompany"/>
-    <result column="BASIC_WATER_FEE" property="basicWaterFee"/>
-    <result column="BASIC_WATER_INVOICE_SUM" property="basicWaterInvoiceSum"/>
-    <result column="CARTE_TIME" property="carteTime"/>
-    <result column="UPDATE_TIME" property="updateTime"/>
-    <result column="UTILITIES_DETAILS_ID" property="utilitiesDetailsId"/>
-    <result column="BASIC_ELECTRIC_FEE" property="basicElectricFee"/>
-    <result column="BASIC_ELECTRIC_INVOICE_SUM" property="basicElectricInvoiceSum"/>
-  </resultMap>
-  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal" >
-    delete from T_UTILITIES_INVOICE
-    where UTILITIES_INVOICE_ID = #{utilitiesInvoiceId}
-  </delete>
-  <insert id="insert" parameterType="cn.rzhd.wuye.bean.UtilitiesInvoice" >
-    insert into T_UTILITIES_INVOICE (UTILITIES_INVOICE_ID, INVOICE_TYPE, 
-      INVOICE_COMPANY, BASIC_WATER_FEE, BASIC_WATER_INVOICE_SUM, 
-      CARTE_TIME, UPDATE_TIME, UTILITIES_DETAILS_ID, 
-       BASIC_ELECTRIC_FEE, BASIC_ELECTRIC_INVOICE_SUM
-      )
-    values (#{utilitiesInvoiceId}, #{invoiceType},
-      #{invoiceCompany}, #{basicWaterFee}, #{basicWaterInvoiceSum},
-      #{carteTime}, #{updateTime}, #{utilitiesDetailsId},
-       #{basicElectricFee}, #{basicElectricInvoiceSum}
-      )
-  </insert>
-  <update id="updateByPrimaryKey" parameterType="cn.rzhd.wuye.bean.UtilitiesInvoice" >
-    update T_UTILITIES_INVOICE
-    set INVOICE_TYPE = #{invoiceType},
-      INVOICE_COMPANY = #{invoiceCompany},
-      BASIC_WATER_FEE = #{basicWaterFee},
-      BASIC_WATER_INVOICE_SUM = #{basicWaterInvoiceSum},
-      CARTE_TIME = #{carteTime},
-      UPDATE_TIME = #{updateTime},
-      UTILITIES_DETAILS_ID = #{utilitiesDetailsId},
-      BASIC_ELECTRIC_FEE = #{basicElectricFee},
-      BASIC_ELECTRIC_INVOICE_SUM = #{basicElectricInvoiceSum}
-    where UTILITIES_INVOICE_ID = #{utilitiesInvoiceId}
-  </update>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="long" >
-    select UTILITIES_INVOICE_ID, INVOICE_TYPE, INVOICE_COMPANY, BASIC_WATER_FEE, BASIC_WATER_INVOICE_SUM, 
-    CARTE_TIME, UPDATE_TIME, UTILITIES_DETAILS_ID,  BASIC_ELECTRIC_FEE, BASIC_ELECTRIC_INVOICE_SUM
-    from T_UTILITIES_INVOICE
-    where UTILITIES_INVOICE_ID = #{utilitiesInvoiceId}
-  </select>
-  <select id="selectAll" resultMap="BaseResultMap" >
-    select UTILITIES_INVOICE_ID, INVOICE_TYPE, INVOICE_COMPANY, BASIC_WATER_FEE, BASIC_WATER_INVOICE_SUM, 
-    CARTE_TIME, UPDATE_TIME, UTILITIES_DETAILS_ID,  BASIC_ELECTRIC_FEE, BASIC_ELECTRIC_INVOICE_SUM
-    from T_UTILITIES_INVOICE
-  </select>
+<mapper namespace="cn.rzhd.wuye.mapper.UtilitiesInvoiceMapper">
+    <resultMap id="BaseResultMap" type="cn.rzhd.wuye.bean.UtilitiesInvoice">
+        <id column="UTILITIES_INVOICE_ID" property="utilitiesInvoiceId"/>
+        <result column="INVOICE_TYPE" property="invoiceType"/>
+        <result column="INVOICE_COMPANY" property="invoiceCompany"/>
+        <result column="BASIC_WATER_FEE" property="basicWaterFee"/>
+        <result column="BASIC_WATER_INVOICE_SUM" property="basicWaterInvoiceSum"/>
+        <result column="CARTE_TIME" property="carteTime"/>
+        <result column="UPDATE_TIME" property="updateTime"/>
+        <result column="UTILITIES_DETAILS_ID" property="utilitiesDetailsId"/>
+        <result column="BASIC_ELECTRIC_FEE" property="basicElectricFee"/>
+        <result column="BASIC_ELECTRIC_INVOICE_SUM" property="basicElectricInvoiceSum"/>
+    </resultMap>
+    <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal">
+        DELETE FROM T_UTILITIES_INVOICE
+        WHERE UTILITIES_INVOICE_ID = #{utilitiesInvoiceId}
+    </delete>
+    <insert id="insert" parameterType="cn.rzhd.wuye.bean.UtilitiesInvoice">
+        INSERT INTO T_UTILITIES_INVOICE (UTILITIES_INVOICE_ID, INVOICE_TYPE,
+                                         INVOICE_COMPANY, BASIC_WATER_FEE, BASIC_WATER_INVOICE_SUM,
+                                         CARTE_TIME, UPDATE_TIME, UTILITIES_DETAILS_ID,
+                                         BASIC_ELECTRIC_FEE, BASIC_ELECTRIC_INVOICE_SUM
+        )
+        VALUES (#{utilitiesInvoiceId}, #{invoiceType},
+                #{invoiceCompany}, #{basicWaterFee}, #{basicWaterInvoiceSum},
+                #{carteTime}, #{updateTime}, #{utilitiesDetailsId},
+                #{basicElectricFee}, #{basicElectricInvoiceSum}
+        )
+    </insert>
+    <update id="updateByPrimaryKey" parameterType="cn.rzhd.wuye.bean.UtilitiesInvoice">
+        UPDATE T_UTILITIES_INVOICE
+        SET INVOICE_TYPE               = #{invoiceType},
+            INVOICE_COMPANY            = #{invoiceCompany},
+            BASIC_WATER_FEE            = #{basicWaterFee},
+            BASIC_WATER_INVOICE_SUM    = #{basicWaterInvoiceSum},
+            CARTE_TIME                 = #{carteTime},
+            UPDATE_TIME                = #{updateTime},
+            UTILITIES_DETAILS_ID       = #{utilitiesDetailsId},
+            BASIC_ELECTRIC_FEE         = #{basicElectricFee},
+            BASIC_ELECTRIC_INVOICE_SUM = #{basicElectricInvoiceSum}
+        WHERE UTILITIES_INVOICE_ID = #{utilitiesInvoiceId}
+    </update>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="long">
+        SELECT
+            UTILITIES_INVOICE_ID,
+            INVOICE_TYPE,
+            INVOICE_COMPANY,
+            BASIC_WATER_FEE,
+            BASIC_WATER_INVOICE_SUM,
+            CARTE_TIME,
+            UPDATE_TIME,
+            UTILITIES_DETAILS_ID,
+            BASIC_ELECTRIC_FEE,
+            BASIC_ELECTRIC_INVOICE_SUM
+        FROM T_UTILITIES_INVOICE
+        WHERE UTILITIES_INVOICE_ID = #{utilitiesInvoiceId}
+    </select>
+    <select id="selectAll" resultMap="BaseResultMap">
+        SELECT
+            UTILITIES_INVOICE_ID,
+            INVOICE_TYPE,
+            INVOICE_COMPANY,
+            BASIC_WATER_FEE,
+            BASIC_WATER_INVOICE_SUM,
+            CARTE_TIME,
+            UPDATE_TIME,
+            UTILITIES_DETAILS_ID,
+            BASIC_ELECTRIC_FEE,
+            BASIC_ELECTRIC_INVOICE_SUM
+        FROM T_UTILITIES_INVOICE
+    </select>
 </mapper>
