@@ -1,6 +1,9 @@
 package cn.rzhd.wuye.mapper;
 
 import cn.rzhd.wuye.bean.TypeDifferentiate;
+
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -14,4 +17,6 @@ public interface TypeDifferentiateMapper {
      TypeDifferentiate findTypeDifferentiateNameIsRepeat(@Param("typeDifferentiateName")String typeDifferentiateName);
     
      void updateTypeDifferentiateById(@Param("typeDifferentiate")TypeDifferentiate typeDifferentiate);
+     
+     TypeDifferentiate getDataName(Integer typeDifferentiateId);
 }

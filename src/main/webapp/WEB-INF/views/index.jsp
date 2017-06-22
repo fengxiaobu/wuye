@@ -333,37 +333,37 @@
 
                             <li class="panel" role="tab">
                                 <div class="panel-header">
-                                    <a data-toggle="collapse" data-parent="#aside_seven_02" href="#">房产使用属性</a>
+                                    <a href="${pageContext.request.contextPath}/typeRefinement/getTypeData?pageNum=1&pageSize=10&typeDifferentiateId=1" target="main">房产使用属性</a>
                                 </div>
                             </li>
 
                             <li class="panel" role="tab">
                                 <div class="panel-header">
-                                    <a data-toggle="collapse" data-parent="#aside_seven_02" href="#">企业在U谷的属性</a>
+                                    <a href="${pageContext.request.contextPath}/typeRefinement/getTypeData?pageNum=1&pageSize=10&typeDifferentiateId=2" target="main">企业在U谷中的属性</a>
                                 </div>
                             </li>
 
                             <li class="panel" role="tab">
                                 <div class="panel-header">
-                                    <a data-toggle="collapse" data-parent="#aside_seven_02" href="#">所属行业</a>
+                                    <a href="${pageContext.request.contextPath}/typeRefinement/getTypeData?pageNum=1&pageSize=10&typeDifferentiateId=3" target="main">所属行业</a>
                                 </div>
                             </li>
 
                             <li class="panel" role="tab">
                                 <div class="panel-header">
-                                    <a data-toggle="collapse" data-parent="#aside_seven_02" href="#">上市类型</a>
+                                    <a href="${pageContext.request.contextPath}/typeRefinement/getTypeData?pageNum=1&pageSize=10&typeDifferentiateId=4" target="main">上市类型</a>
                                 </div>
                             </li>
 
                             <li class="panel" role="tab">
                                 <div class="panel-header">
-                                    <a data-toggle="collapse" data-parent="#aside_seven_02" href="#">专利类型</a>
+                                    <a href="${pageContext.request.contextPath}/typeRefinement/getTypeData?pageNum=1&pageSize=10&typeDifferentiateId=5" target="main">专利类型</a>
                                 </div>
                             </li>
 
                             <li class="panel" role="tab">
                                 <div class="panel-header">
-                                    <a data-toggle="collapse" data-parent="#aside_seven_02" href="#">退租类型</a>
+                                    <a href="${pageContext.request.contextPath}/typeRefinement/getTypeData?pageNum=1&pageSize=10&typeDifferentiateId=6" target="main">退租类型</a>
                                 </div>
 
                             </li>

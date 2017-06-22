@@ -20,5 +20,7 @@ public interface IUserDataPerfectionService {
 //    <T> T propertyFeePayInfo(String customerId,String houseId);
 //    
 //    void payPropertyFeeInvoice(PropertyFeeInvoiceDetails propertyFeeInvoiceDetails);
+    
+    
 
 }
