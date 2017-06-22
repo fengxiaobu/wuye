@@ -51,8 +51,8 @@ public class HouseVO implements Serializable {
 	private String astrictStatus;// 限制缴费状态Y--启用,N--禁用
 	private Date updateDate;// 更新时间
 	private ProjectInfo projectInfo;//关联的项目信息
-	private String vdef8;// 备用字段8
-	private String vdef9;// 备用字段9
+	private String vdef8;// 备用字段8  入住申请状态
+	private String vdef9;// 备用字段9  装修申请状态
 	private String vdef10;// 备用字段10
 	
 	private ProjectVO projectVO;
