@@ -1,17 +1,11 @@
 package cn.rzhd.wuye.service.impl;
 
-import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.fasterxml.jackson.annotation.JsonFormat.Value;
-
-import cn.rzhd.wuye.bean.TypeDifferentiate;
 import cn.rzhd.wuye.bean.TypeRefinement;
-import cn.rzhd.wuye.bean.vo.TypeRefinementVo;
 import cn.rzhd.wuye.mapper.TypeDifferentiateMapper;
 import cn.rzhd.wuye.mapper.TypeRefinementMapper;
 import cn.rzhd.wuye.service.ITypeRefinementService;
@@ -24,6 +18,12 @@ public class TypeRefinementServiceImpl implements ITypeRefinementService {
     
     @Autowired
     private TypeDifferentiateMapper difMapper;
+
+	@Override
+	public List<TypeRefinement> getDataList(Integer typeDifferentiateId) {
+		List<TypeRefinement> typeRefinements = mapper.getDataList(typeDifferentiateId);
+		return typeRefinements;
+	}
     
 /*    @Override
     public void addTypeRefinement(TypeRefinementVo typeRefinementVo) {

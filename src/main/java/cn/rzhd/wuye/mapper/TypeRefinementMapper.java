@@ -1,6 +1,8 @@
 package cn.rzhd.wuye.mapper;
 
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -19,5 +21,11 @@ public interface TypeRefinementMapper {
     public void addTypeRefinementName(@Param("typeRefinement")TypeRefinement typeRefinement);
     
     public void updatetypeRefinementById(@Param("typeRefinement")TypeRefinement typeRefinement);
+    
+    /**
+     * @param typeDifferentiateId
+     * @return 获取数据字典
+     */
+    List<TypeRefinement> getDataList(Integer typeDifferentiateId);
     
 }
