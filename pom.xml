@@ -65,6 +65,11 @@
             </exclusions>
         </dependency>
         <!-- 分页插件 -->
+       <!--  <dependency>
+			<groupId>com.github.pagehelper</groupId>
+			<artifactId>pagehelper-spring-boot-starter</artifactId>
+			<version>1.1.0</version>
+		</dependency> -->
         <dependency>
             <groupId>com.github.pagehelper</groupId>
             <artifactId>pagehelper</artifactId>
@@ -372,11 +377,11 @@
                     <className>cn.rzhd.wuye.wsserver.UpdateDataServiceImpl</className>
                 </configuration>
                 <executions>
-                    <execution>
+                   <!--  <execution>
                         <goals>
                             <goal>java2wsdl</goal>
                         </goals>
-                    </execution>
+                    </execution> -->
                 </executions>
             </plugin>
         </plugins>
