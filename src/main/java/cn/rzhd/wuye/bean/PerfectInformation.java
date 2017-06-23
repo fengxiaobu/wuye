@@ -1,5 +1,7 @@
 package cn.rzhd.wuye.bean;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -41,6 +43,7 @@ public class PerfectInformation implements Serializable {
 	/**
 	 * 入驻企业成立时间
 	 */
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date companyEstablishTime;
 	/**
 	 * 注册资本金
@@ -53,7 +56,7 @@ public class PerfectInformation implements Serializable {
 	/**
 	 * 在U谷中的属性
 	 */
-	private Long URavinePropertyId;
+	private Long uRavinePropertyId;
 	/**
 	 * 主营或主导产品
 	 */
@@ -93,6 +96,7 @@ public class PerfectInformation implements Serializable {
 	/**
 	 * 发证时间
 	 */
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date certificateTime;
 	/**
 	 * 专利类型id
@@ -113,6 +117,7 @@ public class PerfectInformation implements Serializable {
 	/**
 	 * 挂牌时间
 	 */
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date hangBoardTime;
 	/**
 	 * 股票代码
@@ -129,6 +134,7 @@ public class PerfectInformation implements Serializable {
 	/**
 	 * 创建时间
 	 */
+
 	private Date carteTime;
 	/**
 	 * 修改时间
@@ -200,11 +206,11 @@ public class PerfectInformation implements Serializable {
 	}
 
 	public Long getURavinePropertyId() {
-		return URavinePropertyId;
+		return uRavinePropertyId;
 	}
 
 	public void setURavinePropertyId(Long uRavinePropertyId) {
-		URavinePropertyId = uRavinePropertyId;
+		uRavinePropertyId = uRavinePropertyId;
 	}
 
 	public String getMainProduct() {
@@ -365,22 +371,6 @@ public class PerfectInformation implements Serializable {
 
 	public void setUpdateTime(Date updateTime) {
 		this.updateTime = updateTime;
-	}
-
-	@Override
-	public String toString() {
-		return "PerfectInformation [perfectInformationId=" + perfectInformationId + ", houseInfoId=" + houseInfoId
-				+ ", companyType=" + companyType + ", customerId=" + customerId + ", housePropertyId=" + housePropertyId
-				+ ", companyEstablishTime=" + companyEstablishTime + ", signInFund=" + signInFund
-				+ ", industryInvolvedId=" + industryInvolvedId + ", URavinePropertyId=" + URavinePropertyId
-				+ ", mainProduct=" + mainProduct + ", companyCoverageId=" + companyCoverageId + ", employeeNumber="
-				+ employeeNumber + ", propertyToAccess=" + propertyToAccess + ", propertyToAccessContact="
-				+ propertyToAccessContact + ", emergencyContactPerson=" + emergencyContactPerson
-				+ ", emergencyContactNumber=" + emergencyContactNumber + ", isHighNew=" + isHighNew + ", highNewType="
-				+ highNewType + ", certificateTime=" + certificateTime + ", patentTypeId=" + patentTypeId
-				+ ", patentNumber=" + patentNumber + ", isUpBazaar=" + isUpBazaar + ", upBazaarTypeId=" + upBazaarTypeId
-				+ ", hangBoardTime=" + hangBoardTime + ", stockCode=" + stockCode + ", notes=" + notes + ", status="
-				+ status + ", carteTime=" + carteTime + ", updateTime=" + updateTime + "]";
 	}
 
 }
