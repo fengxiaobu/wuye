@@ -121,4 +121,26 @@ public class PortController {
         // 出错 500
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
     }
+    
+    /**
+     * @Description 接口地址校验
+     * @param addre
+     * @return
+     */
+    @RequestMapping(value="check",method = RequestMethod.GET)
+    public ResponseEntity<String> check(String addre) {
+        try {
+            String title = this.portServiceImpl.check(addre);
+            if(title == null){
+                //204
+                return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+            }
+            // 接口地址重复 200
+            return ResponseEntity.status(HttpStatus.OK).body(title);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        // 出错 500
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    }
 }

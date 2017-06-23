@@ -93,8 +93,8 @@
                 </div>
                 <div class="mestr">
                     <div class="firsttd">接口地址</div>
-                    <div class="lasttd">
-                        <input type="text" name="addre" maxlength="60" value="">
+                    <div class="lasttd" >
+                        <input type="text" name="addre" maxlength="60" value="" id="addre">
                     </div>
                 </div>
                 <div class="mestr">
@@ -127,7 +127,32 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/libs/jquery-1.11.3.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/libs/layer/layer.js" charset="UTF-8"></script>
 <script type="text/javascript" >
+
+
+var flag = true;	
+var title = "";
+$("#addre").mouseout(function(){
+	var addre = $("#addre").val();
+	$.ajax({
+		   type: "GET",
+		   url: "${pageContext.request.contextPath}/dist/port/check",
+		   data: {addre:addre},
+		   statusCode :{
+			   200 : function(date){
+					layer.alert('接口地址与标题【'+date+'】重复')
+					flag = false;
+					title = date;
+			   },
+			   500 : function(){
+				   layer.msg('操作异常，请稍后再试！', {icon: 5,time:2000});
+			   }
+		   }
+		});
+
+});
+	
 $("#btn_submit").click(function(){
+	if(flag){
 		layer.confirm('请确认数据检查无误并提交?', {icon: 3, title:'提示'}, function(index){
 			//提交到后台的RESTful
 			$.ajax({
@@ -144,6 +169,10 @@ $("#btn_submit").click(function(){
 			   }
 			});
 			});
+	}else{
+		layer.alert('接口地址与标题【'+title+'】重复')
+	}
+		
 });
 </script>
 </body>
