@@ -170,7 +170,7 @@ public class EnterApplyController {
             enterApplyService.updateEnterApply(enterApply);
             if (enterApply.getAuditStatus() == 1) {
                 //修改申请状态
-                houseInfoDetailsService.updateHouse(enterApply.getHouseId(), "1");
+                houseInfoDetailsService.updateHouse(enterApply.getHouseId(), "2");
             } else if (enterApply.getAuditStatus() == 2) {
                 //修改申请状态
                 houseInfoDetailsService.updateHouse(enterApply.getHouseId(), "0");

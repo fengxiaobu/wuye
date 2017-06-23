@@ -23,6 +23,7 @@
         <result property="companyType" column="Company_Type"/>
         <result property="password" column="Password"/>
         <result property="bindingPhone" column="Binding_Phone"/>
+        <result property="currentFlow" column="CURRENT_FLOW"/>
     </resultMap>
     <select id="loginByPwd" parameterType="cn.rzhd.wuye.bean.Customer" resultMap="customerMap">
         SELECT
@@ -45,7 +46,8 @@
             "LOGO",
             "Company_Type",
             "Password",
-            "Binding_Phone"
+            "Binding_Phone",
+            "CURRENT_FLOW"
         FROM "T_Customer"
         WHERE "vccode" = #{vccode} AND "Password" = #{password} AND "fccategory" = 1
     </select>

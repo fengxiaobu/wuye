@@ -97,7 +97,7 @@
         FROM
             T_ENTER_APPLY
         WHERE
-            HOUSE_INFO_ID = '${pkHouse} '
+            HOUSE_INFO_ID = '${pkHouse}'
     </select>
     <!-- 入驻申请列表分页查询 -->
     <select id="findEnterApplyList" resultMap="enterApplyMap">

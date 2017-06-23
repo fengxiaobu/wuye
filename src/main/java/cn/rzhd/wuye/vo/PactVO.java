@@ -1,5 +1,7 @@
 package cn.rzhd.wuye.vo;
 
+import cn.rzhd.wuye.bean.HouseInfoDetails;
+
 import java.io.Serializable;
 
 /**
@@ -43,14 +45,14 @@ public class PactVO implements Serializable {
 
     private CustomerVO customerVO;
     private ProjectVO projectVO;
-    private HouseVO houseVO;
+    private HouseInfoDetails houseInfoDetails;
 
-    public HouseVO getHouseVO() {
-        return houseVO;
+    public HouseInfoDetails getHouseInfoDetails() {
+        return houseInfoDetails;
     }
 
-    public void setHouseVO(HouseVO houseVO) {
-        this.houseVO = houseVO;
+    public void setHouseInfoDetails(HouseInfoDetails houseInfoDetails) {
+        this.houseInfoDetails = houseInfoDetails;
     }
 
     public CustomerVO getCustomerVO() {

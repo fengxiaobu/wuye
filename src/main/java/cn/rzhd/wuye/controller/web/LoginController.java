@@ -1,14 +1,13 @@
 package cn.rzhd.wuye.controller.web;
 
 import cn.rzhd.wuye.bean.Customer;
+import cn.rzhd.wuye.bean.HouseInfoDetails;
 import cn.rzhd.wuye.bean.ReletApply;
 import cn.rzhd.wuye.bean.RetreatLeaseApply;
 import cn.rzhd.wuye.service.*;
 import cn.rzhd.wuye.utils.JsonResult;
-import cn.rzhd.wuye.vo.HouseVO;
 import cn.rzhd.wuye.vo.PactVO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -36,7 +35,7 @@ public class LoginController {
      * @return json对象, 包含房产id及房产名称
      */
     @RequestMapping("/login")
-    public JsonResult login(@RequestBody Customer customer) {
+    public JsonResult login( Customer customer) {
         List<Customer> customers = customerService.loginByPwd(customer);
         if (customers.isEmpty()) {
             return new JsonResult("账号或密码错误!!!");
@@ -49,7 +48,7 @@ public class LoginController {
                     ReletApply reletApply = reletApplyService.findReletApply(vo.getPk_house());
                     RetreatLeaseApply retreatLeaseApply = retreatLeaseApplyService.findRetreatLeaseApply(vo.getPk_house());
                     //获取房产状态
-                    HouseVO houseVO = houseInfoDetailsService.selectById(vo.getPk_house());
+                    HouseInfoDetails houseInfoDetails = houseInfoDetailsService.selectByPkHouse(vo.getPk_house());
                     if (reletApply != null) {
                         vo.setContractStatus("1");
                     } else if (retreatLeaseApply != null) {
@@ -57,8 +56,8 @@ public class LoginController {
                     } else {
                         vo.setContractStatus("0");
                     }
-                    if (houseVO != null) {
-                        vo.setHouseVO(houseVO);
+                    if (houseInfoDetails != null) {
+                        vo.setHouseInfoDetails(houseInfoDetails);
                     }
                 }
                 cus.getHouseInfos().addAll(pactVOS);
