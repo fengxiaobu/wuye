@@ -24,18 +24,20 @@
         <!-- 路径导航 结束 -->
         <div class="col-xs-12">
             <div class="panel panel-default tudiqianyue">
-                <form class="form-horizontal" action="${pageContext.request.contextPath}/dist/enterApply/updateEnterApply" method="post">
+                <form class="form-horizontal"
+                      action="${pageContext.request.contextPath}/dist/enterApply/updateEnterApply" method="post">
                     <div class="form-group" style="margin-top: 50px">
                         <input type="hidden" name="enterApplyId" value="${enterApply.enterApplyId}"/>
+                        <input type="hidden" name="houseId" value="${enterApply.houseId}"/>
                         <label class="col-sm-2 control-label">项目名称:</label>
                         <div class="col-sm-10">
-                            <label class="col-sm-2 control-label">${enterApply.houseInfo.projectInfo.projectName}</label>
+                            <label class="col-sm-2 control-label">${enterApply.houseInfoDetails.project}</label>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">房产:</label>
                         <div class="col-sm-10">
-                            <label class="col-sm-2 control-label">${enterApply.houseInfo.houseProperty}</label>
+                            <label class="col-sm-2 control-label">${enterApply.houseInfoDetails.vhname}</label>
                         </div>
                     </div>
                     <div class="form-group">
@@ -54,7 +56,8 @@
                         <label class="col-sm-2 control-label">入住通知</label>
                         <div class="col-sm-10">
                             <img src="${enterApply.enterAdviceNote}" name="enterAdviceNote">
-                            <a target="main" href="${pageContext.request.contextPath}/enterApply/toEnterApplyAdd" class="btn btn-info" type="button"><span class="glyphicon glyphicon-arrow-down"></span>下载图片
+                            <a target="main" href="${pageContext.request.contextPath}/enterApply/toEnterApplyAdd"
+                               class="btn btn-info" type="button"><span class="glyphicon glyphicon-arrow-down"></span>下载图片
                             </a>
                         </div>
                     </div>
@@ -74,22 +77,16 @@
                                     </tr>
                                     </thead>
                                     <tbody class="tudiqianyue-tbody">
-                                    <tr class="tudiqianyue-tdtr">
-                                        <td>1</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr class="tudiqianyue-tdtr">
-                                        <td>2</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
+                                    <c:forEach items="${kfFeeList}" varStatus="status" var="kf">
+                                        <tr class="tudiqianyue-tdtr">
+                                            <td>${status.index+1}</td>
+                                            <td>开发费用</td>
+                                            <td>${kf.nyshouldmny}</td>
+                                            <td>${kf.dshpay}</td>
+                                            <td>${kf.dbegin}</td>
+                                            <td>${kf.dend}</td>
+                                        </tr>
+                                    </c:forEach>
                                     </tbody>
                                 </table>
                             </div>
@@ -111,22 +108,16 @@
                                     </tr>
                                     </thead>
                                     <tbody class="tudiqianyue-tbody">
-                                    <tr class="tudiqianyue-tdtr">
-                                        <td>1</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr class="tudiqianyue-tdtr">
-                                        <td>2</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
+                                    <c:forEach var="property" items="${propertyFeeList}" varStatus="stats">
+                                        <tr class="tudiqianyue-tdtr">
+                                            <td>${stats.index+1}</td>
+                                            <td>物业费用</td>
+                                            <td>${property.nyshouldmny}</td>
+                                            <td>${property.dshpay}</td>
+                                            <td>${property.dbegin}</td>
+                                            <td>${property.dend}</td>
+                                        </tr>
+                                    </c:forEach>
                                     </tbody>
                                 </table>
                             </div>

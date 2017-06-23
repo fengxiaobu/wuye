@@ -23,6 +23,10 @@ public class KfFeePayDetails implements Serializable {
      */
     private String clientName;
     /**
+     * 费用类型
+     */
+    private String costType;
+    /**
      * 支付方式
      */
     private String payManner;
@@ -65,7 +69,7 @@ public class KfFeePayDetails implements Serializable {
     /**
      * 开票状态(0-已开，1-未开,2-不开)
      */
-    private Integer invoiceStatus;
+    private Integer invoiceStatus =1;
     /**
      * 收款公司
      */
@@ -101,7 +105,7 @@ public class KfFeePayDetails implements Serializable {
     /**
      * 缴费记录是否生效(Y--生效,N--未生效)
      */
-    private String status;
+    private String status = "N";
 
     public Long getKfFeePayDetailsId() {
         return kfFeePayDetailsId;
@@ -285,5 +289,13 @@ public class KfFeePayDetails implements Serializable {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getCostType() {
+        return costType;
+    }
+
+    public void setCostType(String costType) {
+        this.costType = costType;
     }
 }

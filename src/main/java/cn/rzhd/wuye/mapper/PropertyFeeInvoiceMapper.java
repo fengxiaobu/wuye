@@ -10,5 +10,5 @@ import org.apache.ibatis.annotations.Mapper;
 public interface PropertyFeeInvoiceMapper {
     void addInvoice(PropertyFeeInvoiceDetails invoice);
 
-    void changeStatus(Long detailsId);
+//    void changeStatus(Long detailsId);
 }

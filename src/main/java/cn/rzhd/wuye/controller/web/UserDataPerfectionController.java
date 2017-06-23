@@ -52,23 +52,6 @@ public class UserDataPerfectionController {
 
     }
 
-    /**
-     * 资料完善
-     *
-     * @param perfectInformation
-     * @return
-     */
-    @RequestMapping(value = "/userDataPerfection", method = RequestMethod.POST)
-    public String AddUserDataPerfection(PerfectInformation perfectInformation) {
-        try {
-            perfectInformation.setPerfectInformationId(IDUtils.genId15());
-            userDataPerfectionService.addUserDataPerfection(perfectInformation);
-            return JsonUtils.objectToJson("success");
-        } catch (Exception e) {
-            e.printStackTrace();
-            return JsonUtils.objectToJson("服务器异常:" + e.getMessage());
-        }
-    }
 
 //    /**
 //     * 入驻办理资料

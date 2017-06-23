@@ -97,7 +97,7 @@ public class PayFeeController {
      * @return
      */
     @RequestMapping("/isArrears")
-    public Map<String,List> isArrears(PayFeeQuery query){
+    public Map<String,Object> isArrears(PayFeeQuery query){
         return payFeeService.isArrears(query);
     }
 
@@ -108,7 +108,6 @@ public class PayFeeController {
      */
     @RequestMapping("/payFeeRecords")
     public Map<String,Object> payFeeRecords(UtilitiesQuery query){
-        Map<String, Object> records = utilitiesService.getLastRecords(query);
-        return records;
+        return utilitiesService.getLastRecords(query);
     }
 }

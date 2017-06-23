@@ -79,8 +79,8 @@
                     <tr class="tudiqianyue-tdtr">
                         <td><input type="checkbox" value=""></td>
                         <td>${status.index+1}</td>
-                        <td>${enterApply.houseInfo.projectInfo.projectName}</td>
-                        <td>${enterApply.houseInfo.houseProperty}</td>
+                        <td>${enterApply.houseInfoDetails.project}</td>
+                        <td>${enterApply.houseInfoDetails.vhname}</td>
                         <td>${enterApply.clientName}</td>
                         <td><fmt:formatDate value="${enterApply.applyTime }" pattern="yyyy-MM-dd"/></td>
                         <td>
@@ -98,18 +98,18 @@
                 </c:forEach>
                 </tbody>
             </table>
-            <div align="center">
+            <%--<div align="center">
                 <ul class="pagination">
                     <li><a href="${pageContext.request.contextPath}/dist/enterApply/enterApplyList?pageNum=1&pageSize=1"
                            target="main">&laquo;</a></li>
                     <c:forEach begin="1" end="${total>5?total/5:1}" step="1" varStatus="page">
                         <li>
-                            <a href="${pageContext.request.contextPath}/dist/enterApply/enterApplyList?pageNum=1&pageSize=1">${page.count}</a>
+                            <a href="${pageContext.request.contextPath}/dist/enterApply/enterApplyList?pageNum=1&pageSize=5">${page.count}</a>
                         </li>
                     </c:forEach>
                     <li><a href="#">&raquo;</a></li>
                 </ul>
-            </div>
+            </div>--%>
         </div>
     </div>
 

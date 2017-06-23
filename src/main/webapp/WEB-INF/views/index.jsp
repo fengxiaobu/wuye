@@ -69,7 +69,7 @@
 
                             <li class="panel" role="tab">
                                 <div class="panel-header">
-                                    <a target="main" href="/houseList">房产信息</a>
+                                    <a href="${pageContext.request.contextPath}/user/getAllHouseInfo?pageNum=1&pageSize=10" target="main">房产信息</a>
                                 </div>
                             </li>
                         </ul>
@@ -88,8 +88,7 @@
                         <ul class="panel-group level02" id="aside_two_02">
                             <li class="panel" role="tab">
                                 <div class="panel-header">
-                                    <a data-toggle="collapse" data-parent="#"
-                                       href="#">物业费用</a>
+                                    <a href="${pageContext.request.contextPath}/propertyRecords/index" target="main">物业费用</a>
                                 </div>
                                 <div class="panel-header">
                                     <a data-toggle="collapse" data-parent="#"
@@ -174,13 +173,13 @@
                         <ul class="panel-group level02" id="aside_four_02">
                             <li class="panel" role="tab">
                                 <div class="panel-header">
-                                    <a href="${pageContext.request.contextPath}/dist/enterApply/enterApplyList?pageNum=1&pageSize=5" target="main">入住申请</a>
+                                    <a href="${pageContext.request.contextPath}/dist/enterApply/enterApplyList?pageNum=1&pageSize=500" target="main">入住申请</a>
                                 </div>
                             </li>
 
                             <li class="panel" role="tab">
                                 <div class="panel-header">
-                                    <a target="main" href="${pageContext.request.contextPath}/dist/enterMaterial/findEnterMaterialList?pageNum=1&pageSize=5">入住资料列表</a>
+                                    <a target="main" href="${pageContext.request.contextPath}/dist/enterMaterial/findEnterMaterialList?pageNum=1&pageSize=500">入住资料列表</a>
                                 </div>
 
                             </li>
@@ -333,37 +332,37 @@
 
                             <li class="panel" role="tab">
                                 <div class="panel-header">
-                                    <a data-toggle="collapse" data-parent="#aside_seven_02" href="#">房产使用属性</a>
+                                    <a href="${pageContext.request.contextPath}/typeRefinement/getTypeData?pageNum=1&pageSize=10&typeDifferentiateId=1" target="main">房产使用属性</a>
                                 </div>
                             </li>
 
                             <li class="panel" role="tab">
                                 <div class="panel-header">
-                                    <a data-toggle="collapse" data-parent="#aside_seven_02" href="#">企业在U谷的属性</a>
+                                    <a href="${pageContext.request.contextPath}/typeRefinement/getTypeData?pageNum=1&pageSize=10&typeDifferentiateId=2" target="main">企业在U谷中的属性</a>
                                 </div>
                             </li>
 
                             <li class="panel" role="tab">
                                 <div class="panel-header">
-                                    <a data-toggle="collapse" data-parent="#aside_seven_02" href="#">所属行业</a>
+                                    <a href="${pageContext.request.contextPath}/typeRefinement/getTypeData?pageNum=1&pageSize=10&typeDifferentiateId=3" target="main">所属行业</a>
                                 </div>
                             </li>
 
                             <li class="panel" role="tab">
                                 <div class="panel-header">
-                                    <a data-toggle="collapse" data-parent="#aside_seven_02" href="#">上市类型</a>
+                                    <a href="${pageContext.request.contextPath}/typeRefinement/getTypeData?pageNum=1&pageSize=10&typeDifferentiateId=4" target="main">上市类型</a>
                                 </div>
                             </li>
 
                             <li class="panel" role="tab">
                                 <div class="panel-header">
-                                    <a data-toggle="collapse" data-parent="#aside_seven_02" href="#">专利类型</a>
+                                    <a href="${pageContext.request.contextPath}/typeRefinement/getTypeData?pageNum=1&pageSize=10&typeDifferentiateId=5" target="main">专利类型</a>
                                 </div>
                             </li>
 
                             <li class="panel" role="tab">
                                 <div class="panel-header">
-                                    <a data-toggle="collapse" data-parent="#aside_seven_02" href="#">退租类型</a>
+                                    <a href="${pageContext.request.contextPath}/typeRefinement/getTypeData?pageNum=1&pageSize=10&typeDifferentiateId=6" target="main">退租类型</a>
                                 </div>
 
                             </li>

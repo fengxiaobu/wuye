@@ -38,7 +38,6 @@
             <table class="table table-bordered tudiqianyue-table">
                 <thead>
                 <tr class="info">
-		  			<th rowspan="2">选择</th>
                     <th rowspan="2">序号</th>
                     <th rowspan="2">项目名称</th>
                     <th rowspan="2">房产编码</th>
@@ -55,7 +54,6 @@
                 <tbody class="tudiqianyue-tbody">
                 <c:forEach items="${sellContractList}" var="sellContractList" varStatus="status">
                     <tr class="tudiqianyue-tdtr">
-                        <td><input type="checkbox" value=""></td>
                         <td>${status.index+1}</td>
                         <td>${sellContractList.projectVO.vname}</td>
                         <td>${sellContractList.projectVO.vcode}</td>

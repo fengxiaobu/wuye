@@ -4,6 +4,7 @@ import cn.rzhd.wuye.bean.PropertyFeePayDetails;
 import cn.rzhd.wuye.mapper.PropertyFeePayDetailsMapper;
 import cn.rzhd.wuye.service.IPropertyFeePayDetailsService;
 import cn.rzhd.wuye.vo.query.PropertyFeePayDetailsQuery;
+import cn.rzhd.wuye.vo.query.PropertyRecordsQuery;
 import com.github.pagehelper.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,5 +41,10 @@ public class PropertyFeePayDetailsServiceImpl implements IPropertyFeePayDetailsS
     @Override
     public void changeStatus(Long id) {
         mapper.changeStatus(id);
+    }
+
+    @Override
+    public List<PropertyFeePayDetails> queryByProject(PropertyRecordsQuery query) {
+        return mapper.queryByProject(query);
     }
 }

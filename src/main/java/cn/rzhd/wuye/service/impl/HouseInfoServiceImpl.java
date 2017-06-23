@@ -75,4 +75,10 @@ public class HouseInfoServiceImpl implements IHouseInfoService {
     public HouseInfo selectByQuery(String customerid) {
         return houseInfoMapper.selectByQuery(customerid);
     }
+
+	@Override
+	public List<HouseInfo> getAllHouseinfo() {
+		List<HouseInfo> houseInfos = houseInfoMapper.getHouseInfo();
+		return houseInfos;
+	}
 }

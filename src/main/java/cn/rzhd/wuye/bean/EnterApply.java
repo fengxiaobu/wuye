@@ -55,7 +55,7 @@ public class EnterApply implements Serializable {
     /**
      * 房产信息
      */
-    private HouseInfo houseInfo;
+    private HouseInfoDetails houseInfoDetails;
 
     public Long getEnterApplyId() {
         return enterApplyId;
@@ -129,19 +129,11 @@ public class EnterApply implements Serializable {
         this.updateTime = updateTime;
     }
 
-    public HouseInfo getHouseInfo() {
-        return houseInfo;
-    }
-
-    public void setHouseInfo(HouseInfo houseInfo) {
-        this.houseInfo = houseInfo;
-    }
-
     @Override
     public String toString() {
         return "EnterApply{" +
                 "enterApplyId=" + enterApplyId +
-                ", houseInfoId='" + houseId + '\'' +
+                ", houseId='" + houseId + '\'' +
                 ", clientName='" + clientName + '\'' +
                 ", applyTime=" + applyTime +
                 ", auditStatus=" + auditStatus +
@@ -149,7 +141,15 @@ public class EnterApply implements Serializable {
                 ", notes='" + notes + '\'' +
                 ", creationTime=" + creationTime +
                 ", updateTime=" + updateTime +
-                ", houseInfo=" + houseInfo +
+                ", houseInfoDetails=" + houseInfoDetails +
                 '}';
+    }
+
+    public HouseInfoDetails getHouseInfoDetails() {
+        return houseInfoDetails;
+    }
+
+    public void setHouseInfoDetails(HouseInfoDetails houseInfoDetails) {
+        this.houseInfoDetails = houseInfoDetails;
     }
 }

@@ -13,6 +13,7 @@ import java.util.Map;
 public interface IEnterApplyService {
     /**
      * 根据ID查询所有入驻申请
+     *
      * @param enterApplyId
      * @return
      */
@@ -20,6 +21,7 @@ public interface IEnterApplyService {
 
     /**
      * 获取所有入驻申请信息
+     *
      * @return
      */
     List<Map<String, JsonFormat.Value>> findEnterApplyList();
@@ -31,4 +33,11 @@ public interface IEnterApplyService {
     int updateEnterApply(EnterApply enterApply);
 
     List<Map<String, JsonFormat.Value>> findEnterApplyByQuery(EnterApplyQuery enterApplyQuery);
+
+    /**
+     * 获取审核完成后的结果
+     * @param pkHouse
+     * @return
+     */
+    List<Map<String, JsonFormat.Value>> getEnterApplyByIDAndState( String pkHouse);
 }

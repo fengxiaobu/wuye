@@ -11,14 +11,13 @@
                                                     CARTE_TIME,
                                                     UPDATE_TIME,
                                                     PROP_FEE_INVOICE_DETAILS_ID,
-                                                    PROPERTY_FEE_PAY_DETAILS_ID,
-                                                    STATUS) VALUES
+                                                    PROPERTY_FEE_PAY_DETAILS_ID) VALUES
             (#{invoiceType}, #{invoiceCompany}, #{basicPropertyFee}, #{propertyFeeInvoiceSum}, #{tripleAgreement},
                              #{agencyPayCredential}, #{carteTime}, #{updateTime},
-                             #{propFeeInvoiceDetailsId}, #{propertyFeePayDetailsId}, #{status})
+                             #{propFeeInvoiceDetailsId}, #{propertyFeePayDetailsId})
     </insert>
-    <update id="changeStatus" parameterType="long">
-        UPDATE T_PROPERTY_FEE_INVOICE_DETAILS SET STATUS='Y'
-        WHERE PROPERTY_FEE_PAY_DETAILS_ID=#{detailsId}
-    </update>
+    <!--<update id="changeStatus" parameterType="long">-->
+        <!--UPDATE T_PROPERTY_FEE_INVOICE_DETAILS SET STATUS='Y'-->
+        <!--WHERE PROPERTY_FEE_PAY_DETAILS_ID=#{detailsId}-->
+    <!--</update>-->
 </mapper>

@@ -12,17 +12,43 @@
         <result column="NOTES" property="notes"/>
         <result column="CREATION_TIME" property="creationTime"/>
         <result column="UPDATE_TIME" property="updateTime"/>
-        <association property="houseInfo" javaType="cn.rzhd.wuye.bean.HouseInfo">
-            <id column="ERP_HOUSE_ID" property="erpHouseId"/>
-            <result column="HOUSE_INFO_ID" property="houseInfoId"/>
-            <result column="PROJECT_INFO_ID" property="projectInfoId"/>
-            <result column="HOUSE_PROPERTY" property="houseProperty"/>
-            <result column="ENTER_STATUS" property="enterStatus"/>
-            <result column="STAR_LEVEL" property="starLevel"/>
-            <result column="STATUS" property="status"/>
-            <result column="CREATION_TIME" property="creationTime"/>
-            <result column="UPDATE_TIME" property="updateTime"/>
-            <result column="CUSTOMER_ID" property="customerId"/>
+        <association property="houseInfoDetails" javaType="cn.rzhd.wuye.bean.HouseInfoDetails">
+            <id column="pk_house" property="pkHouse" jdbcType="CHAR"/>
+            <result column="pk_corp" property="pkCorp" jdbcType="CHAR"/>
+            <result column="pk_project" property="pkProject" jdbcType="VARCHAR"/>
+            <result column="project" property="project" jdbcType="VARCHAR"/>
+            <result column="building" property="building" jdbcType="VARCHAR"/>
+            <result column="ifloor" property="ifloor" jdbcType="VARCHAR"/>
+            <result column="vhcell" property="vhcell" jdbcType="VARCHAR"/>
+            <result column="vhnum" property="vhnum" jdbcType="VARCHAR"/>
+            <result column="vhcode" property="vhcode" jdbcType="VARCHAR"/>
+            <result column="vhname" property="vhname" jdbcType="VARCHAR"/>
+            <result column="otation" property="otation" jdbcType="VARCHAR"/>
+            <result column="room" property="room" jdbcType="VARCHAR"/>
+            <result column="situation" property="situation" jdbcType="VARCHAR"/>
+            <result column="fsellmethod" property="fsellmethod" jdbcType="VARCHAR"/>
+            <result column="managestate" property="managestate" jdbcType="VARCHAR"/>
+            <result column="nbuildarea" property="nbuildarea" jdbcType="VARCHAR"/>
+            <result column="ninarea" property="ninarea" jdbcType="VARCHAR"/>
+            <result column="nleaseoutarea" property="nleaseoutarea" jdbcType="VARCHAR"/>
+            <result column="nmanagearea" property="nmanagearea" jdbcType="VARCHAR"/>
+            <result column="nsellarea" property="nsellarea" jdbcType="VARCHAR"/>
+            <result column="npublicarea" property="npublicarea" jdbcType="VARCHAR"/>
+            <result column="nunderlinearea" property="nunderlinearea" jdbcType="VARCHAR"/>
+            <result column="ngardenarea" property="ngardenarea" jdbcType="VARCHAR"/>
+            <result column="nrpublicarea" property="nrpublicarea" jdbcType="VARCHAR"/>
+            <result column="nrinarea" property="nrinarea" jdbcType="VARCHAR"/>
+            <result column="nrbuildarea" property="nrbuildarea" jdbcType="VARCHAR"/>
+            <result column="nrunderlinearea" property="nrunderlinearea" jdbcType="VARCHAR"/>
+            <result column="nrgardenarea" property="nrgardenarea" jdbcType="VARCHAR"/>
+            <result column="STARTDATE" property="startdate" jdbcType="DATE"/>
+            <result column="ENDDATE" property="enddate" jdbcType="DATE"/>
+            <result column="FIRSTMNY" property="firstmny" jdbcType="DECIMAL"/>
+            <result column="EVERYMNY" property="everymny" jdbcType="DECIMAL"/>
+            <result column="ASTRICTSTATUS" property="astrictstatus" jdbcType="CHAR"/>
+            <result column="UPDATEDATE" property="updatedate" jdbcType="DATE"/>
+            <result column="ENTERAPPLY_STATE" property="enterapplyState" jdbcType="VARCHAR"/>
+            <result column="DECORATIONAPPLYSTATE" property="decorationapplystate" jdbcType="VARCHAR"/>
             <association property="projectInfo" javaType="cn.rzhd.wuye.bean.ProjectInfo" column="PROJECT_INFO_ID">
                 <id column="PK_PROJECT" property="pkProject"/>
                 <result column="PROJECT_NAME" property="projectName"/>
@@ -54,40 +80,57 @@
     </resultMap>
     <!-- 单表查询info数据根据ID -->
     <select id="getEnterApplyByID" resultMap="enterApplyMap">
-        SELECT * FROM
-        T_ENTER_APPLY apply,
-        T_HOUSE_INFO house,
-        T_PROJECT_INFO project
+        SELECT *
+        FROM
+            T_ENTER_APPLY apply,
+            T_HOUSE_INFO_DETAILS house,
+            T_PROJECT_INFO project
         WHERE
-        apply.HOUSE_INFO_ID=house.HOUSE_INFO_ID
-        AND
-        house.PROJECT_INFO_ID=project.PK_PROJECT
-        AND
-            apply.ENTER_APPLY_ID=#{enterApplyId}
+            apply.HOUSE_INFO_ID = house."pk_house"
+            AND
+            house."pk_project" = project.PK_PROJECT
+            AND
+            apply.ENTER_APPLY_ID = #{enterApplyId}
+    </select>
+    <select id="getEnterApplyByIDAndState" resultMap="enterApplyMap">
+        SELECT *
+        FROM
+            T_ENTER_APPLY
+        WHERE
+            HOUSE_INFO_ID = '${pkHouse} '
     </select>
     <!-- 入驻申请列表分页查询 -->
     <select id="findEnterApplyList" resultMap="enterApplyMap">
-      SELECT apply.ENTER_APPLY_ID,project.PROJECT_NAME,house.HOUSE_PROPERTY,apply.CLIENT_NAME,apply.APPLY_TIME,apply.AUDIT_STATUS FROM
-              T_ENTER_APPLY  apply,
-              T_HOUSE_INFO house,
-              T_PROJECT_INFO project
-          WHERE
-            apply.HOUSE_INFO_ID=house.HOUSE_INFO_ID
-          AND
-          house.PROJECT_INFO_ID=project.PK_PROJECT
+        SELECT
+            apply.ENTER_APPLY_ID,
+            project.PROJECT_NAME,
+            house."vhname",
+            house."project",
+            apply.CLIENT_NAME,
+            apply.APPLY_TIME,
+            apply.AUDIT_STATUS,
+            apply.HOUSE_INFO_ID
+        FROM
+            T_ENTER_APPLY apply,
+            T_HOUSE_INFO_DETAILS house,
+            T_PROJECT_INFO project
+        WHERE
+            apply.HOUSE_INFO_ID = house."pk_house"
+            AND
+            house."pk_project" = project.PK_PROJECT
     </select>
     <!-- 入驻申请列表条件查询 -->
     <select id="findEnterApplyByQuery" parameterType="cn.rzhd.wuye.vo.query.EnterApplyQuery" resultMap="enterApplyMap">
         SELECT
-        apply.ENTER_APPLY_ID,project.PROJECT_NAME,house.HOUSE_PROPERTY,apply.CLIENT_NAME,apply.APPLY_TIME,apply.AUDIT_STATUS
+        apply.ENTER_APPLY_ID,project.PROJECT_NAME,house."vhname",apply.CLIENT_NAME,apply.APPLY_TIME,apply.AUDIT_STATUS,apply.HOUSE_INFO_ID
         FROM
         T_ENTER_APPLY apply,
-        T_HOUSE_INFO house,
+        T_HOUSE_INFO_DETAILS house,
         T_PROJECT_INFO project
         WHERE
-        apply.HOUSE_INFO_ID=house.HOUSE_INFO_ID
+        apply.HOUSE_INFO_ID=house."pk_house"
         AND
-        house.PROJECT_INFO_ID=project.PK_PROJECT
+        house."pk_project"=project.PK_PROJECT
         <if test="startDate != null">
             <if test="endDate != null">
                 AND BETWEEN apply.APPLY_TIME=to_date(#{startDate},'yyyy-mm-dd')
@@ -105,7 +148,7 @@
 
     <!-- 用户信息修改 操作-->
     <update id="updateEnterApply" parameterType="cn.rzhd.wuye.bean.EnterApply">
-       update T_ENTER_APPLY
+        update T_ENTER_APPLY
         set
         <if test="clientName != null">
             CLIENT_NAME = #{clientName},
@@ -129,22 +172,22 @@
         <if test="updateTime != null">
             UPDATE_TIME = #{updateTime}
         </if>
-    where ENTER_APPLY_ID = #{enterApplyId}
+        where ENTER_APPLY_ID = #{enterApplyId}
     </update>
     <!--添加入驻申请-->
-    <insert id="insertEnterApply"  parameterType="cn.rzhd.wuye.bean.EnterApply">
-       insert into T_ENTER_APPLY (ENTER_APPLY_ID, HOUSE_INFO_ID, CLIENT_NAME,
-      APPLY_TIME, AUDIT_STATUS, ENTER_ADVICE_NOTE,
-      NOTES, CREATION_TIME, UPDATE_TIME
-      )
-    values (T_ENTER_APPLY_ID_SEQ.Nextval, #{houseId}, #{clientName},
-      #{applyTime}, #{auditStatus}, #{enterAdviceNote},
-      #{notes}, #{creationTime}, #{updateTime}
-      )
+    <insert id="insertEnterApply" parameterType="cn.rzhd.wuye.bean.EnterApply">
+        INSERT INTO T_ENTER_APPLY (ENTER_APPLY_ID, HOUSE_INFO_ID, CLIENT_NAME,
+                                   APPLY_TIME, AUDIT_STATUS, ENTER_ADVICE_NOTE,
+                                   NOTES, CREATION_TIME, UPDATE_TIME
+        )
+        VALUES (T_ENTER_APPLY_ID_SEQ.Nextval, #{houseId}, #{clientName},
+                #{applyTime}, #{auditStatus}, #{enterAdviceNote},
+                #{notes}, #{creationTime}, #{updateTime}
+        )
     </insert>
     <!-- 入驻信息删除操作 -->
     <delete id="deleteEnterApply">
-      delete from T_ENTER_APPLY
-    where ENTER_APPLY_ID = #{enterApplyId}
+        DELETE FROM T_ENTER_APPLY
+        WHERE ENTER_APPLY_ID = #{enterApplyId}
     </delete>
 </mapper>

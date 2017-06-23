@@ -21,8 +21,6 @@ public class ElectricPayDetailsServiceImpl implements IElectricPayDetailsService
 
     @Autowired
     ElectricFeePayDetailsMapper mapper;
-    @Autowired
-    AmmeterMapper ammeterMapper;
 
 
     @Override

@@ -1,5 +1,7 @@
 package cn.rzhd.wuye.bean;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -18,7 +20,10 @@ import java.util.List;
 public class DecorationApply implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    private HouseInfo houseInfo;
+    /**
+     *
+     */
+    private HouseInfoDetails houseInfoDetails;
     /**
      * 主键
      */
@@ -35,6 +40,7 @@ public class DecorationApply implements Serializable {
     /**
      * 申请日期
      */
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date applyTime;
     /**
      * 预计工天
@@ -111,10 +117,12 @@ public class DecorationApply implements Serializable {
     /**
      * 创建时间
      */
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date creationTime;
     /**
      * 修改时间
      */
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date updateTime;
     /**
      * 装修详情
@@ -141,10 +149,11 @@ public class DecorationApply implements Serializable {
         this.decorationMaterialList = decorationMaterialList;
     }
 
+
     @Override
     public String toString() {
         return "DecorationApply{" +
-                "houseInfo=" + houseInfo +
+                "houseInfoDetails=" + houseInfoDetails +
                 ", decorationApplyId=" + decorationApplyId +
                 ", houseInfoId='" + houseInfoId + '\'' +
                 ", clientName='" + clientName + '\'' +
@@ -169,15 +178,17 @@ public class DecorationApply implements Serializable {
                 ", specialDecorationFile='" + specialDecorationFile + '\'' +
                 ", creationTime=" + creationTime +
                 ", updateTime=" + updateTime +
+                ", decorateDetailList=" + decorateDetailList +
+                ", decorationMaterialList=" + decorationMaterialList +
                 '}';
     }
 
-    public HouseInfo getHouseInfo() {
-        return houseInfo;
+    public HouseInfoDetails getHouseInfoDetails() {
+        return houseInfoDetails;
     }
 
-    public void setHouseInfo(HouseInfo houseInfo) {
-        this.houseInfo = houseInfo;
+    public void setHouseInfoDetails(HouseInfoDetails houseInfoDetails) {
+        this.houseInfoDetails = houseInfoDetails;
     }
 
     public Long getDecorationApplyId() {

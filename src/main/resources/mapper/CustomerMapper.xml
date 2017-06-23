@@ -114,7 +114,6 @@
         SELECT *
         FROM "T_Customer"
         WHERE "pk_customerid" = #{customerVo.pk_customerid}
-
     </select>
 
     <!--临时用于拉取数据的查询所有-->
@@ -122,5 +121,6 @@
         SELECT *
         FROM "T_Customer"
     </select>
+    
 
 </mapper>

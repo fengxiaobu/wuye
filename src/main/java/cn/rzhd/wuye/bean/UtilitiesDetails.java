@@ -67,7 +67,7 @@ public class UtilitiesDetails implements Serializable {
     /**
      * 开票状态(0-已开，1-未开,2-不开)
      */
-    private Integer invoiceStatus;
+    private Integer invoiceStatus =1;
     /**
      * 收款公司
      */
@@ -143,14 +143,6 @@ public class UtilitiesDetails implements Serializable {
 
     public void setClientName(String clientName) {
         this.clientName = clientName;
-    }
-
-    public String getCostType() {
-        return costType;
-    }
-
-    public void setCostType(String costType) {
-        this.costType = costType;
     }
 
     public String getPayManner() {
@@ -343,5 +335,13 @@ public class UtilitiesDetails implements Serializable {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getCostType() {
+        return costType;
+    }
+
+    public void setCostType(String costType) {
+        this.costType = costType;
     }
 }

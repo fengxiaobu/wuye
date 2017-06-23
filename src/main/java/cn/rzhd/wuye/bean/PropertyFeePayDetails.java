@@ -75,7 +75,7 @@ public class PropertyFeePayDetails implements Serializable{
 	/**
 	 * 开票状态(0-已开，1-未开,2-不开)
 	 */
-	private Integer invoiceStatus;
+	private Integer invoiceStatus =1;
 	/**
 	 * 收款公司
 	 */

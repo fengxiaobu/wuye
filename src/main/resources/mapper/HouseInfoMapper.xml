@@ -14,6 +14,9 @@
         <result column="CREATION_TIME" property="creationTime"/>
         <result column="UPDATE_TIME" property="updateTime"/>
         <result column="CUSTOMER_ID" property="customerId"/>
+        <result column="SERVICESTATE" property="serviceState"/>
+        <result column="ENTERAPPLYSTATE" property="enterApplyState"/>
+        <result column="DECORATIONAPPLYSTATE" property="decorationApplyState"/>
         <association property="projectInfo" javaType="cn.rzhd.wuye.bean.ProjectInfo">
             <id column="PK_PROJECT" property="pkProject"/>
             <result column="PROJECT_NAME" property="projectName"/>
@@ -43,25 +46,10 @@
         </association>
     </resultMap>
 
-    <select id="getById" resultMap="houseInfoMap" parameterType="string">
-        SELECT
-            HOUSE_INFO_ID,
-            PROJECT_INFO_ID,
-            HOUSE_PROPERTY,
-            ENTER_STATUS,
-            STAR_LEVEL,
-            STATUS,
-            CREATION_TIME,
-            UPDATE_TIME,
-            CUSTOMER_ID,
-            STARTDATE,
-            ENDDATE,
-            FIRSTMNY,
-            EVERYMNY,
-            ASTRICTSTATUS,
-            UPDATEDATE
+    <select id="getById" resultMap="houseInfoMap">
+        SELECT *
         FROM T_HOUSE_INFO
-        WHERE HOUSE_INFO_ID = #{houseInfoId}
+        WHERE HOUSE_INFO_ID = '${houseInfoId}'
     </select>
 
     <select id="getAll" resultMap="houseInfoMap">
@@ -80,47 +68,100 @@
             FIRSTMNY,
             EVERYMNY,
             ASTRICTSTATUS,
-            UPDATEDATE
+            UPDATEDATE,
+            ENTERAPPLYSTATE,
+            DECORATIONAPPLYSTATE
         FROM T_HOUSE_INFO
     </select>
-<select id="selectByQuery" resultMap="houseInfoMap">
+    <select id="selectByQuery" resultMap="houseInfoMap">
         SELECT
-            HOUSE_INFO_ID,
-            PROJECT_INFO_ID,
-            HOUSE_PROPERTY,
-            ENTER_STATUS,
-            STAR_LEVEL,
-            STATUS,
-            CREATION_TIME,
-            UPDATE_TIME,
-            CUSTOMER_ID,
-            STARTDATE,
-            ENDDATE,
-            FIRSTMNY,
-            EVERYMNY,
-            ASTRICTSTATUS,
-            UPDATEDATE
+        HOUSE_INFO_ID,
+        PROJECT_INFO_ID,
+        HOUSE_PROPERTY,
+        ENTER_STATUS,
+        STAR_LEVEL,
+        STATUS,
+        CREATION_TIME,
+        UPDATE_TIME,
+        CUSTOMER_ID,
+        STARTDATE,
+        ENDDATE,
+        FIRSTMNY,
+        EVERYMNY,
+        ASTRICTSTATUS,
+        UPDATEDATE ,ENTERAPPLYSTATE,
+        DECORATIONAPPLYSTATE
         FROM T_HOUSE_INFO
         <where>
             CUSTOMER_ID=#{customerid}
         </where>
     </select>
-
+    <!--添加房产信息-->
     <insert id="add" parameterType="HouseInfo">
-        INSERT INTO T_HOUSE_INFO (HOUSE_INFO_ID, PROJECT_INFO_ID, HOUSE_PROPERTY, ENTER_STATUS, STAR_LEVEL, STATUS, CREATION_TIME, CUSTOMER_ID)
+        INSERT INTO T_HOUSE_INFO (HOUSE_INFO_ID, PROJECT_INFO_ID, HOUSE_PROPERTY, ENTER_STATUS, STAR_LEVEL, STATUS, CREATION_TIME, CUSTOMER_ID, SERVICESTATE)
         VALUES (#{houseInfoId}, #{projectInfoId}, #{houseProperty}, #{enterStatus}, #{starLevel}, #{status},
-                #{creationTime}, #{customerId})
+                #{creationTime}, #{customerId}, #{serviceState})
     </insert>
-
+    <!--修改房产信息-->
     <update id="update" parameterType="HouseInfo">
         UPDATE T_HOUSE_INFO
-        SET PROJECT_INFO_ID = #{projectInfoId}, HOUSE_PROPERTY = #{houseProperty},
-            ENTER_STATUS = #{enterStatus}, STAR_LEVEL = #{starLevel}, STATUS = #{status}, UPDATE_TIME = #{updateTime},
-            CUSTOMER_ID  = #{customerId}
+        SET
+        <if test="projectInfoId!=null">
+            PROJECT_INFO_ID = #{projectInfoId},
+        </if>
+        <if test="houseProperty!=null">
+            HOUSE_PROPERTY = #{houseProperty},
+        </if>
+        <if test="enterStatus!=null">
+            ENTER_STATUS = #{enterStatus},
+        </if>
+        <if test="starLevel!=null">
+            STAR_LEVEL = #{starLevel},
+        </if>
+        <if test="status!=null">
+            STATUS = #{status},
+        </if>
+        <if test="updateTime!=null">
+            UPDATE_TIME = #{updateTime},
+        </if>
+        <if test="customerId!=null">
+            CUSTOMER_ID = #{customerId},
+        </if>
+        <if test="enterApplyState!=null">
+            ENTERAPPLYSTATE = #{enterApplyState},
+        </if>
+        <if test="decorationApplyState!=null">
+            DECORATIONAPPLYSTATE = #{decorationApplyState}
+        </if>
         WHERE HOUSE_INFO_ID = #{houseInfoId}
     </update>
 
     <delete id="delete" parameterType="long">
-        DELETE FROM T_HOUSE_INFO WHERE HOUSE_INFO_ID=#{id}
+        DELETE FROM T_HOUSE_INFO
+        WHERE HOUSE_INFO_ID = #{id}
     </delete>
+    
+    <select id="getHouseInfo" resultMap="houseMap">
+		SELECT
+			T.HOUSE_INFO_ID,
+			T.CUSTOMER_ID,
+			H."project",
+			H."vhcode",
+			T.STAR_LEVEL,
+			T.UPDATE_TIME
+		FROM
+			T_HOUSE_INFO T
+		LEFT JOIN T_HOUSE_INFO_DETAILS H ON T .HOUSE_INFO_ID = H ."pk_house"
+    </select>
+    
+    <resultMap type="cn.rzhd.wuye.bean.HouseInfo" id="houseMap">
+    	<id property="houseInfoId" column="HOUSE_INFO_ID"/>
+    	<result property="customerId" column="CUSTOMER_ID"/>
+    	<result property="starLevel" column="STAR_LEVEL"/>
+    	<result property="updateTime" column="UPDATE_TIME"/>
+    	<association property="houseVO" javaType="cn.rzhd.wuye.vo.HouseVO">
+    		<result property="project" column="project"/>
+    		<result property="vhcode" column="vhcode"/>
+    	</association>
+    </resultMap>
 </mapper>
