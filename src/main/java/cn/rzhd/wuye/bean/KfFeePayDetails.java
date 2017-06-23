@@ -23,6 +23,10 @@ public class KfFeePayDetails implements Serializable {
      */
     private String clientName;
     /**
+     * 费用类型
+     */
+    private String costType;
+    /**
      * 支付方式
      */
     private String payManner;
@@ -285,5 +289,13 @@ public class KfFeePayDetails implements Serializable {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getCostType() {
+        return costType;
+    }
+
+    public void setCostType(String costType) {
+        this.costType = costType;
     }
 }

@@ -3,11 +3,9 @@ package cn.rzhd.wuye.controller.web;
 import cn.rzhd.wuye.bean.Customer;
 import cn.rzhd.wuye.bean.ReletApply;
 import cn.rzhd.wuye.bean.RetreatLeaseApply;
-import cn.rzhd.wuye.service.ICustomerService;
-import cn.rzhd.wuye.service.IReletApplyService;
-import cn.rzhd.wuye.service.IRentContractService;
-import cn.rzhd.wuye.service.IRetreatLeaseApplyService;
+import cn.rzhd.wuye.service.*;
 import cn.rzhd.wuye.utils.JsonResult;
+import cn.rzhd.wuye.vo.HouseVO;
 import cn.rzhd.wuye.vo.PactVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +27,8 @@ public class LoginController {
     IReletApplyService reletApplyService;
     @Autowired
     IRetreatLeaseApplyService retreatLeaseApplyService;
+    @Autowired
+    IHouseInfoDetailsService houseInfoDetailsService;
 
     /**
      * @param customer 通过Customer对象将vccode账号,password密码(未加密)封装起来
@@ -47,6 +47,7 @@ public class LoginController {
                 for (PactVO vo : pactVOS) {
                     ReletApply reletApply = reletApplyService.findReletApply(vo.getPk_house());
                     RetreatLeaseApply retreatLeaseApply = retreatLeaseApplyService.findRetreatLeaseApply(vo.getPk_house());
+                    HouseVO houseVO = houseInfoDetailsService.selectById(vo.getHouse());
                     if (reletApply != null) {
                         vo.setContractStatus("1");
                     } else if (retreatLeaseApply != null) {
@@ -54,7 +55,11 @@ public class LoginController {
                     } else {
                         vo.setContractStatus("0");
                     }
+                    if (houseVO != null) {
+                        vo.setHouseVO(houseVO);
+                    }
                 }
+
                 cus.getHouseInfos().addAll(pactVOS);
             }
             result.getData().addAll(customers);

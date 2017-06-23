@@ -101,11 +101,10 @@ public class EnterApplyController {
     public String showEnterApplyList(Model model, Integer pageNum, Integer pageSize) {
         PageHelper.startPage(pageNum, pageSize);
         List<Map<String, JsonFormat.Value>> enterApplyList = enterApplyService.findEnterApplyList();
-        Page page = (Page) enterApplyList;
-        System.out.println("page:" + page.getTotal());
+
         model.addAttribute("enterApplyList", enterApplyList);
 
-        model.addAttribute("total", page.getTotal());
+        model.addAttribute("total",enterApplyList.size());
         return "forbusiness/enterApplyList";
     }
 
