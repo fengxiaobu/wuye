@@ -25,4 +25,6 @@ public interface PropertyFeePayDetailsMapper {
     void changeStatus(Long id);
 
     List<PropertyFeePayDetails> queryByProject(PropertyRecordsQuery query);
+
+    PropertyFeePayDetails getByProject(String houseInfoId);
 }

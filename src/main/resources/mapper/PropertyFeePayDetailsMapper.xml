@@ -142,4 +142,33 @@
             FEETYPE
         FROM T_PROPERTY_FEE_PAY_DETAILS
     </select>
+    <select id="getByProject" parameterType="string" resultMap="propertyFeePayDetailsMapper">
+        SELECT
+        PROPERTY_FEE_PAY_DETAILS_ID,
+        HOUSE_INFO_ID,
+        CLIENT_NAME,
+        FEETYPE,
+        PAY_MANNER,
+        PAY_MONTH,
+        START_DATE,
+        END_DATE,
+        PAYABLE,
+        PAID_IN,
+        VOUCHER_NUMBER,
+        INVOICE,
+        INVOICE_NUMBER,
+        INVOICE_NOTES,
+        INVOICE_STATUS,
+        COLLECTING_COMPANY,
+        COLLECTING_ACCOUNT,
+        INVOICE_COMPANY,
+        PAY_TIME,
+        CARTE_TIME,
+        UPDATE_TIME,
+        CUSTOMER_ID,
+        STATUS,
+        FEETYPE
+        FROM T_PROPERTY_FEE_PAY_DETAILS
+        WHERE HOUSE_INFO_ID=#{houseInfoId}
+    </select>
 </mapper>

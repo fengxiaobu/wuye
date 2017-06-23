@@ -33,25 +33,17 @@ public class User implements Serializable {
 	 */
 	private String workNo;
 	/**
-	 * 所属项目
-	 */
-	private String projectBelong;
-	/**
 	 * 性别 (0--女,1--男)
 	 */
 	private Short gender;
 	/**
-	 * 性别 (0--女,1--男)
+	 * 在职状态(0--离职,1--在职)
 	 */
 	private Short status;
 	/**
 	 * 备注
 	 */
 	private String note;
-	/**
-	 * 权限角色主键
-	 */
-	private Long role;
 
 	private String password;
 
@@ -87,14 +79,6 @@ public class User implements Serializable {
 		this.workNo = workNo;
 	}
 
-	public String getProjectBelong() {
-		return projectBelong;
-	}
-
-	public void setProjectBelong(String projectBelong) {
-		this.projectBelong = projectBelong;
-	}
-
 	public Short getGender() {
 		return gender;
 	}
@@ -119,14 +103,6 @@ public class User implements Serializable {
 		this.note = note;
 	}
 
-	public Long getRole() {
-		return role;
-	}
-
-	public void setRole(Long role) {
-		this.role = role;
-	}
-
 	public String getPassword() {
 		return password;
 	}
@@ -135,10 +111,4 @@ public class User implements Serializable {
 		this.password = password;
 	}
 
-	@Override
-	public String toString() {
-		return "User [userId=" + userId + ", username=" + username + ", realname=" + realname + ", workNo=" + workNo
-				+ ", projectBelong=" + projectBelong + ", gender=" + gender + ", status=" + status + ", note=" + note
-				+ ", role=" + role + ", password=" + password + "]";
-	}
 }

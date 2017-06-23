@@ -44,6 +44,11 @@ public class PropertyFeePayDetailsServiceImpl implements IPropertyFeePayDetailsS
     }
 
     @Override
+    public PropertyFeePayDetails getByProject(String houseInfoId) {
+        return mapper.getByProject(houseInfoId);
+    }
+
+    @Override
     public List<PropertyFeePayDetails> queryByProject(PropertyRecordsQuery query) {
         return mapper.queryByProject(query);
     }

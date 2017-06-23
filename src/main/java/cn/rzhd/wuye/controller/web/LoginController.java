@@ -59,7 +59,6 @@ public class LoginController {
                         vo.setHouseVO(houseVO);
                     }
                 }
-
                 cus.getHouseInfos().addAll(pactVOS);
             }
             result.getData().addAll(customers);

@@ -1,10 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
     <title>首页</title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/js/libs/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css"
+          href="${pageContext.request.contextPath}/js/libs/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css">
 </head>
 <body>
@@ -22,49 +25,115 @@
     <div class="panel panel-default">
     </div>
     <div class="panel panel-default tudiqianyue">
-        <form class="form-horizontal" action="" method="post" >
+        <form class="form-horizontal" action="" method="post">
             <div style="margin-top: 50px"></div>
+            <input type="hidden" name="userId">
             <div class="form-group">
-                <label for="exampleInputFile" class="col-sm-2 control-label">LOGO</label>
+                <label class="col-sm-2 control-label">人员姓名:</label>
                 <div class="col-sm-10">
-                    <input type="file" id="exampleInputFile">
+                    <input type="text" name="realname" value="${user.realname}">
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-2 control-label">客户ID:</label>
+                <label class="col-sm-2 control-label">登录账号:</label>
                 <div class="col-sm-10">
-                    <label class="col-sm-2 control-label"></label>
+                    <input type="text" name="username" value="${user.username}">
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-2 control-label">客户名称:</label>
+                <label class="col-sm-2 control-label">工号:</label>
                 <div class="col-sm-10">
-                    <label class="col-sm-2 control-label"></label>
+                    <input type="text" name="workNo" value="${user.workNo}">
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-2 control-label">客户类型:</label>
-                <div class="col-sm-10 radio">
-                    <label>
-                        <input type="radio" name="optionsRadios" id="optionsRadios1"
-                               value="option1"/>企业
-                    </label>
-                    <label>
-                        <input type="radio" name="optionsRadios" id="optionsRadios2"
-                               value="option2"/>个人
-                    </label>
+                <label class="col-sm-2 control-label">性别:</label>
+                <div class="col-sm-10">
+                    <select name="gender">
+                        <option value="1" <c:if test="${user.gender==1}">selected="selected"</c:if>>男</option>
+                        <option value="0" <c:if test="${user.gender==0}">selected="selected"</c:if>>女</option>
+                    </select>
                 </div>
             </div>
-                <div class="form-group" >
-                    <label class="col-sm-2 control-label">绑定手机号:</label>
-                    <div class="col-sm-10">
-                        <label class="col-sm-2 control-label"> <input type="text" style="width: 300px" class="form-control" placeholder="18190124022"></label>
-                    </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">所属角色:</label>
+                <div class="col-sm-10">
+                    <table>
+                        <tr>
+                            <td><input class="checkboxs" type="checkbox" name="role" value="1"></td>
+                            <td>系统管理员</td>
+                            <td><input class="checkboxs" type="checkbox" name="role" value="2"></td>
+                            <td>项目经理</td>
+                            <td><input class="checkboxs" type="checkbox" name="role" value="3"></td>
+                            <td>项目负责人</td>
+                        </tr>
+                        <tr>
+                            <td><input class="checkboxs" type="checkbox" name="role" value="4"></td>
+                            <td>物业客服</td>
+                            <td><input class="checkboxs" type="checkbox" name="role" value="5"></td>
+                            <td>开发客服</td>
+                            <td><input class="checkboxs" type="checkbox" name="role" value="6"></td>
+                            <td>财务</td>
+                        </tr>
+                    </table>
                 </div>
-                <div class="form-group" style="margin-left: 300px">
-                    <button type="submit" class="btn btn-default">提交</button>
-                    <button type="submit" style="margin-left: 320px" class="btn btn-default">重置密码</button>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">所属项目:</label>
+                <div class="col-sm-10">
+                    <table>
+                        <tr>
+                            <td colspan="4">项目列表</td>
+                            <td colspan="2"></td>
+                            <td colspan="4">所属项目</td>
+                        </tr>
+                        <tr>
+                            <td colspan="4">
+                                <select id="all" multiple="multiple"
+                                        style="width: 150px;height: 200px;margin-right: 10px">
+                                    <c:forEach items="${all}" var="project">
+                                        <option value="${project.pk_managementsecid}">${project.vmanagementsecname}</option>
+                                    </c:forEach>
+                                </select>
+                            </td>
+                            <td colspan="2">
+                                <button>&gt;</button>
+                                <br>
+                                <button>&gt;&gt;</button>
+                                <br>
+                                <button>&lt;</button>
+                                <br>
+                                <button>&lt;&lt;</button>
+                            </td>
+                            <td colspan="4">
+                                <select id="now" multiple="multiple"
+                                        style="width: 150px;height: 200px;margin-left: 10px">
+                                    <c:forEach items="${my}" var="project">
+                                        <option value="${project.pk_managementsecid}">${project.vmanagementsecname}</option>
+                                    </c:forEach>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">在职状态:</label>
+                <div class="col-sm-10">
+                    <input type="radio" name="status" value="0">离职
+                    <input type="radio" name="status" value="1">在职
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">备注:</label>
+                <div class="col-sm-10">
+                    <textarea name="note" cols="40" rows="10">${user.note}</textarea>
+                </div>
+            </div>
+            <div class="form-group" style="margin-left: 300px">
+                <button type="submit" class="btn btn-default">保存</button>
+                <button type="submit" style="margin-left: 320px" class="btn btn-default">重置密码</button>
+            </div>
         </form>
     </div>
 </div>
@@ -227,5 +296,18 @@
     $("#tudiqianyue-remove").click(function () {
 
     });
+    $(function () {
+        var roles = JSON.parse('${myRole}');
+        var checkboxs = $(".checkboxs");
+        for(var i=0;i<checkboxs.length;i++){
+            for(var j=0;j<roles.length;j++){
+                if(roles[j]['roleId']==$(checkboxs[i]).attr("value")){
+                    checkboxs[i].attr("checked",true);
+                }
+            }
+        }
+    })
 </script>
+
+
 </html>

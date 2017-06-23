@@ -1,12 +1,10 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
     <title>首页</title>
-    <link rel="stylesheet" type="text/css"
-          href="${pageContext.request.contextPath}/js/libs/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/js/libs/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css">
 </head>
 <body>
@@ -16,7 +14,7 @@
     <ol class="breadcrumb">
         <li><a href="#">首页</a></li>
         <li><a href="#">用户管理</a></li>
-        <li class="active">用户列表</li>
+        <li class="active">编辑用户</li>
     </ol>
 </div>
 <!-- 路径导航 结束 -->
@@ -24,63 +22,52 @@
     <div class="panel panel-default">
     </div>
     <div class="panel panel-default tudiqianyue">
-        <div class="panel-heading">
-            <div class="col-xs-4">用户列表</div>
-            <div class="col-xs-8 panel-oprerate">
-                <div class="col-xs-12">
-                    -----项目选择-----
-                    <span style="margin-right: 50px"><input style="height: 35px;width: 320px;" type="text"
-                                                            id="exampleInputName" placeholder="姓名,账号"></span>
-                    <button class="btn btn-info" type="button"><span class="glyphicon glyphicon-search"></span>搜素
-                    </button>
-                    <%--<a href="/userEdit" class="btn btn-info"  type="button"><span class="glyphicon glyphicon-plus"></span>新增</a>--%>
-                    <button class="btn btn-info" type="button"><span class="glyphicon glyphicon-remove"></span>新增
-                    </button>
-                </div>
-                <div class="col-xs-12">
-                    <button class="btn btn-default" id="tudiqianyue-remove" type="button"><span
-                            class="glyphicon glyphicon-remove"></span>取消
-                    </button>
-                    <button class="btn btn-success" id="tudiqianyue-ok" type="button"><span
-                            class="glyphicon glyphicon-ok"></span>提交
-                    </button>
+        <form class="form-horizontal" action="" method="post" >
+            <div style="margin-top: 50px"></div>
+            <div class="form-group">
+                <label for="exampleInputFile" class="col-sm-2 control-label">LOGO</label>
+                <div class="col-sm-10">
+                    <input type="file" id="exampleInputFile">
                 </div>
             </div>
-        </div>
-        <div class="panel-body">
-            <table class="table table-bordered tudiqianyue-table">
-                <thead>
-                <tr class="info">
-                    <th rowspan="2">序号</th>
-                    <th rowspan="2">人员姓名</th>
-                    <th rowspan="2">登录账户</th>
-                    <th rowspan="2">工号</th>
-                    <th rowspan="2">性别</th>
-                    <th rowspan="2">在职状态</th>
-                    <th rowspan="2">备注</th>
-                    <th rowspan="2">操作</th>
-                </tr>
-                </thead>
-                <tbody class="tudiqianyue-tbody">
-                <c:forEach items="${userList}" var="user">
-                    <tr class="tudiqianyue-tdtr">
-                        <td>${user.userId}</td>
-                        <td>${user.realname}</td>
-                        <td>${user.username}</td>
-                        <td>${user.workNo}</td>
-                        <td>${user.gender}</td>
-                        <td>${user.status}</td>
-                        <td>${user.note}</td>
-                        <td><a class="btn btn-info" href="#" role="button">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;<a
-                                class="btn btn-info" href="${pageContext.request.contextPath}/user/details?id=${user.userId}&type=edit" role="button">编辑</a>
-                            <a href="${pageContext.request.contextPath}/user/details?id=${user.userId}&type=details" role="button">详情</a>
-                        </td>
-                    </tr>
-                </c:forEach>
-                </tbody>
-            </table>
-        </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">客户ID:</label>
+                <div class="col-sm-10">
+                    <label class="col-sm-2 control-label"></label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">客户名称:</label>
+                <div class="col-sm-10">
+                    <label class="col-sm-2 control-label"></label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">客户类型:</label>
+                <div class="col-sm-10 radio">
+                    <label>
+                        <input type="radio" name="optionsRadios" id="optionsRadios1"
+                               value="option1"/>企业
+                    </label>
+                    <label>
+                        <input type="radio" name="optionsRadios" id="optionsRadios2"
+                               value="option2"/>个人
+                    </label>
+                </div>
+            </div>
+                <div class="form-group" >
+                    <label class="col-sm-2 control-label">绑定手机号:</label>
+                    <div class="col-sm-10">
+                        <label class="col-sm-2 control-label"> <input type="text" style="width: 300px" class="form-control" placeholder="18190124022"></label>
+                    </div>
+                </div>
+                <div class="form-group" style="margin-left: 300px">
+                    <button type="submit" class="btn btn-default">提交</button>
+                    <button type="submit" style="margin-left: 320px" class="btn btn-default">重置密码</button>
+                </div>
+        </form>
     </div>
+</div>
 
 </body>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/libs/jquery-1.11.3.min.js"></script>

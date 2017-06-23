@@ -382,7 +382,7 @@
                         <ul class="panel-group level02" id="aside_eight_02">
                             <li class="panel" role="tab">
                                 <div class="panel-header">
-                                    <a href="/userList" target="main">管理用户列表</a>
+                                    <a href="${pageContext.request.contextPath}/user/index" target="main">管理用户列表</a>
                                 </div>
                             </li>
 

@@ -20,4 +20,6 @@ public interface HouseInfoDetailsMapper {
     List<HouseVO> getAll();
     
     List<HouseVO> getHouseInfoByName(String pk_house);
+
+    List<String> getByManageId(String id);
 }

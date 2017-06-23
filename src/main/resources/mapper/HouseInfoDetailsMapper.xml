@@ -205,6 +205,8 @@
             LEFT JOIN "T_Sell_Contract" s ON H."pk_house" = s."pk_house"
             LEFT JOIN "T_Customer" c ON s."pk_customerid" = c."pk_customerid"
     </select>
+    <select id="getByManageId" parameterType="string" resultMap="BaseResultMap">
+    </select>
 
     <resultMap type="cn.rzhd.wuye.vo.HouseVO" id="houseVOBackMap">
         <id property="pk_project" column="pk_project"/>

@@ -7,9 +7,9 @@ import java.util.Date;
  */
 public class PropertyRecordsQuery extends BaseQuery {
     /**
-     * 项目主键,用于查询该项目下所有信息
+     * 房产主键
      */
-    private String projectId;
+    private String houseInfoId;
     /**
      * 时间段起始时间
      */
@@ -31,12 +31,12 @@ public class PropertyRecordsQuery extends BaseQuery {
      */
     private String keyWords;
 
-    public String getProjectId() {
-        return projectId;
+    public String getHouseInfoId() {
+        return houseInfoId;
     }
 
-    public void setProjectId(String projectId) {
-        this.projectId = projectId;
+    public void setHouseInfoId(String houseInfoId) {
+        this.houseInfoId = houseInfoId;
     }
 
     public Date getStartDate() {

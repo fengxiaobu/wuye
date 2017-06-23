@@ -1,25 +1,25 @@
 package cn.rzhd.wuye.controller;
 
-import java.util.List;
-import java.util.Map;
-
+import cn.rzhd.wuye.bean.HouseInfo;
+import cn.rzhd.wuye.bean.Role;
+import cn.rzhd.wuye.bean.User;
+import cn.rzhd.wuye.service.IHouseInfoService;
+import cn.rzhd.wuye.service.IUserService;
+import cn.rzhd.wuye.utils.JsonUtils;
+import cn.rzhd.wuye.vo.CustomerVO;
+import cn.rzhd.wuye.vo.ManageVO;
+import com.fasterxml.jackson.annotation.JsonFormat.Value;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
-import com.fasterxml.jackson.annotation.JsonFormat.Value;
-import com.github.pagehelper.Page;
-import com.github.pagehelper.PageHelper;
-
-import cn.rzhd.wuye.bean.HouseInfo;
-import cn.rzhd.wuye.service.IHouseInfoService;
-import cn.rzhd.wuye.service.IUserService;
-import cn.rzhd.wuye.utils.JsonUtils;
-import cn.rzhd.wuye.vo.CustomerVO;
-import cn.rzhd.wuye.vo.HouseVO;
+import java.util.List;
+import java.util.Map;
 
 /**
  * © 2017 RZHD.CN
@@ -38,7 +38,7 @@ public class UserController {
 	@Autowired
 	private IUserService userService;
 	@Autowired
-	IHouseInfoService houseInfoService;
+	private IHouseInfoService houseInfoService;
 
 	/**
 	 * 用户列表分页查询
@@ -159,6 +159,32 @@ public class UserController {
 
 		model.addAttribute("pages", page.getPages());
 		return "user/houseInfo";
+	}
+
+	@RequestMapping("index")
+	public ModelAndView index(){
+		List<User> list = userService.getAll();
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("userList",list);
+		mav.setViewName("user/userList");
+		return mav;
+	}
+
+	@RequestMapping("/details")
+	public ModelAndView details(Long id,String type){
+		ModelAndView mav = new ModelAndView();
+		List<ManageVO> allProjects = userService.getAllProjects();
+		List<ManageVO> myProjects = userService.getMyProjects(id);
+        List<Role> myRole = userService.getMyRole(id);
+        User user = userService.getDetails(id);
+        String roles = JsonUtils.objectToJson(myRole);
+        mav.addObject("myRole",roles);
+		mav.addObject("user",user);
+		mav.addObject("type",type);
+		mav.addObject("all",allProjects);
+		mav.addObject("my",myProjects);
+		mav.setViewName("user/userEdit");
+		return mav;
 	}
 
 }

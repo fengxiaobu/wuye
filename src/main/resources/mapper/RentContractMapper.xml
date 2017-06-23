@@ -54,7 +54,9 @@
         SELECT DISTINCT
             "pk_house",
             "house",
-            "pk_project" AS pkProject,
+			"dpactstart",
+			"dpactend",
+            "pk_project",
             SERVICE_PHONE,
             OBJECT_PHONE,
             "pk_customerid",
