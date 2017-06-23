@@ -35,9 +35,9 @@
         <result column="EVERYMNY" property="everyMoney"/>
         <result column="ASTRICTSTATUS" property="astrictStatus"/>
         <result column="UPDATEDATE" property="updateDate"/>
-        <result column="MANAGE_ID" property="vdef1"/>
-        <result column="ENTERAPPLY_STATE" property="vdef8"/>
-        <result column="DECORATIONAPPLYSTATE" property="vdef9"/>
+        <result column="MANAGE_ID" property="manage_id"/>
+        <result column="ENTERAPPLY_STATE" property="enterapply_state"/>
+        <result column="DECORATIONAPPLYSTATE" property="decorationapplystate"/>
 
         <association property="projectInfo" column="pk_project" javaType="cn.rzhd.wuye.bean.ProjectInfo"
                      select="cn.rzhd.wuye.mapper.ProjectInfoMapper.selectByPrimaryKey"/>

@@ -8,6 +8,7 @@ import cn.rzhd.wuye.utils.JsonResult;
 import cn.rzhd.wuye.vo.HouseVO;
 import cn.rzhd.wuye.vo.PactVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -35,7 +36,7 @@ public class LoginController {
      * @return json对象, 包含房产id及房产名称
      */
     @RequestMapping("/login")
-    public JsonResult login(Customer customer) {
+    public JsonResult login(@RequestBody Customer customer) {
         List<Customer> customers = customerService.loginByPwd(customer);
         if (customers.isEmpty()) {
             return new JsonResult("账号或密码错误!!!");
