@@ -35,8 +35,10 @@
         <result column="EVERYMNY" property="everyMoney"/>
         <result column="ASTRICTSTATUS" property="astrictStatus"/>
         <result column="UPDATEDATE" property="updateDate"/>
-        <association property="projectInfo" column="pk_project" javaType="cn.rzhd.wuye.bean.ProjectInfo" select="cn.rzhd.wuye.mapper.ProjectInfoMapper.selectByPrimaryKey"/>
-	</resultMap>
+        <result column="MANAGE_ID" property="vdef1"/>
+        <association property="projectInfo" column="pk_project" javaType="cn.rzhd.wuye.bean.ProjectInfo"
+                     select="cn.rzhd.wuye.mapper.ProjectInfoMapper.selectByPrimaryKey"/>
+    </resultMap>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
         DELETE FROM T_HOUSE_INFO_DETAILS
         WHERE "pk_house" = #{pkHouse,jdbcType=CHAR}
@@ -51,7 +53,7 @@
                                           "nmanagearea", "nsellarea", "npublicarea",
                                           "nunderlinearea", "ngardenarea", "nrpublicarea",
                                           "nrinarea", "nrbuildarea", "nrunderlinearea",
-                                          "nrgardenarea")
+                                          "nrgardenarea",MANAGE_ID)
         VALUES (#{pk_house,jdbcType=CHAR}, #{pk_corp,jdbcType=CHAR}, #{pk_project,jdbcType=VARCHAR},
                                            #{project,jdbcType=VARCHAR}, #{building,jdbcType=VARCHAR},
                                            #{ifloor,jdbcType=VARCHAR},
@@ -64,7 +66,7 @@
             #{nmanagearea,jdbcType=VARCHAR}, #{nsellarea,jdbcType=VARCHAR}, #{npublicarea,jdbcType=VARCHAR},
                 #{nunderlinearea,jdbcType=VARCHAR}, #{ngardenarea,jdbcType=VARCHAR}, #{nrpublicarea,jdbcType=VARCHAR},
                 #{nrinarea,jdbcType=VARCHAR}, #{nrbuildarea,jdbcType=VARCHAR}, #{nrunderlinearea,jdbcType=VARCHAR},
-                #{nrgardenarea,jdbcType=VARCHAR})
+                #{nrgardenarea,jdbcType=VARCHAR},#{vdef1})
     </insert>
     <update id="updateByPrimaryKey" parameterType="cn.rzhd.wuye.vo.HouseVO">
         UPDATE T_HOUSE_INFO_DETAILS
@@ -94,7 +96,8 @@
             "nrinarea"        = #{nrinarea,jdbcType=VARCHAR},
             "nrbuildarea"     = #{nrbuildarea,jdbcType=VARCHAR},
             "nrunderlinearea" = #{nrunderlinearea,jdbcType=VARCHAR},
-            "nrgardenarea"    = #{nrgardenarea,jdbcType=VARCHAR}
+            "nrgardenarea"    = #{nrgardenarea,jdbcType=VARCHAR},
+            MANAGE_ID         = #{vdef1}
         WHERE "pk_house" = #{pk_house,jdbcType=CHAR}
     </update>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap">
@@ -132,7 +135,8 @@
             FIRSTMNY,
             EVERYMNY,
             ASTRICTSTATUS,
-            UPDATEDATE
+            UPDATEDATE,
+            MANAGE_ID
         FROM T_HOUSE_INFO_DETAILS
         WHERE "pk_house" = '${pkHouse}'
     </select>
@@ -165,84 +169,85 @@
             "nrinarea",
             "nrbuildarea",
             "nrunderlinearea",
-            "nrgardenarea"
+            "nrgardenarea",
+            MANAGE_ID
         FROM T_HOUSE_INFO_DETAILS
     </select>
-    
+
     <select id="getHouseInfoByName" parameterType="String" resultMap="houseVOMap">
-       SELECT 
-	       "pk_project",
-	       "pk_house",
-	       "project",
-	       "vhname",
-	       "situation",
-	       "nbuildarea",
-	       OBJECT_PHONE,
-	       PROJECT_ADDRESS,
-	       PK_PROJECT 
-       FROM 
-       		T_HOUSE_INFO_DETAILS 
-       LEFT JOIN 
-       		T_PROJECT_INFO 
-       ON 
-       		"pk_project"=PK_PROJECT
-       WHERE 
-       		"pk_house"=#{pk_house}
+        SELECT
+            "pk_project",
+            "pk_house",
+            "project",
+            "vhname",
+            "situation",
+            "nbuildarea",
+            OBJECT_PHONE,
+            PROJECT_ADDRESS,
+            PK_PROJECT
+        FROM
+            T_HOUSE_INFO_DETAILS
+            LEFT JOIN
+            T_PROJECT_INFO
+                ON
+                    "pk_project" = PK_PROJECT
+        WHERE
+            "pk_house" = #{pk_house}
     </select>
-    
+
     <resultMap type="cn.rzhd.wuye.vo.HouseVO" id="houseVOMap">
-    	<id property="pk_project" column="pk_project"/>
-    	<result property="project" column="project"/>
-    	<result property="vhname" column="vhname"/>
-    	<result property="situation" column="situation"/>
-    	<result property="nbuildarea" column="nbuildarea"/>
-    	<association property="projectVO" javaType="cn.rzhd.wuye.vo.ProjectVO">
-			<id property="pk_project" column="pk_project"/>
-			<result property="vname" column="PROJECT_NAME"/>
-    	</association>
+        <id property="pk_project" column="pk_project"/>
+        <result property="project" column="project"/>
+        <result property="vhname" column="vhname"/>
+        <result property="situation" column="situation"/>
+        <result property="nbuildarea" column="nbuildarea"/>
+        <association property="projectVO" javaType="cn.rzhd.wuye.vo.ProjectVO">
+            <id property="pk_project" column="pk_project"/>
+            <result property="vname" column="PROJECT_NAME"/>
+        </association>
     </resultMap>
-    
+
     <select id="getAll" resultMap="houseVOBackMap">
-    	SELECT
-			H."pk_project",
-			s."pk_house",
-			P.PK_PROJECT,
-			c."pk_customerid",
-			c."vcname",
-			P.PROJECT_NAME,
-			H."vhcode",
-			H."nsellarea",
-			s."nprice",
-			s."nythisdiscountmny",
-			s."nytotalmnysign",
-			P.PROJECT_ADDRESS,
-			P.OBJECT_PHONE
-		FROM
-			T_HOUSE_INFO_DETAILS H
-		LEFT JOIN T_PROJECT_INFO P ON H ."pk_project" = P .PK_PROJECT 
-		LEFT JOIN "T_Sell_Contract" s ON H."pk_house" = s."pk_house"
-		LEFT JOIN "T_Customer" c ON s."pk_customerid" = c."pk_customerid"
+        SELECT
+            H."pk_project",
+            s."pk_house",
+            P.PK_PROJECT,
+            c."pk_customerid",
+            c."vcname",
+            P.PROJECT_NAME,
+            H."vhcode",
+            H."nsellarea",
+            s."nprice",
+            s."nythisdiscountmny",
+            s."nytotalmnysign",
+            P.PROJECT_ADDRESS,
+            P.OBJECT_PHONE
+        FROM
+            T_HOUSE_INFO_DETAILS H
+            LEFT JOIN T_PROJECT_INFO P ON H."pk_project" = P.PK_PROJECT
+            LEFT JOIN "T_Sell_Contract" s ON H."pk_house" = s."pk_house"
+            LEFT JOIN "T_Customer" c ON s."pk_customerid" = c."pk_customerid"
     </select>
-    
+
     <resultMap type="cn.rzhd.wuye.vo.HouseVO" id="houseVOBackMap">
-    	<id property="pk_project" column="pk_project"/>
-    	<result property="vhcode" column="vhcode"/>
-    	<result property="nsellarea" column="nsellarea"/>
-    	<association property="projectVO" javaType="cn.rzhd.wuye.vo.ProjectVO">
-			<id property="pk_project" column="PK_PROJECT" />
-			<result property="vname" column="PROJECT_NAME" />
-			<result property="object_phone" column="OBJECT_PHONE" />
-			<result property="project_address" column="PROJECT_ADDRESS" />
-	  	</association>
-	  	<association property="customerVO" javaType="cn.rzhd.wuye.vo.CustomerVO">
-			<id property="pk_customerid" column="pk_customerid" />
-			<result property="vcname" column="vcname" />
-	  	</association>
-	  	<association property="signVO" javaType="cn.rzhd.wuye.vo.SignVO">
-			<id property="pk_house" column="pk_house" />
-			<result property="nprice" column="nprice" />
-			<result property="nythisdiscountmny" column="nythisdiscountmny" />
-			<result property="nytotalmnysign" column="nytotalmnysign" />
-	  	</association>
-	  </resultMap>
+        <id property="pk_project" column="pk_project"/>
+        <result property="vhcode" column="vhcode"/>
+        <result property="nsellarea" column="nsellarea"/>
+        <association property="projectVO" javaType="cn.rzhd.wuye.vo.ProjectVO">
+            <id property="pk_project" column="PK_PROJECT"/>
+            <result property="vname" column="PROJECT_NAME"/>
+            <result property="object_phone" column="OBJECT_PHONE"/>
+            <result property="project_address" column="PROJECT_ADDRESS"/>
+        </association>
+        <association property="customerVO" javaType="cn.rzhd.wuye.vo.CustomerVO">
+            <id property="pk_customerid" column="pk_customerid"/>
+            <result property="vcname" column="vcname"/>
+        </association>
+        <association property="signVO" javaType="cn.rzhd.wuye.vo.SignVO">
+            <id property="pk_house" column="pk_house"/>
+            <result property="nprice" column="nprice"/>
+            <result property="nythisdiscountmny" column="nythisdiscountmny"/>
+            <result property="nytotalmnysign" column="nytotalmnysign"/>
+        </association>
+    </resultMap>
 </mapper>

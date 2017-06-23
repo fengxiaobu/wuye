@@ -51,7 +51,8 @@ public class HouseVO implements Serializable {
 	private String astrictStatus;// 限制缴费状态Y--启用,N--禁用
 	private Date updateDate;// 更新时间
 	private ProjectInfo projectInfo;//关联的项目信息
-	private String vdef8;// 备用字段8
+	private String vdef1;// 管理处ID
+
 	private String vdef9;// 备用字段9
 	private String vdef10;// 备用字段10
 	
@@ -364,12 +365,12 @@ public class HouseVO implements Serializable {
 		this.projectInfo = projectInfo;
 	}
 
-	public String getVdef8() {
-		return vdef8;
+	public String getVdef1() {
+		return vdef1;
 	}
 
-	public void setVdef8(String vdef8) {
-		this.vdef8 = vdef8;
+	public void setVdef1(String vdef1) {
+		this.vdef1 = vdef1;
 	}
 
 	public String getVdef9() {
@@ -388,37 +389,4 @@ public class HouseVO implements Serializable {
 		this.vdef10 = vdef10;
 	}
 
-	@Override
-	public String toString() {
-		return "HouseVO{" +
-				"pk_corp='" + pk_corp + '\'' +
-				", pk_house='" + pk_house + '\'' +
-				", pk_project='" + pk_project + '\'' +
-				", project='" + project + '\'' +
-				", building='" + building + '\'' +
-				", ifloor='" + ifloor + '\'' +
-				", vhcell='" + vhcell + '\'' +
-				", vhnum='" + vhnum + '\'' +
-				", vhcode='" + vhcode + '\'' +
-				", vhname='" + vhname + '\'' +
-				", otation='" + otation + '\'' +
-				", room='" + room + '\'' +
-				", situation='" + situation + '\'' +
-				", fsellmethod='" + fsellmethod + '\'' +
-				", managestate='" + managestate + '\'' +
-				", nbuildarea='" + nbuildarea + '\'' +
-				", ninarea='" + ninarea + '\'' +
-				", nleaseoutarea='" + nleaseoutarea + '\'' +
-				", nmanagearea='" + nmanagearea + '\'' +
-				", nsellarea='" + nsellarea + '\'' +
-				", npublicarea='" + npublicarea + '\'' +
-				", nunderlinearea='" + nunderlinearea + '\'' +
-				", ngardenarea='" + ngardenarea + '\'' +
-				", nrpublicarea='" + nrpublicarea + '\'' +
-				", nrinarea='" + nrinarea + '\'' +
-				", nrbuildarea='" + nrbuildarea + '\'' +
-				", nrunderlinearea='" + nrunderlinearea + '\'' +
-				", nrgardenarea='" + nrgardenarea + '\'' +
-				'}';
-	}
 }

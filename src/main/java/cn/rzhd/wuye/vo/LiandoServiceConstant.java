@@ -92,6 +92,8 @@ public class LiandoServiceConstant implements Serializable{
 	 * 发票信息
 	 */
 	public static final String DATA_TYPE_INVOICE = "FP";
+
+	public static final String DATA_TYPE_GLC = "GLC";
 	
 	/**
 	 * 数据源名称-测试环境有可能和正式环境不一样

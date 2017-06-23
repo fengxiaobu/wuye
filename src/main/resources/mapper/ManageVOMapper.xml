@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.rzhd.wuye.mapper.ManageVOMapper">
+    <insert id="addManage" parameterType="cn.rzhd.wuye.vo.ManageVO">
+        INSERT INTO T_MANAGE ("pk_corp","pk_manageId","managecode","managename")
+        VALUES (#{pk_corp}, #{pk_managementsecid}, #{vmanagementseccode}, #{vmanagementsecname})
+    </insert>
+</mapper>
