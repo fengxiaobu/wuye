@@ -66,16 +66,11 @@ public class DecorationApplyController {
 
 
     /**
-     * 装修资料
-     */
-    //public List<Map<String, Value>>
-
-    /**
      * 装修申请
      */
     @RequestMapping(value = "/upload/batch", method = RequestMethod.POST)
     public @ResponseBody
-    Map<String, String> batchUpload(@RequestBody ResousVO resousVO) {
+    Map<String, String> batchUpload(ResousVO resousVO) {
         System.out.println("resousVO = " + resousVO);
         Map<String, String> result = new HashMap<>();
         Date date = new Date();

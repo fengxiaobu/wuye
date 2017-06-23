@@ -27,16 +27,16 @@
                 <form class="form-horizontal"
                       action="${pageContext.request.contextPath}/dist/enterApply/updateEnterApply" method="post">
                     <div class="form-group" style="margin-top: 50px">
-                        <input type="hidden" name="enterApplyId" value="${decorationApply.decorationApplyId}"/>
+                        <input type="hidden" name="decorationApplyId" value="${decorationApply.decorationApplyId}"/>
                         <label class="col-sm-2 control-label">项目名称:</label>
                         <div class="col-sm-10">
-                            <label class="col-sm-2 control-label">${decorationApply.houseInfo.projectInfo.projectName}</label>
+                            <label class="col-sm-2 control-label">${decorationApply.houseInfoDetails.projectInfo.projectName}</label>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">房产信息:</label>
                         <div class="col-sm-10">
-                            <label class="col-sm-2 control-label">${decorationApply.houseInfo.houseProperty}</label>
+                            <label class="col-sm-2 control-label">${decorationApply.houseInfoDetails.vhname}</label>
                         </div>
                     </div>
                     <div class="form-group">

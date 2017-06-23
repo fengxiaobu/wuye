@@ -27,6 +27,71 @@
         <result column="SPECIAL_DECORATION_FILE" property="specialDecorationFile"/>
         <result column="CREATION_TIME" property="creationTime"/>
         <result column="UPDATE_TIME" property="updateTime"/>
+        <association property="houseInfoDetails" javaType="cn.rzhd.wuye.bean.HouseInfoDetails">
+            <id column="pk_house" property="pkHouse" jdbcType="CHAR"/>
+            <result column="pk_corp" property="pkCorp" jdbcType="CHAR"/>
+            <result column="pk_project" property="pkProject" jdbcType="VARCHAR"/>
+            <result column="project" property="project" jdbcType="VARCHAR"/>
+            <result column="building" property="building" jdbcType="VARCHAR"/>
+            <result column="ifloor" property="ifloor" jdbcType="VARCHAR"/>
+            <result column="vhcell" property="vhcell" jdbcType="VARCHAR"/>
+            <result column="vhnum" property="vhnum" jdbcType="VARCHAR"/>
+            <result column="vhcode" property="vhcode" jdbcType="VARCHAR"/>
+            <result column="vhname" property="vhname" jdbcType="VARCHAR"/>
+            <result column="otation" property="otation" jdbcType="VARCHAR"/>
+            <result column="room" property="room" jdbcType="VARCHAR"/>
+            <result column="situation" property="situation" jdbcType="VARCHAR"/>
+            <result column="fsellmethod" property="fsellmethod" jdbcType="VARCHAR"/>
+            <result column="managestate" property="managestate" jdbcType="VARCHAR"/>
+            <result column="nbuildarea" property="nbuildarea" jdbcType="VARCHAR"/>
+            <result column="ninarea" property="ninarea" jdbcType="VARCHAR"/>
+            <result column="nleaseoutarea" property="nleaseoutarea" jdbcType="VARCHAR"/>
+            <result column="nmanagearea" property="nmanagearea" jdbcType="VARCHAR"/>
+            <result column="nsellarea" property="nsellarea" jdbcType="VARCHAR"/>
+            <result column="npublicarea" property="npublicarea" jdbcType="VARCHAR"/>
+            <result column="nunderlinearea" property="nunderlinearea" jdbcType="VARCHAR"/>
+            <result column="ngardenarea" property="ngardenarea" jdbcType="VARCHAR"/>
+            <result column="nrpublicarea" property="nrpublicarea" jdbcType="VARCHAR"/>
+            <result column="nrinarea" property="nrinarea" jdbcType="VARCHAR"/>
+            <result column="nrbuildarea" property="nrbuildarea" jdbcType="VARCHAR"/>
+            <result column="nrunderlinearea" property="nrunderlinearea" jdbcType="VARCHAR"/>
+            <result column="nrgardenarea" property="nrgardenarea" jdbcType="VARCHAR"/>
+            <result column="STARTDATE" property="startdate" jdbcType="DATE"/>
+            <result column="ENDDATE" property="enddate" jdbcType="DATE"/>
+            <result column="FIRSTMNY" property="firstmny" jdbcType="DECIMAL"/>
+            <result column="EVERYMNY" property="everymny" jdbcType="DECIMAL"/>
+            <result column="ASTRICTSTATUS" property="astrictstatus" jdbcType="CHAR"/>
+            <result column="UPDATEDATE" property="updatedate" jdbcType="DATE"/>
+            <result column="ENTERAPPLY_STATE" property="enterapplyState" jdbcType="VARCHAR"/>
+            <result column="DECORATIONAPPLYSTATE" property="decorationapplystate" jdbcType="VARCHAR"/>
+            <association property="projectInfo" javaType="cn.rzhd.wuye.bean.ProjectInfo">
+                <id column="PK_PROJECT" property="pkProject"/>
+                <result column="PROJECT_NAME" property="projectName"/>
+                <result column="PROJECT_ADDRESS" property="projectAddress"/>
+                <result column="DEVELOPMENT_COLLECTING_COMPANY" property="developmentCollectingCompany"/>
+                <result column="DEVELOPMENT_COLLECTING_ACCOUNT" property="developmentCollectingAccount"/>
+                <result column="PROPERTY_COLLECTING_COMPANY" property="propertyCollectingCompany"/>
+                <result column="PROPERTY_COLLECTING_ACCOUNT" property="propertyCollectingAccount"/>
+                <result column="WATER_PRICE" property="waterPrice"/>
+                <result column="ELECTRICITY_PRICE" property="electricityPrice"/>
+                <result column="SERVICE_PHONE" property="servicePhone"/>
+                <result column="OBJECT_PHONE" property="objectPhone"/>
+                <result column="CREATION_TIME" property="creationTime"/>
+                <result column="UPDATE_TIME" property="updateTime"/>
+                <result column="STATUS" property="status"/>
+                <result column="PK_CORP" property="pkCorp"/>
+                <result column="VCODE" property="vcode"/>
+                <result column="VSHORTNAME" property="vshortname"/>
+                <result column="PK_RESPONSECORP" property="pkResponsecorp"/>
+                <result column="VINCODE" property="vincode"/>
+                <result column="DECORATE_MANAGE" property="decorateManage"/>
+                <result column="PASSCARD_PLEDGE" property="passcardPledge"/>
+                <result column="PASSCARD_COST" property="passcardCost"/>
+                <result column="DECORATE_AREA" property="decorateArea"/>
+                <result column="LESS_PLEDGE" property="lessPledge"/>
+                <result column="MORE_PLEDGE" property="morePledge"/>
+            </association>
+        </association>
     </resultMap>
 
     <resultMap id="DecorationApplyMapper" type="java.util.Map">
@@ -55,17 +120,43 @@
         <result column="SPECIAL_DECORATION_FILE" property="specialDecorationFile"/>
         <result column="CREATION_TIME" property="creationTime"/>
         <result column="UPDATE_TIME" property="updateTime"/>
-        <association property="houseInfo" javaType="cn.rzhd.wuye.bean.HouseInfo">
-            <id column="ERP_HOUSE_ID" property="erpHouseId"/>
-            <result column="HOUSE_INFO_ID" property="houseInfoId"/>
-            <result column="PROJECT_INFO_ID" property="projectInfoId"/>
-            <result column="HOUSE_PROPERTY" property="houseProperty"/>
-            <result column="ENTER_STATUS" property="enterStatus"/>
-            <result column="STAR_LEVEL" property="starLevel"/>
-            <result column="STATUS" property="status"/>
-            <result column="CREATION_TIME" property="creationTime"/>
-            <result column="UPDATE_TIME" property="updateTime"/>
-            <result column="CUSTOMER_ID" property="customerId"/>
+        <association property="houseInfoDetails" javaType="cn.rzhd.wuye.bean.HouseInfoDetails">
+            <id column="pk_house" property="pkHouse" jdbcType="CHAR"/>
+            <result column="pk_corp" property="pkCorp" jdbcType="CHAR"/>
+            <result column="pk_project" property="pkProject" jdbcType="VARCHAR"/>
+            <result column="project" property="project" jdbcType="VARCHAR"/>
+            <result column="building" property="building" jdbcType="VARCHAR"/>
+            <result column="ifloor" property="ifloor" jdbcType="VARCHAR"/>
+            <result column="vhcell" property="vhcell" jdbcType="VARCHAR"/>
+            <result column="vhnum" property="vhnum" jdbcType="VARCHAR"/>
+            <result column="vhcode" property="vhcode" jdbcType="VARCHAR"/>
+            <result column="vhname" property="vhname" jdbcType="VARCHAR"/>
+            <result column="otation" property="otation" jdbcType="VARCHAR"/>
+            <result column="room" property="room" jdbcType="VARCHAR"/>
+            <result column="situation" property="situation" jdbcType="VARCHAR"/>
+            <result column="fsellmethod" property="fsellmethod" jdbcType="VARCHAR"/>
+            <result column="managestate" property="managestate" jdbcType="VARCHAR"/>
+            <result column="nbuildarea" property="nbuildarea" jdbcType="VARCHAR"/>
+            <result column="ninarea" property="ninarea" jdbcType="VARCHAR"/>
+            <result column="nleaseoutarea" property="nleaseoutarea" jdbcType="VARCHAR"/>
+            <result column="nmanagearea" property="nmanagearea" jdbcType="VARCHAR"/>
+            <result column="nsellarea" property="nsellarea" jdbcType="VARCHAR"/>
+            <result column="npublicarea" property="npublicarea" jdbcType="VARCHAR"/>
+            <result column="nunderlinearea" property="nunderlinearea" jdbcType="VARCHAR"/>
+            <result column="ngardenarea" property="ngardenarea" jdbcType="VARCHAR"/>
+            <result column="nrpublicarea" property="nrpublicarea" jdbcType="VARCHAR"/>
+            <result column="nrinarea" property="nrinarea" jdbcType="VARCHAR"/>
+            <result column="nrbuildarea" property="nrbuildarea" jdbcType="VARCHAR"/>
+            <result column="nrunderlinearea" property="nrunderlinearea" jdbcType="VARCHAR"/>
+            <result column="nrgardenarea" property="nrgardenarea" jdbcType="VARCHAR"/>
+            <result column="STARTDATE" property="startdate" jdbcType="DATE"/>
+            <result column="ENDDATE" property="enddate" jdbcType="DATE"/>
+            <result column="FIRSTMNY" property="firstmny" jdbcType="DECIMAL"/>
+            <result column="EVERYMNY" property="everymny" jdbcType="DECIMAL"/>
+            <result column="ASTRICTSTATUS" property="astrictstatus" jdbcType="CHAR"/>
+            <result column="UPDATEDATE" property="updatedate" jdbcType="DATE"/>
+            <result column="ENTERAPPLY_STATE" property="enterapplyState" jdbcType="VARCHAR"/>
+            <result column="DECORATIONAPPLYSTATE" property="decorationapplystate" jdbcType="VARCHAR"/>
             <association property="projectInfo" javaType="cn.rzhd.wuye.bean.ProjectInfo">
                 <id column="PK_PROJECT" property="pkProject"/>
                 <result column="PROJECT_NAME" property="projectName"/>
@@ -153,60 +244,23 @@
     </delete>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
         SELECT
-            DECORATION_APPLY_ID,
-            HOUSE_INFO_ID,
-            CLIENT_NAME,
-            APPLY_TIME,
-            ANTIPATE_TIME,
-            LOCALE_CUSTODIAN,
-            LOCALE_CUSTODIAN_PHONE,
-            DECORATION_PARTS,
-            DECORATE_AREA,
-            CONSTRUCT_PEOPLE_NUMBER,
-            DECORATION_COMPANY,
-            DECORATION_LEADER,
-            "DECORATION_ LEADER_PHONE",
-            DECORATION_DEPOSIT,
-            DECORATION_MANAGEMENT_COST,
-            PASS_PAPERS_COST,
-            PASS_PAPERS_DEPOSIT,
-            AUDIT_STATUS,
-            FEEDBACK1,
-            FEEDBACK2,
-            IS_SPECIAL_DECORATION,
-            SPECIAL_DECORATION_FILE,
-            CREATION_TIME,
-            UPDATE_TIME
-        FROM T_DECORATION_APPLY
-        WHERE DECORATION_APPLY_ID = #{decorationApplyId}
+            *
+        FROM
+            T_DECORATION_APPLY apply, T_HOUSE_INFO_DETAILS house, T_PROJECT_INFO project
+        WHERE
+            apply.HOUSE_INFO_ID = house."pk_house"
+            AND
+            house."pk_project" = project.PK_PROJECT
+            AND
+            DECORATION_APPLY_ID = #{decorationApplyId}
     </select>
     <select id="findDecorationApplyList" resultMap="DecorationApplyMapper">
         SELECT
-            DECORATION_APPLY_ID,
-            HOUSE_INFO_ID,
-            CLIENT_NAME,
-            APPLY_TIME,
-            ANTIPATE_TIME,
-            LOCALE_CUSTODIAN,
-            LOCALE_CUSTODIAN_PHONE,
-            DECORATION_PARTS,
-            DECORATE_AREA,
-            CONSTRUCT_PEOPLE_NUMBER,
-            DECORATION_COMPANY,
-            DECORATION_LEADER,
-            "DECORATION_ LEADER_PHONE",
-            DECORATION_DEPOSIT,
-            DECORATION_MANAGEMENT_COST,
-            PASS_PAPERS_COST,
-            PASS_PAPERS_DEPOSIT,
-            AUDIT_STATUS,
-            FEEDBACK1,
-            FEEDBACK2,
-            IS_SPECIAL_DECORATION,
-            SPECIAL_DECORATION_FILE,
-            CREATION_TIME,
-            UPDATE_TIME
-        FROM T_DECORATION_APPLY
+            apply.*,
+            house.*,
+            project.*
+        FROM T_DECORATION_APPLY apply, T_HOUSE_INFO_DETAILS house, T_PROJECT_INFO project
+        WHERE apply.HOUSE_INFO_ID = house."pk_house" AND house."pk_project" = project.PK_PROJECT
     </select>
     <select id="findDecorationApplyListByQuery" resultMap="DecorationApplyMapper">
         SELECT

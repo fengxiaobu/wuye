@@ -173,13 +173,13 @@
                         <ul class="panel-group level02" id="aside_four_02">
                             <li class="panel" role="tab">
                                 <div class="panel-header">
-                                    <a href="${pageContext.request.contextPath}/dist/enterApply/enterApplyList?pageNum=1&pageSize=5" target="main">入住申请</a>
+                                    <a href="${pageContext.request.contextPath}/dist/enterApply/enterApplyList?pageNum=1&pageSize=500" target="main">入住申请</a>
                                 </div>
                             </li>
 
                             <li class="panel" role="tab">
                                 <div class="panel-header">
-                                    <a target="main" href="${pageContext.request.contextPath}/dist/enterMaterial/findEnterMaterialList?pageNum=1&pageSize=5">入住资料列表</a>
+                                    <a target="main" href="${pageContext.request.contextPath}/dist/enterMaterial/findEnterMaterialList?pageNum=1&pageSize=500">入住资料列表</a>
                                 </div>
 
                             </li>

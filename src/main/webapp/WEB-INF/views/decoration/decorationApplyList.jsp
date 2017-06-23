@@ -93,8 +93,8 @@
                     <tr class="tudiqianyue-tdtr">
                         <td><input type="checkbox" value=""></td>
                         <td>${status.index+1}</td>
-                        <td>${decora.houseInfo.projectInfo.projectName}</td>
-                        <td>${decora.houseInfo.houseProperty}</td>
+                        <td>${decora.houseInfoDetails.project}</td>
+                        <td>${decora.houseInfoDetails.vhname}</td>
                         <td>${decora.clientName}</td>
                       <%--  <td>${decora.clientName}</td>--%>
                         <td><fmt:formatDate value="${decora.applyTime }" pattern="yyyy-MM-dd"/></td>
@@ -126,7 +126,7 @@
                 </c:forEach>
                 </tbody>
             </table>
-            <div align="center">
+           <%-- <div align="center">
                 <ul class="pagination">
                     <li><a href="${pageContext.request.contextPath}/dist/enterApply/enterApplyList?pageNum=1&pageSize=1"
                            target="main">&laquo;</a></li>
@@ -137,7 +137,7 @@
                     </c:forEach>
                     <li><a href="#">&raquo;</a></li>
                 </ul>
-            </div>
+            </div>--%>
         </div>
     </div>
 
