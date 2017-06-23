@@ -302,7 +302,7 @@
         for(var i=0;i<checkboxs.length;i++){
             for(var j=0;j<roles.length;j++){
                 if(roles[j]['roleId']==$(checkboxs[i]).attr("value")){
-                    checkboxs[i].attr("checked",true);
+                    $(checkboxs[i]).prop("checked",true);
                 }
             }
         }
