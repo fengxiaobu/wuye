@@ -98,4 +98,19 @@ public class PortServiceImpl {
         mapper.deleteByPrimaryKey(id);
     }
 
+    /**
+     * @Description 接口地址校验
+     * @param addre
+     */
+    public String check(String addre) {
+        TPortExample example = new TPortExample();
+        example.createCriteria().andAddreEqualTo(addre);
+        List<TPort> list = mapper.selectByExample(example);
+        if(list.isEmpty()){
+            return null;
+        }else{
+            return list.get(0).getTitle();
+        }
+    }
+
 }
