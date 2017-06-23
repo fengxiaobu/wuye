@@ -70,7 +70,7 @@ public class DecorationApplyController {
      */
     @RequestMapping(value = "/upload/batch", method = RequestMethod.POST)
     public @ResponseBody
-    Map<String, String> batchUpload(ResousVO resousVO) {
+    Map<String, String> batchUpload(@RequestBody ResousVO resousVO) {
         System.out.println("resousVO = " + resousVO);
         Map<String, String> result = new HashMap<>();
         Date date = new Date();

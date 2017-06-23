@@ -1,114 +1,166 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="cn.rzhd.wuye.mapper.PerfectInformationMapper" >
-  <resultMap id="BaseResultMap" type="cn.rzhd.wuye.bean.PerfectInformation" >
-    <id column="PERFECT_INFORMATION_ID" property="perfectInformationId" jdbcType="OTHER" />
-    <result column="HOUSE_INFO_ID" property="houseInfoId" jdbcType="CHAR" />
-    <result column="COMPANY_TYPE" property="companyType" jdbcType="DECIMAL" />
-    <result column="CUSTOMER_ID" property="customerId" jdbcType="CHAR" />
-    <result column="HOUSE_PROPERTY_ID" property="housePropertyId" jdbcType="DECIMAL" />
-    <result column="COMPANY_ESTABLISH_TIME" property="companyEstablishTime" jdbcType="DATE" />
-    <result column="SIGN_IN_FUND" property="signInFund" jdbcType="DECIMAL" />
-    <result column="INDUSTRY_INVOLVED_ID" property="industryInvolvedId" jdbcType="DECIMAL" />
-    <result column="MAIN_PRODUCT" property="mainProduct" jdbcType="OTHER" />
-    <result column="COMPANY_COVERAGE_ID" property="companyCoverageId" jdbcType="DECIMAL" />
-    <result column="EMPLOYEE_NUMBER" property="employeeNumber" jdbcType="DECIMAL" />
-    <result column="PROPERTY_TO_ACCESS" property="propertyToAccess" jdbcType="OTHER" />
-    <result column="PROPERTY_TO_ACCESS_CONTACT" property="propertyToAccessContact" jdbcType="OTHER" />
-    <result column="EMERGENCY_CONTACT_PERSON" property="emergencyContactPerson" jdbcType="OTHER" />
-    <result column="EMERGENCY_CONTACT_NUMBER" property="emergencyContactNumber" jdbcType="OTHER" />
-    <result column="IS_HIGH_NEW" property="isHighNew" jdbcType="DECIMAL" />
-    <result column="HIGH_NEW_TYPE" property="highNewType" jdbcType="DECIMAL" />
-    <result column="CERTIFICATE_TIME" property="certificateTime" jdbcType="DATE" />
-    <result column="PATENT_TYPE_ID" property="patentTypeId" jdbcType="DECIMAL" />
-    <result column="PATENT_NUMBER" property="patentNumber" jdbcType="DECIMAL" />
-    <result column="IS_UP_BAZAAR" property="isUpBazaar" jdbcType="DECIMAL" />
-    <result column="UP_BAZAAR_TYPE_ID" property="upBazaarTypeId" jdbcType="DECIMAL" />
-    <result column="HANG_BOARD_TIME" property="hangBoardTime" jdbcType="DATE" />
-    <result column="STOCK_CODE" property="stockCode" jdbcType="OTHER" />
-    <result column="NOTES" property="notes" jdbcType="OTHER" />
-    <result column="STATUS" property="status" jdbcType="DECIMAL" />
-    <result column="CARTE_TIME" property="carteTime" jdbcType="DATE" />
-    <result column="UPDATE_TIME" property="updateTime" jdbcType="DATE" />
-    <result column="U_RAVINE_PROPERTY_ID" property="uRavinePropertyId" jdbcType="CHAR" />
-  </resultMap>
-  <delete id="deleteByPrimaryKey" parameterType="String" >
-    delete from T_PERFECT_INFORMATION
-    where PERFECT_INFORMATION_ID = #{perfectInformationId,jdbcType=OTHER}
-  </delete>
-  <insert id="insert" parameterType="cn.rzhd.wuye.bean.PerfectInformation" >
-    insert into T_PERFECT_INFORMATION (PERFECT_INFORMATION_ID, HOUSE_INFO_ID, COMPANY_TYPE, 
-      CUSTOMER_ID, HOUSE_PROPERTY_ID, COMPANY_ESTABLISH_TIME, 
-      SIGN_IN_FUND, INDUSTRY_INVOLVED_ID, MAIN_PRODUCT, 
-      COMPANY_COVERAGE_ID, EMPLOYEE_NUMBER, PROPERTY_TO_ACCESS, 
-      PROPERTY_TO_ACCESS_CONTACT, EMERGENCY_CONTACT_PERSON, 
-      EMERGENCY_CONTACT_NUMBER, IS_HIGH_NEW, HIGH_NEW_TYPE, 
-      CERTIFICATE_TIME, PATENT_TYPE_ID, PATENT_NUMBER, 
-      IS_UP_BAZAAR, UP_BAZAAR_TYPE_ID, HANG_BOARD_TIME, 
-      STOCK_CODE, NOTES, STATUS, 
-      CARTE_TIME, UPDATE_TIME, U_RAVINE_PROPERTY_ID
-      )
-    values (#{perfectInformationId,jdbcType=OTHER}, #{houseInfoId,jdbcType=CHAR}, #{companyType,jdbcType=DECIMAL}, 
-      #{customerId,jdbcType=CHAR}, #{housePropertyId,jdbcType=DECIMAL}, #{companyEstablishTime,jdbcType=DATE}, 
-      #{signInFund,jdbcType=DECIMAL}, #{industryInvolvedId,jdbcType=DECIMAL}, #{mainProduct,jdbcType=OTHER}, 
-      #{companyCoverageId,jdbcType=DECIMAL}, #{employeeNumber,jdbcType=DECIMAL}, #{propertyToAccess,jdbcType=OTHER}, 
-      #{propertyToAccessContact,jdbcType=OTHER}, #{emergencyContactPerson,jdbcType=OTHER}, 
-      #{emergencyContactNumber,jdbcType=OTHER}, #{isHighNew,jdbcType=DECIMAL}, #{highNewType,jdbcType=DECIMAL}, 
-      #{certificateTime,jdbcType=DATE}, #{patentTypeId,jdbcType=DECIMAL}, #{patentNumber,jdbcType=DECIMAL}, 
-      #{isUpBazaar,jdbcType=DECIMAL}, #{upBazaarTypeId,jdbcType=DECIMAL}, #{hangBoardTime,jdbcType=DATE}, 
-      #{stockCode,jdbcType=OTHER}, #{notes,jdbcType=OTHER}, #{status,jdbcType=DECIMAL}, 
-      #{carteTime,jdbcType=DATE}, #{updateTime,jdbcType=DATE}, #{uRavinePropertyId,jdbcType=CHAR}
-      )
-  </insert>
-  <update id="updateByPrimaryKey" parameterType="cn.rzhd.wuye.bean.PerfectInformation" >
-    update T_PERFECT_INFORMATION
-    set HOUSE_INFO_ID = #{houseInfoId,jdbcType=CHAR},
-      COMPANY_TYPE = #{companyType,jdbcType=DECIMAL},
-      CUSTOMER_ID = #{customerId,jdbcType=CHAR},
-      HOUSE_PROPERTY_ID = #{housePropertyId,jdbcType=DECIMAL},
-      COMPANY_ESTABLISH_TIME = #{companyEstablishTime,jdbcType=DATE},
-      SIGN_IN_FUND = #{signInFund,jdbcType=DECIMAL},
-      INDUSTRY_INVOLVED_ID = #{industryInvolvedId,jdbcType=DECIMAL},
-      MAIN_PRODUCT = #{mainProduct,jdbcType=OTHER},
-      COMPANY_COVERAGE_ID = #{companyCoverageId,jdbcType=DECIMAL},
-      EMPLOYEE_NUMBER = #{employeeNumber,jdbcType=DECIMAL},
-      PROPERTY_TO_ACCESS = #{propertyToAccess,jdbcType=OTHER},
-      PROPERTY_TO_ACCESS_CONTACT = #{propertyToAccessContact,jdbcType=OTHER},
-      EMERGENCY_CONTACT_PERSON = #{emergencyContactPerson,jdbcType=OTHER},
-      EMERGENCY_CONTACT_NUMBER = #{emergencyContactNumber,jdbcType=OTHER},
-      IS_HIGH_NEW = #{isHighNew,jdbcType=DECIMAL},
-      HIGH_NEW_TYPE = #{highNewType,jdbcType=DECIMAL},
-      CERTIFICATE_TIME = #{certificateTime,jdbcType=DATE},
-      PATENT_TYPE_ID = #{patentTypeId,jdbcType=DECIMAL},
-      PATENT_NUMBER = #{patentNumber,jdbcType=DECIMAL},
-      IS_UP_BAZAAR = #{isUpBazaar,jdbcType=DECIMAL},
-      UP_BAZAAR_TYPE_ID = #{upBazaarTypeId,jdbcType=DECIMAL},
-      HANG_BOARD_TIME = #{hangBoardTime,jdbcType=DATE},
-      STOCK_CODE = #{stockCode,jdbcType=OTHER},
-      NOTES = #{notes,jdbcType=OTHER},
-      STATUS = #{status,jdbcType=DECIMAL},
-      CARTE_TIME = #{carteTime,jdbcType=DATE},
-      UPDATE_TIME = #{updateTime,jdbcType=DATE},
-      U_RAVINE_PROPERTY_ID = #{uRavinePropertyId,jdbcType=CHAR}
-    where PERFECT_INFORMATION_ID = #{perfectInformationId,jdbcType=OTHER}
-  </update>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
-    select PERFECT_INFORMATION_ID, HOUSE_INFO_ID, COMPANY_TYPE, CUSTOMER_ID, HOUSE_PROPERTY_ID, 
-    COMPANY_ESTABLISH_TIME, SIGN_IN_FUND, INDUSTRY_INVOLVED_ID, MAIN_PRODUCT, COMPANY_COVERAGE_ID, 
-    EMPLOYEE_NUMBER, PROPERTY_TO_ACCESS, PROPERTY_TO_ACCESS_CONTACT, EMERGENCY_CONTACT_PERSON, 
-    EMERGENCY_CONTACT_NUMBER, IS_HIGH_NEW, HIGH_NEW_TYPE, CERTIFICATE_TIME, PATENT_TYPE_ID, 
-    PATENT_NUMBER, IS_UP_BAZAAR, UP_BAZAAR_TYPE_ID, HANG_BOARD_TIME, STOCK_CODE, NOTES, 
-    STATUS, CARTE_TIME, UPDATE_TIME, U_RAVINE_PROPERTY_ID
-    from T_PERFECT_INFORMATION
-    where PERFECT_INFORMATION_ID = #{perfectInformationId,jdbcType=OTHER}
-  </select>
-  <select id="selectAll" resultMap="BaseResultMap" >
-    select PERFECT_INFORMATION_ID, HOUSE_INFO_ID, COMPANY_TYPE, CUSTOMER_ID, HOUSE_PROPERTY_ID, 
-    COMPANY_ESTABLISH_TIME, SIGN_IN_FUND, INDUSTRY_INVOLVED_ID, MAIN_PRODUCT, COMPANY_COVERAGE_ID, 
-    EMPLOYEE_NUMBER, PROPERTY_TO_ACCESS, PROPERTY_TO_ACCESS_CONTACT, EMERGENCY_CONTACT_PERSON, 
-    EMERGENCY_CONTACT_NUMBER, IS_HIGH_NEW, HIGH_NEW_TYPE, CERTIFICATE_TIME, PATENT_TYPE_ID, 
-    PATENT_NUMBER, IS_UP_BAZAAR, UP_BAZAAR_TYPE_ID, HANG_BOARD_TIME, STOCK_CODE, NOTES, 
-    STATUS, CARTE_TIME, UPDATE_TIME, U_RAVINE_PROPERTY_ID
-    from T_PERFECT_INFORMATION
-  </select>
+<mapper namespace="cn.rzhd.wuye.mapper.PerfectInformationMapper">
+    <resultMap id="BaseResultMap" type="cn.rzhd.wuye.bean.PerfectInformation">
+        <id column="PERFECT_INFORMATION_ID" property="perfectInformationId"/>
+        <result column="HOUSE_INFO_ID" property="houseInfoId"/>
+        <result column="COMPANY_TYPE" property="companyType"/>
+        <result column="CUSTOMER_ID" property="customerId"/>
+        <result column="HOUSE_PROPERTY_ID" property="housePropertyId"/>
+        <result column="COMPANY_ESTABLISH_TIME" property="companyEstablishTime"/>
+        <result column="SIGN_IN_FUND" property="signInFund"/>
+        <result column="INDUSTRY_INVOLVED_ID" property="industryInvolvedId"/>
+        <result column="MAIN_PRODUCT" property="mainProduct"/>
+        <result column="COMPANY_COVERAGE_ID" property="companyCoverageId"/>
+        <result column="EMPLOYEE_NUMBER" property="employeeNumber"/>
+        <result column="PROPERTY_TO_ACCESS" property="propertyToAccess"/>
+        <result column="PROPERTY_TO_ACCESS_CONTACT" property="propertyToAccessContact"/>
+        <result column="EMERGENCY_CONTACT_PERSON" property="emergencyContactPerson"/>
+        <result column="EMERGENCY_CONTACT_NUMBER" property="emergencyContactNumber"/>
+        <result column="IS_HIGH_NEW" property="isHighNew"/>
+        <result column="HIGH_NEW_TYPE" property="highNewType"/>
+        <result column="CERTIFICATE_TIME" property="certificateTime"/>
+        <result column="PATENT_TYPE_ID" property="patentTypeId"/>
+        <result column="PATENT_NUMBER" property="patentNumber"/>
+        <result column="IS_UP_BAZAAR" property="isUpBazaar"/>
+        <result column="UP_BAZAAR_TYPE_ID" property="upBazaarTypeId"/>
+        <result column="HANG_BOARD_TIME" property="hangBoardTime"/>
+        <result column="STOCK_CODE" property="stockCode"/>
+        <result column="NOTES" property="notes"/>
+        <result column="STATUS" property="status"/>
+        <result column="CARTE_TIME" property="carteTime"/>
+        <result column="UPDATE_TIME" property="updateTime"/>
+        <result column="U_RAVINE_PROPERTY_ID" property="uRavinePropertyId"/>
+    </resultMap>
+    <delete id="deleteByPrimaryKey" parameterType="String">
+        DELETE FROM T_PERFECT_INFORMATION
+        WHERE PERFECT_INFORMATION_ID = #{perfectInformationId}
+    </delete>
+    <insert id="insert" parameterType="cn.rzhd.wuye.bean.PerfectInformation">
+        INSERT INTO T_PERFECT_INFORMATION (PERFECT_INFORMATION_ID, HOUSE_INFO_ID, COMPANY_TYPE,
+                                           CUSTOMER_ID, HOUSE_PROPERTY_ID, COMPANY_ESTABLISH_TIME,
+                                           SIGN_IN_FUND, INDUSTRY_INVOLVED_ID, MAIN_PRODUCT,
+                                           COMPANY_COVERAGE_ID, EMPLOYEE_NUMBER, PROPERTY_TO_ACCESS,
+                                           PROPERTY_TO_ACCESS_CONTACT, EMERGENCY_CONTACT_PERSON,
+                                           EMERGENCY_CONTACT_NUMBER, IS_HIGH_NEW, HIGH_NEW_TYPE,
+                                           CERTIFICATE_TIME, PATENT_TYPE_ID, PATENT_NUMBER,
+                                           IS_UP_BAZAAR, UP_BAZAAR_TYPE_ID, HANG_BOARD_TIME,
+                                           STOCK_CODE, NOTES, STATUS,
+                                           CARTE_TIME, UPDATE_TIME, U_RAVINE_PROPERTY_ID
+        )
+        VALUES (#{perfectInformationId}, #{houseInfoId}, #{companyType},
+                                         #{customerId}, #{housePropertyId}, #{companyEstablishTime},
+                                         #{signInFund}, #{industryInvolvedId}, #{mainProduct},
+                                         #{companyCoverageId}, #{employeeNumber}, #{propertyToAccess},
+                                                                                  #{propertyToAccessContact},
+                                                                                  #{emergencyContactPerson},
+                                                                                  #{emergencyContactNumber},
+                                                                                  #{isHighNew}, #{highNewType},
+                                                                                  #{certificateTime}, #{patentTypeId},
+                                                                                  #{patentNumber},
+                                                                                  #{isUpBazaar}, #{upBazaarTypeId},
+                #{hangBoardTime},
+                #{stockCode}, #{notes}, #{status},
+                #{carteTime}, #{updateTime}, #{uRavinePropertyId}
+        )
+    </insert>
+    <update id="updateByPrimaryKey" parameterType="cn.rzhd.wuye.bean.PerfectInformation">
+        UPDATE T_PERFECT_INFORMATION
+        SET HOUSE_INFO_ID              = #{houseInfoId},
+            COMPANY_TYPE               = #{companyType},
+            CUSTOMER_ID                = #{customerId},
+            HOUSE_PROPERTY_ID          = #{housePropertyId},
+            COMPANY_ESTABLISH_TIME     = #{companyEstablishTime},
+            SIGN_IN_FUND               = #{signInFund},
+            INDUSTRY_INVOLVED_ID       = #{industryInvolvedId},
+            MAIN_PRODUCT               = #{mainProduct},
+            COMPANY_COVERAGE_ID        = #{companyCoverageId},
+            EMPLOYEE_NUMBER            = #{employeeNumber},
+            PROPERTY_TO_ACCESS         = #{propertyToAccess},
+            PROPERTY_TO_ACCESS_CONTACT = #{propertyToAccessContact},
+            EMERGENCY_CONTACT_PERSON   = #{emergencyContactPerson},
+            EMERGENCY_CONTACT_NUMBER   = #{emergencyContactNumber},
+            IS_HIGH_NEW                = #{isHighNew},
+            HIGH_NEW_TYPE              = #{highNewType},
+            CERTIFICATE_TIME           = #{certificateTime},
+            PATENT_TYPE_ID             = #{patentTypeId},
+            PATENT_NUMBER              = #{patentNumber},
+            IS_UP_BAZAAR               = #{isUpBazaar},
+            UP_BAZAAR_TYPE_ID          = #{upBazaarTypeId},
+            HANG_BOARD_TIME            = #{hangBoardTime},
+            STOCK_CODE                 = #{stockCode},
+            NOTES                      = #{notes},
+            STATUS                     = #{status},
+            CARTE_TIME                 = #{carteTime},
+            UPDATE_TIME                = #{updateTime},
+            U_RAVINE_PROPERTY_ID       = #{uRavinePropertyId}
+        WHERE PERFECT_INFORMATION_ID = #{perfectInformationId}
+    </update>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        SELECT
+            PERFECT_INFORMATION_ID,
+            HOUSE_INFO_ID,
+            COMPANY_TYPE,
+            CUSTOMER_ID,
+            HOUSE_PROPERTY_ID,
+            COMPANY_ESTABLISH_TIME,
+            SIGN_IN_FUND,
+            INDUSTRY_INVOLVED_ID,
+            MAIN_PRODUCT,
+            COMPANY_COVERAGE_ID,
+            EMPLOYEE_NUMBER,
+            PROPERTY_TO_ACCESS,
+            PROPERTY_TO_ACCESS_CONTACT,
+            EMERGENCY_CONTACT_PERSON,
+            EMERGENCY_CONTACT_NUMBER,
+            IS_HIGH_NEW,
+            HIGH_NEW_TYPE,
+            CERTIFICATE_TIME,
+            PATENT_TYPE_ID,
+            PATENT_NUMBER,
+            IS_UP_BAZAAR,
+            UP_BAZAAR_TYPE_ID,
+            HANG_BOARD_TIME,
+            STOCK_CODE,
+            NOTES,
+            STATUS,
+            CARTE_TIME,
+            UPDATE_TIME,
+            U_RAVINE_PROPERTY_ID
+        FROM T_PERFECT_INFORMATION
+        WHERE PERFECT_INFORMATION_ID = #{perfectInformationId}
+    </select>
+    <select id="selectAll" resultMap="BaseResultMap">
+        SELECT
+            PERFECT_INFORMATION_ID,
+            HOUSE_INFO_ID,
+            COMPANY_TYPE,
+            CUSTOMER_ID,
+            HOUSE_PROPERTY_ID,
+            COMPANY_ESTABLISH_TIME,
+            SIGN_IN_FUND,
+            INDUSTRY_INVOLVED_ID,
+            MAIN_PRODUCT,
+            COMPANY_COVERAGE_ID,
+            EMPLOYEE_NUMBER,
+            PROPERTY_TO_ACCESS,
+            PROPERTY_TO_ACCESS_CONTACT,
+            EMERGENCY_CONTACT_PERSON,
+            EMERGENCY_CONTACT_NUMBER,
+            IS_HIGH_NEW,
+            HIGH_NEW_TYPE,
+            CERTIFICATE_TIME,
+            PATENT_TYPE_ID,
+            PATENT_NUMBER,
+            IS_UP_BAZAAR,
+            UP_BAZAAR_TYPE_ID,
+            HANG_BOARD_TIME,
+            STOCK_CODE,
+            NOTES,
+            STATUS,
+            CARTE_TIME,
+            UPDATE_TIME,
+            U_RAVINE_PROPERTY_ID
+        FROM T_PERFECT_INFORMATION
+    </select>
 </mapper>

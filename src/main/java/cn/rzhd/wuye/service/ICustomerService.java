@@ -18,5 +18,5 @@ public interface ICustomerService {
      * @param customerVO
      */
     void saveCustomer(CustomerVO customerVO) throws Exception;
-
+    void updadteState(String currentFlow,  String vcCode);
 }
