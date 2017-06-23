@@ -2,7 +2,9 @@ package cn.rzhd.wuye.controller.web;
 
 import cn.rzhd.wuye.bean.Customer;
 import cn.rzhd.wuye.bean.PerfectInformation;
+import cn.rzhd.wuye.mapper.PerfectInformationMapper;
 import cn.rzhd.wuye.service.ICustomerCentreService;
+import cn.rzhd.wuye.service.IPerfectInformationService;
 import cn.rzhd.wuye.utils.JsonUtils;
 import cn.rzhd.wuye.utils.UploadHead;
 
@@ -40,6 +42,8 @@ public class CustomerCentreController extends HttpServlet {
 
 	@Autowired
 	private ICustomerCentreService customerCentreService;
+	@Autowired
+	IPerfectInformationService perfectInformationService;
 
 	/**
 	 * 查询用户信息和入驻信息
@@ -85,9 +89,22 @@ public class CustomerCentreController extends HttpServlet {
 	 * @return
 	 */
 	@RequestMapping(value = "/updatePerfectInformation", method = RequestMethod.POST)
-	public void updatePerfectInformation(PerfectInformation perfectInformation,String customerId) {
-		perfectInformation = customerCentreService.getPerfectInformation(customerId);
-		customerCentreService.updatePerfectInformation(perfectInformation);
+	public void updatePerfectInformation(PerfectInformation perfectInformation,String Vccode) {
+		perfectInformation.setPerfectInformationId(Vccode);
+		perfectInformationService.updateByVccode(perfectInformation);
+	}
+	
+	
+	/**
+	 * 完善资料
+	 * 
+	 * @param perfectInformation
+	 * @param Vccode
+	 */
+	@RequestMapping(value = "/savePerfectInformation", method = RequestMethod.POST)
+	public void savePerfectInformation(PerfectInformation perfectInformation,String Vccode) {
+		perfectInformation.setPerfectInformationId(Vccode);
+		perfectInformationService.save(perfectInformation);
 	}
 
 }

@@ -1,5 +1,6 @@
 package cn.rzhd.wuye.mapper;
 
+import cn.rzhd.wuye.bean.HouseInfoDetails;
 import cn.rzhd.wuye.vo.HouseVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -23,4 +24,6 @@ public interface HouseInfoDetailsMapper {
     List<HouseVO> getAll();
 
     List<HouseVO> getHouseInfoByName(String pk_house);
+
+    HouseInfoDetails selectByPkHouse(@Param("pkHouse") String pkHouse);
 }

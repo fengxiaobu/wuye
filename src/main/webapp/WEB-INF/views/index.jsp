@@ -69,7 +69,7 @@
 
                             <li class="panel" role="tab">
                                 <div class="panel-header">
-                                    <a target="main" href="/houseList">房产信息</a>
+                                    <a href="${pageContext.request.contextPath}/user/getAllHouseInfo?pageNum=1&pageSize=10" target="main">房产信息</a>
                                 </div>
                             </li>
                         </ul>

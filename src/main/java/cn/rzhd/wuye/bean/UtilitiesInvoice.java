@@ -6,26 +6,43 @@ import java.util.Date;
 
 public class UtilitiesInvoice implements Serializable{
     private static final long serialVersionUID = 1L;
+    /**
+     * 水电发票主键
+     */
     private Long utilitiesInvoiceId;
-
+    /**
+     * 开票类型(0--业主,1--代付)
+     */
     private Integer invoiceType;
-
+    /**
+     * 开票公司
+     */
     private String invoiceCompany;
 
     private BigDecimal basicWaterFee;
-
+    /**
+     * 水费发票金额
+     */
     private BigDecimal basicWaterInvoiceSum;
-
+    /**
+     * 记录创建时间
+     */
     private Date carteTime;
-
+    /**
+     * 记录更新时间
+     */
     private Date updateTime;
-
+    /**
+     * 关联缴费记录ID
+     */
     private Long utilitiesDetailsId;
-
-    private String status;
-
+    /**
+     *
+     */
     private BigDecimal basicElectricFee;
-
+    /**
+     * 电费开票金额
+     */
     private BigDecimal basicElectricInvoiceSum;
 
     public Long getUtilitiesInvoiceId() {
@@ -90,14 +107,6 @@ public class UtilitiesInvoice implements Serializable{
 
     public void setUtilitiesDetailsId(Long utilitiesDetailsId) {
         this.utilitiesDetailsId = utilitiesDetailsId;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 
     public BigDecimal getBasicElectricFee() {

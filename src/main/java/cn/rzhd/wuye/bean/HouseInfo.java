@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import cn.rzhd.wuye.vo.HouseVO;
+
 /**
  * © 2017 RZHD.CN
  *
@@ -89,6 +91,8 @@ public class HouseInfo implements Serializable {
      * 缴费限制更新日期
      */
     private Date updateDate;
+    
+    private HouseVO houseVO;
 
     public String getEnterApplyState() {
         return enterApplyState;
@@ -106,27 +110,6 @@ public class HouseInfo implements Serializable {
         this.decorationApplyState = decorationApplyState;
     }
 
-    @Override
-    public String toString() {
-        return "HouseInfo{" +
-                ", houseInfoId='" + houseInfoId + '\'' +
-                ", projectInfoId='" + projectInfoId + '\'' +
-                ", houseProperty='" + houseProperty + '\'' +
-                ", enterStatus=" + enterStatus +
-                ", starLevel=" + starLevel +
-                ", status=" + status +
-                ", creationTime=" + creationTime +
-                ", updateTime=" + updateTime +
-                ", customerId='" + customerId + '\'' +
-                ", projectInfo=" + projectInfo +
-                ", startDate=" + startDate +
-                ", endDate=" + endDate +
-                ", firstMoney=" + firstMoney +
-                ", everyMoney=" + everyMoney +
-                ", astrictStatus='" + astrictStatus + '\'' +
-                ", updateDate=" + updateDate +
-                '}';
-    }
 
     public ProjectInfo getProjectInfo() {
         return projectInfo;
@@ -292,4 +275,24 @@ public class HouseInfo implements Serializable {
     public void setUpdateDate(Date updateDate) {
         this.updateDate = updateDate;
     }
+
+	public HouseVO getHouseVO() {
+		return houseVO;
+	}
+
+	public void setHouseVO(HouseVO houseVO) {
+		this.houseVO = houseVO;
+	}
+
+	@Override
+	public String toString() {
+		return "HouseInfo [enterApplyState=" + enterApplyState + ", decorationApplyState=" + decorationApplyState
+				+ ", houseInfoId=" + houseInfoId + ", projectInfoId=" + projectInfoId + ", houseProperty="
+				+ houseProperty + ", enterStatus=" + enterStatus + ", starLevel=" + starLevel + ", status=" + status
+				+ ", creationTime=" + creationTime + ", updateTime=" + updateTime + ", customerId=" + customerId
+				+ ", projectInfo=" + projectInfo + ", startDate=" + startDate + ", endDate=" + endDate + ", firstMoney="
+				+ firstMoney + ", everyMoney=" + everyMoney + ", astrictStatus=" + astrictStatus + ", updateDate="
+				+ updateDate + ", houseVO=" + houseVO + "]";
+	}
+    
 }

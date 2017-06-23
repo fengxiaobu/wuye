@@ -27,8 +27,12 @@ public class SellContractBackController {
     public String sellContractList(Model model, Integer pageNum, Integer pageSize) {
     	PageHelper.startPage(pageNum, pageSize);
     	List<SignVO> signVOs = sellContractService.getBackAll();
+    	for (SignVO signVO : signVOs) {
+			System.out.println(signVO);
+		}
     	
     	Page page = (Page) signVOs;
+    	
         model.addAttribute("sellContractList", signVOs);
 
         model.addAttribute("pages", page.getPages());

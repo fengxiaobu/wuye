@@ -1,5 +1,6 @@
 package cn.rzhd.wuye.controller;
 
+import cn.rzhd.wuye.bean.HouseInfoDetails;
 import cn.rzhd.wuye.service.IHouseInfoDetailsService;
 import cn.rzhd.wuye.vo.HouseVO;
 import com.github.pagehelper.Page;
@@ -45,12 +46,12 @@ public class HouseInfoDetailsBackController {
         String[] split = pkHouses.split("_");
         if (split != null && split.length > 0) {
             for (String pkHouse : split) {
-                HouseVO houseVO = houseInfoDetailsService.selectById(pkHouse);
+                HouseInfoDetails house = houseInfoDetailsService.selectByPkHouse(pkHouse);
                 map = new Hashtable<>();
-                map.put("pkHouse", houseVO.getPk_house());
-                map.put("vhName", houseVO.getVhname());
-                map.put("enterApplyStats", houseVO.getVdef8() == null ? "0" : houseVO.getVdef8());
-                map.put("decorationApplyState", houseVO.getVdef9() == null ? "0" : houseVO.getVdef9());
+                map.put("pkHouse", house.getPkHouse());
+                map.put("vhName", house.getVhname());
+                map.put("enterApplyStats", house.getEnterapplyState() == null ? "0" : house.getEnterapplyState());
+                map.put("decorationApplyState", house.getDecorationapplystate() == null ? "0" : house.getDecorationapplystate());
                 list.add(map);
             }
             result.put("state", 1);

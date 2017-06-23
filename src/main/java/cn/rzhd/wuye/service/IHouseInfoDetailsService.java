@@ -1,5 +1,6 @@
 package cn.rzhd.wuye.service;
 
+import cn.rzhd.wuye.bean.HouseInfoDetails;
 import cn.rzhd.wuye.vo.HouseVO;
 
 import java.util.List;
@@ -17,6 +18,8 @@ public interface IHouseInfoDetailsService {
      * @param houseInfoDetails
      */
     void saveHouseInfoDetails(HouseVO houseInfoDetails) throws Exception;
+    
+    List<HouseVO> selectAll();
 
 
     List<HouseVO> getHouseInfoDetails(String pk_house);
@@ -32,4 +35,6 @@ public interface IHouseInfoDetailsService {
     void updateHouseInfoDetails(HouseVO houseVO);
 
     void updateHouse(String pkHouse, String enterApplyState);
+
+    HouseInfoDetails selectByPkHouse(String pkHouse);
 }

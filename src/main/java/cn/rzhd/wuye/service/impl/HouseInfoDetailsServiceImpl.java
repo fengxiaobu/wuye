@@ -1,5 +1,6 @@
 package cn.rzhd.wuye.service.impl;
 
+import cn.rzhd.wuye.bean.HouseInfoDetails;
 import cn.rzhd.wuye.mapper.HouseInfoDetailsMapper;
 import cn.rzhd.wuye.service.IHouseInfoDetailsService;
 import cn.rzhd.wuye.vo.HouseVO;
@@ -58,6 +59,17 @@ public class HouseInfoDetailsServiceImpl implements IHouseInfoDetailsService {
     @Override
     public void updateHouse(String pkHouse, String enterApplyState) {
         mapper.updateHouse(pkHouse, enterApplyState);
+    }
+
+    @Override
+    public HouseInfoDetails selectByPkHouse(String pkHouse) {
+        return mapper.selectByPkHouse(pkHouse);
+    }
+
+    @Override
+    public List<HouseVO> selectAll() {
+        List<HouseVO> houseVOs = mapper.selectAll();
+        return houseVOs;
     }
 
 }
