@@ -6,8 +6,7 @@
 <head>
     <meta charset="utf-8">
     <title>首页</title>
-    <link rel="stylesheet" type="text/css"
-          href="${pageContext.request.contextPath}/js/libs/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/js/libs/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css">
 </head>
 <body>
@@ -38,7 +37,6 @@
             <table class="table table-bordered tudiqianyue-table">
                 <thead>
                 <tr class="info">
-		  			<th rowspan="2">选择</th>
                     <th rowspan="2">序号</th>
                     <th rowspan="2">通知类型</th>
                     <th rowspan="2">通知名称</th>
@@ -52,7 +50,6 @@
                 <tbody class="tudiqianyue-tbody">
                 <c:forEach items="${messageManageList}" var="messageManageList" varStatus="status">
                     <tr class="tudiqianyue-tdtr">
-                        <td><input type="checkbox" value=""></td>
                         <td>${status.index+1}</td>
                         <td>${messageManageList.type}</td>
                         <td>${messageManageList.name}</td>

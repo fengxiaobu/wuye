@@ -23,5 +23,7 @@ public interface HouseInfoMapper {
     void delete(Long id);
 
     HouseInfo selectByQuery(@Param("customerid") String customerid);
+    
+    List<HouseInfo> getHouseInfo();
 
 }
