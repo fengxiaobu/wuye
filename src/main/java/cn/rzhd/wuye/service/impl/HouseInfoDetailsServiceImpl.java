@@ -50,4 +50,10 @@ public class HouseInfoDetailsServiceImpl implements IHouseInfoDetailsService {
 		return houseVOs;
 	}
 
+	@Override
+	public List<HouseVO> selectAll() {
+		List<HouseVO> houseVOs = mapper.selectAll();
+		return houseVOs;
+	}
+
 }

@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import static org.junit.Assert.*;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -25,6 +27,8 @@ import java.util.List;
 public class HouseInfoServiceTest {
     @Autowired
     IHouseInfoService houseInfoService;
+    @Autowired
+    HouseInfoMapper mapper;
 
     @Test
     public void getByIdTest(){
@@ -82,5 +86,14 @@ public class HouseInfoServiceTest {
     public void str2MapTest(){
         
     }
+    
+    
+    @Test
+	public void test1() throws Exception {
+		List<HouseInfo> houseInfo = mapper.getHouseInfo();
+		for (HouseInfo info : houseInfo) {
+			System.out.println(info);
+		}
+	}
 }
 

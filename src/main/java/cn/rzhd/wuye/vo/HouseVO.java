@@ -50,15 +50,25 @@ public class HouseVO implements Serializable {
 	private BigDecimal everyMoney;// 每月限制缴费金额
 	private String astrictStatus;// 限制缴费状态Y--启用,N--禁用
 	private Date updateDate;// 更新时间
-	private ProjectInfo projectInfo;//关联的项目信息
+	private ProjectInfo projectInfo;// 关联的项目信息
 	private String vdef8;// 备用字段8
 	private String vdef9;// 备用字段9
 	private String vdef10;// 备用字段10
-	
+
+	private Date startdate;
+	private Date enddate;
+	private Long firstmny;
+	private Long everymny;
+	private String astrictstatus;
+	private Date updatedate;
+	private String enterapply_state;
+	private String decorationapplystate;
+	private String manage_id;
+
 	private ProjectVO projectVO;
 	private CustomerVO customerVO;
 	private SignVO signVO;
-	
+
 	public CustomerVO getCustomerVO() {
 		return customerVO;
 	}
@@ -78,7 +88,7 @@ public class HouseVO implements Serializable {
 	public ProjectVO getProjectVO() {
 		return projectVO;
 	}
-	
+
 	public void setProjectVO(ProjectVO projectVO) {
 		this.projectVO = projectVO;
 	}
@@ -86,7 +96,6 @@ public class HouseVO implements Serializable {
 	public String getPk_corp() {
 		return pk_corp;
 	}
-
 
 	public void setPk_corp(String pk_corp) {
 		this.pk_corp = pk_corp;
@@ -388,37 +397,98 @@ public class HouseVO implements Serializable {
 		this.vdef10 = vdef10;
 	}
 
+	public Date getStartdate() {
+		return startdate;
+	}
+
+	public void setStartdate(Date startdate) {
+		this.startdate = startdate;
+	}
+
+	public Date getEnddate() {
+		return enddate;
+	}
+
+	public void setEnddate(Date enddate) {
+		this.enddate = enddate;
+	}
+
+	public Long getFirstmny() {
+		return firstmny;
+	}
+
+	public void setFirstmny(Long firstmny) {
+		this.firstmny = firstmny;
+	}
+
+	public Long getEverymny() {
+		return everymny;
+	}
+
+	public void setEverymny(Long everymny) {
+		this.everymny = everymny;
+	}
+
+	public String getAstrictstatus() {
+		return astrictstatus;
+	}
+
+	public void setAstrictstatus(String astrictstatus) {
+		this.astrictstatus = astrictstatus;
+	}
+
+	public Date getUpdatedate() {
+		return updatedate;
+	}
+
+	public void setUpdatedate(Date updatedate) {
+		this.updatedate = updatedate;
+	}
+
+	public String getEnterapply_state() {
+		return enterapply_state;
+	}
+
+	public void setEnterapply_state(String enterapply_state) {
+		this.enterapply_state = enterapply_state;
+	}
+
+	public String getDecorationapplystate() {
+		return decorationapplystate;
+	}
+
+	public void setDecorationapplystate(String decorationapplystate) {
+		this.decorationapplystate = decorationapplystate;
+	}
+
+	public String getManage_id() {
+		return manage_id;
+	}
+
+	public void setManage_id(String manage_id) {
+		this.manage_id = manage_id;
+	}
+
 	@Override
 	public String toString() {
-		return "HouseVO{" +
-				"pk_corp='" + pk_corp + '\'' +
-				", pk_house='" + pk_house + '\'' +
-				", pk_project='" + pk_project + '\'' +
-				", project='" + project + '\'' +
-				", building='" + building + '\'' +
-				", ifloor='" + ifloor + '\'' +
-				", vhcell='" + vhcell + '\'' +
-				", vhnum='" + vhnum + '\'' +
-				", vhcode='" + vhcode + '\'' +
-				", vhname='" + vhname + '\'' +
-				", otation='" + otation + '\'' +
-				", room='" + room + '\'' +
-				", situation='" + situation + '\'' +
-				", fsellmethod='" + fsellmethod + '\'' +
-				", managestate='" + managestate + '\'' +
-				", nbuildarea='" + nbuildarea + '\'' +
-				", ninarea='" + ninarea + '\'' +
-				", nleaseoutarea='" + nleaseoutarea + '\'' +
-				", nmanagearea='" + nmanagearea + '\'' +
-				", nsellarea='" + nsellarea + '\'' +
-				", npublicarea='" + npublicarea + '\'' +
-				", nunderlinearea='" + nunderlinearea + '\'' +
-				", ngardenarea='" + ngardenarea + '\'' +
-				", nrpublicarea='" + nrpublicarea + '\'' +
-				", nrinarea='" + nrinarea + '\'' +
-				", nrbuildarea='" + nrbuildarea + '\'' +
-				", nrunderlinearea='" + nrunderlinearea + '\'' +
-				", nrgardenarea='" + nrgardenarea + '\'' +
-				'}';
+		return "HouseVO [pk_corp=" + pk_corp + ", pk_house=" + pk_house + ", pk_project=" + pk_project + ", project="
+				+ project + ", building=" + building + ", ifloor=" + ifloor + ", vhcell=" + vhcell + ", vhnum=" + vhnum
+				+ ", vhcode=" + vhcode + ", vhname=" + vhname + ", otation=" + otation + ", room=" + room
+				+ ", situation=" + situation + ", fsellmethod=" + fsellmethod + ", managestate=" + managestate
+				+ ", nbuildarea=" + nbuildarea + ", ninarea=" + ninarea + ", nleaseoutarea=" + nleaseoutarea
+				+ ", nmanagearea=" + nmanagearea + ", nsellarea=" + nsellarea + ", npublicarea=" + npublicarea
+				+ ", nunderlinearea=" + nunderlinearea + ", ngardenarea=" + ngardenarea + ", nrpublicarea="
+				+ nrpublicarea + ", nrinarea=" + nrinarea + ", nrbuildarea=" + nrbuildarea + ", nrunderlinearea="
+				+ nrunderlinearea + ", nrgardenarea=" + nrgardenarea + ", startDate=" + startDate + ", endDate="
+				+ endDate + ", firstMoney=" + firstMoney + ", everyMoney=" + everyMoney + ", astrictStatus="
+				+ astrictStatus + ", updateDate=" + updateDate + ", projectInfo=" + projectInfo + ", vdef8=" + vdef8
+				+ ", vdef9=" + vdef9 + ", vdef10=" + vdef10 + ", startdate=" + startdate + ", enddate=" + enddate
+				+ ", firstmny=" + firstmny + ", everymny=" + everymny + ", astrictstatus=" + astrictstatus
+				+ ", updatedate=" + updatedate + ", enterapply_state=" + enterapply_state + ", decorationapplystate="
+				+ decorationapplystate + ", manage_id=" + manage_id + ", projectVO=" + projectVO + ", customerVO="
+				+ customerVO + ", signVO=" + signVO + "]";
 	}
+
+
+
 }

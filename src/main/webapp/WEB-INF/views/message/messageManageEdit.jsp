@@ -24,6 +24,12 @@
         <div class="col-xs-12">
             <div class="panel panel-default tudiqianyue">
                 <form class="form-horizontal" action="${pageContext.request.contextPath}/dist/enterApply/updateEnterApply" method="post">
+                		<div class="form-group">
+							<label class="col-sm-2 control-label">通知名称：</label>
+							<div class="col-sm-3">
+								<input type="text" class="form-control renwushixiang" placeholder="2017-05-06">
+							</div>
+						</div>
                     <div class="form-group" style="margin-top: 50px">
                         <input type="hidden" name="message_manage_id" value="${messageManage.message_manage_id}"/>
                         <label class="col-sm-2 control-label">通知名称：</label>
@@ -99,7 +105,10 @@
 </body>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/libs/jquery-1.11.3.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/libs/bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript">
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/libs/datetimepicker/datetimepicker.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/libs/datetimepicker/datetimepicker.zh-CN.js" charset="UTF-8"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/common.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/creditList/update.js"></script>
 
 </script>
 </html>

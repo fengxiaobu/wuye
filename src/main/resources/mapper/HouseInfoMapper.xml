@@ -140,4 +140,28 @@
         DELETE FROM T_HOUSE_INFO
         WHERE HOUSE_INFO_ID = #{id}
     </delete>
+    
+    <select id="getHouseInfo" resultMap="houseMap">
+		SELECT
+			T.HOUSE_INFO_ID,
+			T.CUSTOMER_ID,
+			H."project",
+			H."vhcode",
+			T.STAR_LEVEL,
+			T.UPDATE_TIME
+		FROM
+			T_HOUSE_INFO T
+		LEFT JOIN T_HOUSE_INFO_DETAILS H ON T .HOUSE_INFO_ID = H ."pk_house"
+    </select>
+    
+    <resultMap type="cn.rzhd.wuye.bean.HouseInfo" id="houseMap">
+    	<id property="houseInfoId" column="HOUSE_INFO_ID"/>
+    	<result property="customerId" column="CUSTOMER_ID"/>
+    	<result property="starLevel" column="STAR_LEVEL"/>
+    	<result property="updateTime" column="UPDATE_TIME"/>
+    	<association property="houseVO" javaType="cn.rzhd.wuye.vo.HouseVO">
+    		<result property="project" column="project"/>
+    		<result property="vhcode" column="vhcode"/>
+    	</association>
+    </resultMap>
 </mapper>

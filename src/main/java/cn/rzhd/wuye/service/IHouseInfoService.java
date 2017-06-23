@@ -44,4 +44,9 @@ public interface IHouseInfoService {
      * @return
      */
     HouseInfo selectByQuery(String customerid);
+    
+    /**
+     * @return 后台返回房产信息
+     */
+    List<HouseInfo> getAllHouseinfo();
 }

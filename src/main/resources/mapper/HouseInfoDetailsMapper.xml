@@ -138,34 +138,7 @@
     </select>
     <select id="selectAll" resultMap="BaseResultMap">
         SELECT
-            "pk_house",
-            "pk_corp",
-            "pk_project",
-            "project",
-            "building",
-            "ifloor",
-            "vhcell",
-            "vhnum",
-            "vhcode",
-            "vhname",
-            "otation",
-            "room",
-            "situation",
-            "fsellmethod",
-            "managestate",
-            "nbuildarea",
-            "ninarea",
-            "nleaseoutarea",
-            "nmanagearea",
-            "nsellarea",
-            "npublicarea",
-            "nunderlinearea",
-            "ngardenarea",
-            "nrpublicarea",
-            "nrinarea",
-            "nrbuildarea",
-            "nrunderlinearea",
-            "nrgardenarea"
+			*
         FROM T_HOUSE_INFO_DETAILS
     </select>
     
@@ -245,4 +218,5 @@
 			<result property="nytotalmnysign" column="nytotalmnysign" />
 	  	</association>
 	  </resultMap>
+	  
 </mapper>
