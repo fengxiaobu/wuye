@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+
 @Mapper
 public interface HouseInfoDetailsMapper {
     int deleteByPrimaryKey(String pkHouse);
@@ -16,8 +17,10 @@ public interface HouseInfoDetailsMapper {
     List<HouseVO> selectAll();
 
     int updateByPrimaryKey(HouseVO record);
-    
+
+    void updateHouse(@Param("pkHouse") String pkHouse, @Param("enterApplyState") String enterApplyState);
+
     List<HouseVO> getAll();
-    
+
     List<HouseVO> getHouseInfoByName(String pk_house);
 }

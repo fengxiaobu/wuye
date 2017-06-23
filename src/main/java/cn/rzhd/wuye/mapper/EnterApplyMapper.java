@@ -14,11 +14,19 @@ import java.util.Map;
  * 入驻申请
  */
 @Mapper
-public interface EnterApplyMapper{
+public interface EnterApplyMapper {
 
     List<Map<String, JsonFormat.Value>> getEnterApplyByID(@Param("enterApplyId") Long enterApplyId);
 
-    List<Map<String, JsonFormat.Value>>  findEnterApplyList();
+    /**
+     * 查询所有装修结果
+     *
+     * @param pkHouse
+     * @return
+     */
+    List<Map<String, JsonFormat.Value>> getEnterApplyByIDAndState(@Param("pkHouse") String pkHouse);
+
+    List<Map<String, JsonFormat.Value>> findEnterApplyList();
 
     int insertEnterApply(EnterApply enterApply);
 
@@ -27,4 +35,5 @@ public interface EnterApplyMapper{
     int updateEnterApply(EnterApply enterApply);
 
     List<Map<String, JsonFormat.Value>> findEnterApplyByQuery(EnterApplyQuery enterApplyQuery);
+
 }

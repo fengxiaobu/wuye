@@ -100,44 +100,16 @@
             "nrgardenarea"    = #{nrgardenarea,jdbcType=VARCHAR}
         WHERE "pk_house" = #{pk_house,jdbcType=CHAR}
     </update>
+
+    <update id="updateHouse">
+        UPDATE T_HOUSE_INFO_DETAILS
+        SET
+            ENTERAPPLY_STATE = #{enterApplyState}
+        WHERE pk_house = '${pkHouse}'
+    </update>
+
     <select id="selectByPrimaryKey" resultMap="BaseResultMap">
-        SELECT
-            "pk_house",
-            "pk_corp",
-            "pk_project",
-            "project",
-            "building",
-            "ifloor",
-            "vhcell",
-            "vhnum",
-            "vhcode",
-            "vhname",
-            "otation",
-            "room",
-            "situation",
-            "fsellmethod",
-            "managestate",
-            "nbuildarea",
-            "ninarea",
-            "nleaseoutarea",
-            "nmanagearea",
-            "nsellarea",
-            "npublicarea",
-            "nunderlinearea",
-            "ngardenarea",
-            "nrpublicarea",
-            "nrinarea",
-            "nrbuildarea",
-            "nrunderlinearea",
-            "nrgardenarea",
-            STARTDATE,
-            ENDDATE,
-            FIRSTMNY,
-            EVERYMNY,
-            ASTRICTSTATUS,
-            UPDATEDATE,
-            DECORATIONAPPLYSTATE,
-            ENTERAPPLY_STATE
+        SELECT *
         FROM T_HOUSE_INFO_DETAILS
         WHERE "pk_house" = '${pkHouse}'
     </select>

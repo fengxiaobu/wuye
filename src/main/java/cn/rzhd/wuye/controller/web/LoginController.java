@@ -47,7 +47,8 @@ public class LoginController {
                 for (PactVO vo : pactVOS) {
                     ReletApply reletApply = reletApplyService.findReletApply(vo.getPk_house());
                     RetreatLeaseApply retreatLeaseApply = retreatLeaseApplyService.findRetreatLeaseApply(vo.getPk_house());
-                    HouseVO houseVO = houseInfoDetailsService.selectById(vo.getHouse());
+                    //获取房产状态
+                    HouseVO houseVO = houseInfoDetailsService.selectById(vo.getPk_house());
                     if (reletApply != null) {
                         vo.setContractStatus("1");
                     } else if (retreatLeaseApply != null) {

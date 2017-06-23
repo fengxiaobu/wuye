@@ -31,13 +31,13 @@
                         <input type="hidden" name="houseId" value="${enterApply.houseId}"/>
                         <label class="col-sm-2 control-label">项目名称:</label>
                         <div class="col-sm-10">
-                            <label class="col-sm-2 control-label">${enterApply.houseInfo.projectInfo.projectName}</label>
+                            <label class="col-sm-2 control-label">${enterApply.houseInfoDetails.project}</label>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">房产:</label>
                         <div class="col-sm-10">
-                            <label class="col-sm-2 control-label">${enterApply.houseInfo.houseProperty}</label>
+                            <label class="col-sm-2 control-label">${enterApply.houseInfoDetails.vhname}</label>
                         </div>
                     </div>
                     <div class="form-group">
@@ -77,22 +77,16 @@
                                     </tr>
                                     </thead>
                                     <tbody class="tudiqianyue-tbody">
-                                    <tr class="tudiqianyue-tdtr">
-                                        <td>1</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr class="tudiqianyue-tdtr">
-                                        <td>2</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
+                                    <c:forEach items="${kfFeeList}" varStatus="status" var="kf">
+                                        <tr class="tudiqianyue-tdtr">
+                                            <td>${status.index+1}</td>
+                                            <td>开发费用</td>
+                                            <td>${kf.nyshouldmny}</td>
+                                            <td>${kf.dshpay}</td>
+                                            <td>${kf.dbegin}</td>
+                                            <td>${kf.dend}</td>
+                                        </tr>
+                                    </c:forEach>
                                     </tbody>
                                 </table>
                             </div>
@@ -114,22 +108,16 @@
                                     </tr>
                                     </thead>
                                     <tbody class="tudiqianyue-tbody">
-                                    <tr class="tudiqianyue-tdtr">
-                                        <td>1</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr class="tudiqianyue-tdtr">
-                                        <td>2</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
+                                    <c:forEach var="property" items="${propertyFeeList}" varStatus="stats">
+                                        <tr class="tudiqianyue-tdtr">
+                                            <td>${stats.index+1}</td>
+                                            <td>物业费用</td>
+                                            <td>${property.nyshouldmny}</td>
+                                            <td>${property.dshpay}</td>
+                                            <td>${property.dbegin}</td>
+                                            <td>${property.dend}</td>
+                                        </tr>
+                                    </c:forEach>
                                     </tbody>
                                 </table>
                             </div>

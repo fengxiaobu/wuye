@@ -4,10 +4,7 @@ import cn.rzhd.wuye.bean.EnterApply;
 import cn.rzhd.wuye.bean.HouseInfo;
 import cn.rzhd.wuye.bean.KfFee;
 import cn.rzhd.wuye.bean.PropertyFee;
-import cn.rzhd.wuye.service.IEnterApplyService;
-import cn.rzhd.wuye.service.IHouseInfoService;
-import cn.rzhd.wuye.service.IKfFeeService;
-import cn.rzhd.wuye.service.IPropertyFeeService;
+import cn.rzhd.wuye.service.*;
 import cn.rzhd.wuye.utils.JsonUtils;
 import cn.rzhd.wuye.utils.StringTimeUtil;
 import cn.rzhd.wuye.vo.query.EnterApplyQuery;
@@ -20,6 +17,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.github.pagehelper.StringUtil;
 import com.xiaoleilu.hutool.io.FileUtil;
+import com.xiaoleilu.hutool.util.StrUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
@@ -57,6 +55,8 @@ public class EnterApplyController {
     IKfFeeService kfFeeService;
     @Autowired
     IHouseInfoService houseInfoService;
+    @Autowired
+    private IHouseInfoDetailsService houseInfoDetailsService;
 
     @Value("${fileDir}")
     private String fileDir;
@@ -104,7 +104,7 @@ public class EnterApplyController {
 
         model.addAttribute("enterApplyList", enterApplyList);
 
-        model.addAttribute("total",enterApplyList.size());
+        model.addAttribute("total", enterApplyList.size());
         return "forbusiness/enterApplyList";
     }
 
@@ -127,7 +127,11 @@ public class EnterApplyController {
         if (enterApplyList.size() == 1) {
             map = enterApplyList.get(0);
         }
-
+        //入住开发费
+        model.addAttribute("kfFeeList", kfFeeList);
+        //入住物业费
+        model.addAttribute("propertyFeeList", propertyFeeList);
+        //入驻申请
         model.addAttribute("enterApply", map);
         return "forbusiness/enterApplyEdit";
     }
@@ -169,11 +173,19 @@ public class EnterApplyController {
             Date date = new Date();
             enterApply.setUpdateTime(date);
             enterApplyService.updateEnterApply(enterApply);
+            if (enterApply.getAuditStatus() == 1) {
+                //修改申请状态
+                houseInfoDetailsService.updateHouse(enterApply.getHouseId(), "1");
+            } else if (enterApply.getAuditStatus() == 2) {
+                //修改申请状态
+                houseInfoDetailsService.updateHouse(enterApply.getHouseId(), "0");
+            }
+
             //查询更新数据
             PageHelper.startPage(1, 5);
             List<Map<String, JsonFormat.Value>> enterApplyList = enterApplyService.findEnterApplyList();
             Page page = (Page) enterApplyList;
-           // System.out.println(JSONObject.toJSONString(page, SerializerFeature.WriteMapNullValue));
+            // System.out.println(JSONObject.toJSONString(page, SerializerFeature.WriteMapNullValue));
             model.addAttribute("enterApplyList", enterApplyList);
             model.addAttribute("total", page.getTotal());
         } catch (Exception e) {
@@ -215,9 +227,7 @@ public class EnterApplyController {
             result.put("state", "1");
             result.put("msg", "成功!");
             //修改申请状态
-            HouseInfo houseInfo = houseInfoService.getById(enterApply.getHouseId());
-            houseInfo.setEnterApplyState("1");
-            houseInfoService.update(houseInfo);
+            houseInfoDetailsService.updateHouse(enterApply.getHouseId(), "1");
             return result;
         } catch (Exception e) {
             result.put("state", "0");
@@ -336,6 +346,33 @@ public class EnterApplyController {
         } else {
             result.put("msg", "上传失败，因为文件是空的");
             result.put("state", false);
+            return result;
+        }
+    }
+
+    /**
+     * 获取入住申请状态信息
+     *
+     * @param pkHouse
+     * @return
+     */
+    @RequestMapping(value = "/getEnterApplyByIDAndState", method = RequestMethod.GET)
+    @ResponseBody
+    public Map<String, Object> getEnterApplyByIDAndState(String pkHouse) {
+        Map<String, Object> result = new HashMap<>();
+        try {
+            if (StrUtil.isEmpty(pkHouse)) {
+                result.put("state", "0");
+                result.put("msg", "ID不能为空!");
+                return result;
+            }
+            List<Map<String, JsonFormat.Value>> mapList = enterApplyService.getEnterApplyByIDAndState(pkHouse);
+            result.put("state", "1");
+            result.put("data", mapList);
+            return result;
+        } catch (Exception e) {
+            result.put("state", "0");
+            result.put("msg", "erro" + e.getMessage());
             return result;
         }
     }
