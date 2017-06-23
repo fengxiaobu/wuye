@@ -35,8 +35,10 @@
         <result column="EVERYMNY" property="everyMoney"/>
         <result column="ASTRICTSTATUS" property="astrictStatus"/>
         <result column="UPDATEDATE" property="updateDate"/>
+        <result column="MANAGE_ID" property="vdef1"/>
         <result column="ENTERAPPLY_STATE" property="vdef8"/>
         <result column="DECORATIONAPPLYSTATE" property="vdef9"/>
+
         <association property="projectInfo" column="pk_project" javaType="cn.rzhd.wuye.bean.ProjectInfo"
                      select="cn.rzhd.wuye.mapper.ProjectInfoMapper.selectByPrimaryKey"/>
     </resultMap>
@@ -54,7 +56,7 @@
                                           "nmanagearea", "nsellarea", "npublicarea",
                                           "nunderlinearea", "ngardenarea", "nrpublicarea",
                                           "nrinarea", "nrbuildarea", "nrunderlinearea",
-                                          "nrgardenarea")
+                                          "nrgardenarea", MANAGE_ID)
         VALUES (#{pk_house,jdbcType=CHAR}, #{pk_corp,jdbcType=CHAR}, #{pk_project,jdbcType=VARCHAR},
                                            #{project,jdbcType=VARCHAR}, #{building,jdbcType=VARCHAR},
                                            #{ifloor,jdbcType=VARCHAR},
@@ -67,7 +69,7 @@
             #{nmanagearea,jdbcType=VARCHAR}, #{nsellarea,jdbcType=VARCHAR}, #{npublicarea,jdbcType=VARCHAR},
                 #{nunderlinearea,jdbcType=VARCHAR}, #{ngardenarea,jdbcType=VARCHAR}, #{nrpublicarea,jdbcType=VARCHAR},
                 #{nrinarea,jdbcType=VARCHAR}, #{nrbuildarea,jdbcType=VARCHAR}, #{nrunderlinearea,jdbcType=VARCHAR},
-                #{nrgardenarea,jdbcType=VARCHAR})
+                #{nrgardenarea,jdbcType=VARCHAR}, #{vdef1})
     </insert>
     <update id="updateByPrimaryKey" parameterType="cn.rzhd.wuye.vo.HouseVO">
         UPDATE T_HOUSE_INFO_DETAILS
@@ -97,7 +99,8 @@
             "nrinarea"        = #{nrinarea,jdbcType=VARCHAR},
             "nrbuildarea"     = #{nrbuildarea,jdbcType=VARCHAR},
             "nrunderlinearea" = #{nrunderlinearea,jdbcType=VARCHAR},
-            "nrgardenarea"    = #{nrgardenarea,jdbcType=VARCHAR}
+            "nrgardenarea"    = #{nrgardenarea,jdbcType=VARCHAR},
+            MANAGE_ID         = #{vdef1}
         WHERE "pk_house" = #{pk_house,jdbcType=CHAR}
     </update>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap">
@@ -136,14 +139,14 @@
             EVERYMNY,
             ASTRICTSTATUS,
             UPDATEDATE,
+            MANAGE_ID,
             DECORATIONAPPLYSTATE,
             ENTERAPPLY_STATE
         FROM T_HOUSE_INFO_DETAILS
         WHERE "pk_house" = '${pkHouse}'
     </select>
     <select id="selectAll" resultMap="BaseResultMap">
-        SELECT
-			*
+        SELECT *
         FROM T_HOUSE_INFO_DETAILS
     </select>
 
@@ -157,7 +160,8 @@
             "nbuildarea",
             OBJECT_PHONE,
             PROJECT_ADDRESS,
-            PK_PROJECT
+            PK_PROJECT,
+            MANAGE_ID
         FROM
             T_HOUSE_INFO_DETAILS
             LEFT JOIN
@@ -203,6 +207,7 @@
     </select>
 
     <resultMap type="cn.rzhd.wuye.vo.HouseVO" id="houseVOBackMap">
+<<<<<<< HEAD
     	<id property="pk_project" column="pk_project"/>
     	<result property="vhcode" column="vhcode"/>
     	<result property="nsellarea" column="nsellarea"/>
@@ -223,4 +228,26 @@
 			<result property="nytotalmnysign" column="nytotalmnysign" />
 	  	</association>
 	  </resultMap>
+=======
+        <id property="pk_project" column="pk_project"/>
+        <result property="vhcode" column="vhcode"/>
+        <result property="nsellarea" column="nsellarea"/>
+        <association property="projectVO" javaType="cn.rzhd.wuye.vo.ProjectVO">
+            <id property="pk_project" column="PK_PROJECT"/>
+            <result property="vname" column="PROJECT_NAME"/>
+            <result property="object_phone" column="OBJECT_PHONE"/>
+            <result property="project_address" column="PROJECT_ADDRESS"/>
+        </association>
+        <association property="customerVO" javaType="cn.rzhd.wuye.vo.CustomerVO">
+            <id property="pk_customerid" column="pk_customerid"/>
+            <result property="vcname" column="vcname"/>
+        </association>
+        <association property="signVO" javaType="cn.rzhd.wuye.vo.SignVO">
+            <id property="pk_house" column="pk_house"/>
+            <result property="nprice" column="nprice"/>
+            <result property="nythisdiscountmny" column="nythisdiscountmny"/>
+            <result property="nytotalmnysign" column="nytotalmnysign"/>
+        </association>
+    </resultMap>
+>>>>>>> 6fc1a7a97a0322875b06a69a919d76d9e1d7d2aa
 </mapper>

@@ -3,7 +3,6 @@ package cn.rzhd.wuye.service;
 import cn.rzhd.wuye.vo.query.PayFeeQuery;
 
 import java.math.BigDecimal;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -15,7 +14,7 @@ public interface IPayFeeService {
      * @param query
      * @return
      */
-    Map<String, List> isArrears(PayFeeQuery query);
+    Map<String, Object> isArrears(PayFeeQuery query);
 
     /**
      * 用于计算电费金额,并判断是否允许缴费

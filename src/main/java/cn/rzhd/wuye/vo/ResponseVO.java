@@ -25,6 +25,8 @@ public class ResponseVO  implements Serializable{
 	private CorpVO [] corpdata;//公司数据
 	
 	private ProjectVO [] projectdata;//项目数据
+
+	private ManageVO [] managedata;//管理处数据
 	
 	private HouseVO [] housedata;//房产数据
 	
@@ -162,8 +164,12 @@ public class ResponseVO  implements Serializable{
 	public void setRevfaredata(RevfareVO[] revfaredata) {
 		this.revfaredata = revfaredata;
 	}
-	
 
+	public ManageVO[] getManagedata() {
+		return managedata;
+	}
 
-	
+	public void setManagedata(ManageVO[] managedata) {
+		this.managedata = managedata;
+	}
 }
