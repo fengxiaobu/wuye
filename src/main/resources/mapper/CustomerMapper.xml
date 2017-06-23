@@ -47,7 +47,7 @@
             "Password",
             "Binding_Phone"
         FROM "T_Customer"
-        WHERE "vccode" = #{vccode} AND "Password" = #{password} AND "fccategory"=1
+        WHERE "vccode" = #{vccode} AND "Password" = #{password} AND "fccategory" = 1
     </select>
 
     <!-- 用户列表分页查询 -->
@@ -121,6 +121,11 @@
         SELECT *
         FROM "T_Customer"
     </select>
-    
+
+    <update id="updadteState">
+        UPDATE "T_Customer"
+        SET CURRENT_FLOW = #{currentFlow}
+        WHERE "vccode" = #{vccode}
+    </update>
 
 </mapper>
