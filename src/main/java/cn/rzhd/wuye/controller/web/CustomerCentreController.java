@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
+import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
 
@@ -98,11 +99,20 @@ public class CustomerCentreController extends HttpServlet {
      * @param Vccode
      */
     @RequestMapping(value = "/savePerfectInformation", method = RequestMethod.POST)
-    public void savePerfectInformation(PerfectInformation perfectInformation, String Vccode) {
-        perfectInformation.setPerfectInformationId(Vccode);
-        perfectInformation.setCarteTime(new Date());
-        perfectInformationService.save(perfectInformation);
-        customerService.updadteState("1", Vccode);
+    public Map<String, Object> savePerfectInformation(PerfectInformation perfectInformation, String Vccode) {
+        Map<String, Object> result = new Hashtable<>();
+        try {
+            perfectInformation.setPerfectInformationId(Vccode);
+            perfectInformation.setCarteTime(new Date());
+            perfectInformationService.save(perfectInformation);
+            customerService.updadteState("1", Vccode);
+            result.put("state", "1");
+            return result;
+        } catch (Exception e) {
+            result.put("state", "0");
+            result.put("msg", e.getMessage());
+            return result;
+        }
     }
 
 }
