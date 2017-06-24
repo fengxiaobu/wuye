@@ -1,7 +1,6 @@
 package cn.rzhd.wuye;
 
-import static org.junit.Assert.*;
-
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -22,9 +21,35 @@ public class PerfectInformationTest extends BaseTest {
 
 	@Test
 	public void test1() throws Exception {
-		String vccode = "941Y15043000081";
+		String vccode = "          ";
 		PerfectInformation perfectInformation = new PerfectInformation();
 		perfectInformation.setPerfectInformationId(vccode);
+		perfectInformation.setCarteTime(date);
+		perfectInformation.setCertificateTime(date);
+		perfectInformation.setCompanyCoverageId(123L);
+		perfectInformation.setCompanyEstablishTime(date);
+		perfectInformation.setCompanyType(123);
+		perfectInformation.setCustomerId("123");
+		perfectInformation.setEmergencyContactNumber("22");
+		perfectInformation.setEmergencyContactPerson("56465");
+		perfectInformation.setEmployeeNumber(77L);
+		perfectInformation.setHangBoardTime(date);
+		perfectInformation.setHighNewType(12300);
+		perfectInformation.setHouseInfoId("741");
+		perfectInformation.setHousePropertyId(1L);
+		perfectInformation.setIndustryInvolvedId(1L);
+		perfectInformation.setMainProduct("777");
+		perfectInformation.setIsUpBazaar(1);
+		perfectInformation.setNotes("123");
+		perfectInformation.setPatentNumber(12300);
+		perfectInformation.setPropertyToAccess("111");
+		perfectInformation.setPropertyToAccessContact("777");
+		perfectInformation.setSignInFund(new BigDecimal(111));
+		perfectInformation.setUpdateTime(date);
+		perfectInformation.setURavinePropertyId(444L);
+		perfectInformation.setUpBazaarTypeId(1L);
+		perfectInformation.setStockCode("456");
+		perfectInformation.setStatus(11);
 		
 		service.save(perfectInformation);
 	}

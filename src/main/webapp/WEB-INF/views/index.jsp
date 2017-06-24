@@ -63,7 +63,7 @@
                         <ul class="panel-group level02" id="aside_one_02">
                             <li class="panel" role="tab">
                                 <div class="panel-header">
-                                    <a href="/views/user/userList" target="main">用户列表</a>
+                                    <a href="${pageContext.request.contextPath}/user/getAllUser?pageNum=1&pageSize=10" target="main">用户列表</a>
                                 </div>
                             </li>
 

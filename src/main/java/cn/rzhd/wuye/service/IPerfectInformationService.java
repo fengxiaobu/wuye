@@ -9,4 +9,6 @@ public interface IPerfectInformationService {
 	void updateByVccode(PerfectInformation perfectInformation);
 	
 	void save(PerfectInformation perfectInformation);
+	
+	void updateFlow(String vccode);
 }

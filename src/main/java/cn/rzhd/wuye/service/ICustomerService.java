@@ -19,4 +19,6 @@ public interface ICustomerService {
      */
     void saveCustomer(CustomerVO customerVO) throws Exception;
     void updadteState(String currentFlow,  String vcCode);
+    
+    List<Customer> queryAll();
 }

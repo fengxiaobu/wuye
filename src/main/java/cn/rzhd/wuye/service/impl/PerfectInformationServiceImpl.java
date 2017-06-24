@@ -28,4 +28,9 @@ public class PerfectInformationServiceImpl implements IPerfectInformationService
 		mapper.insert(perfectInformation);
 	}
 
+	@Override
+	public void updateFlow(String vccode) {
+		mapper.updateFlow(vccode);
+	}
+
 }
