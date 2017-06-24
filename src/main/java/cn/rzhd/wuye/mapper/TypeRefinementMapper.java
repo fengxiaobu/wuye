@@ -28,4 +28,5 @@ public interface TypeRefinementMapper {
      */
     List<TypeRefinement> getDataList(Integer typeDifferentiateId);
     
+    TypeRefinement getOneData(Integer typeRefinementId);
 }

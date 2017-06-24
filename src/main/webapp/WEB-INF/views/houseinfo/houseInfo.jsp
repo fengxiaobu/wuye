@@ -27,17 +27,8 @@
             <div class="col-xs-4">房产信息</div>
             <div class="col-xs-8 panel-oprerate">
                 <div class="col-xs-12">
-                    <span style="margin-right: 50px;text-align: center"><input type="text" placeholder=""></span>
-                    <button class="btn btn-info" type="button" id="search"><span class="glyphicon glyphicon-search"></span>搜素
-                    </button>
-                </div>
-                <div class="col-xs-12">
-                    <button class="btn btn-default" id="tudiqianyue-remove" type="button"><span
-                            class="glyphicon glyphicon-remove"></span>取消
-                    </button>
-                    <button class="btn btn-success" id="tudiqianyue-ok" type="button"><span
-                            class="glyphicon glyphicon-ok"></span>提交
-                    </button>
+                    <span style="margin-right: 50px"><input style="height: 35px;width: 320px;" type="text"  id="exampleInputName" placeholder=""></span>
+                    <button class="btn btn-info"  type="button"><span class="glyphicon glyphicon-search"></span>搜素</button>
                 </div>
             </div>
         </div>

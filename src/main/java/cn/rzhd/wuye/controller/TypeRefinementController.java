@@ -24,12 +24,13 @@ public class TypeRefinementController {
     ITypeDifferentiateService typeDifferentiateService;
     
     @RequestMapping("/getTypeData")
-    public String sellContractList(Model model, Integer pageNum, Integer pageSize, Integer typeDifferentiateId) {
+    public String getTypeData(Model model, Integer pageNum, Integer pageSize, Integer typeDifferentiateId) {
     	PageHelper.startPage(pageNum, pageSize);
     	List<TypeRefinement> typeRefinements = typeRefinementService.getDataList(typeDifferentiateId);
     	for (TypeRefinement typeRefinement : typeRefinements) {
 			System.out.println(typeRefinement);
 		}
+    	
     	String name = typeDifferentiateService.getDataName(typeDifferentiateId).getTypeDifferentiateName();
     	Page page = (Page) typeRefinements;
     	
@@ -38,6 +39,15 @@ public class TypeRefinementController {
 
         model.addAttribute("pages", page.getPages());
         return "type/data";
+    }
+    
+    @RequestMapping("/getTypeDataEdit")
+    public String getTypeDataEdit(Model model, Integer typeRefinementId) {
+    	
+    	TypeRefinement typeRefinement = typeRefinementService.getOneData(typeRefinementId);
+    	model.addAttribute("typeRefinement", typeRefinement);
+    	
+        return "type/dataEdit";
     }
     
     /**

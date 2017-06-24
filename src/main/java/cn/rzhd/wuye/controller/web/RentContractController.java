@@ -20,8 +20,8 @@ public class RentContractController {
 	IRentContractService rentContractService;
 
 	@RequestMapping("/getRentContractlist")
-	public List<PactVO> getRentContract(String[] pk_customerid) {
-		List<PactVO> rentContractlist = rentContractService.getRentContractByCustomer(pk_customerid);
+	public List<PactVO> getRentContract(String vccode) {
+		List<PactVO> rentContractlist = rentContractService.getRentContractByCustomer(vccode);
 
 		return rentContractlist;
 	}

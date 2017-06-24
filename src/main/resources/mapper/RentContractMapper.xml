@@ -44,10 +44,19 @@
 	
 
     <select id="getByPkId" parameterType="String" resultType="cn.rzhd.wuye.vo.PactVO">
-	    SELECT * FROM "T_Rent_Contract" WHERE "pk_customerid" in 
-	    <foreach collection="array" open="(" close=")" separator="," item="pk_customerid">
-			#{pk_customerid}
-	    </foreach>
+	    SELECT
+			*
+		FROM
+			"T_Rent_Contract"
+		WHERE
+			"pk_customerid" IN (
+				SELECT DISTINCT
+					"pk_customerid"
+				FROM
+					"T_Customer"
+				WHERE
+					"vccode" = #{vccode}
+			)
     </select>
 
     <select id="queryByCustomer" resultType="cn.rzhd.wuye.vo.PactVO">
