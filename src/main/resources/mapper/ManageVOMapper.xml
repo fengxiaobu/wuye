@@ -5,6 +5,12 @@
         INSERT INTO T_MANAGE ("pk_corp", "pk_manageId", "managecode", "managename")
         VALUES (#{pk_corp}, #{pk_managementsecid}, #{vmanagementseccode}, #{vmanagementsecname})
     </insert>
+    <insert id="addMyManage">
+        INSERT INTO T_MANAGE_USER (MANAGE_ID,USER_ID) VALUES (#{proId},#{id})
+    </insert>
+    <delete id="removeByUser">
+        DELETE FROM T_MANAGE_USER WHERE USER_ID=#{id}
+    </delete>
     <resultMap id="manageMap" type="cn.rzhd.wuye.vo.ManageVO">
         <id property="pk_corp" column="pk_corp"/>
         <result property="pk_managementsecid" column="pk_manageId"/>

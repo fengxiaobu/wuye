@@ -34,8 +34,9 @@
                     <button class="btn btn-info" type="button"><span class="glyphicon glyphicon-search"></span>搜素
                     </button>
                     <%--<a href="/userEdit" class="btn btn-info"  type="button"><span class="glyphicon glyphicon-plus"></span>新增</a>--%>
-                    <button class="btn btn-info" type="button"><span class="glyphicon glyphicon-remove"></span>新增
-                    </button>
+                    <a href="${pageContext.request.contextPath}/user/details?type=new" class="btn btn-info"><span
+                            class="glyphicon glyphicon-remove"></span>新增
+                    </a>
                 </div>
                 <div class="col-xs-12">
                     <button class="btn btn-default" id="tudiqianyue-remove" type="button"><span
@@ -71,9 +72,12 @@
                         <td>${user.gender}</td>
                         <td>${user.status}</td>
                         <td>${user.note}</td>
-                        <td><a class="btn btn-info" href="#" role="button">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;<a
-                                class="btn btn-info" href="${pageContext.request.contextPath}/user/details?id=${user.userId}&type=edit" role="button">编辑</a>
-                            <a href="${pageContext.request.contextPath}/user/details?id=${user.userId}&type=details" role="button">详情</a>
+                        <td>
+                            <button class="btn btn-info" type="button" onclick="del('${user.userId}',this)" role="button">删除
+                            </button>&nbsp;&nbsp;&nbsp;&nbsp;<a
+                                class="btn btn-info"
+                                href="${pageContext.request.contextPath}/user/details?id=${user.userId}&type=edit"
+                                role="button">编辑</a>
                         </td>
                     </tr>
                 </c:forEach>
@@ -237,8 +241,15 @@
             }
         })
     });
-    $("#tudiqianyue-remove").click(function () {
-
-    });
+    function del(id,e) {
+        var r = confirm("你确定要删除这个用户吗?");
+        if(r){
+            $.post("${pageContext.request.contextPath}/user/delete", {"id": id}, function (data) {
+                if (data.success) {
+                    $(e).closest("tr").remove();
+                }
+            })
+        }
+    }
 </script>
 </html>

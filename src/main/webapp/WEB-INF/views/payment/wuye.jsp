@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
@@ -72,27 +73,30 @@
                 </thead>
                 <tbody class="tudiqianyue-tbody">
                 <tr class="tudiqianyue-tdtr">
-                    <td>序号</td>
-                    <td>项目名称</td>
-                    <td>房产编码</td>
-                    <td>客户名称</td>
-                    <td>费用类型</td>
-                    <td>更新日期</td>
-                    <td>支付方式</td>
-                    <td>缴费月份</td>
-                    <td>开始日期</td>
-                    <td>截止日期</td>
-                    <td>应缴</td>
-                    <td>已缴</td>
-                    <td>单据号</td>
-                    <td>发票</td>
-                    <td>发票号</td>
-                    <td>发票备注</td>
-                    <td>开票状态</td>
-                    <td>收款公司</td>
-                    <td>收款账户</td>
-                    <td>开票单位</td>
-                    <td>缴费日期</td>
+                    <c:forEach items="${propertyRecords}" var="item">
+                        <td>${item.propertyFeePayDetails}</td>
+                        <td>项目名称</td>
+                        <td>房产编码</td>
+                        <td>客户名称</td>
+                        <td>费用类型</td>
+                        <td>更新日期</td>
+                        <td>支付方式</td>
+                        <td>缴费月份</td>
+                        <td>开始日期</td>
+                        <td>截止日期</td>
+                        <td>应缴</td>
+                        <td>已缴</td>
+                        <td>单据号</td>
+                        <td>发票</td>
+                        <td>发票号</td>
+                        <td>发票备注</td>
+                        <td>开票状态</td>
+                        <td>收款公司</td>
+                        <td>收款账户</td>
+                        <td>开票单位</td>
+                        <td>缴费日期</td>
+                    </c:forEach>
+
                 </tr>
                 </tbody>
             </table>
