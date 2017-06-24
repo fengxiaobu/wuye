@@ -148,13 +148,13 @@
                         
                             <li class="panel" role="tab">
                                 <div class="panel-header">
-                                    <a href="${pageContext.request.contextPath}/dist/sellContractBack/getSellContractList?pageNum=1&pageSize=10" target="main">销售合同表</a>
+                                    <a href="${pageContext.request.contextPath}/dist/sellContractBack/getSellContractList?pageNum=1&pageSize=100" target="main">销售合同表</a>
                                 </div>
                             </li>
 
                             <li class="panel" role="tab">
                                 <div class="panel-header">
-                                    <a href="${pageContext.request.contextPath}/dist/rentContractBack/getRentContractList?pageNum=1&pageSize=10" target="main">租赁合同表</a>
+                                    <a href="${pageContext.request.contextPath}/dist/rentContractBack/getRentContractList?pageNum=1&pageSize=20" target="main">租赁合同表</a>
                                 </div>
                             </li>
                         </ul>

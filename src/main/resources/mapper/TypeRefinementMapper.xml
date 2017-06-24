@@ -9,8 +9,8 @@
         <result property="typeRefinementName" column="type_refinement_name"/>
         <result property="note" column="note"/>
         <result property="status" column="status"/>
-        <result property="createTime" column="create_time"/>
-        <result property="updateTime" column="update_time"/>
+        <result property="createTime" column="CREATE_TIME"/>
+        <result property="updateTime" column="UPDATE_TIME"/>
     </resultMap>
     
     <!-- 查询id主键最后一位 -->
@@ -58,6 +58,10 @@
     
     <select id="getDataList" parameterType="int" resultType="cn.rzhd.wuye.bean.TypeRefinement" >
     	SELECT <include refid="allType" /> FROM T_TYPE_REFINEMENT where TYPE_DIFFERENTIATE_ID = #{typeDifferentiateId}
+    </select>
+    
+    <select id="getOneData" parameterType="int" resultType="cn.rzhd.wuye.bean.TypeRefinement">
+    	SELECT <include refid="allType" /> FROM T_TYPE_REFINEMENT WHERE TYPE_REFINEMENT_ID=#{typeRefinementId}
     </select>
     
     

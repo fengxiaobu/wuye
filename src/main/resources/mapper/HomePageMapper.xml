@@ -64,11 +64,11 @@
     </select>
 
     <resultMap id="messageList" type="cn.rzhd.wuye.bean.MessageManage">
-        <result property="messageManageId" column="MESSAGE_MANAGE_ID"/>
+        <result property="message_manage_id" column="MESSAGE_MANAGE_ID"/>
         <result property="title" column="TITLE"/>
         <result property="content" column="CONTENT"/>
         <result property="note" column="NOTE"/>
-        <result property="createTime" column="CREATE_TIME"/>
+        <result property="create_time" column="CREATE_TIME"/>
     </resultMap>
 
     <!-- 查询消息通知详情 -->

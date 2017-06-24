@@ -5,6 +5,7 @@ import cn.rzhd.wuye.vo.query.PropertyFeePayDetailsQuery;
 import cn.rzhd.wuye.vo.query.PropertyRecordsQuery;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by hasee on 2017/6/1.
@@ -23,7 +24,7 @@ public interface IPropertyFeePayDetailsService {
 
     void changeStatus(Long id);
 
-    PropertyFeePayDetails getByProject(String houseInfoId);
+    Map<String, Object> getByProject(String houseInfoId);
 
     List<PropertyFeePayDetails> queryByProject(PropertyRecordsQuery query);
 }

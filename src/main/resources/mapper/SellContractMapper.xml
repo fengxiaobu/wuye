@@ -34,7 +34,7 @@
 		FROM
 			"T_Sell_Contract"
 		WHERE
-			"pk_customerid" = (
+			"pk_customerid" in (
 				SELECT DISTINCT
 					"pk_customerid"
 				FROM

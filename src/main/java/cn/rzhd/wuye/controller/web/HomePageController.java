@@ -109,7 +109,7 @@ public class HomePageController {
      * @param pk_customerid
      * @return
      */
-    @RequestMapping(value = "/findMessageByCustomer", method = RequestMethod.POST)
+    @RequestMapping(value = "/findMessageByCustomer")
     public List<MessageManage> findMessageByCustomer(@RequestBody String pk_customerid) {
 
         String[] strings = pk_customerid.split(",");

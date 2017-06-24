@@ -142,10 +142,38 @@
             FEETYPE
         FROM T_PROPERTY_FEE_PAY_DETAILS
     </select>
-    <select id="getByProject" parameterType="string" resultMap="propertyFeePayDetailsMapper">
+
+    <resultMap id="map" type="java.util.Map">
+        <id property="detailsId" column="PROPERTY_FEE_PAY_DETAILS_ID"/>
+        <result property="projectName" column="PROJECT_NAME"/>
+        <result property="houseCode" column="vhcode"/>
+        <result property="clientName" column="CLIENT_NAME"/>
+        <result property="costType" column="FEETYPE"/>
+        <result property="payManner" column="PAY_MANNER"/>
+        <result property="payMonth" column="PAY_MONTH"/>
+        <result property="startDate" column="START_DATE"/>
+        <result property="endDate" column="END_DATE"/>
+        <result property="payable" column="PAYABLE"/>
+        <result property="paidIn" column="PAID_IN"/>
+        <result property="voucherNumber" column="VOUCHER_NUMBER"/>
+        <result property="invoice" column="INVOICE"/>
+        <result property="invoiceNumber" column="INVOICE_NUMBER"/>
+        <result property="invoiceNotes" column="INVOICE_NOTES"/>
+        <result property="invoiceStatus" column="INVOICE_STATUS"/>
+        <result property="collectingCompany" column="COLLECTING_COMPANY"/>
+        <result property="collectingAccount" column="COLLECTING_ACCOUNT"/>
+        <result property="invoiceCompany" column="INVOICE_COMPANY"/>
+        <result property="payTime" column="PAY_TIME"/>
+        <result property="carteTime" column="CARTE_TIME"/>
+        <result property="updateTime" column="UPDATE_TIME"/>
+        <result property="customerId" column="CUSTOMER_ID"/>
+        <result property="status" column="STATUS"/>
+    </resultMap>
+    <select id="getByProject" parameterType="string" resultMap="map">
         SELECT
         PROPERTY_FEE_PAY_DETAILS_ID,
-        HOUSE_INFO_ID,
+        T_PROJECT_INFO.PROJECT_NAME,
+        T_HOUSE_INFO_DETAILS."vhcode",
         CLIENT_NAME,
         FEETYPE,
         PAY_MANNER,
@@ -164,11 +192,12 @@
         INVOICE_COMPANY,
         PAY_TIME,
         CARTE_TIME,
-        UPDATE_TIME,
+        T_PROPERTY_FEE_PAY_DETAILS.UPDATE_TIME,
         CUSTOMER_ID,
-        STATUS,
+        T_PROPERTY_FEE_PAY_DETAILS.STATUS,
         FEETYPE
-        FROM T_PROPERTY_FEE_PAY_DETAILS
+        FROM T_PROPERTY_FEE_PAY_DETAILS JOIN T_HOUSE_INFO_DETAILS ON HOUSE_INFO_ID="pk_house"
+            JOIN T_PROJECT_INFO ON T_PROJECT_INFO.PK_PROJECT=T_HOUSE_INFO_DETAILS."pk_project"
         WHERE HOUSE_INFO_ID=#{houseInfoId}
     </select>
 </mapper>
