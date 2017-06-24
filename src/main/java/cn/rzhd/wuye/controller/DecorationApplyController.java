@@ -1,7 +1,6 @@
 package cn.rzhd.wuye.controller;
 
 import cn.rzhd.wuye.bean.*;
-import cn.rzhd.wuye.bean.vo.ResousVO;
 import cn.rzhd.wuye.service.*;
 import cn.rzhd.wuye.utils.IDUtils;
 import com.alibaba.fastjson.JSON;
@@ -68,13 +67,12 @@ public class DecorationApplyController {
     /**
      * 装修申请
      */
-    @RequestMapping(value = "/upload/batch", method = RequestMethod.POST)
-    public @ResponseBody
-    Map<String, String> batchUpload(@RequestBody ResousVO resousVO) {
-        System.out.println("resousVO = " + resousVO);
+    @RequestMapping(value = "/upload/batch", method = RequestMethod.POST, consumes = "application/json")
+    @ResponseBody
+    public Map<String, String> batchUpload(@RequestBody DecorationApply decorationApply) {
+        System.out.println("decorationApply = " + decorationApply);
         Map<String, String> result = new HashMap<>();
         Date date = new Date();
-        DecorationApply decorationApply = new DecorationApply();
         Long aLong = IDUtils.genLongUID();
         decorationApply.setDecorationApplyId(aLong);
         decorationApply.setAuditStatus(0);
@@ -98,21 +96,21 @@ public class DecorationApplyController {
                 decorationApply.setPassPapersDeposit(new BigDecimal(decorationApply.getConstructPeopleNumber() * 10));
                 //装修申请
                 decorationApplyService.insert(decorationApply);
-                for (int i = 0; i < resousVO.getDecorateDetailList().size(); i++) {
+                for (int i = 0; i < decorationApply.getDecorateDetailList().size(); i++) {
                     DecorateDetail decorateDetail = new DecorateDetail();
                     decorateDetail.setDecorationApplyId(aLong);
                     decorateDetail.setDecorateDetailId(IDUtils.genLongUID());
                     decorateDetail.setDetailOrder(i + 1L);
-                    decorateDetail.setDetailContent(resousVO.getDecorateDetailList().get(i).getDetailContent());
+                    decorateDetail.setDetailContent(decorationApply.getDecorateDetailList().get(i).getDetailContent());
                     //装修明细
                     decorateDetailService.insert(decorateDetail);
                 }
-                for (int i = 0; i < resousVO.getDecorationMaterialList().size(); i++) {
+                for (int i = 0; i < decorationApply.getDecorationMaterialList().size(); i++) {
                     DecorationMaterial decorationMaterial = new DecorationMaterial();
                     decorationMaterial.setDecorationApplyId(aLong);
                     decorationMaterial.setDecorationMaterialId(IDUtils.genLongUID());
-                    decorationMaterial.setMaterialAddress(resousVO.getDecorationMaterialList().get(i).getMaterialAddress());
-                    decorationMaterial.setMaterialName(resousVO.getDecorationMaterialList().get(i).getMaterialName());
+                    decorationMaterial.setMaterialAddress(decorationApply.getDecorationMaterialList().get(i).getMaterialAddress());
+                    decorationMaterial.setMaterialName(decorationApply.getDecorationMaterialList().get(i).getMaterialName());
                     //装修资料
                     decorationMaterialService.insert(decorationMaterial);
                 }
@@ -127,7 +125,7 @@ public class DecorationApplyController {
             return result;
         }
         //修改申请状态
-        HouseInfo houseInfo = houseInfoService.getById(resousVO.getDecorationApply().getHouseInfoId());
+        HouseInfo houseInfo = houseInfoService.getById(decorationApply.getHouseInfoId());
         houseInfo.setDecorationApplyState("1");
         houseInfoService.update(houseInfo);
         result.put("state", "1");

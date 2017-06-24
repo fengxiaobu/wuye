@@ -50,7 +50,7 @@
             "Company_Type",
             "Password",
             "Binding_Phone",
-            "CURRENT_FLOW"
+            CURRENT_FLOW,
             ALREADY_FINISH,
             CURRENT_HOUSE_ID
         FROM "T_Customer"
@@ -134,5 +134,5 @@
         SET CURRENT_FLOW = #{currentFlow}
         WHERE "vccode" = #{vccode}
     </update>
-    
+
 </mapper>
