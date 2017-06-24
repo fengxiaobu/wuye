@@ -1,6 +1,5 @@
 package cn.rzhd.wuye.service;
 
-import cn.rzhd.wuye.bean.Role;
 import cn.rzhd.wuye.bean.User;
 import cn.rzhd.wuye.vo.CustomerVO;
 import cn.rzhd.wuye.vo.ManageVO;
@@ -28,7 +27,7 @@ public interface IUserService {
 
     User getDetails(Long id);
 
-    List<Role> getMyRole(Long id);
-
     Long saveUser(User user);
+
+    void delete(Long id);
 }

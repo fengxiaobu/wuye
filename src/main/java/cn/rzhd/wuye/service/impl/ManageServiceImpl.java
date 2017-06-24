@@ -6,6 +6,8 @@ import cn.rzhd.wuye.vo.ManageVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by hasee on 2017/6/23.
  */
@@ -17,5 +19,20 @@ public class ManageServiceImpl implements IManageService {
     @Override
     public void addManage(ManageVO vo) {
         mapper.addManage(vo);
+    }
+
+    @Override
+    public List<ManageVO> getMyManage(Long id) {
+        return mapper.getMyManage(id);
+    }
+
+    @Override
+    public void addMyManage(String proId, Long id) {
+        mapper.addMyManage(proId,id);
+    }
+
+    @Override
+    public void removeAllMyManage(Long id) {
+        mapper.removeByUser(id);
     }
 }

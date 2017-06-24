@@ -1,9 +1,10 @@
 package cn.rzhd.wuye.bean;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class HouseInfoDetails {
+public class HouseInfoDetails implements Serializable {
     private String pkHouse;
 
     private String pkCorp;

@@ -11,6 +11,7 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 
 import cn.rzhd.wuye.service.ISellContractService;
+import cn.rzhd.wuye.vo.PactVO;
 import cn.rzhd.wuye.vo.SignVO;
 
 /**
@@ -25,17 +26,15 @@ public class SellContractBackController {
 	
     @RequestMapping("/getSellContractList")
     public String sellContractList(Model model, Integer pageNum, Integer pageSize) {
+    	System.out.println(2222);
     	PageHelper.startPage(pageNum, pageSize);
-    	List<SignVO> signVOs = sellContractService.getBackAll();
-    	for (SignVO signVO : signVOs) {
-			System.out.println(signVO);
-		}
-    	
-    	Page page = (Page) signVOs;
-    	
-        model.addAttribute("sellContractList", signVOs);
+		List<SignVO> signVOs = sellContractService.getBackAll();
+		System.out.println(signVOs.size());
+		Page page = (Page) signVOs;
+		System.out.println(signVOs.size());
 
-        model.addAttribute("pages", page.getPages());
+		model.addAttribute("sellContractList", signVOs);
+
         return "contract/sell";
     }
     

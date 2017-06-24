@@ -144,11 +144,6 @@ public class UserServiceImpl implements IUserService {
         return userMapper.getDetailsById(id);
     }
 
-	@Override
-	public List<Role> getMyRole(Long id) {
-		return userMapper.getMyRole(id);
-	}
-
     @Override
     public Long saveUser(User user) {
         if (user.getUserId()==null){
@@ -161,6 +156,11 @@ public class UserServiceImpl implements IUserService {
         	return user.getUserId();
 		}
 
+    }
+
+    @Override
+    public void delete(Long id) {
+        userMapper.delete(id);
     }
 
 
