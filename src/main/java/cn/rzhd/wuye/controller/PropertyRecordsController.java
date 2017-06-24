@@ -1,6 +1,5 @@
 package cn.rzhd.wuye.controller;
 
-import cn.rzhd.wuye.bean.PropertyFeePayDetails;
 import cn.rzhd.wuye.service.IPropertyFeePayDetailsService;
 import cn.rzhd.wuye.service.IUserService;
 import cn.rzhd.wuye.utils.UserContext;
@@ -11,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by hasee on 2017/6/22.
@@ -27,12 +27,12 @@ public class PropertyRecordsController {
     public ModelAndView index(){
         Long userId = UserContext.getUser().getUserId();
         List<String> houseInfos = userService.getHouseInfos(userId);
-        List<PropertyFeePayDetails> list = new ArrayList<>();
+        List<Map<String, Object>> result = new ArrayList<>();
         for (String houseInfo : houseInfos) {
-            list.add(propertyFeePayDetailsService.getByProject(houseInfo));
+            result.add(propertyFeePayDetailsService.getByProject(houseInfo));
         }
         ModelAndView mav = new ModelAndView();
-        mav.addObject("propertyRecords",list);
+        mav.addObject("propertyRecords",result);
         mav.setViewName("payment/wuye");
         return mav;
     }

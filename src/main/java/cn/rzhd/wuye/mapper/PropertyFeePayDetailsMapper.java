@@ -6,6 +6,7 @@ import cn.rzhd.wuye.vo.query.PropertyRecordsQuery;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by hasee on 2017/5/31.
@@ -26,5 +27,5 @@ public interface PropertyFeePayDetailsMapper {
 
     List<PropertyFeePayDetails> queryByProject(PropertyRecordsQuery query);
 
-    PropertyFeePayDetails getByProject(String houseInfoId);
+    Map<String,Object> getByProject(String houseInfoId);
 }

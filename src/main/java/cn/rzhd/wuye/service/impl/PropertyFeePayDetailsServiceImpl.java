@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by hasee on 2017/6/1.
@@ -44,7 +45,7 @@ public class PropertyFeePayDetailsServiceImpl implements IPropertyFeePayDetailsS
     }
 
     @Override
-    public PropertyFeePayDetails getByProject(String houseInfoId) {
+    public Map<String, Object> getByProject(String houseInfoId) {
         return mapper.getByProject(houseInfoId);
     }
 
