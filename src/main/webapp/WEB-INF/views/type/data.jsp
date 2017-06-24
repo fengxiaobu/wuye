@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -55,8 +56,8 @@
                         	<c:if test="${typeRefinements.status eq 1}">禁用</c:if>  
                 			<c:if test="${typeRefinements.status eq 0}">启用</c:if>  
                         </td>
-                        <td><fmt:formatDate value="${typeRefinements.createTime}" pattern="yyyy-MM-dd"/></td>
-                        <td><a class="btn btn-info" href="${pageContext.request.contextPath}/dist/messageManageBack/messageManageEdit?message_manage_id=${messageManageList.message_manage_id}" role="button">编辑</a><a class="btn btn-info" href="" role="button">删除</a></td>
+                        <td><fmt:formatDate value="${typeRefinements.updateTime}" pattern="yyyy-MM-dd hh:mm"/></td>
+                        <td><a class="btn btn-info" href="${pageContext.request.contextPath}/typeRefinement/getTypeDataEdit?typeRefinementId=${typeRefinements.typeRefinementId}&typeDifferentiateId=${typeRefinements.typeDifferentiateId}" role="button">编辑</a><a class="btn btn-info" href="" role="button">删除</a></td>
                     </tr>
                 </c:forEach>
                 </tbody>

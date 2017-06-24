@@ -52,8 +52,8 @@ public class RentContractServiceImpl implements IRentContractService {
     }
 
 	@Override
-	public List<PactVO> getRentContractByCustomer(String[] pk_customerid) {
-		List<PactVO> pactVOs = mapper.getByPkId(pk_customerid);
+	public List<PactVO> getRentContractByCustomer(String vccode) {
+		List<PactVO> pactVOs = mapper.getByPkId(vccode);
 		return pactVOs;
 	}
 

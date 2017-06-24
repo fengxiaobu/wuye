@@ -9,4 +9,6 @@ public interface ITypeRefinementService {
     // void addTypeRefinement(TypeRefinementVo typeRefinementVo);
 
 	List<TypeRefinement> getDataList(Integer typeDifferentiateId);
+	
+	TypeRefinement getOneData(Integer typeRefinementId);
 }

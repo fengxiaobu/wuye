@@ -24,6 +24,12 @@ public class TypeRefinementServiceImpl implements ITypeRefinementService {
 		List<TypeRefinement> typeRefinements = mapper.getDataList(typeDifferentiateId);
 		return typeRefinements;
 	}
+
+	@Override
+	public TypeRefinement getOneData(Integer typeRefinementId) {
+		TypeRefinement typeRefinement = mapper.getOneData(typeRefinementId);
+		return typeRefinement;
+	}
     
 /*    @Override
     public void addTypeRefinement(TypeRefinementVo typeRefinementVo) {
