@@ -18,4 +18,8 @@ public interface UserMapper {
     User getDetailsById(Long id);
 
     List<Role> getMyRole(Long id);
+
+    void insert(User user);
+
+    void update(User user);
 }

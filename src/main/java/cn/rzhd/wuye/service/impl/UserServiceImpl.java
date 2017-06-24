@@ -7,19 +7,17 @@ import java.util.Map;
 import cn.rzhd.wuye.bean.Role;
 import cn.rzhd.wuye.mapper.HouseInfoDetailsMapper;
 import cn.rzhd.wuye.mapper.ManageVOMapper;
+import cn.rzhd.wuye.utils.IDUtils;
 import cn.rzhd.wuye.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.annotation.JsonFormat.Value;
 
-import cn.rzhd.wuye.bean.Customer;
 import cn.rzhd.wuye.bean.User;
-import cn.rzhd.wuye.common.WebService;
 import cn.rzhd.wuye.mapper.CustomerMapper;
 import cn.rzhd.wuye.mapper.UserMapper;
 import cn.rzhd.wuye.service.IUserService;
-import cn.rzhd.wuye.utils.JsonUtils;
 
 @Service
 public class UserServiceImpl implements IUserService {
@@ -150,6 +148,20 @@ public class UserServiceImpl implements IUserService {
 	public List<Role> getMyRole(Long id) {
 		return userMapper.getMyRole(id);
 	}
+
+    @Override
+    public Long saveUser(User user) {
+        if (user.getUserId()==null){
+			Long id = IDUtils.genLongUID();
+			user.setUserId(id);
+			userMapper.insert(user);
+			return id;
+		}else{
+        	userMapper.update(user);
+        	return user.getUserId();
+		}
+
+    }
 
 
 }

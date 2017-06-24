@@ -187,4 +187,11 @@ public class UserController {
 		return mav;
 	}
 
+	@RequestMapping("/save")
+	public ModelAndView save(User user,Long[] role,String[] projectId){
+		userService.saveUser(user);
+
+		return null;
+	}
+
 }
