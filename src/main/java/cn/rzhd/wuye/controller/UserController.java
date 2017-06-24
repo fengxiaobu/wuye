@@ -1,8 +1,11 @@
 package cn.rzhd.wuye.controller;
 
+import cn.rzhd.wuye.bean.Customer;
 import cn.rzhd.wuye.bean.HouseInfo;
 import cn.rzhd.wuye.bean.Role;
 import cn.rzhd.wuye.bean.User;
+import cn.rzhd.wuye.service.ICustomerCentreService;
+import cn.rzhd.wuye.service.ICustomerService;
 import cn.rzhd.wuye.service.IHouseInfoService;
 import cn.rzhd.wuye.service.IUserService;
 import cn.rzhd.wuye.utils.JsonUtils;
@@ -39,6 +42,8 @@ public class UserController {
 	private IUserService userService;
 	@Autowired
 	private IHouseInfoService houseInfoService;
+	@Autowired
+	ICustomerService customerService;
 
 	/**
 	 * 用户列表分页查询
@@ -149,16 +154,25 @@ public class UserController {
 	public String houseInfoDetails(Model model, Integer pageNum, Integer pageSize) {
 		PageHelper.startPage(pageNum, pageSize);
 		List<HouseInfo> houseInfos = houseInfoService.getAllHouseinfo();
-		for (HouseInfo houseInfo : houseInfos) {
-			System.out.println(houseInfo);
-		}
-		
 		
 		Page page = (Page) houseInfos;
 		model.addAttribute("allHouse", houseInfos);
 
 		model.addAttribute("pages", page.getPages());
-		return "user/houseInfo";
+		return "houseinfo/houseInfo";
+	}
+	
+	@RequestMapping("/getAllUser")
+	public String UserList(Model model, Integer pageNum, Integer pageSize) {
+		PageHelper.startPage(pageNum, pageSize);
+		List<Customer> customers = customerService.queryAll();
+		
+		
+		Page page = (Page) customers;
+		model.addAttribute("customers", customers);
+
+		model.addAttribute("pages", page.getPages());
+		return "customer/customerList";
 	}
 
 	@RequestMapping("index")
@@ -185,6 +199,13 @@ public class UserController {
 		mav.addObject("my",myProjects);
 		mav.setViewName("user/userEdit");
 		return mav;
+	}
+
+	@RequestMapping("/save")
+	public ModelAndView save(User user,Long[] role,String[] projectId){
+		userService.saveUser(user);
+
+		return null;
 	}
 
 }

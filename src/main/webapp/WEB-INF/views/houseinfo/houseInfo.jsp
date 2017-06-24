@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,9 +27,7 @@
             <div class="col-xs-4">房产信息</div>
             <div class="col-xs-8 panel-oprerate">
                 <div class="col-xs-12">
-                    <span style="margin-right: 50px;text-align: center"><input type="text" placeholder="房产编号"></span>
-                    <span style="margin-right: 50px;text-align: center"><input type="text" placeholder="客户名称"></span>
-                    <span style="margin-right: 50px;text-align: center"><input type="text" placeholder="手机号"></span>
+                    <span style="margin-right: 50px;text-align: center"><input type="text" placeholder=""></span>
                     <button class="btn btn-info" type="button" id="search"><span class="glyphicon glyphicon-search"></span>搜素
                     </button>
                 </div>
@@ -52,26 +52,22 @@
                     <th rowspan="2">房产使用属性</th>
                     <th rowspan="2">星级</th>
                     <th rowspan="2">更新日期</th>
+                    <th rowspan="2">操作</th>
                 </tr>
                 </thead>
                 <tbody class="tudiqianyue-tbody">
-                <tr class="tudiqianyue-tdtr">
-                    <td>1</td>
-                    <td>9527</td>
-                    <td>联东U谷</td>
-                    <td>联东</td>
-                    <td>自用</td>
-                    <td>AAAA</td>
-                    <td>2013-01-10</td>
-                </tr>
-                <tr class="tudiqianyue-tdtr">
-                    <td>1</td>
-                    <td>9527</td>
-                    <td>联东U谷</td>
-                    <td>联东</td>
-                    <td>自用</td>
-                    <td>AAAAAA</td>
-                    <td>2013-01-10</td>
+	                <c:forEach items="${allHouse}" var="allHouse" varStatus="status">
+	                    <tr class="tudiqianyue-tdtr">
+	                        <td>${status.index+1}</td>
+	                        <td>${allHouse.customerId}</td>
+	                        <td>${allHouse.houseVO.project}</td>
+	                        <td>${allHouse.houseVO.vhcode}</td>
+	                        <td></td>
+	                        <td>${allHouse.starLevel}</td>
+	                        <td><fmt:formatDate value="${allHouse.updateTime}" pattern="yyyy-MM-dd"/></td>
+	                        <td><a class="btn btn-info" href="${pageContext.request.contextPath}/user/messageManageEdit?message_manage_id=${messageManageList.message_manage_id}" role="button">编辑</a><a class="btn btn-info" href="" role="button">删除</a></td>
+	                    </tr>
+	                </c:forEach>
                 </tr>
                 </tbody>
             </table>

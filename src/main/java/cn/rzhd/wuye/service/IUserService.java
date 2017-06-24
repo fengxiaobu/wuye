@@ -29,4 +29,6 @@ public interface IUserService {
     User getDetails(Long id);
 
     List<Role> getMyRole(Long id);
+
+    Long saveUser(User user);
 }

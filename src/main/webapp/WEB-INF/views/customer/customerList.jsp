@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,14 +28,8 @@
             <div class="col-xs-4">用户列表</div>
             <div class="col-xs-8 panel-oprerate">
                 <div class="col-xs-12">
-                    <span style="margin-right: 50px"><input style="height: 35px;width: 320px;" type="text"  id="exampleInputName" placeholder="用户编号,客户名称,手机号"></span>
+                    <span style="margin-right: 50px"><input style="height: 35px;width: 320px;" type="text"  id="exampleInputName" placeholder=""></span>
                     <button class="btn btn-info"  type="button"><span class="glyphicon glyphicon-search"></span>搜素</button>
-                    <%--<a href="/userEdit" class="btn btn-info"  type="button"><span class="glyphicon glyphicon-plus"></span>新增</a>--%>
-                    <button class="btn btn-info" type="button"><span class="glyphicon glyphicon-remove"></span>删除</button>
-                </div>
-                <div class="col-xs-12">
-                    <button class="btn btn-default" id="tudiqianyue-remove" type="button"><span class="glyphicon glyphicon-remove"></span>取消</button>
-                    <button class="btn btn-success" id="tudiqianyue-ok" type="button"><span class="glyphicon glyphicon-ok"></span>提交</button>
                 </div>
             </div>
         </div>
@@ -41,7 +37,6 @@
             <table class="table table-bordered tudiqianyue-table">
                 <thead>
                 <tr class="info">
-                    <th rowspan="2">选择</th>
                     <th rowspan="2">序号</th>
                     <th rowspan="2">业主类型<br/></th>
                     <th rowspan="2">客户名称</th>
@@ -51,24 +46,19 @@
                 </tr>
                 </thead>
                 <tbody class="tudiqianyue-tbody">
-                <tr class="tudiqianyue-tdtr">
-                    <td><input type="checkbox" value=""></td>
-                    <td>1</td>
-                    <td>企业</td>
-                    <td>联东集团</td>
-                    <td>18190124022</td>
-                    <td>2013-01-10</td>
-                    <td><a class="btn btn-info" href="#" role="button">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-info" href="/views/user/userEdit" role="button">编辑</a></td>
-                </tr>
-                <tr class="tudiqianyue-tdtr">
-                    <td><input type="checkbox" value=""></td>
-                    <td>2</td>
-                    <td>企业</td>
-                    <td>联东集团</td>
-                    <td>18190124022</td>
-                    <td>2013-01-10</td>
-                    <td><a class="btn btn-info" href="#" role="button">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-info" href="/views/user/userEdit" role="button">编辑</a></td>
-                </tr>
+	               <c:forEach items="${customers}" var="customers" varStatus="status">
+		                    <tr class="tudiqianyue-tdtr">
+		                        <td>${status.index+1}</td>
+		                        <td>
+			                        <c:if test="${customers.companyType eq 1}">企业</c:if>  
+	                				<c:if test="${customers.companyType eq 0}">个人</c:if>  
+	                			</td>
+		                        <td>${customers.vcname}</td>
+		                        <td>${customers.bindingPhone}</td>
+		                        <td><fmt:formatDate value="${customers.updateData}" pattern="yyyy-MM-dd"/></td>
+		                        <td><a class="btn btn-info" href="" role="button">编辑</a><a class="btn btn-info" href="" role="button">删除</a></td>
+		                    </tr>
+		               </c:forEach>
                 </tbody>
             </table>
         </div>
