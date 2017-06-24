@@ -17,4 +17,6 @@ public interface PerfectInformationMapper {
 	PerfectInformation selectByPrimaryKey(String perfectInformationId);
 
 	List<PerfectInformation> selectAll();
+	
+	void updateFlow(String vccode);
 }
