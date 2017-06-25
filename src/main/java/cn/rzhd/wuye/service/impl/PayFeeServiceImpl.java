@@ -186,9 +186,9 @@ public class PayFeeServiceImpl implements IPayFeeService {
                 }
             }
         }
-        amountLeft.put("status", true);
-        amountLeft.put("electricFee", money);
-        return amountLeft;
+        map.put("status",true);
+        map.put("electricFee",money);
+        return map;
     }
 
     @Override
@@ -226,7 +226,7 @@ public class PayFeeServiceImpl implements IPayFeeService {
         BigDecimal result = new BigDecimal("0");
         if ("yuan".equals(query.getWaterCountBy())) {
             result = new BigDecimal(query.getWaterAmout());
-            BigDecimal tunnage = result.divide(query.getWaterPrice());
+            BigDecimal tunnage = result.divide(query.getWaterPrice(),2,BigDecimal.ROUND_HALF_UP);
             map.put("tunnage",tunnage);
         } else if ("ton".equals(query.getWaterCountBy())) {
             result = new BigDecimal(query.getWaterAmout()).multiply(query.getWaterPrice());
