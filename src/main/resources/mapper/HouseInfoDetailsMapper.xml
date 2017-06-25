@@ -163,6 +163,7 @@
 
     <select id="getAll" resultMap="houseVOBackMap">
         SELECT
+       	 DISTINCT
             H."pk_project",
             s."pk_house",
             P.PK_PROJECT,
