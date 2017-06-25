@@ -87,6 +87,7 @@
 	</insert>
 	<select id="getAll" resultMap="sellContractBackMap">
 		SELECT
+		DISTINCT
 		s."pk_house",
 		P.PROJECT_NAME,
 		p.VCODE,

@@ -13,10 +13,6 @@ import com.github.pagehelper.PageHelper;
 import cn.rzhd.wuye.service.IRentContractService;
 import cn.rzhd.wuye.vo.PactVO;
 
-/**
- * @author Administrator
- *
- */
 @Controller
 @RequestMapping("/dist/rentContractBack")
 public class RentContractBackController {

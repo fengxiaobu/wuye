@@ -103,13 +103,7 @@
         from T_ELECTRIC_FEE_PAY_DETAILS
         <include refid="whereSql"/>
     </select>
-    <select id="getAstrictPaid" resultType="bigdecimal">
-        SELECT SUM(NVL(PAID_IN, 0))
-        FROM T_ELECTRIC_FEE_PAY_DETAILS
-        WHERE HOUSE_INFO_ID = #{houseInfoId}
-              AND PAY_TIME &lt; #{endDate}
-              AND PAY_TIME &gt; #{startDate}
-    </select>
+
 
     <resultMap id="getLastTime" type="cn.rzhd.wuye.bean.ElectricFeePayDetails">
         <id column="ELECTRIC_FEE_PAY_DETAILS_ID" property="electricFeePayDetailsId"/>

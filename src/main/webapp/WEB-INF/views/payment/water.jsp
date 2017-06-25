@@ -16,7 +16,7 @@
     <ol class="breadcrumb">
         <li><a href="#">首页</a></li>
         <li><a href="#">快捷缴费</a></li>
-        <li class="active">物业</li>
+        <li class="active">水费</li>
     </ol>
 </div>
 <!-- 路径导航 结束 -->
@@ -25,7 +25,7 @@
     </div>
     <div class="panel panel-default tudiqianyue">
         <div class="panel-heading">
-            <div class="col-xs-4">物业缴费记录</div>
+            <div class="col-xs-4">水费缴费记录</div>
             <div class="col-xs-8 panel-oprerate">
                 <div class="col-xs-12">
                     <span style="margin-right: 50px"><input style="height: 35px;width: 320px;" type="text"></span>至
@@ -53,43 +53,47 @@
                     <th>项目名称</th>
                     <th>房产编码</th>
                     <th>客户名称</th>
+                    <th>缴费日期</th>
+                    <th>缴费金额</th>
+                    <th>吨数</th>
+                    <th>单据号</th>
                     <th>费用类型</th>
-                    <th>更新日期</th>
+                    <th>收款公司</th>
+                    <th>收款账户</th>
                     <th>支付方式</th>
+                    <th>发票</th>
+                    <th>发票号</th>
+                    <th>发票备注</th>
+                    <th>操作</th>
+
+<!--                    <th>更新日期</th>
                     <th>缴费月份</th>
                     <th>开始日期</th>
                     <th>截止日期</th>
                     <th>应缴</th>
                     <th>已缴</th>
                     <th>单据号</th>
-                    <th>发票</th>
-                    <th>发票号</th>
-                    <th>发票备注</th>
                     <th>开票状态</th>
-                    <th>收款公司</th>
-                    <th>收款账户</th>
                     <th>开票单位</th>
-                    <th>缴费日期</th>
+-->
+
                 </tr>
                 </thead>
                 <tbody class="tudiqianyue-tbody">
-                <c:forEach items="${propertyRecords}" var="item">
+                <c:forEach items="${waterRecords}" var="item">
                     <tr class="tudiqianyue-tdtr">
-
                         <td>${item.detailsId}</td>
                         <td>${item.projectName}</td>
                         <td>${item.houseCode}</td>
                         <td>${item.clientName}</td>
-                        <td>${item.costType}</td>
-                        <td>${item.updateTime}</td>
-                        <td>${item.payManner}</td>
-                        <td>${item.payMonth}</td>
-                        <td>${item.startDate}</td>
-                        <td>${item.endDate}</td>
-                        <td>${item.payable}</td>
+                        <td>${item.payTime}</td>
                         <td>${item.paidIn}</td>
+                        <td>${item.tunnage}</td>
                         <td>${item.voucherNumber}</td>
-                        <td>${item.invoice}</td>
+                        <td>${item.costType}</td>
+                        <td>${item.collectingCompany}</td>
+                        <td>${item.collectingAccount}</td>
+                        <td>${item.payManner}</td>
                         <td>${item.invoiceNumber}</td>
                         <td>${item.invoiceNotes}</td>
                         <td>
@@ -105,10 +109,11 @@
                                 </c:when>
                             </c:choose>
                         </td>
-                        <td>${item.collectingCompany}</td>
-                        <td>${item.collectingAccount}</td>
-                        <td>${item.invoiceCompany}</td>
-                        <td>${item.payTime}</td>
+
+                        <td></button>&nbsp;&nbsp;&nbsp;&nbsp;<a
+                                class="btn btn-info"
+                                href="${pageContext.request.contextPath}/utilitiesRecords/waterDetails?id=${item.detailsId}"
+                                role="button">详情</a></td>
                     </tr>
                 </c:forEach>
                 </tbody>

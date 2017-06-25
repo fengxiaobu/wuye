@@ -4,6 +4,7 @@
 
 	<select id="getAll"  resultMap="RentContractBackMap">
 		SELECT
+			DISTINCT
 			P.PROJECT_NAME,
 			r."house",
 			c."vcname",

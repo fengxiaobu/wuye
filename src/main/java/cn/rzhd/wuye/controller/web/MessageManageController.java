@@ -1,6 +1,8 @@
 package cn.rzhd.wuye.controller.web;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -59,7 +61,15 @@ public class MessageManageController {
 	}
 
 	@RequestMapping("/deleteMessageManages")
-	public void DeleteMessageManages(String[] message_manage_id) {
-		messageManageService.DeleteMessageManages(message_manage_id);
+	public Map<String, Object> DeleteMessageManages(String[] message_manage_id) {
+		Map<String, Object> result = new HashMap<String, Object>();
+
+		try {
+			messageManageService.DeleteMessageManages(message_manage_id);
+		} catch (Exception e) {
+			result.put("message", "发生错误" + e.getMessage());
+		}
+		result.put("message", "删除成功");
+		return result;
 	}
 }

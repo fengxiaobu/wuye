@@ -84,7 +84,7 @@ public class ReletApplyController {
     /**
      *
      * @param model
-     * 
+     *
      * @return
      */
     @RequestMapping("/findReletApplyByHouseId")

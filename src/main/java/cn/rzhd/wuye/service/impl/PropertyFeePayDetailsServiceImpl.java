@@ -45,8 +45,8 @@ public class PropertyFeePayDetailsServiceImpl implements IPropertyFeePayDetailsS
     }
 
     @Override
-    public Map<String, Object> getByProject(String houseInfoId) {
-        return mapper.getByProject(houseInfoId);
+    public List<Map<String, Object>> getByProject(Long userId) {
+        return mapper.getByProject(userId);
     }
 
     @Override
