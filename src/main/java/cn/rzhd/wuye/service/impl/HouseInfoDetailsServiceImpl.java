@@ -57,8 +57,8 @@ public class HouseInfoDetailsServiceImpl implements IHouseInfoDetailsService {
     }
 
     @Override
-    public void updateHouse(String pkHouse, String enterApplyState) {
-        mapper.updateHouse(pkHouse, enterApplyState);
+    public void updateHouse(String pkHouse, String enterApplyState,String decorationapplystate) {
+        mapper.updateHouse(pkHouse, enterApplyState,decorationapplystate);
     }
 
     @Override
