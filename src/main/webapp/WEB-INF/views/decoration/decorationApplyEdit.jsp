@@ -25,7 +25,7 @@
         <div class="col-xs-12">
             <div class="panel panel-default tudiqianyue">
                 <form class="form-horizontal"
-                      action="${pageContext.request.contextPath}/dist/enterApply/updateEnterApply" method="post">
+                      action="${pageContext.request.contextPath}/dist/updateDecorationApply" method="post">
                     <div class="form-group" style="margin-top: 50px">
                         <input type="hidden" name="decorationApplyId" value="${decorationApply.decorationApplyId}"/>
                         <label class="col-sm-2 control-label">项目名称:</label>
@@ -135,7 +135,7 @@
                             <input type="text" name="passPapersDeposit" value="${decorationApply.passPapersDeposit}"/>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <%--<div class="form-group">
                         <label class="col-sm-2 control-label">附件:</label>
                         <div class="col-sm-10">
                           <input type="text" value=""/>
@@ -162,8 +162,8 @@
                                 </tr>
                             </table>
                         </div>
-                    </div>
-                    <div class="form-group">
+                    </div>--%>
+                   <%-- <div class="form-group">
                         <label class="col-sm-2 control-label">审核意见:</label>
                         <div class="col-sm-10 radio">
                             <label>
@@ -181,8 +181,8 @@
                         <div class="col-sm-10">
                             <label class="col-sm-2 control-label"></label>
                         </div>
-                    </div>
-                    <div class="form-group">
+                    </div>--%>
+                   <%-- <div class="form-group">
                         <label class="col-sm-2 control-label">特殊装修:</label>
                         <div class="col-sm-10 radio">
                             <label>
@@ -195,7 +195,7 @@
                             </label>
                             <input type="file" value="请上传特殊装修资料"/>
                         </div>
-                    </div>
+                    </div>--%>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">审核状态:</label>
                         <div class="col-sm-10 radio">

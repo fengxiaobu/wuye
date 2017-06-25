@@ -126,7 +126,7 @@
             "nmny",
             "nyshouldmny"
         FROM "T_KF_Fee"
-        WHERE "isrz" = 'Y' AND "pk_house" = #{houseInfoId}
+        WHERE "isrz" = 'Y' AND "pk_house" = '${houseInfoId}'
     </select>
     <select id="selectAllArrears" resultMap="BaseResultMap" parameterType="cn.rzhd.wuye.vo.query.ArrearsQuery">
         SELECT
