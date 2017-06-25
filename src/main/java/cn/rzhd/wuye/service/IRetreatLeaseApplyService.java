@@ -19,5 +19,5 @@ public interface IRetreatLeaseApplyService {
 
     int updateByPrimaryKey(RetreatLeaseApply record);
 
-    RetreatLeaseApply findRetreatLeaseApply(String houseInfoId);
+    List<RetreatLeaseApply> findRetreatLeaseApply(String houseInfoId);
 }
