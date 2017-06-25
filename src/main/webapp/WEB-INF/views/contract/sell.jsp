@@ -47,7 +47,6 @@
                     <th rowspan="2">折扣金额</th>
                     <th rowspan="2">折后签约总价</th>
                     <th rowspan="2">销售进程</th>
-                    <th rowspan="2">操作</th>
                 </tr>
 
                 </thead>
@@ -63,7 +62,6 @@
                         <td>${sellContractList.nythisdiscountmny}</td>
                         <td>${sellContractList.nytotalmnysign}</td>
                         <td>${sellContractList.fpmcourse}</td>
-                        <td><a class="btn btn-info" href="" role="button">编辑</a></td>
                     </tr>
                 </c:forEach>
                 </tbody>
