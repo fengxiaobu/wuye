@@ -49,7 +49,6 @@
                     <th rowspan="2">折后签约总价</th>
                     <th rowspan="2">项目地址</th>
                     <th rowspan="2">项目电话</th>
-                    <th rowspan="2">操作</th>
                 </tr>
 
                 </thead>
@@ -66,7 +65,6 @@
                         <td>${houseInfoDetailsList.signVO.nytotalmnysign}</td>
                         <td>${houseInfoDetailsList.projectVO.project_address}</td>
                         <td>${houseInfoDetailsList.projectVO.object_phone}</td>
-                        <td><a class="btn btn-info" href="" role="button">查看</a></td>
                     </tr>
                 </c:forEach>
                 </tbody>
