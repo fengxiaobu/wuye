@@ -16,7 +16,7 @@
     <ol class="breadcrumb">
         <li><a href="#">首页</a></li>
         <li><a href="#">快捷缴费</a></li>
-        <li class="active">物业</li>
+        <li class="active">开发</li>
     </ol>
 </div>
 <!-- 路径导航 结束 -->
@@ -25,7 +25,7 @@
     </div>
     <div class="panel panel-default tudiqianyue">
         <div class="panel-heading">
-            <div class="col-xs-4">物业缴费记录</div>
+            <div class="col-xs-4">开发缴费记录</div>
             <div class="col-xs-8 panel-oprerate">
                 <div class="col-xs-12">
                     <span style="margin-right: 50px"><input style="height: 35px;width: 320px;" type="text"></span>至
@@ -73,7 +73,7 @@
                 </tr>
                 </thead>
                 <tbody class="tudiqianyue-tbody">
-                <c:forEach items="${propertyRecords}" var="item">
+                <c:forEach items="${kfRecords}" var="item">
                     <tr class="tudiqianyue-tdtr">
 
                         <td>${item.detailsId}</td>
@@ -92,21 +92,21 @@
                         <td>${item.invoice}</td>
                         <td>${item.invoiceNumber}</td>
                         <td>${item.invoiceNotes}</td>
-                        <td>${item.invoiceStatus}</td>
-                        <td>${item.collectingCompany}</td>
                         <td>
                             <c:choose>
-                                <c:when test="${item.collectingAccount==0}">
+                                <c:when test="${item.invoiceStatus==0}">
                                     已开
                                 </c:when>
-                                <c:when test="${item.collectingAccount==1}">
-                                    未开
+                                <c:when test="${item.invoiceStatus==1}">
+                                    需要
                                 </c:when>
-                                <c:when test="${item.collectingAccount==2}">
-                                    不开
+                                <c:when test="${item.invoiceStatus==2}">
+                                    不需要
                                 </c:when>
                             </c:choose>
                         </td>
+                        <td>${item.collectingCompany}</td>
+                        <td>${item.collectingAccount}</td>
                         <td>${item.invoiceCompany}</td>
                         <td>${item.payTime}</td>
                     </tr>

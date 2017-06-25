@@ -3,12 +3,15 @@
 <mapper namespace="cn.rzhd.wuye.mapper.PropertyFeePayDetailsMapper">
     <sql id="whereSql">
         <where>
-            AND HOUSE_INFO_ID = #{houseInfoId} AND CUSTOMER_ID=#{customerId} AND PAY_TIME BETWEEN to_date(#{startDate},'YYYY-MM-DD') and to_date(#{endDate},'YYYY-MM-DD')
+            AND HOUSE_INFO_ID = #{houseInfoId} AND CUSTOMER_ID=#{customerId} AND PAY_TIME BETWEEN
+            to_date(#{startDate},'YYYY-MM-DD') and to_date(#{endDate},'YYYY-MM-DD')
             AND STATUS='Y'
         </where>
     </sql>
     <update id="changeStatus" parameterType="long">
-        UPDATE T_PROPERTY_FEE_PAY_DETAILS SET STATUS = 'Y' WHERE PROPERTY_FEE_PAY_DETAILS_ID=#{id}
+        UPDATE T_PROPERTY_FEE_PAY_DETAILS
+        SET STATUS = 'Y'
+        WHERE PROPERTY_FEE_PAY_DETAILS_ID = #{id}
     </update>
 
 
@@ -62,11 +65,14 @@
                                                 UPDATE_TIME,
                                                 CUSTOMER_ID,
                                                 STATUS)
-                VALUES (#{propertyFeePayDetails},#{houseInfoId},#{clientName},#{costType},#{payManner},
-                        #{payMonth},#{startDate},#{endDate},#{payable},#{paidIn},#{voucherNumber},#{invoice},
-                        #{invoiceNumber},#{invoiceNotes},#{invoiceStatus},#{collectingCompany},#{collectingAccount},
-                        #{invoiceCompany},#{payTime},#{carteTime},#{updateTime},#{customerId},#{status}
-                        )
+        VALUES (#{propertyFeePayDetails}, #{houseInfoId}, #{clientName}, #{costType}, #{payManner},
+                                          #{payMonth}, #{startDate}, #{endDate}, #{payable}, #{paidIn},
+                                          #{voucherNumber}, #{invoice},
+                                                            #{invoiceNumber}, #{invoiceNotes}, #{invoiceStatus},
+                                                            #{collectingCompany}, #{collectingAccount},
+                                                            #{invoiceCompany}, #{payTime}, #{carteTime}, #{updateTime},
+                #{customerId}, #{status}
+        )
 
     </insert>
 
@@ -116,7 +122,8 @@
         </where>
     </sql>
     <select id="queryByProject" parameterType="cn.rzhd.wuye.vo.query.PropertyRecordsQuery">
-        SELECT PROPERTY_FEE_PAY_DETAILS_ID,
+        SELECT
+            PROPERTY_FEE_PAY_DETAILS_ID,
             HOUSE_INFO_ID,
             CLIENT_NAME,
             FEETYPE,
@@ -169,35 +176,40 @@
         <result property="customerId" column="CUSTOMER_ID"/>
         <result property="status" column="STATUS"/>
     </resultMap>
-    <select id="getByProject" parameterType="string" resultMap="map">
+    <select id="getByProject" parameterType="long" resultMap="map">
         SELECT
-        PROPERTY_FEE_PAY_DETAILS_ID,
-        T_PROJECT_INFO.PROJECT_NAME,
-        T_HOUSE_INFO_DETAILS."vhcode",
-        CLIENT_NAME,
-        FEETYPE,
-        PAY_MANNER,
-        PAY_MONTH,
-        START_DATE,
-        END_DATE,
-        PAYABLE,
-        PAID_IN,
-        VOUCHER_NUMBER,
-        INVOICE,
-        INVOICE_NUMBER,
-        INVOICE_NOTES,
-        INVOICE_STATUS,
-        COLLECTING_COMPANY,
-        COLLECTING_ACCOUNT,
-        INVOICE_COMPANY,
-        PAY_TIME,
-        CARTE_TIME,
-        T_PROPERTY_FEE_PAY_DETAILS.UPDATE_TIME,
-        CUSTOMER_ID,
-        T_PROPERTY_FEE_PAY_DETAILS.STATUS,
-        FEETYPE
-        FROM T_PROPERTY_FEE_PAY_DETAILS JOIN T_HOUSE_INFO_DETAILS ON HOUSE_INFO_ID="pk_house"
-            JOIN T_PROJECT_INFO ON T_PROJECT_INFO.PK_PROJECT=T_HOUSE_INFO_DETAILS."pk_project"
-        WHERE HOUSE_INFO_ID=#{houseInfoId}
+            DISTINCT
+            PROPERTY_FEE_PAY_DETAILS_ID,
+            T_PROJECT_INFO.PROJECT_NAME,
+            T_HOUSE_INFO_DETAILS."vhcode",
+            CLIENT_NAME,
+            FEETYPE,
+            PAY_MANNER,
+            PAY_MONTH,
+            START_DATE,
+            END_DATE,
+            PAYABLE,
+            PAID_IN,
+            VOUCHER_NUMBER,
+            INVOICE,
+            INVOICE_NUMBER,
+            INVOICE_NOTES,
+            INVOICE_STATUS,
+            COLLECTING_COMPANY,
+            COLLECTING_ACCOUNT,
+            INVOICE_COMPANY,
+            PAY_TIME,
+            CARTE_TIME,
+            T_PROPERTY_FEE_PAY_DETAILS.UPDATE_TIME,
+            CUSTOMER_ID,
+            T_PROPERTY_FEE_PAY_DETAILS.STATUS,
+            FEETYPE
+        FROM T_PROPERTY_FEE_PAY_DETAILS
+            JOIN T_HOUSE_INFO_DETAILS ON T_HOUSE_INFO_DETAILS."pk_house"=T_PROPERTY_FEE_PAY_DETAILS.HOUSE_INFO_ID
+            JOIN T_PROJECT_INFO ON T_HOUSE_INFO_DETAILS."pk_project"=T_PROJECT_INFO.PK_PROJECT
+            JOIN T_MANAGE ON T_HOUSE_INFO_DETAILS.MANAGE_ID=T_MANAGE."pk_manageId"
+            JOIN T_MANAGE_USER ON T_MANAGE_USER.MANAGE_ID=T_MANAGE."pk_manageId"
+        WHERE T_MANAGE_USER.USER_ID=#{userId}
+
     </select>
 </mapper>

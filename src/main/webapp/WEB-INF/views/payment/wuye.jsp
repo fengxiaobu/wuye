@@ -5,7 +5,8 @@
 <head>
     <meta charset="utf-8">
     <title>首页</title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/js/libs/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css"
+          href="${pageContext.request.contextPath}/js/libs/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css">
 </head>
 <body>
@@ -72,32 +73,44 @@
                 </tr>
                 </thead>
                 <tbody class="tudiqianyue-tbody">
-                <tr class="tudiqianyue-tdtr">
-                    <c:forEach items="${propertyRecords}" var="item">
-                        <td>${item.propertyFeePayDetails}</td>
-                        <td>项目名称</td>
-                        <td>房产编码</td>
-                        <td>客户名称</td>
-                        <td>费用类型</td>
-                        <td>更新日期</td>
-                        <td>支付方式</td>
-                        <td>缴费月份</td>
-                        <td>开始日期</td>
-                        <td>截止日期</td>
-                        <td>应缴</td>
-                        <td>已缴</td>
-                        <td>单据号</td>
-                        <td>发票</td>
-                        <td>发票号</td>
-                        <td>发票备注</td>
-                        <td>开票状态</td>
-                        <td>收款公司</td>
-                        <td>收款账户</td>
-                        <td>开票单位</td>
-                        <td>缴费日期</td>
-                    </c:forEach>
+                <c:forEach items="${propertyRecords}" var="item">
+                    <tr class="tudiqianyue-tdtr">
 
-                </tr>
+                        <td>${item.detailsId}</td>
+                        <td>${item.projectName}</td>
+                        <td>${item.houseCode}</td>
+                        <td>${item.clientName}</td>
+                        <td>${item.costType}</td>
+                        <td>${item.updateTime}</td>
+                        <td>${item.payManner}</td>
+                        <td>${item.payMonth}</td>
+                        <td>${item.startDate}</td>
+                        <td>${item.endDate}</td>
+                        <td>${item.payable}</td>
+                        <td>${item.paidIn}</td>
+                        <td>${item.voucherNumber}</td>
+                        <td>${item.invoice}</td>
+                        <td>${item.invoiceNumber}</td>
+                        <td>${item.invoiceNotes}</td>
+                        <td>
+                            <c:choose>
+                                <c:when test="${item.invoiceStatus==0}">
+                                    已开
+                                </c:when>
+                                <c:when test="${item.invoiceStatus==1}">
+                                    需要
+                                </c:when>
+                                <c:when test="${item.invoiceStatus==2}">
+                                    不需要
+                                </c:when>
+                            </c:choose>
+                        </td>
+                        <td>${item.collectingCompany}</td>
+                        <td>${item.collectingAccount}</td>
+                        <td>${item.invoiceCompany}</td>
+                        <td>${item.payTime}</td>
+                    </tr>
+                </c:forEach>
                 </tbody>
             </table>
         </div>

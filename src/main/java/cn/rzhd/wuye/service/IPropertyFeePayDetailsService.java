@@ -24,7 +24,7 @@ public interface IPropertyFeePayDetailsService {
 
     void changeStatus(Long id);
 
-    Map<String, Object> getByProject(String houseInfoId);
+    List<Map<String, Object>> getByProject(Long userId);
 
     List<PropertyFeePayDetails> queryByProject(PropertyRecordsQuery query);
 }
