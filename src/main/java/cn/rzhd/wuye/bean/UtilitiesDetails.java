@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
-public class UtilitiesDetails implements Serializable {
+public class UtilitiesDetails implements Serializable  {
 
     private static final long serialVersionUID = 1L;
     /**

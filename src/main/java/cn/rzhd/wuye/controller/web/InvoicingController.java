@@ -17,17 +17,17 @@ import java.util.List;
 @RequestMapping("/dist/invoicing")
 public class InvoicingController {
     @Autowired
-    IUtilitiesService utilitiesService;
+    private IUtilitiesService utilitiesService;
     @Autowired
-    IKfFeePayDetailsService kfFeePayDetailsService;
+    private IKfFeePayDetailsService kfFeePayDetailsService;
     @Autowired
-    IPropertyFeePayDetailsService propertyFeePayDetailsService;
+    private IPropertyFeePayDetailsService propertyFeePayDetailsService;
     @Autowired
-    IPropertyFeeInvoiceService propertyFeeInvoiceService;
+    private IPropertyFeeInvoiceService propertyFeeInvoiceService;
     @Autowired
-    IUtilitiesInvoiceService utilitiesInvoiceService;
+    private IUtilitiesInvoiceService utilitiesInvoiceService;
     @Autowired
-    IKfFeeInvoiceService kfFeeInvoiceService;
+    private IKfFeeInvoiceService kfFeeInvoiceService;
 
     @RequestMapping("/records/property")
     public Long property(@RequestBody PropertyFeePayDetails propertyFeePayDetails) {
@@ -49,6 +49,15 @@ public class InvoicingController {
     public Long utilities(@RequestBody UtilitiesDetails details) {
         Long id = IDUtils.genLongUID();
         details.setUtilitiesDetailsId(id);
+        //新创建一个水电缴费对象,用于分割一部分水费数据到其中;
+//        UtilitiesDetails newOne = new UtilitiesDetails();
+//        newOne.setUtilitiesDetailsId(id);
+//        newOne.setCarteTime(new Date());
+//        newOne.setClientName(details.getClientName());
+//        newOne.setCollectingAccount(details.getCollectingAccount());
+//        newOne.setCollectingCompany(details.getCollectingCompany());
+//        newOne.setCostType("水费");
+
         utilitiesService.addDetails(details);
         return id;
     }
