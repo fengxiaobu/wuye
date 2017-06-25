@@ -45,6 +45,7 @@ public class DecorationApplyController {
     @Autowired
     IHouseInfoService houseInfoService;
 
+   
     /**
      * 装修须知
      *
@@ -67,9 +68,9 @@ public class DecorationApplyController {
     /**
      * 装修申请
      */
-    @RequestMapping(value = "/upload/batch", method = RequestMethod.POST, consumes = "application/json")
+    @RequestMapping(value = "/upload/batch", method = RequestMethod.POST)
     @ResponseBody
-    public Map<String, String> batchUpload(@RequestBody DecorationApply decorationApply) {
+    public Map<String, String> batchUpload(DecorationApply decorationApply) {
         System.out.println("decorationApply = " + decorationApply);
         Map<String, String> result = new HashMap<>();
         Date date = new Date();
