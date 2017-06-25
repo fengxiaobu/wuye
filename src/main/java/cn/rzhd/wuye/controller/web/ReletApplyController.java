@@ -168,7 +168,7 @@ public class ReletApplyController {
             result.put("msg", "房产ID不能为空");
             return result;
         }
-        ReletApply reletApply = reletApplyService.findReletApply(houseInfoId);
+        List<ReletApply> reletApply = reletApplyService.findReletApply(houseInfoId);
         result.put("state", "1");
         result.put("data", reletApply);
         return result;
@@ -189,7 +189,7 @@ public class ReletApplyController {
             result.put("msg", "房产ID不能为空");
             return result;
         }
-        RetreatLeaseApply retreatLeaseApply = retreatLeaseApplyService.findRetreatLeaseApply(houseInfoId);
+        List<RetreatLeaseApply> retreatLeaseApply = retreatLeaseApplyService.findRetreatLeaseApply(houseInfoId);
         result.put("state", "1");
         result.put("data", retreatLeaseApply);
         return result;

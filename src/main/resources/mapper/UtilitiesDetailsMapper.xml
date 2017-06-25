@@ -84,10 +84,10 @@
             STATUS             = #{status}
         WHERE UTILITIES_DETAILS_ID = #{utilitiesDetailsId}
     </update>
-    <update id="changeStatus" parameterType="cn.rzhd.wuye.bean.UtilitiesDetails">
+    <update id="changeStatus" parameterType="long">
         UPDATE T_UTILITIES_DETAILS
         SET STATUS = 'Y'
-        WHERE UTILITIES_DETAILS_ID = #{utilitiesDetailsId}
+        WHERE UTILITIES_DETAILS_ID = #{id}
     </update>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="long">
         SELECT

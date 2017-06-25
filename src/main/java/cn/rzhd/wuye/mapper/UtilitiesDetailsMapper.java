@@ -27,7 +27,7 @@ public interface UtilitiesDetailsMapper {
 
     UtilitiesDetails getLastWater(UtilitiesQuery query);
 
-    void changeStatus(UtilitiesDetails record);
+    void changeStatus(Long id);
 
     List<Map<String,Object>> getElectricByProject(Long userId);
 

@@ -19,7 +19,7 @@ public interface IUtilitiesService {
 
     void addDetails(UtilitiesDetails details);
 
-    void changeStatus(UtilitiesDetails details);
+    void changeStatus(Long id);
 
     List<Map<String,Object>> getElectricByProject(Long userId);
 

@@ -43,8 +43,8 @@ public class UtilitiesServiceImpl implements IUtilitiesService {
     }
 
     @Override
-    public void changeStatus(UtilitiesDetails details) {
-        mapper.changeStatus(details);
+    public void changeStatus(Long id) {
+        mapper.changeStatus(id);
     }
 
     @Override

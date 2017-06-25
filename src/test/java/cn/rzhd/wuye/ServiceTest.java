@@ -6,17 +6,17 @@ import cn.rzhd.wuye.service.ICompanyService;
 import cn.rzhd.wuye.service.IKfFeeService;
 import cn.rzhd.wuye.service.IPropertyFeeService;
 import cn.rzhd.wuye.uploadclient.Exception;
-import cn.rzhd.wuye.utils.FirstAndLastDay;
 import cn.rzhd.wuye.utils.JsonUtils;
 import cn.rzhd.wuye.utils.MD5Utils;
 import cn.rzhd.wuye.vo.*;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.github.pagehelper.StringUtil;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.rmi.RemoteException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -91,10 +91,8 @@ public class ServiceTest extends BaseTest {
 
     @Test
     public void testTest(){
-        Date first = FirstAndLastDay.getLast("2017-02");
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        String s = sdf.format(first);
-        System.out.println(s);
+
+
     }
 
     @Autowired

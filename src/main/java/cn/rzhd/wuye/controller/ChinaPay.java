@@ -3,9 +3,16 @@ package cn.rzhd.wuye.controller;
 import cn.rzhd.wuye.common.ChinaPayHelper;
 import cn.rzhd.wuye.common.ChinaPaySignUtils;
 import cn.rzhd.wuye.common.RequestVO;
+import cn.rzhd.wuye.service.IKfFeePayDetailsService;
+import cn.rzhd.wuye.service.IPropertyFeePayDetailsService;
+import cn.rzhd.wuye.service.IUtilitiesService;
 import cn.rzhd.wuye.utils.BeanUtils;
 import cn.rzhd.wuye.utils.HttpUtils;
+import cn.rzhd.wuye.vo.CallBackVO;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.xiaoleilu.hutool.util.RandomUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +24,7 @@ import java.io.IOException;
 import java.net.URLDecoder;
 import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 /**
@@ -24,6 +32,13 @@ import java.util.Map;
  */
 @Controller
 public class ChinaPay {
+
+    @Autowired
+    IPropertyFeePayDetailsService wuye;
+    @Autowired
+    IKfFeePayDetailsService kaifa;
+    @Autowired
+    IUtilitiesService shuidian;
 
     @RequestMapping("/topay")
     public String toPay() {
@@ -158,6 +173,22 @@ public class ChinaPay {
 
         //验证签名
         if (ChinaPayHelper.verify(resultMap)) {
+            //验证成功调用方法使缴费记录生效
+            JSONArray objects = JSON.parseArray(resultMap.get("MerResv"));
+            Iterator<Object> iterator = objects.iterator();
+            while(iterator.hasNext()){
+                CallBackVO vo = JSON.toJavaObject((JSON) iterator.next(), CallBackVO.class);
+                if("wuye".equals(vo.getType())){
+                    wuye.changeStatus(vo.getId());
+                }else if("kaifa".equals(vo.getType())){
+                    kaifa.changeStatus(vo.getId());
+                }else if("shuidian".equals(vo.getType())){
+                    shuidian.changeStatus(vo.getId());
+                }else{
+                    System.out.println("缴费记录生成失败:未知的缴费类型(物业,开发,水电)");
+                }
+            }
+
             System.out.println("*************************                               ******************************");
             System.out.println("*************************                               ******************************");
             System.out.println("***********************交易成功************************");
