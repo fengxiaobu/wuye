@@ -106,18 +106,18 @@
                         <td>${decora.constructPeopleNumber}&nbsp;人</td>
                         <td>${decora.decorationCompany}</td>
                         <td>${decora.decorationLeader}</td>
-                        <td>${decora.decorationLeaderPhone}&nbsp;人</td>
+                        <td>${decora.decorationLeaderPhone}&nbsp;</td>
                         <td>${decora.decorationDeposit}</td>
                         <td>${decora.decorationManagementCost}</td>
-                        <td>${decora.passPapersCost}&nbsp;人</td>
-                        <td>${decora.passPapersDeposit}</td>
+                        <td>${decora.passPapersCost}&nbsp;(元)</td>
+                        <td>${decora.passPapersDeposit}&nbsp;(元)</td>
                         <td>
                             <c:if test="${decora.auditStatus eq 0}">未审核</c:if>
                             <c:if test="${decora.auditStatus eq 1}">已通过</c:if>
                             <c:if test="${decora.auditStatus eq 2}">未通过</c:if>
                         </td>
                         <td><a class="btn btn-info"
-                               href="${pageContext.request.contextPath}/dist/enterApply/deleteEnterApply?decorationApplyId=${decora.decorationApplyId}"
+                               href="${pageContext.request.contextPath}/dist/deleteDecorationApplyByID?decorationApplyId=${decora.decorationApplyId}"
                                role="button">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;<a
                                 class="btn btn-info"
                                 href="${pageContext.request.contextPath}/dist/toDecorationApply?decorationApplyId=${decora.decorationApplyId}"

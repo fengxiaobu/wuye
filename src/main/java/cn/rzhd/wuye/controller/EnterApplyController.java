@@ -170,10 +170,10 @@ public class EnterApplyController {
             enterApplyService.updateEnterApply(enterApply);
             if (enterApply.getAuditStatus() == 1) {
                 //修改申请状态
-                houseInfoDetailsService.updateHouse(enterApply.getHouseId(), "2");
+                houseInfoDetailsService.updateHouse(enterApply.getHouseId(), "2", null);
             } else if (enterApply.getAuditStatus() == 2) {
                 //修改申请状态
-                houseInfoDetailsService.updateHouse(enterApply.getHouseId(), "0");
+                houseInfoDetailsService.updateHouse(enterApply.getHouseId(), "0", null);
             }
 
             //查询更新数据
@@ -222,7 +222,7 @@ public class EnterApplyController {
             result.put("state", "1");
             result.put("msg", "成功!");
             //修改申请状态
-            houseInfoDetailsService.updateHouse(enterApply.getHouseId(), "1");
+            houseInfoDetailsService.updateHouse(enterApply.getHouseId(), "1", null);
             return result;
         } catch (Exception e) {
             result.put("state", "0");

@@ -1,6 +1,9 @@
 package cn.rzhd.wuye.controller;
 
-import cn.rzhd.wuye.bean.*;
+import cn.rzhd.wuye.bean.DecorationApply;
+import cn.rzhd.wuye.bean.DecorationNotice;
+import cn.rzhd.wuye.bean.HouseInfo;
+import cn.rzhd.wuye.bean.HouseInfoDetails;
 import cn.rzhd.wuye.service.*;
 import cn.rzhd.wuye.utils.IDUtils;
 import com.alibaba.fastjson.JSON;
@@ -47,8 +50,10 @@ public class DecorationApplyController {
     //房产服务
     @Autowired
     IHouseInfoService houseInfoService;
+    //房产信息
+    @Autowired
+    IHouseInfoDetailsService houseInfoDetailsService;
 
-   
     /**
      * 装修须知
      *
@@ -99,9 +104,9 @@ public class DecorationApplyController {
                 //出入证押金
                 decorationApply.setPassPapersDeposit(new BigDecimal(decorationApply.getConstructPeopleNumber() * 10));
                 //装修申请
-                System.out.println("/ndecorationApply = " + decorationApply+"/n");
+                System.out.println("/ndecorationApply = " + decorationApply + "/n");
                 decorationApplyService.insert(decorationApply);
-                for (int i = 0; i < decorationApply.getDecorateDetailList().size(); i++) {
+          /*      for (int i = 0; i < decorationApply.getDecorateDetailList().size(); i++) {
                     DecorateDetail decorateDetail = new DecorateDetail();
                     decorateDetail.setDecorationApplyId(aLong);
                     decorateDetail.setDecorateDetailId(IDUtils.genLongUID());
@@ -119,7 +124,7 @@ public class DecorationApplyController {
 
                     //装修资料
                     decorationMaterialService.insert(decorationMaterial);
-                }
+                }*/
             } else {
                 result.put("state", "0");
                 result.put("msg", "申请失败 数据不完整");
@@ -131,9 +136,9 @@ public class DecorationApplyController {
             return result;
         }
         //修改申请状态
-        HouseInfo houseInfo = houseInfoService.getById(decorationApply.getHouseInfoId());
-        houseInfo.setDecorationApplyState("1");
-        houseInfoService.update(houseInfo);
+        HouseInfoDetails houseInfoDetails = houseInfoDetailsService.selectByPkHouse(decorationApply.getHouseInfoId());
+        houseInfoDetails.setDecorationapplystate("1");
+        houseInfoDetailsService.updateHouse(houseInfoDetails.getPkHouse(), null, "1");
         result.put("state", "1");
         result.put("msg", "申请成功");
         return result;
@@ -296,6 +301,11 @@ public class DecorationApplyController {
         model.addAttribute("decorationApply", decorationApply);
         return "decoration/decorationApplyEdit";
     }
-
-
+@RequestMapping("/deleteDecorationApplyByID")
+    public String deleteDecorationApplyByID(Long decorationApplyId) {
+        if (decorationApplyId != null) {
+            decorationApplyService.deleteByPrimaryKey(decorationApplyId);
+        }
+        return "redirect:/dist/toDecorationApplyList";
+    }
 }

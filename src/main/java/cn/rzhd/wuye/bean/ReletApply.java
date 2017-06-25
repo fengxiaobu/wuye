@@ -88,6 +88,7 @@ public class ReletApply implements Serializable {
      */
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date retreaEndTime;
+
     private HouseInfoDetails houseInfoDetails;
 
     public HouseInfoDetails getHouseInfoDetails() {

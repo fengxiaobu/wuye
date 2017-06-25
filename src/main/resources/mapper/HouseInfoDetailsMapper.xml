@@ -106,8 +106,14 @@
 
     <update id="updateHouse">
         UPDATE T_HOUSE_INFO_DETAILS
-        SET
+        <if test="enterApplyState!=null">
+            SET
             ENTERAPPLY_STATE = #{enterApplyState}
+        </if>
+        <if test="decorationapplystate!=null">
+            SET
+            DECORATIONAPPLYSTATE=#{decorationapplystate}
+        </if>
         WHERE "pk_house" = '${pkHouse}'
     </update>
 
@@ -163,7 +169,7 @@
 
     <select id="getAll" resultMap="houseVOBackMap">
         SELECT
-       	 DISTINCT
+            DISTINCT
             H."pk_project",
             s."pk_house",
             P.PK_PROJECT,
@@ -184,7 +190,9 @@
             LEFT JOIN "T_Customer" c ON s."pk_customerid" = c."pk_customerid"
     </select>
     <select id="getByManageId" parameterType="string" resultType="string">
-        SELECT DISTINCT "pk_house" FROM T_HOUSE_INFO_DETAILS WHERE MANAGE_ID=#{id}
+        SELECT DISTINCT "pk_house"
+        FROM T_HOUSE_INFO_DETAILS
+        WHERE MANAGE_ID = #{id}
     </select>
 
     <resultMap type="cn.rzhd.wuye.vo.HouseVO" id="houseVOBackMap">
