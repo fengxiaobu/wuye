@@ -32,27 +32,28 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-2 control-label">客户ID:</label>
-					<div class="col-sm-10">
-						<label class="col-sm-2 control-label"></label>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-2 control-label">客户名称:</label>
-					<div class="col-sm-10">
-						<label class="col-sm-2 control-label"></label>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-2 control-label">客户类型:</label>
-					<div class="col-sm-10 radio">
-						<label> <input type="radio" name="optionsRadios"
+					<label class="col-sm-2 control-label">业主类型:</label>
+						<div class="col-sm-10">
+						<label class="col-sm-1">
+							<input type="radio" name="optionsRadios"
 							id="optionsRadios1" value="option1" />企业
-						</label> <label> <input type="radio" name="optionsRadios"
+						</label>
+						<label class="col-sm-1">
+							<input type="radio" name="optionsRadios"
 							id="optionsRadios2" value="option2" />个人
 						</label>
 					</div>
 				</div>
+				
+				<div class="form-group">
+					<label class="col-sm-2 control-label">绑定手机号:</label>
+					<div class="col-sm-10">
+						<label class="col-sm-2 control-label">
+							 <input type="text" style="width: 300px" class="form-control">
+						</label>
+					</div>
+				</div>
+				
 				<div class="form-group">
 					<label class="col-sm-2 control-label">客户名称:</label>
 					<div class="col-sm-10">
@@ -113,7 +114,15 @@
 					<label class="col-sm-2 control-label">主营或主导产品:</label>
 					<div class="col-sm-10">
 						<label class="col-sm-2 control-label">
-							 <input type="text" style="width: 300px" class="form-control">
+								<select class="form-control">
+										<!--v-for-start-->
+										<option value="26">全国</option>
+										<option value="27">海外</option>
+										<option value="28">华北地区</option>
+										<option value="29">北京地区</option>
+										<option value="30">华东地区</option>
+										<!--v-for-end-->
+								</select>
 						</label>
 					</div>
 				</div>
@@ -129,25 +138,7 @@
 				
 				
 				<div class="form-group">
-					<label class="col-sm-2 control-label">主营或主导产品:</label>
-					<div class="col-sm-10">
-						<label class="col-sm-2 control-label">
-								<select class="form-control">
-										<!--v-for-start-->
-										<option value="26">全国</option>
-										<option value="27">海外</option>
-										<option value="28">华北地区</option>
-										<option value="29">北京地区</option>
-										<option value="30">华东地区</option>
-										<!--v-for-end-->
-								</select>
-						</label>
-					</div>
-				</div>
-				
-				
-				<div class="form-group">
-					<label class="col-sm-2 control-label">主营或主导产品:</label>
+					<label class="col-sm-2 control-label">职工总人数:</label>
 					<div class="col-sm-10">
 						<label class="col-sm-2 control-label">
 							 <input type="text" style="width: 300px" class="form-control">
@@ -156,7 +147,7 @@
 				</div>
 				
 				<div class="form-group">
-					<label class="col-sm-2 control-label">主营或主导产品:</label>
+					<label class="col-sm-2 control-label">物业对接人:</label>
 					<div class="col-sm-10">
 						<label class="col-sm-2 control-label">
 							 <input type="text" style="width: 300px" class="form-control">
@@ -164,6 +155,210 @@
 					</div>
 				</div>
 				
+				<div class="form-group">
+					<label class="col-sm-2 control-label">联系方式:</label>
+					<div class="col-sm-10">
+						<label class="col-sm-2 control-label">
+							 <input type="text" style="width: 300px" class="form-control">
+						</label>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-sm-2 control-label">紧急联系人:</label>
+					<div class="col-sm-10">
+						<label class="col-sm-2 control-label">
+							 <input type="text" style="width: 300px" class="form-control">
+						</label>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-sm-2 control-label">联系方式:</label>
+					<div class="col-sm-10">
+						<label class="col-sm-2 control-label">
+							 <input type="text" style="width: 300px" class="form-control">
+						</label>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-sm-2 control-label">是否高新:</label>
+					<div class="col-sm-2">
+						<label class="col-sm-1">
+							<input type="radio" name="shigaoxin"
+							id="shigaoxin1" value="0"/>是
+						</label>
+						<label class="col-sm-1">
+							<input type="radio" name="shigaoxin"
+							id="shigaoxin2" value="1" />否
+						</label>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-sm-2 control-label">高新类型:</label>
+					<div class="col-sm-10">
+						<label class="col-sm-2 control-label">
+							 <select class="form-control">
+			                    <option value="0" selected="">国家高新</option>
+			                    <option value="1">省级高新</option>
+			                    <option value="2">市级高新</option>
+			                </select>
+						</label>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-sm-2 control-label">发证时间:</label>
+					<div class="col-sm-10">
+						<label class="col-sm-2 control-label">
+							 <input type="text" style="width: 300px" class="form-control">
+						</label>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-sm-2 control-label">专利类型:</label>
+					<div class="col-sm-10">
+						<label class="col-sm-2 control-label">
+							<select class="form-control">
+								<!--v-for-start-->
+								<option value="20">发明专利</option>
+								<option value="21">实用新型专利</option>
+								<option value="22">外观设计专利</option>
+								<!--v-for-end-->
+							</select>
+						</label>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-sm-2 control-label">专利个数:</label>
+					<div class="col-sm-10">
+						<label class="col-sm-2 control-label">
+							 <input type="text" style="width: 300px" class="form-control">
+						</label>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-sm-2 control-label">是否上市:</label>
+					<div class="col-sm-2">
+						<label class="col-sm-1">
+							<input type="radio" name="shigaoxin"
+							id="shigaoxin1" value="0"/>是
+						</label>
+						<label class="col-sm-1">
+							<input type="radio" name="shigaoxin"
+							id="shigaoxin2" value="1" />否
+						</label>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-sm-2 control-label">上市类型:</label>
+					<div class="col-sm-10">
+						<label class="col-sm-2 control-label">
+							 <input type="text" style="width: 300px" class="form-control">
+						</label>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-sm-2 control-label">专利个数:</label>
+					<div class="col-sm-10">
+						<label class="col-sm-2 control-label"> 
+							<select class="form-control">
+									<!--v-for-start-->
+									<option value="14">主板</option>
+									<option value="15">创业板</option>
+									<option value="16">中小板</option>
+									<option value="17">新三板</option>
+									<option value="18">港交所</option>
+									<option value="19">深交所</option>
+									<!--v-for-end-->
+							</select>
+						</label>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-sm-2 control-label">挂牌时间:</label>
+					<div class="col-sm-10">
+						<label class="col-sm-2 control-label">
+							 <input type="text" style="width: 300px" class="form-control">
+						</label>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-sm-2 control-label">股票代码:</label>
+					<div class="col-sm-10">
+						<label class="col-sm-2 control-label">
+							 <input type="text" style="width: 300px" class="form-control">
+						</label>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-sm-2 control-label">专利个数:</label>
+					<div class="col-sm-10">
+						<label class="col-sm-2 control-label">
+							 <input type="text" style="width: 300px" class="form-control">
+						</label>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-sm-2 control-label">备注:</label>
+					<div class="col-sm-10">
+						<label class="col-sm-2 control-label">
+							 <textarea cols="50" rows="10"></textarea>
+						</label>
+					</div>
+				</div>
+				
+					<label class="col-sm-2 control-label">房产信息:</label>
+						<div class="panel-body">
+							<table class="table table-bordered tudiqianyue-table">
+								<thead>
+									<tr class="info">
+										<th rowspan="2">序号</th>
+										<th rowspan="2">项目名称<br /></th>
+										<th rowspan="2">房产</th>
+										<th rowspan="2">入驻状态</th>
+										<th rowspan="2">星级</th>
+									</tr>
+								</thead>
+								<tbody class="tudiqianyue-tbody">
+									<tr>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td>已入住</td>
+										<td>A</td>
+									</tr>
+									<tr>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td>未入住</td>
+										<td>AA</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</label>
+				
+				<div class="form-group">
+					<label class="col-sm-2 control-label">更新日期:</label>
+					<div class="col-sm-10">
+						<label class="col-sm-2 control-label">
+							 
+						</label>
+					</div>
+				</div>
 
 				<div class="form-group" style="margin-left: 300px">
 					<button type="submit" class="btn btn-default">提交</button>
