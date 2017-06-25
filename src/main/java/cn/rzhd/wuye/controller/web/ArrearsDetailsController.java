@@ -31,7 +31,7 @@ public class ArrearsDetailsController {
         List<PropertyFee> propertyFees = propertyFeeService.queryAllArrears(query);
         BigDecimal sum = new BigDecimal(0);
         for (PropertyFee fee : propertyFees) {
-            sum.add(new BigDecimal(fee.getNyshouldmny()));
+            sum = sum.add(new BigDecimal(fee.getNyshouldmny()));
         }
         result.put("rows",result);
         result.put("sum",sum);
@@ -45,7 +45,7 @@ public class ArrearsDetailsController {
         List<KfFee> kfFees = kfFeeService.queryAllArrears(query);
         BigDecimal sum = new BigDecimal(0);
         for (KfFee kfFee : kfFees) {
-            sum.add(new BigDecimal(kfFee.getArrears()));
+            sum = sum.add(new BigDecimal(kfFee.getArrears()));
         }
         result.put("rows",kfFees);
         result.put("sum",sum);

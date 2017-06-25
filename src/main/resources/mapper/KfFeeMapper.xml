@@ -103,9 +103,10 @@
             "dshpay",
             "nmny",
             "vmemo",
-            "nyshouldmny"
+            "nyshouldmny",
+            NVL("nyshouldmny",0)-NVL("T_KF_Fee"."nmny",0) AS arrears
         FROM "T_KF_Fee"
-        WHERE "isrz" = 'N' AND "pk_house" = #{houseInfoId} AND "dshpay" > TO_CHAR(SYSDATE, 'YYYY-MM-DD')
+        WHERE "isrz" = 'N' AND "pk_house" = #{houseInfoId} AND "pk_customerid"='${customerId}' AND "dshpay" > TO_CHAR(SYSDATE, 'YYYY-MM-DD')
     </select>
 
     <select id="selectAllRZ" resultMap="BaseResultMap" parameterType="cn.rzhd.wuye.vo.query.FeeDataQuery">

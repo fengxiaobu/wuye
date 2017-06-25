@@ -9,6 +9,7 @@ import cn.rzhd.wuye.vo.query.FeeDataQuery;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,7 +29,7 @@ public class PrePayController {
     IKfFeeService kfFeeService;
 
     @RequestMapping("/propertyFeeList")
-    public PageDataGridResult propertyFeeList(FeeDataQuery query){
+    public PageDataGridResult propertyFeeList(@RequestBody FeeDataQuery query){
         PageDataGridResult result = new PageDataGridResult();
         PageHelper.startPage(query.getStartPage(),query.getPageSize());
         List<PropertyFee> list = propertyFeeService.queryAll(query);
@@ -40,7 +41,7 @@ public class PrePayController {
     }
 
     @RequestMapping("/kfFeeList")
-    public PageDataGridResult kfFeeList(FeeDataQuery query){
+    public PageDataGridResult kfFeeList(@RequestBody FeeDataQuery query){
         PageDataGridResult result = new PageDataGridResult();
         PageHelper.startPage(query.getStartPage(),query.getPageSize());
         List<KfFee> list = kfFeeService.queryAll(query);
