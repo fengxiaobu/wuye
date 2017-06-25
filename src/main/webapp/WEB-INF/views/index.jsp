@@ -82,11 +82,10 @@
                         <ul class="panel-group level02" id="aside_two_02">
                             <li class="panel" role="tab">
                                 <div class="panel-header">
-                                    <a href="${pageContext.request.contextPath}/propertyRecords/index" target="main">物业费用</a>
+                                    <a href="#">物业费用</a>
                                 </div>
                                 <div class="panel-header">
-                                    <a data-toggle="collapse" data-parent="#"
-                                       href="#">物业缴费记录</a>
+                                    <a href="${pageContext.request.contextPath}/propertyRecords/index" target="main">物业缴费记录</a>
                                 </div>
                                 <div class="panel-header">
                                     <a data-toggle="collapse" data-parent="#"
@@ -96,12 +95,10 @@
 
                             <li class="panel" role="tab">
                                 <div class="panel-header">
-                                    <a data-toggle="collapse" data-parent="#aside_two_02"
-                                       href="#">开发费用</a>
+                                    <a href="#">开发费用</a>
                                 </div>
                                 <div class="panel-header">
-                                    <a data-toggle="collapse" data-parent="#aside_two_02"
-                                       href="#">开发缴费记录</a>
+                                    <a href="${pageContext.request.contextPath}/kfRecords/index" target="main">开发缴费记录</a>
                                 </div>
                                 <div class="panel-header">
                                     <a data-toggle="collapse" data-parent="#aside_two_02"
@@ -110,14 +107,14 @@
                             </li>
                             <li class="panel" role="tab">
                                 <div class="panel-header">
-                                    <a data-toggle="collapse" data-parent="#aside_two_02" href="#collapse_two_013">电费缴费记录表</a>
+                                    <a href="${pageContext.request.contextPath}/utilitiesRecords/electricIndex" target="main">电费缴费记录表</a>
                                 </div>
 
                             </li>
 
                             <li class="panel" role="tab">
                                 <div class="panel-header">
-                                    <a data-toggle="collapse" data-parent="#aside_two_02" href="#collapse_two_014">水费缴费记录表</a>
+                                    <a href="${pageContext.request.contextPath}/utilitiesRecords/waterIndex" target="main">水费缴费记录表</a>
                                 </div>
                             </li>
                         </ul>

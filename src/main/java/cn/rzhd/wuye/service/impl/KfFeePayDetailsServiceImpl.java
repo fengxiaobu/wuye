@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by hasee on 2017/6/1.
@@ -34,5 +35,10 @@ public class KfFeePayDetailsServiceImpl implements IKfFeePayDetailsService {
     @Override
     public void changeStatus(Long id) {
         mapper.changeStatus(id);
+    }
+
+    @Override
+    public List<Map<String, Object>> getByProject(Long userId) {
+        return mapper.getByProject(userId);
     }
 }

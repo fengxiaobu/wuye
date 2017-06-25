@@ -183,7 +183,8 @@
             LEFT JOIN "T_Sell_Contract" s ON H."pk_house" = s."pk_house"
             LEFT JOIN "T_Customer" c ON s."pk_customerid" = c."pk_customerid"
     </select>
-    <select id="getByManageId" parameterType="string" resultMap="BaseResultMap">
+    <select id="getByManageId" parameterType="string" resultType="string">
+        SELECT DISTINCT "pk_house" FROM T_HOUSE_INFO_DETAILS WHERE MANAGE_ID=#{id}
     </select>
 
     <resultMap type="cn.rzhd.wuye.vo.HouseVO" id="houseVOBackMap">

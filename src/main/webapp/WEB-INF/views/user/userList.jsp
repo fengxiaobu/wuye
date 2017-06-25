@@ -73,7 +73,8 @@
                         <td>${user.status}</td>
                         <td>${user.note}</td>
                         <td>
-                            <button class="btn btn-info" type="button" onclick="del('${user.userId}',this)" role="button">删除
+                            <button class="btn btn-info" type="button" onclick="del('${user.userId}',this)"
+                                    role="button">删除
                             </button>&nbsp;&nbsp;&nbsp;&nbsp;<a
                                 class="btn btn-info"
                                 href="${pageContext.request.contextPath}/user/details?id=${user.userId}&type=edit"
@@ -241,9 +242,9 @@
             }
         })
     });
-    function del(id,e) {
+    function del(id, e) {
         var r = confirm("你确定要删除这个用户吗?");
-        if(r){
+        if (r) {
             $.post("${pageContext.request.contextPath}/user/delete", {"id": id}, function (data) {
                 if (data.success) {
                     $(e).closest("tr").remove();

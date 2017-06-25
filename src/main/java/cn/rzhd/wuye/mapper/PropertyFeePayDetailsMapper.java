@@ -27,5 +27,5 @@ public interface PropertyFeePayDetailsMapper {
 
     List<PropertyFeePayDetails> queryByProject(PropertyRecordsQuery query);
 
-    Map<String,Object> getByProject(String houseInfoId);
+    List<Map<String, Object>> getByProject(Long userId);
 }
