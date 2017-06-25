@@ -177,7 +177,7 @@ public class EnterApplyController {
             }
 
             //查询更新数据
-            //PageHelper.startPage(1, 5);
+            //PageHelper.startPage(1, 500);
             List<Map<String, JsonFormat.Value>> enterApplyList = enterApplyService.findEnterApplyList();
             //Page page = (Page) enterApplyList;
             // System.out.println(JSONObject.toJSONString(page, SerializerFeature.WriteMapNullValue));
@@ -244,12 +244,12 @@ public class EnterApplyController {
             enterApplyService.deleteEnterApply(enterApplyId);
         }
         //查询更新数据
-        PageHelper.startPage(1, 5);
+        //PageHelper.startPage(1, 5);
         List<Map<String, JsonFormat.Value>> enterApplyList = enterApplyService.findEnterApplyList();
-        Page page = (Page) enterApplyList;
-        System.out.println(JSONObject.toJSONString(page, SerializerFeature.WriteMapNullValue));
+        //Page page = (Page) enterApplyList;
+        //System.out.println(JSONObject.toJSONString(page, SerializerFeature.WriteMapNullValue));
         model.addAttribute("enterApplyList", enterApplyList);
-        model.addAttribute("total", page.getTotal());
+        //model.addAttribute("total", page.getTotal());
         return "forbusiness/enterApplyList";
     }
 

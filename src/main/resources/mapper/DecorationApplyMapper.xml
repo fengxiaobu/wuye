@@ -224,7 +224,7 @@
                                         DECORATION_DEPOSIT, DECORATION_MANAGEMENT_COST,
                                         PASS_PAPERS_COST, PASS_PAPERS_DEPOSIT, AUDIT_STATUS,
                                         FEEDBACK1, FEEDBACK2, IS_SPECIAL_DECORATION,
-                                        SPECIAL_DECORATION_FILE, CREATION_TIME, UPDATE_TIME, CURRENT_ID
+                                        SPECIAL_DECORATION_FILE, CREATION_TIME, UPDATE_TIME
         )
         VALUES (#{decorationApplyId}, #{houseInfoId}, #{clientName,},
                                       #{applyTime}, #{antipateTime}, #{localeCustodian,},
@@ -234,7 +234,7 @@
             #{decorationDeposit}, #{decorationManagementCost},
             #{passPapersCost}, #{passPapersDeposit}, #{auditStatus},
             #{feedback1}, #{feedback2}, #{isSpecialDecoration},
-                #{specialDecorationFile}, #{creationTime}, #{updateTime}, #{customerId}
+                #{specialDecorationFile}, #{creationTime}, #{updateTime}
         )
     </insert>
 
