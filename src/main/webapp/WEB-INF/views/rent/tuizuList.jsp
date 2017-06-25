@@ -88,9 +88,15 @@
                         <td>${status.index+1}</td>
                         <td>${retreatLeaseApply.houseInfoDetails.project}</td>
                         <td>${retreatLeaseApply.houseInfoDetails.vhname}</td>
-                        <td>${retreatLeaseApply}</td>
-                        <td>${retreatLeaseApply}</td>
-                        <td><fmt:formatDate value="${enterApply.applyTime }" pattern="yyyy-MM-dd"/></td>
+                        <td>${retreatLeaseApply.houseAcreage}</td>
+                        <td><fmt:formatDate value="${retreatLeaseApply.leaseStartTime}" pattern="yyyy-MM-dd"/></td>
+                        <td><fmt:formatDate value="${retreatLeaseApply.leaseEndTime}" pattern="yyyy-MM-dd"/></td>
+                        <td><fmt:formatDate value="${retreatLeaseApply.retreatLeaseTime}" pattern="yyyy-MM-dd"/></td>
+                        <td>${retreatLeaseApply.retreatLeaseType}</td>
+                        <td>${enterApply.arrearsRent}</td>
+                        <td>${enterApply.leaseDeposit}</td>
+                        <td>${enterApply.permitRetreatLeaseDeposit}</td>
+                        <td><fmt:formatDate value="${retreatLeaseApply.creationTime}" pattern="yyyy-MM-dd"/></td>
                         <td><a class="btn btn-info"
                                href="${pageContext.request.contextPath}/dist/enterApply/deleteEnterApply?enterApplyId=${enterApply.enterApplyId}"
                                role="button">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;<a

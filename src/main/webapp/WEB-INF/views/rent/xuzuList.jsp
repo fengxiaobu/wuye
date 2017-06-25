@@ -93,9 +93,8 @@
                         <td>${reletApply.houseAcreage}</td>
                         <td><fmt:formatDate value="${reletApply.leaseStartTime}" pattern="yyyy-MM-dd"/></td>
                         <td><fmt:formatDate value="${reletApply.leaseEndTime}" pattern="yyyy-MM-dd"/></td>
-                        <td><fmt:formatDate value="${reletApply.leaseEndTime+1}" pattern="yyyy-MM-dd"/></td>
+                        <td><fmt:formatDate value="${reletApply.retreaTime}" pattern="yyyy-MM-dd"/></td>
                         <td><fmt:formatDate value="${reletApply.retreaEndTime}" pattern="yyyy-MM-dd"/></td>
-                        <td><fmt:formatDate value="${reletApply.applyTime }" pattern="yyyy-MM-dd"/></td>
                         <td>${reletApply.singlePrice}</td>
                         <td>${reletApply.subtotal}</td>
                         <td>${reletApply.privilegeSum}</td>

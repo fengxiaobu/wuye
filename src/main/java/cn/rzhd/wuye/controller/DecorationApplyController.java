@@ -99,6 +99,7 @@ public class DecorationApplyController {
                 //出入证押金
                 decorationApply.setPassPapersDeposit(new BigDecimal(decorationApply.getConstructPeopleNumber() * 10));
                 //装修申请
+                System.out.println("/ndecorationApply = " + decorationApply+"/n");
                 decorationApplyService.insert(decorationApply);
                 for (int i = 0; i < decorationApply.getDecorateDetailList().size(); i++) {
                     DecorateDetail decorateDetail = new DecorateDetail();
@@ -115,6 +116,7 @@ public class DecorationApplyController {
                     decorationMaterial.setDecorationMaterialId(IDUtils.genLongUID());
                     decorationMaterial.setMaterialAddress(decorationApply.getDecorationMaterialList().get(i).getMaterialAddress());
                     decorationMaterial.setMaterialName(decorationApply.getDecorationMaterialList().get(i).getMaterialName());
+
                     //装修资料
                     decorationMaterialService.insert(decorationMaterial);
                 }

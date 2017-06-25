@@ -87,7 +87,7 @@ public class ReletApplyController {
      *
      * @return
      */
-    @RequestMapping("/findReletApplyByHouseId")
+    @RequestMapping("/findReletApply")
     public String findReletApply(Model model) {
         List<ReletApply> reletApplys = reletApplyService.selectAll();
         model.addAttribute("reletApplys", reletApplys);
