@@ -113,10 +113,14 @@ public class PayFeeServiceImpl implements IPayFeeService {
         BigDecimal money;
         if ("yuan".equals(query.getElectricCountBy())) {
             money = new BigDecimal(query.getElectricAmount());
+            BigDecimal electricPower = money.divide(query.getElectricPrice());
+            map.put("electricPower",electricPower);
         } else if ("du".equals(query.getElectricCountBy())) {
             money = query.getElectricPrice()
                     .multiply(new BigDecimal(query.getMultiply()))
                     .multiply(new BigDecimal(query.getElectricAmount()));
+            BigDecimal electricPower = new BigDecimal(query.getMultiply()).multiply(new BigDecimal(query.getElectricAmount()));
+            map.put("electricPower",electricPower);
         } else {
             map.put("msg", "请选择正确的计费方式");
             return map;
@@ -217,13 +221,18 @@ public class PayFeeServiceImpl implements IPayFeeService {
     }
 
     @Override
-    public BigDecimal payWaterFee(PayFeeQuery query) {
+    public Map<String, BigDecimal> payWaterFee(PayFeeQuery query) {
+        Map<String, BigDecimal> map = new HashMap<>();
         BigDecimal result = new BigDecimal("0");
         if ("yuan".equals(query.getWaterCountBy())) {
             result = new BigDecimal(query.getWaterAmout());
+            BigDecimal tunnage = result.divide(query.getWaterPrice());
+            map.put("tunnage",tunnage);
         } else if ("ton".equals(query.getWaterCountBy())) {
             result = new BigDecimal(query.getWaterAmout()).multiply(query.getWaterPrice());
+            map.put("tunnage",new BigDecimal(query.getWaterAmout()));
         }
-        return result;
+        map.put("water",result);
+        return map;
     }
 }

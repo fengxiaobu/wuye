@@ -33,5 +33,5 @@ public interface IPayFeeService {
      * @param query
      * @return
      */
-    BigDecimal payWaterFee(PayFeeQuery query);
+    Map<String, BigDecimal> payWaterFee(PayFeeQuery query);
 }
