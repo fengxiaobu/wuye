@@ -22,10 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.URLDecoder;
-import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
 
 /**
  * luopa 在 2017/6/1 创建.
@@ -176,15 +173,19 @@ public class ChinaPay {
             //验证成功调用方法使缴费记录生效
             JSONArray objects = JSON.parseArray(resultMap.get("MerResv"));
             Iterator<Object> iterator = objects.iterator();
-            while(iterator.hasNext()){
+            while (iterator.hasNext()) {
                 CallBackVO vo = JSON.toJavaObject((JSON) iterator.next(), CallBackVO.class);
-                if("wuye".equals(vo.getType())){
+                if ("wuye".equals(vo.getType())) {
                     wuye.changeStatus(vo.getId());
-                }else if("kaifa".equals(vo.getType())){
+                } else if ("kaifa".equals(vo.getType())) {
                     kaifa.changeStatus(vo.getId());
-                }else if("shuidian".equals(vo.getType())){
+                } else if ("shuidian".equals(vo.getType())) {
                     shuidian.changeStatus(vo.getId());
-                }else{
+                } else if ("rzwuye".equals(vo.getType())) {
+                    request.getSession().setAttribute("rzwuye", "1");
+                } else if ("rzkaifa".equals(vo.getType())) {
+                    request.getSession().setAttribute("rzkaifa", "1");
+                } else {
                     System.out.println("缴费记录生成失败:未知的缴费类型(物业,开发,水电)");
                 }
             }
@@ -264,4 +265,22 @@ public class ChinaPay {
         return result;
     }
 
+    /**
+     * 获取入驻支付结果
+     *
+     * @param request
+     * @return
+     */
+    @RequestMapping("dist/getPayState")
+    @ResponseBody
+    public Map<String, String> getPayState(HttpServletRequest request) {
+        Map<String, String> result = new Hashtable<>();
+        String rzkaifa = request.getSession().getAttribute("rzkaifa").toString();
+        String rzwuye = request.getSession().getAttribute("rzwuye").toString();
+        request.getSession().removeAttribute("rzkaifa");
+        request.getSession().removeAttribute("rzwuye");
+        result.put("rzkaifa", rzkaifa);
+        result.put("rzwuye", rzwuye);
+        return result;
+    }
 }
