@@ -9,7 +9,10 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -67,9 +70,9 @@ public class DecorationApplyController {
     /**
      * 装修申请
      */
-    @RequestMapping(value = "/upload/batch", method = RequestMethod.POST, consumes = "application/json")
+    @RequestMapping(value = "/upload/batch", method = RequestMethod.POST)
     @ResponseBody
-    public Map<String, String> batchUpload(@RequestBody DecorationApply decorationApply) {
+    public Map<String, String> batchUpload(DecorationApply decorationApply) {
         System.out.println("decorationApply = " + decorationApply);
         Map<String, String> result = new HashMap<>();
         Date date = new Date();

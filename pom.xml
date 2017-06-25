@@ -72,11 +72,11 @@
             </exclusions>
         </dependency>
         <!-- 分页插件 -->
-       <!--  <dependency>
-			<groupId>com.github.pagehelper</groupId>
-			<artifactId>pagehelper-spring-boot-starter</artifactId>
-			<version>1.1.0</version>
-		</dependency> -->
+        <!--  <dependency>
+             <groupId>com.github.pagehelper</groupId>
+             <artifactId>pagehelper-spring-boot-starter</artifactId>
+             <version>1.1.0</version>
+         </dependency> -->
         <dependency>
             <groupId>com.github.pagehelper</groupId>
             <artifactId>pagehelper</artifactId>
@@ -388,15 +388,15 @@
                 <configuration>
                     <className>cn.rzhd.wuye.wsserver.UpdateDataServiceImpl</className>
                 </configuration>
-               <executions>
-                  <!--   <execution>
+                <executions>
+                    <execution>
                         <goals>
                             <goal>java2wsdl</goal>
                         </goals>
                     </execution>
                     <execution>
                         <id>spring-boot-starter-tomcat</id>
-                    </execution> -->
+                    </execution>
                 </executions>
             </plugin>
         </plugins>

@@ -207,7 +207,7 @@
 
                             <li class="panel" role="tab">
                                 <div class="panel-header">
-                                    <a data-toggle="collapse" target="main" href="#">续租申请</a>
+                                    <a target="main" href="${pageContext.request.contextPath}/findReletApplyByHouseId">续租申请</a>
                                 </div>
 
                             </li>

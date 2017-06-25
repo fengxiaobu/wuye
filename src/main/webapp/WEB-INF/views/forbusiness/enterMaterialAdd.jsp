@@ -45,7 +45,10 @@
             <div class="form-group">
                 <label class="col-sm-2 control-label">请选择上传的资料包:</label>
                 <div class="col-sm-10">
-                    <input type="file" name="file"/>
+                    <form>
+                        <input type="file" name="file1" id="file"/>
+                        <button type="button" id="submitId"/>点击上传
+                    </form>
                 </div>
             </div>
             <div class="form-group">
@@ -81,6 +84,7 @@
 
 </body>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-2.1.4.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/ajaxfileupload.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/libs/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript">
     var tableEdit = {
@@ -178,5 +182,18 @@
 
     });
 </script>
-
+<script>
+    $("#submitId").click(function () {
+        alert("dfad");
+            $.ajaxFileUpload({
+                url:'${pageContext.request.contextPath}/dist/upload', //你处理上传文件的服务端
+                secureuri:false,//是否启用安全机制
+                fileElementId:'file',//file的id
+                dataType: 'application/json',//返回的类型
+                success: function (data) {//调用成功时怎么处理
+                    alert("上传成功");
+                }
+            });
+    })
+</script>
 </html>

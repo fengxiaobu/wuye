@@ -131,14 +131,21 @@
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">出入证押金:</label>
-                        <div class="col-sm-10">
+                        <div class="col-sm-10"><br/>
                             <input type="text" name="passPapersDeposit" value="${decorationApply.passPapersDeposit}"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">附件:</label>
                         <div class="col-sm-10">
-                           批量下载
+                          <input type="text" value=""/>
+                            <a target="main" href="${pageContext.request.contextPath}" class="btn btn-info" type="button"><span class="glyphicon glyphicon-plus"></span>批量打包下载
+                            </a>
+                           <br/>
+                            <input type="text" value=""/><br/>
+                            <input type="text" value=""/><br/>
+                            <input type="text" value=""/><br/>
+                            <input type="text" value=""/><br/>
                         </div>
                     </div>
                     <div class="form-group">
@@ -210,7 +217,7 @@
                         </div>
                     </div>
                     <div class="form-group" style="margin-left:360px">
-                        <button type="submit" class="btn btn-default">保存</button>
+                        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-save"></span>保存</button>
                     </div>
                 </form>
             </div>

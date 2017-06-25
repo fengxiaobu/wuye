@@ -36,7 +36,7 @@
         <result column="ASTRICTSTATUS" property="astrictStatus"/>
         <result column="UPDATEDATE" property="updateDate"/>
         <result column="MANAGE_ID" property="manage_id"/>
-        <result column="ENTERAPPLY_STATE" property="enterapplyState"/>
+        <result column="ENTERAPPLY_STATE" property="enterapply_state"/>
         <result column="DECORATIONAPPLYSTATE" property="decorationapplystate"/>
 
         <association property="projectInfo" column="pk_project" javaType="cn.rzhd.wuye.bean.ProjectInfo"
