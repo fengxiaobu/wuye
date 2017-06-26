@@ -113,7 +113,7 @@ public class PayFeeServiceImpl implements IPayFeeService {
         BigDecimal money;
         if ("yuan".equals(query.getElectricCountBy())) {
             money = new BigDecimal(query.getElectricAmount());
-            BigDecimal electricPower = money.divide(query.getElectricPrice());
+            BigDecimal electricPower = money.divide(query.getElectricPrice(),2,BigDecimal.ROUND_HALF_UP);
             map.put("electricPower",electricPower);
         } else if ("du".equals(query.getElectricCountBy())) {
             money = query.getElectricPrice()
