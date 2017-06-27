@@ -1,8 +1,8 @@
 package cn.rzhd.wuye;
 
-import cn.rzhd.wuye.bean.Customer;
+import cn.rzhd.wuye.bean.Company;
 import cn.rzhd.wuye.common.WebService;
-import cn.rzhd.wuye.mapper.CustomerMapper;
+import cn.rzhd.wuye.service.ICompanyService;
 import cn.rzhd.wuye.service.IFeeTypesService;
 import cn.rzhd.wuye.utils.JsonUtils;
 import cn.rzhd.wuye.vo.FeeitemVO;
@@ -24,27 +24,27 @@ public class FeeTypesServiceTest extends BaseTest {
     IFeeTypesService service;
 
     @Autowired
-    CustomerMapper mapper;
+    ICompanyService companyService;
 
     @Test
     public void addFeeTypesTest() {
-        List<Customer> list = mapper.getAll();
+        List<Company> companies = companyService.getAll();
         RequesterVO req = new RequesterVO();
         req.setKey(LiandoServiceConstant.SERVICE_KEY);
         req.setBilltype(LiandoServiceConstant.DATA_TYPE_FEE_TYPE);
-        for (Customer customer : list) {
-            req.setPk_corp(customer.getPk_corp());
-            req.setPk_customer(customer.getPk_customerid());
+        for (Company company : companies) {
+            String pkCorp = company.getPkCorp();
+            req.setPk_corp(pkCorp);
             String baseData = WebService.getBaseData(req);
             ResponseVO responseVO = JsonUtils.jsonToPojo(baseData, ResponseVO.class);
-            if ("Y".equals(responseVO.getIssuccess()) && StringUtil.isEmpty(responseVO.getErrorinfo())){
+            if ("Y".equals(responseVO.getIssuccess()) && StringUtil.isEmpty(responseVO.getErrorinfo())) {
                 FeeitemVO[] feeitemVOS = responseVO.getFeeitemdata();
                 for (FeeitemVO vo : feeitemVOS) {
                     service.addFeeTypes(vo);
                 }
-
             }
         }
-
     }
+
+
 }
