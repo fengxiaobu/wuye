@@ -108,33 +108,11 @@ public class ChinaPay {
         return "toChinaPay";
     }
 
-/*    @RequestMapping("/dist/sendpay")
-    @ResponseBody
-    public Map<String, Object> pay(@RequestBody Map<String,String> map) throws IOException {
-
-        RequestVO requestVO = BeanUtil.mapToBean(map, RequestVO.class, true);
-        //前台页面传过来的
-        ChinaPayHelper chinaPayHelper = new ChinaPayHelper();
-        //requestVO.setRemoteAddr(HttpUtils.getIpAddr(req));
-        requestVO.setMerOrderNo(RandomUtil.randomString(32));
-        //requestVO.setBankInstNo("700000000000017");
-        //requestVO.setCommodityMsg("物业测试");
-        //requestVO.setMerResv("交易商品");
-        // requestVO.setAcqCode("");//收单机构号
-        RequestVO vo = chinaPayHelper.getSign(requestVO);
-        System.out.println("requestVO = " + requestVO);
-        Map<String, Object> objectMap = BeanUtils.objectToMap(vo);
-        Map<String, Object> sign = ChinaPaySignUtils.sign(objectMap);
-        objectMap.put("Signature", sign.get("sign"));
-        objectMap.put("postUrl", "http://newpayment-test.chinapay.com/CTITS/service/rest/page/nref/000000000017/0/0/0/0/0");
-        return objectMap;
-    }*/
-
     @RequestMapping(value = "/dist/sendpay")
     public @ResponseBody
     Map<String, Object> pay(HttpServletRequest req, String orderAmt, String commodityMsg, String merResv, String bankInstNo) throws IOException {
         RequestVO requestVO = new RequestVO();
-       // merResv = Base64.encodeUrlSafe(merResv);
+        // merResv = Base64.encodeUrlSafe(merResv);
         requestVO.setOrderAmt(orderAmt);
         requestVO.setCommodityMsg(commodityMsg);
         requestVO.setMerResv(merResv);
@@ -248,7 +226,7 @@ public class ChinaPay {
             request.setAttribute(entry.getKey(), entry.getValue());
         }*/
         //response.getWriter().write(result.toString());
-        System.out.println("延签");
+        System.out.println("验签"+result);
         request.getSession().setAttribute("pay", result);
         //转发请求到页面
         //return "forward:dist/pay";
