@@ -6,6 +6,8 @@ import cn.rzhd.wuye.vo.FeeitemVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by hasee on 2017/6/5.
  */
@@ -18,5 +20,10 @@ public class FeeTypesServiceImpl implements IFeeTypesService {
     @Override
     public void addFeeTypes(FeeitemVO feeTypes) {
         mapper.insert(feeTypes);
+    }
+
+    @Override
+    public List<FeeitemVO> getAll() {
+        return mapper.selectAll();
     }
 }

@@ -155,7 +155,8 @@ public class ChinaPay {
         //验证签名
         if (ChinaPayHelper.verify(resultMap)) {
             //验证成功调用方法使缴费记录生效
-            JSONArray objects = JSON.parseArray(resultMap.get("MerResv"));
+            String merResv = Base64.decodeStr(resultMap.get("MerResv"));
+            JSONArray objects = JSON.parseArray(merResv);
             Iterator<Object> iterator = objects.iterator();
             while (iterator.hasNext()) {
                 CallBackVO vo = JSON.toJavaObject((JSON) iterator.next(), CallBackVO.class);

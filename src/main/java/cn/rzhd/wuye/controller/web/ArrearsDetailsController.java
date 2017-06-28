@@ -21,9 +21,9 @@ import java.util.Map;
 @RequestMapping("/dist/arrearsDetails")
 public class ArrearsDetailsController {
     @Autowired
-    IPropertyFeeService propertyFeeService;
+    private IPropertyFeeService propertyFeeService;
     @Autowired
-    IKfFeeService kfFeeService;
+    private IKfFeeService kfFeeService;
 
     @RequestMapping("/propertyDetailsList")
     public Map<String,Object> propertyDetailsList(ArrearsQuery query) {

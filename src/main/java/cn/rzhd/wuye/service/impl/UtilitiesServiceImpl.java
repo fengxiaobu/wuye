@@ -61,4 +61,14 @@ public class UtilitiesServiceImpl implements IUtilitiesService {
     public BigDecimal getAstrictPaid(String houseInfoId, Date startDate, Date endDate) {
         return mapper.getAstrictPaid(houseInfoId,startDate,endDate);
     }
+
+    @Override
+    public String getCompanyName(String pk_feeType) {
+        return mapper.getCompanyName(pk_feeType);
+    }
+
+    @Override
+    public String getCompanyAccount(String pk_feeType) {
+        return mapper.getCompanyAccount(pk_feeType);
+    }
 }
