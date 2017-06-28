@@ -413,4 +413,10 @@
               AND PAY_TIME &lt; #{endDate}
               AND PAY_TIME &gt; #{startDate}
     </select>
+    <select id="getCompanyName" parameterType="string" resultType="string">
+        SELECT "unitname" FROM T_COMPANY JOIN T_BANK_ACCOUNT ON "vdef1"=T_COMPANY."pk_corp" WHERE "pk_fee"=#{pk_feeType}
+    </select>
+    <select id="getCompanyAccount" parameterType="string" resultType="string">
+        SELECT "account" FROM T_BANK_ACCOUNT WHERE "pk_fee"=#{pk_feeType}
+    </select>
 </mapper>

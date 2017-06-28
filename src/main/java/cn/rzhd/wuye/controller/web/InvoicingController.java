@@ -57,13 +57,14 @@ public class InvoicingController {
 //        newOne.setCollectingAccount(details.getCollectingAccount());
 //        newOne.setCollectingCompany(details.getCollectingCompany());
 //        newOne.setCostType("水费");
-
+        details.setCollectingAccount(utilitiesService.getCompanyAccount(details.getCostType()));
+        details.setCollectingCompany(utilitiesService.getCompanyName(details.getCostType()));
         utilitiesService.addDetails(details);
         return id;
     }
 
     @RequestMapping("/invoice/property")
-    public void propertyInvoice(@RequestBody PropertyFeePayDetails details){
+    public void propertyInvoice(@RequestBody PropertyFeePayDetails details) {
         Long id = details.getPropertyFeePayDetails();
         List<PropertyFeeInvoiceDetails> invoices = details.getInvoices();
         for (PropertyFeeInvoiceDetails invoice : invoices) {
@@ -74,7 +75,7 @@ public class InvoicingController {
     }
 
     @RequestMapping("/invoice/kfFee")
-    public void kfFeeInvoice(@RequestBody KfFeePayDetails details){
+    public void kfFeeInvoice(@RequestBody KfFeePayDetails details) {
         Long id = details.getKfFeePayDetailsId();
         List<KfFeeInvoice> invoices = details.getInvoices();
         for (KfFeeInvoice invoice : invoices) {
@@ -85,7 +86,7 @@ public class InvoicingController {
     }
 
     @RequestMapping("/invoice/utilities")
-    public void utilitiesInvoice(@RequestBody UtilitiesDetails details){
+    public void utilitiesInvoice(@RequestBody UtilitiesDetails details) {
         Long id = details.getUtilitiesDetailsId();
         List<UtilitiesInvoice> invoices = details.getInvoices();
         for (UtilitiesInvoice invoice : invoices) {

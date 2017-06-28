@@ -25,6 +25,8 @@ public class KfFee implements Serializable {
     private String nmny;
     private String nyshouldmny;
     private String arrears;
+    private String account;
+    private String companyName;
 
     public String getPk_corp() {
         return pk_corp;
@@ -152,5 +154,21 @@ public class KfFee implements Serializable {
 
     public void setArrears(String arrears) {
         this.arrears = arrears;
+    }
+
+    public String getAccount() {
+        return account;
+    }
+
+    public void setAccount(String account) {
+        this.account = account;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
     }
 }

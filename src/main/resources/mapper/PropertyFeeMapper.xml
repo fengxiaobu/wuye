@@ -7,7 +7,6 @@
         <result column="pk_project" property="pk_project" jdbcType="CHAR"/>
         <result column="pk_house" property="pk_house" jdbcType="CHAR"/>
         <result column="pk_receivablesid" property="pk_receivablesid" jdbcType="CHAR"/>
-        <result column="pk_feetype" property="pk_feetype" jdbcType="CHAR"/>
         <result column="feetype" property="feetype" jdbcType="VARCHAR"/>
         <result column="actmonth" property="actmonth" jdbcType="VARCHAR"/>
         <result column="dbegin" property="dbegin" jdbcType="VARCHAR"/>
@@ -15,6 +14,8 @@
         <result column="dshpay" property="dshpay" jdbcType="VARCHAR"/>
         <result column="vmemo" property="vmemo" jdbcType="VARCHAR"/>
         <result column="nyshouldmny" property="nyshouldmny" jdbcType="VARCHAR"/>
+        <result column="account" property="account"/>
+        <result column="companyName" property="companyName"/>
     </resultMap>
     <resultMap id="forPay" type="map">
         <id column="pk_feetype" property="pkFeeType"/>
@@ -25,11 +26,14 @@
         <result column="amount" property="sum"/>
         <result column="nyshouldmny" property="shouldmny"/>
         <result column="shouldSum" property="shouldSum"/>
+        <result column="account" property="account"/>
+        <result column="companyName" property="companyName"/>
     </resultMap>
 
     <sql id="arrearsSql">
         <where>
-            AND "pk_house"='${houseInfoId}' AND "pk_customerid"='${customerId}' AND "dshpay" &lt;= TO_CHAR(SYSDATE,'YYYY-MM-DD') AND "isrz" = 'N'
+            AND "pk_house"='${houseInfoId}' AND "pk_customerid"='${customerId}' AND "dshpay" &lt;=
+            TO_CHAR(SYSDATE,'YYYY-MM-DD') AND "isrz" = 'N'
             <if test="startDate != null and startDate != ''">
                 AND SUBSTR("dshpay",1,7) >= SUBSTR(#{startDate},1,7)
             </if>
@@ -41,7 +45,8 @@
     </sql>
     <sql id="queryForPay">
         <where>
-            AND "pk_house"='${houseInfoId}' AND "pk_customerid"='${customerId}' AND "dshpay" &lt;= TO_CHAR(SYSDATE,'YYYY-MM-DD') AND "isrz" = 'N'
+            AND "pk_house"='${houseInfoId}' AND "pk_customerid"='${customerId}' AND "dshpay" &lt;=
+            TO_CHAR(SYSDATE,'YYYY-MM-DD') AND "isrz" = 'N'
             <if test="startDate != null and startDate != ''">
                 AND SUBSTR("dshpay",1,7) >= SUBSTR('${startDate}',1,7)
             </if>
@@ -82,28 +87,32 @@
                 #{vmemo,jdbcType=VARCHAR},
                 #{nyshouldmny,jdbcType=VARCHAR}, 'Y', #{nyjmny})
     </insert>
-    <select id="selectAll" resultMap="baseResultMap" resultType="cn.rzhd.wuye.vo.query.FeeDataQuery">
+    <select id="selectAll" resultMap="baseResultMap" parameterType="cn.rzhd.wuye.vo.query.FeeDataQuery">
         SELECT
             "pk_corp",
             "pk_customerid",
             "pk_project",
             "pk_house",
             "pk_receivablesid",
-            "pk_feetype",
             "feetype",
             "actmonth",
             "dbegin",
             "dend",
             "dshpay",
             "vmemo",
-            "nyshouldmny"
+            "nyshouldmny",
+            T_BANK_ACCOUNT."account" AS account,
+            T_COMPANY."unitname"     AS companyName
         FROM T_PROPERTY_FEE
-        WHERE "isrz"='N' AND "pk_house" = #{houseInfoId} AND "pk_customerid"='${customerId}' AND "dshpay" > TO_CHAR(SYSDATE, 'YYYY-MM-DD')
+            JOIN T_BANK_ACCOUNT ON "pk_feetype" = "pk_fee"
+            JOIN T_COMPANY ON T_BANK_ACCOUNT."vdef1" = T_COMPANY."pk_corp"
+        WHERE "isrz" = 'N' AND "pk_house" = #{houseInfoId} AND "pk_customerid" = '${customerId}' AND
+              "dshpay" > TO_CHAR(SYSDATE, 'YYYY-MM-DD')
 
     </select>
-    <select id="rzselectAll" resultMap="baseResultMap" resultType="cn.rzhd.wuye.vo.query.FeeDataQuery">
+    <select id="rzselectAll" resultMap="baseResultMap" parameterType="cn.rzhd.wuye.vo.query.FeeDataQuery">
         SELECT
-            "pk_corp",
+            T_PROPERTY_FEE."pk_corp",
             "pk_customerid",
             "pk_project",
             "pk_house",
@@ -115,13 +124,17 @@
             "dend",
             "dshpay",
             "vmemo",
-            "nyshouldmny"
+            "nyshouldmny",
+            T_BANK_ACCOUNT."account" AS account,
+            T_COMPANY."unitname"     AS companyName
         FROM T_PROPERTY_FEE
+            JOIN T_BANK_ACCOUNT ON "pk_feetype" = "pk_fee"
+            JOIN T_COMPANY ON T_BANK_ACCOUNT."vdef1" = T_COMPANY."pk_corp"
         WHERE "isrz" = 'Y' AND "pk_house" = #{houseInfoId}
     </select>
     <select id="selectAllArrears" resultMap="baseResultMap" parameterType="cn.rzhd.wuye.vo.query.ArrearsQuery">
         SELECT
-        "pk_corp",
+        T_PROPERTY_FEE."pk_corp",
         "pk_customerid",
         "pk_project",
         "pk_house",
@@ -133,31 +146,38 @@
         "dend",
         "dshpay",
         "vmemo",
-        "nyshouldmny"
+        "nyshouldmny",
+        T_BANK_ACCOUNT."account" AS account,
+        T_COMPANY."unitname" AS companyName
         FROM T_PROPERTY_FEE
+        JOIN T_BANK_ACCOUNT ON "pk_feetype" = "pk_fee"
+        JOIN T_COMPANY ON T_BANK_ACCOUNT."vdef1" = T_COMPANY."pk_corp"
         <include refid="arrearsSql"/>
     </select>
     <select id="selectForPay" parameterType="cn.rzhd.wuye.vo.query.ArrearsQuery" resultMap="forPay">
         SELECT
-            SUBSTR("dshpay", 1, 7)                   AS months,
-            "feetype",
-            "dbegin",
-            "dend",
-            "pk_feetype",
-            "nyshouldmny",
-            SUM("nyshouldmny") - SUM(NVL("nmny", 0)) AS amount,
-            SUM("nyshouldmny") AS shouldSum
-        FROM
-            "T_PROPERTY_FEE"
+        SUBSTR("dshpay", 1, 7) AS months,
+        "feetype",
+        "dbegin",
+        "dend",
+        "nyshouldmny",
+        SUM("nyshouldmny") - SUM(NVL("nmny", 0)) AS amount,
+        SUM("nyshouldmny") AS shouldSum,
+        T_BANK_ACCOUNT."account" AS account,
+        T_COMPANY."unitname" AS companyName
+        FROM T_PROPERTY_FEE
+        JOIN T_BANK_ACCOUNT ON "pk_feetype" = "pk_fee"
+        JOIN T_COMPANY ON T_BANK_ACCOUNT."vdef1" = T_COMPANY."pk_corp"
         <include refid="queryForPay"/>
         GROUP BY
-            SUBSTR("dshpay", 1, 7),
-            "feetype",
-            "dbegin",
-            "dend",
-            "pk_feetype",
-            "nyshouldmny"
+        SUBSTR("dshpay", 1, 7),
+        "feetype",
+        "dbegin",
+        "dend",
+        "nyshouldmny",
+        T_BANK_ACCOUNT."account",
+        T_COMPANY."unitname"
         ORDER BY
-            SUBSTR("dshpay", 1, 7)
+        SUBSTR("dshpay", 1, 7)
     </select>
 </mapper>

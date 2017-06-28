@@ -26,4 +26,8 @@ public interface IUtilitiesService {
     List<Map<String,Object>> getWaterByProject(Long userId);
 
     BigDecimal getAstrictPaid(String houseInfoId, Date startDate, Date endDate);
+
+    String getCompanyName(String pk_feeType);
+
+    String getCompanyAccount(String pk_feeType);
 }

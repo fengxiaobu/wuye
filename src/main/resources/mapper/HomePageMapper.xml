@@ -17,7 +17,7 @@
             HI.STAR_LEVEL
         FROM
             T_HOUSE_INFO HI
-            LEFT JOIN T_HOUSE_INFO_DETAILS HID ON HI.ERP_HOUSE_ID = HID."pk_house"
+            LEFT JOIN T_HOUSE_INFO_DETAILS HID ON HI.HOUSE_INFO_ID = HID."pk_house"
             LEFT JOIN T_PROJECT_INFO PI ON HI.PROJECT_INFO_ID = PI.PK_PROJECT
         WHERE
             HI.CUSTOMER_ID = '${customer.pk_customerid}'
@@ -33,10 +33,14 @@
             HID."building",
             HID."ifloor",
             HID."vhcell",
-            HID."vhnum"
+            HID."vhnum",
+            T_BANK_ACCOUNT."account" AS account,
+            T_COMPANY."unitname" AS companyName
         FROM
             "T_KF_Fee" KF
             LEFT JOIN T_HOUSE_INFO_DETAILS HID ON KF."pk_house" = HID."pk_house"
+            JOIN T_BANK_ACCOUNT ON KF."pk_feetype"=T_BANK_ACCOUNT."pk_fee"
+            JOIN T_COMPANY ON T_BANK_ACCOUNT."vdef1"=T_COMPANY."pk_corp"
         WHERE
         KF."pk_house"=#{houseInfoId} AND KF."pk_customerid"=#{customerId} AND KF."dshpay" &lt;= TO_CHAR(SYSDATE,'YYYY-MM-DD')
     </select>
@@ -48,10 +52,14 @@
             HID."building",
             HID."ifloor",
             HID."vhcell",
-            HID."vhnum"
+            HID."vhnum",
+            T_BANK_ACCOUNT."account" AS account,
+            T_COMPANY."unitname" AS companyName
         FROM
             T_PROPERTY_FEE PF
             LEFT JOIN T_HOUSE_INFO_DETAILS HID ON PF."pk_house" = HID."pk_house"
+            JOIN T_BANK_ACCOUNT ON PF."pk_feetype"=T_BANK_ACCOUNT."pk_fee"
+            JOIN T_COMPANY ON T_BANK_ACCOUNT."vdef1"=T_COMPANY."pk_corp"
         WHERE
             PF."pk_house"=#{houseInfoId} AND PF."pk_customerid"=#{customerId} AND PF."dshpay" &lt;= TO_CHAR(SYSDATE,'YYYY-MM-DD')
     </select>

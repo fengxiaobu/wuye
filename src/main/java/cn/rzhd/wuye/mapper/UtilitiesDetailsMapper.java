@@ -34,4 +34,8 @@ public interface UtilitiesDetailsMapper {
     List<Map<String,Object>> getWaterByProject(Long userId);
 
     BigDecimal getAstrictPaid(@Param("houseInfoId") String houseInfoId, @Param("startDate") Date startDate, @Param("endDate") Date endDate);
+
+    String getCompanyName(String pk_feeType);
+
+    String getCompanyAccount(String pk_feeType);
 }
