@@ -11,6 +11,7 @@ import cn.rzhd.wuye.utils.HttpUtils;
 import cn.rzhd.wuye.vo.CallBackVO;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
+import com.xiaoleilu.hutool.lang.Base64;
 import com.xiaoleilu.hutool.util.RandomUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -131,12 +132,15 @@ public class ChinaPay {
 
     @RequestMapping(value = "/dist/sendpay")
     public @ResponseBody
-    Map<String, Object> pay(HttpServletRequest req, String OrderAmt, String CommodityMsg, String MerResv, String BankInstNo) throws IOException {
+    Map<String, Object> pay(HttpServletRequest req, String orderAmt, String commodityMsg, String merResv, String bankInstNo) throws IOException {
         RequestVO requestVO = new RequestVO();
-        requestVO.setOrderAmt(OrderAmt);
-        requestVO.setCommodityMsg(CommodityMsg);
-        requestVO.setMerResv(MerResv);
-        requestVO.setBankInstNo(BankInstNo);
+       // merResv = Base64.encodeUrlSafe(merResv);
+        requestVO.setOrderAmt(orderAmt);
+        requestVO.setCommodityMsg(commodityMsg);
+        requestVO.setMerResv(merResv);
+        requestVO.setBankInstNo(bankInstNo);
+        System.out.println("requestVO = " + requestVO);
+        System.out.println("Base64.decodeStr(merResv) = " + Base64.decodeStr(merResv));
         //前台页面传过来的
         ChinaPayHelper chinaPayHelper = new ChinaPayHelper();
         requestVO.setRemoteAddr(HttpUtils.getIpAddr(req));
@@ -147,8 +151,10 @@ public class ChinaPay {
         // requestVO.setAcqCode("");//收单机构号
         RequestVO vo = chinaPayHelper.getSign(requestVO);
         System.out.println("requestVO = " + requestVO);
-        Map<String, Object> objectMap = BeanUtils.objectToMap(vo);
+        Map<String, Object> objectMap = BeanUtils.objectToMap(requestVO);
+        // Map<String, Object> objectMap = BeanUtil.beanToMap(requestVO);
         Map<String, Object> sign = ChinaPaySignUtils.sign(objectMap);
+        System.out.println("sign = " + sign);
         objectMap.put("Signature", sign.get("sign"));
         objectMap.put("postUrl", "http://newpayment-test.chinapay.com/CTITS/service/rest/page/nref/000000000017/0/0/0/0/0");
         return objectMap;
@@ -278,7 +284,7 @@ public class ChinaPay {
         String rzkaifa = request.getSession().getAttribute("rzkaifa").toString();
         String rzwuye = request.getSession().getAttribute("rzwuye").toString();
         request.getSession().removeAttribute("rzkaifa");
-        request.getSession().removeAttribute("rzwuye");
+        request.getSession().removeAttribute("rzwuye/");
         result.put("rzkaifa", rzkaifa);
         result.put("rzwuye", rzwuye);
         return result;
