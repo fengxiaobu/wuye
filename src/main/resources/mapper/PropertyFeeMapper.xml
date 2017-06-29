@@ -89,7 +89,7 @@
     </insert>
     <select id="selectAll" resultMap="baseResultMap" parameterType="cn.rzhd.wuye.vo.query.FeeDataQuery">
         SELECT
-            "pk_corp",
+            T_PROPERTY_FEE."pk_corp",
             "pk_customerid",
             "pk_project",
             "pk_house",

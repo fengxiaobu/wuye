@@ -71,4 +71,9 @@ public class UtilitiesServiceImpl implements IUtilitiesService {
     public String getCompanyAccount(String pk_feeType) {
         return mapper.getCompanyAccount(pk_feeType);
     }
+
+    @Override
+    public String getCostType(String pk_feeType) {
+        return mapper.getCostType(pk_feeType);
+    }
 }

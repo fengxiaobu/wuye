@@ -31,31 +31,32 @@ public class InvoicingController {
     private IKfFeeInvoiceService kfFeeInvoiceService;
 
     @RequestMapping("/records/property")
-    public Long property(@RequestBody PropertyFeePayDetails propertyFeePayDetails) {
+    public String property(@RequestBody PropertyFeePayDetails propertyFeePayDetails) {
         Long id = IDUtils.genLongUID();
         propertyFeePayDetails.setCarteTime(new Date());
         propertyFeePayDetails.setPayTime(new Date());
         propertyFeePayDetails.setPropertyFeePayDetails(id);
         propertyFeePayDetailsService.addDetails(propertyFeePayDetails);
-        return id;
+        return id.toString();
     }
 
     @RequestMapping("/records/kfFee")
-    public Long property(@RequestBody KfFeePayDetails kfFeePayDetails) {
+    public String property(@RequestBody KfFeePayDetails kfFeePayDetails) {
         Long id = IDUtils.genLongUID();
         kfFeePayDetails.setCarteTime(new Date());
         kfFeePayDetails.setPayTime(new Date());
         kfFeePayDetails.setKfFeePayDetailsId(id);
         kfFeePayDetailsService.addDetails(kfFeePayDetails);
-        return id;
+        return id.toString();
     }
 
     @RequestMapping("/records/utilities")
-    public Long utilities(@RequestBody UtilitiesDetails details) {
+    public String utilities(@RequestBody UtilitiesDetails details) {
         Long id = IDUtils.genLongUID();
         details.setUtilitiesDetailsId(id);
         details.setCarteTime(new Date());
         details.setPayTime(new Date());
+        details.setCostType(utilitiesService.getCostType(details.getCostType()));
         //新创建一个水电缴费对象,用于分割一部分水费数据到其中;
 //        UtilitiesDetails newOne = new UtilitiesDetails();
 //        newOne.setUtilitiesDetailsId(id);
@@ -67,7 +68,7 @@ public class InvoicingController {
         details.setCollectingAccount(utilitiesService.getCompanyAccount(details.getCostType()));
         details.setCollectingCompany(utilitiesService.getCompanyName(details.getCostType()));
         utilitiesService.addDetails(details);
-        return id;
+        return id.toString();
     }
 
     @RequestMapping("/invoice/property")

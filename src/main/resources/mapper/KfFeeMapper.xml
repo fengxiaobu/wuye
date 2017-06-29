@@ -111,7 +111,6 @@
             T_COMPANY."unitname" AS companyName
         FROM "T_KF_Fee" JOIN T_BANK_ACCOUNT ON "pk_feetype"="pk_fee"
             JOIN T_COMPANY ON "vdef1"=T_COMPANY."pk_corp"
-        FROM "T_KF_Fee"
         WHERE "isrz" = 'N' AND "pk_house" = #{houseInfoId} AND "pk_customerid" = '${customerId}' AND
               "dshpay" > TO_CHAR(SYSDATE, 'YYYY-MM-DD')
     </select>

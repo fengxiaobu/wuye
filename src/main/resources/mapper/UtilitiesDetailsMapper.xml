@@ -419,4 +419,7 @@
     <select id="getCompanyAccount" parameterType="string" resultType="string">
         SELECT "account" FROM T_BANK_ACCOUNT WHERE "pk_fee"=#{pk_feeType}
     </select>
+    <select id="getCostType" resultType="string" parameterType="string">
+        SELECT "feename" FROM T_FEE_TYPES WHERE "pk_fee"=#{pk_feeType}
+    </select>
 </mapper>

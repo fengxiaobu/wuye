@@ -9,6 +9,10 @@ public class UtilitiesDetails implements Serializable  {
 
     private static final long serialVersionUID = 1L;
     /**
+     * 公司主键
+     */
+    private String pk_corp;
+    /**
      * 水电缴费记录主键
      */
     private Long utilitiesDetailsId;
@@ -343,5 +347,13 @@ public class UtilitiesDetails implements Serializable  {
 
     public void setCostType(String costType) {
         this.costType = costType;
+    }
+
+    public String getPk_corp() {
+        return pk_corp;
+    }
+
+    public void setPk_corp(String pk_corp) {
+        this.pk_corp = pk_corp;
     }
 }

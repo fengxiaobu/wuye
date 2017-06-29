@@ -161,10 +161,22 @@ public class ChinaPay {
         if (ChinaPayHelper.verify(resultMap)) {
             //验证成功调用方法使缴费记录生效
             String merResv = Base64.decodeStr(resultMap.get("MerResv"));
+            System.out.println("----------------------------解析Base64"+merResv);
             JSONArray objects = JSON.parseArray(merResv);
+            System.out.println("---------------------------------解析JSON"+objects);
             Iterator<Object> iterator = objects.iterator();
+            System.out.println("---------------------------获得迭代器"+iterator);
             while (iterator.hasNext()) {
                 CallBackVO vo = JSON.toJavaObject((JSON) iterator.next(), CallBackVO.class);
+                System.out.println("-----------------------------------------------------------------");
+                System.out.println("-----------------------------------------------------------------");
+                System.out.println("-----------------------------------------------------------------");
+                System.out.println("费用类型:"+vo.getType()+",费用记录ID:"+vo.getId());
+                System.out.println("-----------------------------------------------------------------");
+                System.out.println("-----------------------------------------------------------------");
+                System.out.println("-----------------------------------------------------------------");
+                System.out.println("-----------------------------------------------------------------");
+
                 if ("wuye".equals(vo.getType())) {
                     wuye.changeStatus(vo.getId());
                 } else if ("kaifa".equals(vo.getType())) {

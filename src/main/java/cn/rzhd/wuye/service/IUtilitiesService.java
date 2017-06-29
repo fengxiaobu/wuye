@@ -30,4 +30,6 @@ public interface IUtilitiesService {
     String getCompanyName(String pk_feeType);
 
     String getCompanyAccount(String pk_feeType);
+
+    String getCostType(String pk_feeType);
 }
