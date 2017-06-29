@@ -60,6 +60,16 @@ public class RequestVO implements Serializable {
     private String RiskData;
     // 签名
     private String Signature;
+    //订单扩展域
+    private String OrderReserved;
+
+    public String getOrderReserved() {
+        return OrderReserved;
+    }
+
+    public void setOrderReserved(String orderReserved) {
+        OrderReserved = orderReserved;
+    }
 
     public String getVersion() {
         return Version;

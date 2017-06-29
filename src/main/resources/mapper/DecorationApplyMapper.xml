@@ -27,6 +27,7 @@
         <result column="SPECIAL_DECORATION_FILE" property="specialDecorationFile"/>
         <result column="CREATION_TIME" property="creationTime"/>
         <result column="UPDATE_TIME" property="updateTime"/>
+        <result column="PAYMENT_STATUS" property="paymentStatus"/>
         <association property="houseInfoDetails" javaType="cn.rzhd.wuye.bean.HouseInfoDetails">
             <id column="pk_house" property="pkHouse" jdbcType="CHAR"/>
             <result column="pk_corp" property="pkCorp" jdbcType="CHAR"/>
@@ -120,6 +121,7 @@
         <result column="SPECIAL_DECORATION_FILE" property="specialDecorationFile"/>
         <result column="CREATION_TIME" property="creationTime"/>
         <result column="UPDATE_TIME" property="updateTime"/>
+        <result column="PAYMENT_STATUS" property="paymentStatus"/>
         <association property="houseInfoDetails" javaType="cn.rzhd.wuye.bean.HouseInfoDetails">
             <id column="pk_house" property="pkHouse" jdbcType="CHAR"/>
             <result column="pk_corp" property="pkCorp" jdbcType="CHAR"/>
@@ -243,8 +245,7 @@
         WHERE DECORATION_APPLY_ID = #{decorationApplyId}
     </delete>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
-        SELECT
-            *
+        SELECT *
         FROM
             T_DECORATION_APPLY apply, T_HOUSE_INFO_DETAILS house, T_PROJECT_INFO project
         WHERE
@@ -287,7 +288,8 @@
             IS_SPECIAL_DECORATION,
             SPECIAL_DECORATION_FILE,
             CREATION_TIME,
-            UPDATE_TIME
+            UPDATE_TIME,
+            PAYMENT_STATUS
         FROM T_DECORATION_APPLY
     </select>
     <select id="findDecorationApplyByHouseId" resultMap="BaseResultMap">
@@ -296,4 +298,10 @@
         WHERE
             HOUSE_INFO_ID = '${houseInfoId}'
     </select>
+
+    <update id="updatePayState">
+        UPDATE T_DECORATION_APPLY apply
+        SET PAYMENT_STATUS = #{paymentStatus}
+        WHERE DECORATION_APPLY_ID = #{decorationApplyId}
+    </update>
 </mapper>

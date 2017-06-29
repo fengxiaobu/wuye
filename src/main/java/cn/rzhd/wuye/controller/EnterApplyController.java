@@ -3,6 +3,7 @@ package cn.rzhd.wuye.controller;
 import cn.rzhd.wuye.bean.EnterApply;
 import cn.rzhd.wuye.bean.KfFee;
 import cn.rzhd.wuye.bean.PropertyFee;
+import cn.rzhd.wuye.bean.ReName;
 import cn.rzhd.wuye.service.*;
 import cn.rzhd.wuye.utils.JsonUtils;
 import cn.rzhd.wuye.utils.StringTimeUtil;
@@ -55,8 +56,9 @@ public class EnterApplyController {
     @Autowired
     IHouseInfoService houseInfoService;
     @Autowired
-    private IHouseInfoDetailsService houseInfoDetailsService;
-
+    IHouseInfoDetailsService houseInfoDetailsService;
+    @Autowired
+    IReNameService reNameService;
     @Value("${fileDir}")
     private String fileDir;
 
@@ -364,6 +366,55 @@ public class EnterApplyController {
             List<Map<String, JsonFormat.Value>> mapList = enterApplyService.getEnterApplyByIDAndState(pkHouse);
             result.put("state", "1");
             result.put("data", mapList);
+            return result;
+        } catch (Exception e) {
+            result.put("state", "0");
+            result.put("msg", "erro" + e.getMessage());
+            return result;
+        }
+    }
+
+    /**
+     * 根据申请ID获取缴费状态
+     *
+     * @param enterApplyId
+     * @return
+     */
+    @RequestMapping(value = "/getEnterApplyById", method = RequestMethod.GET)
+    @ResponseBody
+    public Map<String, Object> getEnterApplyById(Long enterApplyId) {
+
+        Map<String, Object> result = new HashMap<>();
+        try {
+            if (enterApplyId == null) {
+                result.put("state", "0");
+                result.put("msg", "ID不能为空!");
+                return result;
+            }
+            List<Map<String, JsonFormat.Value>> mapList = enterApplyService.getEnterApplyByID(enterApplyId);
+            result.put("state", "1");
+            result.put("data", mapList);
+            return result;
+        } catch (Exception e) {
+            result.put("state", "0");
+            result.put("msg", "erro" + e.getMessage());
+            return result;
+        }
+    }
+
+    /**
+     * 根据申请ID获取更名须知
+     *
+     * @return
+     */
+    @RequestMapping(value = "/getEnterApplyByEnterApplyId", method = RequestMethod.GET)
+    @ResponseBody
+    public Map<String, Object> getReName() {
+        Map<String, Object> result = new HashMap<>();
+        try {
+            ReName all = reNameService.getAll();
+            result.put("state", "1");
+            result.put("data", all);
             return result;
         } catch (Exception e) {
             result.put("state", "0");

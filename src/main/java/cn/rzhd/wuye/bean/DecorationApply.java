@@ -39,7 +39,7 @@ public class DecorationApply implements Serializable {
     /**
      * 申请日期
      */
-    @DateTimeFormat(pattern="yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date applyTime;
     /**
      * 预计工天
@@ -116,18 +116,33 @@ public class DecorationApply implements Serializable {
     /**
      * 创建时间
      */
-    @DateTimeFormat(pattern="yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date creationTime;
     /**
      * 修改时间
      */
-    @DateTimeFormat(pattern="yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date updateTime;
-   /* *//**
+
+    /**
+     * 支付状态
+     */
+    private String paymentStatus;
+
+    public String getPaymentStatus() {
+        return paymentStatus;
+    }
+
+    public void setPaymentStatus(String paymentStatus) {
+        this.paymentStatus = paymentStatus;
+    }
+    /* *//**
      * 装修详情
      *//*
     private List<DecorateDetail> decorateDetailList;
-    *//**
+    */
+
+    /**
      * 装修资料
      *//*
     private List<DecorationMaterial> decorationMaterialList;
@@ -147,8 +162,6 @@ public class DecorationApply implements Serializable {
     public void setDecorationMaterialList(List<DecorationMaterial> decorationMaterialList) {
         this.decorationMaterialList = decorationMaterialList;
     }*/
-
-
     @Override
     public String toString() {
         return "DecorationApply{" +

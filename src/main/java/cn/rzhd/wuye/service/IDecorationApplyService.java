@@ -22,5 +22,8 @@ public interface IDecorationApplyService {
     List<Map<String, JsonFormat.Value>> findDecorationApplyList();
 
     List<Map<String, JsonFormat.Value>> findDecorationApplyListByQuery(EnterApplyQuery enterApplyQuery);
+
     DecorationApply findDecorationApplyByHouseId(String houseInfoId);
+
+    void updatePayState(String paymentStatus, Long decorationApplyId);
 }

@@ -2,56 +2,56 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="cn.rzhd.wuye.mapper.RetreatLeaseApplyMapper">
     <resultMap id="BaseResultMap" type="cn.rzhd.wuye.bean.RetreatLeaseApply">
-        <id column="RETREAT_LEASE_APPLY_ID" property="retreatLeaseApplyId" jdbcType="DECIMAL"/>
-        <result column="HOUSE_INFO_ID" property="houseInfoId" jdbcType="DECIMAL"/>
+        <id column="RETREAT_LEASE_APPLY_ID" property="retreatLeaseApplyId"/>
+        <result column="HOUSE_INFO_ID" property="houseInfoId"/>
         <result column="HOUSE_NUMBER" property="houseNumber" jdbcType="OTHER"/>
         <result column="HOUSE_ACREAGE" property="houseAcreage" jdbcType="FLOAT"/>
-        <result column="LEASE_START_TIME" property="leaseStartTime" jdbcType="DATE"/>
-        <result column="LEASE_END_TIME" property="leaseEndTime" jdbcType="DATE"/>
-        <result column="RETREAT_LEASE_TIME" property="retreatLeaseTime" jdbcType="DATE"/>
-        <result column="RETREAT_LEASE_TYPE" property="retreatLeaseType" jdbcType="DATE"/>
-        <result column="ARREARS_RENT" property="arrearsRent" jdbcType="DECIMAL"/>
-        <result column="LEASE_DEPOSIT" property="leaseDeposit" jdbcType="DECIMAL"/>
-        <result column="PERMIT_RETREAT_LEASE_DEPOSIT" property="permitRetreatLeaseDeposit" jdbcType="DECIMAL"/>
-        <result column="CREATION_TIME" property="creationTime" jdbcType="DATE"/>
-        <result column="UPDATE_TIME" property="updateTime" jdbcType="DATE"/>
+        <result column="LEASE_START_TIME" property="leaseStartTime"/>
+        <result column="LEASE_END_TIME" property="leaseEndTime"/>
+        <result column="RETREAT_LEASE_TIME" property="retreatLeaseTime"/>
+        <result column="RETREAT_LEASE_TYPE" property="retreatLeaseType"/>
+        <result column="ARREARS_RENT" property="arrearsRent"/>
+        <result column="LEASE_DEPOSIT" property="leaseDeposit"/>
+        <result column="PERMIT_RETREAT_LEASE_DEPOSIT" property="permitRetreatLeaseDeposit"/>
+        <result column="CREATION_TIME" property="creationTime"/>
+        <result column="UPDATE_TIME" property="updateTime"/>
         <association property="houseInfoDetails" javaType="cn.rzhd.wuye.bean.HouseInfoDetails">
-            <id column="pk_house" property="pkHouse" jdbcType="CHAR"/>
-            <result column="pk_corp" property="pkCorp" jdbcType="CHAR"/>
-            <result column="pk_project" property="pkProject" jdbcType="VARCHAR"/>
-            <result column="project" property="project" jdbcType="VARCHAR"/>
-            <result column="building" property="building" jdbcType="VARCHAR"/>
-            <result column="ifloor" property="ifloor" jdbcType="VARCHAR"/>
-            <result column="vhcell" property="vhcell" jdbcType="VARCHAR"/>
-            <result column="vhnum" property="vhnum" jdbcType="VARCHAR"/>
-            <result column="vhcode" property="vhcode" jdbcType="VARCHAR"/>
-            <result column="vhname" property="vhname" jdbcType="VARCHAR"/>
-            <result column="otation" property="otation" jdbcType="VARCHAR"/>
-            <result column="room" property="room" jdbcType="VARCHAR"/>
-            <result column="situation" property="situation" jdbcType="VARCHAR"/>
-            <result column="fsellmethod" property="fsellmethod" jdbcType="VARCHAR"/>
-            <result column="managestate" property="managestate" jdbcType="VARCHAR"/>
-            <result column="nbuildarea" property="nbuildarea" jdbcType="VARCHAR"/>
-            <result column="ninarea" property="ninarea" jdbcType="VARCHAR"/>
-            <result column="nleaseoutarea" property="nleaseoutarea" jdbcType="VARCHAR"/>
-            <result column="nmanagearea" property="nmanagearea" jdbcType="VARCHAR"/>
-            <result column="nsellarea" property="nsellarea" jdbcType="VARCHAR"/>
-            <result column="npublicarea" property="npublicarea" jdbcType="VARCHAR"/>
-            <result column="nunderlinearea" property="nunderlinearea" jdbcType="VARCHAR"/>
-            <result column="ngardenarea" property="ngardenarea" jdbcType="VARCHAR"/>
-            <result column="nrpublicarea" property="nrpublicarea" jdbcType="VARCHAR"/>
-            <result column="nrinarea" property="nrinarea" jdbcType="VARCHAR"/>
-            <result column="nrbuildarea" property="nrbuildarea" jdbcType="VARCHAR"/>
-            <result column="nrunderlinearea" property="nrunderlinearea" jdbcType="VARCHAR"/>
-            <result column="nrgardenarea" property="nrgardenarea" jdbcType="VARCHAR"/>
-            <result column="STARTDATE" property="startdate" jdbcType="DATE"/>
-            <result column="ENDDATE" property="enddate" jdbcType="DATE"/>
-            <result column="FIRSTMNY" property="firstmny" jdbcType="DECIMAL"/>
-            <result column="EVERYMNY" property="everymny" jdbcType="DECIMAL"/>
-            <result column="ASTRICTSTATUS" property="astrictstatus" jdbcType="CHAR"/>
-            <result column="UPDATEDATE" property="updatedate" jdbcType="DATE"/>
-            <result column="ENTERAPPLY_STATE" property="enterapplyState" jdbcType="VARCHAR"/>
-            <result column="DECORATIONAPPLYSTATE" property="decorationapplystate" jdbcType="VARCHAR"/>
+            <id column="pk_house" property="pkHouse"/>
+            <result column="pk_corp" property="pkCorp"/>
+            <result column="pk_project" property="pkProject"/>
+            <result column="project" property="project"/>
+            <result column="building" property="building"/>
+            <result column="ifloor" property="ifloor"/>
+            <result column="vhcell" property="vhcell"/>
+            <result column="vhnum" property="vhnum"/>
+            <result column="vhcode" property="vhcode"/>
+            <result column="vhname" property="vhname"/>
+            <result column="otation" property="otation"/>
+            <result column="room" property="room"/>
+            <result column="situation" property="situation"/>
+            <result column="fsellmethod" property="fsellmethod"/>
+            <result column="managestate" property="managestate"/>
+            <result column="nbuildarea" property="nbuildarea"/>
+            <result column="ninarea" property="ninarea"/>
+            <result column="nleaseoutarea" property="nleaseoutarea"/>
+            <result column="nmanagearea" property="nmanagearea"/>
+            <result column="nsellarea" property="nsellarea"/>
+            <result column="npublicarea" property="npublicarea"/>
+            <result column="nunderlinearea" property="nunderlinearea"/>
+            <result column="ngardenarea" property="ngardenarea"/>
+            <result column="nrpublicarea" property="nrpublicarea"/>
+            <result column="nrinarea" property="nrinarea"/>
+            <result column="nrbuildarea" property="nrbuildarea"/>
+            <result column="nrunderlinearea" property="nrunderlinearea"/>
+            <result column="nrgardenarea" property="nrgardenarea"/>
+            <result column="STARTDATE" property="startdate"/>
+            <result column="ENDDATE" property="enddate"/>
+            <result column="FIRSTMNY" property="firstmny"/>
+            <result column="EVERYMNY" property="everymny"/>
+            <result column="ASTRICTSTATUS" property="astrictstatus"/>
+            <result column="UPDATEDATE" property="updatedate"/>
+            <result column="ENTERAPPLY_STATE" property="enterapplyState"/>
+            <result column="DECORATIONAPPLYSTATE" property="decorationapplystate"/>
             <association property="projectInfo" javaType="cn.rzhd.wuye.bean.ProjectInfo">
                 <id column="PK_PROJECT" property="pkProject"/>
                 <result column="PROJECT_NAME" property="projectName"/>
@@ -83,7 +83,7 @@
     </resultMap>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
         DELETE FROM T_RETREAT_LEASE_APPLY
-        WHERE RETREAT_LEASE_APPLY_ID = #{retreatLeaseApplyId,jdbcType=DECIMAL}
+        WHERE RETREAT_LEASE_APPLY_ID = #{retreatLeaseApplyId}
     </delete>
     <insert id="insert" parameterType="cn.rzhd.wuye.bean.RetreatLeaseApply">
         INSERT INTO T_RETREAT_LEASE_APPLY (RETREAT_LEASE_APPLY_ID, HOUSE_INFO_ID,
@@ -92,31 +92,31 @@
                                            RETREAT_LEASE_TYPE, ARREARS_RENT, LEASE_DEPOSIT,
                                            PERMIT_RETREAT_LEASE_DEPOSIT, CREATION_TIME, UPDATE_TIME
         )
-        VALUES (#{retreatLeaseApplyId}, #{houseInfoId,jdbcType=DECIMAL},
-                                        #{houseNumber,jdbcType=OTHER}, #{houseAcreage,jdbcType=FLOAT},
-                                        #{leaseStartTime,jdbcType=DATE},
-                                        #{leaseEndTime,jdbcType=DATE}, #{retreatLeaseTime,jdbcType=DATE},
-                                        #{retreatLeaseType,jdbcType=DATE}, #{arrearsRent,jdbcType=DECIMAL},
-                                        #{leaseDeposit,jdbcType=DECIMAL},
-                                        #{permitRetreatLeaseDeposit,jdbcType=DECIMAL}, #{creationTime,jdbcType=DATE},
-                #{updateTime,jdbcType=DATE}
+        VALUES (#{retreatLeaseApplyId}, #{houseInfoId},
+                                        #{houseNumber}, #{houseAcreage},
+                                        #{leaseStartTime},
+                                        #{leaseEndTime}, #{retreatLeaseTime},
+                                        #{retreatLeaseType}, #{arrearsRent},
+                                        #{leaseDeposit},
+                                        #{permitRetreatLeaseDeposit}, #{creationTime},
+                #{updateTime}
         )
     </insert>
     <update id="updateByPrimaryKey" parameterType="cn.rzhd.wuye.bean.RetreatLeaseApply">
         UPDATE T_RETREAT_LEASE_APPLY
-        SET HOUSE_INFO_ID                = #{houseInfoId,jdbcType=DECIMAL},
-            HOUSE_NUMBER                 = #{houseNumber,jdbcType=OTHER},
-            HOUSE_ACREAGE                = #{houseAcreage,jdbcType=FLOAT},
-            LEASE_START_TIME             = #{leaseStartTime,jdbcType=DATE},
-            LEASE_END_TIME               = #{leaseEndTime,jdbcType=DATE},
-            RETREAT_LEASE_TIME           = #{retreatLeaseTime,jdbcType=DATE},
-            RETREAT_LEASE_TYPE           = #{retreatLeaseType,jdbcType=DATE},
-            ARREARS_RENT                 = #{arrearsRent,jdbcType=DECIMAL},
-            LEASE_DEPOSIT                = #{leaseDeposit,jdbcType=DECIMAL},
-            PERMIT_RETREAT_LEASE_DEPOSIT = #{permitRetreatLeaseDeposit,jdbcType=DECIMAL},
-            CREATION_TIME                = #{creationTime,jdbcType=DATE},
-            UPDATE_TIME                  = #{updateTime,jdbcType=DATE}
-        WHERE RETREAT_LEASE_APPLY_ID = #{retreatLeaseApplyId,jdbcType=DECIMAL}
+        SET HOUSE_INFO_ID                = #{houseInfoId},
+            HOUSE_NUMBER                 = #{houseNumber},
+            HOUSE_ACREAGE                = #{houseAcreage},
+            LEASE_START_TIME             = #{leaseStartTime},
+            LEASE_END_TIME               = #{leaseEndTime},
+            RETREAT_LEASE_TIME           = #{retreatLeaseTime},
+            RETREAT_LEASE_TYPE           = #{retreatLeaseType},
+            ARREARS_RENT                 = #{arrearsRent},
+            LEASE_DEPOSIT                = #{leaseDeposit},
+            PERMIT_RETREAT_LEASE_DEPOSIT = #{permitRetreatLeaseDeposit},
+            CREATION_TIME                = #{creationTime},
+            UPDATE_TIME                  = #{updateTime}
+        WHERE RETREAT_LEASE_APPLY_ID = #{retreatLeaseApplyId}
     </update>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
         SELECT
@@ -135,7 +135,7 @@
             UPDATE_TIME,
             house.*
         FROM T_RETREAT_LEASE_APPLY apply LEFT JOIN T_HOUSE_INFO_DETAILS house ON apply.HOUSE_INFO_ID = house."pk_house"
-        WHERE RETREAT_LEASE_APPLY_ID = #{retreatLeaseApplyId,jdbcType=DECIMAL}
+        WHERE RETREAT_LEASE_APPLY_ID = #{retreatLeaseApplyId}
     </select>
     <select id="selectAll" resultMap="BaseResultMap">
         SELECT
