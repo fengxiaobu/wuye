@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -32,6 +33,8 @@ public class InvoicingController {
     @RequestMapping("/records/property")
     public Long property(@RequestBody PropertyFeePayDetails propertyFeePayDetails) {
         Long id = IDUtils.genLongUID();
+        propertyFeePayDetails.setCarteTime(new Date());
+        propertyFeePayDetails.setPayTime(new Date());
         propertyFeePayDetails.setPropertyFeePayDetails(id);
         propertyFeePayDetailsService.addDetails(propertyFeePayDetails);
         return id;
@@ -40,6 +43,8 @@ public class InvoicingController {
     @RequestMapping("/records/kfFee")
     public Long property(@RequestBody KfFeePayDetails kfFeePayDetails) {
         Long id = IDUtils.genLongUID();
+        kfFeePayDetails.setCarteTime(new Date());
+        kfFeePayDetails.setPayTime(new Date());
         kfFeePayDetails.setKfFeePayDetailsId(id);
         kfFeePayDetailsService.addDetails(kfFeePayDetails);
         return id;
@@ -49,6 +54,8 @@ public class InvoicingController {
     public Long utilities(@RequestBody UtilitiesDetails details) {
         Long id = IDUtils.genLongUID();
         details.setUtilitiesDetailsId(id);
+        details.setCarteTime(new Date());
+        details.setPayTime(new Date());
         //新创建一个水电缴费对象,用于分割一部分水费数据到其中;
 //        UtilitiesDetails newOne = new UtilitiesDetails();
 //        newOne.setUtilitiesDetailsId(id);
