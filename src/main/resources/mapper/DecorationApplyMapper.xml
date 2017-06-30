@@ -218,25 +218,61 @@
     </update>
     <!--添加装修申请-->
     <insert id="insert" parameterType="cn.rzhd.wuye.bean.DecorationApply">
-        INSERT INTO T_DECORATION_APPLY (DECORATION_APPLY_ID, HOUSE_INFO_ID, CLIENT_NAME,
-                                        APPLY_TIME, ANTIPATE_TIME, LOCALE_CUSTODIAN,
-                                        LOCALE_CUSTODIAN_PHONE, DECORATION_PARTS, DECORATE_AREA,
-                                        CONSTRUCT_PEOPLE_NUMBER, DECORATION_COMPANY,
-                                        DECORATION_LEADER, "DECORATION_ LEADER_PHONE",
-                                        DECORATION_DEPOSIT, DECORATION_MANAGEMENT_COST,
-                                        PASS_PAPERS_COST, PASS_PAPERS_DEPOSIT, AUDIT_STATUS,
-                                        FEEDBACK1, FEEDBACK2, IS_SPECIAL_DECORATION,
-                                        SPECIAL_DECORATION_FILE, CREATION_TIME, UPDATE_TIME
-        )
-        VALUES (#{decorationApplyId}, #{houseInfoId}, #{clientName,},
-                                      #{applyTime}, #{antipateTime}, #{localeCustodian,},
-                                      #{localeCustodianPhone}, #{decorationParts}, #{decorateArea},
-                                      #{constructPeopleNumber}, #{decorationCompany,},
-            #{decorationLeader}, #{decorationLeaderPhone},
-            #{decorationDeposit}, #{decorationManagementCost},
-            #{passPapersCost}, #{passPapersDeposit}, #{auditStatus},
-            #{feedback1}, #{feedback2}, #{isSpecialDecoration},
-                #{specialDecorationFile}, #{creationTime}, #{updateTime}
+        INSERT
+        INTO
+            T_DECORATION_APPLY (
+                DECORATION_APPLY_ID,
+                HOUSE_INFO_ID,
+                CLIENT_NAME,
+                APPLY_TIME,
+                ANTIPATE_TIME,
+                LOCALE_CUSTODIAN,
+                LOCALE_CUSTODIAN_PHONE,
+                DECORATION_PARTS,
+                DECORATE_AREA,
+                CONSTRUCT_PEOPLE_NUMBER,
+                DECORATION_COMPANY,
+                DECORATION_LEADER,
+                "DECORATION_ LEADER_PHONE",
+                DECORATION_DEPOSIT,
+                DECORATION_MANAGEMENT_COST,
+                PASS_PAPERS_COST,
+                PASS_PAPERS_DEPOSIT,
+                AUDIT_STATUS,
+                FEEDBACK1,
+                FEEDBACK2,
+                IS_SPECIAL_DECORATION,
+                SPECIAL_DECORATION_FILE,
+                CREATION_TIME,
+                UPDATE_TIME,
+                PAYMENT_STATUS
+            )
+        VALUES (
+            #{decorationApplyId},
+            #{houseInfoId},
+            #{clientName},
+            #{applyTime},
+            #{antipateTime},
+            #{localeCustodian},
+            #{localeCustodianPhone},
+            #{decorationParts},
+            #{decorateArea},
+            #{constructPeopleNumber},
+            #{decorationCompany},
+            #{decorationLeader},
+            #{decorationLeaderPhone},
+            #{decorationDeposit},
+            #{decorationManagementCost},
+            #{passPapersCost},
+            #{passPapersDeposit},
+            #{auditStatus},
+            #{feedback1},
+            #{feedback2},
+            #{isSpecialDecoration},
+            #{specialDecorationFile},
+            #{creationTime},
+            #{updateTime},
+            #{paymentStatus}
         )
     </insert>
 

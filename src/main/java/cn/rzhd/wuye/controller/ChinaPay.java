@@ -184,27 +184,33 @@ public class ChinaPay {
                 } else if ("shuidian".equals(vo.getType())) {
                     shuidian.changeStatus(vo.getId());
                 } else if ("rzwuye".equals(vo.getType())) {
+                    System.out.println("***************************************");
+                    System.out.println("**********           本次缴费入驻物业****************");
                     enterApplyService.updatePayState("1", null, vo.getId());
                 } else if ("rzkaifa".equals(vo.getType())) {
+                    System.out.println("***************************************");
+                    System.out.println("**********           本次缴费入驻开发****************");
                     enterApplyService.updatePayState(null, "1", vo.getId());
                 } else if ("zxfy".equals(vo.getType())) {
+                    System.out.println("***************************************");
+                    System.out.println("**********           本次缴费装修****************");
                     decorationApplyService.updatePayState("1", vo.getId());
+                    System.out.println("***************************************");
                 } else {
                     System.out.println("缴费记录生成失败:未知的缴费类型(物业,开发,水电)");
                 }
             }
-
             System.out.println("*************************                               ******************************");
             System.out.println("*************************                               ******************************");
-            System.out.println("***********************交易成功************************");
+            System.out.println("***********************返回报文解析成功************************");
             System.out.println("*************************                               ******************************");
-            response.getWriter().write("success  返回报文解析成功");
+           // response.getWriter().write("success  返回报文解析成功");
         } else {
             System.out.println("*************************                               ******************************");
             System.out.println("*************************                               ******************************");
             System.out.println("***********************交易失败************************");
             System.out.println("*************************                               ******************************");
-            response.getWriter().write("fail");
+           // response.getWriter().write("fail");
         }
     }
 

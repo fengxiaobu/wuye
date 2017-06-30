@@ -238,12 +238,14 @@ public class EnterApplyController {
      *
      * @param model
      * @param enterApplyId
+     * @param pkHouse
      * @return
      */
     @RequestMapping("/deleteEnterApply")
-    public String deleteEnterApply(Model model, Long enterApplyId) {
+    public String deleteEnterApply(Model model, Long enterApplyId, String pkHouse) {
         if (enterApplyId != null) {
             enterApplyService.deleteEnterApply(enterApplyId);
+            houseInfoDetailsService.updateHouse(pkHouse, "0", null);
         }
         //查询更新数据
         //PageHelper.startPage(1, 5);
