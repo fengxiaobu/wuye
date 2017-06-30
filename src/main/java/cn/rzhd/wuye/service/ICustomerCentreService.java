@@ -18,4 +18,6 @@ public interface ICustomerCentreService {
     PerfectInformation getPerfectInformation(String customerId);
     
     void updatePerfectInformation(PerfectInformation perfectInformation);
+
+	void updatePassword(String password, String vccode);
 }

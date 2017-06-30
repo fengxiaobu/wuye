@@ -78,6 +78,11 @@
     <update id="updatePhone">
     	UPDATE "T_Customer" SET  "Binding_Phone" = #{bindingPhone} WHERE "vccode"=#{vccode}
     </update>
+    
+    <update id="updatePassword">
+    	UPDATE "T_Customer" set "Password" =  #{password} WHERE "vccode"=#{vccode}
+    </update>
+    
     <update id="updatePerfectInformation">
         UPDATE
             T_PERFECT_INFORMATION

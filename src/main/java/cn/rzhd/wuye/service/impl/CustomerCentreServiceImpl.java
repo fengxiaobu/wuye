@@ -12,6 +12,7 @@ import cn.rzhd.wuye.bean.Customer;
 import cn.rzhd.wuye.bean.PerfectInformation;
 import cn.rzhd.wuye.mapper.CustomerCentreMapper;
 import cn.rzhd.wuye.service.ICustomerCentreService;
+import cn.rzhd.wuye.utils.MD5Utils;
 
 @Service
 public class CustomerCentreServiceImpl implements ICustomerCentreService {
@@ -30,12 +31,12 @@ public class CustomerCentreServiceImpl implements ICustomerCentreService {
 	}
 
 	@Override
-	public void updateLogo(String LOGO,String vccode) {
+	public void updateLogo(String LOGO, String vccode) {
 		mapper.updateLogo(LOGO, vccode);
 	}
 
 	@Override
-	public void updatePhone(String bindingPhone,String vccode) {
+	public void updatePhone(String bindingPhone, String vccode) {
 		mapper.updatePhone(bindingPhone, vccode);
 
 	}
@@ -50,5 +51,12 @@ public class CustomerCentreServiceImpl implements ICustomerCentreService {
 	public PerfectInformation getPerfectInformation(String customerId) {
 		PerfectInformation perfectInformation = mapper.findInfoById(customerId);
 		return perfectInformation;
+	}
+
+	@Override
+	public void updatePassword(String password, String vccode) {
+		password = MD5Utils.md5(password);
+		mapper.updatePassword(password,vccode);
+
 	}
 }
