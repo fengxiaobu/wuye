@@ -14,10 +14,6 @@ import cn.rzhd.wuye.service.ISellContractService;
 import cn.rzhd.wuye.vo.PactVO;
 import cn.rzhd.wuye.vo.SignVO;
 
-/**
- * @author ghr-2017/6/16
- *
- */
 @Controller
 @RequestMapping("/dist/sellContractBack")
 public class SellContractBackController {

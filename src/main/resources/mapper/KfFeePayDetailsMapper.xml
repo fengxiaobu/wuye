@@ -94,4 +94,64 @@
         FROM T_KF_FEE_PAY_DETAILS
         <include refid="whereSql"/>
     </select>
+    <resultMap type="java.util.Map" id="map">
+        <id property="detailsId" column="KF_FEE_PAY_DETAILS_ID"/>
+        <result property="projectName" column="PROJECT_NAME"/>
+        <result property="houseCode" column="vhcode"/>
+        <result property="clientName" column="CLIENT_NAME"/>
+        <result property="costType" column="FEE_TYPE"/>
+        <result property="payManner" column="PAY_MANNER"/>
+        <result property="payMonth" column="PAY_MONTH"/>
+        <result property="startDate" column="START_DATE"/>
+        <result property="endDate" column="END_DATE"/>
+        <result property="payable" column="PAYABLE"/>
+        <result property="paidIn" column="PAID_IN"/>
+        <result property="voucherNumber" column="VOUCHER_NUMBER"/>
+        <result property="invoice" column="INVOICE"/>
+        <result property="invoiceNumber" column="INVOICE_NUMBER"/>
+        <result property="invoiceNotes" column="INVOICE_NOTES"/>
+        <result property="invoiceStatus" column="INVOICE_STATUS"/>
+        <result property="collectingCompany" column="COLLECTING_COMPANY"/>
+        <result property="collectingAccount" column="COLLECTING_ACCOUNT"/>
+        <result property="invoiceCompany" column="INVOICE_COMPANY"/>
+        <result property="payTime" column="PAY_TIME"/>
+        <result property="carteTime" column="CARTE_TIME"/>
+        <result property="updateTime" column="UPDATE_TIME"/>
+        <result property="customerId" column="CUSTOMER_ID"/>
+        <result property="status" column="STATUS"/>
+    </resultMap>
+    <select id="getByProject" parameterType="long" resultMap="map">
+        SELECT
+            DISTINCT
+            KF_FEE_PAY_DETAILS_ID,
+            T_PROJECT_INFO.PROJECT_NAME,
+            T_HOUSE_INFO_DETAILS."vhcode",
+            CLIENT_NAME,
+            FEE_TYPE,
+            PAY_MANNER,
+            PAY_MONTH,
+            START_DATE,
+            END_DATE,
+            PAYABLE,
+            PAID_IN,
+            VOUCHER_NUMBER,
+            INVOICE,
+            INVOICE_NUMBER,
+            INVOICE_NOTES,
+            INVOICE_STATUS,
+            COLLECTING_COMPANY,
+            COLLECTING_ACCOUNT,
+            INVOICE_COMPANY,
+            PAY_TIME,
+            CARTE_TIME,
+            T_KF_FEE_PAY_DETAILS.UPDATE_TIME,
+            CUSTOMER_ID,
+            T_KF_FEE_PAY_DETAILS.STATUS
+        FROM T_KF_FEE_PAY_DETAILS
+            JOIN T_HOUSE_INFO_DETAILS ON T_HOUSE_INFO_DETAILS."pk_house"=T_KF_FEE_PAY_DETAILS.HOUSE_INFO_ID
+            JOIN T_PROJECT_INFO ON T_HOUSE_INFO_DETAILS."pk_project"=T_PROJECT_INFO.PK_PROJECT
+            JOIN T_MANAGE ON T_HOUSE_INFO_DETAILS.MANAGE_ID=T_MANAGE."pk_manageId"
+            JOIN T_MANAGE_USER ON T_MANAGE_USER.MANAGE_ID=T_MANAGE."pk_manageId"
+        WHERE T_MANAGE_USER.USER_ID=#{userId} AND T_KF_FEE_PAY_DETAILS.STATUS='Y'
+    </select>
 </mapper>

@@ -1,10 +1,7 @@
 package cn.rzhd.wuye.service.impl;
 
 import cn.rzhd.wuye.bean.PropertyFee;
-import cn.rzhd.wuye.service.IElectricPayDetailsService;
-import cn.rzhd.wuye.service.IHouseInfoDetailsService;
-import cn.rzhd.wuye.service.IPayFeeService;
-import cn.rzhd.wuye.service.IPropertyFeeService;
+import cn.rzhd.wuye.service.*;
 import cn.rzhd.wuye.utils.FirstAndLastDay;
 import cn.rzhd.wuye.vo.HouseVO;
 import cn.rzhd.wuye.vo.query.ArrearsQuery;
@@ -27,7 +24,7 @@ public class PayFeeServiceImpl implements IPayFeeService {
     @Autowired
     IHouseInfoDetailsService houseInfoDetailsService;
     @Autowired
-    IElectricPayDetailsService electricPayDetailsService;
+    IUtilitiesService utilitiesService;
 
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -77,7 +74,7 @@ public class PayFeeServiceImpl implements IPayFeeService {
             BigDecimal firstMoney = (BigDecimal) amountLeft.get("first");
             BigDecimal everyMoney = (BigDecimal) amountLeft.get("every");
             //获取已缴金额,为限制缴费时间段中已交费用的总和
-            BigDecimal paid = electricPayDetailsService.getAstrictPaid(query.getHouseInfoId(), (Date) amountLeft.get("starDate"), (Date) amountLeft.get("endDate"));
+            BigDecimal paid = utilitiesService.getAstrictPaid(query.getHouseInfoId(), (Date) amountLeft.get("starDate"), (Date) amountLeft.get("endDate"));
             //核心逻辑
             //获取当前系统时间
             Date now = new Date();
@@ -93,7 +90,7 @@ public class PayFeeServiceImpl implements IPayFeeService {
                 //如果超过时间期限,以下逻辑和上面相似
             } else if (now.after(endDate)) {
                 //修改查询条件为当前系统时间的月初及月末
-                paid = electricPayDetailsService.getAstrictPaid(query.getHouseInfoId(), FirstAndLastDay.getFirstDay(), FirstAndLastDay.getLastDay());
+                paid = utilitiesService.getAstrictPaid(query.getHouseInfoId(), FirstAndLastDay.getFirstDay(), FirstAndLastDay.getLastDay());
                 if (everyMoney != null) {
                     everyMoney = everyMoney.subtract((paid == null) ? new BigDecimal(0) : paid);
                 }
@@ -116,12 +113,17 @@ public class PayFeeServiceImpl implements IPayFeeService {
         BigDecimal money;
         if ("yuan".equals(query.getElectricCountBy())) {
             money = new BigDecimal(query.getElectricAmount());
+            BigDecimal electricPower = money.divide(query.getElectricPrice(),2,BigDecimal.ROUND_HALF_UP);
+            map.put("electricPower",electricPower);
         } else if ("du".equals(query.getElectricCountBy())) {
             money = query.getElectricPrice()
                     .multiply(new BigDecimal(query.getMultiply()))
                     .multiply(new BigDecimal(query.getElectricAmount()));
+            BigDecimal electricPower = new BigDecimal(query.getMultiply()).multiply(new BigDecimal(query.getElectricAmount()));
+            map.put("electricPower",electricPower);
         } else {
             map.put("msg", "请选择正确的计费方式");
+
             return map;
         }
 
@@ -134,7 +136,7 @@ public class PayFeeServiceImpl implements IPayFeeService {
             BigDecimal firstMoney = (BigDecimal) amountLeft.get("first");
             BigDecimal everyMoney = (BigDecimal) amountLeft.get("every");
             //获取已缴金额,为限制缴费时间段中已交费用的总和
-            BigDecimal paid = electricPayDetailsService.getAstrictPaid(query.getHouseInfoId(), (Date) amountLeft.get("starDate"), (Date) amountLeft.get("endDate"));
+            BigDecimal paid = utilitiesService.getAstrictPaid(query.getHouseInfoId(), (Date) amountLeft.get("starDate"), (Date) amountLeft.get("endDate"));
 
             //核心逻辑
             //获取当前系统时间
@@ -167,7 +169,7 @@ public class PayFeeServiceImpl implements IPayFeeService {
                 }
                 //如果超过两个月,以下逻辑和上面相似
             } else if (now.after(endDate)) {
-                paid = electricPayDetailsService.getAstrictPaid(query.getHouseInfoId(), FirstAndLastDay.getFirstDay(), FirstAndLastDay.getLastDay());
+                paid = utilitiesService.getAstrictPaid(query.getHouseInfoId(), FirstAndLastDay.getFirstDay(), FirstAndLastDay.getLastDay());
                 if (everyMoney != null) {
                     everyMoney = everyMoney.subtract((paid == null) ? new BigDecimal(0) : paid);
                     if (money.compareTo(everyMoney) == -1 || money.compareTo(everyMoney) == 0) {
@@ -185,9 +187,9 @@ public class PayFeeServiceImpl implements IPayFeeService {
                 }
             }
         }
-        amountLeft.put("status", true);
-        amountLeft.put("electricFee", money);
-        return amountLeft;
+        map.put("status",true);
+        map.put("electricFee",money);
+        return map;
     }
 
     @Override
@@ -220,13 +222,18 @@ public class PayFeeServiceImpl implements IPayFeeService {
     }
 
     @Override
-    public BigDecimal payWaterFee(PayFeeQuery query) {
+    public Map<String, BigDecimal> payWaterFee(PayFeeQuery query) {
+        Map<String, BigDecimal> map = new HashMap<>();
         BigDecimal result = new BigDecimal("0");
         if ("yuan".equals(query.getWaterCountBy())) {
             result = new BigDecimal(query.getWaterAmout());
+            BigDecimal tunnage = result.divide(query.getWaterPrice(),2,BigDecimal.ROUND_HALF_UP);
+            map.put("tunnage",tunnage);
         } else if ("ton".equals(query.getWaterCountBy())) {
             result = new BigDecimal(query.getWaterAmout()).multiply(query.getWaterPrice());
+            map.put("tunnage",new BigDecimal(query.getWaterAmout()));
         }
-        return result;
+        map.put("water",result);
+        return map;
     }
 }

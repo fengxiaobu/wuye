@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.rzhd.wuye.mapper.ReNameMapper">
+    <resultMap id="baseMap" type="cn.rzhd.wuye.bean.ReName">
+        <id property="REID" column="reId"/>
+        <result property="TITLE" column="title"/>
+        <result property="CONTENT" column="content"/>
+        <result property="CREATETIME" column="createTime"/>
+        <result property="UPDATETIME" column="updateTime"/>
+    </resultMap>
+    <select id="getAll" resultMap="baseMap">
+        SELECT *
+        FROM T_RENAME
+    </select>
+</mapper>

@@ -36,8 +36,11 @@ public interface IEnterApplyService {
 
     /**
      * 获取审核完成后的结果
+     *
      * @param pkHouse
      * @return
      */
-    List<Map<String, JsonFormat.Value>> getEnterApplyByIDAndState( String pkHouse);
+    List<Map<String, JsonFormat.Value>> getEnterApplyByIDAndState(String pkHouse);
+
+    void updatePayState(String wyState, String kfState, Long enterApplyId);
 }

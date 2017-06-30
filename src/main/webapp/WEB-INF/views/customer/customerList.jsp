@@ -56,7 +56,7 @@
 		                        <td>${customers.vcname}</td>
 		                        <td>${customers.bindingPhone}</td>
 		                        <td><fmt:formatDate value="${customers.updateData}" pattern="yyyy-MM-dd"/></td>
-		                        <td><a class="btn btn-info" href="" role="button">编辑</a><a class="btn btn-info" href="" role="button">删除</a></td>
+		                        <td><a class="btn btn-info" href="/user/customerEdit?vccode=${customers.vccode}" role="button">编辑</a><a class="btn btn-info" href="" role="button">删除</a></td>
 		                    </tr>
 		               </c:forEach>
                 </tbody>

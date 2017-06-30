@@ -3,6 +3,8 @@ package cn.rzhd.wuye.service;
 import cn.rzhd.wuye.bean.UtilitiesDetails;
 import cn.rzhd.wuye.vo.query.UtilitiesQuery;
 
+import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -17,5 +19,17 @@ public interface IUtilitiesService {
 
     void addDetails(UtilitiesDetails details);
 
-    void changeStatus(UtilitiesDetails details);
+    void changeStatus(Long id);
+
+    List<Map<String,Object>> getElectricByProject(Long userId);
+
+    List<Map<String,Object>> getWaterByProject(Long userId);
+
+    BigDecimal getAstrictPaid(String houseInfoId, Date startDate, Date endDate);
+
+    String getCompanyName(String pk_feeType);
+
+    String getCompanyAccount(String pk_feeType);
+
+    String getCostType(String pk_feeType);
 }

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -17,44 +18,61 @@ import java.util.List;
 @RequestMapping("/dist/invoicing")
 public class InvoicingController {
     @Autowired
-    IUtilitiesService utilitiesService;
+    private IUtilitiesService utilitiesService;
     @Autowired
-    IKfFeePayDetailsService kfFeePayDetailsService;
+    private IKfFeePayDetailsService kfFeePayDetailsService;
     @Autowired
-    IPropertyFeePayDetailsService propertyFeePayDetailsService;
+    private IPropertyFeePayDetailsService propertyFeePayDetailsService;
     @Autowired
-    IPropertyFeeInvoiceService propertyFeeInvoiceService;
+    private IPropertyFeeInvoiceService propertyFeeInvoiceService;
     @Autowired
-    IUtilitiesInvoiceService utilitiesInvoiceService;
+    private IUtilitiesInvoiceService utilitiesInvoiceService;
     @Autowired
-    IKfFeeInvoiceService kfFeeInvoiceService;
+    private IKfFeeInvoiceService kfFeeInvoiceService;
 
     @RequestMapping("/records/property")
-    public Long property(@RequestBody PropertyFeePayDetails propertyFeePayDetails) {
+    public String property(@RequestBody PropertyFeePayDetails propertyFeePayDetails) {
         Long id = IDUtils.genLongUID();
+        propertyFeePayDetails.setCarteTime(new Date());
+        propertyFeePayDetails.setPayTime(new Date());
         propertyFeePayDetails.setPropertyFeePayDetails(id);
         propertyFeePayDetailsService.addDetails(propertyFeePayDetails);
-        return id;
+        return id.toString();
     }
 
     @RequestMapping("/records/kfFee")
-    public Long property(@RequestBody KfFeePayDetails kfFeePayDetails) {
+    public String property(@RequestBody KfFeePayDetails kfFeePayDetails) {
         Long id = IDUtils.genLongUID();
+        kfFeePayDetails.setCarteTime(new Date());
+        kfFeePayDetails.setPayTime(new Date());
         kfFeePayDetails.setKfFeePayDetailsId(id);
         kfFeePayDetailsService.addDetails(kfFeePayDetails);
-        return id;
+        return id.toString();
     }
 
     @RequestMapping("/records/utilities")
-    public Long utilities(@RequestBody UtilitiesDetails details) {
+    public String utilities(@RequestBody UtilitiesDetails details) {
         Long id = IDUtils.genLongUID();
         details.setUtilitiesDetailsId(id);
+        details.setCarteTime(new Date());
+        details.setPayTime(new Date());
+        details.setCostType(utilitiesService.getCostType(details.getCostType()));
+        //新创建一个水电缴费对象,用于分割一部分水费数据到其中;
+//        UtilitiesDetails newOne = new UtilitiesDetails();
+//        newOne.setUtilitiesDetailsId(id);
+//        newOne.setCarteTime(new Date());
+//        newOne.setClientName(details.getClientName());
+//        newOne.setCollectingAccount(details.getCollectingAccount());
+//        newOne.setCollectingCompany(details.getCollectingCompany());
+//        newOne.setCostType("水费");
+        details.setCollectingAccount(utilitiesService.getCompanyAccount(details.getCostType()));
+        details.setCollectingCompany(utilitiesService.getCompanyName(details.getCostType()));
         utilitiesService.addDetails(details);
-        return id;
+        return id.toString();
     }
 
     @RequestMapping("/invoice/property")
-    public void propertyInvoice(@RequestBody PropertyFeePayDetails details){
+    public void propertyInvoice(@RequestBody PropertyFeePayDetails details) {
         Long id = details.getPropertyFeePayDetails();
         List<PropertyFeeInvoiceDetails> invoices = details.getInvoices();
         for (PropertyFeeInvoiceDetails invoice : invoices) {
@@ -65,7 +83,7 @@ public class InvoicingController {
     }
 
     @RequestMapping("/invoice/kfFee")
-    public void kfFeeInvoice(@RequestBody KfFeePayDetails details){
+    public void kfFeeInvoice(@RequestBody KfFeePayDetails details) {
         Long id = details.getKfFeePayDetailsId();
         List<KfFeeInvoice> invoices = details.getInvoices();
         for (KfFeeInvoice invoice : invoices) {
@@ -76,7 +94,7 @@ public class InvoicingController {
     }
 
     @RequestMapping("/invoice/utilities")
-    public void utilitiesInvoice(@RequestBody UtilitiesDetails details){
+    public void utilitiesInvoice(@RequestBody UtilitiesDetails details) {
         Long id = details.getUtilitiesDetailsId();
         List<UtilitiesInvoice> invoices = details.getInvoices();
         for (UtilitiesInvoice invoice : invoices) {

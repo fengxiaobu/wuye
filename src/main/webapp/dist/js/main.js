@@ -32,14 +32,17 @@ webpackJsonp([0],[
 
 	var _router2 = _interopRequireDefault(_router);
 
-	var _env = __webpack_require__(330);
+	var _env = __webpack_require__(335);
 
 	var _env2 = _interopRequireDefault(_env);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	global.HttpPath = 'http://localhost:8080/dist';
-	// global.HttpPath = 'http://192.168.0.141:8080/wuye/dist';
+	global.HttpPath = 'http://localhost:8080/wuye/dist'; /**
+	                                                      * Created by aresn on 16/6/20.
+	                                                      */
+
+	global.HttpPath = 'http://192.168.0.118:8092/dist';
 
 	// global.HttpPath = 'http://192.168.0.40:8092/wuye/dist'; // 测试
 	// global.HttpPath = 'http://123.56.185.102:8092/wuye/dist'; //正式
@@ -55,9 +58,6 @@ webpackJsonp([0],[
 	        }
 	    }
 	*/
-	/**
-	 * Created by aresn on 16/6/20.
-	 */
 	global.UpladFile = function (options) {
 	    // 文件上传公共方法
 	    console.log(options.eleId);
@@ -3929,12 +3929,14 @@ webpackJsonp([0],[
 	    deep: true, // 当对象内部嵌套的属性发生变化时也能够触发指令的 update 函数
 	    bind: function bind() {},
 	    update: function update(options) {
+	        var _curDate = new Date().getFullYear() + '-' + (Array(2).join(0) + (new Date().getMonth() + 1)).slice(-2) + (Array(2).join(0) + new Date().getDate()).slice(-2); // 当前日期
 	        if (options == null) {
 	            //'yyyy-mm-dd'
 	            options = {};
 	            options.format = options.format ? options.format : 'yyyy-mm-dd';
 	            options.startView = options.startView ? options.startView : 'month';
 	            options.maxView = options.maxView ? options.maxView : 'day';
+	            options.startDate = options.startDate ? options.startDate : _curDate;
 	        } else {
 	            switch (options.format) {
 	                case 'yyyy-mm':
@@ -3953,7 +3955,7 @@ webpackJsonp([0],[
 	        options.todayBtn = options.todayBtn ? options.todayBtn : true;
 	        options.minView = options.minView ? options.minView : 'year';
 	        options.language = options.language ? options.language : 'zh-CN';
-	        options.endDate = options.endDate ? options.endDate : new Date().getFullYear() + '-' + (new Date().getMonth() + 1);
+	        // options.endDate = options.endDate ? options.endDate :  (new Date()).getFullYear()+'-' +((new Date()).getMonth()+1);
 	        var picker = jQuery(this.el).datetimepicker(options);
 	        if (Object.prototype.toString.call(options.setStartDate).slice(8, -1).toLowerCase() == 'string') {
 	            picker.on("click", function () {
@@ -4018,6 +4020,21 @@ webpackJsonp([0],[
 		}
 		var time = new Date(value);
 		return time.getFullYear() + '-' + (Array(2).join(0) + (time.getMonth() + 1)).slice(-2) + "-" + (Array(2).join(0) + time.getDate()).slice(-2);
+	});
+	/*年月日 时分秒*/
+	_vue2.default.filter("TimeYMDHMS", function (value) {
+		if (!value) {
+			return;
+		}
+		var time = new Date(value);
+		return time.getFullYear() + '-' + (Array(2).join(0) + (time.getMonth() + 1)).slice(-2) + "-" + (Array(2).join(0) + time.getDate()).slice(-2) + ' ' + time.getHours() + ':' + (Array(2).join(0) + time.getMinutes()).slice(-2) + ':' + (Array(2).join(0) + time.getSeconds()).slice(-2);
+	});
+	/*单位平米*/
+	_vue2.default.filter("unitSquareMetre", function (value) {
+		if (!value) {
+			return '0㎡';
+		}
+		return value + '㎡';
 	});
 
 /***/ }),
@@ -22277,55 +22294,59 @@ webpackJsonp([0],[
 
 	var _decoration2 = _interopRequireDefault(_decoration);
 
-	var _decpoint = __webpack_require__(282);
+	var _decpoint = __webpack_require__(283);
 
 	var _decpoint2 = _interopRequireDefault(_decpoint);
 
-	var _decinfoedit = __webpack_require__(286);
+	var _decinfoedit = __webpack_require__(287);
 
 	var _decinfoedit2 = _interopRequireDefault(_decinfoedit);
 
-	var _decexamine = __webpack_require__(290);
+	var _decexamine = __webpack_require__(291);
 
 	var _decexamine2 = _interopRequireDefault(_decexamine);
 
-	var _decfeedback = __webpack_require__(294);
+	var _decfeedback = __webpack_require__(295);
 
 	var _decfeedback2 = _interopRequireDefault(_decfeedback);
 
-	var _decfinish = __webpack_require__(298);
+	var _decfinish = __webpack_require__(299);
 
 	var _decfinish2 = _interopRequireDefault(_decfinish);
 
-	var _mine = __webpack_require__(302);
+	var _mine = __webpack_require__(303);
 
 	var _mine2 = _interopRequireDefault(_mine);
 
-	var _msglist = __webpack_require__(304);
+	var _msglist = __webpack_require__(305);
 
 	var _msglist2 = _interopRequireDefault(_msglist);
 
-	var _password = __webpack_require__(308);
+	var _msgdetail = __webpack_require__(309);
+
+	var _msgdetail2 = _interopRequireDefault(_msgdetail);
+
+	var _password = __webpack_require__(313);
 
 	var _password2 = _interopRequireDefault(_password);
 
-	var _changephone = __webpack_require__(312);
+	var _changephone = __webpack_require__(317);
 
 	var _changephone2 = _interopRequireDefault(_changephone);
 
-	var _agreement = __webpack_require__(316);
+	var _agreement = __webpack_require__(321);
 
 	var _agreement2 = _interopRequireDefault(_agreement);
 
-	var _houseinfo = __webpack_require__(318);
+	var _houseinfo = __webpack_require__(323);
 
 	var _houseinfo2 = _interopRequireDefault(_houseinfo);
 
-	var _lease = __webpack_require__(322);
+	var _lease = __webpack_require__(327);
 
 	var _lease2 = _interopRequireDefault(_lease);
 
-	var _sales = __webpack_require__(326);
+	var _sales = __webpack_require__(331);
 
 	var _sales2 = _interopRequireDefault(_sales);
 
@@ -22335,12 +22356,17 @@ webpackJsonp([0],[
 	----------------------------------------------------------------------------------------------------*/
 
 
-	/*个人中心
+	/*业务办理
 	----------------------------------------------------------------------------------------------------*/
 
-	/*装修办理*/
+	// 费用缴纳
+	/**
+	 * Created by aresn on 16/8/22.
+	 */
 
-	/*入驻办理*/
+	// import payment from './views/home/payment/payment';
+	// import rent from './views/home/payment/rent';
+
 	var routers = {
 	    '/test': {
 	        component: function component(resolve) {
@@ -22503,6 +22529,10 @@ webpackJsonp([0],[
 	                        name: 'msglist',
 	                        component: _msglist2.default
 	                    },
+	                    '/msglist/msgdetail': { //消息记录详情
+	                        name: 'msgdetail',
+	                        component: _msgdetail2.default
+	                    },
 	                    '/password': { //修改密码
 	                        name: 'password',
 	                        component: _password2.default
@@ -22535,17 +22565,12 @@ webpackJsonp([0],[
 	    }
 	};
 
-	/*业务办理
+	/*个人中心
 	----------------------------------------------------------------------------------------------------*/
 
-	// 费用缴纳
-	/**
-	 * Created by aresn on 16/8/22.
-	 */
+	/*装修办理*/
 
-	// import payment from './views/home/payment/payment';
-	// import rent from './views/home/payment/rent';
-
+	/*入驻办理*/
 	exports.default = routers;
 
 /***/ }),
@@ -33192,7 +33217,9 @@ webpackJsonp([0],[
 	    data: function data() {
 	        return {
 	            checkedNames: [],
-	            file: null
+	            file: null,
+	            goodsInfos: [],
+	            userInvoiceItems: [{ price: 12 }, { price: 12 }]
 	        };
 	    },
 
@@ -33221,7 +33248,8 @@ webpackJsonp([0],[
 	            oReq.send(oData);
 	        }
 	    },
-	    ready: function ready() {
+	    created: function created() {
+	        this.$set('userInvoiceItems', [{ price: '12' }, { price: '32' }]);
 	        console.log(sessionStorage.vccode);
 	    },
 	    beforeDestroy: function beforeDestroy() {},
@@ -33259,6 +33287,12 @@ webpackJsonp([0],[
 	                keyboard: false,
 	                backdrop: 'static'
 	            });
+	        },
+	        addInvoice: function addInvoice(addInvoiceIndex) {
+	            this.userInvoiceItems.splice(addInvoiceIndex, 0, { price: 0 });
+	        },
+	        deleteInvoice: function deleteInvoice(addInvoiceIndex) {
+	            this.userInvoiceItems.splice(addInvoiceIndex, 1);
 	        }
 	    }
 	};
@@ -33319,6 +33353,26 @@ webpackJsonp([0],[
 	//   </div>
 	// </div>
 	//
+	//
+	//     <table class="table table-bordered table-data">
+	//         <thead>
+	//             <tr>
+	//                 <th>开票公司</th>
+	//                 <th>key1</th>
+	//                 <th>操作</th>
+	//             </tr>
+	//         </thead>
+	//         <tbody>
+	//             <tr v-for="(addInvoiceIndex,userInvoiceItem) in userInvoiceItems">
+	//                 <td>{{ userInfo.user.username }}</td>
+	//                 <td v-for="item in userInvoiceItem"><input type="text" v-model="item"></td>
+	//                 <td>
+	//                     <button class="btn" @click="addInvoice(addInvoiceIndex)">添加</button>
+	//                     <button class="btn" @click="deleteInvoice(addInvoiceIndex)">删除</button>
+	//                 </td>
+	//             </tr>
+	//         </tbody>
+	//     </table>
 	//  </validator>
 	// </template>
 	// <script>
@@ -33328,7 +33382,7 @@ webpackJsonp([0],[
 /* 169 */
 /***/ (function(module, exports) {
 
-	module.exports = "\n\t<button class=\"btn\" @click=\"test\" _v-cdb8d2c2=\"\">接口测试</button>\n\n\t<button class=\"btn\" @click=\"session\" _v-cdb8d2c2=\"\">session</button>\n\n\n\n    <label class=\"checkbox-container\" data-type=\"checkbox\" for=\"jack\" v-bind:checked=\"checkedNames.indexOf('Jack')!=-1\" _v-cdb8d2c2=\"\">\n        <input type=\"checkbox\" id=\"jack\" value=\"Jack\" v-model=\"checkedNames\" _v-cdb8d2c2=\"\">\n        <i class=\"icon icon01 i_radio\" _v-cdb8d2c2=\"\"></i>\n        <span class=\"checkbox_txt\" _v-cdb8d2c2=\"\">Jack</span>\n    </label>\n    <label class=\"checkbox-container\" data-type=\"checkbox\" for=\"john\" v-bind:checked=\"checkedNames.indexOf('John')!=-1\" _v-cdb8d2c2=\"\">\n        <input type=\"checkbox\" id=\"john\" value=\"John\" v-model=\"checkedNames\" _v-cdb8d2c2=\"\">\n        <i class=\"icon icon01 i_radio\" _v-cdb8d2c2=\"\"></i>\n        <span class=\"checkbox_txt\" _v-cdb8d2c2=\"\">John</span>\n    </label>\n    <label class=\"checkbox-container\" data-type=\"checkbox\" for=\"mike\" v-bind:checked=\"checkedNames.indexOf('Mike')!=-1\" _v-cdb8d2c2=\"\">\n        <input type=\"checkbox\" id=\"mike\" value=\"Mike\" v-model=\"checkedNames\" _v-cdb8d2c2=\"\">\n        <i class=\"icon icon01 i_radio\" _v-cdb8d2c2=\"\"></i>\n        <span class=\"checkbox_txt\" _v-cdb8d2c2=\"\">Mike</span>\n    </label>\n\n    <br _v-cdb8d2c2=\"\">\n    <span _v-cdb8d2c2=\"\">Checked names: {{ checkedNames }}</span>\n<!-- Button trigger modal -->\n<button type=\"button\" class=\"btn btn-primary btn-lg\" @click=\"model\" _v-cdb8d2c2=\"\">\n  Launch demo modal\n</button>\n\n<!-- Modal -->\n<div class=\"modal fade\" id=\"myModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" _v-cdb8d2c2=\"\">\n  <div class=\"modal-dialog\" role=\"document\" _v-cdb8d2c2=\"\">\n    <div class=\"modal-content\" _v-cdb8d2c2=\"\">\n      <div class=\"modal-header\" _v-cdb8d2c2=\"\">\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\" _v-cdb8d2c2=\"\"><span aria-hidden=\"true\" _v-cdb8d2c2=\"\">×</span></button>\n        <h4 class=\"modal-title\" id=\"myModalLabel\" _v-cdb8d2c2=\"\">支付完成</h4>\n      </div>\n      <div class=\"modal-body\" _v-cdb8d2c2=\"\">\n        ...\n      </div>\n      <div class=\"modal-footer\" _v-cdb8d2c2=\"\">\n        <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\" _v-cdb8d2c2=\"\">支付完成</button>\n        <button type=\"button\" class=\"btn btn-primary\" _v-cdb8d2c2=\"\">遇到问题</button>\n      </div>\n    </div>\n  </div>\n</div>\n\n \n";
+	module.exports = "\n\t<button class=\"btn\" @click=\"test\" _v-cdb8d2c2=\"\">接口测试</button>\n\n\t<button class=\"btn\" @click=\"session\" _v-cdb8d2c2=\"\">session</button>\n\n\n\n    <label class=\"checkbox-container\" data-type=\"checkbox\" for=\"jack\" v-bind:checked=\"checkedNames.indexOf('Jack')!=-1\" _v-cdb8d2c2=\"\">\n        <input type=\"checkbox\" id=\"jack\" value=\"Jack\" v-model=\"checkedNames\" _v-cdb8d2c2=\"\">\n        <i class=\"icon icon01 i_radio\" _v-cdb8d2c2=\"\"></i>\n        <span class=\"checkbox_txt\" _v-cdb8d2c2=\"\">Jack</span>\n    </label>\n    <label class=\"checkbox-container\" data-type=\"checkbox\" for=\"john\" v-bind:checked=\"checkedNames.indexOf('John')!=-1\" _v-cdb8d2c2=\"\">\n        <input type=\"checkbox\" id=\"john\" value=\"John\" v-model=\"checkedNames\" _v-cdb8d2c2=\"\">\n        <i class=\"icon icon01 i_radio\" _v-cdb8d2c2=\"\"></i>\n        <span class=\"checkbox_txt\" _v-cdb8d2c2=\"\">John</span>\n    </label>\n    <label class=\"checkbox-container\" data-type=\"checkbox\" for=\"mike\" v-bind:checked=\"checkedNames.indexOf('Mike')!=-1\" _v-cdb8d2c2=\"\">\n        <input type=\"checkbox\" id=\"mike\" value=\"Mike\" v-model=\"checkedNames\" _v-cdb8d2c2=\"\">\n        <i class=\"icon icon01 i_radio\" _v-cdb8d2c2=\"\"></i>\n        <span class=\"checkbox_txt\" _v-cdb8d2c2=\"\">Mike</span>\n    </label>\n\n    <br _v-cdb8d2c2=\"\">\n    <span _v-cdb8d2c2=\"\">Checked names: {{ checkedNames }}</span>\n<!-- Button trigger modal -->\n<button type=\"button\" class=\"btn btn-primary btn-lg\" @click=\"model\" _v-cdb8d2c2=\"\">\n  Launch demo modal\n</button>\n\n<!-- Modal -->\n<div class=\"modal fade\" id=\"myModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" _v-cdb8d2c2=\"\">\n  <div class=\"modal-dialog\" role=\"document\" _v-cdb8d2c2=\"\">\n    <div class=\"modal-content\" _v-cdb8d2c2=\"\">\n      <div class=\"modal-header\" _v-cdb8d2c2=\"\">\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\" _v-cdb8d2c2=\"\"><span aria-hidden=\"true\" _v-cdb8d2c2=\"\">×</span></button>\n        <h4 class=\"modal-title\" id=\"myModalLabel\" _v-cdb8d2c2=\"\">支付完成</h4>\n      </div>\n      <div class=\"modal-body\" _v-cdb8d2c2=\"\">\n        ...\n      </div>\n      <div class=\"modal-footer\" _v-cdb8d2c2=\"\">\n        <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\" _v-cdb8d2c2=\"\">支付完成</button>\n        <button type=\"button\" class=\"btn btn-primary\" _v-cdb8d2c2=\"\">遇到问题</button>\n      </div>\n    </div>\n  </div>\n</div>\n\n\n    <table class=\"table table-bordered table-data\" _v-cdb8d2c2=\"\">\n        <thead _v-cdb8d2c2=\"\">\n            <tr _v-cdb8d2c2=\"\">\n                <th _v-cdb8d2c2=\"\">开票公司</th>\n                <th _v-cdb8d2c2=\"\">key1</th>\n                <th _v-cdb8d2c2=\"\">操作</th>\n            </tr>\n        </thead>\n        <tbody _v-cdb8d2c2=\"\">\n            <tr v-for=\"(addInvoiceIndex,userInvoiceItem) in userInvoiceItems\" _v-cdb8d2c2=\"\">\n                <td _v-cdb8d2c2=\"\">{{ userInfo.user.username }}</td>\n                <td v-for=\"item in userInvoiceItem\" _v-cdb8d2c2=\"\"><input type=\"text\" v-model=\"item\" _v-cdb8d2c2=\"\"></td>\n                <td _v-cdb8d2c2=\"\">\n                    <button class=\"btn\" @click=\"addInvoice(addInvoiceIndex)\" _v-cdb8d2c2=\"\">添加</button>\n                    <button class=\"btn\" @click=\"deleteInvoice(addInvoiceIndex)\" _v-cdb8d2c2=\"\">删除</button>\n                </td>\n            </tr>\n        </tbody>\n    </table>\n \n";
 
 /***/ }),
 /* 170 */
@@ -33774,7 +33828,7 @@ webpackJsonp([0],[
 
 	            //         /*用户数据*/
 	            //         var data = global.userLoginInfo.data;
-	            //         var _isFinishEnter = false;
+	            //         var _isFinishFirstEnter = false;
 	            //         var houseInfos = [];  // 将所有房产放到一个数组
 	            //         if(data.length) {
 	            //             for(var i = 0; i < data.length; i++) {
@@ -33785,7 +33839,7 @@ webpackJsonp([0],[
 	            //                         houseInfo.pk_customerid = data[i].pk_customerid; // 项目id
 	            //                         houseInfos.push(houseInfo);
 	            //                         if(houseInfo.houseVO&&houseInfo.houseVO.vdef8 == -1) {
-	            //                             _isFinishEnter = true;
+	            //                             _isFinishFirstEnter = true;
 	            //                         }
 	            //                     }
 	            //                 }
@@ -33797,7 +33851,7 @@ webpackJsonp([0],[
 	            //                 userid: global.userLoginInfo.data[0].vccode
 	            //             },
 	            //             houseInfos: houseInfos,
-	            //             isFinishEnter: _isFinishEnter,
+	            //             isFinishEnter: _isFinishFirstEnter,
 	            //             customers: global.userLoginInfo.data
 	            //         }
 	            //         var _isEVPI = false;
@@ -33823,7 +33877,7 @@ webpackJsonp([0],[
 
 	            //         if(!global.userInfo.isEVPI) { // 完善资料
 	            //             this.$router.go('/home/business/enter/userinfo');
-	            //         } else if(!_isFinishEnter) {
+	            //         } else if(!_isFinishFirstEnter) {
 	            //             this.$router.go('/home/business/enter');
 	            //         } else {
 	            //             this.$router.go('/home/index');
@@ -33874,7 +33928,7 @@ webpackJsonp([0],[
 
 	                        /*用户信息*/
 	                        var _data = global.userLoginInfo.data;
-	                        var _isFinishEnter = false;
+	                        var _isFinishFirstEnter = false;
 	                        var houseInfos = []; // 将所有房产放到一个数组
 	                        if (_data.length) {
 	                            for (var i = 0; i < _data.length; i++) {
@@ -33884,8 +33938,8 @@ webpackJsonp([0],[
 	                                        houseInfo = _data[i].houseInfos[k];
 	                                        houseInfo.pk_customerid = _data[i].pk_customerid; // 项目id
 	                                        houseInfos.push(houseInfo);
-	                                        if (houseInfo.houseVO && houseInfo.houseVO.vdef8 == -1) {
-	                                            _isFinishEnter = true;
+	                                        if (houseInfo.houseInfoDetails && houseInfo.houseInfoDetails.enterapplyState == -1) {
+	                                            _isFinishFirstEnter = true;
 	                                        }
 	                                    }
 	                                }
@@ -33899,7 +33953,6 @@ webpackJsonp([0],[
 	                                userpwd: _password
 	                            },
 	                            houseInfos: houseInfos,
-	                            isFinishEnter: _isFinishEnter, // 未完成首次入驻
 	                            customers: global.userLoginInfo.data
 	                        };
 	                        global.isEVPI = false;
@@ -33909,13 +33962,14 @@ webpackJsonp([0],[
 	                                break;
 	                            }
 	                        }
+	                        global.isFinishFirstEnter = _isFinishFirstEnter; // 未完成首次入驻
 	                        sessionStorage.userLoginInfo = (0, _stringify2.default)(data);
 	                        sessionStorage.userInfo = (0, _stringify2.default)(global.userInfo);
 
 	                        if (global.isEVPI == false) {
 	                            // 完善资料
 	                            _this.$router.go('/home/business/enter/userinfo');
-	                        } else if (!global.userInfo.isFinishEnter) {
+	                        } else if (!global.isFinishFirstEnter) {
 	                            // 未完成首次入驻
 	                            _this.$router.go('/home/business/enter');
 	                        } else {
@@ -34244,7 +34298,6 @@ webpackJsonp([0],[
 
 	// 无数据提示页面
 	function getTotalPrice(_this) {
-	    console.log(_this.ammeters);
 	    var electric = 0;
 	    var water = 0;
 	    if (_this.electricCountBy == 'yuan') {
@@ -34252,7 +34305,6 @@ webpackJsonp([0],[
 	    } else {
 	        // 电费金额 = 单价 * 度数 * 倍率
 	        electric = parseInt(_this.ammeters.electricityPrice, 10) * parseInt(_this.electricAmount, 10) * parseInt(_this.multiply, 10);
-	        console.log(_this.ammeters.electricityPrice, _this.electricAmount, _this.multiply);
 	    }
 	    if (_this.waterCountBy == 'yuan') {
 	        water = parseInt(_this.waterAmout, 10);
@@ -34606,7 +34658,7 @@ webpackJsonp([0],[
 	//
 	//                         <div class="row panel-heading head02"><div class="col-xs-4">电费购买：</div><div class="col-xs-8 text-right">温馨提示：单价：{{ ammeters.electricityPrice }}元/度</div></div>
 	//                             <select class="form-control" style="height:40px;" v-model="userCheckedAmmeter">
-	//                                 <option :value="index" v-for="(index, ammeter) in ammeters.ammeters">{{ ammeter.ammeter_name }}</option>
+	//                                 <option :value="index" v-for="(index, ammeter) in ammeters.ammeters">{{ ammeter.ammeter_name }}（倍率：{{ ammeter.multiply }}）</option>
 	//                             </select>
 	//                             <div>
 	//                             <div class="row" style="margin-top:20px;">
@@ -34699,14 +34751,13 @@ webpackJsonp([0],[
 	//                             </div> -->
 	//
 	//
-	//                             <div class="media" v-for="notice in notices">
+	//                             <div class="media" v-for="message in messages">
 	//                                 <div class="media-body">
-	//                                     <h4 class="media-heading">{{ notice.title }}</h4>
-	//                                     <p>{{ notice.content | ellipsis 50 }}<a class="text-orange">[查看详细]</a></p>
+	//                                     <h4 class="media-heading">{{ message.title }}</h4>
+	//                                     <p>{{ message.content | ellipsis 50 }}<a class="text-orange" v-link="{ path: '/home/index/mine/msglist/msgdetail?message_manage_id=' + message.message_manage_id }">[查看详细]</a></p>
 	//                                 </div>
-	//                                 <div class="media-body">awgte<nodata></nodata></div>
 	//                             </div>
-	//                             <div class="media" v-show="!notices.length">
+	//                             <div class="media" v-show="!messages.length">
 	//                                 <div class="media-body"><nodata></nodata></div>
 	//                             </div>
 	//                         </div>   
@@ -34733,7 +34784,7 @@ webpackJsonp([0],[
 	            bannerImgs: [_banner2.default, _banner2.default], // banner图片
 	            homePageUserCheckedHouse: 0,
 	            messageNum: null, // 查询未读信息数
-	            notices: [], // 查询通知消息的标题列表
+	            messages: [], // 查询通知消息的标题列表
 	            findFeeList: null, // 根据客户查询相关费用清单
 	            ammeters: null, // 电表及水电单价
 	            userCheckedAmmeter: 0, // 用户选择的电表
@@ -34776,23 +34827,23 @@ webpackJsonp([0],[
 	            getTotalPrice(this);
 	        },
 	        pk_house: function pk_house(newValue, oldValue) {
-	            console.log(newValue, 'pk_house');
 	            var _this = this;
 	            var houseInfo = this.userInfo.houseInfos[this.curHouseInfoIndex];
 	            this.customerId = houseInfo.pk_customerid;
 	            this.houseInfoId = houseInfo.pk_house;
 	            this.projectName = houseInfo.projectName;
 
-	            var ary = [];
-	            for (var i = 0; i < this.userInfo.houseInfos.length; i++) {
-	                if (this.userInfo.customers[i].pk_customerid == houseInfo.pk_customerid) {
+	            var thisCustomersHouseInfos = []; // 选中房产的所正在客户下的所有房产
+	            for (var i = 0; i < this.userInfo.customers.length; i++) {
+	                if (this.userInfo.customers[i].houseInfos.length) {
 	                    for (var j = 0; j < this.userInfo.customers[i].houseInfos.length; j++) {
-	                        ary.push(this.userInfo.customers[i].houseInfos[j].pk_house);
+	                        if (this.userInfo.customers[i].houseInfos[j].pk_house == houseInfo.pk_house) {
+	                            thisCustomersHouseInfos.push(this.userInfo.customers[i].houseInfos[j].pk_house);
+	                        }
 	                    }
 	                }
-	                ary.push(this.userInfo.houseInfos[i].houseInfoId);
 	            }
-	            this.houseInfoIds = ary.join(',');
+	            this.houseInfoIds = thisCustomersHouseInfos.join(',');
 	            global.ajax({ // 电表及水电单价
 	                type: "POST",
 	                contentType: "application/json",
@@ -34802,7 +34853,6 @@ webpackJsonp([0],[
 	                    houseInfoId: this.houseInfoId
 	                }),
 	                success: function success(reg) {
-	                    console.log(reg.data);
 	                    _this.$set('ammeters', reg.data);
 
 	                    $.ajax({
@@ -34822,7 +34872,6 @@ webpackJsonp([0],[
 	                        },
 	                        dataType: 'json',
 	                        success: function success(data) {
-	                            console.log(data);
 	                            var _isArrears = data;
 	                            if (data.before30.length || data.before60.length) {
 	                                // 有欠费
@@ -34866,7 +34915,6 @@ webpackJsonp([0],[
 	            // 遍历客户id
 	            customerids.push(userInfo.houseInfos[i].pk_customerid);
 	        }
-	        console.log(customerids.join(','));
 	        this.$http.post(global.HttpPath + '/homePage/findMessageNumByCutromer', { // 查询未读信息数
 	            params: {
 	                pk_customerid: customerids.join(',')
@@ -34874,7 +34922,6 @@ webpackJsonp([0],[
 	        }).then(function (response) {
 	            // 响应成功回调
 	            _this2.$set('messageNum', response.data);
-	            console.log(response.data);
 	        }, function (error) {
 	            // 响应失败回调
 	            console.log('首页-error:', error);
@@ -34882,38 +34929,15 @@ webpackJsonp([0],[
 	            // 程序错误捕获
 	            console.log('首页-catch:', response);
 	        });
-
-	        // this.$http.post(global.HttpPath + '/homePage/findMessageByCustomer', { // 查询通知消息的标题列表
-	        //     params: {
-	        //         pk_customerid: this.pk_customerid
-	        //         // pk_customerid: customerids.join(',')
-	        //     }
-	        // }).then((response) => {
-	        //     // 响应成功回调
-	        //     this.$set('notices',response.data);
-	        //     console.log('消息的标题列表: ',response.data);
-
-	        // },(error) => {
-	        //     // 响应失败回调
-	        //     console.log('首页-error:', error);
-	        // }).catch(function(response) {
-	        //     // 程序错误捕获
-	        //     console.log('首页-catch:', response);
-	        // });
-
 	        var _this = this;
 	        $.ajax({
 	            type: "post",
-	            // contentType: "application/json",
+	            contentType: "application/json",
 	            url: global.HttpPath + '/homePage/findMessageByCustomer', // 查询通知消息的标题列表
-	            data: {
-	                pk_customerid: this.pk_customerid
-	            },
+	            data: customerids.join(','),
 	            dataType: 'json',
 	            success: function success(res) {
-	                _this.$set('notices', res);
-	                console.log('消息的标题列表: ', res);
-	                console.log(res);
+	                _this.$set('messages', res.slice(0, 3));
 	            }
 	        });
 	        $.ajax({
@@ -34933,7 +34957,6 @@ webpackJsonp([0],[
 	                }
 	                _data.totalPrice = _totalPrice;
 	                _this.$set('findFeeList', _data);
-	                console.log(_data);
 	            }
 	        });
 	    },
@@ -34970,7 +34993,6 @@ webpackJsonp([0],[
 	                waterAmout: this.waterAmout,
 	                totalPrice: +this.electricAmount + this.waterAmout
 	            };
-	            console.log(_homePageUserCheckedHouseInfo);
 	            this.$router.go('/home/payment/hydropower');
 	            this.$router.params = _homePageUserCheckedHouseInfo;
 	        },
@@ -34993,7 +35015,6 @@ webpackJsonp([0],[
 	                    _totalPrice = this.findFeeList.list[index].kfFeeSum;
 	                    break;
 	            }
-	            console.log(_totalPrice, parseInt(_totalPrice, 10), this.findFeeList.list[index]);
 	            if (parseInt(_totalPrice, 10)) {
 	                this.$router.go('/home/payment/pay');
 	                this.$router.params = {
@@ -35091,7 +35112,7 @@ webpackJsonp([0],[
 /* 191 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	module.exports = "\n    <section class=\"clearfix container\" id=\"index-page\" _v-9652c0d4=\"\">\n        <div class=\"row\" _v-9652c0d4=\"\">\n            <aside class=\"col-md-3\" id=\"index-aside\" _v-9652c0d4=\"\">\n                <div class=\"panel panel-default user-panel\" _v-9652c0d4=\"\">\n                    <div class=\"panel-body\" _v-9652c0d4=\"\">\n                        <img src=\"" + __webpack_require__(192) + "\" class=\"img-circle\" _v-9652c0d4=\"\">\n                        <h1 class=\"user-name\" _v-9652c0d4=\"\">{{ userInfo.user.username }}</h1>\n                    </div>\n                </div>\n                <div class=\"panel panel-default aside-nav\" _v-9652c0d4=\"\">\n                    <div class=\"panel-body\" _v-9652c0d4=\"\">\n                        <ul class=\"list-group\" _v-9652c0d4=\"\">\n                            <li class=\"list-group-item\" _v-9652c0d4=\"\"><a _v-9652c0d4=\"\"><i class=\"icon icon01 i-idxnav01 i-nav\" _v-9652c0d4=\"\"></i>账户资料<i class=\"icon icon01 i-menu-right\" _v-9652c0d4=\"\"></i></a></li>\n                            <li class=\"list-group-item\" _v-9652c0d4=\"\"><a v-link=\"parseInt(messageNum,10)?{ path: '/home/index/mine/msglist' }:null\" _v-9652c0d4=\"\"><i class=\"icon icon01 i-idxnav02 i-nav\" _v-9652c0d4=\"\"><span class=\"badge\" _v-9652c0d4=\"\">{{ parseInt(messageNum,10)? messageNum:0 }}</span></i>我的消息<i class=\"icon icon01 i-menu-right\" _v-9652c0d4=\"\"></i></a></li>\n                            <li class=\"list-group-item\" _v-9652c0d4=\"\"><a v-link-active=\"\" v-link=\"{ path: '/home/index/mine/password' }\" _v-9652c0d4=\"\"><i class=\"icon icon01 i-idxnav03 i-nav\" _v-9652c0d4=\"\"></i>修改密码<i class=\"icon icon01 i-menu-right\" _v-9652c0d4=\"\"></i></a></li>\n                            <li class=\"list-group-item\" _v-9652c0d4=\"\"><a _v-9652c0d4=\"\"><i class=\"icon icon01 i-idxnav04 i-nav\" _v-9652c0d4=\"\"></i>修改资料<i class=\"icon icon01 i-menu-right\" _v-9652c0d4=\"\"></i></a></li>\n                            <li class=\"list-group-item\" _v-9652c0d4=\"\"><a v-link=\"{ path: '/home/index/mine/changephone' }\" _v-9652c0d4=\"\"><i class=\"icon icon01 i-idxnav05 i-nav\" _v-9652c0d4=\"\"></i>修改手机号<i class=\"icon icon01 i-menu-right\" _v-9652c0d4=\"\"></i></a></li>\n                        </ul>\n                    </div>\n                </div>\n            </aside>\n            <div class=\"col-md-6\" _v-9652c0d4=\"\">\n                <div class=\"panel panel-default arrears-panel\" _v-9652c0d4=\"\">\n                    <div class=\"panel-heading\" _v-9652c0d4=\"\">欠费信息</div>\n                    <div class=\"panel-body\" _v-9652c0d4=\"\">\n                        <div class=\"panel-heading head02\" _v-9652c0d4=\"\"><div class=\"col-md-12\" _v-9652c0d4=\"\">您当前欠费总金额：{{ findFeeList.totalPrice | currency '￥' 2 }}</div></div>\n                        <div class=\"arrears-data\" _v-9652c0d4=\"\">\n                            <ul class=\"arrears-list\" _v-9652c0d4=\"\">\n                                <li class=\"arrears-row\" v-for=\"(index,item) in findFeeList.list\" _v-9652c0d4=\"\">\n                                    <div class=\"arrears-name\" _v-9652c0d4=\"\">{{ item.house.vhname }}</div>\n                                    <div _v-9652c0d4=\"\">\n                                        <p _v-9652c0d4=\"\">开发公司费用</p>\n                                        <p _v-9652c0d4=\"\">物业公司费用</p>\n                                    </div>\n                                    <div _v-9652c0d4=\"\">\n                                        <p class=\"text-orange\" _v-9652c0d4=\"\">{{ item.kfFeeSum | currency '￥' 2 }}</p>\n                                        <p class=\"text-orange\" _v-9652c0d4=\"\">{{ item.propertyFeeSum | currency '￥' 2 }}</p>\n                                    </div>\n                                    <div _v-9652c0d4=\"\">\n                                        <p _v-9652c0d4=\"\"><a v-link=\"{ path: '/home/payment/arrears'}\" _v-9652c0d4=\"\">前往支付</a></p>\n                                        <p _v-9652c0d4=\"\"><a v-link=\"{ path: '/home/payment/arrears'}\" _v-9652c0d4=\"\">前往支付</a></p>\n                                    </div>\n                                </li>\n                            </ul>\n                        </div>\n                    </div>\n                </div>\n            </div>  \n            <div class=\"col-md-3\" _v-9652c0d4=\"\">\n                <div class=\"panel panel-default buy-panel\" _v-9652c0d4=\"\">\n                    <div class=\"panel-heading\" _v-9652c0d4=\"\">{{ projectName }} {{ house }}</div>\n                    <div class=\"panel-body\" style=\"border-bottom: 2px solid #f5f5f5;\" _v-9652c0d4=\"\">\n                        <div class=\"row panel-heading head02\" _v-9652c0d4=\"\"><div class=\"col-xs-4\" _v-9652c0d4=\"\">水费购买：</div><div class=\"col-xs-8 text-right\" _v-9652c0d4=\"\">温馨提示：单价：{{ ammeters.waterPrice }}元/吨</div></div>\n                        <div class=\"row\" _v-9652c0d4=\"\">\n                            <div class=\"col-md-8\" style=\"padding-right: 0;\" _v-9652c0d4=\"\">\n                                    <input type=\"text\" name=\"\" style=\"width:156px;\" v-model=\"waterAmout\" _v-9652c0d4=\"\">\n                                    <span v-show=\"waterCountBy == 'yuan'\" _v-9652c0d4=\"\"> 元</span>\n                                    <span v-show=\"waterCountBy == 'du'\" _v-9652c0d4=\"\"> 吨</span>\n                            </div>\n                            <div class=\"col-md-4\" style=\"padding-left:0;text-align:center;\" _v-9652c0d4=\"\"><a type=\"button\" class=\"btn\" style=\"width:88px\" @click=\"toHydropowerClick\" _v-9652c0d4=\"\">充值水费</a>\n                            </div>\n                        </div>\n                        <div class=\"row\" style=\"margin-top:20px;margin-bottom:10px;\" _v-9652c0d4=\"\">\n                            <div class=\"col-md-12\" _v-9652c0d4=\"\">\n                                    <label class=\"checkbox-container\" data-type=\"radio\" for=\"wateryuan\" :checked=\"waterCountBy == 'yuan'\" _v-9652c0d4=\"\">\n                                        <input type=\"radio\" id=\"wateryuan\" value=\"yuan\" v-model=\"waterCountBy\" _v-9652c0d4=\"\">\n                                        <i class=\"icon icon01 i_radio\" _v-9652c0d4=\"\"></i>\n                                        <span class=\"checkbox_txt\" _v-9652c0d4=\"\">以金额计费（元）</span>\n                                    </label>\n                                    <label class=\"checkbox-container\" data-type=\"radio\" for=\"waterdu\" :checked=\"waterCountBy == 'du'\" _v-9652c0d4=\"\">\n                                        <input type=\"radio\" id=\"waterdu\" value=\"du\" v-model=\"waterCountBy\" _v-9652c0d4=\"\">\n                                        <i class=\"icon icon01 i_radio\" _v-9652c0d4=\"\"></i>\n                                        <span class=\"checkbox_txt\" _v-9652c0d4=\"\">以度数计费（吨）</span>\n                                    </label>\n                            </div>\n                        </div>\n                       <!--  <div class=\"row panel-heading head02\"><div class=\"col-xs-4\">电费购买：</div><div class=\"col-xs-8 text-right\">温馨提示：单价5元/度</div></div>\n                            <select class=\"form-control\" style=\"height:40px;\">\n                                <option>1</option>\n                                <option>2</option>\n                                <option>3</option>\n                                <option>4</option>\n                                <option>5</option>\n                            </select>\n                            <div>\n                            <div class=\"row\" style=\"margin-top:20px;\">\n                                <div class=\"col-md-8\" style=\"padding-right: 0;\">\n                                        <input type=\"text\" name=\"\" style=\"width:156px;\">\n                                    <label>&ensp;吨</label>\n                                </div>\n                                <div class=\"col-md-4\" style=\"padding-left:0;text-align:center;\"><a type=\"button\" class=\"btn\" style=\"width:88px\" @click=\"toHydropowerClick\">充值电费</a>\n                                </div>\n                            </div>\n                            <div class=\"row\" style=\"margin-top:20px;\">\n                                <div class=\"col-md-12\">\n                                    <label class=\"checkbox-container\" data-type=\"radio\" for=\"johnradio03\" :checked=\"checkedNamesRadio03 == 'John01'\">\n                                        <input type=\"radio\" id=\"johnradio03\" value=\"John01\" v-model=\"checkedNamesRadio03\">\n                                        <i class=\"icon icon01 i_radio\"></i>\n                                        <span class=\"checkbox_txt\">以金额计费（元）</span>\n                                    </label>\n                                    <label class=\"checkbox-container\" data-type=\"radio\" for=\"mikeradio03\" :checked=\"checkedNamesRadio03 == 'Mike'\">\n                                        <input type=\"radio\" id=\"mikeradio03\" value=\"Mike\" v-model=\"checkedNamesRadio03\">\n                                        <i class=\"icon icon01 i_radio\"></i>\n                                        <span class=\"checkbox_txt\">以度数计费（度）</span>\n                                    </label>\n                                </div>\n                            </div>\n                        </div> -->\n\n\n                        <div class=\"row panel-heading head02\" _v-9652c0d4=\"\"><div class=\"col-xs-4\" _v-9652c0d4=\"\">电费购买：</div><div class=\"col-xs-8 text-right\" _v-9652c0d4=\"\">温馨提示：单价：{{ ammeters.electricityPrice }}元/度</div></div>\n                            <select class=\"form-control\" style=\"height:40px;\" v-model=\"userCheckedAmmeter\" _v-9652c0d4=\"\">\n                                <option :value=\"index\" v-for=\"(index, ammeter) in ammeters.ammeters\" _v-9652c0d4=\"\">{{ ammeter.ammeter_name }}</option>\n                            </select>\n                            <div _v-9652c0d4=\"\">\n                            <div class=\"row\" style=\"margin-top:20px;\" _v-9652c0d4=\"\">\n                                <div class=\"col-md-8\" style=\"padding-right: 0;\" _v-9652c0d4=\"\">\n                                    <input type=\"text\" name=\"\" style=\"width:156px;\" v-model=\"electricAmount\" _v-9652c0d4=\"\">\n                                    <span v-show=\"electricCountBy == 'yuan'\" _v-9652c0d4=\"\"> 元</span>\n                                    <span v-show=\"electricCountBy == 'du'\" _v-9652c0d4=\"\"> 度</span>\n                                </div>\n                                <div class=\"col-md-4\" style=\"padding-left:0;text-align:center;\" _v-9652c0d4=\"\"><a type=\"button\" class=\"btn\" style=\"width:88px\" @click=\"toHydropowerClick\" _v-9652c0d4=\"\">充值电费</a>\n                                </div>\n                            </div>\n                            <div class=\"row\" style=\"margin-top:20px;\" _v-9652c0d4=\"\">\n                                <div class=\"col-md-12\" _v-9652c0d4=\"\">\n                                    <label class=\"checkbox-container\" data-type=\"radio\" for=\"electricyuan\" :checked=\"electricCountBy == 'yuan'\" _v-9652c0d4=\"\">\n                                        <input type=\"radio\" id=\"electricyuan\" value=\"yuan\" v-model=\"electricCountBy\" _v-9652c0d4=\"\">\n                                        <i class=\"icon icon01 i_radio\" _v-9652c0d4=\"\"></i>\n                                        <span class=\"checkbox_txt\" _v-9652c0d4=\"\">以金额计费（元）</span>\n                                    </label>\n                                    <label class=\"checkbox-container\" data-type=\"radio\" for=\"electricdu\" :checked=\"electricCountBy == 'du'\" _v-9652c0d4=\"\">\n                                        <input type=\"radio\" id=\"electricdu\" value=\"du\" v-model=\"electricCountBy\" _v-9652c0d4=\"\">\n                                        <i class=\"icon icon01 i_radio\" _v-9652c0d4=\"\"></i>\n                                        <span class=\"checkbox_txt\" _v-9652c0d4=\"\">以度数计费（度）</span>\n                                    </label>\n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>  \n        </div>\n        <div class=\"row\" _v-9652c0d4=\"\">\n            <div class=\"col-md-3\" _v-9652c0d4=\"\">\n                <div class=\"panel panel-default xmxx-panel\" _v-9652c0d4=\"\">\n                <div class=\"panel-heading\" _v-9652c0d4=\"\">项目信息</div>\n                    <div class=\"panel-body\" _v-9652c0d4=\"\">\n                        <ul class=\"list-group\" _v-9652c0d4=\"\">\n                            <li class=\"clearfix list-group-item\" v-for=\"(index,houseInfo) in userInfo.houseInfos\" @click=\"userCheckedCustomerClick(index)\" _v-9652c0d4=\"\">\n                                <span class=\"i-badge\" _v-9652c0d4=\"\">{{ index+1 }}</span>\n                                <div class=\"col-xs-6\" _v-9652c0d4=\"\"><h3 _v-9652c0d4=\"\">{{ houseInfo.projectName }}</h3></div>\n                                <div class=\"col-xs-6 text-right\" _v-9652c0d4=\"\">{{ houseInfo.house }}</div>\n                                <ul class=\"col-xs-12 start-container\" _v-9652c0d4=\"\">\n                                    <li class=\"icon icon01 i-star active\" _v-9652c0d4=\"\"></li>\n                                    <li class=\"icon icon01 i-star active\" _v-9652c0d4=\"\"></li>\n                                    <li class=\"icon icon01 i-star active\" _v-9652c0d4=\"\"></li>\n                                    <li class=\"icon icon01 i-star active\" _v-9652c0d4=\"\"></li>\n                                    <li class=\"icon icon01 i-star\" _v-9652c0d4=\"\"></li>\n                                </ul>    \n                            </li>\n                        </ul>\n                        <div class=\"row telephone\" _v-9652c0d4=\"\">\n                            <div class=\"col-xs-3 text-right\" _v-9652c0d4=\"\"><i class=\"icon icon01 i-idxnav06\" _v-9652c0d4=\"\"></i></div>\n                            <div class=\"col-xs-9\" _v-9652c0d4=\"\">\n                                <p _v-9652c0d4=\"\">客服电话：010-1234-6543</p>\n                                <p _v-9652c0d4=\"\">投诉电话：400-1234-6543</p>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n            <div class=\"col-md-9\" _v-9652c0d4=\"\">\n                <div class=\"panel panel-default wytz-panel\" _v-9652c0d4=\"\">\n                <div class=\"panel-heading\" _v-9652c0d4=\"\">物业通知</div>\n                    <div class=\"panel-body\" _v-9652c0d4=\"\">\n                        <div class=\"col-md-5 banner-swiper-wrap\" _v-9652c0d4=\"\">\n                            <div class=\"swiper-container swiper-container-horizontal banner-swiper\" _v-9652c0d4=\"\">\n                                <div class=\"swiper-wrapper\" _v-9652c0d4=\"\">\n                                    <div class=\"swiper-slide blue-slide\" v-for=\"item in bannerImgs\" _v-9652c0d4=\"\"><a :style=\"'background:url('+ item +') no-repeat;background-position:center;background-size:cover;'\" _v-9652c0d4=\"\"></a></div>\n                                </div>\n                                <!-- Add Pagination -->\n                                <div class=\"swiper-pagination\" _v-9652c0d4=\"\"></div>\n                                <!-- Add Arrows -->\n                                <div class=\"swiper-button-next\" _v-9652c0d4=\"\"></div>\n                                <div class=\"swiper-button-prev\" _v-9652c0d4=\"\"></div>\n                            </div>\n                        </div>  \n                        <div class=\"col-md-7\" _v-9652c0d4=\"\">\n                           <!--  <div class=\"media\">\n                                <div class=\"media-body\">\n                                    <h4 class=\"media-heading\">【水电通知】熊猫宝宝初亮相 睡着也能卖萌</h4>\n                                    <p>中国租借给马来西亚的大熊猫中国租借给马来西亚的大熊猫中国租借给马来西亚的大熊猫中国租借给马来西亚的大熊国租借给马来西亚的大熊猫\n靓靓的“爱女”日前首次和公众见面..<a class=\"text-orange\">[查看详细]</a></p>\n                                </div>\n                            </div>\n                            <div class=\"media\">\n                                <div class=\"media-body\">\n                                    <h4 class=\"media-heading\">【招标通知】熊猫宝宝初亮相 睡着也能卖萌</h4>\n                                    <p>中国租借给马来西亚的大熊猫中国租借给马来西亚的大熊猫中国租借给马来西亚的大熊猫中国租借给马来西亚的大熊国租借给马来西亚的大熊猫\n靓靓的“爱女”日前首次和公众见面..<a class=\"text-orange\">[查看详细]</a></p>\n                                </div>\n                            </div> -->\n\n                            \n                            <div class=\"media\" v-for=\"notice in notices\" _v-9652c0d4=\"\">\n                                <div class=\"media-body\" _v-9652c0d4=\"\">\n                                    <h4 class=\"media-heading\" _v-9652c0d4=\"\">{{ notice.title }}</h4>\n                                    <p _v-9652c0d4=\"\">{{ notice.content | ellipsis 50 }}<a class=\"text-orange\" _v-9652c0d4=\"\">[查看详细]</a></p>\n                                </div>\n                                <div class=\"media-body\" _v-9652c0d4=\"\">awgte<nodata _v-9652c0d4=\"\"></nodata></div>\n                            </div>\n                            <div class=\"media\" v-show=\"!notices.length\" _v-9652c0d4=\"\">\n                                <div class=\"media-body\" _v-9652c0d4=\"\"><nodata _v-9652c0d4=\"\"></nodata></div>\n                            </div>\n                        </div>   \n                    </div>\n                </div>\n            </div>\n        </div>\n    </section>\n";
+	module.exports = "\n    <section class=\"clearfix container\" id=\"index-page\" _v-9652c0d4=\"\">\n        <div class=\"row\" _v-9652c0d4=\"\">\n            <aside class=\"col-md-3\" id=\"index-aside\" _v-9652c0d4=\"\">\n                <div class=\"panel panel-default user-panel\" _v-9652c0d4=\"\">\n                    <div class=\"panel-body\" _v-9652c0d4=\"\">\n                        <img src=\"" + __webpack_require__(192) + "\" class=\"img-circle\" _v-9652c0d4=\"\">\n                        <h1 class=\"user-name\" _v-9652c0d4=\"\">{{ userInfo.user.username }}</h1>\n                    </div>\n                </div>\n                <div class=\"panel panel-default aside-nav\" _v-9652c0d4=\"\">\n                    <div class=\"panel-body\" _v-9652c0d4=\"\">\n                        <ul class=\"list-group\" _v-9652c0d4=\"\">\n                            <li class=\"list-group-item\" _v-9652c0d4=\"\"><a _v-9652c0d4=\"\"><i class=\"icon icon01 i-idxnav01 i-nav\" _v-9652c0d4=\"\"></i>账户资料<i class=\"icon icon01 i-menu-right\" _v-9652c0d4=\"\"></i></a></li>\n                            <li class=\"list-group-item\" _v-9652c0d4=\"\"><a v-link=\"parseInt(messageNum,10)?{ path: '/home/index/mine/msglist' }:null\" _v-9652c0d4=\"\"><i class=\"icon icon01 i-idxnav02 i-nav\" _v-9652c0d4=\"\"><span class=\"badge\" _v-9652c0d4=\"\">{{ parseInt(messageNum,10)? messageNum:0 }}</span></i>我的消息<i class=\"icon icon01 i-menu-right\" _v-9652c0d4=\"\"></i></a></li>\n                            <li class=\"list-group-item\" _v-9652c0d4=\"\"><a v-link-active=\"\" v-link=\"{ path: '/home/index/mine/password' }\" _v-9652c0d4=\"\"><i class=\"icon icon01 i-idxnav03 i-nav\" _v-9652c0d4=\"\"></i>修改密码<i class=\"icon icon01 i-menu-right\" _v-9652c0d4=\"\"></i></a></li>\n                            <li class=\"list-group-item\" _v-9652c0d4=\"\"><a _v-9652c0d4=\"\"><i class=\"icon icon01 i-idxnav04 i-nav\" _v-9652c0d4=\"\"></i>修改资料<i class=\"icon icon01 i-menu-right\" _v-9652c0d4=\"\"></i></a></li>\n                            <li class=\"list-group-item\" _v-9652c0d4=\"\"><a v-link=\"{ path: '/home/index/mine/changephone' }\" _v-9652c0d4=\"\"><i class=\"icon icon01 i-idxnav05 i-nav\" _v-9652c0d4=\"\"></i>修改手机号<i class=\"icon icon01 i-menu-right\" _v-9652c0d4=\"\"></i></a></li>\n                        </ul>\n                    </div>\n                </div>\n            </aside>\n            <div class=\"col-md-6\" _v-9652c0d4=\"\">\n                <div class=\"panel panel-default arrears-panel\" _v-9652c0d4=\"\">\n                    <div class=\"panel-heading\" _v-9652c0d4=\"\">欠费信息</div>\n                    <div class=\"panel-body\" _v-9652c0d4=\"\">\n                        <div class=\"panel-heading head02\" _v-9652c0d4=\"\"><div class=\"col-md-12\" _v-9652c0d4=\"\">您当前欠费总金额：{{ findFeeList.totalPrice | currency '￥' 2 }}</div></div>\n                        <div class=\"arrears-data\" _v-9652c0d4=\"\">\n                            <ul class=\"arrears-list\" _v-9652c0d4=\"\">\n                                <li class=\"arrears-row\" v-for=\"(index,item) in findFeeList.list\" _v-9652c0d4=\"\">\n                                    <div class=\"arrears-name\" _v-9652c0d4=\"\">{{ item.house.vhname }}</div>\n                                    <div _v-9652c0d4=\"\">\n                                        <p _v-9652c0d4=\"\">开发公司费用</p>\n                                        <p _v-9652c0d4=\"\">物业公司费用</p>\n                                    </div>\n                                    <div _v-9652c0d4=\"\">\n                                        <p class=\"text-orange\" _v-9652c0d4=\"\">{{ item.kfFeeSum | currency '￥' 2 }}</p>\n                                        <p class=\"text-orange\" _v-9652c0d4=\"\">{{ item.propertyFeeSum | currency '￥' 2 }}</p>\n                                    </div>\n                                    <div _v-9652c0d4=\"\">\n                                        <p _v-9652c0d4=\"\"><a v-link=\"{ path: '/home/payment/arrears'}\" _v-9652c0d4=\"\">前往支付</a></p>\n                                        <p _v-9652c0d4=\"\"><a v-link=\"{ path: '/home/payment/arrears'}\" _v-9652c0d4=\"\">前往支付</a></p>\n                                    </div>\n                                </li>\n                            </ul>\n                        </div>\n                    </div>\n                </div>\n            </div>  \n            <div class=\"col-md-3\" _v-9652c0d4=\"\">\n                <div class=\"panel panel-default buy-panel\" _v-9652c0d4=\"\">\n                    <div class=\"panel-heading\" _v-9652c0d4=\"\">{{ projectName }} {{ house }}</div>\n                    <div class=\"panel-body\" style=\"border-bottom: 2px solid #f5f5f5;\" _v-9652c0d4=\"\">\n                        <div class=\"row panel-heading head02\" _v-9652c0d4=\"\"><div class=\"col-xs-4\" _v-9652c0d4=\"\">水费购买：</div><div class=\"col-xs-8 text-right\" _v-9652c0d4=\"\">温馨提示：单价：{{ ammeters.waterPrice }}元/吨</div></div>\n                        <div class=\"row\" _v-9652c0d4=\"\">\n                            <div class=\"col-md-8\" style=\"padding-right: 0;\" _v-9652c0d4=\"\">\n                                    <input type=\"text\" name=\"\" style=\"width:156px;\" v-model=\"waterAmout\" _v-9652c0d4=\"\">\n                                    <span v-show=\"waterCountBy == 'yuan'\" _v-9652c0d4=\"\"> 元</span>\n                                    <span v-show=\"waterCountBy == 'du'\" _v-9652c0d4=\"\"> 吨</span>\n                            </div>\n                            <div class=\"col-md-4\" style=\"padding-left:0;text-align:center;\" _v-9652c0d4=\"\"><a type=\"button\" class=\"btn\" style=\"width:88px\" @click=\"toHydropowerClick\" _v-9652c0d4=\"\">充值水费</a>\n                            </div>\n                        </div>\n                        <div class=\"row\" style=\"margin-top:20px;margin-bottom:10px;\" _v-9652c0d4=\"\">\n                            <div class=\"col-md-12\" _v-9652c0d4=\"\">\n                                    <label class=\"checkbox-container\" data-type=\"radio\" for=\"wateryuan\" :checked=\"waterCountBy == 'yuan'\" _v-9652c0d4=\"\">\n                                        <input type=\"radio\" id=\"wateryuan\" value=\"yuan\" v-model=\"waterCountBy\" _v-9652c0d4=\"\">\n                                        <i class=\"icon icon01 i_radio\" _v-9652c0d4=\"\"></i>\n                                        <span class=\"checkbox_txt\" _v-9652c0d4=\"\">以金额计费（元）</span>\n                                    </label>\n                                    <label class=\"checkbox-container\" data-type=\"radio\" for=\"waterdu\" :checked=\"waterCountBy == 'du'\" _v-9652c0d4=\"\">\n                                        <input type=\"radio\" id=\"waterdu\" value=\"du\" v-model=\"waterCountBy\" _v-9652c0d4=\"\">\n                                        <i class=\"icon icon01 i_radio\" _v-9652c0d4=\"\"></i>\n                                        <span class=\"checkbox_txt\" _v-9652c0d4=\"\">以度数计费（吨）</span>\n                                    </label>\n                            </div>\n                        </div>\n                       <!--  <div class=\"row panel-heading head02\"><div class=\"col-xs-4\">电费购买：</div><div class=\"col-xs-8 text-right\">温馨提示：单价5元/度</div></div>\n                            <select class=\"form-control\" style=\"height:40px;\">\n                                <option>1</option>\n                                <option>2</option>\n                                <option>3</option>\n                                <option>4</option>\n                                <option>5</option>\n                            </select>\n                            <div>\n                            <div class=\"row\" style=\"margin-top:20px;\">\n                                <div class=\"col-md-8\" style=\"padding-right: 0;\">\n                                        <input type=\"text\" name=\"\" style=\"width:156px;\">\n                                    <label>&ensp;吨</label>\n                                </div>\n                                <div class=\"col-md-4\" style=\"padding-left:0;text-align:center;\"><a type=\"button\" class=\"btn\" style=\"width:88px\" @click=\"toHydropowerClick\">充值电费</a>\n                                </div>\n                            </div>\n                            <div class=\"row\" style=\"margin-top:20px;\">\n                                <div class=\"col-md-12\">\n                                    <label class=\"checkbox-container\" data-type=\"radio\" for=\"johnradio03\" :checked=\"checkedNamesRadio03 == 'John01'\">\n                                        <input type=\"radio\" id=\"johnradio03\" value=\"John01\" v-model=\"checkedNamesRadio03\">\n                                        <i class=\"icon icon01 i_radio\"></i>\n                                        <span class=\"checkbox_txt\">以金额计费（元）</span>\n                                    </label>\n                                    <label class=\"checkbox-container\" data-type=\"radio\" for=\"mikeradio03\" :checked=\"checkedNamesRadio03 == 'Mike'\">\n                                        <input type=\"radio\" id=\"mikeradio03\" value=\"Mike\" v-model=\"checkedNamesRadio03\">\n                                        <i class=\"icon icon01 i_radio\"></i>\n                                        <span class=\"checkbox_txt\">以度数计费（度）</span>\n                                    </label>\n                                </div>\n                            </div>\n                        </div> -->\n\n\n                        <div class=\"row panel-heading head02\" _v-9652c0d4=\"\"><div class=\"col-xs-4\" _v-9652c0d4=\"\">电费购买：</div><div class=\"col-xs-8 text-right\" _v-9652c0d4=\"\">温馨提示：单价：{{ ammeters.electricityPrice }}元/度</div></div>\n                            <select class=\"form-control\" style=\"height:40px;\" v-model=\"userCheckedAmmeter\" _v-9652c0d4=\"\">\n                                <option :value=\"index\" v-for=\"(index, ammeter) in ammeters.ammeters\" _v-9652c0d4=\"\">{{ ammeter.ammeter_name }}（倍率：{{ ammeter.multiply }}）</option>\n                            </select>\n                            <div _v-9652c0d4=\"\">\n                            <div class=\"row\" style=\"margin-top:20px;\" _v-9652c0d4=\"\">\n                                <div class=\"col-md-8\" style=\"padding-right: 0;\" _v-9652c0d4=\"\">\n                                    <input type=\"text\" name=\"\" style=\"width:156px;\" v-model=\"electricAmount\" _v-9652c0d4=\"\">\n                                    <span v-show=\"electricCountBy == 'yuan'\" _v-9652c0d4=\"\"> 元</span>\n                                    <span v-show=\"electricCountBy == 'du'\" _v-9652c0d4=\"\"> 度</span>\n                                </div>\n                                <div class=\"col-md-4\" style=\"padding-left:0;text-align:center;\" _v-9652c0d4=\"\"><a type=\"button\" class=\"btn\" style=\"width:88px\" @click=\"toHydropowerClick\" _v-9652c0d4=\"\">充值电费</a>\n                                </div>\n                            </div>\n                            <div class=\"row\" style=\"margin-top:20px;\" _v-9652c0d4=\"\">\n                                <div class=\"col-md-12\" _v-9652c0d4=\"\">\n                                    <label class=\"checkbox-container\" data-type=\"radio\" for=\"electricyuan\" :checked=\"electricCountBy == 'yuan'\" _v-9652c0d4=\"\">\n                                        <input type=\"radio\" id=\"electricyuan\" value=\"yuan\" v-model=\"electricCountBy\" _v-9652c0d4=\"\">\n                                        <i class=\"icon icon01 i_radio\" _v-9652c0d4=\"\"></i>\n                                        <span class=\"checkbox_txt\" _v-9652c0d4=\"\">以金额计费（元）</span>\n                                    </label>\n                                    <label class=\"checkbox-container\" data-type=\"radio\" for=\"electricdu\" :checked=\"electricCountBy == 'du'\" _v-9652c0d4=\"\">\n                                        <input type=\"radio\" id=\"electricdu\" value=\"du\" v-model=\"electricCountBy\" _v-9652c0d4=\"\">\n                                        <i class=\"icon icon01 i_radio\" _v-9652c0d4=\"\"></i>\n                                        <span class=\"checkbox_txt\" _v-9652c0d4=\"\">以度数计费（度）</span>\n                                    </label>\n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>  \n        </div>\n        <div class=\"row\" _v-9652c0d4=\"\">\n            <div class=\"col-md-3\" _v-9652c0d4=\"\">\n                <div class=\"panel panel-default xmxx-panel\" _v-9652c0d4=\"\">\n                <div class=\"panel-heading\" _v-9652c0d4=\"\">项目信息</div>\n                    <div class=\"panel-body\" _v-9652c0d4=\"\">\n                        <ul class=\"list-group\" _v-9652c0d4=\"\">\n                            <li class=\"clearfix list-group-item\" v-for=\"(index,houseInfo) in userInfo.houseInfos\" @click=\"userCheckedCustomerClick(index)\" _v-9652c0d4=\"\">\n                                <span class=\"i-badge\" _v-9652c0d4=\"\">{{ index+1 }}</span>\n                                <div class=\"col-xs-6\" _v-9652c0d4=\"\"><h3 _v-9652c0d4=\"\">{{ houseInfo.projectName }}</h3></div>\n                                <div class=\"col-xs-6 text-right\" _v-9652c0d4=\"\">{{ houseInfo.house }}</div>\n                                <ul class=\"col-xs-12 start-container\" _v-9652c0d4=\"\">\n                                    <li class=\"icon icon01 i-star active\" _v-9652c0d4=\"\"></li>\n                                    <li class=\"icon icon01 i-star active\" _v-9652c0d4=\"\"></li>\n                                    <li class=\"icon icon01 i-star active\" _v-9652c0d4=\"\"></li>\n                                    <li class=\"icon icon01 i-star active\" _v-9652c0d4=\"\"></li>\n                                    <li class=\"icon icon01 i-star\" _v-9652c0d4=\"\"></li>\n                                </ul>    \n                            </li>\n                        </ul>\n                        <div class=\"row telephone\" _v-9652c0d4=\"\">\n                            <div class=\"col-xs-3 text-right\" _v-9652c0d4=\"\"><i class=\"icon icon01 i-idxnav06\" _v-9652c0d4=\"\"></i></div>\n                            <div class=\"col-xs-9\" _v-9652c0d4=\"\">\n                                <p _v-9652c0d4=\"\">客服电话：010-1234-6543</p>\n                                <p _v-9652c0d4=\"\">投诉电话：400-1234-6543</p>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n            <div class=\"col-md-9\" _v-9652c0d4=\"\">\n                <div class=\"panel panel-default wytz-panel\" _v-9652c0d4=\"\">\n                <div class=\"panel-heading\" _v-9652c0d4=\"\">物业通知</div>\n                    <div class=\"panel-body\" _v-9652c0d4=\"\">\n                        <div class=\"col-md-5 banner-swiper-wrap\" _v-9652c0d4=\"\">\n                            <div class=\"swiper-container swiper-container-horizontal banner-swiper\" _v-9652c0d4=\"\">\n                                <div class=\"swiper-wrapper\" _v-9652c0d4=\"\">\n                                    <div class=\"swiper-slide blue-slide\" v-for=\"item in bannerImgs\" _v-9652c0d4=\"\"><a :style=\"'background:url('+ item +') no-repeat;background-position:center;background-size:cover;'\" _v-9652c0d4=\"\"></a></div>\n                                </div>\n                                <!-- Add Pagination -->\n                                <div class=\"swiper-pagination\" _v-9652c0d4=\"\"></div>\n                                <!-- Add Arrows -->\n                                <div class=\"swiper-button-next\" _v-9652c0d4=\"\"></div>\n                                <div class=\"swiper-button-prev\" _v-9652c0d4=\"\"></div>\n                            </div>\n                        </div>  \n                        <div class=\"col-md-7\" _v-9652c0d4=\"\">\n                           <!--  <div class=\"media\">\n                                <div class=\"media-body\">\n                                    <h4 class=\"media-heading\">【水电通知】熊猫宝宝初亮相 睡着也能卖萌</h4>\n                                    <p>中国租借给马来西亚的大熊猫中国租借给马来西亚的大熊猫中国租借给马来西亚的大熊猫中国租借给马来西亚的大熊国租借给马来西亚的大熊猫\n靓靓的“爱女”日前首次和公众见面..<a class=\"text-orange\">[查看详细]</a></p>\n                                </div>\n                            </div>\n                            <div class=\"media\">\n                                <div class=\"media-body\">\n                                    <h4 class=\"media-heading\">【招标通知】熊猫宝宝初亮相 睡着也能卖萌</h4>\n                                    <p>中国租借给马来西亚的大熊猫中国租借给马来西亚的大熊猫中国租借给马来西亚的大熊猫中国租借给马来西亚的大熊国租借给马来西亚的大熊猫\n靓靓的“爱女”日前首次和公众见面..<a class=\"text-orange\">[查看详细]</a></p>\n                                </div>\n                            </div> -->\n\n                            \n                            <div class=\"media\" v-for=\"message in messages\" _v-9652c0d4=\"\">\n                                <div class=\"media-body\" _v-9652c0d4=\"\">\n                                    <h4 class=\"media-heading\" _v-9652c0d4=\"\">{{ message.title }}</h4>\n                                    <p _v-9652c0d4=\"\">{{ message.content | ellipsis 50 }}<a class=\"text-orange\" v-link=\"{ path: '/home/index/mine/msglist/msgdetail?message_manage_id=' + message.message_manage_id }\" _v-9652c0d4=\"\">[查看详细]</a></p>\n                                </div>\n                            </div>\n                            <div class=\"media\" v-show=\"!messages.length\" _v-9652c0d4=\"\">\n                                <div class=\"media-body\" _v-9652c0d4=\"\"><nodata _v-9652c0d4=\"\"></nodata></div>\n                            </div>\n                        </div>   \n                    </div>\n                </div>\n            </div>\n        </div>\n    </section>\n";
 
 /***/ }),
 /* 192 */
@@ -35739,7 +35760,7 @@ webpackJsonp([0],[
 	// 											<td>{{ item.feetype }}</td>
 	// 											<td>{{ item.beginDate }} ~ {{ item.stopDate }}</td>
 	// 											<td>{{ item.sum | currency '￥' 2  }}</td>
-	// 											<td>应缴金额</td>
+	// 											<td>{{ item.shouldSum | currency '￥' 2  }}</td>
 	// 										</tr>
 	// 									</tbody>
 	// 								</table>
@@ -35768,7 +35789,7 @@ webpackJsonp([0],[
 	// 											<td>{{ item.feetype }}</td>
 	// 											<td>{{ item.beginDate }} ~ {{ item.stopDate }}</td>
 	// 											<td>{{ item.sum | currency '￥' 2  }}</td>
-	// 											<td>应缴金额</td>
+	// 											<td>{{ item.shouldSum | currency '￥' 2  }}</td>
 	// 										</tr>
 	// 									</tbody>
 	// 								</table>
@@ -35817,7 +35838,7 @@ webpackJsonp([0],[
 	// 											<td>{{ item.feetype }}</td>
 	// 											<td>{{ item.beginDate }} ~ {{ item.stopDate }}</td>
 	// 											<td>{{ item.sum | currency '￥' 2  }}</td>
-	// 											<td>应缴金额</td>
+	// 											<td>{{ item.shouldSum | currency '￥' 2  }}</td>
 	// 										</tr>
 	// 									</tbody>
 	// 								</table>
@@ -35846,7 +35867,7 @@ webpackJsonp([0],[
 	// 											<td>{{ item.feetype }}</td>
 	// 											<td>{{ item.beginDate }} ~ {{ item.stopDate }}</td>
 	// 											<td>{{ item.sum | currency '￥' 2  }}</td>
-	// 											<td>应缴金额</td>
+	// 											<td>{{ item.shouldSum | currency '￥' 2  }}</td>
 	// 										</tr>
 	// 									</tbody>
 	// 								</table>
@@ -35958,20 +35979,31 @@ webpackJsonp([0],[
 	            var _totalPrice = 0;
 	            var _payType = '';
 	            for (var i = 0; i < this.userChecked.length; i++) {
-	                if (this.userChecked[i].indexOf(type + index)) {
+	                if (this.userChecked[i].indexOf(type + index) != -1) {
+	                    console.log(type + index, this.userChecked[i], this.userChecked[i].indexOf(type + index));
 	                    _totalPrice += Number(this.dataInfo[type][index][this.userChecked[i].split('-')[1]], 10);
 	                    _goodsAry = _goodsAry.concat(this.dataInfo[type][index][this.userChecked[i].split('-')[1].replace('Sum', '')]);
 	                }
 	            }
+
+	            // 去支付
 	            if (Number(_totalPrice, 10)) {
 	                this.$router.go('/home/payment/pay');
 	                this.$router.params = {
 	                    totalPrice: _totalPrice,
-	                    canInvoice: true,
 	                    payType: type,
+	                    canInvoice: true, // 是否能开票
+	                    goodsInfosKey: { // 展示商品的字段
+	                        feetypeKey: 'feetype',
+	                        priceKey: 'shouldSum'
+	                    },
+	                    goToURL: {
+	                        name: type,
+	                        url: '/home/payment/estates'
+	                    },
 	                    houseInfo: this.data[index].houseInfo,
-	                    goods: _goodsAry
-	                };
+	                    goods: _goodsAry, // 商品
+	                    invoiceGoods: '' };
 	            }
 	        }
 	    }
@@ -35983,7 +36015,7 @@ webpackJsonp([0],[
 /* 203 */
 /***/ (function(module, exports) {
 
-	module.exports = "\n<ol class=\"breadcrumb\" _v-2dc6caf0=\"\">你当前的位置：\n\t<li _v-2dc6caf0=\"\"><a href=\"#\" _v-2dc6caf0=\"\">联东首页</a></li>\n\t<li _v-2dc6caf0=\"\"><a href=\"#\" _v-2dc6caf0=\"\">费用缴纳</a></li>\n\t<li class=\"active\" _v-2dc6caf0=\"\">欠费明细</li>\n</ol>\n<div class=\"container\" _v-2dc6caf0=\"\">\n\t<div class=\"row\" _v-2dc6caf0=\"\">\n\t\t<div class=\"col-xs-12\" _v-2dc6caf0=\"\">\n\t\t\t<template v-if=\"data.length\" v-for=\"(index, houseInfo) in data\" _v-2dc6caf0=\"\">\n\t\t\t\t<div class=\"panel panel-default\" _v-2dc6caf0=\"\">\n\t\t\t\t\t<div class=\"panel-heading\" _v-2dc6caf0=\"\">\n\t\t\t\t\t\t<h1 class=\"col-md-6\" _v-2dc6caf0=\"\">{{ houseInfo.houseProperty }} 物业费用</h1>\n\t\t\t\t\t\t<div class=\"col-md-6 panel-right\" _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t<label class=\"icon icon01 i-open01 btn-open\" :for=\"'wuye-'+index\" :open=\"toggleChecked.indexOf('wuye'+index)!=-1\" :close=\"toggleChecked.indexOf('wuye'+index) ==-1\" _v-2dc6caf0=\"\">\n\t\t\t\t\t\t        <input type=\"checkbox\" :id=\"'wuye-'+index\" :value=\"'wuye'+index\" v-model=\"toggleChecked\" _v-2dc6caf0=\"\">\n\t\t\t\t\t\t    </label>\n\t\t\t\t\t\t</div>\t\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class=\"panel-body\" :open=\"toggleChecked.indexOf('wuye'+index)!=-1\" :close=\"toggleChecked.indexOf('wuye'+index) ==-1\" v-show=\"parseFloat(dataInfo.wuye[index].pastSum,10)+parseFloat(dataInfo.wuye[index].currentSum,10)\" _v-2dc6caf0=\"\">\n\t\t\t\t\t\t<div class=\"rent-info\" _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t<div class=\"rent-item\" v-show=\"dataInfo.wuye[index].currentSum\" _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t    <label class=\"checkbox-container\" data-type=\"checkbox\" :for=\"'wuDqUserChecked'+index\" :checked=\"userChecked.indexOf('wuye'+index+'-currentSum')!=-1\" _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t        <input type=\"checkbox\" :id=\"'wuDqUserChecked'+index\" :value=\"'wuye'+index+'-currentSum'\" v-model=\"userChecked\" checked=\"\" _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t        <i class=\"icon icon01 i_radio\" _v-2dc6caf0=\"\"></i>\n\t\t\t\t\t\t\t        <span class=\"checkbox_txt\" _v-2dc6caf0=\"\">当期应缴</span>\n\t\t\t\t\t\t\t    </label>\n\t\t\t\t\t\t\t\t<div class=\"price\" _v-2dc6caf0=\"\">{{ parseFloat(dataInfo.wuye[index].currentSum,10) | currency '￥' 2 }}</div>\n\t\t\t\t\t\t\t\t<table class=\"table table-bordered table-data\" _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t\t\t<thead _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t\t\t\t<tr _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<th _v-2dc6caf0=\"\">缴费月份</th>\n\t\t\t\t\t\t\t\t\t\t\t<th _v-2dc6caf0=\"\">缴费类型</th>\n\t\t\t\t\t\t\t\t\t\t\t<th _v-2dc6caf0=\"\">缴费区间</th>\n\t\t\t\t\t\t\t\t\t\t\t<th _v-2dc6caf0=\"\">欠缴金额</th>\n\t\t\t\t\t\t\t\t\t\t\t<th _v-2dc6caf0=\"\">应缴金额</th>\n\t\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t</thead>\n\t\t\t\t\t\t\t\t\t<tbody _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t\t\t\t<tr v-for=\"item in dataInfo.wuye[index].current\" _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<td _v-2dc6caf0=\"\">{{ item.months }}</td>\n\t\t\t\t\t\t\t\t\t\t\t<td _v-2dc6caf0=\"\">{{ item.feetype }}</td>\n\t\t\t\t\t\t\t\t\t\t\t<td _v-2dc6caf0=\"\">{{ item.beginDate }} ~ {{ item.stopDate }}</td>\n\t\t\t\t\t\t\t\t\t\t\t<td _v-2dc6caf0=\"\">{{ item.sum | currency '￥' 2  }}</td>\n\t\t\t\t\t\t\t\t\t\t\t<td _v-2dc6caf0=\"\">应缴金额</td>\n\t\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t</tbody>\n\t\t\t\t\t\t\t\t</table>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div class=\"rent-item\" v-show=\"dataInfo.wuye[index].pastSum\" _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t    <label class=\"checkbox-container\" data-type=\"checkbox\" :for=\"'wuWqUserChecked'+index\" :checked=\"userChecked.indexOf('wuye'+index+'-pastSum')!=-1\" _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t        <input type=\"checkbox\" :id=\"'wuWqUserChecked'+index\" :value=\"'wuye'+index+'-pastSum'\" v-model=\"userChecked\" checked=\"\" _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t        <i class=\"icon icon01 i_radio\" _v-2dc6caf0=\"\"></i>\n\t\t\t\t\t\t\t        <span class=\"checkbox_txt\" _v-2dc6caf0=\"\">往期欠缴</span>\n\t\t\t\t\t\t\t    </label>\n\n\t\t\t\t\t\t\t\t<div class=\"price\" _v-2dc6caf0=\"\">{{ parseFloat(dataInfo.wuye[index].pastSum,10) | currency '￥' 2 }}</div>\n\t\t\t\t\t\t\t\t<table class=\"table table-bordered table-data\" _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t\t\t<thead _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t\t\t\t<tr _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<th _v-2dc6caf0=\"\">缴费月份</th>\n\t\t\t\t\t\t\t\t\t\t\t<th _v-2dc6caf0=\"\">缴费类型</th>\n\t\t\t\t\t\t\t\t\t\t\t<th _v-2dc6caf0=\"\">缴费区间</th>\n\t\t\t\t\t\t\t\t\t\t\t<th _v-2dc6caf0=\"\">欠缴金额</th>\n\t\t\t\t\t\t\t\t\t\t\t<th _v-2dc6caf0=\"\">应缴金额</th>\n\t\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t</thead>\n\t\t\t\t\t\t\t\t\t<tbody _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t\t\t\t<tr v-for=\"item in dataInfo.wuye[index].past\" _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<td _v-2dc6caf0=\"\">{{ item.months }}</td>\n\t\t\t\t\t\t\t\t\t\t\t<td _v-2dc6caf0=\"\">{{ item.feetype }}</td>\n\t\t\t\t\t\t\t\t\t\t\t<td _v-2dc6caf0=\"\">{{ item.beginDate }} ~ {{ item.stopDate }}</td>\n\t\t\t\t\t\t\t\t\t\t\t<td _v-2dc6caf0=\"\">{{ item.sum | currency '￥' 2  }}</td>\n\t\t\t\t\t\t\t\t\t\t\t<td _v-2dc6caf0=\"\">应缴金额</td>\n\t\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t</tbody>\n\t\t\t\t\t\t\t\t</table>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class=\"operate-wrap\" _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t<div class=\"total\" _v-2dc6caf0=\"\">房产{{ houseInfo.houseProperty }}物业费用合计：{{ parseFloat(dataInfo.wuye[index].pastSum,10)+parseFloat(dataInfo.wuye[index].currentSum,10) | currency '￥' 2 }}</div>\n\t\t\t\t\t\t\t<div class=\"btn-wrap\" _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t\t<a class=\"btn\" @click=\"goPay('wuye', index)\" _v-2dc6caf0=\"\">支付费用</a>\n\t\t\t\t\t\t\t\t<a class=\"btn\" v-link=\"{ path: '/home/payment/advance' }\" _v-2dc6caf0=\"\">预交费用</a>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"panel panel-default\" _v-2dc6caf0=\"\">\n\t\t\t\t\t<div class=\"panel-heading\" _v-2dc6caf0=\"\">\n\t\t\t\t\t\t<h1 class=\"col-md-6\" _v-2dc6caf0=\"\">{{ houseInfo.houseProperty }} 开发费用</h1>\n\t\t\t\t\t\t<div class=\"col-md-6 panel-right\" _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t<label class=\"icon icon01 i-open01 btn-open\" :for=\"'kaifa-'+index\" :open=\"toggleChecked.indexOf('kaifa'+index)!=-1\" :close=\"toggleChecked.indexOf('kaifa'+index) ==-1\" _v-2dc6caf0=\"\">\n\t\t\t\t\t\t        <input type=\"checkbox\" :id=\"'kaifa-'+index\" :value=\"'kaifa'+index\" v-model=\"toggleChecked\" _v-2dc6caf0=\"\">\n\t\t\t\t\t\t    </label>\n\t\t\t\t\t\t</div>\t\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class=\"panel-body\" :open=\"toggleChecked.indexOf('kaifa'+index)!=-1\" :close=\"toggleChecked.indexOf('kaifa'+index) ==-1\" v-show=\"parseFloat(dataInfo.kaifa[index].pastSum,10)+parseFloat(dataInfo.kaifa[index].currentSum,10)\" _v-2dc6caf0=\"\">\n\t\t\t\t\t\t<div class=\"rent-info\" _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t<div class=\"rent-item\" v-show=\"dataInfo.kaifa[index].currentSum\" _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t    <label class=\"checkbox-container\" data-type=\"checkbox\" :for=\"'kaDqUserChecked'+index\" :checked=\"userChecked.indexOf('kaifa'+index+'-currentSum')!=-1\" _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t        <input type=\"checkbox\" :id=\"'kaDqUserChecked'+index\" :value=\"'kaifa'+index+'-currentSum'\" v-model=\"userChecked\" checked=\"\" _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t        <i class=\"icon icon01 i_radio\" _v-2dc6caf0=\"\"></i>\n\t\t\t\t\t\t\t        <span class=\"checkbox_txt\" _v-2dc6caf0=\"\">当期应缴</span>\n\t\t\t\t\t\t\t    </label>\n\t\t\t\t\t\t\t\t<div class=\"price\" _v-2dc6caf0=\"\">{{ parseFloat(dataInfo.kaifa[index].currentSum,10) | currency '￥' 2 }}</div>\n\t\t\t\t\t\t\t\t<table class=\"table table-bordered table-data\" _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t\t\t<thead _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t\t\t\t<tr _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<th _v-2dc6caf0=\"\">缴费月份</th>\n\t\t\t\t\t\t\t\t\t\t\t<th _v-2dc6caf0=\"\">缴费类型</th>\n\t\t\t\t\t\t\t\t\t\t\t<th _v-2dc6caf0=\"\">缴费区间</th>\n\t\t\t\t\t\t\t\t\t\t\t<th _v-2dc6caf0=\"\">欠缴金额</th>\n\t\t\t\t\t\t\t\t\t\t\t<th _v-2dc6caf0=\"\">应缴金额</th>\n\t\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t</thead>\n\t\t\t\t\t\t\t\t\t<tbody _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t\t\t\t<tr v-for=\"item in dataInfo.kaifa[index].current\" _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<td _v-2dc6caf0=\"\">{{ item.months }}</td>\n\t\t\t\t\t\t\t\t\t\t\t<td _v-2dc6caf0=\"\">{{ item.feetype }}</td>\n\t\t\t\t\t\t\t\t\t\t\t<td _v-2dc6caf0=\"\">{{ item.beginDate }} ~ {{ item.stopDate }}</td>\n\t\t\t\t\t\t\t\t\t\t\t<td _v-2dc6caf0=\"\">{{ item.sum | currency '￥' 2  }}</td>\n\t\t\t\t\t\t\t\t\t\t\t<td _v-2dc6caf0=\"\">应缴金额</td>\n\t\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t</tbody>\n\t\t\t\t\t\t\t\t</table>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div class=\"rent-item\" v-show=\"dataInfo.kaifa[index].pastSum\" _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t    <label class=\"checkbox-container\" data-type=\"checkbox\" :for=\"'kaWqUserChecked'+index\" :checked=\"userChecked.indexOf('kaifa'+index+'-pastSum')!=-1\" _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t        <input type=\"checkbox\" :id=\"'kaWqUserChecked'+index\" :value=\"'kaifa'+index+'-pastSum'\" v-model=\"userChecked\" checked=\"\" _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t        <i class=\"icon icon01 i_radio\" _v-2dc6caf0=\"\"></i>\n\t\t\t\t\t\t\t        <span class=\"checkbox_txt\" _v-2dc6caf0=\"\">往期欠缴</span>\n\t\t\t\t\t\t\t    </label>\n\n\t\t\t\t\t\t\t\t<div class=\"price\" _v-2dc6caf0=\"\">{{ parseFloat(dataInfo.kaifa[index].pastSum,10) | currency '￥' 2 }}</div>\n\t\t\t\t\t\t\t\t<table class=\"table table-bordered table-data\" _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t\t\t<thead _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t\t\t\t<tr _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<th _v-2dc6caf0=\"\">缴费月份</th>\n\t\t\t\t\t\t\t\t\t\t\t<th _v-2dc6caf0=\"\">缴费类型</th>\n\t\t\t\t\t\t\t\t\t\t\t<th _v-2dc6caf0=\"\">缴费区间</th>\n\t\t\t\t\t\t\t\t\t\t\t<th _v-2dc6caf0=\"\">欠缴金额</th>\n\t\t\t\t\t\t\t\t\t\t\t<th _v-2dc6caf0=\"\">应缴金额</th>\n\t\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t</thead>\n\t\t\t\t\t\t\t\t\t<tbody _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t\t\t\t<tr v-for=\"item in dataInfo.kaifa[index].past\" _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<td _v-2dc6caf0=\"\">{{ item.months }}</td>\n\t\t\t\t\t\t\t\t\t\t\t<td _v-2dc6caf0=\"\">{{ item.feetype }}</td>\n\t\t\t\t\t\t\t\t\t\t\t<td _v-2dc6caf0=\"\">{{ item.beginDate }} ~ {{ item.stopDate }}</td>\n\t\t\t\t\t\t\t\t\t\t\t<td _v-2dc6caf0=\"\">{{ item.sum | currency '￥' 2  }}</td>\n\t\t\t\t\t\t\t\t\t\t\t<td _v-2dc6caf0=\"\">应缴金额</td>\n\t\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t</tbody>\n\t\t\t\t\t\t\t\t</table>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class=\"operate-wrap\" _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t<div class=\"total\" _v-2dc6caf0=\"\">房产{{ houseInfo.houseProperty }}物业费用合计：{{ parseFloat(dataInfo.kaifa[index].pastSum,10)+parseFloat(dataInfo.kaifa[index].currentSum,10) | currency '￥' 2 }}</div>\n\t\t\t\t\t\t\t<div class=\"btn-wrap\" _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t\t<a class=\"btn\" @click=\"goPay('kaifa', index)\" _v-2dc6caf0=\"\">支付费用</a>\n\t\t\t\t\t\t\t\t<a class=\"btn\" v-link=\"{ path: '/home/payment/advance' }\" _v-2dc6caf0=\"\">预交费用</a>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</template>\n\t\t\t<template v-else=\"\" _v-2dc6caf0=\"\">\n\t\t\t\t<div class=\"panel panel-default\" _v-2dc6caf0=\"\">\n\t\t\t\t\t<div class=\"panel-heading\" _v-2dc6caf0=\"\">\n\t\t\t\t\t\t<div class=\"text-center\" _v-2dc6caf0=\"\"><nodata _v-2dc6caf0=\"\"></nodata></div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</template>\n\t\t</div>\t\n\t</div>\n</div>\n";
+	module.exports = "\n<ol class=\"breadcrumb\" _v-2dc6caf0=\"\">你当前的位置：\n\t<li _v-2dc6caf0=\"\"><a href=\"#\" _v-2dc6caf0=\"\">联东首页</a></li>\n\t<li _v-2dc6caf0=\"\"><a href=\"#\" _v-2dc6caf0=\"\">费用缴纳</a></li>\n\t<li class=\"active\" _v-2dc6caf0=\"\">欠费明细</li>\n</ol>\n<div class=\"container\" _v-2dc6caf0=\"\">\n\t<div class=\"row\" _v-2dc6caf0=\"\">\n\t\t<div class=\"col-xs-12\" _v-2dc6caf0=\"\">\n\t\t\t<template v-if=\"data.length\" v-for=\"(index, houseInfo) in data\" _v-2dc6caf0=\"\">\n\t\t\t\t<div class=\"panel panel-default\" _v-2dc6caf0=\"\">\n\t\t\t\t\t<div class=\"panel-heading\" _v-2dc6caf0=\"\">\n\t\t\t\t\t\t<h1 class=\"col-md-6\" _v-2dc6caf0=\"\">{{ houseInfo.houseProperty }} 物业费用</h1>\n\t\t\t\t\t\t<div class=\"col-md-6 panel-right\" _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t<label class=\"icon icon01 i-open01 btn-open\" :for=\"'wuye-'+index\" :open=\"toggleChecked.indexOf('wuye'+index)!=-1\" :close=\"toggleChecked.indexOf('wuye'+index) ==-1\" _v-2dc6caf0=\"\">\n\t\t\t\t\t\t        <input type=\"checkbox\" :id=\"'wuye-'+index\" :value=\"'wuye'+index\" v-model=\"toggleChecked\" _v-2dc6caf0=\"\">\n\t\t\t\t\t\t    </label>\n\t\t\t\t\t\t</div>\t\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class=\"panel-body\" :open=\"toggleChecked.indexOf('wuye'+index)!=-1\" :close=\"toggleChecked.indexOf('wuye'+index) ==-1\" v-show=\"parseFloat(dataInfo.wuye[index].pastSum,10)+parseFloat(dataInfo.wuye[index].currentSum,10)\" _v-2dc6caf0=\"\">\n\t\t\t\t\t\t<div class=\"rent-info\" _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t<div class=\"rent-item\" v-show=\"dataInfo.wuye[index].currentSum\" _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t    <label class=\"checkbox-container\" data-type=\"checkbox\" :for=\"'wuDqUserChecked'+index\" :checked=\"userChecked.indexOf('wuye'+index+'-currentSum')!=-1\" _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t        <input type=\"checkbox\" :id=\"'wuDqUserChecked'+index\" :value=\"'wuye'+index+'-currentSum'\" v-model=\"userChecked\" checked=\"\" _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t        <i class=\"icon icon01 i_radio\" _v-2dc6caf0=\"\"></i>\n\t\t\t\t\t\t\t        <span class=\"checkbox_txt\" _v-2dc6caf0=\"\">当期应缴</span>\n\t\t\t\t\t\t\t    </label>\n\t\t\t\t\t\t\t\t<div class=\"price\" _v-2dc6caf0=\"\">{{ parseFloat(dataInfo.wuye[index].currentSum,10) | currency '￥' 2 }}</div>\n\t\t\t\t\t\t\t\t<table class=\"table table-bordered table-data\" _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t\t\t<thead _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t\t\t\t<tr _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<th _v-2dc6caf0=\"\">缴费月份</th>\n\t\t\t\t\t\t\t\t\t\t\t<th _v-2dc6caf0=\"\">缴费类型</th>\n\t\t\t\t\t\t\t\t\t\t\t<th _v-2dc6caf0=\"\">缴费区间</th>\n\t\t\t\t\t\t\t\t\t\t\t<th _v-2dc6caf0=\"\">欠缴金额</th>\n\t\t\t\t\t\t\t\t\t\t\t<th _v-2dc6caf0=\"\">应缴金额</th>\n\t\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t</thead>\n\t\t\t\t\t\t\t\t\t<tbody _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t\t\t\t<tr v-for=\"item in dataInfo.wuye[index].current\" _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<td _v-2dc6caf0=\"\">{{ item.months }}</td>\n\t\t\t\t\t\t\t\t\t\t\t<td _v-2dc6caf0=\"\">{{ item.feetype }}</td>\n\t\t\t\t\t\t\t\t\t\t\t<td _v-2dc6caf0=\"\">{{ item.beginDate }} ~ {{ item.stopDate }}</td>\n\t\t\t\t\t\t\t\t\t\t\t<td _v-2dc6caf0=\"\">{{ item.sum | currency '￥' 2  }}</td>\n\t\t\t\t\t\t\t\t\t\t\t<td _v-2dc6caf0=\"\">{{ item.shouldSum | currency '￥' 2  }}</td>\n\t\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t</tbody>\n\t\t\t\t\t\t\t\t</table>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div class=\"rent-item\" v-show=\"dataInfo.wuye[index].pastSum\" _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t    <label class=\"checkbox-container\" data-type=\"checkbox\" :for=\"'wuWqUserChecked'+index\" :checked=\"userChecked.indexOf('wuye'+index+'-pastSum')!=-1\" _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t        <input type=\"checkbox\" :id=\"'wuWqUserChecked'+index\" :value=\"'wuye'+index+'-pastSum'\" v-model=\"userChecked\" checked=\"\" _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t        <i class=\"icon icon01 i_radio\" _v-2dc6caf0=\"\"></i>\n\t\t\t\t\t\t\t        <span class=\"checkbox_txt\" _v-2dc6caf0=\"\">往期欠缴</span>\n\t\t\t\t\t\t\t    </label>\n\n\t\t\t\t\t\t\t\t<div class=\"price\" _v-2dc6caf0=\"\">{{ parseFloat(dataInfo.wuye[index].pastSum,10) | currency '￥' 2 }}</div>\n\t\t\t\t\t\t\t\t<table class=\"table table-bordered table-data\" _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t\t\t<thead _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t\t\t\t<tr _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<th _v-2dc6caf0=\"\">缴费月份</th>\n\t\t\t\t\t\t\t\t\t\t\t<th _v-2dc6caf0=\"\">缴费类型</th>\n\t\t\t\t\t\t\t\t\t\t\t<th _v-2dc6caf0=\"\">缴费区间</th>\n\t\t\t\t\t\t\t\t\t\t\t<th _v-2dc6caf0=\"\">欠缴金额</th>\n\t\t\t\t\t\t\t\t\t\t\t<th _v-2dc6caf0=\"\">应缴金额</th>\n\t\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t</thead>\n\t\t\t\t\t\t\t\t\t<tbody _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t\t\t\t<tr v-for=\"item in dataInfo.wuye[index].past\" _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<td _v-2dc6caf0=\"\">{{ item.months }}</td>\n\t\t\t\t\t\t\t\t\t\t\t<td _v-2dc6caf0=\"\">{{ item.feetype }}</td>\n\t\t\t\t\t\t\t\t\t\t\t<td _v-2dc6caf0=\"\">{{ item.beginDate }} ~ {{ item.stopDate }}</td>\n\t\t\t\t\t\t\t\t\t\t\t<td _v-2dc6caf0=\"\">{{ item.sum | currency '￥' 2  }}</td>\n\t\t\t\t\t\t\t\t\t\t\t<td _v-2dc6caf0=\"\">{{ item.shouldSum | currency '￥' 2  }}</td>\n\t\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t</tbody>\n\t\t\t\t\t\t\t\t</table>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class=\"operate-wrap\" _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t<div class=\"total\" _v-2dc6caf0=\"\">房产{{ houseInfo.houseProperty }}物业费用合计：{{ parseFloat(dataInfo.wuye[index].pastSum,10)+parseFloat(dataInfo.wuye[index].currentSum,10) | currency '￥' 2 }}</div>\n\t\t\t\t\t\t\t<div class=\"btn-wrap\" _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t\t<a class=\"btn\" @click=\"goPay('wuye', index)\" _v-2dc6caf0=\"\">支付费用</a>\n\t\t\t\t\t\t\t\t<a class=\"btn\" v-link=\"{ path: '/home/payment/advance' }\" _v-2dc6caf0=\"\">预交费用</a>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"panel panel-default\" _v-2dc6caf0=\"\">\n\t\t\t\t\t<div class=\"panel-heading\" _v-2dc6caf0=\"\">\n\t\t\t\t\t\t<h1 class=\"col-md-6\" _v-2dc6caf0=\"\">{{ houseInfo.houseProperty }} 开发费用</h1>\n\t\t\t\t\t\t<div class=\"col-md-6 panel-right\" _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t<label class=\"icon icon01 i-open01 btn-open\" :for=\"'kaifa-'+index\" :open=\"toggleChecked.indexOf('kaifa'+index)!=-1\" :close=\"toggleChecked.indexOf('kaifa'+index) ==-1\" _v-2dc6caf0=\"\">\n\t\t\t\t\t\t        <input type=\"checkbox\" :id=\"'kaifa-'+index\" :value=\"'kaifa'+index\" v-model=\"toggleChecked\" _v-2dc6caf0=\"\">\n\t\t\t\t\t\t    </label>\n\t\t\t\t\t\t</div>\t\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class=\"panel-body\" :open=\"toggleChecked.indexOf('kaifa'+index)!=-1\" :close=\"toggleChecked.indexOf('kaifa'+index) ==-1\" v-show=\"parseFloat(dataInfo.kaifa[index].pastSum,10)+parseFloat(dataInfo.kaifa[index].currentSum,10)\" _v-2dc6caf0=\"\">\n\t\t\t\t\t\t<div class=\"rent-info\" _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t<div class=\"rent-item\" v-show=\"dataInfo.kaifa[index].currentSum\" _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t    <label class=\"checkbox-container\" data-type=\"checkbox\" :for=\"'kaDqUserChecked'+index\" :checked=\"userChecked.indexOf('kaifa'+index+'-currentSum')!=-1\" _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t        <input type=\"checkbox\" :id=\"'kaDqUserChecked'+index\" :value=\"'kaifa'+index+'-currentSum'\" v-model=\"userChecked\" checked=\"\" _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t        <i class=\"icon icon01 i_radio\" _v-2dc6caf0=\"\"></i>\n\t\t\t\t\t\t\t        <span class=\"checkbox_txt\" _v-2dc6caf0=\"\">当期应缴</span>\n\t\t\t\t\t\t\t    </label>\n\t\t\t\t\t\t\t\t<div class=\"price\" _v-2dc6caf0=\"\">{{ parseFloat(dataInfo.kaifa[index].currentSum,10) | currency '￥' 2 }}</div>\n\t\t\t\t\t\t\t\t<table class=\"table table-bordered table-data\" _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t\t\t<thead _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t\t\t\t<tr _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<th _v-2dc6caf0=\"\">缴费月份</th>\n\t\t\t\t\t\t\t\t\t\t\t<th _v-2dc6caf0=\"\">缴费类型</th>\n\t\t\t\t\t\t\t\t\t\t\t<th _v-2dc6caf0=\"\">缴费区间</th>\n\t\t\t\t\t\t\t\t\t\t\t<th _v-2dc6caf0=\"\">欠缴金额</th>\n\t\t\t\t\t\t\t\t\t\t\t<th _v-2dc6caf0=\"\">应缴金额</th>\n\t\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t</thead>\n\t\t\t\t\t\t\t\t\t<tbody _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t\t\t\t<tr v-for=\"item in dataInfo.kaifa[index].current\" _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<td _v-2dc6caf0=\"\">{{ item.months }}</td>\n\t\t\t\t\t\t\t\t\t\t\t<td _v-2dc6caf0=\"\">{{ item.feetype }}</td>\n\t\t\t\t\t\t\t\t\t\t\t<td _v-2dc6caf0=\"\">{{ item.beginDate }} ~ {{ item.stopDate }}</td>\n\t\t\t\t\t\t\t\t\t\t\t<td _v-2dc6caf0=\"\">{{ item.sum | currency '￥' 2  }}</td>\n\t\t\t\t\t\t\t\t\t\t\t<td _v-2dc6caf0=\"\">{{ item.shouldSum | currency '￥' 2  }}</td>\n\t\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t</tbody>\n\t\t\t\t\t\t\t\t</table>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div class=\"rent-item\" v-show=\"dataInfo.kaifa[index].pastSum\" _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t    <label class=\"checkbox-container\" data-type=\"checkbox\" :for=\"'kaWqUserChecked'+index\" :checked=\"userChecked.indexOf('kaifa'+index+'-pastSum')!=-1\" _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t        <input type=\"checkbox\" :id=\"'kaWqUserChecked'+index\" :value=\"'kaifa'+index+'-pastSum'\" v-model=\"userChecked\" checked=\"\" _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t        <i class=\"icon icon01 i_radio\" _v-2dc6caf0=\"\"></i>\n\t\t\t\t\t\t\t        <span class=\"checkbox_txt\" _v-2dc6caf0=\"\">往期欠缴</span>\n\t\t\t\t\t\t\t    </label>\n\n\t\t\t\t\t\t\t\t<div class=\"price\" _v-2dc6caf0=\"\">{{ parseFloat(dataInfo.kaifa[index].pastSum,10) | currency '￥' 2 }}</div>\n\t\t\t\t\t\t\t\t<table class=\"table table-bordered table-data\" _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t\t\t<thead _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t\t\t\t<tr _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<th _v-2dc6caf0=\"\">缴费月份</th>\n\t\t\t\t\t\t\t\t\t\t\t<th _v-2dc6caf0=\"\">缴费类型</th>\n\t\t\t\t\t\t\t\t\t\t\t<th _v-2dc6caf0=\"\">缴费区间</th>\n\t\t\t\t\t\t\t\t\t\t\t<th _v-2dc6caf0=\"\">欠缴金额</th>\n\t\t\t\t\t\t\t\t\t\t\t<th _v-2dc6caf0=\"\">应缴金额</th>\n\t\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t</thead>\n\t\t\t\t\t\t\t\t\t<tbody _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t\t\t\t<tr v-for=\"item in dataInfo.kaifa[index].past\" _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<td _v-2dc6caf0=\"\">{{ item.months }}</td>\n\t\t\t\t\t\t\t\t\t\t\t<td _v-2dc6caf0=\"\">{{ item.feetype }}</td>\n\t\t\t\t\t\t\t\t\t\t\t<td _v-2dc6caf0=\"\">{{ item.beginDate }} ~ {{ item.stopDate }}</td>\n\t\t\t\t\t\t\t\t\t\t\t<td _v-2dc6caf0=\"\">{{ item.sum | currency '￥' 2  }}</td>\n\t\t\t\t\t\t\t\t\t\t\t<td _v-2dc6caf0=\"\">{{ item.shouldSum | currency '￥' 2  }}</td>\n\t\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t</tbody>\n\t\t\t\t\t\t\t\t</table>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class=\"operate-wrap\" _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t<div class=\"total\" _v-2dc6caf0=\"\">房产{{ houseInfo.houseProperty }}物业费用合计：{{ parseFloat(dataInfo.kaifa[index].pastSum,10)+parseFloat(dataInfo.kaifa[index].currentSum,10) | currency '￥' 2 }}</div>\n\t\t\t\t\t\t\t<div class=\"btn-wrap\" _v-2dc6caf0=\"\">\n\t\t\t\t\t\t\t\t<a class=\"btn\" @click=\"goPay('kaifa', index)\" _v-2dc6caf0=\"\">支付费用</a>\n\t\t\t\t\t\t\t\t<a class=\"btn\" v-link=\"{ path: '/home/payment/advance' }\" _v-2dc6caf0=\"\">预交费用</a>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</template>\n\t\t\t<template v-else=\"\" _v-2dc6caf0=\"\">\n\t\t\t\t<div class=\"panel panel-default\" _v-2dc6caf0=\"\">\n\t\t\t\t\t<div class=\"panel-heading\" _v-2dc6caf0=\"\">\n\t\t\t\t\t\t<div class=\"text-center\" _v-2dc6caf0=\"\"><nodata _v-2dc6caf0=\"\"></nodata></div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</template>\n\t\t</div>\t\n\t</div>\n</div>\n";
 
 /***/ }),
 /* 204 */
@@ -36139,17 +36171,24 @@ webpackJsonp([0],[
 	// 										<thead>
 	// 											<tr>
 	// 												<th>开票公司名称</th>
-	// 												<th v-for="item in goodsInfo.goods" v-if="item.nyshouldmny!=0">{{ item.feetype }}({{ item.nyshouldmny }})</th>
+	// 												<th v-for="item in goodsInfos" v-if="item.price!=0">{{ item.feetype }}({{ item.price | currency '￥' 2 }})</th>
 	// 												<th>操作</th>
 	// 											</tr>
 	// 										</thead>
 	// 										<tbody>
-	// 											<tr v-for="userInvoiceItem in userInvoiceItems">
+	// 											<!-- <tr v-for="userInvoiceItem in userInvoiceItems">
 	// 												<td>{{ userInfo.user.username }}</td>
-	// 												<td v-for="item in userInvoiceItem" v-if="item.nyshouldmny!=0">{{ item.nyshouldmny | currency '￥' 2 }}</td>
+	// 												<td v-for="item in userInvoiceItem" v-if="item.price!=0">{{ item.price | currency '￥' 2 }}</td>
 	// 												<td>
 	// 													<button class="btn">添加</button>
 	// 													<button class="btn">删除</button>
+	// 												</td>
+	// 											</tr> -->
+	// 											<tr v-for="(userInvoiceIndex, userInvoiceItem) in userInvoiceItems">
+	// 												<td v-for="item in userInvoiceItem" v-if="item.price!=0"><input type="text" v-model="item"></td>
+	// 												<td>
+	// 													<button class="btn" @click="addInvoice(userInvoiceIndex)">添加</button>
+	// 													<button class="btn" @click="deleteInvoice(userInvoiceIndex)">删除</button>
 	// 												</td>
 	// 											</tr>
 	// 										</tbody>
@@ -36166,7 +36205,7 @@ webpackJsonp([0],[
 	// 							</tr>
 	// 							<tr>
 	// 								<th></th>
-	// 								<td><a class="btn" @click="next">立即支付</a></td>
+	// 								<td><button class="btn" :disabled="disabledSubmit" @click="next">立即支付</button></td>
 	// 							</tr>
 	// 						</tbody>
 	// 					</table>
@@ -36188,17 +36227,63 @@ webpackJsonp([0],[
 	            payMode: '', // 支付方式
 	            billingMode: 'bukaipiao',
 	            goodsInfo: null, // 商品信息
+	            disabledSubmit: true,
+	            goodsInfos: [], // 展示商品信息
+	            userInvoiceItem: {},
 	            userInvoiceItems: []
 	        };
 	    },
 
-	    watch: {},
+	    watch: {
+	        payMode: function payMode(newValue, oldValue) {
+	            if (newValue) {
+	                this.disabledSubmit = false;
+	            }
+	        }
+	    },
 	    created: function created() {
 	        if (this.$router.params) {
 	            console.log('页面参数: ', this.$router.params);
+	            var _goodsAry = this.$router.params.goods;
+	            var _priceKey = this.$router.params.goodsInfosKey.priceKey; // 商品价格字段名
+	            var _feetypeKey = this.$router.params.goodsInfosKey.feetypeKey; // 商品类型字段名
+
+	            // 合并缴费类型相同的数据
+	            var _feeType = {
+	                goods: {},
+	                price: {}
+	            };
+	            if (_goodsAry.length) {
+	                for (var i = 0; i < _goodsAry.length; i++) {
+	                    if (Number(_goodsAry[i][_priceKey]) != 0) {
+	                        if (_feeType.goods[_goodsAry[i][_feetypeKey]]) {
+	                            _feeType.goods[_goodsAry[i][_feetypeKey]].push(_goodsAry[i]);
+	                            _feeType.price[_goodsAry[i][_feetypeKey] + 'Price'] += Number(_goodsAry[i][_priceKey]);
+	                        } else {
+	                            _feeType.goods[_goodsAry[i][_feetypeKey]] = [_goodsAry[i]];
+	                            _feeType.price[_goodsAry[i][_feetypeKey] + 'Price'] = Number(_goodsAry[i][_priceKey]);
+	                        }
+	                    }
+	                }
+	            }
+	            var _goodsInfos = [];
+	            var _userInvoiceItem = {
+	                company: ''
+	            };
+	            for (var key in _feeType.goods) {
+	                _userInvoiceItem[key] = '';
+	                var _goodsInfo = {
+	                    feetype: key,
+	                    price: _feeType.price[key + 'Price']
+	                };
+	                _goodsInfos.push(_goodsInfo);
+	            }
+	            console.log('_goodsInfos: ', _goodsInfos, '_feeType: ', _feeType);
+
 	            this.$set('goodsInfo', this.$router.params);
-	            this.userInvoiceItems[0] = this.$router.params.goods;
-	            // this.$set('userInvoiceItem', this.$router.params.goods);
+	            this.$set('goodsInfos', _goodsInfos);
+	            this.$set('userInvoiceItem', _userInvoiceItem);
+	            this.$set('userInvoiceItems', [_userInvoiceItem]);
 	        } else {
 	            window.history.go(-1);
 	        }
@@ -36206,10 +36291,27 @@ webpackJsonp([0],[
 	    beforeDestroy: function beforeDestroy() {},
 
 	    methods: {
+	        deleteInvoice: function deleteInvoice(userInvoiceIndex) {
+	            if (this.userInvoiceItems.length == 1) {
+	                return;
+	            }
+	            this.userInvoiceItems.splice(userInvoiceIndex, 1);
+	        },
+	        addInvoice: function addInvoice(userInvoiceIndex) {
+	            if (this.userInvoiceItems.length >= 20) {
+	                return;
+	            }
+	            var _userInvoiceItem = {};
+	            for (var key in this.userInvoiceItem) {
+	                _userInvoiceItem[key] = '';
+	            }
+	            this.userInvoiceItems.splice(userInvoiceIndex + 1, 0, _userInvoiceItem);
+	        },
 	        next: function next() {
 	            if (this.payMode == 'yinlian') {
 	                this.$router.go('/home/payment/unionpay');
 	                this.$router.params = this.goodsInfo;
+	                this.$router.params.goodsInfos = this.goodsInfos;
 	            }
 	        }
 	    }
@@ -36221,7 +36323,7 @@ webpackJsonp([0],[
 /* 207 */
 /***/ (function(module, exports) {
 
-	module.exports = "\n<ol class=\"breadcrumb\" _v-abc6c47e=\"\">你当前的位置：\n\t<li _v-abc6c47e=\"\"><a _v-abc6c47e=\"\">联东首页</a></li>\n\t<li _v-abc6c47e=\"\"><a _v-abc6c47e=\"\">费用缴纳</a></li>\n\t<li _v-abc6c47e=\"\"><a v-link=\"{ path: '/home/payment/estates', activeClass: 'active'}\" _v-abc6c47e=\"\">物业缴费记录</a></li>\n\t<li class=\"active\" _v-abc6c47e=\"\">开发票</li>\n</ol>\n<div class=\"container\" _v-abc6c47e=\"\">\n\t<div class=\"row\" _v-abc6c47e=\"\">\n\t\t<div class=\"col-xs-12\" _v-abc6c47e=\"\">\n\t\t\t<div class=\"panel panel-default\" _v-abc6c47e=\"\">\n\t\t\t\t<div class=\"panel-heading\" _v-abc6c47e=\"\"><h1 _v-abc6c47e=\"\">支付</h1></div>\n\t\t\t\t<div class=\"panel-body\" _v-abc6c47e=\"\">\n\t\t\t\t\t<table class=\"table table-bordered table-form\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t<tbody _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t<tr _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t<th _v-abc6c47e=\"\">客户名称</th>\n\t\t\t\t\t\t\t\t<td _v-abc6c47e=\"\">{{ userInfo.user.username }}</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t<th _v-abc6c47e=\"\">房产信息</th>\n\t\t\t\t\t\t\t\t<td _v-abc6c47e=\"\">{{ goodsInfo.houseInfo.house }}</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t<th _v-abc6c47e=\"\">支付方式</th>\n\t\t\t\t\t\t\t\t<td _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t<!-- <label class=\"checkbox-container paycheck\" :checked=\"payMode == 'gongsi'\" for=\"gongsi\">\n\t\t\t\t\t\t\t\t\t\t<input type=\"radio\" v-model=\"payMode\" value=\"gongsi\" id=\"gongsi\">\n\t\t\t\t\t\t\t\t\t\t<span class=\"checkbox_txt\">公司转账</span>\n\t\t\t\t\t\t\t\t\t</label>\n\t\t\t\t\t\t\t\t\t<label class=\"checkbox-container paycheck\" :checked=\"payMode == 'zhifubao'\" for=\"zhifubao\">\n\t\t\t\t\t\t\t\t\t\t<input type=\"radio\" v-model=\"payMode\" value=\"zhifubao\" id=\"zhifubao\">\n\t\t\t\t\t\t\t\t\t\t<span class=\"checkbox_txt\">支付宝支付</span>\n\t\t\t\t\t\t\t\t\t</label>\n\t\t\t\t\t\t\t\t\t<label class=\"checkbox-container paycheck\" :checked=\"payMode == 'weixin'\" for=\"weixin\">\n\t\t\t\t\t\t\t\t\t\t<input type=\"radio\" v-model=\"payMode\" value=\"weixin\" id=\"weixin\">\n\t\t\t\t\t\t\t\t\t\t<span class=\"checkbox_txt\">微信支付</span>\n\t\t\t\t\t\t\t\t\t</label> -->\n\t\t\t\t\t\t\t\t\t<label class=\"checkbox-container paycheck\" :checked=\"payMode == 'yinlian'\" for=\"yinlian\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t\t<input type=\"radio\" v-model=\"payMode\" value=\"yinlian\" id=\"yinlian\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t\t<span class=\"checkbox_txt\" _v-abc6c47e=\"\">银联支付</span>\n\t\t\t\t\t\t\t\t\t</label>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr v-show=\"goodsInfo.canInvoice\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t<th :rowspan=\"billingMode=='bukaipiao'?'null':'2'\" _v-abc6c47e=\"\">发票信息</th>\n\t\t\t\t\t\t\t\t<td _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t<label class=\"checkbox-container\" data-type=\"radio\" data-name=\"like\" :checked=\"billingMode == 'bukaipiao'\" for=\"bukaipiao\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t\t<input type=\"radio\" v-model=\"billingMode\" value=\"bukaipiao\" id=\"bukaipiao\" name=\"lick\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t\t<i class=\"icon icon01 i_radio\" _v-abc6c47e=\"\"></i>\n\t\t\t\t\t\t\t\t\t\t<span class=\"checkbox_txt\" _v-abc6c47e=\"\">不开发票</span>\n\t\t\t\t\t\t\t\t\t</label>\n\t\t\t\t\t\t\t\t\t<label class=\"checkbox-container\" data-type=\"radio\" data-name=\"like\" :checked=\"billingMode == 'yezhu'\" for=\"yezhukaipiao\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t\t<input type=\"radio\" v-model=\"billingMode\" value=\"yezhu\" id=\"yezhukaipiao\" name=\"lick\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t\t<i class=\"icon icon01 i_radio\" _v-abc6c47e=\"\"></i>\n\t\t\t\t\t\t\t\t\t\t<span class=\"checkbox_txt\" _v-abc6c47e=\"\">业主开票</span>\n\t\t\t\t\t\t\t\t\t</label>\n\t\t\t\t\t\t\t\t\t<label class=\"checkbox-container\" data-type=\"radio\" data-name=\"like\" :checked=\"billingMode == 'daifu'\" for=\"daifukaipiao\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t\t<input type=\"radio\" v-model=\"billingMode\" value=\"daifu\" id=\"daifukaipiao\" name=\"lick\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t\t<i class=\"icon icon01 i_radio\" _v-abc6c47e=\"\"></i>\n\t\t\t\t\t\t\t\t\t\t<span class=\"checkbox_txt\" _v-abc6c47e=\"\">代付开票</span>\n\t\t\t\t\t\t\t\t\t</label>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr v-show=\"billingMode!='bukaipiao'\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t<td _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t<div class=\"tips\" _v-abc6c47e=\"\">温馨提示 ：发票不跨月开票，非业主客户代缴业主房产费用开具发票时，需出示（代付协议、三方协议）</div>\n\t\t\t\t\t\t\t\t\t<table class=\"table table-bordered table-data\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t\t<thead _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<tr _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t\t\t\t<th _v-abc6c47e=\"\">开票公司名称</th>\n\t\t\t\t\t\t\t\t\t\t\t\t<th v-for=\"item in goodsInfo.goods\" v-if=\"item.nyshouldmny!=0\" _v-abc6c47e=\"\">{{ item.feetype }}({{ item.nyshouldmny }})</th>\n\t\t\t\t\t\t\t\t\t\t\t\t<th _v-abc6c47e=\"\">操作</th>\n\t\t\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t</thead>\n\t\t\t\t\t\t\t\t\t\t<tbody _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<tr v-for=\"userInvoiceItem in userInvoiceItems\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t\t\t\t<td _v-abc6c47e=\"\">{{ userInfo.user.username }}</td>\n\t\t\t\t\t\t\t\t\t\t\t\t<td v-for=\"item in userInvoiceItem\" v-if=\"item.nyshouldmny!=0\" _v-abc6c47e=\"\">{{ item.nyshouldmny | currency '￥' 2 }}</td>\n\t\t\t\t\t\t\t\t\t\t\t\t<td _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t<button class=\"btn\" _v-abc6c47e=\"\">添加</button>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<button class=\"btn\" _v-abc6c47e=\"\">删除</button>\n\t\t\t\t\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t</tbody>\n\t\t\t\t\t\t\t\t\t</table>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr v-show=\"goodsInfo.canInvoice\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t<th _v-abc6c47e=\"\">开票协议</th>\n\t\t\t\t\t\t\t\t<td _v-abc6c47e=\"\">开票协议</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t<th _v-abc6c47e=\"\">费用信息</th>\n\t\t\t\t\t\t\t\t<td _v-abc6c47e=\"\">支付合计: <strong class=\"total_price\" _v-abc6c47e=\"\">{{ goodsInfo.totalPrice | currency '￥' 2 }}</strong></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t<th _v-abc6c47e=\"\"></th>\n\t\t\t\t\t\t\t\t<td _v-abc6c47e=\"\"><a class=\"btn\" @click=\"next\" _v-abc6c47e=\"\">立即支付</a></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t</tbody>\n\t\t\t\t\t</table>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\t\n\t</div>\n</div>\n";
+	module.exports = "\n<ol class=\"breadcrumb\" _v-abc6c47e=\"\">你当前的位置：\n\t<li _v-abc6c47e=\"\"><a _v-abc6c47e=\"\">联东首页</a></li>\n\t<li _v-abc6c47e=\"\"><a _v-abc6c47e=\"\">费用缴纳</a></li>\n\t<li _v-abc6c47e=\"\"><a v-link=\"{ path: '/home/payment/estates', activeClass: 'active'}\" _v-abc6c47e=\"\">物业缴费记录</a></li>\n\t<li class=\"active\" _v-abc6c47e=\"\">开发票</li>\n</ol>\n<div class=\"container\" _v-abc6c47e=\"\">\n\t<div class=\"row\" _v-abc6c47e=\"\">\n\t\t<div class=\"col-xs-12\" _v-abc6c47e=\"\">\n\t\t\t<div class=\"panel panel-default\" _v-abc6c47e=\"\">\n\t\t\t\t<div class=\"panel-heading\" _v-abc6c47e=\"\"><h1 _v-abc6c47e=\"\">支付</h1></div>\n\t\t\t\t<div class=\"panel-body\" _v-abc6c47e=\"\">\n\t\t\t\t\t<table class=\"table table-bordered table-form\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t<tbody _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t<tr _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t<th _v-abc6c47e=\"\">客户名称</th>\n\t\t\t\t\t\t\t\t<td _v-abc6c47e=\"\">{{ userInfo.user.username }}</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t<th _v-abc6c47e=\"\">房产信息</th>\n\t\t\t\t\t\t\t\t<td _v-abc6c47e=\"\">{{ goodsInfo.houseInfo.house }}</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t<th _v-abc6c47e=\"\">支付方式</th>\n\t\t\t\t\t\t\t\t<td _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t<!-- <label class=\"checkbox-container paycheck\" :checked=\"payMode == 'gongsi'\" for=\"gongsi\">\n\t\t\t\t\t\t\t\t\t\t<input type=\"radio\" v-model=\"payMode\" value=\"gongsi\" id=\"gongsi\">\n\t\t\t\t\t\t\t\t\t\t<span class=\"checkbox_txt\">公司转账</span>\n\t\t\t\t\t\t\t\t\t</label>\n\t\t\t\t\t\t\t\t\t<label class=\"checkbox-container paycheck\" :checked=\"payMode == 'zhifubao'\" for=\"zhifubao\">\n\t\t\t\t\t\t\t\t\t\t<input type=\"radio\" v-model=\"payMode\" value=\"zhifubao\" id=\"zhifubao\">\n\t\t\t\t\t\t\t\t\t\t<span class=\"checkbox_txt\">支付宝支付</span>\n\t\t\t\t\t\t\t\t\t</label>\n\t\t\t\t\t\t\t\t\t<label class=\"checkbox-container paycheck\" :checked=\"payMode == 'weixin'\" for=\"weixin\">\n\t\t\t\t\t\t\t\t\t\t<input type=\"radio\" v-model=\"payMode\" value=\"weixin\" id=\"weixin\">\n\t\t\t\t\t\t\t\t\t\t<span class=\"checkbox_txt\">微信支付</span>\n\t\t\t\t\t\t\t\t\t</label> -->\n\t\t\t\t\t\t\t\t\t<label class=\"checkbox-container paycheck\" :checked=\"payMode == 'yinlian'\" for=\"yinlian\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t\t<input type=\"radio\" v-model=\"payMode\" value=\"yinlian\" id=\"yinlian\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t\t<span class=\"checkbox_txt\" _v-abc6c47e=\"\">银联支付</span>\n\t\t\t\t\t\t\t\t\t</label>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr v-show=\"goodsInfo.canInvoice\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t<th :rowspan=\"billingMode=='bukaipiao'?'null':'2'\" _v-abc6c47e=\"\">发票信息</th>\n\t\t\t\t\t\t\t\t<td _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t<label class=\"checkbox-container\" data-type=\"radio\" data-name=\"like\" :checked=\"billingMode == 'bukaipiao'\" for=\"bukaipiao\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t\t<input type=\"radio\" v-model=\"billingMode\" value=\"bukaipiao\" id=\"bukaipiao\" name=\"lick\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t\t<i class=\"icon icon01 i_radio\" _v-abc6c47e=\"\"></i>\n\t\t\t\t\t\t\t\t\t\t<span class=\"checkbox_txt\" _v-abc6c47e=\"\">不开发票</span>\n\t\t\t\t\t\t\t\t\t</label>\n\t\t\t\t\t\t\t\t\t<label class=\"checkbox-container\" data-type=\"radio\" data-name=\"like\" :checked=\"billingMode == 'yezhu'\" for=\"yezhukaipiao\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t\t<input type=\"radio\" v-model=\"billingMode\" value=\"yezhu\" id=\"yezhukaipiao\" name=\"lick\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t\t<i class=\"icon icon01 i_radio\" _v-abc6c47e=\"\"></i>\n\t\t\t\t\t\t\t\t\t\t<span class=\"checkbox_txt\" _v-abc6c47e=\"\">业主开票</span>\n\t\t\t\t\t\t\t\t\t</label>\n\t\t\t\t\t\t\t\t\t<label class=\"checkbox-container\" data-type=\"radio\" data-name=\"like\" :checked=\"billingMode == 'daifu'\" for=\"daifukaipiao\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t\t<input type=\"radio\" v-model=\"billingMode\" value=\"daifu\" id=\"daifukaipiao\" name=\"lick\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t\t<i class=\"icon icon01 i_radio\" _v-abc6c47e=\"\"></i>\n\t\t\t\t\t\t\t\t\t\t<span class=\"checkbox_txt\" _v-abc6c47e=\"\">代付开票</span>\n\t\t\t\t\t\t\t\t\t</label>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr v-show=\"billingMode!='bukaipiao'\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t<td _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t<div class=\"tips\" _v-abc6c47e=\"\">温馨提示 ：发票不跨月开票，非业主客户代缴业主房产费用开具发票时，需出示（代付协议、三方协议）</div>\n\t\t\t\t\t\t\t\t\t<table class=\"table table-bordered table-data\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t\t<thead _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<tr _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t\t\t\t<th _v-abc6c47e=\"\">开票公司名称</th>\n\t\t\t\t\t\t\t\t\t\t\t\t<th v-for=\"item in goodsInfos\" v-if=\"item.price!=0\" _v-abc6c47e=\"\">{{ item.feetype }}({{ item.price | currency '￥' 2 }})</th>\n\t\t\t\t\t\t\t\t\t\t\t\t<th _v-abc6c47e=\"\">操作</th>\n\t\t\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t</thead>\n\t\t\t\t\t\t\t\t\t\t<tbody _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<!-- <tr v-for=\"userInvoiceItem in userInvoiceItems\">\n\t\t\t\t\t\t\t\t\t\t\t\t<td>{{ userInfo.user.username }}</td>\n\t\t\t\t\t\t\t\t\t\t\t\t<td v-for=\"item in userInvoiceItem\" v-if=\"item.price!=0\">{{ item.price | currency '￥' 2 }}</td>\n\t\t\t\t\t\t\t\t\t\t\t\t<td>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<button class=\"btn\">添加</button>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<button class=\"btn\">删除</button>\n\t\t\t\t\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t\t\t\t\t</tr> -->\n\t\t\t\t\t\t\t\t\t\t\t<tr v-for=\"(userInvoiceIndex, userInvoiceItem) in userInvoiceItems\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t\t\t\t<td v-for=\"item in userInvoiceItem\" v-if=\"item.price!=0\" _v-abc6c47e=\"\"><input type=\"text\" v-model=\"item\" _v-abc6c47e=\"\"></td>\n\t\t\t\t\t\t\t\t\t\t\t\t<td _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t<button class=\"btn\" @click=\"addInvoice(userInvoiceIndex)\" _v-abc6c47e=\"\">添加</button>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<button class=\"btn\" @click=\"deleteInvoice(userInvoiceIndex)\" _v-abc6c47e=\"\">删除</button>\n\t\t\t\t\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t</tbody>\n\t\t\t\t\t\t\t\t\t</table>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr v-show=\"goodsInfo.canInvoice\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t<th _v-abc6c47e=\"\">开票协议</th>\n\t\t\t\t\t\t\t\t<td _v-abc6c47e=\"\">开票协议</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t<th _v-abc6c47e=\"\">费用信息</th>\n\t\t\t\t\t\t\t\t<td _v-abc6c47e=\"\">支付合计: <strong class=\"total_price\" _v-abc6c47e=\"\">{{ goodsInfo.totalPrice | currency '￥' 2 }}</strong></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t<th _v-abc6c47e=\"\"></th>\n\t\t\t\t\t\t\t\t<td _v-abc6c47e=\"\"><button class=\"btn\" :disabled=\"disabledSubmit\" @click=\"next\" _v-abc6c47e=\"\">立即支付</button></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t</tbody>\n\t\t\t\t\t</table>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\t\n\t</div>\n</div>\n";
 
 /***/ }),
 /* 208 */
@@ -36256,11 +36358,15 @@ webpackJsonp([0],[
 /* 210 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(global) {'use strict';
+	/* WEBPACK VAR INJECTION */(function(global) {"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
-					value: true
+	    value: true
 	});
+
+	var _defineProperty2 = __webpack_require__(185);
+
+	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
 
 	var _stringify = __webpack_require__(173);
 
@@ -36342,12 +36448,12 @@ webpackJsonp([0],[
 	// 									<table class="table table-bordered table-data">
 	// 										<thead>
 	// 											<tr>
-	// 												<th v-for="item in goodsInfo.goods">{{ item.feetype }}</th>
+	// 												<th v-for="item in goodsInfo.goodsInfos">{{ item.feetype }}</th>
 	// 											</tr>
 	// 										</thead>
 	// 										<tbody>
 	// 											<tr>
-	// 												<td v-for="item in goodsInfo.goods">{{ item.nyshouldmny | currency '￥' 2 }}</td>
+	// 												<td v-for="item in goodsInfo.goodsInfos">{{ item.price | currency '￥' 2 }}</td>
 	// 											</tr>
 	// 										</tbody>
 	// 									</table>												
@@ -36370,8 +36476,8 @@ webpackJsonp([0],[
 	// 								<th>银行选择</th>
 	// 								<td>
 	// 									<template v-for="bank in banks">
-	// 										<label class="checkbox-container paycheck" :checked="BankInstNo == bank.code" :for="'bank'+bank.code">
-	// 											<input type="radio" v-model="BankInstNo" :value="bank.code" :id="'bank'+bank.code">
+	// 										<label class="checkbox-container paycheck" :checked="bankInstNo == bank.code" :for="'bank'+bank.code">
+	// 											<input type="radio" v-model="bankInstNo" :value="bank.code" :id="'bank'+bank.code">
 	// 											<span class="checkbox_txt">{{ bank.name }}</span>
 	// 										</label>
 	// 									</template>
@@ -36411,10 +36517,11 @@ webpackJsonp([0],[
 	// 				<h4 class="modal-title" id="myModalLabel">确认</h4>
 	// 			</div>
 	// 			<div class="modal-body">
-	// 				缴费成功，请点击确认
+	// 				缴费是否完成？
 	// 			</div>
 	// 			<div class="modal-footer">
 	// 				<button type="button" class="btn btn-default" data-dismiss="modal" @click="goToPage">支付完成</button>
+	// 				<button type="button" class="btn btn-default" data-dismiss="modal" @click="goBack">支付遇到问题</button>
 	// 				<!-- <button type="button" class="btn btn-primary">Save changes</button> -->
 	// 			</div>
 	// 		</div>
@@ -36424,170 +36531,342 @@ webpackJsonp([0],[
 	// </div>
 	// </template>
 	// <script>
+	function Base64() {
 
+	    // private property  
+	    var _keyStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
+
+	    // public method for encoding  
+	    this.encode = function (input) {
+	        var output = "";
+	        var chr1, chr2, chr3, enc1, enc2, enc3, enc4;
+	        var i = 0;
+	        input = _utf8_encode(input);
+	        while (i < input.length) {
+	            chr1 = input.charCodeAt(i++);
+	            chr2 = input.charCodeAt(i++);
+	            chr3 = input.charCodeAt(i++);
+	            enc1 = chr1 >> 2;
+	            enc2 = (chr1 & 3) << 4 | chr2 >> 4;
+	            enc3 = (chr2 & 15) << 2 | chr3 >> 6;
+	            enc4 = chr3 & 63;
+	            if (isNaN(chr2)) {
+	                enc3 = enc4 = 64;
+	            } else if (isNaN(chr3)) {
+	                enc4 = 64;
+	            }
+	            output = output + _keyStr.charAt(enc1) + _keyStr.charAt(enc2) + _keyStr.charAt(enc3) + _keyStr.charAt(enc4);
+	        }
+	        return output;
+	    };
+
+	    // public method for decoding  
+	    this.decode = function (input) {
+	        var output = "";
+	        var chr1, chr2, chr3;
+	        var enc1, enc2, enc3, enc4;
+	        var i = 0;
+	        input = input.replace(/[^A-Za-z0-9\+\/\=]/g, "");
+	        while (i < input.length) {
+	            enc1 = _keyStr.indexOf(input.charAt(i++));
+	            enc2 = _keyStr.indexOf(input.charAt(i++));
+	            enc3 = _keyStr.indexOf(input.charAt(i++));
+	            enc4 = _keyStr.indexOf(input.charAt(i++));
+	            chr1 = enc1 << 2 | enc2 >> 4;
+	            chr2 = (enc2 & 15) << 4 | enc3 >> 2;
+	            chr3 = (enc3 & 3) << 6 | enc4;
+	            output = output + String.fromCharCode(chr1);
+	            if (enc3 != 64) {
+	                output = output + String.fromCharCode(chr2);
+	            }
+	            if (enc4 != 64) {
+	                output = output + String.fromCharCode(chr3);
+	            }
+	        }
+	        output = _utf8_decode(output);
+	        return output;
+	    };
+
+	    // private method for UTF-8 encoding  
+	    function _utf8_encode(string) {
+	        string = string.replace(/\r\n/g, "\n");
+	        var utftext = "";
+	        for (var n = 0; n < string.length; n++) {
+	            var c = string.charCodeAt(n);
+	            if (c < 128) {
+	                utftext += String.fromCharCode(c);
+	            } else if (c > 127 && c < 2048) {
+	                utftext += String.fromCharCode(c >> 6 | 192);
+	                utftext += String.fromCharCode(c & 63 | 128);
+	            } else {
+	                utftext += String.fromCharCode(c >> 12 | 224);
+	                utftext += String.fromCharCode(c >> 6 & 63 | 128);
+	                utftext += String.fromCharCode(c & 63 | 128);
+	            }
+	        }
+	        return utftext;
+	    }
+
+	    // private method for UTF-8 decoding  
+	    function _utf8_decode(utftext) {
+	        var string = "";
+	        var i = 0;
+	        var c = c1 = c2 = 0;
+	        while (i < utftext.length) {
+	            c = utftext.charCodeAt(i);
+	            if (c < 128) {
+	                string += String.fromCharCode(c);
+	                i++;
+	            } else if (c > 191 && c < 224) {
+	                c2 = utftext.charCodeAt(i + 1);
+	                string += String.fromCharCode((c & 31) << 6 | c2 & 63);
+	                i += 2;
+	            } else {
+	                c2 = utftext.charCodeAt(i + 1);
+	                c3 = utftext.charCodeAt(i + 2);
+	                string += String.fromCharCode((c & 15) << 12 | (c2 & 63) << 6 | c3 & 63);
+	                i += 3;
+	            }
+	        }
+	        return string;
+	    }
+	}
 	exports.default = {
-					filters: {},
-					directives: {},
-					components: {},
-					data: function data() {
-									return {
-													userInfo: global.userInfo,
-													payMode: '',
-													billingMode: '',
-													goodsInfo: null, // 商品信息
-													sendpay: null, // 获取支付签名
-													disabledSubmit: true,
-													banks: [{
-																	code: '700000000000017',
-																	name: '银联在线支付'
-													}],
+	    filters: {},
+	    directives: {},
+	    components: {},
+	    data: function data() {
+	        return {
+	            userInfo: global.userInfo,
+	            payMode: '',
+	            billingMode: '',
+	            goodsInfo: null, // 商品信息
+	            sendpay: null, // 获取支付签名
+	            disabledSubmit: true,
+	            paymentRecordsIds: [],
+	            banks: [{
+	                code: '700000000000017',
+	                name: '银联在线支付'
+	            }],
 
-													/*请求参数： 支付签名 
+	            /*请求参数： 支付签名 
 	            --------------------------------------------------*/
-													OrderAmt: null, // 商品价格(单位分注意转换)
-													CommodityMsg: null, // 商品信息
-													MerResv: null, // 附加参数(可作为载体)
-													BankInstNo: null, // 支付机构号
+	            orderAmt: null, // 商品价格(单位分注意转换)
+	            commodityMsg: null, // 商品信息
+	            merResv: null, // 附加参数(可作为载体)
+	            /*
+	            	'[
+	            	      {
+	            	          "type":"wuye",
+	            	          "id":"123456789"
+	            	       },
+	            	        {
+	            	          "type":"shuidian",
+	            	          "id":"987654321"
+	            	       }
+	            	]'
+	            */
+	            bankInstNo: null, // 支付机构号
 
 
-													/*请求参数： 生成缴费记录
+	            /*请求参数： 生成缴费记录
 	            --------------------------------------------------*/
-													houseInfoId: null, // 房产id
-													clientName: global.userInfo.user.username, // 客户名称
-													costType: null, // 缴费类型
-													payManner: null, // 支付方式
-													payMonth: null, // 缴费月份
-													startDate: null, // 开始日期
-													endDate: null, // 截止日期
-													payable: null, // 应缴
-													paidIn: null, // 已缴
-													invoiceStatus: null, // 开票状态(0-已开，1-未开,2-不开)
-													collectingCompany: null, // 收款公司
-													collectingAccount: null, // 收款账户
-													payTime: null };
-					},
+	            houseInfoId: null, // 房产id
+	            customerId: null, // 客户id
+	            clientName: global.userInfo.user.username, // 客户名称
+	            costType: null, // 缴费类型
+	            payManner: '银联在线支付', // 支付方式
+	            payMonth: null, // 缴费月份
+	            startDate: null, // 开始日期
+	            endDate: null, // 截止日期
+	            payable: null, // 应缴
+	            paidIn: null, // 已缴
+	            invoiceStatus: null, // 开票状态(0-已开，1-未开,2-不开)
+	            collectingCompany: null, // 收款公司
+	            collectingAccount: null, // 收款账户
+	            payTime: null };
+	    },
 
-					watch: {
-									BankInstNo: function BankInstNo() {
-													if (!this.BankInstNo) {
-																	return;
-													}
-													var _this = this;
-													$.ajax({
-																	type: "post",
-																	// contentType: 'application/x-www-form-urlencoded',
-																	url: global.HttpPath + '/sendpay',
-																	data: {
-																					OrderAmt: this.OrderAmt + '',
-																					// CommodityMsg: this.CommodityMsg,
-																					// MerResv: this.MerResv,
-																					CommodityMsg: 'aaa',
-																					MerResv: 'vvvvvvvv',
-																					BankInstNo: this.BankInstNo
-																	},
-																	success: function success(res) {
-																					_this.$set('postUrl', res.postUrl);
-																					var _sendpay = {};
-																					for (var key in res) {
-																									if (key != 'postUrl' && key != 'serialVersionUID') {
-																													_sendpay[key] = res[key];
-																									}
-																					}
-																					console.log("Data Saved: ", (0, _stringify2.default)(_sendpay));
-																					_this.$set('sendpay', _sendpay);
-																	}
-													});
-									},
-									sendpay: function sendpay(newValue) {
-													if (newValue) {
-																	this.disabledSubmit = false;
-													}
-									}
-					},
-					created: function created() {
-									if (this.$router.params) {
-													console.log('页面参数: ', this.$router.params);
-													var _houseInfo = this.$router.params.houseInfo;
-													this.$set('goodsInfo', this.$router.params);
-													this.$set('OrderAmt', parseInt(this.$router.params.totalPrice, 10) * 100);
-													this.$set('houseInfoId', _houseInfo.pk_house);
-									} else {
-													window.history.go(-1);
-									}
-					},
-					beforeDestroy: function beforeDestroy() {},
+	    watch: {
+	        bankInstNo: function bankInstNo() {
+	            console.log(global.paymentRecordsIds, global.paymentRecordsIds.join('/'), 'sssssssssss');
+	            if (!this.bankInstNo && !(global.paymentRecordsIds && global.paymentRecordsIds.legnth)) {
+	                return;
+	            }
+	            var _this = this;
+	            $.ajax({
+	                type: "post",
+	                url: global.HttpPath + '/sendpay',
+	                data: {
+	                    orderAmt: this.orderAmt + '',
+	                    // commodityMsg: this.commodityMsg,
+	                    // merResv: this.merResv,
+	                    commodityMsg: 'aaa',
+	                    merResv: new Base64().encode((0, _stringify2.default)(global.paymentRecordsIds)),
+	                    // merResv: global.paymentRecordsIds,
+	                    bankInstNo: this.bankInstNo
+	                },
+	                success: function success(res) {
+	                    _this.$set('postUrl', res.postUrl);
+	                    var _sendpay = {};
+	                    for (var key in res) {
+	                        if (key != 'postUrl') {
+	                            _sendpay[key] = res[key];
+	                        }
+	                    }
+	                    _this.$set('sendpay', _sendpay);
+	                }
+	            });
+	        },
+	        sendpay: function sendpay(newValue) {
+	            if (newValue) {
+	                this.disabledSubmit = false;
+	            }
+	        }
+	    },
+	    created: function created() {
+	        if (this.$router.params) {
+	            console.log('页面参数: ', this.$router.params);
+	            var _houseInfo = this.$router.params.houseInfo;
+	            this.$set('goodsInfo', this.$router.params);
+	            this.$set('orderAmt', parseInt(this.$router.params.totalPrice, 10) * 100);
+	            this.$set('houseInfoId', _houseInfo.pk_house);
+	            this.$set('customerId', _houseInfo.pk_customerId);
+	        } else {
+	            window.history.go(-1);
+	        }
+	        /*生成缴费记录*/
+	        var _this = this;
+	        var time = new Date();
+	        var _curTime = time.getFullYear() + '-' + (Array(2).join(0) + (time.getMonth() + 1)).slice(-2) + "-" + (Array(2).join(0) + time.getDate()).slice(-2);
+	        var _generatedRecordUrl = '';
+	        switch (this.goodsInfo.payType) {
+	            case 'wuye':
+	                _generatedRecordUrl = global.HttpPath + '/invoicing/records/property'; // 生成物业缴费记录
+	                break;
+	            case 'kaifa':
+	                _generatedRecordUrl = global.HttpPath + '/invoicing/records/kfFee'; // 生成开发缴费记录
+	                break;
+	            case 'hydropower':
+	                _generatedRecordUrl = global.HttpPath + '/invoicing/records/utilities'; // 生成水电缴费记录
+	                break;
+	        }
+	        global.paymentRecordsIds = [];
+	        if (this.goodsInfo && this.goodsInfo.goods && _generatedRecordUrl) {
+	            var _goods = this.goodsInfo.goods;
+	            if (this.goodsInfo.payType == 'wuye' || this.goodsInfo.payType == 'kaifa') {
+	                for (var i = 0; i < _goods.length; i++) {
+	                    var _generatedRecordParam;
 
-					methods: {
-									submit: function submit() {
-													var _this = this;
-													var time = new Date();
-													var _curTime = time.getFullYear() + '-' + (Array(2).join(0) + (time.getMonth() + 1)).slice(-2) + "-" + (Array(2).join(0) + time.getDate()).slice(-2);
-													var _generatedRecordUrl = '';
-													switch (this.goodsInfo.payType) {
-																	case 'wuye':
-																					_generatedRecordUrl = global.HttpPath + '/invoicing/records/property'; // 生成物业缴费记录
-																					break;
-													}
-													if (this.goodsInfo && this.goodsInfo.goods && _generatedRecordUrl) {
-																	var _goods = this.goodsInfo.goods;
-																	for (var i = 0; i < _goods.length; i++) {
-																					var _generatedRecordParams = {
-																									houseInfoId: this.houseInfoId, // 房产id
-																									clientName: this.clientName, // 客户名称
-																									costType: _goods[i].costType, // 缴费类型
-																									payManner: this.payManner, // 支付方式
-																									payMonth: _goods[i].payMonth, // 缴费月份
-																									startDate: _goods[i].startDate, // 开始日期
-																									endDate: _goods[i].endDate, // 截止日期
-																									payable: _goods[i].payable, // 应缴
-																									paidIn: _goods[i].paidIn, // 已缴
-																									invoiceStatus: _goods[i].invoiceStatus, // 开票状态(0-已开，1-未开,2-不开)
-																									collectingCompany: _goods[i].collectingCompany, // 收款公司
-																									collectingAccount: _goods[i].collectingAccount, // 收款账户
-																									payTime: _curTime };
-																					$.ajax({
-																									type: "post",
-																									contentType: "application/json",
-																									url: _generatedRecordUrl,
-																									data: (0, _stringify2.default)(_generatedRecordParams),
-																									dataType: 'json',
-																									thisIndex: i,
-																									success: function success(data) {
-																													console.log(data);
-																													console.log('iiiiii: ', i);
-																													console.log('this.thisIndex: ', this.thisIndex);
-																													if (_this.goodsInfo.canInvoice) {// 开票
-																																	// $.ajax({
-																																	//     type: "post",
-																																	//     contentType: "application/json",
-																																	//     url: _generatedRecordUrl,
-																																	//     data: JSON.stringify(_generatedRecordParams),
-																																	//     dataType: 'json',
-																																	//     success: function(data){
-																																	//         console.log(data)
-																																	//         if(this.goodsInfo.billingMode) { // 开票
+	                    var _generatedRecordParams = (_generatedRecordParam = {
+	                        houseInfoId: this.houseInfoId, // 房产id
+	                        customerId: this.customerId, // 客户id
+	                        clientName: this.clientName, // 客户名称
+	                        costType: _goods[i].costType, // 缴费类型
+	                        payManner: this.payManner }, (0, _defineProperty3.default)(_generatedRecordParam, "payManner", this.payManner), (0, _defineProperty3.default)(_generatedRecordParam, "payMonth", _goods[i].payMonth), (0, _defineProperty3.default)(_generatedRecordParam, "startDate", _goods[i].startDate), (0, _defineProperty3.default)(_generatedRecordParam, "endDate", _goods[i].endDate), (0, _defineProperty3.default)(_generatedRecordParam, "payable", _goods[i].payable), (0, _defineProperty3.default)(_generatedRecordParam, "paidIn", _goods[i].payable), (0, _defineProperty3.default)(_generatedRecordParam, "invoiceStatus", _goods[i].invoiceStatus), (0, _defineProperty3.default)(_generatedRecordParam, "collectingCompany", _goods[i].collectingCompany), (0, _defineProperty3.default)(_generatedRecordParam, "collectingAccount", _goods[i].collectingAccount), (0, _defineProperty3.default)(_generatedRecordParam, "payTime", _curTime), _generatedRecordParam);
+	                    $.ajax({
+	                        type: "post",
+	                        contentType: "application/json",
+	                        url: _generatedRecordUrl,
+	                        data: (0, _stringify2.default)(_generatedRecordParams),
+	                        dataType: 'json',
+	                        thisIndex: i,
+	                        thisType: this.goodsInfo.payType,
+	                        success: function success(data) {
+	                            console.log('生成物业/开发缴费记录', data);
+	                            global.paymentRecordsIds.push({
+	                                id: data,
+	                                type: this.thisType
+	                            });
+	                            if (_this.goodsInfo.canInvoice) {// 开票
+	                                // $.ajax({
+	                                //     type: "post",
+	                                //     contentType: "application/json",
+	                                //     url: _generatedRecordUrl,
+	                                //     data: JSON.stringify(_generatedRecordParams),
+	                                //     dataType: 'json',
+	                                //     success: function(data){
+	                                //         console.log(data)
+	                                //         if(this.goodsInfo.billingMode) { // 开票
 
-																																	//         }
-																																	//     }
-																																	// });
-																													}
-																									}
-																					});
-																	}
-													}
-													if (!this.disabledSubmit) {
-																	$('#payment-modal').modal({ // 打开弹窗
-																					keyboard: false,
-																					backdrop: 'static'
-																	});
-													}
-									},
-									goToPage: function goToPage() {
-													if (this.goodsInfo.goToURL && this.goodsInfo.goToURL.name == 'enter') {
-																	this.$router.go('/home/business/enter/infook');
-													}
-									}
-					}
+	                                //         }
+	                                //     }
+	                                // });
+	                            }
+	                        }
+	                    });
+	                }
+	            } else if (this.goodsInfo.payType == 'hydropower') {
+	                for (var i = 0; i < _goods.length; i++) {
+	                    if (_goods[i].paidIn != 0) {
+	                        var _generatedRecordParams = _goods[i];
+	                        _generatedRecordParams.payManner = _this.payManner;
+	                        _generatedRecordParams.houseInfoId = _this.houseInfoId;
+	                        _generatedRecordParams.customerId = _this.customerId;
+	                        $.ajax({
+	                            type: "post",
+	                            contentType: "application/json",
+	                            url: _generatedRecordUrl,
+	                            data: (0, _stringify2.default)(_generatedRecordParams),
+	                            dataType: 'json',
+	                            thisIndex: i,
+	                            thisType: _this.goodsInfo.payType,
+	                            success: function success(data) {
+	                                console.log('生成水电缴费记录', data);
+	                                global.paymentRecordsIds.push({
+	                                    id: data,
+	                                    type: this.thisType
+	                                });
+	                                if (_this.goodsInfo.canInvoice) {// 开票
+	                                    // $.ajax({
+	                                    //     type: "post",
+	                                    //     contentType: "application/json",
+	                                    //     url: _generatedRecordUrl,
+	                                    //     data: JSON.stringify(_generatedRecordParams),
+	                                    //     dataType: 'json',
+	                                    //     success: function(data){
+	                                    //         console.log(data)
+	                                    //         if(this.goodsInfo.billingMode) { // 开票
+
+	                                    //         }
+	                                    //     }
+	                                    // });
+	                                }
+	                            }
+	                        });
+	                    }
+	                }
+	            }
+	        }
+	    },
+	    ready: function ready() {},
+	    beforeDestroy: function beforeDestroy() {},
+
+	    methods: {
+	        submit: function submit() {
+	            if (!this.disabledSubmit) {
+	                $('#payment-modal').modal({ // 打开弹窗
+	                    keyboard: false,
+	                    backdrop: 'static'
+	                });
+	            }
+	        },
+	        goToPage: function goToPage() {
+	            if (this.goodsInfo.goToURL) {
+	                switch (this.goodsInfo.goToURL.name) {
+	                    case 'enter':
+	                        this.$router.go('/home/business/enter/infook');
+	                        break;
+	                    case 'hydropower':
+	                        this.$router.go('/home/payment/hydropowerlog');
+	                        break;
+	                }
+	            }
+	        },
+	        goBack: function goBack() {
+	            window.history.go(-1);
+	        }
+	    }
 	};
 	// </script>
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
@@ -36596,7 +36875,7 @@ webpackJsonp([0],[
 /* 211 */
 /***/ (function(module, exports) {
 
-	module.exports = "\n<ol class=\"breadcrumb\" _v-48d71bb0=\"\">你当前的位置：\n\t<li _v-48d71bb0=\"\"><a _v-48d71bb0=\"\">联东首页</a></li>\n\t<li _v-48d71bb0=\"\"><a _v-48d71bb0=\"\">费用缴纳</a></li>\n\t<!-- <li><a v-link=\"{ path: '/home/payment/estates', activeClass: 'active'}\"></a></li> -->\n\t<li class=\"active\" _v-48d71bb0=\"\">选择银行</li>\n</ol>\n<div class=\"container\" _v-48d71bb0=\"\">\n\t<div class=\"row\" _v-48d71bb0=\"\">\n\t\t<div class=\"col-xs-12\" _v-48d71bb0=\"\">\n\t\t\t<div class=\"panel panel-default\" _v-48d71bb0=\"\">\n\t\t\t\t<div class=\"panel-heading\" _v-48d71bb0=\"\"><h1 _v-48d71bb0=\"\">确认信息</h1></div>\n\t\t\t\t<div class=\"panel-body\" _v-48d71bb0=\"\">\n\t\t\t\t\t<table class=\"table table-bordered table-form\" _v-48d71bb0=\"\">\n\t\t\t\t\t\t<tbody _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t<tr _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t<th _v-48d71bb0=\"\">客户名称</th>\n\t\t\t\t\t\t\t\t<td _v-48d71bb0=\"\">{{ userInfo.user.username }}</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t<th _v-48d71bb0=\"\">项目名称</th>\n\t\t\t\t\t\t\t\t<td _v-48d71bb0=\"\">{{ goodsInfo.houseInfo.projectName }}</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t<th _v-48d71bb0=\"\">房产名称</th>\n\t\t\t\t\t\t\t\t<td _v-48d71bb0=\"\">{{ goodsInfo.houseInfo.house }}</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t<th _v-48d71bb0=\"\">商品信息</th>\n\t\t\t\t\t\t\t\t<td _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t<table class=\"table table-bordered table-data\" _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t\t<thead _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<tr _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t\t\t\t<th v-for=\"item in goodsInfo.goods\" _v-48d71bb0=\"\">{{ item.feetype }}</th>\n\t\t\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t</thead>\n\t\t\t\t\t\t\t\t\t\t<tbody _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<tr _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t\t\t\t<td v-for=\"item in goodsInfo.goods\" _v-48d71bb0=\"\">{{ item.nyshouldmny | currency '￥' 2 }}</td>\n\t\t\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t</tbody>\n\t\t\t\t\t\t\t\t\t</table>\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t<th _v-48d71bb0=\"\">总价</th>\n\t\t\t\t\t\t\t\t<td _v-48d71bb0=\"\"><strong class=\"total_price\" _v-48d71bb0=\"\">{{ goodsInfo.totalPrice | currency '￥' 2 }}</strong></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t</tbody>\n\t\t\t\t\t</table>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\t<div class=\"panel panel-default\" _v-48d71bb0=\"\">\n\t\t\t\t<div class=\"panel-heading\" _v-48d71bb0=\"\"><h1 _v-48d71bb0=\"\">选择银行</h1></div>\n\t\t\t\t<div class=\"panel-body\" _v-48d71bb0=\"\">\n\t\t\t\t\t<table class=\"table table-bordered table-form\" _v-48d71bb0=\"\">\n\t\t\t\t\t\t<tbody _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t<tr _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t<th _v-48d71bb0=\"\">银行选择</th>\n\t\t\t\t\t\t\t\t<td _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t<template v-for=\"bank in banks\" _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t\t<label class=\"checkbox-container paycheck\" :checked=\"BankInstNo == bank.code\" :for=\"'bank'+bank.code\" _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<input type=\"radio\" v-model=\"BankInstNo\" :value=\"bank.code\" :id=\"'bank'+bank.code\" _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<span class=\"checkbox_txt\" _v-48d71bb0=\"\">{{ bank.name }}</span>\n\t\t\t\t\t\t\t\t\t\t</label>\n\t\t\t\t\t\t\t\t\t</template>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t<th _v-48d71bb0=\"\"></th>\n\t\t\t\t\t\t\t\t<!-- <td><a class=\"btn\" @click=\"next\">立即支付</a></td> -->\n\t\t\t\t\t\t\t\t<td _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t<form name=\"myform\" method=\"post\" :action=\"postUrl\" target=\"_blank\" _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t\t<!-- <input type=\"hide\" :name=\"key\" :value=\"value\" v-for=\"(key, value) in sendpay\"> -->\n\t\t\t\t\t\t\t\t\t\t<template v-for=\"(key, value) in sendpay\" _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<input type=\"hidden\" :name=\"key\" :value=\"value\" style=\"\" _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t\t</template>\n\t\t\t\t\t\t\t\t\t\t<button class=\"btn\" type=\"submit\" :disabled=\"disabledSubmit\" @click=\"submit\" _v-48d71bb0=\"\">提交</button>\n\t\t\t\t\t\t\t\t\t</form>\n\t\t\t\t\t\t\t\t\t\t<!-- <button class=\"btn\" type=\"submit\" @click=\"submit\">提交</button> -->\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t</tbody>\n\t\t\t\t\t</table>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\t\n\t</div>\n\n\n\n\n\n<!-- 弹窗 开始 -->\n<div class=\"modal fade\" id=\"payment-modal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" _v-48d71bb0=\"\">\n\t<div class=\"modal-dialog\" role=\"document\" _v-48d71bb0=\"\">\n\t\t<div class=\"modal-content\" _v-48d71bb0=\"\">\n\t\t\t<div class=\"modal-header\" _v-48d71bb0=\"\">\n\t\t\t\t<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\" _v-48d71bb0=\"\"><span aria-hidden=\"true\" _v-48d71bb0=\"\">×</span></button>\n\t\t\t\t<h4 class=\"modal-title\" id=\"myModalLabel\" _v-48d71bb0=\"\">确认</h4>\n\t\t\t</div>\n\t\t\t<div class=\"modal-body\" _v-48d71bb0=\"\">\n\t\t\t\t缴费成功，请点击确认\n\t\t\t</div>\n\t\t\t<div class=\"modal-footer\" _v-48d71bb0=\"\">\n\t\t\t\t<button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\" @click=\"goToPage\" _v-48d71bb0=\"\">支付完成</button>\n\t\t\t\t<!-- <button type=\"button\" class=\"btn btn-primary\">Save changes</button> -->\n\t\t\t</div>\n\t\t</div>\n\t</div>\n</div>\n<!-- 弹窗 结束 -->\n</div>\n";
+	module.exports = "\n<ol class=\"breadcrumb\" _v-48d71bb0=\"\">你当前的位置：\n\t<li _v-48d71bb0=\"\"><a _v-48d71bb0=\"\">联东首页</a></li>\n\t<li _v-48d71bb0=\"\"><a _v-48d71bb0=\"\">费用缴纳</a></li>\n\t<!-- <li><a v-link=\"{ path: '/home/payment/estates', activeClass: 'active'}\"></a></li> -->\n\t<li class=\"active\" _v-48d71bb0=\"\">选择银行</li>\n</ol>\n<div class=\"container\" _v-48d71bb0=\"\">\n\t<div class=\"row\" _v-48d71bb0=\"\">\n\t\t<div class=\"col-xs-12\" _v-48d71bb0=\"\">\n\t\t\t<div class=\"panel panel-default\" _v-48d71bb0=\"\">\n\t\t\t\t<div class=\"panel-heading\" _v-48d71bb0=\"\"><h1 _v-48d71bb0=\"\">确认信息</h1></div>\n\t\t\t\t<div class=\"panel-body\" _v-48d71bb0=\"\">\n\t\t\t\t\t<table class=\"table table-bordered table-form\" _v-48d71bb0=\"\">\n\t\t\t\t\t\t<tbody _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t<tr _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t<th _v-48d71bb0=\"\">客户名称</th>\n\t\t\t\t\t\t\t\t<td _v-48d71bb0=\"\">{{ userInfo.user.username }}</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t<th _v-48d71bb0=\"\">项目名称</th>\n\t\t\t\t\t\t\t\t<td _v-48d71bb0=\"\">{{ goodsInfo.houseInfo.projectName }}</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t<th _v-48d71bb0=\"\">房产名称</th>\n\t\t\t\t\t\t\t\t<td _v-48d71bb0=\"\">{{ goodsInfo.houseInfo.house }}</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t<th _v-48d71bb0=\"\">商品信息</th>\n\t\t\t\t\t\t\t\t<td _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t<table class=\"table table-bordered table-data\" _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t\t<thead _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<tr _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t\t\t\t<th v-for=\"item in goodsInfo.goodsInfos\" _v-48d71bb0=\"\">{{ item.feetype }}</th>\n\t\t\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t</thead>\n\t\t\t\t\t\t\t\t\t\t<tbody _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<tr _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t\t\t\t<td v-for=\"item in goodsInfo.goodsInfos\" _v-48d71bb0=\"\">{{ item.price | currency '￥' 2 }}</td>\n\t\t\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t</tbody>\n\t\t\t\t\t\t\t\t\t</table>\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t<th _v-48d71bb0=\"\">总价</th>\n\t\t\t\t\t\t\t\t<td _v-48d71bb0=\"\"><strong class=\"total_price\" _v-48d71bb0=\"\">{{ goodsInfo.totalPrice | currency '￥' 2 }}</strong></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t</tbody>\n\t\t\t\t\t</table>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\t<div class=\"panel panel-default\" _v-48d71bb0=\"\">\n\t\t\t\t<div class=\"panel-heading\" _v-48d71bb0=\"\"><h1 _v-48d71bb0=\"\">选择银行</h1></div>\n\t\t\t\t<div class=\"panel-body\" _v-48d71bb0=\"\">\n\t\t\t\t\t<table class=\"table table-bordered table-form\" _v-48d71bb0=\"\">\n\t\t\t\t\t\t<tbody _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t<tr _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t<th _v-48d71bb0=\"\">银行选择</th>\n\t\t\t\t\t\t\t\t<td _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t<template v-for=\"bank in banks\" _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t\t<label class=\"checkbox-container paycheck\" :checked=\"bankInstNo == bank.code\" :for=\"'bank'+bank.code\" _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<input type=\"radio\" v-model=\"bankInstNo\" :value=\"bank.code\" :id=\"'bank'+bank.code\" _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<span class=\"checkbox_txt\" _v-48d71bb0=\"\">{{ bank.name }}</span>\n\t\t\t\t\t\t\t\t\t\t</label>\n\t\t\t\t\t\t\t\t\t</template>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t<th _v-48d71bb0=\"\"></th>\n\t\t\t\t\t\t\t\t<!-- <td><a class=\"btn\" @click=\"next\">立即支付</a></td> -->\n\t\t\t\t\t\t\t\t<td _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t<form name=\"myform\" method=\"post\" :action=\"postUrl\" target=\"_blank\" _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t\t<!-- <input type=\"hide\" :name=\"key\" :value=\"value\" v-for=\"(key, value) in sendpay\"> -->\n\t\t\t\t\t\t\t\t\t\t<template v-for=\"(key, value) in sendpay\" _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<input type=\"hidden\" :name=\"key\" :value=\"value\" style=\"\" _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t\t</template>\n\t\t\t\t\t\t\t\t\t\t<button class=\"btn\" type=\"submit\" :disabled=\"disabledSubmit\" @click=\"submit\" _v-48d71bb0=\"\">提交</button>\n\t\t\t\t\t\t\t\t\t</form>\n\t\t\t\t\t\t\t\t\t\t<!-- <button class=\"btn\" type=\"submit\" @click=\"submit\">提交</button> -->\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t</tbody>\n\t\t\t\t\t</table>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\t\n\t</div>\n\n\n\n\n\n<!-- 弹窗 开始 -->\n<div class=\"modal fade\" id=\"payment-modal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" _v-48d71bb0=\"\">\n\t<div class=\"modal-dialog\" role=\"document\" _v-48d71bb0=\"\">\n\t\t<div class=\"modal-content\" _v-48d71bb0=\"\">\n\t\t\t<div class=\"modal-header\" _v-48d71bb0=\"\">\n\t\t\t\t<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\" _v-48d71bb0=\"\"><span aria-hidden=\"true\" _v-48d71bb0=\"\">×</span></button>\n\t\t\t\t<h4 class=\"modal-title\" id=\"myModalLabel\" _v-48d71bb0=\"\">确认</h4>\n\t\t\t</div>\n\t\t\t<div class=\"modal-body\" _v-48d71bb0=\"\">\n\t\t\t\t缴费是否完成？\n\t\t\t</div>\n\t\t\t<div class=\"modal-footer\" _v-48d71bb0=\"\">\n\t\t\t\t<button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\" @click=\"goToPage\" _v-48d71bb0=\"\">支付完成</button>\n\t\t\t\t<button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\" @click=\"goBack\" _v-48d71bb0=\"\">支付遇到问题</button>\n\t\t\t\t<!-- <button type=\"button\" class=\"btn btn-primary\">Save changes</button> -->\n\t\t\t</div>\n\t\t</div>\n\t</div>\n</div>\n<!-- 弹窗 结束 -->\n</div>\n";
 
 /***/ }),
 /* 212 */
@@ -36634,16 +36913,12 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */(function(global) {'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	  value: true
+		value: true
 	});
 
 	var _stringify = __webpack_require__(173);
 
 	var _stringify2 = _interopRequireDefault(_stringify);
-
-	var _defineProperty2 = __webpack_require__(185);
-
-	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -36723,7 +36998,7 @@ webpackJsonp([0],[
 	// 									    <label class="checkbox-container" data-type="radio" :for="'dianbaio'+index" :checked="userCheckedAmmeter == index">
 	// 									        <input type="radio" :id="'dianbaio'+index" :value="index" :checked="index==0" v-model="userCheckedAmmeter">
 	// 									        <i class="icon icon01 i_radio"></i>
-	// 									        <span class="checkbox_txt">{{ ammeter.ammeter_name }}</span>
+	// 									        <span class="checkbox_txt">{{ ammeter.ammeter_name }}（倍率：{{ ammeter.multiply }}）</span>
 	// 									    </label>
 	// 									</template>
 	// 								</td>
@@ -36752,14 +37027,14 @@ webpackJsonp([0],[
 	// 								<td>
 	// 									<input type="text" style="width: 139px;" v-model="waterAmout" @keydown="inputNum($event)">
 	// 									<span v-show="waterCountBy == 'yuan'">元&emsp;&emsp;</span>
-	// 									<span v-show="waterCountBy == 'du'">吨&emsp;&emsp;</span>
+	// 									<span v-show="waterCountBy == 'dun'">吨&emsp;&emsp;</span>
 	// 								    <label class="checkbox-container" data-type="radio" for="wateryuan" :checked="waterCountBy == 'yuan'">
 	// 								        <input type="radio" id="wateryuan" value="yuan" v-model="waterCountBy">
 	// 								        <i class="icon icon01 i_radio"></i>
 	// 								        <span class="checkbox_txt">以金额计费（元）</span>
 	// 								    </label>
-	// 								    <label class="checkbox-container" data-type="radio" for="waterdu" :checked="waterCountBy == 'du'">
-	// 								        <input type="radio" id="waterdu" value="du" v-model="waterCountBy">
+	// 								    <label class="checkbox-container" data-type="radio" for="waterdu" :checked="waterCountBy == 'dun'">
+	// 								        <input type="radio" id="waterdu" value="dun" v-model="waterCountBy">
 	// 								        <i class="icon icon01 i_radio"></i>
 	// 								        <span class="checkbox_txt">以吨数计费（吨）</span>
 	// 								    </label>
@@ -36816,195 +37091,275 @@ webpackJsonp([0],[
 	// </template>
 	// <script>
 	function getTotalPrice(_this) {
-	  var electric = 0;
-	  var water = 0;
-	  if (_this.electricCountBy == 'yuan') {
-	    electric = parseFloat(_this.electricAmount, 10);
-	  } else {
-	    // 电费金额 = 单价 * 度数 * 倍率
-	    electric = parseFloat(_this.ammeters.electricityPrice, 10) * parseFloat(_this.electricAmount, 10) * parseFloat(_this.multiply, 10);
-	    console.log(_this.ammeters.electricityPrice, _this.electricAmount, _this.multiply);
-	  }
-	  if (_this.waterCountBy == 'yuan') {
-	    water = parseFloat(_this.waterAmout, 10);
-	  } else {
-	    // 电费金额 = 单价 * 度数 * 倍率
-	    water = parseFloat(_this.ammeters.waterPrice, 10) * parseFloat(_this.waterAmout, 10);
-	  }
-	  _this.totalPrice = (electric ? electric : 0) + (water ? water : 0);
+		var electric = 0;
+		var water = 0;
+		if (_this.electricCountBy == 'yuan') {
+			electric = parseFloat(_this.electricAmount, 10);
+		} else {
+			// 电费金额 = 单价 * 度数 * 倍率
+			electric = parseFloat(_this.ammeters.electricityPrice, 10) * parseFloat(_this.electricAmount, 10) * parseFloat(_this.multiply, 10);
+		}
+		if (_this.waterCountBy == 'yuan') {
+			water = parseFloat(_this.waterAmout, 10);
+		} else {
+			// 电费金额 = 单价 * 度数 * 倍率
+			water = parseFloat(_this.ammeters.waterPrice, 10) * parseFloat(_this.waterAmout, 10);
+		}
+		_this.waterTotle = water ? water : 0;
+		_this.electricTotle = electric ? electric : 0;
+		_this.totalPrice = (electric ? electric : 0) + (water ? water : 0);
 	}
 	exports.default = {
-	  filters: {},
-	  directives: {},
-	  components: {},
-	  data: function data() {
-	    var _ref;
+		filters: {},
+		directives: {},
+		components: {},
+		data: function data() {
+			return {
+				userInfo: global.userInfo,
+				dianbiaoChecked: '',
+				userCheckedHousInfo: '', // 用户选择的房产信息
+				projectName: null,
+				ammeters: null, // 电表及水电单价
+				userCheckedAmmeter: null, // 用户选择的电表
+				prePayLog: null,
+				totalPrice: 0, // 总价
+				isArrears: null, // 欠费信息
 
-	    return _ref = {
-	      userInfo: global.userInfo,
-	      dianbiaoChecked: '',
-	      userCheckedHousInfo: '', // 用户选择的房产信息
-	      projectName: null,
-	      ammeters: null, // 电表及水电单价
-	      userCheckedAmmeter: null, // 用户选择的电表
-	      prePayLog: null,
-	      totalPrice: 0, // 总价
-	      isArrears: null, // 欠费信息
+				/*请求参数： 
+	   --------------------------------------------------*/
+				// customerId: null,
 
-	      /*请求参数： 
-	      --------------------------------------------------*/
-	      customerId: null
+				customerId: null, //客户ID
+				houseInfoId: null, //房产ID
+				multiply: null, //电表倍数
+				electricAmount: null, //电费表单输入的数字(金额或度数)
+				waterAmout: null, //水费表单输入的数字(金额或吨数)
+				electricCountBy: 'yuan', //电费选择的计费方式(金额或度数)
+				waterCountBy: 'yuan', //水费选择的计费方式(金额或吨数)
+				waterPrice: null, //水费单价
+				electricPrice: null, // 电费单价
 
-	    }, (0, _defineProperty3.default)(_ref, 'customerId', null), (0, _defineProperty3.default)(_ref, 'houseInfoId', null), (0, _defineProperty3.default)(_ref, 'multiply', null), (0, _defineProperty3.default)(_ref, 'electricAmount', null), (0, _defineProperty3.default)(_ref, 'waterAmout', null), (0, _defineProperty3.default)(_ref, 'electricCountBy', 'yuan'), (0, _defineProperty3.default)(_ref, 'waterCountBy', 'yuan'), (0, _defineProperty3.default)(_ref, 'waterPrice', null), _ref;
-	  },
 
-	  watch: {
-	    userCheckedAmmeter: function userCheckedAmmeter(newValue, oldValue) {
-	      this.multiply = this.ammeters.ammeters[newValue].multiply;
-	    },
-	    multiply: function multiply(newValue, oldValue) {
-	      //电表倍数
-	      getTotalPrice(this);
-	    },
-	    electricCountBy: function electricCountBy(newValue, oldValue) {
-	      //电费选择的计费方式(金额或度数)
-	      getTotalPrice(this);
-	    },
-	    electricAmount: function electricAmount(newValue, oldValue) {
-	      //电费表单输入的数字(金额或度数)
-	      getTotalPrice(this);
-	    },
-	    waterCountBy: function waterCountBy(newValue, oldValue) {
-	      //水费选择的计费方式(金额或吨数)
-	      getTotalPrice(this);
-	    },
-	    waterAmout: function waterAmout(newValue, oldValue) {
-	      //水费表单输入的数字(金额或吨数)
-	      getTotalPrice(this);
-	    },
-	    userCheckedHousInfo: function userCheckedHousInfo(newValue, oldValue) {
-	      console.log(this.userInfo.houseInfos[this.userCheckedHousInfo]);
-	      var _this = this;
-	      var houseInfo = this.userInfo.houseInfos[this.userCheckedHousInfo];
-	      this.customerId = houseInfo.pk_customerid;
-	      this.houseInfoId = houseInfo.pk_house;
-	      this.projectName = houseInfo.projectName;
+				// customerId: null, // 客户ID
+				// houseInfoId: null, // 房产ID
+				// multiply: null, // 电表倍数
+				// electricAmount: null, // 电费表单输入的数字(金额或度数)
+				// waterAmout: null, // 水费表单输入的数字(金额或吨数)
+				// electricCountBy: null, // 电费选择的计费方式(金额或度数)
+				// waterCountBy: null, // 水费选择的计费方式(金额或吨数)
+				// waterPrice: null, // 水费单价
+				// electricPrice: null, // 电费单价
+				houseInfoIds: null };
+		},
 
-	      var thisCustomersHouseInfos = []; // 选中房产的所正在客户下的所有房产
-	      for (var i = 0; i < this.userInfo.customers.length; i++) {
-	        if (this.userInfo.customers[i].houseInfos.length) {
-	          for (var j = 0; j < this.userInfo.customers[i].houseInfos.length; j++) {
-	            if (this.userInfo.customers[i].houseInfos[j].pk_house == houseInfo.pk_house) {
-	              thisCustomersHouseInfos.push(this.userInfo.customers[i].houseInfos[j].pk_house);
-	            }
-	          }
-	        }
-	      }
-	      console.log('thisCustomersHouseInfos', thisCustomersHouseInfos);
-	      this.houseInfoIds = thisCustomersHouseInfos.join(',');
-	      global.ajax({ // 电表及水电单价
-	        type: "POST",
-	        contentType: "application/json",
-	        url: global.HttpPath + '/payFee/getAmmeters',
-	        data: (0, _stringify2.default)({
-	          customerId: this.customerId,
-	          houseInfoId: this.houseInfoId
-	        }),
-	        success: function success(reg) {
-	          console.log(reg.data);
-	          _this.$set('ammeters', reg.data);
+		watch: {
+			userCheckedAmmeter: function userCheckedAmmeter(newValue, oldValue) {
+				this.multiply = this.ammeters && this.ammeters.ammeters && this.ammeters.ammeters.length ? this.ammeters.ammeters[newValue].multiply : null;
+			},
+			multiply: function multiply(newValue, oldValue) {
+				//电表倍数
+				getTotalPrice(this);
+			},
+			electricCountBy: function electricCountBy(newValue, oldValue) {
+				//电费选择的计费方式(金额或度数)
+				getTotalPrice(this);
+			},
+			electricAmount: function electricAmount(newValue, oldValue) {
+				//电费表单输入的数字(金额或度数)
+				getTotalPrice(this);
+			},
+			waterCountBy: function waterCountBy(newValue, oldValue) {
+				//水费选择的计费方式(金额或吨数)
+				getTotalPrice(this);
+			},
+			waterAmout: function waterAmout(newValue, oldValue) {
+				//水费表单输入的数字(金额或吨数)
+				getTotalPrice(this);
+			},
+			userCheckedHousInfo: function userCheckedHousInfo(newValue, oldValue) {
+				var _this = this;
+				var houseInfo = this.userInfo.houseInfos[this.userCheckedHousInfo];
+				this.customerId = houseInfo.pk_customerid;
+				this.houseInfoId = houseInfo.pk_house;
+				this.projectName = houseInfo.projectName;
 
-	          $.ajax({
-	            type: "get",
-	            // contentType: "application/json",
-	            url: global.HttpPath + '/payFee/isArrears', // 查询是否欠费,以及欠费的数据
-	            data: {
-	              customerId: _this.customerId,
-	              houseInfoId: _this.houseInfoId,
-	              multiply: _this.multiply,
-	              electricAmount: _this.electricAmount,
-	              waterAmout: _this.waterAmout,
-	              electricCountBy: _this.electricCountBy,
-	              waterCountBy: _this.waterCountBy,
-	              houseInfoIds: _this.houseInfoIds,
-	              waterPrice: _this.waterPrice
-	            },
-	            dataType: 'json',
-	            success: function success(data) {
-	              console.log(data);
-	              var _isArrears = data;
-	              if (data.before30.length || data.before60.length) {
-	                // 有欠费
-	                _isArrears.hasArrears = true;
-	              } else {
-	                _isArrears.hasArrears = false;
-	              }
-	              console.log('_isArrears: ', _isArrears);
-	              _this.$set('isArrears', _isArrears);
-	            }
-	          });
-	        }
-	      });
+				var thisCustomersHouseInfos = []; // 选中房产的所正在客户下的所有房产
+				for (var i = 0; i < this.userInfo.customers.length; i++) {
+					if (this.userInfo.customers[i].houseInfos.length) {
+						for (var j = 0; j < this.userInfo.customers[i].houseInfos.length; j++) {
+							if (this.userInfo.customers[i].houseInfos[j].pk_house == houseInfo.pk_house) {
+								thisCustomersHouseInfos.push(this.userInfo.customers[i].houseInfos[j].pk_house);
+							}
+						}
+					}
+				}
+				this.$set('thisCustomersHouseInfos', thisCustomersHouseInfos);
+				this.houseInfoIds = thisCustomersHouseInfos.join(',');
+				global.ajax({ // 电表及水电单价
+					type: "POST",
+					contentType: "application/json",
+					url: global.HttpPath + '/payFee/getAmmeters',
+					data: (0, _stringify2.default)({
+						customerId: this.customerId,
+						houseInfoId: this.houseInfoId
+					}),
+					success: function success(reg) {
+						_this.$set('ammeters', reg.data);
 
-	      $.ajax({
-	        type: "post",
-	        contentType: "application/json",
-	        url: global.HttpPath + '/payFee/payFeeRecords', // 上次缴费记录
-	        data: {
-	          customerId: this.customerId,
-	          houseInfoId: this.houseInfoId
-	        },
-	        dataType: 'json',
-	        success: function success(data) {
-	          console.log('上次缴费记录', data);
-	          _this.$set('prePayLog', data);
-	        }
-	      });
-	    }
-	  },
-	  ready: function ready() {
-	    var _this = this;
-	    if (this.$router.params && this.$router.params.payType == 'hydropower') {
-	      var _homePageUserCheckedHouseInfo = this.$router.params;
-	      this.$set('userCheckedHousInfo', _homePageUserCheckedHouseInfo.HouseIndex);
-	      this.$set('userCheckedAmmeter', _homePageUserCheckedHouseInfo.userCheckedAmmeter);
-	      this.$set('electricCountBy', _homePageUserCheckedHouseInfo.electricCountBy);
-	      this.$set('waterCountBy', _homePageUserCheckedHouseInfo.waterCountBy);
-	      // this.$set('customerId', _homePageUserCheckedHouseInfo.customerId);
-	      // this.$set('houseInfoId', _homePageUserCheckedHouseInfo.houseInfoId);
-	      // this.$set('electricAmount', _homePageUserCheckedHouseInfo.electricAmount);
-	      // this.$set('waterAmout', _homePageUserCheckedHouseInfo.waterAmout);
-	      // this.$set('totalPrice', _homePageUserCheckedHouseInfo.totalPrice);
-	      // this.$set('ammeters', _homePageUserCheckedHouseInfo.ammeters);
-	    }
-	  },
-	  beforeDestroy: function beforeDestroy() {},
+						$.ajax({
+							type: "get",
+							// contentType: "application/json",
+							url: global.HttpPath + '/payFee/isArrears', // 查询是否欠费,以及欠费的数据
+							data: {
+								customerId: _this.customerId,
+								houseInfoId: _this.houseInfoId,
+								multiply: _this.multiply,
+								electricAmount: _this.electricAmount,
+								waterAmout: _this.waterAmout,
+								electricCountBy: _this.electricCountBy,
+								waterCountBy: _this.waterCountBy,
+								houseInfoIds: _this.houseInfoIds,
+								waterPrice: _this.ammeters.waterPrice
+							},
+							dataType: 'json',
+							success: function success(data) {
+								var _isArrears = data;
+								if (data.before30.length || data.before60.length) {
+									// 有欠费
+									_isArrears.hasArrears = true;
+								} else {
+									_isArrears.hasArrears = false;
+								}
+								console.log('_isArrears: ', _isArrears);
+								_this.$set('isArrears', _isArrears);
+							}
+						});
+					}
+				});
 
-	  methods: {
-	    inputNum: function inputNum(event) {
-	      // 只能输入数字
-	      if (event.keyCode < 48 || event.keyCode > 57 && event.keyCode < 96 || event.keyCode > 105) {
-	        event.preventDefault();
-	      }
-	    },
-	    next: function next() {
-	      if (parseFloat(this.totalPrice, 10)) {
-	        this.$router.go('/home/payment/pay');
-	        this.$router.params = {
-	          totalPrice: this.totalPrice,
-	          houseInfo: this.userInfo.houseInfos[this.userCheckedHousInfo],
-	          canInvoice: true,
-	          goods: [{
-	            feetype: '电费',
-	            nyshouldmny: this.electricAmount ? this.electricAmount : 0
-	          }, {
-	            feetype: '水费',
-	            nyshouldmny: this.waterAmout ? this.waterAmout : 0
-	          }]
-	        };
-	      }
-	    }
-	  }
+				$.ajax({
+					type: "post",
+					contentType: "application/json",
+					url: global.HttpPath + '/payFee/payFeeRecords', // 上次缴费记录
+					data: {
+						customerId: this.customerId,
+						houseInfoId: this.houseInfoId
+					},
+					dataType: 'json',
+					success: function success(data) {
+						console.log('上次缴费记录', data);
+						_this.$set('prePayLog', data);
+					}
+				});
+			}
+		},
+		ready: function ready() {
+			var _this = this;
+			if (this.$router.params && this.$router.params.payType == 'hydropower') {
+				var _homePageUserCheckedHouseInfo = this.$router.params;
+				if (typeof Number(_homePageUserCheckedHouseInfo.HouseIndex) == 'number') {
+					this.$set('userCheckedHousInfo', _homePageUserCheckedHouseInfo.HouseIndex);
+					this.$set('userCheckedAmmeter', _homePageUserCheckedHouseInfo.userCheckedAmmeter);
+					this.$set('electricCountBy', _homePageUserCheckedHouseInfo.electricCountBy);
+					this.$set('waterCountBy', _homePageUserCheckedHouseInfo.waterCountBy);
+					this.$set('customerId', _homePageUserCheckedHouseInfo.customerId);
+					this.$set('houseInfoId', _homePageUserCheckedHouseInfo.houseInfoId);
+					this.$set('electricAmount', _homePageUserCheckedHouseInfo.electricAmount);
+					this.$set('waterAmout', _homePageUserCheckedHouseInfo.waterAmout);
+					this.$set('totalPrice', _homePageUserCheckedHouseInfo.totalPrice);
+					this.$set('ammeters', _homePageUserCheckedHouseInfo.ammeters);
+				}
+				console.log('_homePageUserCheckedHouseInfo: ', _homePageUserCheckedHouseInfo);
+			}
+		},
+		beforeDestroy: function beforeDestroy() {},
+
+		methods: {
+			inputNum: function inputNum(event) {
+				// 只能输入数字
+				if (event.keyCode < 48 || event.keyCode > 57 && event.keyCode < 96 || event.keyCode > 105) {
+					event.preventDefault();
+				}
+			},
+			next: function next() {
+				var _this = this;
+				$.ajax({
+					type: "post",
+					contentType: "application/json",
+					url: global.HttpPath + '/payFee/utilitiesPurchase', // 水电费缴纳
+					data: (0, _stringify2.default)({
+						customerId: this.customerId,
+						houseInfoId: this.houseInfoId,
+						multiply: this.multiply,
+						electricAmount: this.electricAmount ? this.electricAmount : 0,
+						waterAmout: this.waterAmout ? this.waterAmout : 0,
+						electricCountBy: this.electricCountBy,
+						waterCountBy: this.waterCountBy,
+						electricPrice: this.ammeters.electricityPrice,
+						waterPrice: this.ammeters.waterPrice,
+						houseInfoIds: this.houseInfoIds
+					}),
+					dataType: 'json',
+					success: function success(data) {
+						console.log('水电费缴纳', data);
+						if (data.status == true) {
+							if (parseFloat(_this.totalPrice, 10)) {
+								_this.$router.go('/home/payment/pay');
+								_this.$router.params = {
+									totalPrice: _this.totalPrice,
+									payType: 'hydropower',
+									goToURL: {
+										name: 'hydropower',
+										url: '/home/payment/hydropowerlog'
+									},
+									houseInfo: _this.userInfo.houseInfos[_this.userCheckedHousInfo],
+									canInvoice: true, // 是否能开票
+									goodsInfosKey: { // 展示商品的字段
+										feetypeKey: 'feetype',
+										priceKey: 'nyshouldmny'
+									},
+									goods: [{
+										feetype: '电费',
+										nyshouldmny: _this.electricTotle,
+										houseInfoId: _this.houseInfoId, // 房产id
+										clientName: global.userInfo.user.username, // 客户名称
+										costType: '220101', // 缴费类型
+										payMonth: '', // 缴费月份
+										startDate: '', // 开始日期
+										endDate: '', // 截止日期
+										payable: '', // 应缴
+										paidIn: _this.electricTotle, // 已缴
+										invoiceStatus: '', // 开票状态(0-已开，1-未开,2-不开)
+										collectingCompany: '', // 收款公司
+										collectingAccount: '', // 收款账户
+										payTime: '', // 交费日期
+
+										ammeterNumber: _this.multiply, // 电表号
+										multiplyingPower: _this.multiply, // 倍率
+										electricPower: '' }, {
+										feetype: '水费',
+										nyshouldmny: _this.waterTotle,
+										houseInfoId: _this.houseInfoId, // 房产id
+										clientName: global.userInfo.user.username, // 客户名称
+										costType: '220201', // 缴费类型
+										payMonth: '', // 缴费月份
+										startDate: '', // 开始日期
+										endDate: '', // 截止日期
+										payable: '', // 应缴
+										paidIn: _this.waterTotle, // 已缴
+										invoiceStatus: '', // 开票状态(0-已开，1-未开,2-不开)
+										collectingCompany: '', // 收款公司
+										collectingAccount: '', // 收款账户
+										payTime: '', // 交费日期
+
+										tunnage: '' }]
+								};
+							}
+						}
+					}
+				});
+			}
+		}
 	};
 	// </script>
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
@@ -37013,7 +37368,7 @@ webpackJsonp([0],[
 /* 215 */
 /***/ (function(module, exports) {
 
-	module.exports = "\n<ol class=\"breadcrumb\" _v-65627a8c=\"\">你当前的位置：\n\t<li _v-65627a8c=\"\"><a href=\"#\" _v-65627a8c=\"\">联东首页</a></li>\n\t<li _v-65627a8c=\"\"><a href=\"#\" _v-65627a8c=\"\">费用缴纳</a></li>\n\t<li class=\"active\" _v-65627a8c=\"\">欠费明细</li>\n</ol>\n<div class=\"container\" _v-65627a8c=\"\">\n\t<div class=\"row\" _v-65627a8c=\"\">\n\t\t<div class=\"col-xs-12\" _v-65627a8c=\"\">\n\t\t\t<div class=\"panel panel-default\" _v-65627a8c=\"\">\n\t\t\t\t<div class=\"panel-heading\" _v-65627a8c=\"\"><h1 _v-65627a8c=\"\">客户基本信息</h1></div>\n\t\t\t\t<div class=\"panel-body\" _v-65627a8c=\"\">\n\t\t\t\t\t<table class=\"table table-bordered table-form\" _v-65627a8c=\"\">\n\t\t\t\t\t\t<tbody _v-65627a8c=\"\">\n\t\t\t\t\t\t\t<tr _v-65627a8c=\"\">\n\t\t\t\t\t\t\t\t<th _v-65627a8c=\"\">客户名称</th>\n\t\t\t\t\t\t\t\t<td _v-65627a8c=\"\"><input type=\"text\" :value=\"userInfo.user.username\" readonly=\"\" _v-65627a8c=\"\"></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-65627a8c=\"\">\n\t\t\t\t\t\t\t\t<th _v-65627a8c=\"\">项目名称</th>\n\t\t\t\t\t\t\t\t<td _v-65627a8c=\"\"><input type=\"text\" :value=\"projectName\" readonly=\"\" _v-65627a8c=\"\"></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-65627a8c=\"\">\n\t\t\t\t\t\t\t\t<th _v-65627a8c=\"\">房产名称</th>\n\t\t\t\t\t\t\t\t<td _v-65627a8c=\"\">\n\t\t\t\t\t\t\t\t<template v-for=\"(index, houseInfo) in userInfo.houseInfos\" _v-65627a8c=\"\">\n\t\t\t\t\t\t\t\t    <label class=\"checkbox-container\" data-type=\"radio\" :for=\"'houseInfo'+index\" :checked=\"userCheckedHousInfo == index\" _v-65627a8c=\"\">\n\t\t\t\t\t\t\t\t        <input type=\"radio\" :id=\"'houseInfo'+index\" :value=\"index\" :checked=\"index==0\" v-model=\"userCheckedHousInfo\" _v-65627a8c=\"\">\n\t\t\t\t\t\t\t\t        <i class=\"icon icon01 i_radio\" _v-65627a8c=\"\"></i>\n\t\t\t\t\t\t\t\t        <span class=\"checkbox_txt\" _v-65627a8c=\"\">{{ houseInfo.house }}</span>\n\t\t\t\t\t\t\t\t    </label>\n\t\t\t\t\t\t\t\t</template>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t</tbody>\n\t\t\t\t\t</table>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\t<div class=\"panel panel-default\" _v-65627a8c=\"\">\n\t\t\t\t<div class=\"panel-heading\" _v-65627a8c=\"\"><h1 _v-65627a8c=\"\">水电缴费</h1></div>\n\t\t\t\t<div class=\"panel-body suidian-body\" _v-65627a8c=\"\">\n\t\t\t\t\t<div class=\"tips\" v-show=\"isArrears.status!=0\" _v-65627a8c=\"\">温馨提示：\n\t\t\t\t\t<span v-show=\"isArrears.status==1\" _v-65627a8c=\"\">当前有物业欠费，请在一个月内缴纳所有历史欠费，本次限购{{ isArrears.first }}元，逾期未交，每月限购{{ isArrears.every }}元</span>\n\t\t\t\t\t<span v-show=\"isArrears.status==2\" _v-65627a8c=\"\">您当前处于物业欠费状态中，每月限缴电费{{ isArrears.every }}元，请及时缴清欠费以解除缴费限制</span>\n\t\t\t\t\t<a class=\"pull-right\" v-link=\"{ path: '/home/payment/arrears' }\" _v-65627a8c=\"\">欠缴明细</a></div>\n\t\t\t\t\t<table class=\"table table-bordered table-form\" _v-65627a8c=\"\">\n\t\t\t\t\t\t<tbody _v-65627a8c=\"\">\n\t\t\t\t\t\t\t<tr _v-65627a8c=\"\">\n\t\t\t\t\t\t\t\t<th _v-65627a8c=\"\">电表筛选</th>\n\t\t\t\t\t\t\t\t<td _v-65627a8c=\"\">\n\t\t\t\t\t\t\t\t\t<template v-for=\"(index, ammeter) in ammeters.ammeters\" _v-65627a8c=\"\">\n\t\t\t\t\t\t\t\t\t    <label class=\"checkbox-container\" data-type=\"radio\" :for=\"'dianbaio'+index\" :checked=\"userCheckedAmmeter == index\" _v-65627a8c=\"\">\n\t\t\t\t\t\t\t\t\t        <input type=\"radio\" :id=\"'dianbaio'+index\" :value=\"index\" :checked=\"index==0\" v-model=\"userCheckedAmmeter\" _v-65627a8c=\"\">\n\t\t\t\t\t\t\t\t\t        <i class=\"icon icon01 i_radio\" _v-65627a8c=\"\"></i>\n\t\t\t\t\t\t\t\t\t        <span class=\"checkbox_txt\" _v-65627a8c=\"\">{{ ammeter.ammeter_name }}</span>\n\t\t\t\t\t\t\t\t\t    </label>\n\t\t\t\t\t\t\t\t\t</template>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-65627a8c=\"\">\n\t\t\t\t\t\t\t\t<th _v-65627a8c=\"\">电费购买</th>\n\t\t\t\t\t\t\t\t<td _v-65627a8c=\"\">\n\t\t\t\t\t\t\t\t\t<input type=\"text\" style=\"width: 139px;\" v-model=\"electricAmount\" @keydown=\"inputNum($event)\" _v-65627a8c=\"\">\n\t\t\t\t\t\t\t\t\t<span v-show=\"electricCountBy == 'yuan'\" _v-65627a8c=\"\">元  </span>\n\t\t\t\t\t\t\t\t\t<span v-show=\"electricCountBy == 'du'\" _v-65627a8c=\"\">度  </span>\n\t\t\t\t\t\t\t\t    <label class=\"checkbox-container\" data-type=\"radio\" for=\"electricyuan\" :checked=\"electricCountBy == 'yuan'\" _v-65627a8c=\"\">\n\t\t\t\t\t\t\t\t        <input type=\"radio\" id=\"electricyuan\" value=\"yuan\" v-model=\"electricCountBy\" _v-65627a8c=\"\">\n\t\t\t\t\t\t\t\t        <i class=\"icon icon01 i_radio\" _v-65627a8c=\"\"></i>\n\t\t\t\t\t\t\t\t        <span class=\"checkbox_txt\" _v-65627a8c=\"\">以金额计费（元）</span>\n\t\t\t\t\t\t\t\t    </label>\n\t\t\t\t\t\t\t\t    <label class=\"checkbox-container\" data-type=\"radio\" for=\"electricdu\" :checked=\"electricCountBy == 'du'\" _v-65627a8c=\"\">\n\t\t\t\t\t\t\t\t        <input type=\"radio\" id=\"electricdu\" value=\"du\" v-model=\"electricCountBy\" _v-65627a8c=\"\">\n\t\t\t\t\t\t\t\t        <i class=\"icon icon01 i_radio\" _v-65627a8c=\"\"></i>\n\t\t\t\t\t\t\t\t        <span class=\"checkbox_txt\" _v-65627a8c=\"\">以度数计费（度）</span>\n\t\t\t\t\t\t\t\t    </label>\n\t\t\t\t\t\t\t\t\t  单价：{{ ammeters.electricityPrice }}元/度\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-65627a8c=\"\">\n\t\t\t\t\t\t\t\t<th _v-65627a8c=\"\">水费购买</th>\n\t\t\t\t\t\t\t\t<td _v-65627a8c=\"\">\n\t\t\t\t\t\t\t\t\t<input type=\"text\" style=\"width: 139px;\" v-model=\"waterAmout\" @keydown=\"inputNum($event)\" _v-65627a8c=\"\">\n\t\t\t\t\t\t\t\t\t<span v-show=\"waterCountBy == 'yuan'\" _v-65627a8c=\"\">元  </span>\n\t\t\t\t\t\t\t\t\t<span v-show=\"waterCountBy == 'du'\" _v-65627a8c=\"\">吨  </span>\n\t\t\t\t\t\t\t\t    <label class=\"checkbox-container\" data-type=\"radio\" for=\"wateryuan\" :checked=\"waterCountBy == 'yuan'\" _v-65627a8c=\"\">\n\t\t\t\t\t\t\t\t        <input type=\"radio\" id=\"wateryuan\" value=\"yuan\" v-model=\"waterCountBy\" _v-65627a8c=\"\">\n\t\t\t\t\t\t\t\t        <i class=\"icon icon01 i_radio\" _v-65627a8c=\"\"></i>\n\t\t\t\t\t\t\t\t        <span class=\"checkbox_txt\" _v-65627a8c=\"\">以金额计费（元）</span>\n\t\t\t\t\t\t\t\t    </label>\n\t\t\t\t\t\t\t\t    <label class=\"checkbox-container\" data-type=\"radio\" for=\"waterdu\" :checked=\"waterCountBy == 'du'\" _v-65627a8c=\"\">\n\t\t\t\t\t\t\t\t        <input type=\"radio\" id=\"waterdu\" value=\"du\" v-model=\"waterCountBy\" _v-65627a8c=\"\">\n\t\t\t\t\t\t\t\t        <i class=\"icon icon01 i_radio\" _v-65627a8c=\"\"></i>\n\t\t\t\t\t\t\t\t        <span class=\"checkbox_txt\" _v-65627a8c=\"\">以吨数计费（吨）</span>\n\t\t\t\t\t\t\t\t    </label>\n\t\t\t\t\t\t\t\t\t  单价：{{ ammeters.waterPrice }}元/吨\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-65627a8c=\"\">\n\t\t\t\t\t\t\t\t<th _v-65627a8c=\"\">合计费用</th>\n\t\t\t\t\t\t\t\t<td _v-65627a8c=\"\"><span class=\"text-orange\" _v-65627a8c=\"\">{{ totalPrice | currency '￥' 2  }}</span></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-65627a8c=\"\">\n\t\t\t\t\t\t\t\t<th _v-65627a8c=\"\"></th>\n\t\t\t\t\t\t\t\t<td _v-65627a8c=\"\"><a class=\"btn\" @click=\"next()\" _v-65627a8c=\"\">立即支付</a></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t</tbody>\n\t\t\t\t\t</table>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\t<div class=\"panel panel-default\" _v-65627a8c=\"\">\n\t\t\t\t<div class=\"panel-heading\" _v-65627a8c=\"\"><h1 _v-65627a8c=\"\">上次缴费记录</h1></div>\n\t\t\t\t<div class=\"panel-body\" _v-65627a8c=\"\">\n\t\t\t\t\t<table class=\"table table-bordered table-data\" _v-65627a8c=\"\">\n\t\t\t\t\t\t<thead _v-65627a8c=\"\">\n\t\t\t\t\t\t\t<tr _v-65627a8c=\"\">\n\t\t\t\t\t\t\t\t<th _v-65627a8c=\"\">缴费时间</th>\n\t\t\t\t\t\t\t\t<th _v-65627a8c=\"\">缴费类型</th>\n\t\t\t\t\t\t\t\t<th _v-65627a8c=\"\">缴费区间</th>\n\t\t\t\t\t\t\t\t<th _v-65627a8c=\"\">缴费金额</th>\n\t\t\t\t\t\t\t\t<th _v-65627a8c=\"\">表号</th>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t</thead>\n\t\t\t\t\t\t<tbody _v-65627a8c=\"\">\n\t\t\t\t\t\t\t<tr v-show=\"prePayLog.water\" _v-65627a8c=\"\">\n\t\t\t\t\t\t\t\t<td _v-65627a8c=\"\">{{ prePayLog.water.payTime | TimeYMD }}</td>\n\t\t\t\t\t\t\t\t<td _v-65627a8c=\"\">{{ prePayLog.water.costType }}</td>\n\t\t\t\t\t\t\t\t<td _v-65627a8c=\"\">{{ prePayLog.water.startDate | TimeYMD }} ~ {{ prePayLog.water.endDate | TimeYMD }}</td>\n\t\t\t\t\t\t\t\t<td _v-65627a8c=\"\">{{ prePayLog.water.paidIn | currency '￥' 2 }}</td>\n\t\t\t\t\t\t\t\t<td _v-65627a8c=\"\">表号</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr v-show=\"prePayLog.electric\" _v-65627a8c=\"\">\n\t\t\t\t\t\t\t\t<td _v-65627a8c=\"\">{{ prePayLog.electric.payTime | TimeYMD }}</td>\n\t\t\t\t\t\t\t\t<td _v-65627a8c=\"\">{{ prePayLog.electric.costType }}</td>\n\t\t\t\t\t\t\t\t<td _v-65627a8c=\"\">{{ prePayLog.electric.startDate | TimeYMD }} ~ {{ prePayLog.water.endDate | TimeYMD }}</td>\n\t\t\t\t\t\t\t\t<td _v-65627a8c=\"\">{{ prePayLog.electric.paidIn | currency '￥' 2 }}</td>\n\t\t\t\t\t\t\t\t<td _v-65627a8c=\"\">表号</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t</tbody>\n\t\t\t\t\t</table>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\t\n\t</div>\t\n</div>\n";
+	module.exports = "\n<ol class=\"breadcrumb\" _v-65627a8c=\"\">你当前的位置：\n\t<li _v-65627a8c=\"\"><a href=\"#\" _v-65627a8c=\"\">联东首页</a></li>\n\t<li _v-65627a8c=\"\"><a href=\"#\" _v-65627a8c=\"\">费用缴纳</a></li>\n\t<li class=\"active\" _v-65627a8c=\"\">欠费明细</li>\n</ol>\n<div class=\"container\" _v-65627a8c=\"\">\n\t<div class=\"row\" _v-65627a8c=\"\">\n\t\t<div class=\"col-xs-12\" _v-65627a8c=\"\">\n\t\t\t<div class=\"panel panel-default\" _v-65627a8c=\"\">\n\t\t\t\t<div class=\"panel-heading\" _v-65627a8c=\"\"><h1 _v-65627a8c=\"\">客户基本信息</h1></div>\n\t\t\t\t<div class=\"panel-body\" _v-65627a8c=\"\">\n\t\t\t\t\t<table class=\"table table-bordered table-form\" _v-65627a8c=\"\">\n\t\t\t\t\t\t<tbody _v-65627a8c=\"\">\n\t\t\t\t\t\t\t<tr _v-65627a8c=\"\">\n\t\t\t\t\t\t\t\t<th _v-65627a8c=\"\">客户名称</th>\n\t\t\t\t\t\t\t\t<td _v-65627a8c=\"\"><input type=\"text\" :value=\"userInfo.user.username\" readonly=\"\" _v-65627a8c=\"\"></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-65627a8c=\"\">\n\t\t\t\t\t\t\t\t<th _v-65627a8c=\"\">项目名称</th>\n\t\t\t\t\t\t\t\t<td _v-65627a8c=\"\"><input type=\"text\" :value=\"projectName\" readonly=\"\" _v-65627a8c=\"\"></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-65627a8c=\"\">\n\t\t\t\t\t\t\t\t<th _v-65627a8c=\"\">房产名称</th>\n\t\t\t\t\t\t\t\t<td _v-65627a8c=\"\">\n\t\t\t\t\t\t\t\t<template v-for=\"(index, houseInfo) in userInfo.houseInfos\" _v-65627a8c=\"\">\n\t\t\t\t\t\t\t\t    <label class=\"checkbox-container\" data-type=\"radio\" :for=\"'houseInfo'+index\" :checked=\"userCheckedHousInfo == index\" _v-65627a8c=\"\">\n\t\t\t\t\t\t\t\t        <input type=\"radio\" :id=\"'houseInfo'+index\" :value=\"index\" :checked=\"index==0\" v-model=\"userCheckedHousInfo\" _v-65627a8c=\"\">\n\t\t\t\t\t\t\t\t        <i class=\"icon icon01 i_radio\" _v-65627a8c=\"\"></i>\n\t\t\t\t\t\t\t\t        <span class=\"checkbox_txt\" _v-65627a8c=\"\">{{ houseInfo.house }}</span>\n\t\t\t\t\t\t\t\t    </label>\n\t\t\t\t\t\t\t\t</template>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t</tbody>\n\t\t\t\t\t</table>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\t<div class=\"panel panel-default\" _v-65627a8c=\"\">\n\t\t\t\t<div class=\"panel-heading\" _v-65627a8c=\"\"><h1 _v-65627a8c=\"\">水电缴费</h1></div>\n\t\t\t\t<div class=\"panel-body suidian-body\" _v-65627a8c=\"\">\n\t\t\t\t\t<div class=\"tips\" v-show=\"isArrears.status!=0\" _v-65627a8c=\"\">温馨提示：\n\t\t\t\t\t<span v-show=\"isArrears.status==1\" _v-65627a8c=\"\">当前有物业欠费，请在一个月内缴纳所有历史欠费，本次限购{{ isArrears.first }}元，逾期未交，每月限购{{ isArrears.every }}元</span>\n\t\t\t\t\t<span v-show=\"isArrears.status==2\" _v-65627a8c=\"\">您当前处于物业欠费状态中，每月限缴电费{{ isArrears.every }}元，请及时缴清欠费以解除缴费限制</span>\n\t\t\t\t\t<a class=\"pull-right\" v-link=\"{ path: '/home/payment/arrears' }\" _v-65627a8c=\"\">欠缴明细</a></div>\n\t\t\t\t\t<table class=\"table table-bordered table-form\" _v-65627a8c=\"\">\n\t\t\t\t\t\t<tbody _v-65627a8c=\"\">\n\t\t\t\t\t\t\t<tr _v-65627a8c=\"\">\n\t\t\t\t\t\t\t\t<th _v-65627a8c=\"\">电表筛选</th>\n\t\t\t\t\t\t\t\t<td _v-65627a8c=\"\">\n\t\t\t\t\t\t\t\t\t<template v-for=\"(index, ammeter) in ammeters.ammeters\" _v-65627a8c=\"\">\n\t\t\t\t\t\t\t\t\t    <label class=\"checkbox-container\" data-type=\"radio\" :for=\"'dianbaio'+index\" :checked=\"userCheckedAmmeter == index\" _v-65627a8c=\"\">\n\t\t\t\t\t\t\t\t\t        <input type=\"radio\" :id=\"'dianbaio'+index\" :value=\"index\" :checked=\"index==0\" v-model=\"userCheckedAmmeter\" _v-65627a8c=\"\">\n\t\t\t\t\t\t\t\t\t        <i class=\"icon icon01 i_radio\" _v-65627a8c=\"\"></i>\n\t\t\t\t\t\t\t\t\t        <span class=\"checkbox_txt\" _v-65627a8c=\"\">{{ ammeter.ammeter_name }}（倍率：{{ ammeter.multiply }}）</span>\n\t\t\t\t\t\t\t\t\t    </label>\n\t\t\t\t\t\t\t\t\t</template>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-65627a8c=\"\">\n\t\t\t\t\t\t\t\t<th _v-65627a8c=\"\">电费购买</th>\n\t\t\t\t\t\t\t\t<td _v-65627a8c=\"\">\n\t\t\t\t\t\t\t\t\t<input type=\"text\" style=\"width: 139px;\" v-model=\"electricAmount\" @keydown=\"inputNum($event)\" _v-65627a8c=\"\">\n\t\t\t\t\t\t\t\t\t<span v-show=\"electricCountBy == 'yuan'\" _v-65627a8c=\"\">元  </span>\n\t\t\t\t\t\t\t\t\t<span v-show=\"electricCountBy == 'du'\" _v-65627a8c=\"\">度  </span>\n\t\t\t\t\t\t\t\t    <label class=\"checkbox-container\" data-type=\"radio\" for=\"electricyuan\" :checked=\"electricCountBy == 'yuan'\" _v-65627a8c=\"\">\n\t\t\t\t\t\t\t\t        <input type=\"radio\" id=\"electricyuan\" value=\"yuan\" v-model=\"electricCountBy\" _v-65627a8c=\"\">\n\t\t\t\t\t\t\t\t        <i class=\"icon icon01 i_radio\" _v-65627a8c=\"\"></i>\n\t\t\t\t\t\t\t\t        <span class=\"checkbox_txt\" _v-65627a8c=\"\">以金额计费（元）</span>\n\t\t\t\t\t\t\t\t    </label>\n\t\t\t\t\t\t\t\t    <label class=\"checkbox-container\" data-type=\"radio\" for=\"electricdu\" :checked=\"electricCountBy == 'du'\" _v-65627a8c=\"\">\n\t\t\t\t\t\t\t\t        <input type=\"radio\" id=\"electricdu\" value=\"du\" v-model=\"electricCountBy\" _v-65627a8c=\"\">\n\t\t\t\t\t\t\t\t        <i class=\"icon icon01 i_radio\" _v-65627a8c=\"\"></i>\n\t\t\t\t\t\t\t\t        <span class=\"checkbox_txt\" _v-65627a8c=\"\">以度数计费（度）</span>\n\t\t\t\t\t\t\t\t    </label>\n\t\t\t\t\t\t\t\t\t  单价：{{ ammeters.electricityPrice }}元/度\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-65627a8c=\"\">\n\t\t\t\t\t\t\t\t<th _v-65627a8c=\"\">水费购买</th>\n\t\t\t\t\t\t\t\t<td _v-65627a8c=\"\">\n\t\t\t\t\t\t\t\t\t<input type=\"text\" style=\"width: 139px;\" v-model=\"waterAmout\" @keydown=\"inputNum($event)\" _v-65627a8c=\"\">\n\t\t\t\t\t\t\t\t\t<span v-show=\"waterCountBy == 'yuan'\" _v-65627a8c=\"\">元  </span>\n\t\t\t\t\t\t\t\t\t<span v-show=\"waterCountBy == 'dun'\" _v-65627a8c=\"\">吨  </span>\n\t\t\t\t\t\t\t\t    <label class=\"checkbox-container\" data-type=\"radio\" for=\"wateryuan\" :checked=\"waterCountBy == 'yuan'\" _v-65627a8c=\"\">\n\t\t\t\t\t\t\t\t        <input type=\"radio\" id=\"wateryuan\" value=\"yuan\" v-model=\"waterCountBy\" _v-65627a8c=\"\">\n\t\t\t\t\t\t\t\t        <i class=\"icon icon01 i_radio\" _v-65627a8c=\"\"></i>\n\t\t\t\t\t\t\t\t        <span class=\"checkbox_txt\" _v-65627a8c=\"\">以金额计费（元）</span>\n\t\t\t\t\t\t\t\t    </label>\n\t\t\t\t\t\t\t\t    <label class=\"checkbox-container\" data-type=\"radio\" for=\"waterdu\" :checked=\"waterCountBy == 'dun'\" _v-65627a8c=\"\">\n\t\t\t\t\t\t\t\t        <input type=\"radio\" id=\"waterdu\" value=\"dun\" v-model=\"waterCountBy\" _v-65627a8c=\"\">\n\t\t\t\t\t\t\t\t        <i class=\"icon icon01 i_radio\" _v-65627a8c=\"\"></i>\n\t\t\t\t\t\t\t\t        <span class=\"checkbox_txt\" _v-65627a8c=\"\">以吨数计费（吨）</span>\n\t\t\t\t\t\t\t\t    </label>\n\t\t\t\t\t\t\t\t\t  单价：{{ ammeters.waterPrice }}元/吨\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-65627a8c=\"\">\n\t\t\t\t\t\t\t\t<th _v-65627a8c=\"\">合计费用</th>\n\t\t\t\t\t\t\t\t<td _v-65627a8c=\"\"><span class=\"text-orange\" _v-65627a8c=\"\">{{ totalPrice | currency '￥' 2  }}</span></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-65627a8c=\"\">\n\t\t\t\t\t\t\t\t<th _v-65627a8c=\"\"></th>\n\t\t\t\t\t\t\t\t<td _v-65627a8c=\"\"><a class=\"btn\" @click=\"next()\" _v-65627a8c=\"\">立即支付</a></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t</tbody>\n\t\t\t\t\t</table>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\t<div class=\"panel panel-default\" _v-65627a8c=\"\">\n\t\t\t\t<div class=\"panel-heading\" _v-65627a8c=\"\"><h1 _v-65627a8c=\"\">上次缴费记录</h1></div>\n\t\t\t\t<div class=\"panel-body\" _v-65627a8c=\"\">\n\t\t\t\t\t<table class=\"table table-bordered table-data\" _v-65627a8c=\"\">\n\t\t\t\t\t\t<thead _v-65627a8c=\"\">\n\t\t\t\t\t\t\t<tr _v-65627a8c=\"\">\n\t\t\t\t\t\t\t\t<th _v-65627a8c=\"\">缴费时间</th>\n\t\t\t\t\t\t\t\t<th _v-65627a8c=\"\">缴费类型</th>\n\t\t\t\t\t\t\t\t<th _v-65627a8c=\"\">缴费区间</th>\n\t\t\t\t\t\t\t\t<th _v-65627a8c=\"\">缴费金额</th>\n\t\t\t\t\t\t\t\t<th _v-65627a8c=\"\">表号</th>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t</thead>\n\t\t\t\t\t\t<tbody _v-65627a8c=\"\">\n\t\t\t\t\t\t\t<tr v-show=\"prePayLog.water\" _v-65627a8c=\"\">\n\t\t\t\t\t\t\t\t<td _v-65627a8c=\"\">{{ prePayLog.water.payTime | TimeYMD }}</td>\n\t\t\t\t\t\t\t\t<td _v-65627a8c=\"\">{{ prePayLog.water.costType }}</td>\n\t\t\t\t\t\t\t\t<td _v-65627a8c=\"\">{{ prePayLog.water.startDate | TimeYMD }} ~ {{ prePayLog.water.endDate | TimeYMD }}</td>\n\t\t\t\t\t\t\t\t<td _v-65627a8c=\"\">{{ prePayLog.water.paidIn | currency '￥' 2 }}</td>\n\t\t\t\t\t\t\t\t<td _v-65627a8c=\"\">表号</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr v-show=\"prePayLog.electric\" _v-65627a8c=\"\">\n\t\t\t\t\t\t\t\t<td _v-65627a8c=\"\">{{ prePayLog.electric.payTime | TimeYMD }}</td>\n\t\t\t\t\t\t\t\t<td _v-65627a8c=\"\">{{ prePayLog.electric.costType }}</td>\n\t\t\t\t\t\t\t\t<td _v-65627a8c=\"\">{{ prePayLog.electric.startDate | TimeYMD }} ~ {{ prePayLog.water.endDate | TimeYMD }}</td>\n\t\t\t\t\t\t\t\t<td _v-65627a8c=\"\">{{ prePayLog.electric.paidIn | currency '￥' 2 }}</td>\n\t\t\t\t\t\t\t\t<td _v-65627a8c=\"\">表号</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t</tbody>\n\t\t\t\t\t</table>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\t\n\t</div>\t\n</div>\n";
 
 /***/ }),
 /* 216 */
@@ -37134,9 +37489,9 @@ webpackJsonp([0],[
 	// 								</tbody>
 	// 							</table>
 	// 							<div class="operate-wrap">
-	// 								<div class="total">房产{{ houseInfo.house }}物业费用合计：{{ price | currency '￥' 2 }}</div>
+	// 								<div class="total">房产{{ houseInfo.house }}物业费用合计：{{ dataInfo.wuye[index01].sum | currency '￥' 2 }}</div>
 	// 								<div class="btn-wrap">
-	// 									<a class="btn">立即支付</a>
+	// 									<a class="btn" @click="goPay('wuye', index01, houseInfo)">立即支付</a>
 	// 								</div>
 	// 							</div>
 	// 						</template>
@@ -37188,15 +37543,15 @@ webpackJsonp([0],[
 	// 										<td>{{ item.feetype }}</td>
 	// 										<td>{{ item.dbegin}} ~ {{ item.dend }}</td>
 	// 										<td>{{ item.nyshouldmny | currency '￥' 2 }}</td>
-	// 										<td>已缴金额</td>
-	// 										<td>欠缴金额</td>
+	// 										<td>{{ item.nmny?item.nmny:0 | currency '￥' 2 }}</td>
+	// 										<td>{{ item.arrears | currency '￥' 2 }}</td>
 	// 									</tr>
 	// 								</tbody>
 	// 							</table>
 	// 							<div class="operate-wrap">
-	// 								<div class="total">房产{{ houseInfo.house }}物业费用合计：{{ price | currency '￥' 2 }}</div>
+	// 								<div class="total">房产{{ houseInfo.house }}开发费用合计：{{ dataInfo.kaifa[index01].sum | currency '￥' 2 }}</div>
 	// 								<div class="btn-wrap">
-	// 									<a class="btn">立即支付</a>
+	// 									<a class="btn" @click="goPay('kaifa', index01, houseInfo)">立即支付</a>
 	// 								</div>
 	// 							</div>
 	// 						</template>
@@ -37363,6 +37718,7 @@ webpackJsonp([0],[
 	                console.log('data: -----', response.data);
 	                _this.dataInfo[type][index].rows = response.data.rows;
 	                _this.dataInfo[type][index].total = response.data.total;
+	                _this.dataInfo[type][index].sum = response.data.sum;
 	                // _this.$set(_this.dataInfo[type][index].rows);
 	            }, function (error) {
 	                // 响应失败回调
@@ -37390,6 +37746,7 @@ webpackJsonp([0],[
 	                console.log('data: -----', response.data);
 	                _this.dataInfo[type][index].rows = response.data.rows;
 	                _this.dataInfo[type][index].total = response.data.total;
+	                _this.dataInfo[type][index].sum = response.data.sum;
 	                // _this.$set(_this.dataInfo[type][index].rows);
 	            }, function (error) {
 	                // 响应失败回调
@@ -37399,6 +37756,27 @@ webpackJsonp([0],[
 	                console.log('欠费明细-catch:', response);
 	            });
 	            console.log('this.dataInfo: ', this.dataInfo);
+	        },
+	        goPay: function goPay(type, index, houseInfo) {
+	            // 去支付
+	            if (Number(this.dataInfo[type][index].sum, 10)) {
+	                this.$router.go('/home/payment/pay');
+	                this.$router.params = {
+	                    totalPrice: Number(this.dataInfo[type][index].sum, 10),
+	                    payType: type,
+	                    goToURL: {
+	                        name: type,
+	                        url: '/home/payment/estates'
+	                    },
+	                    canInvoice: type == 'wuye' ? true : false, // 是否能开票
+	                    goodsInfosKey: { // 展示商品的字段
+	                        feetypeKey: 'feetype',
+	                        priceKey: 'nyshouldmny'
+	                    },
+	                    houseInfo: houseInfo,
+	                    goods: this.dataInfo[type][index].rows, // 商品
+	                    invoiceGoods: '' };
+	            }
 	        }
 	    }
 	};
@@ -37409,7 +37787,7 @@ webpackJsonp([0],[
 /* 219 */
 /***/ (function(module, exports) {
 
-	module.exports = "\n<ol class=\"breadcrumb\" _v-52fc0f57=\"\">你当前的位置：\n\t<li _v-52fc0f57=\"\"><a href=\"#\" _v-52fc0f57=\"\">联东首页</a></li>\n\t<li _v-52fc0f57=\"\"><a href=\"#\" _v-52fc0f57=\"\">费用缴纳</a></li>\n\t<li class=\"active\" _v-52fc0f57=\"\">欠费明细</li>\n</ol>\n<div class=\"container\" _v-52fc0f57=\"\">\n\t<div class=\"row\" _v-52fc0f57=\"\">\n\t\t<div class=\"col-xs-12\" _v-52fc0f57=\"\">\n\t\t\t<template v-for=\"(index01, houseInfo) in data\" _v-52fc0f57=\"\">\n\t\t\t\t\t<div class=\"panel panel-default\" _v-52fc0f57=\"\">\n\t\t\t\t\t\t<div class=\"panel-heading\" _v-52fc0f57=\"\">\n\t\t\t\t\t\t\t<h1 class=\"col-md-4\" _v-52fc0f57=\"\">房产{{ houseInfo.house }}物业欠费清单</h1>\n\t\t\t\t\t\t\t<div class=\"col-md-8 panel-right editdate-wrap\" _v-52fc0f57=\"\">\n\t\t\t\t\t\t\t\t<input class=\"editdate\" :id=\"'startwuye'+index01\" type=\"text\" name=\"\" readonly=\"\" v-model=\"houseInfo.wuyeStartDateClick.userStartDate\" v-datetimepicker=\"houseInfo.wuyeStartDateClick\" _v-52fc0f57=\"\">\n\t\t\t\t\t\t\t\t~\n\t\t\t\t\t\t\t\t<input class=\"editdate\" :id=\"'endwuye'+index01\" type=\"text\" name=\"\" readonly=\"\" v-model=\"houseInfo.wuyeEndDateClick.userEndDate\" v-datetimepicker=\"houseInfo.wuyeEndDateClick\" _v-52fc0f57=\"\">\n\t\t\t\t\t\t\t\t<button class=\"btn\" @click=\"wuyeSearch(houseInfo, 'wuye', index01)\" _v-52fc0f57=\"\">搜索</button>\n\t\t\t\t\t\t\t</div>\t\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class=\"panel-body\" _v-52fc0f57=\"\">\n\t\t\t\t\t\t<template v-if=\"dataInfo.wuye[index01].rows.length\" _v-52fc0f57=\"\">\n\t\t\t\t\t\t\t<table class=\"table table-bordered table-data\" _v-52fc0f57=\"\">\n\t\t\t\t\t\t\t\t<thead _v-52fc0f57=\"\">\n\t\t\t\t\t\t\t\t\t<tr _v-52fc0f57=\"\">\n\t\t\t\t\t\t\t\t\t\t<th _v-52fc0f57=\"\">缴费月份</th>\n\t\t\t\t\t\t\t\t\t\t<th _v-52fc0f57=\"\">缴费类型</th>\n\t\t\t\t\t\t\t\t\t\t<th _v-52fc0f57=\"\">缴费区间</th>\n\t\t\t\t\t\t\t\t\t\t<th _v-52fc0f57=\"\">应缴金额</th>\n\t\t\t\t\t\t\t\t\t\t<!-- <th>已缴金额</th>\n\t\t\t\t\t\t\t\t\t\t<th>欠缴金额</th> -->\n\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t</thead>\n\t\t\t\t\t\t\t\t<tbody _v-52fc0f57=\"\">\n\t\t\t\t\t\t\t\t\t<tr v-for=\"item in dataInfo.wuye[index01].rows\" _v-52fc0f57=\"\">\n\t\t\t\t\t\t\t\t\t\t<td _v-52fc0f57=\"\">{{ item.dshpay | TimeYMD }}</td>\n\t\t\t\t\t\t\t\t\t\t<td _v-52fc0f57=\"\">{{ item.feetype }}</td>\n\t\t\t\t\t\t\t\t\t\t<td _v-52fc0f57=\"\">{{ item.dbegin }} ~ {{ item.dend }}</td>\n\t\t\t\t\t\t\t\t\t\t<td _v-52fc0f57=\"\">{{ item.nyshouldmny | currency '￥' 2 }}</td>\n\t\t\t\t\t\t\t\t\t\t<!-- <td>已缴金额</td>\n\t\t\t\t\t\t\t\t\t\t<td>欠缴金额</td> -->\n\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t</tbody>\n\t\t\t\t\t\t\t</table>\n\t\t\t\t\t\t\t<div class=\"operate-wrap\" _v-52fc0f57=\"\">\n\t\t\t\t\t\t\t\t<div class=\"total\" _v-52fc0f57=\"\">房产{{ houseInfo.house }}物业费用合计：{{ price | currency '￥' 2 }}</div>\n\t\t\t\t\t\t\t\t<div class=\"btn-wrap\" _v-52fc0f57=\"\">\n\t\t\t\t\t\t\t\t\t<a class=\"btn\" _v-52fc0f57=\"\">立即支付</a>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</template>\n\t\t\t\t\t\t<template v-else=\"\" _v-52fc0f57=\"\">\n\t\t\t\t\t\t\t<table class=\"table table-bordered table-data\" _v-52fc0f57=\"\">\n\t\t\t\t\t\t\t\t<thead _v-52fc0f57=\"\">\n\t\t\t\t\t\t\t\t\t<tr _v-52fc0f57=\"\">\n\t\t\t\t\t\t\t\t\t\t<th _v-52fc0f57=\"\">缴费月份</th>\n\t\t\t\t\t\t\t\t\t\t<th _v-52fc0f57=\"\">缴费类型</th>\n\t\t\t\t\t\t\t\t\t\t<th _v-52fc0f57=\"\">缴费区间</th>\n\t\t\t\t\t\t\t\t\t\t<th _v-52fc0f57=\"\">应缴金额</th>\n\t\t\t\t\t\t\t\t\t\t<!-- <th>已缴金额</th>\n\t\t\t\t\t\t\t\t\t\t<th>欠缴金额</th> -->\n\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t</thead>\n\t\t\t\t\t\t\t\t<tbody _v-52fc0f57=\"\">\n\t\t\t\t\t\t\t\t\t<tr _v-52fc0f57=\"\"><td colspan=\"6\" _v-52fc0f57=\"\"><nodata _v-52fc0f57=\"\"></nodata></td>\n\t\t\t\t\t\t\t\t</tr></tbody>\n\t\t\t\t\t\t\t</table>\n\t\t\t\t\t\t</template>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class=\"panel panel-default\" _v-52fc0f57=\"\">\n\t\t\t\t\t\t<div class=\"panel-heading\" _v-52fc0f57=\"\">\n\t\t\t\t\t\t\t<h1 class=\"col-md-4\" _v-52fc0f57=\"\">房产{{ houseInfo.house }}开发欠费清单</h1>\n\t\t\t\t\t\t\t<div class=\"col-md-8 panel-right editdate-wrap\" _v-52fc0f57=\"\">\n\t\t\t\t\t\t\t\t<input class=\"editdate\" :id=\"'startwuye'+index01\" type=\"text\" name=\"\" readonly=\"\" v-model=\"houseInfo.kaifaStartDateClick.userStartDate\" v-datetimepicker=\"houseInfo.kaifaStartDateClick\" _v-52fc0f57=\"\">\n\t\t\t\t\t\t\t\t~\n\t\t\t\t\t\t\t\t<input class=\"editdate\" :id=\"'endwuye'+index01\" type=\"text\" name=\"\" readonly=\"\" v-model=\"houseInfo.kaifaEndDateClick.userEndDate\" v-datetimepicker=\"houseInfo.kaifaEndDateClick\" _v-52fc0f57=\"\">\n\t\t\t\t\t\t\t\t<button class=\"btn\" @click=\"kaifaSearch(houseInfo, 'kaifa', index01)\" _v-52fc0f57=\"\">搜索</button>\n\t\t\t\t\t\t\t</div>\t\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class=\"panel-body\" _v-52fc0f57=\"\">\n\t\t\t\t\t\t<template v-if=\"dataInfo.kaifa[index01].rows.length\" _v-52fc0f57=\"\">\n\t\t\t\t\t\t\t<table class=\"table table-bordered table-data\" _v-52fc0f57=\"\">\n\t\t\t\t\t\t\t\t<thead _v-52fc0f57=\"\">\n\t\t\t\t\t\t\t\t\t<tr _v-52fc0f57=\"\">\n\t\t\t\t\t\t\t\t\t\t<th _v-52fc0f57=\"\">缴费月份</th>\n\t\t\t\t\t\t\t\t\t\t<th _v-52fc0f57=\"\">缴费类型</th>\n\t\t\t\t\t\t\t\t\t\t<th _v-52fc0f57=\"\">缴费区间</th>\n\t\t\t\t\t\t\t\t\t\t<th _v-52fc0f57=\"\">应缴金额</th>\n\t\t\t\t\t\t\t\t\t\t<th _v-52fc0f57=\"\">已缴金额</th>\n\t\t\t\t\t\t\t\t\t\t<th _v-52fc0f57=\"\">欠缴金额</th>\n\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t</thead>\n\t\t\t\t\t\t\t\t<tbody _v-52fc0f57=\"\">\n\t\t\t\t\t\t\t\t\t<tr v-for=\"item in dataInfo.kaifa[index01].rows\" _v-52fc0f57=\"\">\n\t\t\t\t\t\t\t\t\t\t<td _v-52fc0f57=\"\">{{ item.dshpay }}</td>\n\t\t\t\t\t\t\t\t\t\t<td _v-52fc0f57=\"\">{{ item.feetype }}</td>\n\t\t\t\t\t\t\t\t\t\t<td _v-52fc0f57=\"\">{{ item.dbegin}} ~ {{ item.dend }}</td>\n\t\t\t\t\t\t\t\t\t\t<td _v-52fc0f57=\"\">{{ item.nyshouldmny | currency '￥' 2 }}</td>\n\t\t\t\t\t\t\t\t\t\t<td _v-52fc0f57=\"\">已缴金额</td>\n\t\t\t\t\t\t\t\t\t\t<td _v-52fc0f57=\"\">欠缴金额</td>\n\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t</tbody>\n\t\t\t\t\t\t\t</table>\n\t\t\t\t\t\t\t<div class=\"operate-wrap\" _v-52fc0f57=\"\">\n\t\t\t\t\t\t\t\t<div class=\"total\" _v-52fc0f57=\"\">房产{{ houseInfo.house }}物业费用合计：{{ price | currency '￥' 2 }}</div>\n\t\t\t\t\t\t\t\t<div class=\"btn-wrap\" _v-52fc0f57=\"\">\n\t\t\t\t\t\t\t\t\t<a class=\"btn\" _v-52fc0f57=\"\">立即支付</a>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</template>\n\t\t\t\t\t\t<template v-else=\"\" _v-52fc0f57=\"\">\n\t\t\t\t\t\t\t<table class=\"table table-bordered table-data\" _v-52fc0f57=\"\">\n\t\t\t\t\t\t\t\t<thead _v-52fc0f57=\"\">\n\t\t\t\t\t\t\t\t\t<tr _v-52fc0f57=\"\">\n\t\t\t\t\t\t\t\t\t\t<th _v-52fc0f57=\"\">缴费月份</th>\n\t\t\t\t\t\t\t\t\t\t<th _v-52fc0f57=\"\">缴费类型</th>\n\t\t\t\t\t\t\t\t\t\t<th _v-52fc0f57=\"\">缴费区间</th>\n\t\t\t\t\t\t\t\t\t\t<th _v-52fc0f57=\"\">应缴金额</th>\n\t\t\t\t\t\t\t\t\t\t<th _v-52fc0f57=\"\">已缴金额</th>\n\t\t\t\t\t\t\t\t\t\t<th _v-52fc0f57=\"\">欠缴金额</th>\n\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t</thead>\n\t\t\t\t\t\t\t\t<tbody _v-52fc0f57=\"\">\n\t\t\t\t\t\t\t\t\t<tr _v-52fc0f57=\"\"><td colspan=\"6\" _v-52fc0f57=\"\"><nodata _v-52fc0f57=\"\"></nodata></td>\n\t\t\t\t\t\t\t\t</tr></tbody>\n\t\t\t\t\t\t\t</table>\n\t\t\t\t\t\t</template>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t</template>\n\t\t<!-- \t<template v-else>\n\t\t\t\t<div class=\"panel panel-default\">\n\t\t\t\t\t<div class=\"panel-heading\">\n\t\t\t\t\t\t<div class=\"text-center\"><nodata></nodata></div>\n\t\t\t\t\t</div>\n\t\t\t\t</div> -->\n\t\t\t</div></div></div>";
+	module.exports = "\n<ol class=\"breadcrumb\" _v-52fc0f57=\"\">你当前的位置：\n\t<li _v-52fc0f57=\"\"><a href=\"#\" _v-52fc0f57=\"\">联东首页</a></li>\n\t<li _v-52fc0f57=\"\"><a href=\"#\" _v-52fc0f57=\"\">费用缴纳</a></li>\n\t<li class=\"active\" _v-52fc0f57=\"\">欠费明细</li>\n</ol>\n<div class=\"container\" _v-52fc0f57=\"\">\n\t<div class=\"row\" _v-52fc0f57=\"\">\n\t\t<div class=\"col-xs-12\" _v-52fc0f57=\"\">\n\t\t\t<template v-for=\"(index01, houseInfo) in data\" _v-52fc0f57=\"\">\n\t\t\t\t\t<div class=\"panel panel-default\" _v-52fc0f57=\"\">\n\t\t\t\t\t\t<div class=\"panel-heading\" _v-52fc0f57=\"\">\n\t\t\t\t\t\t\t<h1 class=\"col-md-4\" _v-52fc0f57=\"\">房产{{ houseInfo.house }}物业欠费清单</h1>\n\t\t\t\t\t\t\t<div class=\"col-md-8 panel-right editdate-wrap\" _v-52fc0f57=\"\">\n\t\t\t\t\t\t\t\t<input class=\"editdate\" :id=\"'startwuye'+index01\" type=\"text\" name=\"\" readonly=\"\" v-model=\"houseInfo.wuyeStartDateClick.userStartDate\" v-datetimepicker=\"houseInfo.wuyeStartDateClick\" _v-52fc0f57=\"\">\n\t\t\t\t\t\t\t\t~\n\t\t\t\t\t\t\t\t<input class=\"editdate\" :id=\"'endwuye'+index01\" type=\"text\" name=\"\" readonly=\"\" v-model=\"houseInfo.wuyeEndDateClick.userEndDate\" v-datetimepicker=\"houseInfo.wuyeEndDateClick\" _v-52fc0f57=\"\">\n\t\t\t\t\t\t\t\t<button class=\"btn\" @click=\"wuyeSearch(houseInfo, 'wuye', index01)\" _v-52fc0f57=\"\">搜索</button>\n\t\t\t\t\t\t\t</div>\t\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class=\"panel-body\" _v-52fc0f57=\"\">\n\t\t\t\t\t\t<template v-if=\"dataInfo.wuye[index01].rows.length\" _v-52fc0f57=\"\">\n\t\t\t\t\t\t\t<table class=\"table table-bordered table-data\" _v-52fc0f57=\"\">\n\t\t\t\t\t\t\t\t<thead _v-52fc0f57=\"\">\n\t\t\t\t\t\t\t\t\t<tr _v-52fc0f57=\"\">\n\t\t\t\t\t\t\t\t\t\t<th _v-52fc0f57=\"\">缴费月份</th>\n\t\t\t\t\t\t\t\t\t\t<th _v-52fc0f57=\"\">缴费类型</th>\n\t\t\t\t\t\t\t\t\t\t<th _v-52fc0f57=\"\">缴费区间</th>\n\t\t\t\t\t\t\t\t\t\t<th _v-52fc0f57=\"\">应缴金额</th>\n\t\t\t\t\t\t\t\t\t\t<!-- <th>已缴金额</th>\n\t\t\t\t\t\t\t\t\t\t<th>欠缴金额</th> -->\n\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t</thead>\n\t\t\t\t\t\t\t\t<tbody _v-52fc0f57=\"\">\n\t\t\t\t\t\t\t\t\t<tr v-for=\"item in dataInfo.wuye[index01].rows\" _v-52fc0f57=\"\">\n\t\t\t\t\t\t\t\t\t\t<td _v-52fc0f57=\"\">{{ item.dshpay | TimeYMD }}</td>\n\t\t\t\t\t\t\t\t\t\t<td _v-52fc0f57=\"\">{{ item.feetype }}</td>\n\t\t\t\t\t\t\t\t\t\t<td _v-52fc0f57=\"\">{{ item.dbegin }} ~ {{ item.dend }}</td>\n\t\t\t\t\t\t\t\t\t\t<td _v-52fc0f57=\"\">{{ item.nyshouldmny | currency '￥' 2 }}</td>\n\t\t\t\t\t\t\t\t\t\t<!-- <td>已缴金额</td>\n\t\t\t\t\t\t\t\t\t\t<td>欠缴金额</td> -->\n\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t</tbody>\n\t\t\t\t\t\t\t</table>\n\t\t\t\t\t\t\t<div class=\"operate-wrap\" _v-52fc0f57=\"\">\n\t\t\t\t\t\t\t\t<div class=\"total\" _v-52fc0f57=\"\">房产{{ houseInfo.house }}物业费用合计：{{ dataInfo.wuye[index01].sum | currency '￥' 2 }}</div>\n\t\t\t\t\t\t\t\t<div class=\"btn-wrap\" _v-52fc0f57=\"\">\n\t\t\t\t\t\t\t\t\t<a class=\"btn\" @click=\"goPay('wuye', index01, houseInfo)\" _v-52fc0f57=\"\">立即支付</a>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</template>\n\t\t\t\t\t\t<template v-else=\"\" _v-52fc0f57=\"\">\n\t\t\t\t\t\t\t<table class=\"table table-bordered table-data\" _v-52fc0f57=\"\">\n\t\t\t\t\t\t\t\t<thead _v-52fc0f57=\"\">\n\t\t\t\t\t\t\t\t\t<tr _v-52fc0f57=\"\">\n\t\t\t\t\t\t\t\t\t\t<th _v-52fc0f57=\"\">缴费月份</th>\n\t\t\t\t\t\t\t\t\t\t<th _v-52fc0f57=\"\">缴费类型</th>\n\t\t\t\t\t\t\t\t\t\t<th _v-52fc0f57=\"\">缴费区间</th>\n\t\t\t\t\t\t\t\t\t\t<th _v-52fc0f57=\"\">应缴金额</th>\n\t\t\t\t\t\t\t\t\t\t<!-- <th>已缴金额</th>\n\t\t\t\t\t\t\t\t\t\t<th>欠缴金额</th> -->\n\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t</thead>\n\t\t\t\t\t\t\t\t<tbody _v-52fc0f57=\"\">\n\t\t\t\t\t\t\t\t\t<tr _v-52fc0f57=\"\"><td colspan=\"6\" _v-52fc0f57=\"\"><nodata _v-52fc0f57=\"\"></nodata></td>\n\t\t\t\t\t\t\t\t</tr></tbody>\n\t\t\t\t\t\t\t</table>\n\t\t\t\t\t\t</template>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class=\"panel panel-default\" _v-52fc0f57=\"\">\n\t\t\t\t\t\t<div class=\"panel-heading\" _v-52fc0f57=\"\">\n\t\t\t\t\t\t\t<h1 class=\"col-md-4\" _v-52fc0f57=\"\">房产{{ houseInfo.house }}开发欠费清单</h1>\n\t\t\t\t\t\t\t<div class=\"col-md-8 panel-right editdate-wrap\" _v-52fc0f57=\"\">\n\t\t\t\t\t\t\t\t<input class=\"editdate\" :id=\"'startwuye'+index01\" type=\"text\" name=\"\" readonly=\"\" v-model=\"houseInfo.kaifaStartDateClick.userStartDate\" v-datetimepicker=\"houseInfo.kaifaStartDateClick\" _v-52fc0f57=\"\">\n\t\t\t\t\t\t\t\t~\n\t\t\t\t\t\t\t\t<input class=\"editdate\" :id=\"'endwuye'+index01\" type=\"text\" name=\"\" readonly=\"\" v-model=\"houseInfo.kaifaEndDateClick.userEndDate\" v-datetimepicker=\"houseInfo.kaifaEndDateClick\" _v-52fc0f57=\"\">\n\t\t\t\t\t\t\t\t<button class=\"btn\" @click=\"kaifaSearch(houseInfo, 'kaifa', index01)\" _v-52fc0f57=\"\">搜索</button>\n\t\t\t\t\t\t\t</div>\t\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class=\"panel-body\" _v-52fc0f57=\"\">\n\t\t\t\t\t\t<template v-if=\"dataInfo.kaifa[index01].rows.length\" _v-52fc0f57=\"\">\n\t\t\t\t\t\t\t<table class=\"table table-bordered table-data\" _v-52fc0f57=\"\">\n\t\t\t\t\t\t\t\t<thead _v-52fc0f57=\"\">\n\t\t\t\t\t\t\t\t\t<tr _v-52fc0f57=\"\">\n\t\t\t\t\t\t\t\t\t\t<th _v-52fc0f57=\"\">缴费月份</th>\n\t\t\t\t\t\t\t\t\t\t<th _v-52fc0f57=\"\">缴费类型</th>\n\t\t\t\t\t\t\t\t\t\t<th _v-52fc0f57=\"\">缴费区间</th>\n\t\t\t\t\t\t\t\t\t\t<th _v-52fc0f57=\"\">应缴金额</th>\n\t\t\t\t\t\t\t\t\t\t<th _v-52fc0f57=\"\">已缴金额</th>\n\t\t\t\t\t\t\t\t\t\t<th _v-52fc0f57=\"\">欠缴金额</th>\n\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t</thead>\n\t\t\t\t\t\t\t\t<tbody _v-52fc0f57=\"\">\n\t\t\t\t\t\t\t\t\t<tr v-for=\"item in dataInfo.kaifa[index01].rows\" _v-52fc0f57=\"\">\n\t\t\t\t\t\t\t\t\t\t<td _v-52fc0f57=\"\">{{ item.dshpay }}</td>\n\t\t\t\t\t\t\t\t\t\t<td _v-52fc0f57=\"\">{{ item.feetype }}</td>\n\t\t\t\t\t\t\t\t\t\t<td _v-52fc0f57=\"\">{{ item.dbegin}} ~ {{ item.dend }}</td>\n\t\t\t\t\t\t\t\t\t\t<td _v-52fc0f57=\"\">{{ item.nyshouldmny | currency '￥' 2 }}</td>\n\t\t\t\t\t\t\t\t\t\t<td _v-52fc0f57=\"\">{{ item.nmny?item.nmny:0 | currency '￥' 2 }}</td>\n\t\t\t\t\t\t\t\t\t\t<td _v-52fc0f57=\"\">{{ item.arrears | currency '￥' 2 }}</td>\n\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t</tbody>\n\t\t\t\t\t\t\t</table>\n\t\t\t\t\t\t\t<div class=\"operate-wrap\" _v-52fc0f57=\"\">\n\t\t\t\t\t\t\t\t<div class=\"total\" _v-52fc0f57=\"\">房产{{ houseInfo.house }}开发费用合计：{{ dataInfo.kaifa[index01].sum | currency '￥' 2 }}</div>\n\t\t\t\t\t\t\t\t<div class=\"btn-wrap\" _v-52fc0f57=\"\">\n\t\t\t\t\t\t\t\t\t<a class=\"btn\" @click=\"goPay('kaifa', index01, houseInfo)\" _v-52fc0f57=\"\">立即支付</a>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</template>\n\t\t\t\t\t\t<template v-else=\"\" _v-52fc0f57=\"\">\n\t\t\t\t\t\t\t<table class=\"table table-bordered table-data\" _v-52fc0f57=\"\">\n\t\t\t\t\t\t\t\t<thead _v-52fc0f57=\"\">\n\t\t\t\t\t\t\t\t\t<tr _v-52fc0f57=\"\">\n\t\t\t\t\t\t\t\t\t\t<th _v-52fc0f57=\"\">缴费月份</th>\n\t\t\t\t\t\t\t\t\t\t<th _v-52fc0f57=\"\">缴费类型</th>\n\t\t\t\t\t\t\t\t\t\t<th _v-52fc0f57=\"\">缴费区间</th>\n\t\t\t\t\t\t\t\t\t\t<th _v-52fc0f57=\"\">应缴金额</th>\n\t\t\t\t\t\t\t\t\t\t<th _v-52fc0f57=\"\">已缴金额</th>\n\t\t\t\t\t\t\t\t\t\t<th _v-52fc0f57=\"\">欠缴金额</th>\n\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t</thead>\n\t\t\t\t\t\t\t\t<tbody _v-52fc0f57=\"\">\n\t\t\t\t\t\t\t\t\t<tr _v-52fc0f57=\"\"><td colspan=\"6\" _v-52fc0f57=\"\"><nodata _v-52fc0f57=\"\"></nodata></td>\n\t\t\t\t\t\t\t\t</tr></tbody>\n\t\t\t\t\t\t\t</table>\n\t\t\t\t\t\t</template>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t</template>\n\t\t<!-- \t<template v-else>\n\t\t\t\t<div class=\"panel panel-default\">\n\t\t\t\t\t<div class=\"panel-heading\">\n\t\t\t\t\t\t<div class=\"text-center\"><nodata></nodata></div>\n\t\t\t\t\t</div>\n\t\t\t\t</div> -->\n\t\t\t</div></div></div>";
 
 /***/ }),
 /* 220 */
@@ -37449,6 +37827,10 @@ webpackJsonp([0],[
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
+
+	var _stringify = __webpack_require__(173);
+
+	var _stringify2 = _interopRequireDefault(_stringify);
 
 	var _nodata = __webpack_require__(188);
 
@@ -37518,7 +37900,7 @@ webpackJsonp([0],[
 	// 									<td>{{ item.feetype }}</td>
 	// 									<td>{{ item.dbegin | TimeYMD }} ~ {{ item.dend | TimeYMD }}</td>
 	// 									<td>{{ item.nyshouldmny | currency '￥' 2 }}</td>	
-	// 									<td>已缴金额</td>	
+	// 									<td>{{ item.nmny | currency '￥' 2 }}</td>	
 	// 									<td class="text-orange">{{ item.nyshouldmny | currency '￥' 2 }}</td>
 	// 								</tr>
 	// 								<template v-if="!dataInfo.wuye[index01].total">
@@ -37570,7 +37952,7 @@ webpackJsonp([0],[
 	// 									<td>{{ item.feetype }}</td>
 	// 									<td>{{ item.dbegin | TimeYMD }} ~ {{ item.dend | TimeYMD }}</td>
 	// 									<td>{{ item.nyshouldmny | currency '￥' 2 }}</td>	
-	// 									<td>已缴金额</td>	
+	// 									<td>{{ item.nmny | currency '￥' 2 }}</td>	
 	// 									<td class="text-orange">{{ item.nyshouldmny | currency '￥' 2 }}</td>
 	// 								</tr>
 	// 								<template v-if="!dataInfo.kaifa[index01].total">
@@ -37646,11 +38028,12 @@ webpackJsonp([0],[
 	            houseInfo.wuyeCheckedAll = false;
 	            $.ajax({
 	                type: "post",
+	                contentType: "application/json",
 	                url: global.HttpPath + '/prePay/propertyFeeList', // 开发预交清单
-	                data: { // 请求参数
+	                data: (0, _stringify2.default)({ // 请求参数
 	                    houseInfoId: _houseInfos[i].pk_house,
 	                    customerId: _houseInfos[i].pk_customerid
-	                },
+	                }),
 	                dataType: 'json',
 	                success: function success(data) {
 	                    console.log(data);
@@ -37668,11 +38051,12 @@ webpackJsonp([0],[
 	            houseInfo.kaifaCheckedAll = false;
 	            $.ajax({
 	                type: "post",
+	                contentType: "application/json",
 	                url: global.HttpPath + '/prePay/kfFeeList', // 开发预交清单
-	                data: { // 请求参数
+	                data: (0, _stringify2.default)({ // 请求参数
 	                    houseInfoId: _houseInfos[i].pk_house,
 	                    customerId: _houseInfos[i].pk_customerid
-	                },
+	                }),
 	                dataType: 'json',
 	                success: function success(data) {
 	                    console.log(data);
@@ -37733,6 +38117,14 @@ webpackJsonp([0],[
 	                    totalPrice: totalPrice,
 	                    houseInfo: houseInfo,
 	                    payType: 'wuye',
+	                    goToURL: {
+	                        name: 'wuye',
+	                        url: '/home/payment/estates'
+	                    },
+	                    goodsInfosKey: { // 展示商品的字段
+	                        feetypeKey: 'feetype',
+	                        priceKey: 'nyshouldmny'
+	                    },
 	                    canInvoice: true,
 	                    goods: this.dataInfo.wuye[index].rows
 	                };
@@ -37747,6 +38139,10 @@ webpackJsonp([0],[
 	                    totalPrice: totalPrice,
 	                    houseInfo: houseInfo,
 	                    payType: 'kaifa',
+	                    goToURL: {
+	                        name: 'type',
+	                        url: '/home/payment/estates'
+	                    },
 	                    goods: this.dataInfo.kaifa[index].rows
 	                };
 	            }
@@ -37760,7 +38156,7 @@ webpackJsonp([0],[
 /* 223 */
 /***/ (function(module, exports) {
 
-	module.exports = "\n<ol class=\"breadcrumb\" _v-3dd7f01b=\"\">你当前的位置：\n\t<li _v-3dd7f01b=\"\"><a href=\"#\" _v-3dd7f01b=\"\">联东首页</a></li>\n\t<li _v-3dd7f01b=\"\"><a href=\"#\" _v-3dd7f01b=\"\">费用缴纳</a></li>\n\t<li class=\"active\" _v-3dd7f01b=\"\">预交费用</li>\n</ol>\n<div class=\"container\" _v-3dd7f01b=\"\">\n\t<div class=\"row\" _v-3dd7f01b=\"\">\n\t<template v-if=\"data.length\" v-for=\"(index01,houseInfo) in data\" _v-3dd7f01b=\"\">\n\t\t<div class=\"col-xs-12\" _v-3dd7f01b=\"\">\n\t\t\t<div class=\"panel panel-default\" _v-3dd7f01b=\"\">\n\t\t\t\t<div class=\"panel-heading\" _v-3dd7f01b=\"\">\n\t\t\t\t\t<h1 class=\"col-md-4\" _v-3dd7f01b=\"\">房产{{ houseInfo.house }}物业预交清单</h1>\t\n\t\t\t\t</div>\n\t\t\t\t<div class=\"panel-body\" _v-3dd7f01b=\"\">\n\t\t\t\t\t\t<table class=\"table table-bordered table-data\" _v-3dd7f01b=\"\">\n\t\t\t\t\t\t\t<thead _v-3dd7f01b=\"\">\n\t\t\t\t\t\t\t\t<tr _v-3dd7f01b=\"\">\n\t\t\t\t\t\t\t\t\t<th _v-3dd7f01b=\"\">\n\t\t\t\t\t\t\t\t\t\t<label class=\"checkbox-container\" data-type=\"checkbox\" :for=\"'wuye-all'+index01\" :checked=\"houseInfo.wuyeCheckedAll\" _v-3dd7f01b=\"\">\n\t\t\t\t\t\t\t\t\t        <input type=\"checkbox\" :id=\"'wuye-all'+index01\" :value=\"'wuye-all'+index01\" v-model=\"houseInfo.wuyeCheckedAll\" @click=\"checkedAllClick('wuye',houseInfo.wuyeCheckedAll,houseInfo,dataInfo, index01, index)\" checked=\"\" _v-3dd7f01b=\"\">\n\t\t\t\t\t\t\t\t\t        <i class=\"icon icon01 i_radio\" _v-3dd7f01b=\"\"></i>\n\t\t\t\t\t\t\t\t\t    </label>\n\t\t\t\t\t\t\t\t\t</th>\n\t\t\t\t\t\t\t\t\t<th _v-3dd7f01b=\"\">缴费月份</th>\n\t\t\t\t\t\t\t\t\t<th _v-3dd7f01b=\"\">费用类型</th>\n\t\t\t\t\t\t\t\t\t<th _v-3dd7f01b=\"\">缴费区间</th>\n\t\t\t\t\t\t\t\t\t<th _v-3dd7f01b=\"\">应缴金额</th>\n\t\t\t\t\t\t\t\t\t<th _v-3dd7f01b=\"\">已缴金额</th>\n\t\t\t\t\t\t\t\t\t<th _v-3dd7f01b=\"\">账单合计</th>\n\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t</thead>\n\t\t\t\t\t\t\t<tbody _v-3dd7f01b=\"\">\n\t\t\t\t\t\t\t\t<tr v-if=\"dataInfo.wuye[index01].total\" v-for=\"(index, item) in dataInfo.wuye[index01].rows\" _v-3dd7f01b=\"\">\n\t\t\t\t\t\t\t\t\t<td _v-3dd7f01b=\"\">\n\t\t\t\t\t\t\t\t\t\t<label class=\"checkbox-container\" data-type=\"checkbox\" :for=\"'wuye'+index01+index\" :checked=\"houseInfo.wuyeChecked.indexOf('wuye'+index01+index)!=-1\" _v-3dd7f01b=\"\">\n\t\t\t\t\t\t\t\t\t        <input type=\"checkbox\" :id=\"'wuye'+index01+index\" :value=\"'wuye'+index01+index\" v-model=\"houseInfo.wuyeChecked\" @click=\"checkedClick(houseInfo,dataInfo, 'wuye', index01, index)\" checked=\"\" _v-3dd7f01b=\"\">\n\t\t\t\t\t\t\t\t\t        <i class=\"icon icon01 i_radio\" _v-3dd7f01b=\"\"></i>\n\t\t\t\t\t\t\t\t\t    </label>\n\t\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t\t\t<td _v-3dd7f01b=\"\">{{ item.dshpay | TimeYMD }}</td>\n\t\t\t\t\t\t\t\t\t<td _v-3dd7f01b=\"\">{{ item.feetype }}</td>\n\t\t\t\t\t\t\t\t\t<td _v-3dd7f01b=\"\">{{ item.dbegin | TimeYMD }} ~ {{ item.dend | TimeYMD }}</td>\n\t\t\t\t\t\t\t\t\t<td _v-3dd7f01b=\"\">{{ item.nyshouldmny | currency '￥' 2 }}</td>\t\n\t\t\t\t\t\t\t\t\t<td _v-3dd7f01b=\"\">已缴金额</td>\t\n\t\t\t\t\t\t\t\t\t<td class=\"text-orange\" _v-3dd7f01b=\"\">{{ item.nyshouldmny | currency '￥' 2 }}</td>\n\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t<template v-if=\"!dataInfo.wuye[index01].total\" _v-3dd7f01b=\"\">\n\t\t\t\t\t\t\t\t\t<tr _v-3dd7f01b=\"\"><td colspan=\"7\" _v-3dd7f01b=\"\"><nodata _v-3dd7f01b=\"\"></nodata></td></tr>\n\t\t\t\t\t\t\t\t</template>\n\t\t\t\t\t\t\t</tbody>\n\t\t\t\t\t\t</table>\n\t\t\t\t\t\t<div class=\"pay-tipebar\" _v-3dd7f01b=\"\">\n\t\t\t\t\t\t\t<div class=\"total\" _v-3dd7f01b=\"\">房产{{ houseInfo.house }}物业费用合计：{{ dataInfo.wuye[index01].usercheckedTotalPrice | currency '￥' 2 }}</div>\n\t\t\t\t\t\t\t<div class=\"btn-wrap\" _v-3dd7f01b=\"\">\n\t\t\t\t\t\t\t\t<a class=\"btn\" @click=\"goPayWuye(index01, houseInfo)\" _v-3dd7f01b=\"\">立即支付</a>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\t\n\t\t<div class=\"col-xs-12\" _v-3dd7f01b=\"\">\n\t\t\t<div class=\"panel panel-default\" _v-3dd7f01b=\"\">\n\t\t\t\t<div class=\"panel-heading\" _v-3dd7f01b=\"\">\n\t\t\t\t\t<h1 class=\"col-md-4\" _v-3dd7f01b=\"\">房产{{ houseInfo.house }}开发预交清单</h1>\t\n\t\t\t\t</div>\n\t\t\t\t<div class=\"panel-body\" _v-3dd7f01b=\"\">\n\t\t\t\t\t\t<table class=\"table table-bordered table-data\" _v-3dd7f01b=\"\">\n\t\t\t\t\t\t\t<thead _v-3dd7f01b=\"\">\n\t\t\t\t\t\t\t\t<tr _v-3dd7f01b=\"\">\n\t\t\t\t\t\t\t\t\t<th _v-3dd7f01b=\"\">\n\t\t\t\t\t\t\t\t\t\t<label class=\"checkbox-container\" data-type=\"checkbox\" :for=\"'kaifa-all'+index01\" :checked=\"houseInfo.kaifaCheckedAll\" _v-3dd7f01b=\"\">\n\t\t\t\t\t\t\t\t\t        <input type=\"checkbox\" :id=\"'kaifa-all'+index01\" :value=\"'kaifa-all'+index01\" v-model=\"houseInfo.kaifaCheckedAll\" @click=\"checkedAllClick('kaifa',houseInfo.kaifaCheckedAll,houseInfo,dataInfo, index01, index)\" checked=\"\" _v-3dd7f01b=\"\">\n\t\t\t\t\t\t\t\t\t        <i class=\"icon icon01 i_radio\" _v-3dd7f01b=\"\"></i>\n\t\t\t\t\t\t\t\t\t    </label>\n\t\t\t\t\t\t\t\t\t</th>\n\t\t\t\t\t\t\t\t\t<th _v-3dd7f01b=\"\">缴费月份</th>\n\t\t\t\t\t\t\t\t\t<th _v-3dd7f01b=\"\">费用类型</th>\n\t\t\t\t\t\t\t\t\t<th _v-3dd7f01b=\"\">缴费区间</th>\n\t\t\t\t\t\t\t\t\t<th _v-3dd7f01b=\"\">应缴金额</th>\n\t\t\t\t\t\t\t\t\t<th _v-3dd7f01b=\"\">已缴金额</th>\n\t\t\t\t\t\t\t\t\t<th _v-3dd7f01b=\"\">账单合计</th>\n\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t</thead>\n\t\t\t\t\t\t\t<tbody _v-3dd7f01b=\"\">\n\t\t\t\t\t\t\t\t<tr v-if=\"dataInfo.kaifa[index01].total\" v-for=\"(index, item) in dataInfo.kaifa[index01].rows\" _v-3dd7f01b=\"\">\n\t\t\t\t\t\t\t\t\t<td _v-3dd7f01b=\"\">\n\t\t\t\t\t\t\t\t\t\t<label class=\"checkbox-container\" data-type=\"checkbox\" :for=\"'kaifa'+index01+index\" :checked=\"houseInfo.kaifaChecked.indexOf('kaifa'+index01+index)!=-1\" _v-3dd7f01b=\"\">\n\t\t\t\t\t\t\t\t\t        <input type=\"checkbox\" :id=\"'kaifa'+index01+index\" :value=\"'kaifa'+index01+index\" v-model=\"houseInfo.kaifaChecked\" @click=\"checkedClick(houseInfo,dataInfo, 'kaifa', index01, index)\" checked=\"\" _v-3dd7f01b=\"\">\n\t\t\t\t\t\t\t\t\t        <i class=\"icon icon01 i_radio\" _v-3dd7f01b=\"\"></i>\n\t\t\t\t\t\t\t\t\t    </label>\n\t\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t\t\t<td _v-3dd7f01b=\"\">{{ item.dshpay | TimeYMD }}</td>\n\t\t\t\t\t\t\t\t\t<td _v-3dd7f01b=\"\">{{ item.feetype }}</td>\n\t\t\t\t\t\t\t\t\t<td _v-3dd7f01b=\"\">{{ item.dbegin | TimeYMD }} ~ {{ item.dend | TimeYMD }}</td>\n\t\t\t\t\t\t\t\t\t<td _v-3dd7f01b=\"\">{{ item.nyshouldmny | currency '￥' 2 }}</td>\t\n\t\t\t\t\t\t\t\t\t<td _v-3dd7f01b=\"\">已缴金额</td>\t\n\t\t\t\t\t\t\t\t\t<td class=\"text-orange\" _v-3dd7f01b=\"\">{{ item.nyshouldmny | currency '￥' 2 }}</td>\n\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t<template v-if=\"!dataInfo.kaifa[index01].total\" _v-3dd7f01b=\"\">\n\t\t\t\t\t\t\t\t\t<tr _v-3dd7f01b=\"\"><td colspan=\"7\" _v-3dd7f01b=\"\"><nodata _v-3dd7f01b=\"\"></nodata></td></tr>\n\t\t\t\t\t\t\t\t</template>\n\t\t\t\t\t\t\t</tbody>\n\t\t\t\t\t\t</table>\n\t\t\t\t\t\t<div class=\"pay-tipebar\" _v-3dd7f01b=\"\">\n\t\t\t\t\t\t\t<div class=\"total\" _v-3dd7f01b=\"\">房产{{ houseInfo.house }}开发费用合计：{{ dataInfo.kaifa[index01].usercheckedTotalPrice | currency '￥' 2 }}</div>\n\t\t\t\t\t\t\t<div class=\"btn-wrap\" _v-3dd7f01b=\"\">\n\t\t\t\t\t\t\t\t<a class=\"btn\" @click=\"goPayKaifa(index01, houseInfo)\" _v-3dd7f01b=\"\">立即支付</a>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\t\n\t</template>\n\t<template v-else=\"\" _v-3dd7f01b=\"\">\n\t\t<div class=\"panel panel-default\" _v-3dd7f01b=\"\">\n\t\t\t<div class=\"panel-heading\" _v-3dd7f01b=\"\">\n\t\t\t\t<div class=\"text-center\" _v-3dd7f01b=\"\"><nodata _v-3dd7f01b=\"\"></nodata></div>\n\t\t\t</div>\n\t\t</div>\n\t</template>\n\t</div>\n</div>\n";
+	module.exports = "\n<ol class=\"breadcrumb\" _v-3dd7f01b=\"\">你当前的位置：\n\t<li _v-3dd7f01b=\"\"><a href=\"#\" _v-3dd7f01b=\"\">联东首页</a></li>\n\t<li _v-3dd7f01b=\"\"><a href=\"#\" _v-3dd7f01b=\"\">费用缴纳</a></li>\n\t<li class=\"active\" _v-3dd7f01b=\"\">预交费用</li>\n</ol>\n<div class=\"container\" _v-3dd7f01b=\"\">\n\t<div class=\"row\" _v-3dd7f01b=\"\">\n\t<template v-if=\"data.length\" v-for=\"(index01,houseInfo) in data\" _v-3dd7f01b=\"\">\n\t\t<div class=\"col-xs-12\" _v-3dd7f01b=\"\">\n\t\t\t<div class=\"panel panel-default\" _v-3dd7f01b=\"\">\n\t\t\t\t<div class=\"panel-heading\" _v-3dd7f01b=\"\">\n\t\t\t\t\t<h1 class=\"col-md-4\" _v-3dd7f01b=\"\">房产{{ houseInfo.house }}物业预交清单</h1>\t\n\t\t\t\t</div>\n\t\t\t\t<div class=\"panel-body\" _v-3dd7f01b=\"\">\n\t\t\t\t\t\t<table class=\"table table-bordered table-data\" _v-3dd7f01b=\"\">\n\t\t\t\t\t\t\t<thead _v-3dd7f01b=\"\">\n\t\t\t\t\t\t\t\t<tr _v-3dd7f01b=\"\">\n\t\t\t\t\t\t\t\t\t<th _v-3dd7f01b=\"\">\n\t\t\t\t\t\t\t\t\t\t<label class=\"checkbox-container\" data-type=\"checkbox\" :for=\"'wuye-all'+index01\" :checked=\"houseInfo.wuyeCheckedAll\" _v-3dd7f01b=\"\">\n\t\t\t\t\t\t\t\t\t        <input type=\"checkbox\" :id=\"'wuye-all'+index01\" :value=\"'wuye-all'+index01\" v-model=\"houseInfo.wuyeCheckedAll\" @click=\"checkedAllClick('wuye',houseInfo.wuyeCheckedAll,houseInfo,dataInfo, index01, index)\" checked=\"\" _v-3dd7f01b=\"\">\n\t\t\t\t\t\t\t\t\t        <i class=\"icon icon01 i_radio\" _v-3dd7f01b=\"\"></i>\n\t\t\t\t\t\t\t\t\t    </label>\n\t\t\t\t\t\t\t\t\t</th>\n\t\t\t\t\t\t\t\t\t<th _v-3dd7f01b=\"\">缴费月份</th>\n\t\t\t\t\t\t\t\t\t<th _v-3dd7f01b=\"\">费用类型</th>\n\t\t\t\t\t\t\t\t\t<th _v-3dd7f01b=\"\">缴费区间</th>\n\t\t\t\t\t\t\t\t\t<th _v-3dd7f01b=\"\">应缴金额</th>\n\t\t\t\t\t\t\t\t\t<th _v-3dd7f01b=\"\">已缴金额</th>\n\t\t\t\t\t\t\t\t\t<th _v-3dd7f01b=\"\">账单合计</th>\n\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t</thead>\n\t\t\t\t\t\t\t<tbody _v-3dd7f01b=\"\">\n\t\t\t\t\t\t\t\t<tr v-if=\"dataInfo.wuye[index01].total\" v-for=\"(index, item) in dataInfo.wuye[index01].rows\" _v-3dd7f01b=\"\">\n\t\t\t\t\t\t\t\t\t<td _v-3dd7f01b=\"\">\n\t\t\t\t\t\t\t\t\t\t<label class=\"checkbox-container\" data-type=\"checkbox\" :for=\"'wuye'+index01+index\" :checked=\"houseInfo.wuyeChecked.indexOf('wuye'+index01+index)!=-1\" _v-3dd7f01b=\"\">\n\t\t\t\t\t\t\t\t\t        <input type=\"checkbox\" :id=\"'wuye'+index01+index\" :value=\"'wuye'+index01+index\" v-model=\"houseInfo.wuyeChecked\" @click=\"checkedClick(houseInfo,dataInfo, 'wuye', index01, index)\" checked=\"\" _v-3dd7f01b=\"\">\n\t\t\t\t\t\t\t\t\t        <i class=\"icon icon01 i_radio\" _v-3dd7f01b=\"\"></i>\n\t\t\t\t\t\t\t\t\t    </label>\n\t\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t\t\t<td _v-3dd7f01b=\"\">{{ item.dshpay | TimeYMD }}</td>\n\t\t\t\t\t\t\t\t\t<td _v-3dd7f01b=\"\">{{ item.feetype }}</td>\n\t\t\t\t\t\t\t\t\t<td _v-3dd7f01b=\"\">{{ item.dbegin | TimeYMD }} ~ {{ item.dend | TimeYMD }}</td>\n\t\t\t\t\t\t\t\t\t<td _v-3dd7f01b=\"\">{{ item.nyshouldmny | currency '￥' 2 }}</td>\t\n\t\t\t\t\t\t\t\t\t<td _v-3dd7f01b=\"\">{{ item.nmny | currency '￥' 2 }}</td>\t\n\t\t\t\t\t\t\t\t\t<td class=\"text-orange\" _v-3dd7f01b=\"\">{{ item.nyshouldmny | currency '￥' 2 }}</td>\n\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t<template v-if=\"!dataInfo.wuye[index01].total\" _v-3dd7f01b=\"\">\n\t\t\t\t\t\t\t\t\t<tr _v-3dd7f01b=\"\"><td colspan=\"7\" _v-3dd7f01b=\"\"><nodata _v-3dd7f01b=\"\"></nodata></td></tr>\n\t\t\t\t\t\t\t\t</template>\n\t\t\t\t\t\t\t</tbody>\n\t\t\t\t\t\t</table>\n\t\t\t\t\t\t<div class=\"pay-tipebar\" _v-3dd7f01b=\"\">\n\t\t\t\t\t\t\t<div class=\"total\" _v-3dd7f01b=\"\">房产{{ houseInfo.house }}物业费用合计：{{ dataInfo.wuye[index01].usercheckedTotalPrice | currency '￥' 2 }}</div>\n\t\t\t\t\t\t\t<div class=\"btn-wrap\" _v-3dd7f01b=\"\">\n\t\t\t\t\t\t\t\t<a class=\"btn\" @click=\"goPayWuye(index01, houseInfo)\" _v-3dd7f01b=\"\">立即支付</a>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\t\n\t\t<div class=\"col-xs-12\" _v-3dd7f01b=\"\">\n\t\t\t<div class=\"panel panel-default\" _v-3dd7f01b=\"\">\n\t\t\t\t<div class=\"panel-heading\" _v-3dd7f01b=\"\">\n\t\t\t\t\t<h1 class=\"col-md-4\" _v-3dd7f01b=\"\">房产{{ houseInfo.house }}开发预交清单</h1>\t\n\t\t\t\t</div>\n\t\t\t\t<div class=\"panel-body\" _v-3dd7f01b=\"\">\n\t\t\t\t\t\t<table class=\"table table-bordered table-data\" _v-3dd7f01b=\"\">\n\t\t\t\t\t\t\t<thead _v-3dd7f01b=\"\">\n\t\t\t\t\t\t\t\t<tr _v-3dd7f01b=\"\">\n\t\t\t\t\t\t\t\t\t<th _v-3dd7f01b=\"\">\n\t\t\t\t\t\t\t\t\t\t<label class=\"checkbox-container\" data-type=\"checkbox\" :for=\"'kaifa-all'+index01\" :checked=\"houseInfo.kaifaCheckedAll\" _v-3dd7f01b=\"\">\n\t\t\t\t\t\t\t\t\t        <input type=\"checkbox\" :id=\"'kaifa-all'+index01\" :value=\"'kaifa-all'+index01\" v-model=\"houseInfo.kaifaCheckedAll\" @click=\"checkedAllClick('kaifa',houseInfo.kaifaCheckedAll,houseInfo,dataInfo, index01, index)\" checked=\"\" _v-3dd7f01b=\"\">\n\t\t\t\t\t\t\t\t\t        <i class=\"icon icon01 i_radio\" _v-3dd7f01b=\"\"></i>\n\t\t\t\t\t\t\t\t\t    </label>\n\t\t\t\t\t\t\t\t\t</th>\n\t\t\t\t\t\t\t\t\t<th _v-3dd7f01b=\"\">缴费月份</th>\n\t\t\t\t\t\t\t\t\t<th _v-3dd7f01b=\"\">费用类型</th>\n\t\t\t\t\t\t\t\t\t<th _v-3dd7f01b=\"\">缴费区间</th>\n\t\t\t\t\t\t\t\t\t<th _v-3dd7f01b=\"\">应缴金额</th>\n\t\t\t\t\t\t\t\t\t<th _v-3dd7f01b=\"\">已缴金额</th>\n\t\t\t\t\t\t\t\t\t<th _v-3dd7f01b=\"\">账单合计</th>\n\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t</thead>\n\t\t\t\t\t\t\t<tbody _v-3dd7f01b=\"\">\n\t\t\t\t\t\t\t\t<tr v-if=\"dataInfo.kaifa[index01].total\" v-for=\"(index, item) in dataInfo.kaifa[index01].rows\" _v-3dd7f01b=\"\">\n\t\t\t\t\t\t\t\t\t<td _v-3dd7f01b=\"\">\n\t\t\t\t\t\t\t\t\t\t<label class=\"checkbox-container\" data-type=\"checkbox\" :for=\"'kaifa'+index01+index\" :checked=\"houseInfo.kaifaChecked.indexOf('kaifa'+index01+index)!=-1\" _v-3dd7f01b=\"\">\n\t\t\t\t\t\t\t\t\t        <input type=\"checkbox\" :id=\"'kaifa'+index01+index\" :value=\"'kaifa'+index01+index\" v-model=\"houseInfo.kaifaChecked\" @click=\"checkedClick(houseInfo,dataInfo, 'kaifa', index01, index)\" checked=\"\" _v-3dd7f01b=\"\">\n\t\t\t\t\t\t\t\t\t        <i class=\"icon icon01 i_radio\" _v-3dd7f01b=\"\"></i>\n\t\t\t\t\t\t\t\t\t    </label>\n\t\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t\t\t<td _v-3dd7f01b=\"\">{{ item.dshpay | TimeYMD }}</td>\n\t\t\t\t\t\t\t\t\t<td _v-3dd7f01b=\"\">{{ item.feetype }}</td>\n\t\t\t\t\t\t\t\t\t<td _v-3dd7f01b=\"\">{{ item.dbegin | TimeYMD }} ~ {{ item.dend | TimeYMD }}</td>\n\t\t\t\t\t\t\t\t\t<td _v-3dd7f01b=\"\">{{ item.nyshouldmny | currency '￥' 2 }}</td>\t\n\t\t\t\t\t\t\t\t\t<td _v-3dd7f01b=\"\">{{ item.nmny | currency '￥' 2 }}</td>\t\n\t\t\t\t\t\t\t\t\t<td class=\"text-orange\" _v-3dd7f01b=\"\">{{ item.nyshouldmny | currency '￥' 2 }}</td>\n\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t<template v-if=\"!dataInfo.kaifa[index01].total\" _v-3dd7f01b=\"\">\n\t\t\t\t\t\t\t\t\t<tr _v-3dd7f01b=\"\"><td colspan=\"7\" _v-3dd7f01b=\"\"><nodata _v-3dd7f01b=\"\"></nodata></td></tr>\n\t\t\t\t\t\t\t\t</template>\n\t\t\t\t\t\t\t</tbody>\n\t\t\t\t\t\t</table>\n\t\t\t\t\t\t<div class=\"pay-tipebar\" _v-3dd7f01b=\"\">\n\t\t\t\t\t\t\t<div class=\"total\" _v-3dd7f01b=\"\">房产{{ houseInfo.house }}开发费用合计：{{ dataInfo.kaifa[index01].usercheckedTotalPrice | currency '￥' 2 }}</div>\n\t\t\t\t\t\t\t<div class=\"btn-wrap\" _v-3dd7f01b=\"\">\n\t\t\t\t\t\t\t\t<a class=\"btn\" @click=\"goPayKaifa(index01, houseInfo)\" _v-3dd7f01b=\"\">立即支付</a>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\t\n\t</template>\n\t<template v-else=\"\" _v-3dd7f01b=\"\">\n\t\t<div class=\"panel panel-default\" _v-3dd7f01b=\"\">\n\t\t\t<div class=\"panel-heading\" _v-3dd7f01b=\"\">\n\t\t\t\t<div class=\"text-center\" _v-3dd7f01b=\"\"><nodata _v-3dd7f01b=\"\"></nodata></div>\n\t\t\t</div>\n\t\t</div>\n\t</template>\n\t</div>\n</div>\n";
 
 /***/ }),
 /* 224 */
@@ -38616,6 +39012,7 @@ webpackJsonp([0],[
 
 	        $.ajax({ // 获取入驻，装修状态
 	            type: "post",
+	            async: false,
 	            contentType: "application/json",
 	            url: global.HttpPath + '/customer/login',
 	            data: (0, _stringify2.default)({
@@ -38626,48 +39023,57 @@ webpackJsonp([0],[
 	            success: function success(data) {
 	                if (data.success) {
 	                    /*用户信息*/
-	                    var _data = global.userLoginInfo.data;
+	                    var _data = data.data;
 	                    var _isFinishEnter = false;
 	                    var houseInfos = []; // 将所有房产放到一个数组
+	                    var _isDecHouseInfo = {};
 	                    if (_data.length) {
 	                        for (var i = 0; i < _data.length; i++) {
 	                            if (_data[i].houseInfos.length) {
 	                                for (var k = 0; k < _data[i].houseInfos.length; k++) {
-	                                    var houseInfo = null;
-	                                    houseInfo = _data[i].houseInfos[k];
-	                                    houseInfo.pk_customerid = _data[i].pk_customerid; // 项目id
-	                                    houseInfos.push(houseInfo);
-	                                    if (houseInfo.houseVO && houseInfo.houseVO.vdef8 == -1) {
+	                                    var _houseInfo = null;
+	                                    _houseInfo = _data[i].houseInfos[k];
+	                                    _houseInfo.pk_customerid = _data[i].pk_customerid; // 项目id
+	                                    houseInfos.push(_houseInfo);
+	                                    if (_houseInfo.houseVO && _houseInfo.houseVO.vdef8 == -1) {
 	                                        _isFinishEnter = true;
+	                                    }
+
+	                                    if (parseInt(_houseInfo && _houseInfo.houseInfoDetails ? _houseInfo.houseInfoDetails.decorationapplystate : 0, 10) != -1) {
+	                                        // 是否有房产申请办理装修
+	                                        if (parseInt(_houseInfo ? _houseInfo.houseInfoDetails.decorationapplystate : 0, 10)) {
+	                                            _isDecHouseInfo = _houseInfo;
+	                                        }
 	                                    }
 	                                }
 	                            }
 	                        }
 	                    }
 	                    global.isEVPI = false;
-	                    for (var customer = 0; customer < global.userInfo.customers.length; customer++) {
-	                        if (global.userInfo.customers[customer].currentFlow) {
+	                    for (var customer = 0; customer < _data.length; customer++) {
+	                        if (_data[customer].currentFlow == 1) {
 	                            global.isEVPI = true;
 	                            break;
 	                        }
 	                    }
 
 	                    var _noEnterHouseInfos = [];
-	                    var _isEnterHouseInfo = [];
+	                    var _isEnterHouseInfo = {};
 	                    if (!global.isEVPI) {
 	                        // 完善资料
-	                        // this.$router.go('/home/business/enter/userinfo');
-	                        _noEnterHouseInfos = global.userInfo.houseInfos;
+	                        _this.$router.go('/home/business/enter/userinfo');
+	                        _noEnterHouseInfos = houseInfos;
 	                    } else {
-	                        var _houseInfos = global.userInfo.houseInfos;
+	                        var _houseInfos = houseInfos;
 	                        if (_houseInfos && _houseInfos.length) {
 	                            for (var k = 0; k < _houseInfos.length; k++) {
 	                                var _houseInfo = _houseInfos[k];
-	                                if (parseInt(_houseInfo ? _houseInfo.houseInfoDetails.enterapplyState : 0, 10) != -1) {
+	                                if (parseInt(_houseInfo && _houseInfo.houseInfoDetails ? _houseInfo.houseInfoDetails.enterapplyState : 0, 10) != -1) {
+	                                    // 是否有房产正在办理入驻中
 	                                    if (!parseInt(_houseInfo ? _houseInfo.houseInfoDetails.enterapplyState : 0, 10)) {
 	                                        _noEnterHouseInfos.push(_houseInfo);
 	                                    } else {
-	                                        _isEnterHouseInfo = _isEnterHouseInfo;
+	                                        _isEnterHouseInfo = _houseInfo;
 	                                    }
 	                                }
 	                            }
@@ -38675,6 +39081,7 @@ webpackJsonp([0],[
 	                    }
 	                    global.noEnterHouseInfos = _noEnterHouseInfos;
 	                    global.isEnterHouseInfo = _isEnterHouseInfo;
+	                    global.isDecHouseInfo = _isDecHouseInfo; // 正在申请装修的房产
 	                } else {}
 	            }
 	        });
@@ -38766,7 +39173,7 @@ webpackJsonp([0],[
 	            // 未完善资料
 	            this.$router.go('/home/business/enter/userinfo');
 	        } else {
-	            switch (parseInt(this.isEnterHouseInfo ? this.isEnterHouseInfo.houseInfoDetails.enterapplyState : 0, 10)) {
+	            switch (parseInt(this.isEnterHouseInfo && this.isEnterHouseInfo.houseInfoDetails ? this.isEnterHouseInfo.houseInfoDetails.enterapplyState : 0, 10)) {
 	                case 0:
 	                    // 未入驻-->办理入驻
 	                    this.$router.go('/home/business/enter/enterapply');
@@ -39143,7 +39550,10 @@ webpackJsonp([0],[
 								watch: {
 															userCheckedHouseInfo: function userCheckedHouseInfo(newValue, oldValue) {
 																						var houseInfo = this.noEnterHouseInfos[this.userCheckedHouseInfo];
-																						global.isEnterHouseInfos = houseInfo;
+																						if (!global.isEVPI) {
+																													// 未完善资料
+																													global.isEnterHouseInfo = houseInfo;
+																						}
 																						this.customerId = houseInfo.pk_customerid;
 																						this.houseInfoId = houseInfo.pk_house;
 																						this.projectName = houseInfo.projectName;
@@ -39152,7 +39562,7 @@ webpackJsonp([0],[
 								created: function created() {
 															var _this2 = this;
 
-															this.noEnterHouseInfos = global.userInfo.houseInfos;
+															console.log('完善信息', global.isEnterHouseInfo);
 															var userDataPerfectionUrl = global.HttpPath + '/type/findTypeDifferentiateName'; // 获取属性字
 															this.$http.get(userDataPerfectionUrl, {
 																						params: {
@@ -39273,17 +39683,7 @@ webpackJsonp([0],[
 																						console.log('完善资料-catch:', response);
 															});
 								},
-								ready: function ready() {
-															if (this.userInfo.isEVPI) {
-																						// 完善资料
-																						this.$router.go('/home/index');
-															} else {
-																						// $('#userinfo-modal').modal({ // 打开弹窗
-																						//   keyboard: false,
-																						//   backdrop: 'static'
-																						// });
-															}
-								},
+								ready: function ready() {},
 								beforeDestroy: function beforeDestroy() {},
 
 								methods: {
@@ -39315,35 +39715,15 @@ webpackJsonp([0],[
 																													hangBoardTime: this.hangBoardTime, // 挂牌时间
 																													stockCode: this.stockCode, // 股票代码
 																													notes: this.notes };
-																						console.log('完善资料，表单提交参数： ', _params);
-																						// this.$http.post(global.HttpPath+'/userData/userDataPerfection', { // 资料完善
-																						// this.$http.post(global.HttpPath+'/CustomerCentre/savePerfectInformation', { // 资料完善
-																						//     params: _params
-																						// }).then((response) => {
-																						//     // 响应成功回调
-																						//     console.log(response.data);
-																						//     if(response.data == 'success') {
-																						//     	this.$router.go('/home/business/enter/enterapply');
-																						//     	global.enterApplyHouseInfo = {
-																						//     		houseInfo: this.userInfo.houseInfos[this.userCheckedHouseInfo]
-																						//     	}
-																						//     }
-																						// },(error) => {
-																						//     // 响应失败回调
-																						//     console.log('完善资料-error:', error);
-																						// }).catch(function(response) {
-																						//     // 程序错误捕获
-																						//     console.log('完善资料-catch:', response);
-																						// });
 																						var _this = this;
 																						$.ajax({
 																													type: "post",
-																													// contentType: "application/json",
 																													url: global.HttpPath + '/CustomerCentre/savePerfectInformation', // 资料完善
 																													data: _params,
 																													dataType: 'json',
 																													success: function success(data) {
-																																				if (data.state) {
+																																				if (data.state == 1) {
+																																											global.isEVPI = true;
 																																											_this.$router.go('/home/business/enter/enterapply');
 																																				}
 																													}
@@ -39396,7 +39776,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */(function(global) {'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-					value: true
+	    value: true
 	});
 	// <style scoped lang="sass">
 	// .imguplist {
@@ -39491,7 +39871,7 @@ webpackJsonp([0],[
 	//                     </ul>
 	// 					<table class="table table-bordered table-form">
 	// 						<tbody>
-	// 							<tr v-show="!enterApplyHouseInfo">
+	// 							<tr v-show="!isEnterHouseInfo.pk_house">
 	// 								<th>房产名称</th>
 	// 								<td>
 	// 		                            <select class="form-control" v-model="userCheckedHouseInfo">
@@ -39501,7 +39881,7 @@ webpackJsonp([0],[
 	// 		                            </select>
 	// 								</td>
 	// 							</tr>
-	// 							<tr v-show="!enterApplyHouseInfo">
+	// 							<tr v-show="!isEnterHouseInfo.pk_house">
 	// 								<th>项目名称</th>
 	// 								<td><input type="text" readonly v-model="projectName"></td>
 	// 							</tr>
@@ -39573,140 +39953,148 @@ webpackJsonp([0],[
 	//     </div>
 	// </div>
 	//
+	//
+	// <!-- 弹窗 开始 -->
+	// <div class="modal fade" id="enterapply-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	// 	<div class="modal-dialog" role="document">
+	// 		<div class="modal-content">
+	// 			<div class="modal-header">
+	// 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	// 				<h4 class="modal-title" id="myModalLabel">提示</h4>
+	// 			</div>
+	// 			<div class="modal-body">
+	// 				提交成功。
+	// 			</div>
+	// 			<div class="modal-footer">
+	// 				<button type="button" class="btn btn-default" data-dismiss="modal" @click="goToPage">确定</button>
+	// 				<!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+	// 			</div>
+	// 		</div>
+	// 	</div>
+	// </div>
+	// <!-- 弹窗 结束 -->
 	// </template>
 	// <script>
 
 	exports.default = {
-					filters: {},
-					directives: {},
-					components: {},
-					data: function data() {
-									return {
-													userInfo: global.userInfo,
-													noEnterHouseInfos: global.noEnterHouseInfos, // 未入驻房产
-													uploadImg: '',
-													uploadImgs: [],
-													information: null,
-													userCheckedHouseInfo: null, // 用户选择的房产信息
-													projectName: global.enterApplyHouseInfo ? global.enterApplyHouseInfo.houseInfo.projectName : null, // 项目名称
-													enterApplyHouseInfo: global.enterApplyHouseInfo ? global.enterApplyHouseInfo.houseInfo : null,
+	    filters: {},
+	    directives: {},
+	    components: {},
+	    data: function data() {
+	        return {
+	            userInfo: global.userInfo,
+	            noEnterHouseInfos: global.noEnterHouseInfos, // 未入驻房产
+	            uploadImg: '',
+	            uploadImgs: [],
+	            information: null,
+	            userCheckedHouseInfo: null, // 用户选择的房产信息
+	            projectName: global.isEnterHouseInfo ? global.isEnterHouseInfo.projectName : null, // 项目名称
+	            isEnterHouseInfo: global.isEnterHouseInfo ? global.isEnterHouseInfo : null,
 
-													/*请求参数： 
+	            /*请求参数： 
 	            --------------------------------------------------*/
-													enterAdviceNote: null, // 入驻通知书地址
-													houseInfoId: global.enterApplyHouseInfo ? global.enterApplyHouseInfo.houseInfo.pk_house : null, // 房产id
-													clientName: global.userInfo.user.username, // 客户名称
-													notes: null, // 备注
-													pkproject: global.enterApplyHouseInfo ? global.enterApplyHouseInfo.houseInfo.pk_project : null };
-					},
+	            enterAdviceNote: null, // 入驻通知书地址
+	            houseInfoId: global.isEnterHouseInfo ? global.isEnterHouseInfo.pk_house : null, // 房产id
+	            clientName: global.userInfo.user.username, // 客户名称
+	            notes: null, // 备注
+	            pkproject: global.isEnterHouseInfo ? global.isEnterHouseInfo.pk_project : null };
+	    },
 
-					watch: {
-									userCheckedHouseInfo: function userCheckedHouseInfo(newValue, oldValue) {
-													var houseInfo = this.noEnterHouseInfos[this.userCheckedHouseInfo];
-													this.pkproject = houseInfo.pk_project;
-													this.houseInfoId = houseInfo.pk_house;
-													this.projectName = houseInfo.projectName;
-									},
-									uploadImg: function uploadImg(newValue, oldValue) {
-													var _this = this;
-													// if(newValue == oldValue) {return;}
-													global.UpladFile({
-																	eleId: 'file',
-																	// type: ['.png','jpg'],
-																	callback: function callback(data) {
-																					console.log('上传图片: ', data);
-																					_this.enterAdviceNote = data.data.url;
-																					console.log(data);
-																					var _data = data;
-																					_data.data.url = global.HttpPath.replace('/dist', '') + data.data.url;
-																					// console.log('_data: ',global.HttpPath + data.data.url)
-																					_this.uploadImgs.push(data);
-																	}
-													});
-									}
-					},
-					created: function created() {
-									global.enterStep = 2;
-					},
-					ready: function ready() {
-									var _this2 = this;
+	    watch: {
+	        userCheckedHouseInfo: function userCheckedHouseInfo(newValue, oldValue) {
+	            var houseInfo = this.noEnterHouseInfos[this.userCheckedHouseInfo];
+	            if (global.isEVPI && !global.isEnterHouseInfo.houseInfoDetails) {
+	                // 已完善资料并且为为有房产正在入驻中
+	                global.isEnterHouseInfo = houseInfo;
+	            }
+	            this.pkproject = houseInfo.pk_project;
+	            this.houseInfoId = houseInfo.pk_house;
+	            this.projectName = houseInfo.projectName;
+	        },
+	        uploadImg: function uploadImg(newValue, oldValue) {
+	            var _this = this;
+	            // if(newValue == oldValue) {return;}
+	            global.UpladFile({
+	                eleId: 'file',
+	                // type: ['.png','jpg'],
+	                callback: function callback(data) {
+	                    console.log('上传图片: ', data);
+	                    _this.enterAdviceNote = data.data.url;
+	                    console.log(data);
+	                    var _data = data;
+	                    _data.data.url = global.HttpPath.replace('/dist', '') + data.data.url;
+	                    _this.uploadImgs.push(data);
+	                }
+	            });
+	        }
+	    },
+	    created: function created() {
+	        global.enterStep = 2;
+	    },
+	    ready: function ready() {
+	        var _this2 = this;
 
-									$('.step01,.step02').addClass('active');
-									$('.cur-breadcrumb').html('入驻办理');
-									this.$http.get(global.HttpPath + '/enterMaterial/findEnterMaterialBypkproject', { // 查询项目资料
-													params: {
-																	// pkproject: this.pkproject,
-																	pkproject: '0001XX1000000009S6H4'
-													}
-									}).then(function (response) {
-													// 响应成功回调
-													if (response.data) {
-																	response.data.basicInfo = response.data.basicInfo.replace(/(（必填）)/g, '<span class="text-orange">（必填）</span>').split(',');
-													}
-													response.data.materialAddress = global.HttpPath.replace('/dist', '') + response.data.materialAddress;
-													_this2.$set('information', response.data);
-													console.log(response.data);
-									}, function (error) {
-													// 响应失败回调
-													console.log('入驻-error:', error);
-									}).catch(function (response) {
-													// 程序错误捕获
-													console.log('入驻-catch:', response);
-									});
-									console.log(global.userLoginInfo);
-					},
-					beforeDestroy: function beforeDestroy() {},
+	        console.log('入驻申请', global.isEnterHouseInfo);
+	        this.$http.get(global.HttpPath + '/enterMaterial/findEnterMaterialBypkproject', { // 查询项目资料
+	            params: {
+	                pkproject: this.pkproject
+	            }
+	        }).then(function (response) {
+	            // 响应成功回调
+	            if (response.data) {
+	                response.data.basicInfo = response.data.basicInfo.replace(/(（必填）)/g, '<span class="text-orange">（必填）</span>').split(',');
+	            }
+	            response.data.materialAddress = global.HttpPath.replace('/dist', '') + response.data.materialAddress;
+	            _this2.$set('information', response.data);
+	            console.log(response.data);
+	        }, function (error) {
+	            // 响应失败回调
+	            console.log('入驻-error:', error);
+	        }).catch(function (response) {
+	            // 程序错误捕获
+	            console.log('入驻-catch:', response);
+	        });
+	    },
+	    beforeDestroy: function beforeDestroy() {},
 
-					methods: {
-									deleteUploadImgClick: function deleteUploadImgClick(index) {
-													this.uploadImgs.splice(index, 1);
-													this.uploadImg = '';
-													console.log(this.uploadImgs);
-									},
-									submit: function submit() {
-													var _this = this;
-													var _params = {
-																	enterAdviceNote: this.enterAdviceNote,
-																	houseInfoId: this.houseInfoId,
-																	clientName: this.clientName,
-																	notes: this.notes
-													};
-													console.log(_params);
+	    methods: {
+	        deleteUploadImgClick: function deleteUploadImgClick(index) {
+	            this.uploadImgs.splice(index, 1);
+	            this.uploadImg = '';
+	            console.log(this.uploadImgs);
+	        },
+	        submit: function submit() {
+	            var _this = this;
+	            var _params = {
+	                enterAdviceNote: this.enterAdviceNote,
+	                houseId: this.houseInfoId,
+	                clientName: this.clientName,
+	                notes: this.notes
+	            };
+	            console.log(_params);
 
-													// this.$http.post(global.HttpPath + '/enterApply/insertEnterApply', {
-													//     params: _params
-													// }).then((response) => {
-													//     // 响应成功回调
-													//     console.log('ddddddddd: ',response.data);
-													//     if(response.data.state == 1) {
-													//     	this.$router.go('/home/business/rnter/rnterexamine'); // 进入审核页面
-													//     }
-													// },(error) => {
-													//     // 响应失败回调
-													//     console.log('首页-error:', error);
-													// }).catch(function(response) {
-													//     // 程序错误捕获
-													//     console.log('首页-catch:', response);
-													// });
-
-
-													$.ajax({
-																	type: "post",
-																	// contentType: "application/json",
-																	url: global.HttpPath + '/enterApply/insertEnterApply?' + 'enterAdviceNote=' + this.enterAdviceNote + '&houseId=' + this.houseInfoId + '&clientName=' + this.clientName + '&notes=' + this.notes, // 根据客户查询相关费用清单
-																	// data: 'enterAdviceNote=' + this.enterAdviceNote +'&houseInfoId=' + this.houseInfoId +'&clientName=' + this.clientName +'&notes=' + this.notes,
-																	// url: global.HttpPath + '/enterApply/insertEnterApply', // 根据客户查询相关费用清单
-																	// data: _params,
-																	dataType: 'json',
-																	success: function success(res) {
-																					console.log(res);
-																					if (res.state == 1) {
-																									_this.$router.go('/home/business/enter/rnterexamine'); // 进入审核页面
-																					}
-																	}
-													});
-									}
-					}
+	            $.ajax({
+	                type: "post",
+	                // contentType: "application/json",
+	                // url: global.HttpPath + '/enterApply/insertEnterApply?'+'enterAdviceNote=' + this.enterAdviceNote +'&houseId=' + this.houseInfoId +'&clientName=' + this.clientName +'&notes=' + this.notes, // 根据客户查询相关费用清单
+	                url: global.HttpPath + '/enterApply/insertEnterApply', // 根据客户查询相关费用清单
+	                data: _params,
+	                dataType: 'json',
+	                success: function success(res) {
+	                    console.log(res);
+	                    if (res.state == 1) {
+	                        $('#enterapply-modal').modal({ // 打开弹窗
+	                            keyboard: false,
+	                            backdrop: 'static'
+	                        });
+	                    }
+	                }
+	            });
+	        },
+	        goToPage: function goToPage() {
+	            this.$router.go('/home/business/enter/rnterexamine'); // 进入审核页面
+	        }
+	    }
 	};
 	// </script>
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
@@ -39715,7 +40103,7 @@ webpackJsonp([0],[
 /* 251 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	module.exports = "\n\n<ol class=\"breadcrumb\" _v-5fb5e965=\"\">你当前的位置：\n    <li _v-5fb5e965=\"\"><a _v-5fb5e965=\"\">联东首页</a></li>\n    <li _v-5fb5e965=\"\"><a _v-5fb5e965=\"\">入驻办理</a></li>\n    <li class=\"active cur-breadcrumb\" _v-5fb5e965=\"\">入驻办理</li>\n</ol>\n<div class=\"container\" _v-5fb5e965=\"\">\n    <div class=\"row\" _v-5fb5e965=\"\">\n        <div class=\"col-xs-12\" _v-5fb5e965=\"\">\n            <div class=\"panel panel-default\" _v-5fb5e965=\"\">\n                <div class=\"panel-body\" _v-5fb5e965=\"\">\n                    <ul class=\"clearfix nav-line nav-step ruzhustep\" _v-5fb5e965=\"\">\n                        <li _v-5fb5e965=\"\"><a class=\"step step01 active\" _v-5fb5e965=\"\">完善资料<i class=\"step-right\" _v-5fb5e965=\"\"></i></a></li>\n                        <li _v-5fb5e965=\"\"><a class=\"step step02 active\" _v-5fb5e965=\"\"><i class=\"step-left\" _v-5fb5e965=\"\"></i>入驻办理<i class=\"step-right\" _v-5fb5e965=\"\"></i></a></li>\n                        <li _v-5fb5e965=\"\"><a class=\"step step03\" _v-5fb5e965=\"\"><i class=\"step-left\" _v-5fb5e965=\"\"></i>审核<i class=\"step-right\" _v-5fb5e965=\"\"></i></a></li>\n                        <li _v-5fb5e965=\"\"><a class=\"step step04\" _v-5fb5e965=\"\"><i class=\"step-left\" _v-5fb5e965=\"\"></i>费用缴纳<i class=\"step-right\" _v-5fb5e965=\"\"></i></a></li>\n                        <li _v-5fb5e965=\"\"><a class=\"step step05\" _v-5fb5e965=\"\"><i class=\"step-left\" _v-5fb5e965=\"\"></i>入驻完成</a></li>\n                    </ul>\n\t\t\t\t\t<table class=\"table table-bordered table-form\" _v-5fb5e965=\"\">\n\t\t\t\t\t\t<tbody _v-5fb5e965=\"\">\n\t\t\t\t\t\t\t<tr v-show=\"!enterApplyHouseInfo\" _v-5fb5e965=\"\">\n\t\t\t\t\t\t\t\t<th _v-5fb5e965=\"\">房产名称</th>\n\t\t\t\t\t\t\t\t<td _v-5fb5e965=\"\">\n\t\t                            <select class=\"form-control\" v-model=\"userCheckedHouseInfo\" _v-5fb5e965=\"\">\n\t\t\t                            <template v-for=\"(index01, houseInfo) in noEnterHouseInfos\" _v-5fb5e965=\"\">\n\t\t                            \t\t<option :value=\"index01\" :selected=\"index01==0\" _v-5fb5e965=\"\">{{ houseInfo.house }}</option>\n\t\t\t                            </template>\n\t\t                            </select>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr v-show=\"!enterApplyHouseInfo\" _v-5fb5e965=\"\">\n\t\t\t\t\t\t\t\t<th _v-5fb5e965=\"\">项目名称</th>\n\t\t\t\t\t\t\t\t<td _v-5fb5e965=\"\"><input type=\"text\" readonly=\"\" v-model=\"projectName\" _v-5fb5e965=\"\"></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-5fb5e965=\"\">\n\t\t\t\t\t\t\t\t<th _v-5fb5e965=\"\">入驻通知</th>\n\t\t\t\t\t\t\t\t<td _v-5fb5e965=\"\">\n\t\t\t\t\t\t\t\t\t<pre _v-5fb5e965=\"\">尊敬的{{ userInfo.user.username }}：  \n     \n       欢迎阁下/贵司成为联东U谷平谷项目 尊贵的业主，十分感谢阁下/贵司对我司的信赖和支持，打造一流产园区提供给阁下/贵司至臻完美的商业生产运营空间一直是我司奋斗的目标！\n       鉴于阁下/贵司购买的房产已经验收合格具备入住交付使用条件；现正式发函通知请阁下/贵司，敬请于2017年12月31日前九时至十六时带齐相关证件资料）前来联东U谷园区接待中心大厅办理相关入住手续。\n       如阁下/贵司未能于上述期间办理入住手续的，则视为我司已按销售合同约定完成厂房交付，自本函记载的收房期限届满次日起，合同项下房屋的一切费用（包括但不限于物业费、供暖费、基本电费等）、风险及责任转由阁下/贵司承担，房屋保修期也自收房期限届满次日起算。\n      为保障阁下/贵司的切身利益，恳请及时前来办理入住手续！再次致谢，同时亦希望获得阁下/贵司一如既往的支持！\n\n      顺祝商祺！\n物业服务中心联系电话：010-80806546-205\n</pre>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-5fb5e965=\"\">\n\t\t\t\t\t\t\t\t<th _v-5fb5e965=\"\">入驻资料</th>\n\t\t\t\t\t\t\t\t<td _v-5fb5e965=\"\">\n\t\t\t\t\t\t\t\t\t<ul class=\"d\" v-for=\"dataInfo in information.basicInfo\" _v-5fb5e965=\"\">\n\t\t\t\t\t\t\t\t\t\t<li v-html=\"dataInfo\" _v-5fb5e965=\"\"></li>\n\t\t\t\t\t\t\t\t\t</ul>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-5fb5e965=\"\">\n\t\t\t\t\t\t\t\t<th _v-5fb5e965=\"\">资料下载</th>\n\t\t\t\t\t\t\t\t<td _v-5fb5e965=\"\">{{ information.materialName }}  <a class=\"btn\" href=\"\" :download=\"information.materialAddress\" _v-5fb5e965=\"\">点击下载</a></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-5fb5e965=\"\">\n\t\t\t\t\t\t\t\t<th _v-5fb5e965=\"\">入驻通知书上传</th>\n\t\t\t\t\t\t\t\t<td _v-5fb5e965=\"\">\n\t\t\t\t\t\t\t\t\t<dl class=\"clearfix imguplist\" _v-5fb5e965=\"\">\n\t\t\t\t\t\t\t\t\t\t<dd _v-5fb5e965=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<!-- <div class=\"item user-upimg\">\n\t\t\t\t\t\t\t\t\t\t\t\t<img class=\"img-rounded\" src=\"" + __webpack_require__(192) + "\">\n\t\t\t\t\t\t\t\t\t\t\t\t<a class=\"icon icon01 i-close01\"></a>\n\t\t\t\t\t\t\t\t\t\t\t</div> -->\n\t\t\t\t\t\t\t\t\t\t\t<div class=\"item user-upimg\" v-for=\"(index, uploadImg) in uploadImgs\" _v-5fb5e965=\"\">\n\t\t\t\t\t\t\t\t\t\t\t\t<img class=\"img-rounded\" :src=\"uploadImg.data.url\" _v-5fb5e965=\"\">\n\t\t\t\t\t\t\t\t\t\t\t\t<a class=\"icon icon01 i-close01\" @click=\"deleteUploadImgClick(index)\" _v-5fb5e965=\"\"></a>\n\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t</dd>\n\t\t\t\t\t\t\t\t\t\t<dt _v-5fb5e965=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<form name=\"uploadImg\" enctype=\"multipart/form-data\" method=\"post\" action=\"/dist/upload\" _v-5fb5e965=\"\">\n\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"item btn-upload\" v-show=\"uploadImgs.length==0\" _v-5fb5e965=\"\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t<input type=\"file\" id=\"file\" name=\"file\" v-model=\"uploadImg\" _v-5fb5e965=\"\"><span class=\"btn-upfile-text\" _v-5fb5e965=\"\"></span>\n\t\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t</form>\n\t\t\t\t\t\t\t\t\t\t\t<!-- <span class=\"btn btn-upfile\"><input type=\"file\" name=\"\"><span class=\"btn-upfile-text\">文件上传</span></span> -->\n\t\t\t\t\t\t\t\t\t\t</dt>\n\t\t\t\t\t\t\t\t\t</dl>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-5fb5e965=\"\">\n\t\t\t\t\t\t\t\t<th _v-5fb5e965=\"\">备注说明</th>\n\t\t\t\t\t\t\t\t<td _v-5fb5e965=\"\"><textarea v-model=\"notes\" _v-5fb5e965=\"\"></textarea></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-5fb5e965=\"\">\n\t\t\t\t\t\t\t\t<th _v-5fb5e965=\"\"></th>\n\t\t\t\t\t\t\t\t<td _v-5fb5e965=\"\"><button class=\"btn\" @click=\"submit\" _v-5fb5e965=\"\">提交信息</button></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t</tbody>\n\t\t\t\t\t</table>\n                </div>\n            </div>\n        </div>  \n    </div>\n</div>\n\n";
+	module.exports = "\n\n<ol class=\"breadcrumb\" _v-5fb5e965=\"\">你当前的位置：\n    <li _v-5fb5e965=\"\"><a _v-5fb5e965=\"\">联东首页</a></li>\n    <li _v-5fb5e965=\"\"><a _v-5fb5e965=\"\">入驻办理</a></li>\n    <li class=\"active cur-breadcrumb\" _v-5fb5e965=\"\">入驻办理</li>\n</ol>\n<div class=\"container\" _v-5fb5e965=\"\">\n    <div class=\"row\" _v-5fb5e965=\"\">\n        <div class=\"col-xs-12\" _v-5fb5e965=\"\">\n            <div class=\"panel panel-default\" _v-5fb5e965=\"\">\n                <div class=\"panel-body\" _v-5fb5e965=\"\">\n                    <ul class=\"clearfix nav-line nav-step ruzhustep\" _v-5fb5e965=\"\">\n                        <li _v-5fb5e965=\"\"><a class=\"step step01 active\" _v-5fb5e965=\"\">完善资料<i class=\"step-right\" _v-5fb5e965=\"\"></i></a></li>\n                        <li _v-5fb5e965=\"\"><a class=\"step step02 active\" _v-5fb5e965=\"\"><i class=\"step-left\" _v-5fb5e965=\"\"></i>入驻办理<i class=\"step-right\" _v-5fb5e965=\"\"></i></a></li>\n                        <li _v-5fb5e965=\"\"><a class=\"step step03\" _v-5fb5e965=\"\"><i class=\"step-left\" _v-5fb5e965=\"\"></i>审核<i class=\"step-right\" _v-5fb5e965=\"\"></i></a></li>\n                        <li _v-5fb5e965=\"\"><a class=\"step step04\" _v-5fb5e965=\"\"><i class=\"step-left\" _v-5fb5e965=\"\"></i>费用缴纳<i class=\"step-right\" _v-5fb5e965=\"\"></i></a></li>\n                        <li _v-5fb5e965=\"\"><a class=\"step step05\" _v-5fb5e965=\"\"><i class=\"step-left\" _v-5fb5e965=\"\"></i>入驻完成</a></li>\n                    </ul>\n\t\t\t\t\t<table class=\"table table-bordered table-form\" _v-5fb5e965=\"\">\n\t\t\t\t\t\t<tbody _v-5fb5e965=\"\">\n\t\t\t\t\t\t\t<tr v-show=\"!isEnterHouseInfo.pk_house\" _v-5fb5e965=\"\">\n\t\t\t\t\t\t\t\t<th _v-5fb5e965=\"\">房产名称</th>\n\t\t\t\t\t\t\t\t<td _v-5fb5e965=\"\">\n\t\t                            <select class=\"form-control\" v-model=\"userCheckedHouseInfo\" _v-5fb5e965=\"\">\n\t\t\t                            <template v-for=\"(index01, houseInfo) in noEnterHouseInfos\" _v-5fb5e965=\"\">\n\t\t                            \t\t<option :value=\"index01\" :selected=\"index01==0\" _v-5fb5e965=\"\">{{ houseInfo.house }}</option>\n\t\t\t                            </template>\n\t\t                            </select>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr v-show=\"!isEnterHouseInfo.pk_house\" _v-5fb5e965=\"\">\n\t\t\t\t\t\t\t\t<th _v-5fb5e965=\"\">项目名称</th>\n\t\t\t\t\t\t\t\t<td _v-5fb5e965=\"\"><input type=\"text\" readonly=\"\" v-model=\"projectName\" _v-5fb5e965=\"\"></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-5fb5e965=\"\">\n\t\t\t\t\t\t\t\t<th _v-5fb5e965=\"\">入驻通知</th>\n\t\t\t\t\t\t\t\t<td _v-5fb5e965=\"\">\n\t\t\t\t\t\t\t\t\t<pre _v-5fb5e965=\"\">尊敬的{{ userInfo.user.username }}：  \n     \n       欢迎阁下/贵司成为联东U谷平谷项目 尊贵的业主，十分感谢阁下/贵司对我司的信赖和支持，打造一流产园区提供给阁下/贵司至臻完美的商业生产运营空间一直是我司奋斗的目标！\n       鉴于阁下/贵司购买的房产已经验收合格具备入住交付使用条件；现正式发函通知请阁下/贵司，敬请于2017年12月31日前九时至十六时带齐相关证件资料）前来联东U谷园区接待中心大厅办理相关入住手续。\n       如阁下/贵司未能于上述期间办理入住手续的，则视为我司已按销售合同约定完成厂房交付，自本函记载的收房期限届满次日起，合同项下房屋的一切费用（包括但不限于物业费、供暖费、基本电费等）、风险及责任转由阁下/贵司承担，房屋保修期也自收房期限届满次日起算。\n      为保障阁下/贵司的切身利益，恳请及时前来办理入住手续！再次致谢，同时亦希望获得阁下/贵司一如既往的支持！\n\n      顺祝商祺！\n物业服务中心联系电话：010-80806546-205\n</pre>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-5fb5e965=\"\">\n\t\t\t\t\t\t\t\t<th _v-5fb5e965=\"\">入驻资料</th>\n\t\t\t\t\t\t\t\t<td _v-5fb5e965=\"\">\n\t\t\t\t\t\t\t\t\t<ul class=\"d\" v-for=\"dataInfo in information.basicInfo\" _v-5fb5e965=\"\">\n\t\t\t\t\t\t\t\t\t\t<li v-html=\"dataInfo\" _v-5fb5e965=\"\"></li>\n\t\t\t\t\t\t\t\t\t</ul>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-5fb5e965=\"\">\n\t\t\t\t\t\t\t\t<th _v-5fb5e965=\"\">资料下载</th>\n\t\t\t\t\t\t\t\t<td _v-5fb5e965=\"\">{{ information.materialName }}  <a class=\"btn\" href=\"\" :download=\"information.materialAddress\" _v-5fb5e965=\"\">点击下载</a></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-5fb5e965=\"\">\n\t\t\t\t\t\t\t\t<th _v-5fb5e965=\"\">入驻通知书上传</th>\n\t\t\t\t\t\t\t\t<td _v-5fb5e965=\"\">\n\t\t\t\t\t\t\t\t\t<dl class=\"clearfix imguplist\" _v-5fb5e965=\"\">\n\t\t\t\t\t\t\t\t\t\t<dd _v-5fb5e965=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<!-- <div class=\"item user-upimg\">\n\t\t\t\t\t\t\t\t\t\t\t\t<img class=\"img-rounded\" src=\"" + __webpack_require__(192) + "\">\n\t\t\t\t\t\t\t\t\t\t\t\t<a class=\"icon icon01 i-close01\"></a>\n\t\t\t\t\t\t\t\t\t\t\t</div> -->\n\t\t\t\t\t\t\t\t\t\t\t<div class=\"item user-upimg\" v-for=\"(index, uploadImg) in uploadImgs\" _v-5fb5e965=\"\">\n\t\t\t\t\t\t\t\t\t\t\t\t<img class=\"img-rounded\" :src=\"uploadImg.data.url\" _v-5fb5e965=\"\">\n\t\t\t\t\t\t\t\t\t\t\t\t<a class=\"icon icon01 i-close01\" @click=\"deleteUploadImgClick(index)\" _v-5fb5e965=\"\"></a>\n\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t</dd>\n\t\t\t\t\t\t\t\t\t\t<dt _v-5fb5e965=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<form name=\"uploadImg\" enctype=\"multipart/form-data\" method=\"post\" action=\"/dist/upload\" _v-5fb5e965=\"\">\n\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"item btn-upload\" v-show=\"uploadImgs.length==0\" _v-5fb5e965=\"\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t<input type=\"file\" id=\"file\" name=\"file\" v-model=\"uploadImg\" _v-5fb5e965=\"\"><span class=\"btn-upfile-text\" _v-5fb5e965=\"\"></span>\n\t\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t</form>\n\t\t\t\t\t\t\t\t\t\t\t<!-- <span class=\"btn btn-upfile\"><input type=\"file\" name=\"\"><span class=\"btn-upfile-text\">文件上传</span></span> -->\n\t\t\t\t\t\t\t\t\t\t</dt>\n\t\t\t\t\t\t\t\t\t</dl>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-5fb5e965=\"\">\n\t\t\t\t\t\t\t\t<th _v-5fb5e965=\"\">备注说明</th>\n\t\t\t\t\t\t\t\t<td _v-5fb5e965=\"\"><textarea v-model=\"notes\" _v-5fb5e965=\"\"></textarea></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-5fb5e965=\"\">\n\t\t\t\t\t\t\t\t<th _v-5fb5e965=\"\"></th>\n\t\t\t\t\t\t\t\t<td _v-5fb5e965=\"\"><button class=\"btn\" @click=\"submit\" _v-5fb5e965=\"\">提交信息</button></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t</tbody>\n\t\t\t\t\t</table>\n                </div>\n            </div>\n        </div>  \n    </div>\n</div>\n\n\n<!-- 弹窗 开始 -->\n<div class=\"modal fade\" id=\"enterapply-modal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" _v-5fb5e965=\"\">\n\t<div class=\"modal-dialog\" role=\"document\" _v-5fb5e965=\"\">\n\t\t<div class=\"modal-content\" _v-5fb5e965=\"\">\n\t\t\t<div class=\"modal-header\" _v-5fb5e965=\"\">\n\t\t\t\t<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\" _v-5fb5e965=\"\"><span aria-hidden=\"true\" _v-5fb5e965=\"\">×</span></button>\n\t\t\t\t<h4 class=\"modal-title\" id=\"myModalLabel\" _v-5fb5e965=\"\">提示</h4>\n\t\t\t</div>\n\t\t\t<div class=\"modal-body\" _v-5fb5e965=\"\">\n\t\t\t\t提交成功。\n\t\t\t</div>\n\t\t\t<div class=\"modal-footer\" _v-5fb5e965=\"\">\n\t\t\t\t<button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\" @click=\"goToPage\" _v-5fb5e965=\"\">确定</button>\n\t\t\t\t<!-- <button type=\"button\" class=\"btn btn-primary\">Save changes</button> -->\n\t\t\t</div>\n\t\t</div>\n\t</div>\n</div>\n<!-- 弹窗 结束 -->\n";
 
 /***/ }),
 /* 252 */
@@ -39782,7 +40170,7 @@ webpackJsonp([0],[
 	//                         审核成功。<a class="btn" v-link="{ path: '/home/business/enter/enterpay' }">去缴费</a>
 	//                     </div>
 	//                     <div class="examine text-center" v-if="auditStatus==2">
-	//                         正在审核中...
+	//                         审核失败！<a class="btn" v-link="{ path: '/home/business/enter/enterapply' }">重新申请</a>
 	//                     </div>
 	//                 </div>
 	//             </div>
@@ -39798,32 +40186,31 @@ webpackJsonp([0],[
 	    components: {},
 	    data: function data() {
 	        return {
-	            auditStatus: null,
-	            isEnterHouseInfos: global.isEnterHouseInfos
+	            auditStatus: null
 	        };
 	    },
 
 	    watch: {},
 	    created: function created() {
-	        console.log(this.isEnterHouseInfos);
 	        var _this = this;
+	        if (!global.isEnterHouseInfo) {
+	            return;
+	        }
 	        $.ajax({
 	            type: "get",
 	            // contentType: "application/json",
 	            url: global.HttpPath + '/enterApply/getEnterApplyByIDAndState', // 获取审核结果 -->0未审核；1成功；2，失败
-	            data: { pkHouse: this.isEnterHouseInfos.pk_house },
+	            data: { pkHouse: global.isEnterHouseInfo.pk_house },
 	            // data: {pkHouse:'1040AM1000000000SVVZ'},
 	            dataType: 'json',
 	            success: function success(data) {
 	                console.log('审核结果： ', data);
-	                _this.$set('auditStatus', data.length ? data.data[0].auditStatus : null);
+	                _this.$set('auditStatus', data.data.length ? data.data[0].auditStatus : null);
 	            }
 	        });
+	        console.log('审核', global.isEnterHouseInfo);
 	    },
-	    ready: function ready() {
-	        $('.step01,.step02,.step03').addClass('active');
-	        $('.cur-breadcrumb').html('审核');
-	    },
+	    ready: function ready() {},
 	    beforeDestroy: function beforeDestroy() {},
 
 	    methods: {}
@@ -39835,7 +40222,7 @@ webpackJsonp([0],[
 /* 255 */
 /***/ (function(module, exports) {
 
-	module.exports = "\n<ol class=\"breadcrumb\" _v-ec6d572a=\"\">你当前的位置：\n    <li _v-ec6d572a=\"\"><a _v-ec6d572a=\"\">联东首页</a></li>\n    <li _v-ec6d572a=\"\"><a _v-ec6d572a=\"\">入驻办理</a></li>\n    <li class=\"active cur-breadcrumb\" _v-ec6d572a=\"\">审核</li>\n</ol>\n<div class=\"container\" _v-ec6d572a=\"\">\n    <div class=\"row\" _v-ec6d572a=\"\">\n        <div class=\"col-xs-12\" _v-ec6d572a=\"\">\n            <div class=\"panel panel-default\" _v-ec6d572a=\"\">\n                <div class=\"panel-body\" _v-ec6d572a=\"\">\n                    <ul class=\"clearfix nav-line nav-step ruzhustep\" _v-ec6d572a=\"\">\n                        <li _v-ec6d572a=\"\"><a class=\"step step01 active\" _v-ec6d572a=\"\">完善资料<i class=\"step-right\" _v-ec6d572a=\"\"></i></a></li>\n                        <li _v-ec6d572a=\"\"><a class=\"step step02 active\" _v-ec6d572a=\"\"><i class=\"step-left\" _v-ec6d572a=\"\"></i>入驻办理<i class=\"step-right\" _v-ec6d572a=\"\"></i></a></li>\n                        <li _v-ec6d572a=\"\"><a class=\"step step03 active\" _v-ec6d572a=\"\"><i class=\"step-left\" _v-ec6d572a=\"\"></i>审核<i class=\"step-right\" _v-ec6d572a=\"\"></i></a></li>\n                        <li _v-ec6d572a=\"\"><a class=\"step step04\" _v-ec6d572a=\"\"><i class=\"step-left\" _v-ec6d572a=\"\"></i>费用缴纳<i class=\"step-right\" _v-ec6d572a=\"\"></i></a></li>\n                        <li _v-ec6d572a=\"\"><a class=\"step step05\" _v-ec6d572a=\"\"><i class=\"step-left\" _v-ec6d572a=\"\"></i>入驻完成</a></li>\n                    </ul>\n                    <div class=\"examine text-center\" v-if=\"auditStatus==0\" _v-ec6d572a=\"\">\n                        正在审核中...\n                    </div>\n                    <div class=\"examine text-center\" v-if=\"auditStatus==1\" _v-ec6d572a=\"\">\n                        审核成功。<a class=\"btn\" v-link=\"{ path: '/home/business/enter/enterpay' }\" _v-ec6d572a=\"\">去缴费</a>\n                    </div>\n                    <div class=\"examine text-center\" v-if=\"auditStatus==2\" _v-ec6d572a=\"\">\n                        正在审核中...\n                    </div>\n                </div>\n            </div>\n        </div>  \n    </div>\n</div>\n\n";
+	module.exports = "\n<ol class=\"breadcrumb\" _v-ec6d572a=\"\">你当前的位置：\n    <li _v-ec6d572a=\"\"><a _v-ec6d572a=\"\">联东首页</a></li>\n    <li _v-ec6d572a=\"\"><a _v-ec6d572a=\"\">入驻办理</a></li>\n    <li class=\"active cur-breadcrumb\" _v-ec6d572a=\"\">审核</li>\n</ol>\n<div class=\"container\" _v-ec6d572a=\"\">\n    <div class=\"row\" _v-ec6d572a=\"\">\n        <div class=\"col-xs-12\" _v-ec6d572a=\"\">\n            <div class=\"panel panel-default\" _v-ec6d572a=\"\">\n                <div class=\"panel-body\" _v-ec6d572a=\"\">\n                    <ul class=\"clearfix nav-line nav-step ruzhustep\" _v-ec6d572a=\"\">\n                        <li _v-ec6d572a=\"\"><a class=\"step step01 active\" _v-ec6d572a=\"\">完善资料<i class=\"step-right\" _v-ec6d572a=\"\"></i></a></li>\n                        <li _v-ec6d572a=\"\"><a class=\"step step02 active\" _v-ec6d572a=\"\"><i class=\"step-left\" _v-ec6d572a=\"\"></i>入驻办理<i class=\"step-right\" _v-ec6d572a=\"\"></i></a></li>\n                        <li _v-ec6d572a=\"\"><a class=\"step step03 active\" _v-ec6d572a=\"\"><i class=\"step-left\" _v-ec6d572a=\"\"></i>审核<i class=\"step-right\" _v-ec6d572a=\"\"></i></a></li>\n                        <li _v-ec6d572a=\"\"><a class=\"step step04\" _v-ec6d572a=\"\"><i class=\"step-left\" _v-ec6d572a=\"\"></i>费用缴纳<i class=\"step-right\" _v-ec6d572a=\"\"></i></a></li>\n                        <li _v-ec6d572a=\"\"><a class=\"step step05\" _v-ec6d572a=\"\"><i class=\"step-left\" _v-ec6d572a=\"\"></i>入驻完成</a></li>\n                    </ul>\n                    <div class=\"examine text-center\" v-if=\"auditStatus==0\" _v-ec6d572a=\"\">\n                        正在审核中...\n                    </div>\n                    <div class=\"examine text-center\" v-if=\"auditStatus==1\" _v-ec6d572a=\"\">\n                        审核成功。<a class=\"btn\" v-link=\"{ path: '/home/business/enter/enterpay' }\" _v-ec6d572a=\"\">去缴费</a>\n                    </div>\n                    <div class=\"examine text-center\" v-if=\"auditStatus==2\" _v-ec6d572a=\"\">\n                        审核失败！<a class=\"btn\" v-link=\"{ path: '/home/business/enter/enterapply' }\" _v-ec6d572a=\"\">重新申请</a>\n                    </div>\n                </div>\n            </div>\n        </div>  \n    </div>\n</div>\n\n";
 
 /***/ }),
 /* 256 */
@@ -39949,7 +40336,7 @@ webpackJsonp([0],[
 	//                     <ul class="clearfix nav-line nav-step ruzhustep">
 	//                         <li><a class="step step01 active">完善资料<i class="step-right"></i></a></li>
 	//                         <li><a class="step step02 active"><i class="step-left"></i>入驻办理<i class="step-right"></i></a></li>
-	//                         <li><a class="step step03 active"><i class="step-left"></i>审核<i class="step-right"></i></a></li>
+	//                         <li><a class="step step03 active"><i class="step-left"></i>已审核<i class="step-right"></i></a></li>
 	//                         <li><a class="step step04 active"><i class="step-left"></i>费用缴纳<i class="step-right"></i></a></li>
 	//                         <li><a class="step step05"><i class="step-left"></i>入驻完成</a></li>
 	//                     </ul>
@@ -39959,7 +40346,7 @@ webpackJsonp([0],[
 	// 								<th>开发公司费用</th>
 	// 								<td>
 	// 									<div class="table-warp">
-	// 										<span class="icon"><span>已支付</span></span>
+	// 										<!-- <span class="icon"><span>已支付</span></span> -->
 	// 										<table class="table-inner">
 	// 											<tbody>
 	// 												<tr v-for="rzKfFee in rzKfFeeList.rows">
@@ -39972,6 +40359,7 @@ webpackJsonp([0],[
 	// 										</table>
 	// 										<div class="total">物业费用合计：{{ rzKfFeeList.totalPrice | currency '￥' 2 }}</div>
 	// 									</div>
+	//                                     <button class="btn" @click="goPay('kaifa')" v-show="rzKfFeeList.totalPrice!=0">去支付</button>
 	// 								</td>
 	// 							</tr>
 	// 							<tr>
@@ -40008,7 +40396,7 @@ webpackJsonp([0],[
 	// 										</table>
 	// 										<div class="total">开发费用合计：{{ rzPropertyFeeList.totalPrice | currency '￥' 2 }}</div>
 	// 									</div>
-	// 									<button class="btn" @click="goPay('wuye')">去支付</button>
+	// 									<button class="btn" @click="goPay('wuye')" v-show="rzPropertyFeeList.totalPrice!=0">去支付</button>
 	// 								</td>
 	// 							</tr>
 	// 						</tbody>
@@ -40028,23 +40416,20 @@ webpackJsonp([0],[
 	        return {
 	            userInfo: global.userInfo,
 	            rzPropertyFeeList: null,
-	            isEnterHouseInfo: global.isEnterHouseInfo,
 
 	            /*请求参数： 
 	            --------------------------------------------------*/
-	            houseInfoId: global.isEnterHouseInfo.pk_house
+	            houseInfoId: null
 	        };
 	    },
 
 	    watch: {},
-	    ready: function ready() {
+	    created: function created() {
 	        var _this = this;
 
-	        $('.step01,.step02,.step03,.step04').addClass('active');
-	        $('.cur-breadcrumb').html('费用缴纳');
 	        this.$http.get(global.HttpPath + '/prePay/rzKfFeeList', { // 获取入驻开发费用数据
 	            params: {
-	                houseInfoId: this.houseInfoId
+	                houseInfoId: global.isEnterHouseInfo.pk_house
 	            }
 	        }).then(function (response) {
 	            // 响应成功回调
@@ -40068,7 +40453,7 @@ webpackJsonp([0],[
 	        });
 	        this.$http.get(global.HttpPath + '/prePay/rzPropertyFeeList', { // 获取入驻物业费用
 	            params: {
-	                houseInfoId: this.houseInfoId
+	                houseInfoId: global.isEnterHouseInfo.pk_house
 	            }
 	        }).then(function (response) {
 	            // 响应成功回调
@@ -40115,13 +40500,17 @@ webpackJsonp([0],[
 	                this.$router.go('/home/payment/pay');
 	                this.$router.params = {
 	                    totalPrice: _totalPrice,
-	                    canInvoice: true,
+	                    canInvoice: type == 'wuye' ? true : false, // 是否能开票
+	                    goodsInfosKey: { // 展示商品的字段
+	                        feetypeKey: 'feetype',
+	                        priceKey: 'nyshouldmny'
+	                    },
 	                    payType: type,
 	                    goToURL: {
 	                        name: 'enter',
 	                        url: '/home/business/enter/infook'
 	                    },
-	                    houseInfo: this.isEnterHouseInfo,
+	                    houseInfo: global.isEnterHouseInfo,
 	                    goods: _goodsAry
 	                };
 	            }
@@ -40135,7 +40524,7 @@ webpackJsonp([0],[
 /* 259 */
 /***/ (function(module, exports) {
 
-	module.exports = "\n\n<ol class=\"breadcrumb\" _v-b0201542=\"\">你当前的位置：\n    <li _v-b0201542=\"\"><a _v-b0201542=\"\">联东首页</a></li>\n    <li _v-b0201542=\"\"><a _v-b0201542=\"\">入驻办理</a></li>\n    <li class=\"active cur-breadcrumb\" _v-b0201542=\"\">费用缴纳</li>\n</ol>\n<div class=\"container\" _v-b0201542=\"\">\n    <div class=\"row\" _v-b0201542=\"\">\n        <div class=\"col-xs-12\" _v-b0201542=\"\">\n            <div class=\"panel panel-default\" _v-b0201542=\"\">\n                <div class=\"panel-body\" _v-b0201542=\"\">\n                    <ul class=\"clearfix nav-line nav-step ruzhustep\" _v-b0201542=\"\">\n                        <li _v-b0201542=\"\"><a class=\"step step01 active\" _v-b0201542=\"\">完善资料<i class=\"step-right\" _v-b0201542=\"\"></i></a></li>\n                        <li _v-b0201542=\"\"><a class=\"step step02 active\" _v-b0201542=\"\"><i class=\"step-left\" _v-b0201542=\"\"></i>入驻办理<i class=\"step-right\" _v-b0201542=\"\"></i></a></li>\n                        <li _v-b0201542=\"\"><a class=\"step step03 active\" _v-b0201542=\"\"><i class=\"step-left\" _v-b0201542=\"\"></i>审核<i class=\"step-right\" _v-b0201542=\"\"></i></a></li>\n                        <li _v-b0201542=\"\"><a class=\"step step04 active\" _v-b0201542=\"\"><i class=\"step-left\" _v-b0201542=\"\"></i>费用缴纳<i class=\"step-right\" _v-b0201542=\"\"></i></a></li>\n                        <li _v-b0201542=\"\"><a class=\"step step05\" _v-b0201542=\"\"><i class=\"step-left\" _v-b0201542=\"\"></i>入驻完成</a></li>\n                    </ul>\n\t\t\t\t\t<table class=\"table table-bordered table-form\" _v-b0201542=\"\">\n\t\t\t\t\t\t<tbody _v-b0201542=\"\">\n\t\t\t\t\t\t\t<tr _v-b0201542=\"\">\n\t\t\t\t\t\t\t\t<th _v-b0201542=\"\">开发公司费用</th>\n\t\t\t\t\t\t\t\t<td _v-b0201542=\"\">\n\t\t\t\t\t\t\t\t\t<div class=\"table-warp\" _v-b0201542=\"\">\n\t\t\t\t\t\t\t\t\t\t<span class=\"icon\" _v-b0201542=\"\"><span _v-b0201542=\"\">已支付</span></span>\n\t\t\t\t\t\t\t\t\t\t<table class=\"table-inner\" _v-b0201542=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<tbody _v-b0201542=\"\">\n\t\t\t\t\t\t\t\t\t\t\t\t<tr v-for=\"rzKfFee in rzKfFeeList.rows\" _v-b0201542=\"\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t<th _v-b0201542=\"\">{{ rzKfFee.feetype }}</th>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<td class=\"text-orange\" _v-b0201542=\"\">{{ rzKfFee.nyshouldmny | currency '￥' 2 }}</td>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<th _v-b0201542=\"\">费用区间：</th>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<td _v-b0201542=\"\">{{ rzKfFee.dbegin | TimeYMD }}~{{ rzKfFee.dend | TimeYMD }}</td>\n\t\t\t\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t\t</tbody>\n\t\t\t\t\t\t\t\t\t\t</table>\n\t\t\t\t\t\t\t\t\t\t<div class=\"total\" _v-b0201542=\"\">物业费用合计：{{ rzKfFeeList.totalPrice | currency '￥' 2 }}</div>\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-b0201542=\"\">\n\t\t\t\t\t\t\t\t<th _v-b0201542=\"\">物业公司费用</th>\n\t\t\t\t\t\t\t\t<td _v-b0201542=\"\">\n\t\t\t\t\t\t\t\t\t<div class=\"table-warp\" _v-b0201542=\"\">\n\t\t\t\t\t\t\t\t\t\t<table class=\"table-inner\" _v-b0201542=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<tbody _v-b0201542=\"\">\n\t\t\t\t\t\t\t<!-- \t\t\t\t\t<tr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<th>物业费：</th>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<td class=\"text-orange\">¥5,520.00</td>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<th>费用区间：</th>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<td>2017-03-21~2017-04-20</td>\n\t\t\t\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<th>供暖费：</th>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<td class=\"text-orange\">¥5,520.00</td>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<th>费用区间：</th>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<td>2017-03-21~2017-04-20</td>\n\t\t\t\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<th>基本电费：</th>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<td class=\"text-orange\">¥5,520.00</td>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<th>费用区间：</th>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<td>2017-03-21~2017-04-20</td>\n\t\t\t\t\t\t\t\t\t\t\t\t</tr> -->\n\t\t\t\t\t\t\t\t\t\t\t\t<tr v-for=\"rzPropertyFee in rzPropertyFeeList.rows\" _v-b0201542=\"\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t<th _v-b0201542=\"\">{{ rzPropertyFee.feetype }}</th>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<td class=\"text-orange\" _v-b0201542=\"\">{{ rzPropertyFee.nyshouldmny | currency '￥' 2 }}</td>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<th _v-b0201542=\"\">费用区间：</th>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<td _v-b0201542=\"\">{{ rzPropertyFee.dbegin | TimeYMD }}~{{ rzPropertyFee.dend | TimeYMD }}</td>\n\t\t\t\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t\t</tbody>\n\t\t\t\t\t\t\t\t\t\t</table>\n\t\t\t\t\t\t\t\t\t\t<div class=\"total\" _v-b0201542=\"\">开发费用合计：{{ rzPropertyFeeList.totalPrice | currency '￥' 2 }}</div>\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t<button class=\"btn\" @click=\"goPay('wuye')\" _v-b0201542=\"\">去支付</button>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t</tbody>\n\t\t\t\t\t</table>\n                </div>\n            </div>\n        </div>  \n    </div>\n</div>\n";
+	module.exports = "\n\n<ol class=\"breadcrumb\" _v-b0201542=\"\">你当前的位置：\n    <li _v-b0201542=\"\"><a _v-b0201542=\"\">联东首页</a></li>\n    <li _v-b0201542=\"\"><a _v-b0201542=\"\">入驻办理</a></li>\n    <li class=\"active cur-breadcrumb\" _v-b0201542=\"\">费用缴纳</li>\n</ol>\n<div class=\"container\" _v-b0201542=\"\">\n    <div class=\"row\" _v-b0201542=\"\">\n        <div class=\"col-xs-12\" _v-b0201542=\"\">\n            <div class=\"panel panel-default\" _v-b0201542=\"\">\n                <div class=\"panel-body\" _v-b0201542=\"\">\n                    <ul class=\"clearfix nav-line nav-step ruzhustep\" _v-b0201542=\"\">\n                        <li _v-b0201542=\"\"><a class=\"step step01 active\" _v-b0201542=\"\">完善资料<i class=\"step-right\" _v-b0201542=\"\"></i></a></li>\n                        <li _v-b0201542=\"\"><a class=\"step step02 active\" _v-b0201542=\"\"><i class=\"step-left\" _v-b0201542=\"\"></i>入驻办理<i class=\"step-right\" _v-b0201542=\"\"></i></a></li>\n                        <li _v-b0201542=\"\"><a class=\"step step03 active\" _v-b0201542=\"\"><i class=\"step-left\" _v-b0201542=\"\"></i>已审核<i class=\"step-right\" _v-b0201542=\"\"></i></a></li>\n                        <li _v-b0201542=\"\"><a class=\"step step04 active\" _v-b0201542=\"\"><i class=\"step-left\" _v-b0201542=\"\"></i>费用缴纳<i class=\"step-right\" _v-b0201542=\"\"></i></a></li>\n                        <li _v-b0201542=\"\"><a class=\"step step05\" _v-b0201542=\"\"><i class=\"step-left\" _v-b0201542=\"\"></i>入驻完成</a></li>\n                    </ul>\n\t\t\t\t\t<table class=\"table table-bordered table-form\" _v-b0201542=\"\">\n\t\t\t\t\t\t<tbody _v-b0201542=\"\">\n\t\t\t\t\t\t\t<tr _v-b0201542=\"\">\n\t\t\t\t\t\t\t\t<th _v-b0201542=\"\">开发公司费用</th>\n\t\t\t\t\t\t\t\t<td _v-b0201542=\"\">\n\t\t\t\t\t\t\t\t\t<div class=\"table-warp\" _v-b0201542=\"\">\n\t\t\t\t\t\t\t\t\t\t<!-- <span class=\"icon\"><span>已支付</span></span> -->\n\t\t\t\t\t\t\t\t\t\t<table class=\"table-inner\" _v-b0201542=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<tbody _v-b0201542=\"\">\n\t\t\t\t\t\t\t\t\t\t\t\t<tr v-for=\"rzKfFee in rzKfFeeList.rows\" _v-b0201542=\"\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t<th _v-b0201542=\"\">{{ rzKfFee.feetype }}</th>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<td class=\"text-orange\" _v-b0201542=\"\">{{ rzKfFee.nyshouldmny | currency '￥' 2 }}</td>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<th _v-b0201542=\"\">费用区间：</th>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<td _v-b0201542=\"\">{{ rzKfFee.dbegin | TimeYMD }}~{{ rzKfFee.dend | TimeYMD }}</td>\n\t\t\t\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t\t</tbody>\n\t\t\t\t\t\t\t\t\t\t</table>\n\t\t\t\t\t\t\t\t\t\t<div class=\"total\" _v-b0201542=\"\">物业费用合计：{{ rzKfFeeList.totalPrice | currency '￥' 2 }}</div>\n\t\t\t\t\t\t\t\t\t</div>\n                                    <button class=\"btn\" @click=\"goPay('kaifa')\" v-show=\"rzKfFeeList.totalPrice!=0\" _v-b0201542=\"\">去支付</button>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-b0201542=\"\">\n\t\t\t\t\t\t\t\t<th _v-b0201542=\"\">物业公司费用</th>\n\t\t\t\t\t\t\t\t<td _v-b0201542=\"\">\n\t\t\t\t\t\t\t\t\t<div class=\"table-warp\" _v-b0201542=\"\">\n\t\t\t\t\t\t\t\t\t\t<table class=\"table-inner\" _v-b0201542=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<tbody _v-b0201542=\"\">\n\t\t\t\t\t\t\t<!-- \t\t\t\t\t<tr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<th>物业费：</th>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<td class=\"text-orange\">¥5,520.00</td>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<th>费用区间：</th>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<td>2017-03-21~2017-04-20</td>\n\t\t\t\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<th>供暖费：</th>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<td class=\"text-orange\">¥5,520.00</td>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<th>费用区间：</th>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<td>2017-03-21~2017-04-20</td>\n\t\t\t\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<th>基本电费：</th>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<td class=\"text-orange\">¥5,520.00</td>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<th>费用区间：</th>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<td>2017-03-21~2017-04-20</td>\n\t\t\t\t\t\t\t\t\t\t\t\t</tr> -->\n\t\t\t\t\t\t\t\t\t\t\t\t<tr v-for=\"rzPropertyFee in rzPropertyFeeList.rows\" _v-b0201542=\"\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t<th _v-b0201542=\"\">{{ rzPropertyFee.feetype }}</th>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<td class=\"text-orange\" _v-b0201542=\"\">{{ rzPropertyFee.nyshouldmny | currency '￥' 2 }}</td>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<th _v-b0201542=\"\">费用区间：</th>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<td _v-b0201542=\"\">{{ rzPropertyFee.dbegin | TimeYMD }}~{{ rzPropertyFee.dend | TimeYMD }}</td>\n\t\t\t\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t\t</tbody>\n\t\t\t\t\t\t\t\t\t\t</table>\n\t\t\t\t\t\t\t\t\t\t<div class=\"total\" _v-b0201542=\"\">开发费用合计：{{ rzPropertyFeeList.totalPrice | currency '￥' 2 }}</div>\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t<button class=\"btn\" @click=\"goPay('wuye')\" v-show=\"rzPropertyFeeList.totalPrice!=0\" _v-b0201542=\"\">去支付</button>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t</tbody>\n\t\t\t\t\t</table>\n                </div>\n            </div>\n        </div>  \n    </div>\n</div>\n";
 
 /***/ }),
 /* 260 */
@@ -40390,13 +40779,20 @@ webpackJsonp([0],[
 
 /***/ }),
 /* 270 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+					value: true
 	});
+
+	var _defineProperty2 = __webpack_require__(185);
+
+	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 	// <style scoped lang="sass">
 	// </style>
 	// <template>
@@ -40411,7 +40807,7 @@ webpackJsonp([0],[
 	// 			<div class="panel panel-default">
 	// 				<div class="panel-heading"><h1>退续租申请</h1></div>
 	// 				<div class="panel-body">
-	// 					<table class="table table-bordered table-form">
+	// 					<table class="table table-bordered table-form" v-show="liveInHouseInfos.length!=0">
 	// 						<tbody>
 	// 							<tr>
 	// 								<th>房产名称</th>
@@ -40425,14 +40821,14 @@ webpackJsonp([0],[
 	// 							</tr>
 	// 							<tr>
 	// 								<th>租赁面积</th>
-	// 								<td><input type="text" v-model="houseAcreage" readonly></td>
+	// 								<td>{{ houseAcreage }}</td>
 	// 							</tr>
 	// 							<tr>
 	// 								<th>租赁起止日期</th>
 	// 								<td>
-	// 		                            <input type="text" readonly v-model="leaseStartTime" style="width: 120px;">
+	// 		                            {{ leaseStartTime }}
 	// 		                            ~
-	// 									<input type="text" readonly v-model="leaseEndTime" style="width: 120px;">
+	// 									{{ leaseEndTime }}
 	// 								</td>
 	// 							</tr>
 	// 							<tr>
@@ -40446,15 +40842,15 @@ webpackJsonp([0],[
 	// 							</tr>
 	// 							<tr v-show="userCheckedApplyType==0">
 	// 								<th>续租开始日期</th>
-	// 								<td><input class="editdate"  type="text" name="" readonly v-model="retreaTime" v-datetimepicker="retreaTimeClick"></td>
+	// 								<td><input class="editdate" id="retreaTimeClick" type="text" readonly v-model="retreaTime" v-datetimepicker="retreaTimeClick"></td>
 	// 							</tr>
 	// 							<tr v-show="userCheckedApplyType==0">
 	// 								<th>续租截止日期</th>
-	// 								<td><input class="editdate" id="end" type="text" name="" readonly v-model="retreaEndTime" v-datetimepicker="retreaEndTimeClick"></td>
+	// 								<td><input class="editdate" id="retreaEndTimeClick" type="text" readonly v-model="retreaEndTime" v-datetimepicker="retreaEndTimeClick"></td>
 	// 							</tr>
 	// 							<tr v-show="userCheckedApplyType==1">
 	// 								<th>退租日期</th>
-	// 								<td><input class="editdate"  type="text" name="" readonly v-model="retreatLeaseTime" v-datetimepicker="retreatLeaseTimeClick"></td>
+	// 								<td><input class="editdate" id="retreatLeaseTimeClick" type="text" readonly v-model="retreatLeaseTime" v-datetimepicker="retreatLeaseTimeClick"></td>
 	// 							</tr>
 	// 							<tr v-show="userCheckedApplyType==1">
 	// 								<th>退租类型</th>
@@ -40466,125 +40862,160 @@ webpackJsonp([0],[
 	// 							</tr>
 	// 						</tbody>
 	// 					</table>
+	// 					<div v-show="liveInHouseInfos.length==0">暂无租住的房产</div>
+	// 				<form class="rent">
+	// 					<input type="hidden" id="houseInfoId" name="houseInfoId" v-model="houseInfoId">
+	// 					<input type="hidden" id="clientName" name="clientName" v-model="clientName">
+	// 					<input type="hidden" id="houseAcreage" name="houseAcreage" v-model="houseAcreage">
+	// 					<input type="hidden" id="leaseStartTime" name="leaseStartTime" v-model="leaseStartTime">
+	// 					<input type="hidden" id="leaseEndTime" name="leaseEndTime" v-model="leaseEndTime">
+	// 					<input type="hidden" id="retreaTime" name="retreaTime" v-model="retreaTime">
+	// 					<input type="hidden" id="retreaEndTime" name="retreaEndTime" v-model="retreaEndTime">
+	// 					<input type="hidden" id="houseNumber" name="houseNumber" v-model="houseNumber">
+	// 					<input type="hidden" id="retreatLeaseTime" name="retreatLeaseTime" v-model="retreatLeaseTime">
+	// 					<input type="hidden" id="arrearsRent" name="arrearsRent" v-model="arrearsRent">
+	// 					<input type="hidden" id="creationTime" name="creationTime" v-model="creationTime">
+	// 				</form>
 	// 				</div>
 	// 			</div>
 	// 		</div>	
 	// 	</div>	
 	// </div>
+	// <!-- 弹窗 开始 -->
+	// <div class="modal fade" id="mymodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	// 	<div class="modal-dialog" role="document">
+	// 		<div class="modal-content">
+	// 			<div class="modal-header">
+	// 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	// 				<h4 class="modal-title" id="myModalLabel">提示</h4>
+	// 			</div>
+	// 			<div class="modal-body">
+	// 				提交申请成功!
+	// 			</div>
+	// 			<div class="modal-footer">
+	// 				<button type="button" class="btn btn-default" data-dismiss="modal">确定</button>
+	// 			</div>
+	// 		</div>
+	// 	</div>
+	// </div>
+	// <!-- 弹窗 结束 -->
 	// </template>
 	// <script>
-
+	var _curDate = new Date().getFullYear() + '-' + (Array(2).join(0) + (new Date().getMonth() + 1)).slice(-2) + '-' + (Array(2).join(0) + new Date().getDate()).slice(-2); // 当前日期
 	exports.default = {
-	    filters: {},
-	    directives: {},
-	    components: {},
-	    data: function data() {
-	        return {
-	            userInfo: global.userInfo,
-	            userCheckedHouseInfo: null, // 选择的房产-默认为第一套房产
-	            userCheckedApplyType: 0, // 0-续租；1-退租
-	            reletHouseInfos: [],
-	            liveInHouseInfos: [], // 租住中的房产
+					filters: {},
+					directives: {},
+					components: {},
+					data: function data() {
+									return {
+													userInfo: global.userInfo,
+													userCheckedHouseInfo: null, // 选择的房产-默认为第一套房产
+													userCheckedApplyType: 0, // 0-续租；1-退租
+													reletHouseInfos: [],
+													liveInHouseInfos: [], // 租住中的房产
+													retreaTimeClick: { // 续租开始日期配置参数
+																	startDate: _curDate,
+																	setStartDate: _curDate
+													},
+													retreaEndTimeClick: (0, _defineProperty3.default)({ // 续租截止日期配置参数
+																	startDate: _curDate,
+																	setStartDate: _curDate
+													}, 'setStartDate', '#retreaTimeClick'),
+													retreatLeaseTimeClick: { // 退租日期配置参数
+																	startDate: _curDate,
+																	setStartDate: _curDate
+													},
 
-	            /*请求参数： 
+													/*请求参数： 
 	            --------------------------------------------------*/
-	            /*续租*/
-	            houseInfoId: null, // 房产id
-	            clientName: global.userInfo.user.username, // 客户名称
-	            houseAcreage: null, // 房产面积
-	            leaseStartTime: null, // 租赁开始日期
-	            leaseEndTime: null, // 租赁结束日期
-	            retreaTime: null, // 续租开始日期
-	            retreaEndTime: null, // 续租结束时间
+													/*续租*/
+													houseInfoId: null, // 房产id
+													clientName: global.userInfo.user.username, // 客户名称
+													houseAcreage: null, // 房产面积
+													leaseStartTime: null, // 租赁开始日期
+													leaseEndTime: null, // 租赁结束日期
+													retreaTime: null, // 续租开始日期
+													retreaEndTime: null, // 续租结束时间
 
 
-	            /*退租*/
-	            // houseInfoId: null, // 房产id
-	            houseNumber: null, // 房产编号
-	            // houseAcreage: null, // 房产面积
-	            // leaseStartTime: null, // 租赁开始日期
-	            // leaseEndTime: null, // 租赁结束日期
-	            retreatLeaseTime: null, // 退租日期
-	            arrearsRent: null, // 欠缴租金
-	            creationTime: null, // 提交日期
-	            updateTime: null };
-	    },
+													/*退租*/
+													// houseInfoId: null, // 房产id
+													houseNumber: null, // 房产编号
+													// houseAcreage: null, // 房产面积
+													// leaseStartTime: null, // 租赁开始日期
+													// leaseEndTime: null, // 租赁结束日期
+													retreatLeaseTime: null, // 退租日期
+													arrearsRent: null, // 欠缴租金
+													creationTime: _curDate };
+					},
 
-	    watch: {
-	        userCheckedHouseInfo: function userCheckedHouseInfo(newValue, oldValue) {
-	            console.log(newValue);
-	            var houseInfo = this.userInfo.houseInfos[newValue];
-	            this.houseInfoId = houseInfo.pk_house;
-	            this.leaseStartTime = houseInfo.dpactstart;
-	            this.leaseEndTime = houseInfo.dpactend;
-	            this.houseNumber = houseInfo.house;
-	            this.houseAcreage = houseInfo.nrentarea;
-	        }
-	    },
-	    created: function created() {
-	        var _houseInfos = [];
-	        for (var i = 0; i < this.userInfo.houseInfos.length; i++) {
-	            if (this.userInfo.houseInfos[i].contractStatus == 0) {
-	                // 遍历所有租住中的房产
-	                this.liveInHouseInfos.push(this.userInfo.houseInfos[i]);
-	            }
-	        }
-	    },
-	    beforeDestroy: function beforeDestroy() {},
+					watch: {
+									userCheckedHouseInfo: function userCheckedHouseInfo(newValue, oldValue) {
+													console.log(newValue);
+													var houseInfo = this.userInfo.houseInfos[newValue];
+													this.houseInfoId = houseInfo.pk_house;
+													this.leaseStartTime = houseInfo.dpactstart;
+													this.leaseEndTime = houseInfo.dpactend;
+													this.houseNumber = houseInfo.house;
+													// this.houseAcreage = houseInfo.nrentarea;
+													this.houseAcreage = 45;
+									}
+					},
+					created: function created() {
+									var _houseInfos = [];
+									for (var i = 0; i < this.userInfo.houseInfos.length; i++) {
+													if (this.userInfo.houseInfos[i].contractStatus == 0) {
+																	// 遍历所有租住中的房产 contractStatus: 0-租住中 1-退租申请中
+																	this.liveInHouseInfos.push(this.userInfo.houseInfos[i]);
+													}
+									}
+					},
+					beforeDestroy: function beforeDestroy() {},
 
-	    methods: {
-	        submit: function submit() {
-	            if (this.userCheckedApplyType == 0) {
-	                var _params = {
-	                    houseInfoId: this.houseInfoId,
-	                    clientName: this.clientName,
-	                    houseAcreage: this.houseAcreage,
-	                    leaseStartTime: this.leaseStartTime,
-	                    leaseEndTime: this.leaseEndTime,
-	                    retreaTime: this.retreaTime,
-	                    retreaEndTime: this.retreaEndTime
-	                };
-	                var _url = global.HttpPath + '/insertReletApply'; // 续租
-	            } else if (this.userCheckedApplyType == 1) {
-	                var _params = {
-	                    houseInfoId: this.houseInfoId,
-	                    houseNumber: this.houseNumber,
-	                    houseAcreage: this.houseAcreage,
-	                    leaseStartTime: this.leaseStartTime,
-	                    leaseEndTime: this.leaseEndTime,
-	                    retreatLeaseTime: this.retreatLeaseTime,
-	                    arrearsRent: this.arrearsRent,
-	                    creationTime: this.creationTime,
-	                    updateTime: this.updateTime
-	                };
-	                var _url = global.HttpPath + '/insertRetreatLease'; // 退租申请
-	            }
-	            console.log(_params, this.userCheckedApplyType);
-	            // this.$http.post(_url, { // 续租
-	            //     params: _params
-	            // }).then((response) => {
-	            //     // 响应成功回调
-	            //     console.log(response.data);
-
-	            // },(error) => {
-	            //     // 响应失败回调
-	            //     console.log('首页-error:', error);
-	            // }).catch(function(response) {
-	            //     // 程序错误捕获
-	            //     console.log('首页-catch:', response);
-	            // });
-	            $.ajax({
-	                type: "post",
-	                // contentType: "application/json",
-	                url: _url, // 根据客户查询相关费用清单
-	                data: _params,
-	                dataType: 'json',
-	                success: function success(data) {
-	                    console.log(data);
-	                }
-	            });
-	        }
-	    }
+					methods: {
+									submit: function submit() {
+													if (this.userCheckedApplyType == 0) {
+																	var _params = {
+																					houseInfoId: this.houseInfoId,
+																					clientName: this.clientName,
+																					houseAcreage: this.houseAcreage,
+																					leaseStartTime: this.leaseStartTime,
+																					leaseEndTime: this.leaseEndTime,
+																					retreaTime: this.retreaTime,
+																					retreaEndTime: this.retreaEndTime
+																	};
+																	var _url = global.HttpPath + '/insertReletApply'; // 续租
+													} else if (this.userCheckedApplyType == 1) {
+																	var _params = {
+																					houseInfoId: this.houseInfoId,
+																					houseNumber: this.houseNumber,
+																					houseAcreage: this.houseAcreage,
+																					leaseStartTime: this.leaseStartTime,
+																					leaseEndTime: this.leaseEndTime,
+																					retreatLeaseTime: this.retreatLeaseTime,
+																					arrearsRent: this.arrearsRent,
+																					creationTime: this.creationTime,
+																					updateTime: this.updateTime
+																	};
+																	var _url = global.HttpPath + '/insertRetreatLease'; // 退租申请
+													}
+													$.ajax({
+																	type: "post",
+																	url: _url,
+																	data: $('.rent').serialize(),
+																	dataType: 'json',
+																	success: function success(data) {
+																					console.log(data);
+																					if (data.state == 1) {
+																									$('#mymodal').modal({ // 打开弹窗
+																													keyboard: false,
+																													backdrop: 'static'
+																									});
+																					}
+																	}
+													});
+									}
+					}
 	};
 	// </script>
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
@@ -40593,7 +41024,7 @@ webpackJsonp([0],[
 /* 271 */
 /***/ (function(module, exports) {
 
-	module.exports = "\n<ol class=\"breadcrumb\" _v-f6343874=\"\">你当前的位置：\n\t<li _v-f6343874=\"\"><a _v-f6343874=\"\">联东首页</a></li>\n\t<li _v-f6343874=\"\"><a _v-f6343874=\"\">业务办理</a></li>\n\t<li class=\"active\" _v-f6343874=\"\">退续租申请</li>\n</ol>\n<div class=\"container\" _v-f6343874=\"\">\n\t<div class=\"row\" _v-f6343874=\"\">\n\t\t<div class=\"col-xs-12\" _v-f6343874=\"\">\n\t\t\t<div class=\"panel panel-default\" _v-f6343874=\"\">\n\t\t\t\t<div class=\"panel-heading\" _v-f6343874=\"\"><h1 _v-f6343874=\"\">退续租申请</h1></div>\n\t\t\t\t<div class=\"panel-body\" _v-f6343874=\"\">\n\t\t\t\t\t<table class=\"table table-bordered table-form\" _v-f6343874=\"\">\n\t\t\t\t\t\t<tbody _v-f6343874=\"\">\n\t\t\t\t\t\t\t<tr _v-f6343874=\"\">\n\t\t\t\t\t\t\t\t<th _v-f6343874=\"\">房产名称</th>\n\t\t\t\t\t\t\t\t<td _v-f6343874=\"\">\n\t\t                            <select class=\"form-control\" v-model=\"userCheckedHouseInfo\" _v-f6343874=\"\">\n\t\t\t                            <template v-for=\"(index,houseInfo) in liveInHouseInfos\" _v-f6343874=\"\">\n\t\t\t\t                            <option :value=\"index\" :selected=\"index==0\" _v-f6343874=\"\">{{ houseInfo.house }}</option>\n\t\t\t                            </template>\n\t\t                            </select>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-f6343874=\"\">\n\t\t\t\t\t\t\t\t<th _v-f6343874=\"\">租赁面积</th>\n\t\t\t\t\t\t\t\t<td _v-f6343874=\"\"><input type=\"text\" v-model=\"houseAcreage\" readonly=\"\" _v-f6343874=\"\"></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-f6343874=\"\">\n\t\t\t\t\t\t\t\t<th _v-f6343874=\"\">租赁起止日期</th>\n\t\t\t\t\t\t\t\t<td _v-f6343874=\"\">\n\t\t                            <input type=\"text\" readonly=\"\" v-model=\"leaseStartTime\" style=\"width: 120px;\" _v-f6343874=\"\">\n\t\t                            ~\n\t\t\t\t\t\t\t\t\t<input type=\"text\" readonly=\"\" v-model=\"leaseEndTime\" style=\"width: 120px;\" _v-f6343874=\"\">\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-f6343874=\"\">\n\t\t\t\t\t\t\t\t<th _v-f6343874=\"\">类型</th>\n\t\t\t\t\t\t\t\t<td _v-f6343874=\"\">\n\t\t                            <select class=\"form-control\" v-model=\"userCheckedApplyType\" _v-f6343874=\"\">\n\t\t                                <option :value=\"0\" _v-f6343874=\"\">续租</option>\n\t\t                                <option :value=\"1\" _v-f6343874=\"\">退租</option>\n\t\t                            </select>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr v-show=\"userCheckedApplyType==0\" _v-f6343874=\"\">\n\t\t\t\t\t\t\t\t<th _v-f6343874=\"\">续租开始日期</th>\n\t\t\t\t\t\t\t\t<td _v-f6343874=\"\"><input class=\"editdate\" type=\"text\" name=\"\" readonly=\"\" v-model=\"retreaTime\" v-datetimepicker=\"retreaTimeClick\" _v-f6343874=\"\"></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr v-show=\"userCheckedApplyType==0\" _v-f6343874=\"\">\n\t\t\t\t\t\t\t\t<th _v-f6343874=\"\">续租截止日期</th>\n\t\t\t\t\t\t\t\t<td _v-f6343874=\"\"><input class=\"editdate\" id=\"end\" type=\"text\" name=\"\" readonly=\"\" v-model=\"retreaEndTime\" v-datetimepicker=\"retreaEndTimeClick\" _v-f6343874=\"\"></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr v-show=\"userCheckedApplyType==1\" _v-f6343874=\"\">\n\t\t\t\t\t\t\t\t<th _v-f6343874=\"\">退租日期</th>\n\t\t\t\t\t\t\t\t<td _v-f6343874=\"\"><input class=\"editdate\" type=\"text\" name=\"\" readonly=\"\" v-model=\"retreatLeaseTime\" v-datetimepicker=\"retreatLeaseTimeClick\" _v-f6343874=\"\"></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr v-show=\"userCheckedApplyType==1\" _v-f6343874=\"\">\n\t\t\t\t\t\t\t\t<th _v-f6343874=\"\">退租类型</th>\n\t\t\t\t\t\t\t\t<td _v-f6343874=\"\">正常退租</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-f6343874=\"\">\n\t\t\t\t\t\t\t\t<th _v-f6343874=\"\"></th>\n\t\t\t\t\t\t\t\t<td _v-f6343874=\"\"><button class=\"btn\" @click=\"submit\" _v-f6343874=\"\">提交申请</button></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t</tbody>\n\t\t\t\t\t</table>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\t\n\t</div>\t\n</div>\n";
+	module.exports = "\n<ol class=\"breadcrumb\" _v-f6343874=\"\">你当前的位置：\n\t<li _v-f6343874=\"\"><a _v-f6343874=\"\">联东首页</a></li>\n\t<li _v-f6343874=\"\"><a _v-f6343874=\"\">业务办理</a></li>\n\t<li class=\"active\" _v-f6343874=\"\">退续租申请</li>\n</ol>\n<div class=\"container\" _v-f6343874=\"\">\n\t<div class=\"row\" _v-f6343874=\"\">\n\t\t<div class=\"col-xs-12\" _v-f6343874=\"\">\n\t\t\t<div class=\"panel panel-default\" _v-f6343874=\"\">\n\t\t\t\t<div class=\"panel-heading\" _v-f6343874=\"\"><h1 _v-f6343874=\"\">退续租申请</h1></div>\n\t\t\t\t<div class=\"panel-body\" _v-f6343874=\"\">\n\t\t\t\t\t<table class=\"table table-bordered table-form\" v-show=\"liveInHouseInfos.length!=0\" _v-f6343874=\"\">\n\t\t\t\t\t\t<tbody _v-f6343874=\"\">\n\t\t\t\t\t\t\t<tr _v-f6343874=\"\">\n\t\t\t\t\t\t\t\t<th _v-f6343874=\"\">房产名称</th>\n\t\t\t\t\t\t\t\t<td _v-f6343874=\"\">\n\t\t                            <select class=\"form-control\" v-model=\"userCheckedHouseInfo\" _v-f6343874=\"\">\n\t\t\t                            <template v-for=\"(index,houseInfo) in liveInHouseInfos\" _v-f6343874=\"\">\n\t\t\t\t                            <option :value=\"index\" :selected=\"index==0\" _v-f6343874=\"\">{{ houseInfo.house }}</option>\n\t\t\t                            </template>\n\t\t                            </select>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-f6343874=\"\">\n\t\t\t\t\t\t\t\t<th _v-f6343874=\"\">租赁面积</th>\n\t\t\t\t\t\t\t\t<td _v-f6343874=\"\">{{ houseAcreage }}</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-f6343874=\"\">\n\t\t\t\t\t\t\t\t<th _v-f6343874=\"\">租赁起止日期</th>\n\t\t\t\t\t\t\t\t<td _v-f6343874=\"\">\n\t\t                            {{ leaseStartTime }}\n\t\t                            ~\n\t\t\t\t\t\t\t\t\t{{ leaseEndTime }}\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-f6343874=\"\">\n\t\t\t\t\t\t\t\t<th _v-f6343874=\"\">类型</th>\n\t\t\t\t\t\t\t\t<td _v-f6343874=\"\">\n\t\t                            <select class=\"form-control\" v-model=\"userCheckedApplyType\" _v-f6343874=\"\">\n\t\t                                <option :value=\"0\" _v-f6343874=\"\">续租</option>\n\t\t                                <option :value=\"1\" _v-f6343874=\"\">退租</option>\n\t\t                            </select>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr v-show=\"userCheckedApplyType==0\" _v-f6343874=\"\">\n\t\t\t\t\t\t\t\t<th _v-f6343874=\"\">续租开始日期</th>\n\t\t\t\t\t\t\t\t<td _v-f6343874=\"\"><input class=\"editdate\" id=\"retreaTimeClick\" type=\"text\" readonly=\"\" v-model=\"retreaTime\" v-datetimepicker=\"retreaTimeClick\" _v-f6343874=\"\"></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr v-show=\"userCheckedApplyType==0\" _v-f6343874=\"\">\n\t\t\t\t\t\t\t\t<th _v-f6343874=\"\">续租截止日期</th>\n\t\t\t\t\t\t\t\t<td _v-f6343874=\"\"><input class=\"editdate\" id=\"retreaEndTimeClick\" type=\"text\" readonly=\"\" v-model=\"retreaEndTime\" v-datetimepicker=\"retreaEndTimeClick\" _v-f6343874=\"\"></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr v-show=\"userCheckedApplyType==1\" _v-f6343874=\"\">\n\t\t\t\t\t\t\t\t<th _v-f6343874=\"\">退租日期</th>\n\t\t\t\t\t\t\t\t<td _v-f6343874=\"\"><input class=\"editdate\" id=\"retreatLeaseTimeClick\" type=\"text\" readonly=\"\" v-model=\"retreatLeaseTime\" v-datetimepicker=\"retreatLeaseTimeClick\" _v-f6343874=\"\"></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr v-show=\"userCheckedApplyType==1\" _v-f6343874=\"\">\n\t\t\t\t\t\t\t\t<th _v-f6343874=\"\">退租类型</th>\n\t\t\t\t\t\t\t\t<td _v-f6343874=\"\">正常退租</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-f6343874=\"\">\n\t\t\t\t\t\t\t\t<th _v-f6343874=\"\"></th>\n\t\t\t\t\t\t\t\t<td _v-f6343874=\"\"><button class=\"btn\" @click=\"submit\" _v-f6343874=\"\">提交申请</button></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t</tbody>\n\t\t\t\t\t</table>\n\t\t\t\t\t<div v-show=\"liveInHouseInfos.length==0\" _v-f6343874=\"\">暂无租住的房产</div>\n\t\t\t\t<form class=\"rent\" _v-f6343874=\"\">\n\t\t\t\t\t<input type=\"hidden\" id=\"houseInfoId\" name=\"houseInfoId\" v-model=\"houseInfoId\" _v-f6343874=\"\">\n\t\t\t\t\t<input type=\"hidden\" id=\"clientName\" name=\"clientName\" v-model=\"clientName\" _v-f6343874=\"\">\n\t\t\t\t\t<input type=\"hidden\" id=\"houseAcreage\" name=\"houseAcreage\" v-model=\"houseAcreage\" _v-f6343874=\"\">\n\t\t\t\t\t<input type=\"hidden\" id=\"leaseStartTime\" name=\"leaseStartTime\" v-model=\"leaseStartTime\" _v-f6343874=\"\">\n\t\t\t\t\t<input type=\"hidden\" id=\"leaseEndTime\" name=\"leaseEndTime\" v-model=\"leaseEndTime\" _v-f6343874=\"\">\n\t\t\t\t\t<input type=\"hidden\" id=\"retreaTime\" name=\"retreaTime\" v-model=\"retreaTime\" _v-f6343874=\"\">\n\t\t\t\t\t<input type=\"hidden\" id=\"retreaEndTime\" name=\"retreaEndTime\" v-model=\"retreaEndTime\" _v-f6343874=\"\">\n\t\t\t\t\t<input type=\"hidden\" id=\"houseNumber\" name=\"houseNumber\" v-model=\"houseNumber\" _v-f6343874=\"\">\n\t\t\t\t\t<input type=\"hidden\" id=\"retreatLeaseTime\" name=\"retreatLeaseTime\" v-model=\"retreatLeaseTime\" _v-f6343874=\"\">\n\t\t\t\t\t<input type=\"hidden\" id=\"arrearsRent\" name=\"arrearsRent\" v-model=\"arrearsRent\" _v-f6343874=\"\">\n\t\t\t\t\t<input type=\"hidden\" id=\"creationTime\" name=\"creationTime\" v-model=\"creationTime\" _v-f6343874=\"\">\n\t\t\t\t</form>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\t\n\t</div>\t\n</div>\n<!-- 弹窗 开始 -->\n<div class=\"modal fade\" id=\"mymodal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" _v-f6343874=\"\">\n\t<div class=\"modal-dialog\" role=\"document\" _v-f6343874=\"\">\n\t\t<div class=\"modal-content\" _v-f6343874=\"\">\n\t\t\t<div class=\"modal-header\" _v-f6343874=\"\">\n\t\t\t\t<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\" _v-f6343874=\"\"><span aria-hidden=\"true\" _v-f6343874=\"\">×</span></button>\n\t\t\t\t<h4 class=\"modal-title\" id=\"myModalLabel\" _v-f6343874=\"\">提示</h4>\n\t\t\t</div>\n\t\t\t<div class=\"modal-body\" _v-f6343874=\"\">\n\t\t\t\t提交申请成功!\n\t\t\t</div>\n\t\t\t<div class=\"modal-footer\" _v-f6343874=\"\">\n\t\t\t\t<button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\" _v-f6343874=\"\">确定</button>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n</div>\n<!-- 弹窗 结束 -->\n";
 
 /***/ }),
 /* 272 */
@@ -40792,13 +41223,20 @@ webpackJsonp([0],[
 
 /***/ }),
 /* 278 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(global) {"use strict";
+	/* WEBPACK VAR INJECTION */(function(global) {'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
+
+	var _stringify = __webpack_require__(173);
+
+	var _stringify2 = _interopRequireDefault(_stringify);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 	// <style scoped lang="sass">
 	// td {
 	// 	width: 470px;
@@ -40821,46 +41259,42 @@ webpackJsonp([0],[
 	// 							<tr>
 	// 								<th>房产名称</th>
 	// 								<td>
-	// 		                            <select class="form-control" v-model="userCheckedHouseInfo">
+	// 		                            <select class="form-control" v-model="houseInfoId">
 	// 			                            <template v-for="(index,houseInfo) in reletInHouseInfos">
-	// 				                            <option :value="index" :selected="index==0">{{ houseInfo.house }}</option>
+	// 				                            <option :value="houseInfo.pk_house" :selected="index==0">{{ houseInfo.house }}</option>
 	// 			                            </template>
 	// 		                            </select>
 	// 								</td>
 	// 								<th>租赁面积</th>
-	// 								<td>500㎡</td>
+	// 								<td>{{ reletInHouseInfo.houseAcreage | unitSquareMetre }}</td>
 	// 							</tr>
 	// 							<tr>
 	// 								<th>租赁起止日期</th>
-	// 								<td>2017-02-21 ~ 2017-03-21</td>
+	// 								<td>{{ reletInHouseInfo.leaseStartTime | TimeYMD }}~{{ reletInHouseInfo.leaseEndTime | TimeYMD }}</td>
 	// 								<th>类型</th>
 	// 								<td>退租</td>
 	// 							</tr>
 	// 							<tr>
 	// 								<th>续租开始日期</th>
-	// 								<td>2017-03-21</td>
+	// 								<td>{{ reletInHouseInfo.retreaTime | TimeYMD }}</td>
 	// 								<th>续租截止日期</th>
-	// 								<td>2017-02-21</td>
+	// 								<td>{{ reletInHouseInfo.retreaEndTime | TimeYMD }}</td>
 	// 							</tr>
 	// 							<tr>
 	// 								<th>租金单价</th>
-	// 								<td colspan="3">2017-02-21 ~ 2017-03-21    1.2¥每日每平米</td>
-	// 							</tr>
-	// 							<tr>
-	// 								<th>租金单价</th>
-	// 								<td colspan="3">2017-02-21 ~ 2017-03-21    1.2¥每日每平米</td>
+	// 								<td colspan="3">{{ reletInHouseInfo.singlePrice }}/平米</td>
 	// 							</tr>
 	// 							<tr>
 	// 								<th>小计</th>
-	// 								<td>¥36,254.00</td>
+	// 								<td>{{ reletInHouseInfo.subtotal | currency '￥' 2 }}</td>
 	// 								<th>租赁保证金</th>
-	// 								<td>¥36,254.00</td>
+	// 								<td>{{ reletInHouseInfo.subtotal | leaseDeposit '￥' 2 }}</td>
 	// 							</tr>
 	// 							<tr>
 	// 								<th>优惠金额</th>
-	// 								<td>¥2,000.00</td>
+	// 								<td>{{ reletInHouseInfo.subtotal | privilegeSum '￥' 2 }}</td>
 	// 								<th>总计</th>
-	// 								<td>¥2,000.00</td>
+	// 								<td>{{ reletInHouseInfo.subtotal | total '￥' 2 }}</td>
 	// 							</tr>
 	// 						</tbody>
 	// 					</table>
@@ -40882,16 +41316,28 @@ webpackJsonp([0],[
 	    data: function data() {
 	        return {
 	            userInfo: global.userInfo,
-	            userCheckedHouseInfo: null, // 选择的房产-默认为第一套房产
-	            reletInHouseInfos: []
+	            // userCheckedHouseInfo: null, // 选择的房产-默认为第一套房产
+	            reletInHouseInfos: [],
+	            reletInHouseInfo: {},
+	            houseInfoId: null
 	        };
 	    },
 
 	    watch: {
-	        userCheckedHouseInfo: function userCheckedHouseInfo(newValue, oldValue) {
-	            var houseInfo = this.overRenthouseInfos[this.userCheckedHouseInfo];
-	            this.houseInfoId = houseInfo.pk_house;
-	            this.customerId = houseInfo._customerId;
+	        houseInfoId: function houseInfoId(newValue, oldValue) {
+	            var _this = this;
+	            $.ajax({
+	                type: "get",
+	                url: global.HttpPath + '/findReletApply', // 查询续租
+	                data: {
+	                    houseInfoId: this.houseInfoId
+	                },
+	                dataType: 'json',
+	                success: function success(data) {
+	                    _this.$set('reletInHouseInfo', data.data);
+	                    console.log(data);
+	                }
+	            });
 	        }
 	    },
 	    created: function created() {
@@ -40902,21 +41348,7 @@ webpackJsonp([0],[
 	                this.reletInHouseInfos.push(this.userInfo.houseInfos[i]);
 	            }
 	        }
-	        console.log(this.reletInHouseInfos);
-
-	        // $.ajax({
-	        //     type: "post",
-	        //     contentType: "application/json",
-	        //     url: global.HttpPath + '/findRetreatLease', // 退租
-	        //     data: {
-	        //         customerId: this.customerId,
-	        //         houseInfoId: this.houseInfoId,
-	        //     },
-	        //     dataType: 'json',
-	        //     success: function(data){
-	        //         console.log(data)
-	        //     }
-	        // });
+	        console.log(JSON.parse((0, _stringify2.default)(this.reletInHouseInfos)));
 	    },
 	    beforeDestroy: function beforeDestroy() {},
 
@@ -40929,14 +41361,15 @@ webpackJsonp([0],[
 /* 279 */
 /***/ (function(module, exports) {
 
-	module.exports = "\n<ol class=\"breadcrumb\" _v-1f7e539c=\"\">你当前的位置：\n\t<li _v-1f7e539c=\"\"><a _v-1f7e539c=\"\">联东首页</a></li>\n\t<li _v-1f7e539c=\"\"><a _v-1f7e539c=\"\">业务办理</a></li>\n\t<li class=\"active\" _v-1f7e539c=\"\">续租申请</li>\n</ol>\n<div class=\"container\" _v-1f7e539c=\"\">\n\t<div class=\"row\" _v-1f7e539c=\"\">\n\t\t<div class=\"col-xs-12\" _v-1f7e539c=\"\">\n\t\t\t<div class=\"panel panel-default\" _v-1f7e539c=\"\">\n\t\t\t\t<div class=\"panel-heading\" _v-1f7e539c=\"\"><h1 _v-1f7e539c=\"\">租赁合同信息</h1></div>\n\t\t\t\t<div class=\"panel-body\" v-show=\"reletInHouseInfos.length\" _v-1f7e539c=\"\">\n\t\t\t\t\t<table class=\"table table-bordered table-form\" _v-1f7e539c=\"\">\n\t\t\t\t\t\t<tbody _v-1f7e539c=\"\">\n\t\t\t\t\t\t\t<tr _v-1f7e539c=\"\">\n\t\t\t\t\t\t\t\t<th _v-1f7e539c=\"\">房产名称</th>\n\t\t\t\t\t\t\t\t<td _v-1f7e539c=\"\">\n\t\t                            <select class=\"form-control\" v-model=\"userCheckedHouseInfo\" _v-1f7e539c=\"\">\n\t\t\t                            <template v-for=\"(index,houseInfo) in reletInHouseInfos\" _v-1f7e539c=\"\">\n\t\t\t\t                            <option :value=\"index\" :selected=\"index==0\" _v-1f7e539c=\"\">{{ houseInfo.house }}</option>\n\t\t\t                            </template>\n\t\t                            </select>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t\t<th _v-1f7e539c=\"\">租赁面积</th>\n\t\t\t\t\t\t\t\t<td _v-1f7e539c=\"\">500㎡</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-1f7e539c=\"\">\n\t\t\t\t\t\t\t\t<th _v-1f7e539c=\"\">租赁起止日期</th>\n\t\t\t\t\t\t\t\t<td _v-1f7e539c=\"\">2017-02-21 ~ 2017-03-21</td>\n\t\t\t\t\t\t\t\t<th _v-1f7e539c=\"\">类型</th>\n\t\t\t\t\t\t\t\t<td _v-1f7e539c=\"\">退租</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-1f7e539c=\"\">\n\t\t\t\t\t\t\t\t<th _v-1f7e539c=\"\">续租开始日期</th>\n\t\t\t\t\t\t\t\t<td _v-1f7e539c=\"\">2017-03-21</td>\n\t\t\t\t\t\t\t\t<th _v-1f7e539c=\"\">续租截止日期</th>\n\t\t\t\t\t\t\t\t<td _v-1f7e539c=\"\">2017-02-21</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-1f7e539c=\"\">\n\t\t\t\t\t\t\t\t<th _v-1f7e539c=\"\">租金单价</th>\n\t\t\t\t\t\t\t\t<td colspan=\"3\" _v-1f7e539c=\"\">2017-02-21 ~ 2017-03-21    1.2¥每日每平米</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-1f7e539c=\"\">\n\t\t\t\t\t\t\t\t<th _v-1f7e539c=\"\">租金单价</th>\n\t\t\t\t\t\t\t\t<td colspan=\"3\" _v-1f7e539c=\"\">2017-02-21 ~ 2017-03-21    1.2¥每日每平米</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-1f7e539c=\"\">\n\t\t\t\t\t\t\t\t<th _v-1f7e539c=\"\">小计</th>\n\t\t\t\t\t\t\t\t<td _v-1f7e539c=\"\">¥36,254.00</td>\n\t\t\t\t\t\t\t\t<th _v-1f7e539c=\"\">租赁保证金</th>\n\t\t\t\t\t\t\t\t<td _v-1f7e539c=\"\">¥36,254.00</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-1f7e539c=\"\">\n\t\t\t\t\t\t\t\t<th _v-1f7e539c=\"\">优惠金额</th>\n\t\t\t\t\t\t\t\t<td _v-1f7e539c=\"\">¥2,000.00</td>\n\t\t\t\t\t\t\t\t<th _v-1f7e539c=\"\">总计</th>\n\t\t\t\t\t\t\t\t<td _v-1f7e539c=\"\">¥2,000.00</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t</tbody>\n\t\t\t\t\t</table>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"panel-body\" v-show=\"!reletInHouseInfos.length\" _v-1f7e539c=\"\">\n\t\t\t\t\t暂时没有租赁合同信息\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\t\n\t</div>\t\n</div>\n";
+	module.exports = "\n<ol class=\"breadcrumb\" _v-1f7e539c=\"\">你当前的位置：\n\t<li _v-1f7e539c=\"\"><a _v-1f7e539c=\"\">联东首页</a></li>\n\t<li _v-1f7e539c=\"\"><a _v-1f7e539c=\"\">业务办理</a></li>\n\t<li class=\"active\" _v-1f7e539c=\"\">续租申请</li>\n</ol>\n<div class=\"container\" _v-1f7e539c=\"\">\n\t<div class=\"row\" _v-1f7e539c=\"\">\n\t\t<div class=\"col-xs-12\" _v-1f7e539c=\"\">\n\t\t\t<div class=\"panel panel-default\" _v-1f7e539c=\"\">\n\t\t\t\t<div class=\"panel-heading\" _v-1f7e539c=\"\"><h1 _v-1f7e539c=\"\">租赁合同信息</h1></div>\n\t\t\t\t<div class=\"panel-body\" v-show=\"reletInHouseInfos.length\" _v-1f7e539c=\"\">\n\t\t\t\t\t<table class=\"table table-bordered table-form\" _v-1f7e539c=\"\">\n\t\t\t\t\t\t<tbody _v-1f7e539c=\"\">\n\t\t\t\t\t\t\t<tr _v-1f7e539c=\"\">\n\t\t\t\t\t\t\t\t<th _v-1f7e539c=\"\">房产名称</th>\n\t\t\t\t\t\t\t\t<td _v-1f7e539c=\"\">\n\t\t                            <select class=\"form-control\" v-model=\"houseInfoId\" _v-1f7e539c=\"\">\n\t\t\t                            <template v-for=\"(index,houseInfo) in reletInHouseInfos\" _v-1f7e539c=\"\">\n\t\t\t\t                            <option :value=\"houseInfo.pk_house\" :selected=\"index==0\" _v-1f7e539c=\"\">{{ houseInfo.house }}</option>\n\t\t\t                            </template>\n\t\t                            </select>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t\t<th _v-1f7e539c=\"\">租赁面积</th>\n\t\t\t\t\t\t\t\t<td _v-1f7e539c=\"\">{{ reletInHouseInfo.houseAcreage | unitSquareMetre }}</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-1f7e539c=\"\">\n\t\t\t\t\t\t\t\t<th _v-1f7e539c=\"\">租赁起止日期</th>\n\t\t\t\t\t\t\t\t<td _v-1f7e539c=\"\">{{ reletInHouseInfo.leaseStartTime | TimeYMD }}~{{ reletInHouseInfo.leaseEndTime | TimeYMD }}</td>\n\t\t\t\t\t\t\t\t<th _v-1f7e539c=\"\">类型</th>\n\t\t\t\t\t\t\t\t<td _v-1f7e539c=\"\">退租</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-1f7e539c=\"\">\n\t\t\t\t\t\t\t\t<th _v-1f7e539c=\"\">续租开始日期</th>\n\t\t\t\t\t\t\t\t<td _v-1f7e539c=\"\">{{ reletInHouseInfo.retreaTime | TimeYMD }}</td>\n\t\t\t\t\t\t\t\t<th _v-1f7e539c=\"\">续租截止日期</th>\n\t\t\t\t\t\t\t\t<td _v-1f7e539c=\"\">{{ reletInHouseInfo.retreaEndTime | TimeYMD }}</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-1f7e539c=\"\">\n\t\t\t\t\t\t\t\t<th _v-1f7e539c=\"\">租金单价</th>\n\t\t\t\t\t\t\t\t<td colspan=\"3\" _v-1f7e539c=\"\">{{ reletInHouseInfo.singlePrice }}/平米</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-1f7e539c=\"\">\n\t\t\t\t\t\t\t\t<th _v-1f7e539c=\"\">小计</th>\n\t\t\t\t\t\t\t\t<td _v-1f7e539c=\"\">{{ reletInHouseInfo.subtotal | currency '￥' 2 }}</td>\n\t\t\t\t\t\t\t\t<th _v-1f7e539c=\"\">租赁保证金</th>\n\t\t\t\t\t\t\t\t<td _v-1f7e539c=\"\">{{ reletInHouseInfo.subtotal | leaseDeposit '￥' 2 }}</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-1f7e539c=\"\">\n\t\t\t\t\t\t\t\t<th _v-1f7e539c=\"\">优惠金额</th>\n\t\t\t\t\t\t\t\t<td _v-1f7e539c=\"\">{{ reletInHouseInfo.subtotal | privilegeSum '￥' 2 }}</td>\n\t\t\t\t\t\t\t\t<th _v-1f7e539c=\"\">总计</th>\n\t\t\t\t\t\t\t\t<td _v-1f7e539c=\"\">{{ reletInHouseInfo.subtotal | total '￥' 2 }}</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t</tbody>\n\t\t\t\t\t</table>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"panel-body\" v-show=\"!reletInHouseInfos.length\" _v-1f7e539c=\"\">\n\t\t\t\t\t暂时没有租赁合同信息\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\t\n\t</div>\t\n</div>\n";
 
 /***/ }),
 /* 280 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__vue_template__ = __webpack_require__(281)
+	__vue_script__ = __webpack_require__(281)
+	__vue_template__ = __webpack_require__(282)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -40956,16 +41389,68 @@ webpackJsonp([0],[
 /* 281 */
 /***/ (function(module, exports) {
 
-	module.exports = "\r\n\t<router-view></router-view>\r\n";
+	/* WEBPACK VAR INJECTION */(function(global) {'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	// <template>
+	//                     <router-view></router-view>
+	// </template>
+	// <script>
+	exports.default = {
+	    filters: {},
+	    directives: {},
+	    components: {},
+	    data: function data() {
+	        return {
+	            isDecHouseInfo: global.isDecHouseInfo,
+	            userInfo: global.userInfo
+	        };
+	    },
+
+	    watch: {},
+	    created: function created() {
+	        switch (parseInt(this.isDecHouseInfo && this.isDecHouseInfo.houseInfoDetails ? this.isDecHouseInfo.houseInfoDetails.decorationapplystate : 0, 10)) {
+	            case 0:
+	                // 未入驻-->办理入驻
+	                this.$router.go('/home/business/decoration/decpoint');
+	                break;
+	            case 1:
+	                // 审核
+	                this.$router.go('/home/business/decoration/decexamine');
+	                break;
+	            case 2:
+	                // 反馈信息
+	                this.$router.go('/home/business/decoration/decfeedback');
+	                break;
+	            case 3:
+	                // 反馈信息
+	                this.$router.go('/home/business/decoration/decfinish');
+	                break;
+	        }
+	    },
+	    beforeDestroy: function beforeDestroy() {},
+
+	    methods: {}
+	};
+	// </script>
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ }),
 /* 282 */
+/***/ (function(module, exports) {
+
+	module.exports = "\r\n                    <router-view></router-view>\r\n";
+
+/***/ }),
+/* 283 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__webpack_require__(283)
-	__vue_script__ = __webpack_require__(284)
-	__vue_template__ = __webpack_require__(285)
+	__webpack_require__(284)
+	__vue_script__ = __webpack_require__(285)
+	__vue_template__ = __webpack_require__(286)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -40982,13 +41467,13 @@ webpackJsonp([0],[
 	})()}
 
 /***/ }),
-/* 283 */
+/* 284 */
 /***/ (function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 284 */
+/* 285 */
 /***/ (function(module, exports) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {'use strict';
@@ -41006,7 +41491,8 @@ webpackJsonp([0],[
 	// <ol class="breadcrumb">你当前的位置：
 	// 	<li><a>联东首页</a></li>
 	// 	<li><a>业务办理</a></li>
-	// 	<li class="active">装修办理</li>
+	// 	<li><a>装修办理</a></li>
+	// 	<li class="active">装修须知</li>
 	// </ol>
 	// <div class="container">
 	// 	<div class="row">
@@ -41089,19 +41575,19 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ }),
-/* 285 */
+/* 286 */
 /***/ (function(module, exports) {
 
-	module.exports = "\n<ol class=\"breadcrumb\" _v-a8662f02=\"\">你当前的位置：\n\t<li _v-a8662f02=\"\"><a _v-a8662f02=\"\">联东首页</a></li>\n\t<li _v-a8662f02=\"\"><a _v-a8662f02=\"\">业务办理</a></li>\n\t<li class=\"active\" _v-a8662f02=\"\">装修办理</li>\n</ol>\n<div class=\"container\" _v-a8662f02=\"\">\n\t<div class=\"row\" _v-a8662f02=\"\">\n\t\t<div class=\"col-xs-12\" _v-a8662f02=\"\">\n\t\t\t<div class=\"panel panel-default\" _v-a8662f02=\"\">\n\t\t\t\t<div class=\"panel-body\" _v-a8662f02=\"\">\n\t\t\t\t    <ul class=\"clearfix nav-line nav-step decnavstep\" _v-a8662f02=\"\">\n\t\t\t\t        <li _v-a8662f02=\"\"><a class=\"step active\" _v-a8662f02=\"\">装修须知<i class=\"step-right\" _v-a8662f02=\"\"></i></a></li>\n\t\t\t\t        <li _v-a8662f02=\"\"><a class=\"step\" _v-a8662f02=\"\"><i class=\"step-left\" _v-a8662f02=\"\"></i>填写信息<i class=\"step-right\" _v-a8662f02=\"\"></i></a></li>\n\t\t\t\t        <li _v-a8662f02=\"\"><a class=\"step\" _v-a8662f02=\"\"><i class=\"step-left\" _v-a8662f02=\"\"></i>审核<i class=\"step-right\" _v-a8662f02=\"\"></i></a></li>\n\t\t\t\t        <li _v-a8662f02=\"\"><a class=\"step\" _v-a8662f02=\"\"><i class=\"step-left\" _v-a8662f02=\"\"></i>反馈信息<i class=\"step-right\" _v-a8662f02=\"\"></i></a></li>\n\t\t\t\t        <li _v-a8662f02=\"\"><a class=\"step\" _v-a8662f02=\"\"><i class=\"step-left\" _v-a8662f02=\"\"></i>完成</a></li>\n\t\t\t\t    </ul>\n\t\t\t\t\t<table class=\"table table-bordered table-form\" _v-a8662f02=\"\">\n\t\t\t\t\t\t<tbody _v-a8662f02=\"\">\n\t\t\t\t\t\t\t<tr _v-a8662f02=\"\">\n\t\t\t\t\t\t\t\t<th _v-a8662f02=\"\">{{ decorationNotice.title }}</th>\n\t\t\t\t\t\t\t\t<td _v-a8662f02=\"\"><pre v-html=\"decorationNotice.content\" _v-a8662f02=\"\"></pre></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-a8662f02=\"\">\n\t\t\t\t\t\t\t\t<th _v-a8662f02=\"\"></th>\n\t\t\t\t\t\t\t\t<td _v-a8662f02=\"\">\n\t\t\t\t\t\t\t\t    <label class=\"checkbox-container\" data-type=\"checkbox\" for=\"isagree\" :checked=\"isAgree\" _v-a8662f02=\"\">\n\t\t\t\t\t\t\t\t        <input type=\"checkbox\" id=\"isagree\" value=\"isAgree\" v-model=\"isAgree\" _v-a8662f02=\"\">\n\t\t\t\t\t\t\t\t        <i class=\"icon icon01 i_radio\" _v-a8662f02=\"\"></i>\n\t\t\t\t\t\t\t\t        <span class=\"checkbox_txt\" _v-a8662f02=\"\">同意并遵守《{{ decorationNotice.title }}》里面的条款内容</span>\n\t\t\t\t\t\t\t\t    </label>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-a8662f02=\"\">\n\t\t\t\t\t\t\t\t<th _v-a8662f02=\"\"></th>\n\t\t\t\t\t\t\t\t<td _v-a8662f02=\"\"><button class=\"btn\" @click=\"next\" _v-a8662f02=\"\">下一步</button></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t</tbody>\n\t\t\t\t\t</table>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\t\n\t</div>\t\n</div>\n";
+	module.exports = "\n<ol class=\"breadcrumb\" _v-a8662f02=\"\">你当前的位置：\n\t<li _v-a8662f02=\"\"><a _v-a8662f02=\"\">联东首页</a></li>\n\t<li _v-a8662f02=\"\"><a _v-a8662f02=\"\">业务办理</a></li>\n\t<li _v-a8662f02=\"\"><a _v-a8662f02=\"\">装修办理</a></li>\n\t<li class=\"active\" _v-a8662f02=\"\">装修须知</li>\n</ol>\n<div class=\"container\" _v-a8662f02=\"\">\n\t<div class=\"row\" _v-a8662f02=\"\">\n\t\t<div class=\"col-xs-12\" _v-a8662f02=\"\">\n\t\t\t<div class=\"panel panel-default\" _v-a8662f02=\"\">\n\t\t\t\t<div class=\"panel-body\" _v-a8662f02=\"\">\n\t\t\t\t    <ul class=\"clearfix nav-line nav-step decnavstep\" _v-a8662f02=\"\">\n\t\t\t\t        <li _v-a8662f02=\"\"><a class=\"step active\" _v-a8662f02=\"\">装修须知<i class=\"step-right\" _v-a8662f02=\"\"></i></a></li>\n\t\t\t\t        <li _v-a8662f02=\"\"><a class=\"step\" _v-a8662f02=\"\"><i class=\"step-left\" _v-a8662f02=\"\"></i>填写信息<i class=\"step-right\" _v-a8662f02=\"\"></i></a></li>\n\t\t\t\t        <li _v-a8662f02=\"\"><a class=\"step\" _v-a8662f02=\"\"><i class=\"step-left\" _v-a8662f02=\"\"></i>审核<i class=\"step-right\" _v-a8662f02=\"\"></i></a></li>\n\t\t\t\t        <li _v-a8662f02=\"\"><a class=\"step\" _v-a8662f02=\"\"><i class=\"step-left\" _v-a8662f02=\"\"></i>反馈信息<i class=\"step-right\" _v-a8662f02=\"\"></i></a></li>\n\t\t\t\t        <li _v-a8662f02=\"\"><a class=\"step\" _v-a8662f02=\"\"><i class=\"step-left\" _v-a8662f02=\"\"></i>完成</a></li>\n\t\t\t\t    </ul>\n\t\t\t\t\t<table class=\"table table-bordered table-form\" _v-a8662f02=\"\">\n\t\t\t\t\t\t<tbody _v-a8662f02=\"\">\n\t\t\t\t\t\t\t<tr _v-a8662f02=\"\">\n\t\t\t\t\t\t\t\t<th _v-a8662f02=\"\">{{ decorationNotice.title }}</th>\n\t\t\t\t\t\t\t\t<td _v-a8662f02=\"\"><pre v-html=\"decorationNotice.content\" _v-a8662f02=\"\"></pre></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-a8662f02=\"\">\n\t\t\t\t\t\t\t\t<th _v-a8662f02=\"\"></th>\n\t\t\t\t\t\t\t\t<td _v-a8662f02=\"\">\n\t\t\t\t\t\t\t\t    <label class=\"checkbox-container\" data-type=\"checkbox\" for=\"isagree\" :checked=\"isAgree\" _v-a8662f02=\"\">\n\t\t\t\t\t\t\t\t        <input type=\"checkbox\" id=\"isagree\" value=\"isAgree\" v-model=\"isAgree\" _v-a8662f02=\"\">\n\t\t\t\t\t\t\t\t        <i class=\"icon icon01 i_radio\" _v-a8662f02=\"\"></i>\n\t\t\t\t\t\t\t\t        <span class=\"checkbox_txt\" _v-a8662f02=\"\">同意并遵守《{{ decorationNotice.title }}》里面的条款内容</span>\n\t\t\t\t\t\t\t\t    </label>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-a8662f02=\"\">\n\t\t\t\t\t\t\t\t<th _v-a8662f02=\"\"></th>\n\t\t\t\t\t\t\t\t<td _v-a8662f02=\"\"><button class=\"btn\" @click=\"next\" _v-a8662f02=\"\">下一步</button></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t</tbody>\n\t\t\t\t\t</table>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\t\n\t</div>\t\n</div>\n";
 
 /***/ }),
-/* 286 */
+/* 287 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__webpack_require__(287)
-	__vue_script__ = __webpack_require__(288)
-	__vue_template__ = __webpack_require__(289)
+	__webpack_require__(288)
+	__vue_script__ = __webpack_require__(289)
+	__vue_template__ = __webpack_require__(290)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -41118,35 +41604,29 @@ webpackJsonp([0],[
 	})()}
 
 /***/ }),
-/* 287 */
+/* 288 */
 /***/ (function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 288 */
-/***/ (function(module, exports, __webpack_require__) {
+/* 289 */
+/***/ (function(module, exports) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 		value: true
 	});
-
-	var _defineProperty2 = __webpack_require__(185);
-
-	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 	// <style scoped lang="sass">
-	// .nobd-left {
+	// /*.nobd-left {
 	// 	border-left: none;
 	// 	padding-right: 20px;
 	// }
 	// .nobd-rgiht {
 	// 	border-right: none;
-	// }
+	// }*/
+	//
 	// caption {
 	// 	border: 1px solid #ddd;
 	// 	text-align: center;
@@ -41180,13 +41660,13 @@ webpackJsonp([0],[
 	// 				    </ul>
 	// 					<table class="table table-bordered table-form">
 	// 						<caption>基本信息填写</caption>
-	// 						<body>
+	// 						<tbody>
 	// 							<tr>
 	// 								<th><span class="text-orange">* </span>楼号</th>
 	// 								<td>
 	// 		                            <select class="form-control" v-model="userCheckedHouseInfo">
 	// 			                            <template v-for="(index01, houseInfo) in userInfo.houseInfos">
-	// 		                            		<option :value="index01" :selected="index01==0">{{ houseInfo.house }}</option>
+	// 		                            		<option :value="index01" :selected="index01==0" v-show="houseInfo.houseInfoDetails.decorationapplystate!=-1">{{ houseInfo.house }}</option>
 	// 			                            </template>
 	// 		                            </select>
 	// 								</td>
@@ -41229,17 +41709,27 @@ webpackJsonp([0],[
 	// 					</table>
 	// 					<table class="table table-bordered table-form">
 	// 						<caption style="position:relative">装修内容明细<button class="btn pull-right" style="position:absolute;right:20px;top:20px" @click="addDetailContent">添加</button></caption>
-	// 						<body>
-	// 							<tr v-for="(index,detailContent) in userEditDetailContent">
-	// 								<th><span class="text-orange" v-show="index==0">* </span>明细{{ index+1 }}</th>
-	// 								<td class="nobd-rgiht"><input type="text" v-model="detailContent"></td>
-	// 								<td class="text-right nobd-left"><button class="btn" @click="deleteDetailContent(index)">删除</button></td>
-	// 							</tr>
-	// 						</body>
+	// 						<tbody>
+	// 				            <tr v-for="(detailContentIndex,detailContent) in userEditDetailContent">
+	// 								<th><span class="text-orange" v-show="detailContentIndex==0">* </span>明细{{ detailContentIndex+1 }}</th>
+	// 				                <td class="nobd-rgiht" v-for="item in detailContent"><input type="text" v-model="item"></td>
+	// 								<td class="text-right nobd-left"><button class="btn" @click="deleteDetailContent(detailContentIndex)">删除</button></td>
+	// 				            </tr>
+	// 						</tbody>
 	// 					</table>
+	// 					<!-- <table class="table table-bordered table-form">
+	// 						<caption style="position:relative">装修内容明细<button class="btn pull-right addzxmx" style="position:absolute;right:20px;top:20px">添加</button></caption>
+	// 						<tbody class="rowszxmx">
+	// 							<tr>
+	// 								<th><span class="text-orange">* </span>明细<span class="index">1</span></th>
+	// 								<td class="nobd-rgiht"><input type="text"></td>
+	// 								<td class="text-right nobd-left"><button class="btn deletezxmx">删除</button></td>
+	// 							</tr>
+	// 						</tbody>
+	// 					</table> -->
 	// 					<table class="table table-bordered table-form">
 	// 						<caption>资料获取与上传</caption>
-	// 						<body>
+	// 						<tbody>
 	// 							<tr>
 	// 								<th>资料获取</th>
 	// 								<td class="nobd-rgiht">装修入驻模板下载《装修入驻资料模板》</td>
@@ -41310,18 +41800,18 @@ webpackJsonp([0],[
 	// 					</table>
 	// 					<table class="table table-bordered table-form">
 	// 						<caption>装修费用</caption>
-	// 						<body>
+	// 						<tbody>
 	// 							<tr>
 	// 								<th>装修押金</th>
-	// 								<td><input type="text" readonly></td>
-	// 								<td>装修管理费</td>
-	// 								<td><input type="text" readonly></td>
+	// 								<td>{{ parseFloat(decorateArea)<1000?5000:10000 | currency '￥' 2 }}</td>
+	// 								<th>装修管理费</th>
+	// 								<td>{{ parseFloat(decorateArea)*3 | currency '￥' 2 }}</td>
 	// 							</tr>
 	// 							<tr>
 	// 								<th>出入证工本费</th>
-	// 								<td><input type="text" readonly></td>
-	// 								<td>出入证押金</td>
-	// 								<td><input type="text" readonly></td>
+	// 								<td>{{ 10 | currency '￥' 2 }}</td>
+	// 								<th>出入证押金</th>
+	// 								<td>{{ 10 | currency '￥' 2 }}</td>
 	// 							</tr>
 	// 							<tr>
 	// 								<th></th>
@@ -41352,6 +41842,78 @@ webpackJsonp([0],[
 	// 											<input type="hidden" name="decorationMaterialList.materialAddress" :value='decorationMaterialList[i].materialAddress'>
 	// 										</template>
 	// 									</form>
+	//
+	//
+	//                   <!-- <form id="decinfoedit01" >
+	//                       房产id 
+	//                         <input type="text" name="houseInfoId" value="1071AM100000000068Q9">
+	//                         <br>
+	//                       客户名称
+	//                         <input type="text" name="clientName" value='热天'>
+	//                         <br>
+	//                        预计工期
+	//                         <input type="text" name="antipateTime" value='55'>
+	//                         <br>
+	//                       现场管理人
+	//                       <input type="text" name="localeCustodian" value='2'>
+	//                         <br>
+	//                       现场管理人联系电话
+	//                         <input type="text" name="localeCustodianPhone" value='13123652356'>
+	//                         <br>
+	//                       装修部位
+	//                         <input type="text" name="decorationParts" value='1'>
+	//                         <br>
+	//                       装修面积
+	//                         <input type="text" name="decorateArea" value='3'>
+	//                         <br>
+	//                       施工人数
+	//                         <input type="text" name="constructPeopleNumber" value='88'>
+	//                         <br>
+	//                       装修公司
+	//                         <input type="text" name="decorationCompany" value='23'>
+	//                         <br>
+	//                       装修负责人
+	//                         <input type="text" name="decorationLeader" value='1'>
+	//                         <br>
+	//                       装修负责人电话
+	//                         <input type="text" name="decorationLeaderPhone" value='15196969696'>
+	//                         <br>
+	//                       是否特殊装修
+	//                       (0-不是，1-是) 
+	//                         <input type="text" name="isSpecialDecoration" value='1'>
+	//
+	//                         <br>
+	//                       特殊装修文件
+	//                         <input type="text" name="specialDecorationFile" value='reer'>
+	//
+	//                         <input type="text" name="decorateDetailList[0].detailOrder" value='1'> 
+	//                          <input type="text" name="decorateDetailList[0].detailContent" value='2'> 
+	//                         <br>
+	//                         <br>
+	//                         <br>
+	//
+	//                       装修详情- 明细顺序
+	//                               <input type="text" name="decorateDetailList.detailOrder" value='1'>
+	//                           <br>
+	//                       装修详情- 明细内容
+	//                           <input type="file" name="decorateDetailList.materialAddress" value='1'>
+	//                           <br>
+	//                           <br>
+	//                           <br>
+	//                       装修资料- 资料名称
+	//                           <input type="text" name="decorationMaterialList.materialName" value='1'>
+	//                           <br>
+	//                       装修资料- 资料地址
+	//                       <input type="file" name="decorationMaterialList.materialAddress" value='1'>
+	//                   </form> -->
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
 	// 								</td>
 	// 							</tr>
 	// 						</body>
@@ -41380,7 +41942,7 @@ webpackJsonp([0],[
 		data: function data() {
 			return {
 				userInfo: global.userInfo,
-				userEditDetailContent: ['', ''], // 用戶编辑的明细内容
+				userEditDetailContent: [{ content: '' }, { content: '' }], // 用戶编辑的明细内容
 				uploadFile01: '',
 				uploadFile02: '',
 				uploadFile03: '',
@@ -41444,8 +42006,12 @@ webpackJsonp([0],[
 		watch: {
 			userCheckedHouseInfo: function userCheckedHouseInfo(newValue, oldValue) {
 				var houseInfo = this.userInfo.houseInfos[this.userCheckedHouseInfo];
+				if (!global.isDecHouseInfo.houseInfoDetails) {
+					// 未有房产正在申请中
+					global.isDecHouseInfo = houseInfo;
+				}
 				this.houseInfoId = houseInfo.pk_house;
-				this.decorateArea = houseInfo.nrentarea;
+				this.decorateArea = houseInfo.houseInfoDetails.nbuildarea;
 				console.log(houseInfo.nrentarea, houseInfo);
 			},
 			userEditDetailContent: function userEditDetailContent() {
@@ -41505,7 +42071,7 @@ webpackJsonp([0],[
 				// });
 			},
 			addDetailContent: function addDetailContent(event) {
-				this.userEditDetailContent.push('');
+				this.userEditDetailContent.push({ content: '' });
 			},
 			deleteDetailContent: function deleteDetailContent(index) {
 				if (this.userEditDetailContent.length == 1) {
@@ -41514,8 +42080,7 @@ webpackJsonp([0],[
 				this.userEditDetailContent.splice(index, 1);
 			},
 			submit: function submit() {
-				var _$$ajax;
-
+				var _this = this;
 				var _params = {
 					houseInfoId: this.houseInfoId,
 					clientName: this.clientName,
@@ -41532,6 +42097,7 @@ webpackJsonp([0],[
 					specialDecorationFile: this.specialDecorationFile,
 					decorateDetailList: this.decorateDetailList,
 					decorationMaterialList: this.decorationMaterialList
+
 				};
 
 				// this.$http.post(global.HttpPath + '/upload/batch', {
@@ -41552,17 +42118,27 @@ webpackJsonp([0],[
 
 				// console.log('请求参数: ',$('#decinfoedit').serialize())
 
-				$.ajax((_$$ajax = {
+				$.ajax({
 					type: "post",
-					contentType: "application/json",
-					// contentType: "application/x-www-form-urlencoded",
+					// contentType: "application/json",
+					contentType: "application/x-www-form-urlencoded;charset=UTF-8",
 					url: global.HttpPath + '/upload/batch', // 
-					data: $('#decinfoedit').serialize()
-				}, (0, _defineProperty3.default)(_$$ajax, 'data', _params), (0, _defineProperty3.default)(_$$ajax, 'dataType', 'json'), (0, _defineProperty3.default)(_$$ajax, 'success', function success(data) {
-					console.log(data);
-				}), (0, _defineProperty3.default)(_$$ajax, 'error', function error(err) {
-					console.log(err);
-				}), _$$ajax));
+					// data: $('#decinfoedit').serialize(),
+					// data: JSON.stringify(_params),
+					data: _params,
+					// traditional: true,
+					dataType: 'json',
+					success: function success(data) {
+						console.log(data);
+						if (data.state == 1) {
+							// 申请成功
+							_this.$router.go('/home/business/decoration/decexamine');
+						}
+					},
+					error: function error(err) {
+						console.log(err);
+					}
+				});
 			}
 		}
 	};
@@ -41570,19 +42146,19 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ }),
-/* 289 */
+/* 290 */
 /***/ (function(module, exports) {
 
-	module.exports = "\n<ol class=\"breadcrumb\" _v-f9d372ce=\"\">你当前的位置：\n\t<li _v-f9d372ce=\"\"><a _v-f9d372ce=\"\">联东首页</a></li>\n\t<li _v-f9d372ce=\"\"><a _v-f9d372ce=\"\">业务办理</a></li>\n\t<li class=\"active\" _v-f9d372ce=\"\">装修办理</li>\n</ol>\n<div class=\"container\" _v-f9d372ce=\"\">\n\t<div class=\"row\" _v-f9d372ce=\"\">\n\t\t<div class=\"col-xs-12\" _v-f9d372ce=\"\">\n\t\t\t<div class=\"panel panel-default\" _v-f9d372ce=\"\">\n\t\t\t\t<div class=\"panel-body\" _v-f9d372ce=\"\">\n\t\t\t\t    <ul class=\"clearfix nav-line nav-step decnavstep\" _v-f9d372ce=\"\">\n\t\t\t\t        <li _v-f9d372ce=\"\"><a class=\"step active\" _v-f9d372ce=\"\">装修须知<i class=\"step-right\" _v-f9d372ce=\"\"></i></a></li>\n\t\t\t\t        <li _v-f9d372ce=\"\"><a class=\"step active\" _v-f9d372ce=\"\"><i class=\"step-left\" _v-f9d372ce=\"\"></i>填写信息<i class=\"step-right\" _v-f9d372ce=\"\"></i></a></li>\n\t\t\t\t        <li _v-f9d372ce=\"\"><a class=\"step\" _v-f9d372ce=\"\"><i class=\"step-left\" _v-f9d372ce=\"\"></i>审核<i class=\"step-right\" _v-f9d372ce=\"\"></i></a></li>\n\t\t\t\t        <li _v-f9d372ce=\"\"><a class=\"step\" _v-f9d372ce=\"\"><i class=\"step-left\" _v-f9d372ce=\"\"></i>反馈信息<i class=\"step-right\" _v-f9d372ce=\"\"></i></a></li>\n\t\t\t\t        <li _v-f9d372ce=\"\"><a class=\"step\" _v-f9d372ce=\"\"><i class=\"step-left\" _v-f9d372ce=\"\"></i>完成</a></li>\n\t\t\t\t    </ul>\n\t\t\t\t\t<table class=\"table table-bordered table-form\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t<caption _v-f9d372ce=\"\">基本信息填写</caption>\n\t\t\t\t\t\t\n\t\t\t\t\t\t\t<tbody _v-f9d372ce=\"\"><tr _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t<th _v-f9d372ce=\"\"><span class=\"text-orange\" _v-f9d372ce=\"\">* </span>楼号</th>\n\t\t\t\t\t\t\t\t<td _v-f9d372ce=\"\">\n\t\t                            <select class=\"form-control\" v-model=\"userCheckedHouseInfo\" _v-f9d372ce=\"\">\n\t\t\t                            <template v-for=\"(index01, houseInfo) in userInfo.houseInfos\" _v-f9d372ce=\"\">\n\t\t                            \t\t<option :value=\"index01\" :selected=\"index01==0\" _v-f9d372ce=\"\">{{ houseInfo.house }}</option>\n\t\t\t                            </template>\n\t\t                            </select>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t\t<th _v-f9d372ce=\"\">客户姓名</th>\n\t\t\t\t\t\t\t\t<td _v-f9d372ce=\"\"><input type=\"text\" v-model=\"clientName\" readonly=\"\" _v-f9d372ce=\"\"></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t<th _v-f9d372ce=\"\"><span class=\"text-orange\" _v-f9d372ce=\"\">* </span>申请日期</th>\n\t\t\t\t\t\t\t\t<td _v-f9d372ce=\"\">\n\t\t                            <input class=\"editdate\" type=\"text\" name=\"\" readonly=\"\" v-model=\"startDate\" v-datetimepicker=\"startDateClick\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t\t<th _v-f9d372ce=\"\">预计工期（天）</th>\n\t\t\t\t\t\t\t\t<td _v-f9d372ce=\"\"><input type=\"text\" v-model=\"antipateTime\" _v-f9d372ce=\"\"></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t<th _v-f9d372ce=\"\"><span class=\"text-orange\" _v-f9d372ce=\"\">* </span>现场管理人</th>\n\t\t\t\t\t\t\t\t<td _v-f9d372ce=\"\"><input type=\"text\" v-model=\"localeCustodian\" _v-f9d372ce=\"\"></td>\n\t\t\t\t\t\t\t\t<th _v-f9d372ce=\"\">现场管理人电话</th>\n\t\t\t\t\t\t\t\t<td _v-f9d372ce=\"\"><input type=\"text\" v-model=\"localeCustodianPhone\" _v-f9d372ce=\"\"></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t<th _v-f9d372ce=\"\"><span class=\"text-orange\" _v-f9d372ce=\"\">* </span>装修部位</th>\n\t\t\t\t\t\t\t\t<td _v-f9d372ce=\"\"><input type=\"text\" v-model=\"decorationParts\" _v-f9d372ce=\"\"></td>\n\t\t\t\t\t\t\t\t<th _v-f9d372ce=\"\">装修面积</th>\n\t\t\t\t\t\t\t\t<td _v-f9d372ce=\"\"><input type=\"text\" v-model=\"decorateArea\" readonly=\"\" _v-f9d372ce=\"\"></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t<th _v-f9d372ce=\"\"><span class=\"text-orange\" _v-f9d372ce=\"\">* </span>施工人数</th>\n\t\t\t\t\t\t\t\t<td _v-f9d372ce=\"\"><input type=\"text\" v-model=\"constructPeopleNumber\" _v-f9d372ce=\"\"></td>\n\t\t\t\t\t\t\t\t<th _v-f9d372ce=\"\">装修公司</th>\n\t\t\t\t\t\t\t\t<td _v-f9d372ce=\"\"><input type=\"text\" v-model=\"decorationCompany\" _v-f9d372ce=\"\"></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t<th _v-f9d372ce=\"\"><span class=\"text-orange\" _v-f9d372ce=\"\">* </span>装修负责人</th>\n\t\t\t\t\t\t\t\t<td _v-f9d372ce=\"\"><input type=\"text\" v-model=\"decorationLeader\" _v-f9d372ce=\"\"></td>\n\t\t\t\t\t\t\t\t<th _v-f9d372ce=\"\">装修负责人电话</th>\n\t\t\t\t\t\t\t\t<td _v-f9d372ce=\"\"><input type=\"text\" v-model=\"decorationLeaderPhone\" _v-f9d372ce=\"\"></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\n\t\t\t\t\t</tbody></table>\n\t\t\t\t\t<table class=\"table table-bordered table-form\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t<caption style=\"position:relative\" _v-f9d372ce=\"\">装修内容明细<button class=\"btn pull-right\" style=\"position:absolute;right:20px;top:20px\" @click=\"addDetailContent\" _v-f9d372ce=\"\">添加</button></caption>\n\t\t\t\t\t\t\n\t\t\t\t\t\t\t<tbody _v-f9d372ce=\"\"><tr v-for=\"(index,detailContent) in userEditDetailContent\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t<th _v-f9d372ce=\"\"><span class=\"text-orange\" v-show=\"index==0\" _v-f9d372ce=\"\">* </span>明细{{ index+1 }}</th>\n\t\t\t\t\t\t\t\t<td class=\"nobd-rgiht\" _v-f9d372ce=\"\"><input type=\"text\" v-model=\"detailContent\" _v-f9d372ce=\"\"></td>\n\t\t\t\t\t\t\t\t<td class=\"text-right nobd-left\" _v-f9d372ce=\"\"><button class=\"btn\" @click=\"deleteDetailContent(index)\" _v-f9d372ce=\"\">删除</button></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\n\t\t\t\t\t</tbody></table>\n\t\t\t\t\t<table class=\"table table-bordered table-form\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t<caption _v-f9d372ce=\"\">资料获取与上传</caption>\n\t\t\t\t\t\t\n\t\t\t\t\t\t\t<tbody _v-f9d372ce=\"\"><tr _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t<th _v-f9d372ce=\"\">资料获取</th>\n\t\t\t\t\t\t\t\t<td class=\"nobd-rgiht\" _v-f9d372ce=\"\">装修入驻模板下载《装修入驻资料模板》</td>\n\t\t\t\t\t\t\t\t<td class=\"text-right nobd-left\" _v-f9d372ce=\"\"><a href=\"\" class=\"btn\" download=\"/enterApply/downLoad\" _v-f9d372ce=\"\">下載</a></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t<th rowspan=\"6\" _v-f9d372ce=\"\">客户上传附件</th>\n\t\t\t\t\t\t\t\t<td class=\"nobd-rgiht\" _v-f9d372ce=\"\">1、装修单位《营业执照》《资质等级证书》（加盖公章）<span class=\"text-success\" v-show=\"decorationMaterialList[0].materialAddress\" _v-f9d372ce=\"\">  <i class=\"icon icon01 i-suc01\" _v-f9d372ce=\"\"></i> 已上传</span></td>\n\t\t\t\t\t\t\t\t<td class=\"text-right nobd-left\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t\t<form name=\"uploadfile00form\" enctype=\"multipart/form-data\" method=\"post\" action=\"/dist/upload\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t\t\t<div class=\"btn btn-upfile\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<input type=\"file\" id=\"uploadfile00\" name=\"uploadfile00\" v-model=\"uploadFile00\" _v-f9d372ce=\"\"><span class=\"btn-upfile-text\" _v-f9d372ce=\"\">上传附件</span>\n\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t</form>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t<td class=\"nobd-rgiht\" _v-f9d372ce=\"\">2、《装修图纸》<span class=\"text-orange\" _v-f9d372ce=\"\"><span class=\"text-orange\" _v-f9d372ce=\"\">* </span>必填</span><span class=\"text-success\" v-show=\"decorationMaterialList[1].materialAddress\" _v-f9d372ce=\"\">  <i class=\"icon icon01 i-suc01\" _v-f9d372ce=\"\"></i> 已上传</span></td>\n\t\t\t\t\t\t\t\t<td class=\"text-right nobd-left\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t\t<form name=\"uploadfile01form\" enctype=\"multipart/form-data\" method=\"post\" action=\"/dist/upload\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t\t\t<div class=\"btn btn-upfile\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<input type=\"file\" id=\"uploadfile01\" name=\"uploadfile01\" v-model=\"uploadFile01\" _v-f9d372ce=\"\"><span class=\"btn-upfile-text\" _v-f9d372ce=\"\">上传附件</span>\n\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t</form>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t<td class=\"nobd-rgiht\" _v-f9d372ce=\"\">3、《装修承诺书》<span class=\"text-orange\" _v-f9d372ce=\"\"><span class=\"text-orange\" _v-f9d372ce=\"\">* </span>必填</span><span class=\"text-success\" v-show=\"decorationMaterialList[2].materialAddress\" _v-f9d372ce=\"\">  <i class=\"icon icon01 i-suc01\" _v-f9d372ce=\"\"></i> 已上传</span></td>\n\t\t\t\t\t\t\t\t<td class=\"text-right nobd-left\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t\t<form name=\"uploadfile02form\" enctype=\"multipart/form-data\" method=\"post\" action=\"/dist/upload\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t\t\t<div class=\"btn btn-upfile\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<input type=\"file\" id=\"uploadfile02\" name=\"uploadfile02\" v-model=\"uploadFile02\" _v-f9d372ce=\"\"><span class=\"btn-upfile-text\" _v-f9d372ce=\"\">上传附件</span>\n\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t</form>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t<td class=\"nobd-rgiht\" _v-f9d372ce=\"\">4、《消防安全责任书》<span class=\"text-success\" v-show=\"decorationMaterialList[3].materialAddress\" _v-f9d372ce=\"\">  <i class=\"icon icon01 i-suc01\" _v-f9d372ce=\"\"></i> 已上传</span></td>\n\t\t\t\t\t\t\t\t<td class=\"text-right nobd-left\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t\t<form name=\"uploadfile03form\" enctype=\"multipart/form-data\" method=\"post\" action=\"/dist/upload\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t\t\t<div class=\"btn btn-upfile\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<input type=\"file\" id=\"uploadfile03\" name=\"uploadfile03\" v-model=\"uploadFile03\" _v-f9d372ce=\"\"><span class=\"btn-upfile-text\" _v-f9d372ce=\"\">上传附件</span>\n\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t</form>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t<td class=\"nobd-rgiht\" _v-f9d372ce=\"\">5、《装修施工委托书》<span class=\"text-success\" v-show=\"decorationMaterialList[4].materialAddress\" _v-f9d372ce=\"\">  <i class=\"icon icon01 i-suc01\" _v-f9d372ce=\"\"></i> 已上传</span></td>\n\t\t\t\t\t\t\t\t<td class=\"text-right nobd-left\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t\t<form name=\"uploadfile04form\" enctype=\"multipart/form-data\" method=\"post\" action=\"/dist/upload\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t\t\t<div class=\"btn btn-upfile\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<input type=\"file\" id=\"uploadfile04\" name=\"uploadfile04\" v-model=\"uploadFile04\" _v-f9d372ce=\"\"><span class=\"btn-upfile-text\" _v-f9d372ce=\"\">上传附件</span>\n\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t</form>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t<td class=\"nobd-rgiht\" _v-f9d372ce=\"\">6、&nbsp;&nbsp; 其它<span class=\"text-success\" v-show=\"decorationMaterialList[5].materialAddress\" _v-f9d372ce=\"\">  <i class=\"icon icon01 i-suc01\" _v-f9d372ce=\"\"></i> 已上传</span></td>\n\t\t\t\t\t\t\t\t<td class=\"text-right nobd-left\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t\t<form name=\"uploadfile05form\" enctype=\"multipart/form-data\" method=\"post\" action=\"/dist/upload\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t\t\t<div class=\"btn btn-upfile\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<input type=\"file\" id=\"uploadfile05\" name=\"uploadfile05\" v-model=\"uploadFile05\" _v-f9d372ce=\"\"><span class=\"btn-upfile-text\" _v-f9d372ce=\"\">上传附件</span>\n\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t</form>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\n\t\t\t\t\t</tbody></table>\n\t\t\t\t\t<table class=\"table table-bordered table-form\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t<caption _v-f9d372ce=\"\">装修费用</caption>\n\t\t\t\t\t\t\n\t\t\t\t\t\t\t<tbody _v-f9d372ce=\"\"><tr _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t<th _v-f9d372ce=\"\">装修押金</th>\n\t\t\t\t\t\t\t\t<td _v-f9d372ce=\"\"><input type=\"text\" readonly=\"\" _v-f9d372ce=\"\"></td>\n\t\t\t\t\t\t\t\t<td _v-f9d372ce=\"\">装修管理费</td>\n\t\t\t\t\t\t\t\t<td _v-f9d372ce=\"\"><input type=\"text\" readonly=\"\" _v-f9d372ce=\"\"></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t<th _v-f9d372ce=\"\">出入证工本费</th>\n\t\t\t\t\t\t\t\t<td _v-f9d372ce=\"\"><input type=\"text\" readonly=\"\" _v-f9d372ce=\"\"></td>\n\t\t\t\t\t\t\t\t<td _v-f9d372ce=\"\">出入证押金</td>\n\t\t\t\t\t\t\t\t<td _v-f9d372ce=\"\"><input type=\"text\" readonly=\"\" _v-f9d372ce=\"\"></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t<th _v-f9d372ce=\"\"></th>\n\t\t\t\t\t\t\t\t<td colspan=\"3\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t\t<button class=\"btn\" @click=\"submit\" _v-f9d372ce=\"\">提交申请</button>\n\t\t\t\t\t\t\t\t\t<form id=\"decinfoedit\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t\t\t<input type=\"hidden\" name=\"houseInfoId\" :value=\"houseInfoId\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t\t\t<input type=\"hidden\" name=\"clientName\" :value=\"clientName\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t\t\t<input type=\"hidden\" name=\"antipateTime\" :value=\"antipateTime\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t\t\t<input type=\"hidden\" name=\"localeCustodian\" :value=\"localeCustodian\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t\t\t<input type=\"hidden\" name=\"localeCustodianPhone\" :value=\"localeCustodianPhone\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t\t\t<input type=\"hidden\" name=\"decorationParts\" :value=\"decorationParts\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t\t\t<input type=\"hidden\" name=\"decorateArea\" :value=\"decorateArea\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t\t\t<input type=\"hidden\" name=\"constructPeopleNumber\" :value=\"constructPeopleNumber\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t\t\t<input type=\"hidden\" name=\"decorationCompany\" :value=\"decorationCompany\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t\t\t<input type=\"hidden\" name=\"decorationLeader\" :value=\"decorationLeader\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t\t\t<input type=\"hidden\" name=\"decorationLeaderPhone\" :value=\"decorationLeaderPhone\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t\t\t<input type=\"hidden\" name=\"isSpecialDecoration\" :value=\"isSpecialDecoration\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t\t\t<input type=\"hidden\" name=\"specialDecorationFile\" :value=\"specialDecorationFile\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t\t\t<input type=\"hidden\" name=\"decorateDetailList\" :value=\"decorateDetailList\" _v-f9d372ce=\"\"> \n\t\t\t\t\t\t\t\t\t\t<template v-for=\"i in decorateDetailList\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<input type=\"hidden\" name=\"decorateDetailList.detailOrder\" :value=\"decorateDetailList[i].detailOrder\" _v-f9d372ce=\"\">\n\n\t\t\t\t\t\t\t\t\t\t\t<input type=\"hidden\" name=\"decorateDetailList.materialAddress\" :value=\"decorateDetailList[i].materialAddress\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t\t\t</template>\n\t\t\t\t\t\t\t\t\t\t<template v-for=\"i in decorationMaterialList\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<input type=\"hidden\" name=\"decorationMaterialList.materialName\" :value=\"decorationMaterialList[i].materialName\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<input type=\"hidden\" name=\"decorationMaterialList.materialAddress\" :value=\"decorationMaterialList[i].materialAddress\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t\t\t</template>\n\t\t\t\t\t\t\t\t\t</form>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\n\t\t\t\t\t</tbody></table>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\t\n\t</div>\t\n</div>\n";
+	module.exports = "\n<ol class=\"breadcrumb\" _v-f9d372ce=\"\">你当前的位置：\n\t<li _v-f9d372ce=\"\"><a _v-f9d372ce=\"\">联东首页</a></li>\n\t<li _v-f9d372ce=\"\"><a _v-f9d372ce=\"\">业务办理</a></li>\n\t<li class=\"active\" _v-f9d372ce=\"\">装修办理</li>\n</ol>\n<div class=\"container\" _v-f9d372ce=\"\">\n\t<div class=\"row\" _v-f9d372ce=\"\">\n\t\t<div class=\"col-xs-12\" _v-f9d372ce=\"\">\n\t\t\t<div class=\"panel panel-default\" _v-f9d372ce=\"\">\n\t\t\t\t<div class=\"panel-body\" _v-f9d372ce=\"\">\n\t\t\t\t    <ul class=\"clearfix nav-line nav-step decnavstep\" _v-f9d372ce=\"\">\n\t\t\t\t        <li _v-f9d372ce=\"\"><a class=\"step active\" _v-f9d372ce=\"\">装修须知<i class=\"step-right\" _v-f9d372ce=\"\"></i></a></li>\n\t\t\t\t        <li _v-f9d372ce=\"\"><a class=\"step active\" _v-f9d372ce=\"\"><i class=\"step-left\" _v-f9d372ce=\"\"></i>填写信息<i class=\"step-right\" _v-f9d372ce=\"\"></i></a></li>\n\t\t\t\t        <li _v-f9d372ce=\"\"><a class=\"step\" _v-f9d372ce=\"\"><i class=\"step-left\" _v-f9d372ce=\"\"></i>审核<i class=\"step-right\" _v-f9d372ce=\"\"></i></a></li>\n\t\t\t\t        <li _v-f9d372ce=\"\"><a class=\"step\" _v-f9d372ce=\"\"><i class=\"step-left\" _v-f9d372ce=\"\"></i>反馈信息<i class=\"step-right\" _v-f9d372ce=\"\"></i></a></li>\n\t\t\t\t        <li _v-f9d372ce=\"\"><a class=\"step\" _v-f9d372ce=\"\"><i class=\"step-left\" _v-f9d372ce=\"\"></i>完成</a></li>\n\t\t\t\t    </ul>\n\t\t\t\t\t<table class=\"table table-bordered table-form\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t<caption _v-f9d372ce=\"\">基本信息填写</caption>\n\t\t\t\t\t\t<tbody _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t<tr _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t<th _v-f9d372ce=\"\"><span class=\"text-orange\" _v-f9d372ce=\"\">* </span>楼号</th>\n\t\t\t\t\t\t\t\t<td _v-f9d372ce=\"\">\n\t\t                            <select class=\"form-control\" v-model=\"userCheckedHouseInfo\" _v-f9d372ce=\"\">\n\t\t\t                            <template v-for=\"(index01, houseInfo) in userInfo.houseInfos\" _v-f9d372ce=\"\">\n\t\t                            \t\t<option :value=\"index01\" :selected=\"index01==0\" v-show=\"houseInfo.houseInfoDetails.decorationapplystate!=-1\" _v-f9d372ce=\"\">{{ houseInfo.house }}</option>\n\t\t\t                            </template>\n\t\t                            </select>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t\t<th _v-f9d372ce=\"\">客户姓名</th>\n\t\t\t\t\t\t\t\t<td _v-f9d372ce=\"\"><input type=\"text\" v-model=\"clientName\" readonly=\"\" _v-f9d372ce=\"\"></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t<th _v-f9d372ce=\"\"><span class=\"text-orange\" _v-f9d372ce=\"\">* </span>申请日期</th>\n\t\t\t\t\t\t\t\t<td _v-f9d372ce=\"\">\n\t\t                            <input class=\"editdate\" type=\"text\" name=\"\" readonly=\"\" v-model=\"startDate\" v-datetimepicker=\"startDateClick\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t\t<th _v-f9d372ce=\"\">预计工期（天）</th>\n\t\t\t\t\t\t\t\t<td _v-f9d372ce=\"\"><input type=\"text\" v-model=\"antipateTime\" _v-f9d372ce=\"\"></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t<th _v-f9d372ce=\"\"><span class=\"text-orange\" _v-f9d372ce=\"\">* </span>现场管理人</th>\n\t\t\t\t\t\t\t\t<td _v-f9d372ce=\"\"><input type=\"text\" v-model=\"localeCustodian\" _v-f9d372ce=\"\"></td>\n\t\t\t\t\t\t\t\t<th _v-f9d372ce=\"\">现场管理人电话</th>\n\t\t\t\t\t\t\t\t<td _v-f9d372ce=\"\"><input type=\"text\" v-model=\"localeCustodianPhone\" _v-f9d372ce=\"\"></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t<th _v-f9d372ce=\"\"><span class=\"text-orange\" _v-f9d372ce=\"\">* </span>装修部位</th>\n\t\t\t\t\t\t\t\t<td _v-f9d372ce=\"\"><input type=\"text\" v-model=\"decorationParts\" _v-f9d372ce=\"\"></td>\n\t\t\t\t\t\t\t\t<th _v-f9d372ce=\"\">装修面积</th>\n\t\t\t\t\t\t\t\t<td _v-f9d372ce=\"\"><input type=\"text\" v-model=\"decorateArea\" readonly=\"\" _v-f9d372ce=\"\"></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t<th _v-f9d372ce=\"\"><span class=\"text-orange\" _v-f9d372ce=\"\">* </span>施工人数</th>\n\t\t\t\t\t\t\t\t<td _v-f9d372ce=\"\"><input type=\"text\" v-model=\"constructPeopleNumber\" _v-f9d372ce=\"\"></td>\n\t\t\t\t\t\t\t\t<th _v-f9d372ce=\"\">装修公司</th>\n\t\t\t\t\t\t\t\t<td _v-f9d372ce=\"\"><input type=\"text\" v-model=\"decorationCompany\" _v-f9d372ce=\"\"></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t<th _v-f9d372ce=\"\"><span class=\"text-orange\" _v-f9d372ce=\"\">* </span>装修负责人</th>\n\t\t\t\t\t\t\t\t<td _v-f9d372ce=\"\"><input type=\"text\" v-model=\"decorationLeader\" _v-f9d372ce=\"\"></td>\n\t\t\t\t\t\t\t\t<th _v-f9d372ce=\"\">装修负责人电话</th>\n\t\t\t\t\t\t\t\t<td _v-f9d372ce=\"\"><input type=\"text\" v-model=\"decorationLeaderPhone\" _v-f9d372ce=\"\"></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\n\t\t\t\t\t</tbody></table>\n\t\t\t\t\t<table class=\"table table-bordered table-form\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t<caption style=\"position:relative\" _v-f9d372ce=\"\">装修内容明细<button class=\"btn pull-right\" style=\"position:absolute;right:20px;top:20px\" @click=\"addDetailContent\" _v-f9d372ce=\"\">添加</button></caption>\n\t\t\t\t\t\t<tbody _v-f9d372ce=\"\">\n\t\t\t\t            <tr v-for=\"(detailContentIndex,detailContent) in userEditDetailContent\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t<th _v-f9d372ce=\"\"><span class=\"text-orange\" v-show=\"detailContentIndex==0\" _v-f9d372ce=\"\">* </span>明细{{ detailContentIndex+1 }}</th>\n\t\t\t\t                <td class=\"nobd-rgiht\" v-for=\"item in detailContent\" _v-f9d372ce=\"\"><input type=\"text\" v-model=\"item\" _v-f9d372ce=\"\"></td>\n\t\t\t\t\t\t\t\t<td class=\"text-right nobd-left\" _v-f9d372ce=\"\"><button class=\"btn\" @click=\"deleteDetailContent(detailContentIndex)\" _v-f9d372ce=\"\">删除</button></td>\n\t\t\t\t            </tr>\n\t\t\t\t\t\t</tbody>\n\t\t\t\t\t</table>\n\t\t\t\t\t<!-- <table class=\"table table-bordered table-form\">\n\t\t\t\t\t\t<caption style=\"position:relative\">装修内容明细<button class=\"btn pull-right addzxmx\" style=\"position:absolute;right:20px;top:20px\">添加</button></caption>\n\t\t\t\t\t\t<tbody class=\"rowszxmx\">\n\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t\t\t\t<th><span class=\"text-orange\">* </span>明细<span class=\"index\">1</span></th>\n\t\t\t\t\t\t\t\t<td class=\"nobd-rgiht\"><input type=\"text\"></td>\n\t\t\t\t\t\t\t\t<td class=\"text-right nobd-left\"><button class=\"btn deletezxmx\">删除</button></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t</tbody>\n\t\t\t\t\t</table> -->\n\t\t\t\t\t<table class=\"table table-bordered table-form\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t<caption _v-f9d372ce=\"\">资料获取与上传</caption>\n\t\t\t\t\t\t<tbody _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t<tr _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t<th _v-f9d372ce=\"\">资料获取</th>\n\t\t\t\t\t\t\t\t<td class=\"nobd-rgiht\" _v-f9d372ce=\"\">装修入驻模板下载《装修入驻资料模板》</td>\n\t\t\t\t\t\t\t\t<td class=\"text-right nobd-left\" _v-f9d372ce=\"\"><a href=\"\" class=\"btn\" download=\"/enterApply/downLoad\" _v-f9d372ce=\"\">下載</a></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t<th rowspan=\"6\" _v-f9d372ce=\"\">客户上传附件</th>\n\t\t\t\t\t\t\t\t<td class=\"nobd-rgiht\" _v-f9d372ce=\"\">1、装修单位《营业执照》《资质等级证书》（加盖公章）<span class=\"text-success\" v-show=\"decorationMaterialList[0].materialAddress\" _v-f9d372ce=\"\">  <i class=\"icon icon01 i-suc01\" _v-f9d372ce=\"\"></i> 已上传</span></td>\n\t\t\t\t\t\t\t\t<td class=\"text-right nobd-left\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t\t<form name=\"uploadfile00form\" enctype=\"multipart/form-data\" method=\"post\" action=\"/dist/upload\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t\t\t<div class=\"btn btn-upfile\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<input type=\"file\" id=\"uploadfile00\" name=\"uploadfile00\" v-model=\"uploadFile00\" _v-f9d372ce=\"\"><span class=\"btn-upfile-text\" _v-f9d372ce=\"\">上传附件</span>\n\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t</form>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t<td class=\"nobd-rgiht\" _v-f9d372ce=\"\">2、《装修图纸》<span class=\"text-orange\" _v-f9d372ce=\"\"><span class=\"text-orange\" _v-f9d372ce=\"\">* </span>必填</span><span class=\"text-success\" v-show=\"decorationMaterialList[1].materialAddress\" _v-f9d372ce=\"\">  <i class=\"icon icon01 i-suc01\" _v-f9d372ce=\"\"></i> 已上传</span></td>\n\t\t\t\t\t\t\t\t<td class=\"text-right nobd-left\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t\t<form name=\"uploadfile01form\" enctype=\"multipart/form-data\" method=\"post\" action=\"/dist/upload\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t\t\t<div class=\"btn btn-upfile\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<input type=\"file\" id=\"uploadfile01\" name=\"uploadfile01\" v-model=\"uploadFile01\" _v-f9d372ce=\"\"><span class=\"btn-upfile-text\" _v-f9d372ce=\"\">上传附件</span>\n\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t</form>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t<td class=\"nobd-rgiht\" _v-f9d372ce=\"\">3、《装修承诺书》<span class=\"text-orange\" _v-f9d372ce=\"\"><span class=\"text-orange\" _v-f9d372ce=\"\">* </span>必填</span><span class=\"text-success\" v-show=\"decorationMaterialList[2].materialAddress\" _v-f9d372ce=\"\">  <i class=\"icon icon01 i-suc01\" _v-f9d372ce=\"\"></i> 已上传</span></td>\n\t\t\t\t\t\t\t\t<td class=\"text-right nobd-left\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t\t<form name=\"uploadfile02form\" enctype=\"multipart/form-data\" method=\"post\" action=\"/dist/upload\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t\t\t<div class=\"btn btn-upfile\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<input type=\"file\" id=\"uploadfile02\" name=\"uploadfile02\" v-model=\"uploadFile02\" _v-f9d372ce=\"\"><span class=\"btn-upfile-text\" _v-f9d372ce=\"\">上传附件</span>\n\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t</form>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t<td class=\"nobd-rgiht\" _v-f9d372ce=\"\">4、《消防安全责任书》<span class=\"text-success\" v-show=\"decorationMaterialList[3].materialAddress\" _v-f9d372ce=\"\">  <i class=\"icon icon01 i-suc01\" _v-f9d372ce=\"\"></i> 已上传</span></td>\n\t\t\t\t\t\t\t\t<td class=\"text-right nobd-left\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t\t<form name=\"uploadfile03form\" enctype=\"multipart/form-data\" method=\"post\" action=\"/dist/upload\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t\t\t<div class=\"btn btn-upfile\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<input type=\"file\" id=\"uploadfile03\" name=\"uploadfile03\" v-model=\"uploadFile03\" _v-f9d372ce=\"\"><span class=\"btn-upfile-text\" _v-f9d372ce=\"\">上传附件</span>\n\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t</form>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t<td class=\"nobd-rgiht\" _v-f9d372ce=\"\">5、《装修施工委托书》<span class=\"text-success\" v-show=\"decorationMaterialList[4].materialAddress\" _v-f9d372ce=\"\">  <i class=\"icon icon01 i-suc01\" _v-f9d372ce=\"\"></i> 已上传</span></td>\n\t\t\t\t\t\t\t\t<td class=\"text-right nobd-left\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t\t<form name=\"uploadfile04form\" enctype=\"multipart/form-data\" method=\"post\" action=\"/dist/upload\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t\t\t<div class=\"btn btn-upfile\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<input type=\"file\" id=\"uploadfile04\" name=\"uploadfile04\" v-model=\"uploadFile04\" _v-f9d372ce=\"\"><span class=\"btn-upfile-text\" _v-f9d372ce=\"\">上传附件</span>\n\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t</form>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t<td class=\"nobd-rgiht\" _v-f9d372ce=\"\">6、&nbsp;&nbsp; 其它<span class=\"text-success\" v-show=\"decorationMaterialList[5].materialAddress\" _v-f9d372ce=\"\">  <i class=\"icon icon01 i-suc01\" _v-f9d372ce=\"\"></i> 已上传</span></td>\n\t\t\t\t\t\t\t\t<td class=\"text-right nobd-left\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t\t<form name=\"uploadfile05form\" enctype=\"multipart/form-data\" method=\"post\" action=\"/dist/upload\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t\t\t<div class=\"btn btn-upfile\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<input type=\"file\" id=\"uploadfile05\" name=\"uploadfile05\" v-model=\"uploadFile05\" _v-f9d372ce=\"\"><span class=\"btn-upfile-text\" _v-f9d372ce=\"\">上传附件</span>\n\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t</form>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\n\t\t\t\t\t</tbody></table>\n\t\t\t\t\t<table class=\"table table-bordered table-form\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t<caption _v-f9d372ce=\"\">装修费用</caption>\n\t\t\t\t\t\t<tbody _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t<tr _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t<th _v-f9d372ce=\"\">装修押金</th>\n\t\t\t\t\t\t\t\t<td _v-f9d372ce=\"\">{{ parseFloat(decorateArea)&lt;1000?5000:10000 | currency '￥' 2 }}</td>\n\t\t\t\t\t\t\t\t<th _v-f9d372ce=\"\">装修管理费</th>\n\t\t\t\t\t\t\t\t<td _v-f9d372ce=\"\">{{ parseFloat(decorateArea)*3 | currency '￥' 2 }}</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t<th _v-f9d372ce=\"\">出入证工本费</th>\n\t\t\t\t\t\t\t\t<td _v-f9d372ce=\"\">{{ 10 | currency '￥' 2 }}</td>\n\t\t\t\t\t\t\t\t<th _v-f9d372ce=\"\">出入证押金</th>\n\t\t\t\t\t\t\t\t<td _v-f9d372ce=\"\">{{ 10 | currency '￥' 2 }}</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t<th _v-f9d372ce=\"\"></th>\n\t\t\t\t\t\t\t\t<td colspan=\"3\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t\t<button class=\"btn\" @click=\"submit\" _v-f9d372ce=\"\">提交申请</button>\n\t\t\t\t\t\t\t\t\t<form id=\"decinfoedit\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t\t\t<input type=\"hidden\" name=\"houseInfoId\" :value=\"houseInfoId\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t\t\t<input type=\"hidden\" name=\"clientName\" :value=\"clientName\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t\t\t<input type=\"hidden\" name=\"antipateTime\" :value=\"antipateTime\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t\t\t<input type=\"hidden\" name=\"localeCustodian\" :value=\"localeCustodian\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t\t\t<input type=\"hidden\" name=\"localeCustodianPhone\" :value=\"localeCustodianPhone\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t\t\t<input type=\"hidden\" name=\"decorationParts\" :value=\"decorationParts\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t\t\t<input type=\"hidden\" name=\"decorateArea\" :value=\"decorateArea\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t\t\t<input type=\"hidden\" name=\"constructPeopleNumber\" :value=\"constructPeopleNumber\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t\t\t<input type=\"hidden\" name=\"decorationCompany\" :value=\"decorationCompany\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t\t\t<input type=\"hidden\" name=\"decorationLeader\" :value=\"decorationLeader\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t\t\t<input type=\"hidden\" name=\"decorationLeaderPhone\" :value=\"decorationLeaderPhone\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t\t\t<input type=\"hidden\" name=\"isSpecialDecoration\" :value=\"isSpecialDecoration\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t\t\t<input type=\"hidden\" name=\"specialDecorationFile\" :value=\"specialDecorationFile\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t\t\t<input type=\"hidden\" name=\"decorateDetailList\" :value=\"decorateDetailList\" _v-f9d372ce=\"\"> \n\t\t\t\t\t\t\t\t\t\t<template v-for=\"i in decorateDetailList\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<input type=\"hidden\" name=\"decorateDetailList.detailOrder\" :value=\"decorateDetailList[i].detailOrder\" _v-f9d372ce=\"\">\n\n\t\t\t\t\t\t\t\t\t\t\t<input type=\"hidden\" name=\"decorateDetailList.materialAddress\" :value=\"decorateDetailList[i].materialAddress\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t\t\t</template>\n\t\t\t\t\t\t\t\t\t\t<template v-for=\"i in decorationMaterialList\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<input type=\"hidden\" name=\"decorationMaterialList.materialName\" :value=\"decorationMaterialList[i].materialName\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<input type=\"hidden\" name=\"decorationMaterialList.materialAddress\" :value=\"decorationMaterialList[i].materialAddress\" _v-f9d372ce=\"\">\n\t\t\t\t\t\t\t\t\t\t</template>\n\t\t\t\t\t\t\t\t\t</form>\n\n\n                  <!-- <form id=\"decinfoedit01\" >\n                      房产id \n                        <input type=\"text\" name=\"houseInfoId\" value=\"1071AM100000000068Q9\">\n                        <br>\n                      客户名称\n                        <input type=\"text\" name=\"clientName\" value='热天'>\n                        <br>\n                       预计工期\n                        <input type=\"text\" name=\"antipateTime\" value='55'>\n                        <br>\n                      现场管理人\n                      <input type=\"text\" name=\"localeCustodian\" value='2'>\n                        <br>\n                      现场管理人联系电话\n                        <input type=\"text\" name=\"localeCustodianPhone\" value='13123652356'>\n                        <br>\n                      装修部位\n                        <input type=\"text\" name=\"decorationParts\" value='1'>\n                        <br>\n                      装修面积\n                        <input type=\"text\" name=\"decorateArea\" value='3'>\n                        <br>\n                      施工人数\n                        <input type=\"text\" name=\"constructPeopleNumber\" value='88'>\n                        <br>\n                      装修公司\n                        <input type=\"text\" name=\"decorationCompany\" value='23'>\n                        <br>\n                      装修负责人\n                        <input type=\"text\" name=\"decorationLeader\" value='1'>\n                        <br>\n                      装修负责人电话\n                        <input type=\"text\" name=\"decorationLeaderPhone\" value='15196969696'>\n                        <br>\n                      是否特殊装修\n                      (0-不是，1-是) \n                        <input type=\"text\" name=\"isSpecialDecoration\" value='1'>\n                        \n                        <br>\n                      特殊装修文件\n                        <input type=\"text\" name=\"specialDecorationFile\" value='reer'>\n                        \n                        <input type=\"text\" name=\"decorateDetailList[0].detailOrder\" value='1'> \n                         <input type=\"text\" name=\"decorateDetailList[0].detailContent\" value='2'> \n                        <br>\n                        <br>\n                        <br>\n\n                      装修详情- 明细顺序\n                              <input type=\"text\" name=\"decorateDetailList.detailOrder\" value='1'>\n                          <br>\n                      装修详情- 明细内容\n                          <input type=\"file\" name=\"decorateDetailList.materialAddress\" value='1'>\n                          <br>\n                          <br>\n                          <br>\n                      装修资料- 资料名称\n                          <input type=\"text\" name=\"decorationMaterialList.materialName\" value='1'>\n                          <br>\n                      装修资料- 资料地址\n                      <input type=\"file\" name=\"decorationMaterialList.materialAddress\" value='1'>\n                  </form> -->\n\n\n\n\n\n\n\n\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\n\t\t\t\t\t</tbody></table>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\t\n\t</div>\t\n</div>\n";
 
 /***/ }),
-/* 290 */
+/* 291 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__webpack_require__(291)
-	__vue_script__ = __webpack_require__(292)
-	__vue_template__ = __webpack_require__(293)
+	__webpack_require__(292)
+	__vue_script__ = __webpack_require__(293)
+	__vue_template__ = __webpack_require__(294)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -41599,16 +42175,16 @@ webpackJsonp([0],[
 	})()}
 
 /***/ }),
-/* 291 */
+/* 292 */
 /***/ (function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 292 */
+/* 293 */
 /***/ (function(module, exports) {
 
-	"use strict";
+	/* WEBPACK VAR INJECTION */(function(global) {'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
@@ -41619,7 +42195,8 @@ webpackJsonp([0],[
 	// <ol class="breadcrumb">你当前的位置：
 	// 	<li><a>联东首页</a></li>
 	// 	<li><a>业务办理</a></li>
-	// 	<li class="active">装修办理</li>
+	// 	<li><a>装修办理</a></li>
+	// 	<li class="active">审核</li>
 	// </ol>
 	// <div class="container">
 	// 	<div class="row">
@@ -41633,9 +42210,15 @@ webpackJsonp([0],[
 	// 				        <li><a class="step"><i class="step-left"></i>反馈信息<i class="step-right"></i></a></li>
 	// 				        <li><a class="step"><i class="step-left"></i>完成</a></li>
 	// 				    </ul>
-	// 				    <div class="examine text-center">
-	// 				    	正在审核中...
-	// 				    </div>
+	//                     <div class="examine text-center" v-if="auditStatus==0">
+	//                         正在审核中...
+	//                     </div>
+	//                     <div class="examine text-center" v-if="auditStatus==1">
+	//                         审核成功。<a class="btn" v-link="{ path: '/home/business/decoration/decfeedback' }">去缴费</a>
+	//                     </div>
+	//                     <div class="examine text-center" v-if="auditStatus==2">
+	//                         审核失败！<a class="btn" v-link="{ path: '/home/business/decoration/decpoint' }">重新申请</a>
+	//                     </div>
 	// 				</div>
 	// 			</div>
 	// 		</div>	
@@ -41648,31 +42231,54 @@ webpackJsonp([0],[
 	    directives: {},
 	    components: {},
 	    data: function data() {
-	        return {};
+	        return {
+	            auditStatus: null
+	        };
 	    },
 
 	    watch: {},
-	    ready: function ready() {},
+	    created: function created() {
+	        var _this = this;
+	        if (!global.isDecHouseInfo) {
+	            return;
+	        }
+	        $.ajax({
+	            type: "get",
+	            // contentType: "application/json",
+	            url: global.HttpPath + '/findDecorationApplyByHouseId', // 获取装修申请结果 -->0未审核；1成功；2，失败
+	            data: { houseInfoId: global.isDecHouseInfo.pk_house },
+	            dataType: 'json',
+	            success: function success(data) {
+	                console.log('装修审核结果： ', data);
+	                _this.$set('auditStatus', data.data ? data.data.auditStatus : null);
+	                if (_this.auditStatus == 1) {
+	                    _this.$router.go('/home/business/decoration/decfeedback');
+	                }
+	            }
+	        });
+	        console.log('装修审核', global.isDecHouseInfo);
+	    },
 	    beforeDestroy: function beforeDestroy() {},
 
 	    methods: {}
 	};
 	// </script>
-
-/***/ }),
-/* 293 */
-/***/ (function(module, exports) {
-
-	module.exports = "\n<ol class=\"breadcrumb\" _v-39338010=\"\">你当前的位置：\n\t<li _v-39338010=\"\"><a _v-39338010=\"\">联东首页</a></li>\n\t<li _v-39338010=\"\"><a _v-39338010=\"\">业务办理</a></li>\n\t<li class=\"active\" _v-39338010=\"\">装修办理</li>\n</ol>\n<div class=\"container\" _v-39338010=\"\">\n\t<div class=\"row\" _v-39338010=\"\">\n\t\t<div class=\"col-xs-12\" _v-39338010=\"\">\n\t\t\t<div class=\"panel panel-default\" _v-39338010=\"\">\n\t\t\t\t<div class=\"panel-body\" _v-39338010=\"\">\n\t\t\t\t    <ul class=\"clearfix nav-line nav-step decnavstep\" _v-39338010=\"\">\n\t\t\t\t        <li _v-39338010=\"\"><a class=\"step active\" _v-39338010=\"\">装修须知<i class=\"step-right\" _v-39338010=\"\"></i></a></li>\n\t\t\t\t        <li _v-39338010=\"\"><a class=\"step active\" _v-39338010=\"\"><i class=\"step-left\" _v-39338010=\"\"></i>填写信息<i class=\"step-right\" _v-39338010=\"\"></i></a></li>\n\t\t\t\t        <li _v-39338010=\"\"><a class=\"step active\" _v-39338010=\"\"><i class=\"step-left\" _v-39338010=\"\"></i>审核<i class=\"step-right\" _v-39338010=\"\"></i></a></li>\n\t\t\t\t        <li _v-39338010=\"\"><a class=\"step\" _v-39338010=\"\"><i class=\"step-left\" _v-39338010=\"\"></i>反馈信息<i class=\"step-right\" _v-39338010=\"\"></i></a></li>\n\t\t\t\t        <li _v-39338010=\"\"><a class=\"step\" _v-39338010=\"\"><i class=\"step-left\" _v-39338010=\"\"></i>完成</a></li>\n\t\t\t\t    </ul>\n\t\t\t\t    <div class=\"examine text-center\" _v-39338010=\"\">\n\t\t\t\t    \t正在审核中...\n\t\t\t\t    </div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\t\n\t</div>\n</div>\n";
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ }),
 /* 294 */
+/***/ (function(module, exports) {
+
+	module.exports = "\n<ol class=\"breadcrumb\" _v-39338010=\"\">你当前的位置：\n\t<li _v-39338010=\"\"><a _v-39338010=\"\">联东首页</a></li>\n\t<li _v-39338010=\"\"><a _v-39338010=\"\">业务办理</a></li>\n\t<li _v-39338010=\"\"><a _v-39338010=\"\">装修办理</a></li>\n\t<li class=\"active\" _v-39338010=\"\">审核</li>\n</ol>\n<div class=\"container\" _v-39338010=\"\">\n\t<div class=\"row\" _v-39338010=\"\">\n\t\t<div class=\"col-xs-12\" _v-39338010=\"\">\n\t\t\t<div class=\"panel panel-default\" _v-39338010=\"\">\n\t\t\t\t<div class=\"panel-body\" _v-39338010=\"\">\n\t\t\t\t    <ul class=\"clearfix nav-line nav-step decnavstep\" _v-39338010=\"\">\n\t\t\t\t        <li _v-39338010=\"\"><a class=\"step active\" _v-39338010=\"\">装修须知<i class=\"step-right\" _v-39338010=\"\"></i></a></li>\n\t\t\t\t        <li _v-39338010=\"\"><a class=\"step active\" _v-39338010=\"\"><i class=\"step-left\" _v-39338010=\"\"></i>填写信息<i class=\"step-right\" _v-39338010=\"\"></i></a></li>\n\t\t\t\t        <li _v-39338010=\"\"><a class=\"step active\" _v-39338010=\"\"><i class=\"step-left\" _v-39338010=\"\"></i>审核<i class=\"step-right\" _v-39338010=\"\"></i></a></li>\n\t\t\t\t        <li _v-39338010=\"\"><a class=\"step\" _v-39338010=\"\"><i class=\"step-left\" _v-39338010=\"\"></i>反馈信息<i class=\"step-right\" _v-39338010=\"\"></i></a></li>\n\t\t\t\t        <li _v-39338010=\"\"><a class=\"step\" _v-39338010=\"\"><i class=\"step-left\" _v-39338010=\"\"></i>完成</a></li>\n\t\t\t\t    </ul>\n                    <div class=\"examine text-center\" v-if=\"auditStatus==0\" _v-39338010=\"\">\n                        正在审核中...\n                    </div>\n                    <div class=\"examine text-center\" v-if=\"auditStatus==1\" _v-39338010=\"\">\n                        审核成功。<a class=\"btn\" v-link=\"{ path: '/home/business/decoration/decfeedback' }\" _v-39338010=\"\">去缴费</a>\n                    </div>\n                    <div class=\"examine text-center\" v-if=\"auditStatus==2\" _v-39338010=\"\">\n                        审核失败！<a class=\"btn\" v-link=\"{ path: '/home/business/decoration/decpoint' }\" _v-39338010=\"\">重新申请</a>\n                    </div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\t\n\t</div>\n</div>\n";
+
+/***/ }),
+/* 295 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__webpack_require__(295)
-	__vue_script__ = __webpack_require__(296)
-	__vue_template__ = __webpack_require__(297)
+	__webpack_require__(296)
+	__vue_script__ = __webpack_require__(297)
+	__vue_template__ = __webpack_require__(298)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -41689,13 +42295,13 @@ webpackJsonp([0],[
 	})()}
 
 /***/ }),
-/* 295 */
+/* 296 */
 /***/ (function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 296 */
+/* 297 */
 /***/ (function(module, exports) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {'use strict';
@@ -41728,7 +42334,8 @@ webpackJsonp([0],[
 	// <ol class="breadcrumb">你当前的位置：
 	// 	<li><a>联东首页</a></li>
 	// 	<li><a>业务办理</a></li>
-	// 	<li class="active">装修办理</li>
+	// 	<li><a>装修办理</a></li>
+	// 	<li class="active">反馈信息</li>
 	// </ol>
 	// <div class="container">
 	// 	<div class="row">
@@ -41738,7 +42345,7 @@ webpackJsonp([0],[
 	// 				    <ul class="clearfix nav-line nav-step decnavstep">
 	// 				        <li><a class="step active">装修须知<i class="step-right"></i></a></li>
 	// 				        <li><a class="step active"><i class="step-left"></i>填写信息<i class="step-right"></i></a></li>
-	// 				        <li><a class="step active"><i class="step-left"></i>审核<i class="step-right"></i></a></li>
+	// 				        <li><a class="step active"><i class="step-left"></i>已审核<i class="step-right"></i></a></li>
 	// 				        <li><a class="step active"><i class="step-left"></i>反馈信息<i class="step-right"></i></a></li>
 	// 				        <li><a class="step"><i class="step-left"></i>完成</a></li>
 	// 				    </ul>
@@ -41747,51 +42354,43 @@ webpackJsonp([0],[
 	// 						<body>
 	// 							<tr>
 	// 								<th><span class="text-orange">* </span>楼号</th>
-	// 								<td>
-	// 		                            <select class="form-control" v-model="userCheckedHouseInfo">
-	// 			                            <template v-for="(index01, houseInfo) in userInfo.houseInfos">
-	// 		                            		<option :value="index01" :selected="index01==0">{{ houseInfo.house }}</option>
-	// 			                            </template>
-	// 		                            </select>
-	// 								</td>
+	// 								<td>{{ isDecHouseInfo.house }}</td>
 	// 								<th>客户姓名</th>
-	// 								<td><input type="text" v-model="clientName" readonly></td>
+	// 								<td>{{ feedbackInfo.clientName }}</td>
 	// 							</tr>
 	// 							<tr>
 	// 								<th><span class="text-orange">* </span>申请日期</th>
-	// 								<td>
-	// 		                            <input class="editdate"  type="text" name="" readonly v-model="startDate" v-datetimepicker="startDateClick">
-	// 								</td>
-	// 								<th>预计工期</th>
-	// 								<td><input type="text" v-model="antipateTime"></td>
+	// 								<td>{{ feedbackInfo.applyTime | TimeYMD }}</td>
+	// 								<th>预计工期（天）</th>
+	// 								<td>{{ feedbackInfo.antipateTime }}</td>
 	// 							</tr>
 	// 							<tr>
 	// 								<th><span class="text-orange">* </span>现场管理人</th>
-	// 								<td><input type="text" v-model="localeCustodian"></td>
+	// 								<td>{{ feedbackInfo.localeCustodian }}</td>
 	// 								<th>现场管理人电话</th>
-	// 								<td><input type="text" v-model="localeCustodianPhone"></td>
+	// 								<td>{{ feedbackInfo.localeCustodianPhone }}</td>
 	// 							</tr>
 	// 							<tr>
 	// 								<th><span class="text-orange">* </span>装修部位</th>
-	// 								<td><input type="text" v-model="decorationParts"></td>
+	// 								<td>{{ feedbackInfo.decorationParts }}</td>
 	// 								<th>装修面积</th>
-	// 								<td><input type="text" v-model="decorateArea"></td>
+	// 								<td>{{ feedbackInfo.decorateArea | unitSquareMetre }}</td>
 	// 							</tr>
 	// 							<tr>
 	// 								<th><span class="text-orange">* </span>施工人数</th>
-	// 								<td><input type="text" v-model="constructPeopleNumber"></td>
+	// 								<td>{{ feedbackInfo.constructPeopleNumber }}</td>
 	// 								<th>装修公司</th>
-	// 								<td><input type="text" v-model="decorationCompany"></td>
+	// 								<td>{{ feedbackInfo.decorationCompany }}</td>
 	// 							</tr>
 	// 							<tr>
 	// 								<th><span class="text-orange">* </span>装修负责人</th>
-	// 								<td><input type="text" v-model="decorationLeader"></td>
+	// 								<td>{{ feedbackInfo.decorationLeader }}</td>
 	// 								<th>装修负责人电话</th>
-	// 								<td><input type="text" v-model="decorationLeaderPhone"></td>
+	// 								<td>{{ feedbackInfo.decorationLeaderPhone }}</td>
 	// 							</tr>
 	// 						</body>
 	// 					</table>
-	// 					<table class="table table-bordered table-form">
+	// 					<!-- <table class="table table-bordered table-form">
 	// 						<caption style="position:relative">装修内容明细<button class="btn pull-right" style="position:absolute;right:20px;top:20px" @click="addDetailContent">添加</button></caption>
 	// 						<body>
 	// 							<tr v-for="(index,detailContent) in userEditDetailContent">
@@ -41871,25 +42470,34 @@ webpackJsonp([0],[
 	// 								</td>
 	// 							</tr>
 	// 						</body>
-	// 					</table>
+	// 					</table> -->
 	// 					<table class="table table-bordered table-form">
 	// 						<caption>装修费用</caption>
 	// 						<body>
 	// 							<tr>
 	// 								<th>装修押金</th>
-	// 								<td><input type="text" readonly></td>
-	// 								<td>装修管理费</td>
-	// 								<td><input type="text" readonly></td>
+	// 								<td>{{ feedbackInfo.decorationDeposit | currency '￥' 2 }}</td>
+	// 								<th>装修管理费</th>
+	// 								<td>{{ feedbackInfo.decorationManagementCost | currency '￥' 2 }}</td>
 	// 							</tr>
 	// 							<tr>
 	// 								<th>出入证工本费</th>
-	// 								<td><input type="text" readonly></td>
-	// 								<td>出入证押金</td>
-	// 								<td><input type="text" readonly></td>
+	// 								<td>{{ feedbackInfo.passPapersCost | currency '￥' 2 }}</td>
+	// 								<th>出入证押金</th>
+	// 								<td>{{ feedbackInfo.passPapersDeposit | currency '￥' 2 }}</td>
+	// 							</tr>
+	// 							<tr>
+	// 								<th>反馈意见</th>
+	// 								<td colspan="3">
+	// 									<ol>
+	// 										<li>{{ feedbackInfo.feedback1 }}</li>
+	// 										<li>{{ feedbackInfo.feedback2 }}</li>
+	// 									</ol>
+	// 								</td>
 	// 							</tr>
 	// 							<tr>
 	// 								<th></th>
-	// 								<td colspan="3"><button class="btn" @click="submit">提交申请</button></td>
+	// 								<td colspan="3"><button class="btn" @click="goPay">去支付</button></td>
 	// 							</tr>
 	// 						</body>
 	// 					</table>
@@ -41916,78 +42524,98 @@ webpackJsonp([0],[
 	    components: {},
 	    data: function data() {
 	        return {
-	            /*请求参数： 
-	            --------------------------------------------------*/
+	            auditStatus: null,
+	            feedbackInfo: null,
+	            isDecHouseInfo: global.isDecHouseInfo
 	        };
 	    },
 
-	    watch: {
-	        userCheckedHouseInfo: function userCheckedHouseInfo(newValue, oldValue) {
-	            var houseInfo = this.userInfo.houseInfos[this.userCheckedHouseInfo];
-	            this.houseInfoId = houseInfo.pk_house;
-	            this.decorateArea = houseInfo.nrentarea;
-	            console.log(houseInfo.nrentarea, houseInfo);
-	        },
-	        userEditDetailContent: function userEditDetailContent() {
-	            console.log(this.userEditDetailContent);
-	        },
-	        decorationMaterialList: function decorationMaterialList() {
-	            console.log(this.decorationMaterialList);
-	        },
-	        uploadFile00: function uploadFile00(newValue, oldValue) {
-	            upZhangxiuFile(this, 0, 'uploadfile00');
-	        },
-	        uploadFile01: function uploadFile01(newValue, oldValue) {
-	            upZhangxiuFile(this, 1, 'uploadfile01');
-	        },
-	        uploadFile02: function uploadFile02(newValue, oldValue) {
-	            upZhangxiuFile(this, 2, 'uploadfile02');
-	        },
-	        uploadFile03: function uploadFile03(newValue, oldValue) {
-	            upZhangxiuFile(this, 3, 'uploadfile03');
-	        },
-	        uploadFile04: function uploadFile04(newValue, oldValue) {
-	            upZhangxiuFile(this, 4, 'uploadfile04');
-	        },
-	        uploadFile05: function uploadFile05(newValue, oldValue) {
-	            upZhangxiuFile(this, 5, 'uploadfile05');
-	        }
-	    },
+	    watch: {},
 	    created: function created() {
+	        var _this = this;
+	        if (!global.isDecHouseInfo) {
+	            return;
+	        }
 	        $.ajax({
-	            type: "post",
-	            contentType: "application/json",
-	            url: global.HttpPath + '/findDecorationApplyByHouseId', // 获取装修申请结果
-	            data: {
-	                houseInfoId: this.houseInfoId
-	            },
+	            type: "get",
+	            // contentType: "application/json",
+	            url: global.HttpPath + '/findDecorationApplyByHouseId', // 获取装修申请结果 -->0未审核；1成功；2，失败
+	            data: { houseInfoId: global.isDecHouseInfo.pk_house },
 	            dataType: 'json',
 	            success: function success(data) {
-	                console.log(data);
+	                console.log('装修审核结果： ', data);
+	                _this.$set('auditStatus', data.data ? data.data.auditStatus : null);
+	                _this.$set('feedbackInfo', data.data);
 	            }
 	        });
+	        console.log('申请装修的房产', global.isDecHouseInfo);
 	    },
 	    beforeDestroy: function beforeDestroy() {},
 
-	    methods: {}
+	    methods: {
+	        goPay: function goPay() {
+	            // 去支付
+	            var _totalPrice = Number(this.feedbackInfo.passPapersCost) + Number(this.feedbackInfo.decorationManagementCost) + Number(this.feedbackInfo.passPapersCost) + Number(this.feedbackInfo.passPapersDeposit);
+	            if (Number(_totalPrice, 10)) {
+	                var _num = [{ feetypeKey: '装修押金', price: this.feedbackInfo.decorationDeposit }, { feetypeKey: '装修管理费', price: this.feedbackInfo.decorationManagementCost }, { feetypeKey: '出入证工本费', price: this.feedbackInfo.passPapersCost }, { feetypeKey: '出入证押金', price: this.feedbackInfo.passPapersDeposit }];
+	                var _goodsAry = [];
+	                for (var i = 0; i < _num.length; i++) {
+	                    var _goods = {
+	                        houseInfoId: null, // 房产id
+	                        clientName: null, // 客户名称
+	                        costType: 'wuye', // 缴费类型
+	                        payManner: null, // 支付方式
+	                        payMonth: null, // 缴费月份
+	                        startDate: null, // 开始日期
+	                        endDate: null, // 截止日期
+	                        payable: null, // 应缴
+	                        paidIn: _num[i].price, // 已缴
+	                        feetype: _num[i].feetypeKey,
+	                        invoiceStatus: null, // 开票状态(0-已开，1-未开,2-不开)
+	                        collectingCompany: null, // 收款公司
+	                        collectingAccount: null, // 收款账户
+	                        payTime: null, // 交费日期
+	                        carteTime: null, // 创建时间
+	                        customerId: null };
+	                    _goodsAry.push(_goods);
+	                }
+
+	                this.$router.go('/home/payment/pay');
+	                this.$router.params = {
+	                    totalPrice: _totalPrice,
+	                    payType: 'wuye',
+	                    goToURL: {
+	                        name: 'wuye',
+	                        url: '/home/business/decoration/decfinish'
+	                    },
+	                    canInvoice: true, // 是否能开票
+	                    goodsInfosKey: { // 展示商品的字段
+	                        feetypeKey: 'feetype',
+	                        priceKey: 'paidIn'
+	                    },
+	                    houseInfo: global.isDecHouseInfo,
+	                    goods: _goodsAry };
+	            }
+	        }
+	    }
 	};
 	// </script>
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ }),
-/* 297 */
+/* 298 */
 /***/ (function(module, exports) {
 
-	module.exports = "\n<ol class=\"breadcrumb\" _v-08aa9034=\"\">你当前的位置：\n\t<li _v-08aa9034=\"\"><a _v-08aa9034=\"\">联东首页</a></li>\n\t<li _v-08aa9034=\"\"><a _v-08aa9034=\"\">业务办理</a></li>\n\t<li class=\"active\" _v-08aa9034=\"\">装修办理</li>\n</ol>\n<div class=\"container\" _v-08aa9034=\"\">\n\t<div class=\"row\" _v-08aa9034=\"\">\n\t\t<div class=\"col-xs-12\" _v-08aa9034=\"\">\n\t\t\t<div class=\"panel panel-default\" _v-08aa9034=\"\">\n\t\t\t\t<div class=\"panel-body\" _v-08aa9034=\"\">\n\t\t\t\t    <ul class=\"clearfix nav-line nav-step decnavstep\" _v-08aa9034=\"\">\n\t\t\t\t        <li _v-08aa9034=\"\"><a class=\"step active\" _v-08aa9034=\"\">装修须知<i class=\"step-right\" _v-08aa9034=\"\"></i></a></li>\n\t\t\t\t        <li _v-08aa9034=\"\"><a class=\"step active\" _v-08aa9034=\"\"><i class=\"step-left\" _v-08aa9034=\"\"></i>填写信息<i class=\"step-right\" _v-08aa9034=\"\"></i></a></li>\n\t\t\t\t        <li _v-08aa9034=\"\"><a class=\"step active\" _v-08aa9034=\"\"><i class=\"step-left\" _v-08aa9034=\"\"></i>审核<i class=\"step-right\" _v-08aa9034=\"\"></i></a></li>\n\t\t\t\t        <li _v-08aa9034=\"\"><a class=\"step active\" _v-08aa9034=\"\"><i class=\"step-left\" _v-08aa9034=\"\"></i>反馈信息<i class=\"step-right\" _v-08aa9034=\"\"></i></a></li>\n\t\t\t\t        <li _v-08aa9034=\"\"><a class=\"step\" _v-08aa9034=\"\"><i class=\"step-left\" _v-08aa9034=\"\"></i>完成</a></li>\n\t\t\t\t    </ul>\n\t\t\t\t\t<table class=\"table table-bordered table-form\" _v-08aa9034=\"\">\n\t\t\t\t\t\t<caption _v-08aa9034=\"\">基本信息填写</caption>\n\t\t\t\t\t\t\n\t\t\t\t\t\t\t<tbody _v-08aa9034=\"\"><tr _v-08aa9034=\"\">\n\t\t\t\t\t\t\t\t<th _v-08aa9034=\"\"><span class=\"text-orange\" _v-08aa9034=\"\">* </span>楼号</th>\n\t\t\t\t\t\t\t\t<td _v-08aa9034=\"\">\n\t\t                            <select class=\"form-control\" v-model=\"userCheckedHouseInfo\" _v-08aa9034=\"\">\n\t\t\t                            <template v-for=\"(index01, houseInfo) in userInfo.houseInfos\" _v-08aa9034=\"\">\n\t\t                            \t\t<option :value=\"index01\" :selected=\"index01==0\" _v-08aa9034=\"\">{{ houseInfo.house }}</option>\n\t\t\t                            </template>\n\t\t                            </select>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t\t<th _v-08aa9034=\"\">客户姓名</th>\n\t\t\t\t\t\t\t\t<td _v-08aa9034=\"\"><input type=\"text\" v-model=\"clientName\" readonly=\"\" _v-08aa9034=\"\"></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-08aa9034=\"\">\n\t\t\t\t\t\t\t\t<th _v-08aa9034=\"\"><span class=\"text-orange\" _v-08aa9034=\"\">* </span>申请日期</th>\n\t\t\t\t\t\t\t\t<td _v-08aa9034=\"\">\n\t\t                            <input class=\"editdate\" type=\"text\" name=\"\" readonly=\"\" v-model=\"startDate\" v-datetimepicker=\"startDateClick\" _v-08aa9034=\"\">\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t\t<th _v-08aa9034=\"\">预计工期</th>\n\t\t\t\t\t\t\t\t<td _v-08aa9034=\"\"><input type=\"text\" v-model=\"antipateTime\" _v-08aa9034=\"\"></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-08aa9034=\"\">\n\t\t\t\t\t\t\t\t<th _v-08aa9034=\"\"><span class=\"text-orange\" _v-08aa9034=\"\">* </span>现场管理人</th>\n\t\t\t\t\t\t\t\t<td _v-08aa9034=\"\"><input type=\"text\" v-model=\"localeCustodian\" _v-08aa9034=\"\"></td>\n\t\t\t\t\t\t\t\t<th _v-08aa9034=\"\">现场管理人电话</th>\n\t\t\t\t\t\t\t\t<td _v-08aa9034=\"\"><input type=\"text\" v-model=\"localeCustodianPhone\" _v-08aa9034=\"\"></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-08aa9034=\"\">\n\t\t\t\t\t\t\t\t<th _v-08aa9034=\"\"><span class=\"text-orange\" _v-08aa9034=\"\">* </span>装修部位</th>\n\t\t\t\t\t\t\t\t<td _v-08aa9034=\"\"><input type=\"text\" v-model=\"decorationParts\" _v-08aa9034=\"\"></td>\n\t\t\t\t\t\t\t\t<th _v-08aa9034=\"\">装修面积</th>\n\t\t\t\t\t\t\t\t<td _v-08aa9034=\"\"><input type=\"text\" v-model=\"decorateArea\" _v-08aa9034=\"\"></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-08aa9034=\"\">\n\t\t\t\t\t\t\t\t<th _v-08aa9034=\"\"><span class=\"text-orange\" _v-08aa9034=\"\">* </span>施工人数</th>\n\t\t\t\t\t\t\t\t<td _v-08aa9034=\"\"><input type=\"text\" v-model=\"constructPeopleNumber\" _v-08aa9034=\"\"></td>\n\t\t\t\t\t\t\t\t<th _v-08aa9034=\"\">装修公司</th>\n\t\t\t\t\t\t\t\t<td _v-08aa9034=\"\"><input type=\"text\" v-model=\"decorationCompany\" _v-08aa9034=\"\"></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-08aa9034=\"\">\n\t\t\t\t\t\t\t\t<th _v-08aa9034=\"\"><span class=\"text-orange\" _v-08aa9034=\"\">* </span>装修负责人</th>\n\t\t\t\t\t\t\t\t<td _v-08aa9034=\"\"><input type=\"text\" v-model=\"decorationLeader\" _v-08aa9034=\"\"></td>\n\t\t\t\t\t\t\t\t<th _v-08aa9034=\"\">装修负责人电话</th>\n\t\t\t\t\t\t\t\t<td _v-08aa9034=\"\"><input type=\"text\" v-model=\"decorationLeaderPhone\" _v-08aa9034=\"\"></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\n\t\t\t\t\t</tbody></table>\n\t\t\t\t\t<table class=\"table table-bordered table-form\" _v-08aa9034=\"\">\n\t\t\t\t\t\t<caption style=\"position:relative\" _v-08aa9034=\"\">装修内容明细<button class=\"btn pull-right\" style=\"position:absolute;right:20px;top:20px\" @click=\"addDetailContent\" _v-08aa9034=\"\">添加</button></caption>\n\t\t\t\t\t\t\n\t\t\t\t\t\t\t<tbody _v-08aa9034=\"\"><tr v-for=\"(index,detailContent) in userEditDetailContent\" _v-08aa9034=\"\">\n\t\t\t\t\t\t\t\t<th _v-08aa9034=\"\"><span class=\"text-orange\" v-show=\"index==0\" _v-08aa9034=\"\">* </span>明细{{ index+1 }}</th>\n\t\t\t\t\t\t\t\t<td class=\"nobd-rgiht\" _v-08aa9034=\"\"><input type=\"text\" v-model=\"detailContent\" _v-08aa9034=\"\"></td>\n\t\t\t\t\t\t\t\t<td class=\"text-right nobd-left\" _v-08aa9034=\"\"><button class=\"btn\" @click=\"deleteDetailContent(index)\" _v-08aa9034=\"\">删除</button></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\n\t\t\t\t\t</tbody></table>\n\t\t\t\t\t<table class=\"table table-bordered table-form\" _v-08aa9034=\"\">\n\t\t\t\t\t\t<caption _v-08aa9034=\"\">资料获取与上传</caption>\n\t\t\t\t\t\t\n\t\t\t\t\t\t\t<tbody _v-08aa9034=\"\"><tr _v-08aa9034=\"\">\n\t\t\t\t\t\t\t\t<th _v-08aa9034=\"\">资料获取</th>\n\t\t\t\t\t\t\t\t<td class=\"nobd-rgiht\" _v-08aa9034=\"\">装修入驻模板下载《装修入驻资料模板》</td>\n\t\t\t\t\t\t\t\t<td class=\"text-right nobd-left\" _v-08aa9034=\"\"><a href=\"\" class=\"btn\" download=\"/enterApply/downLoad\" _v-08aa9034=\"\">下載</a></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-08aa9034=\"\">\n\t\t\t\t\t\t\t\t<th rowspan=\"6\" _v-08aa9034=\"\">客户上传附件</th>\n\t\t\t\t\t\t\t\t<td class=\"nobd-rgiht\" _v-08aa9034=\"\">1、装修单位《营业执照》《资质等级证书》（加盖公章）<span class=\"text-success\" v-show=\"decorationMaterialList[0].materialAddress\" _v-08aa9034=\"\">  <i class=\"icon icon01 i-suc01\" _v-08aa9034=\"\"></i> 已上传</span></td>\n\t\t\t\t\t\t\t\t<td class=\"text-right nobd-left\" _v-08aa9034=\"\">\n\t\t\t\t\t\t\t\t\t<form name=\"uploadfile00form\" enctype=\"multipart/form-data\" method=\"post\" action=\"/dist/enterApply/fileUpload\" _v-08aa9034=\"\">\n\t\t\t\t\t\t\t\t\t\t<div class=\"btn btn-upfile\" _v-08aa9034=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<input type=\"file\" id=\"uploadfile00\" name=\"uploadfile00\" v-model=\"uploadFile00\" _v-08aa9034=\"\"><span class=\"btn-upfile-text\" _v-08aa9034=\"\">上传附件</span>\n\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t</form>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-08aa9034=\"\">\n\t\t\t\t\t\t\t\t<td class=\"nobd-rgiht\" _v-08aa9034=\"\">2、《装修图纸》<span class=\"text-orange\" _v-08aa9034=\"\"><span class=\"text-orange\" _v-08aa9034=\"\">* </span>必填</span><span class=\"text-success\" v-show=\"decorationMaterialList[1].materialAddress\" _v-08aa9034=\"\">  <i class=\"icon icon01 i-suc01\" _v-08aa9034=\"\"></i> 已上传</span></td>\n\t\t\t\t\t\t\t\t<td class=\"text-right nobd-left\" _v-08aa9034=\"\">\n\t\t\t\t\t\t\t\t\t<form name=\"uploadfile01form\" enctype=\"multipart/form-data\" method=\"post\" action=\"/dist/enterApply/fileUpload\" _v-08aa9034=\"\">\n\t\t\t\t\t\t\t\t\t\t<div class=\"btn btn-upfile\" _v-08aa9034=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<input type=\"file\" id=\"uploadfile01\" name=\"uploadfile01\" v-model=\"uploadFile01\" _v-08aa9034=\"\"><span class=\"btn-upfile-text\" _v-08aa9034=\"\">上传附件</span>\n\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t</form>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-08aa9034=\"\">\n\t\t\t\t\t\t\t\t<td class=\"nobd-rgiht\" _v-08aa9034=\"\">3、《装修承诺书》<span class=\"text-orange\" _v-08aa9034=\"\"><span class=\"text-orange\" _v-08aa9034=\"\">* </span>必填</span><span class=\"text-success\" v-show=\"decorationMaterialList[2].materialAddress\" _v-08aa9034=\"\">  <i class=\"icon icon01 i-suc01\" _v-08aa9034=\"\"></i> 已上传</span></td>\n\t\t\t\t\t\t\t\t<td class=\"text-right nobd-left\" _v-08aa9034=\"\">\n\t\t\t\t\t\t\t\t\t<form name=\"uploadfile02form\" enctype=\"multipart/form-data\" method=\"post\" action=\"/dist/enterApply/fileUpload\" _v-08aa9034=\"\">\n\t\t\t\t\t\t\t\t\t\t<div class=\"btn btn-upfile\" _v-08aa9034=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<input type=\"file\" id=\"uploadfile02\" name=\"uploadfile02\" v-model=\"uploadFile02\" _v-08aa9034=\"\"><span class=\"btn-upfile-text\" _v-08aa9034=\"\">上传附件</span>\n\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t</form>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-08aa9034=\"\">\n\t\t\t\t\t\t\t\t<td class=\"nobd-rgiht\" _v-08aa9034=\"\">4、《消防安全责任书》<span class=\"text-success\" v-show=\"decorationMaterialList[3].materialAddress\" _v-08aa9034=\"\">  <i class=\"icon icon01 i-suc01\" _v-08aa9034=\"\"></i> 已上传</span></td>\n\t\t\t\t\t\t\t\t<td class=\"text-right nobd-left\" _v-08aa9034=\"\">\n\t\t\t\t\t\t\t\t\t<form name=\"uploadfile03form\" enctype=\"multipart/form-data\" method=\"post\" action=\"/dist/enterApply/fileUpload\" _v-08aa9034=\"\">\n\t\t\t\t\t\t\t\t\t\t<div class=\"btn btn-upfile\" _v-08aa9034=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<input type=\"file\" id=\"uploadfile03\" name=\"uploadfile03\" v-model=\"uploadFile03\" _v-08aa9034=\"\"><span class=\"btn-upfile-text\" _v-08aa9034=\"\">上传附件</span>\n\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t</form>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-08aa9034=\"\">\n\t\t\t\t\t\t\t\t<td class=\"nobd-rgiht\" _v-08aa9034=\"\">5、《装修施工委托书》<span class=\"text-success\" v-show=\"decorationMaterialList[4].materialAddress\" _v-08aa9034=\"\">  <i class=\"icon icon01 i-suc01\" _v-08aa9034=\"\"></i> 已上传</span></td>\n\t\t\t\t\t\t\t\t<td class=\"text-right nobd-left\" _v-08aa9034=\"\">\n\t\t\t\t\t\t\t\t\t<form name=\"uploadfile04form\" enctype=\"multipart/form-data\" method=\"post\" action=\"/dist/enterApply/fileUpload\" _v-08aa9034=\"\">\n\t\t\t\t\t\t\t\t\t\t<div class=\"btn btn-upfile\" _v-08aa9034=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<input type=\"file\" id=\"uploadfile04\" name=\"uploadfile04\" v-model=\"uploadFile04\" _v-08aa9034=\"\"><span class=\"btn-upfile-text\" _v-08aa9034=\"\">上传附件</span>\n\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t</form>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-08aa9034=\"\">\n\t\t\t\t\t\t\t\t<td class=\"nobd-rgiht\" _v-08aa9034=\"\">6、&nbsp;&nbsp; 其它<span class=\"text-success\" v-show=\"decorationMaterialList[5].materialAddress\" _v-08aa9034=\"\">  <i class=\"icon icon01 i-suc01\" _v-08aa9034=\"\"></i> 已上传</span></td>\n\t\t\t\t\t\t\t\t<td class=\"text-right nobd-left\" _v-08aa9034=\"\">\n\t\t\t\t\t\t\t\t\t<form name=\"uploadfile05form\" enctype=\"multipart/form-data\" method=\"post\" action=\"/dist/enterApply/fileUpload\" _v-08aa9034=\"\">\n\t\t\t\t\t\t\t\t\t\t<div class=\"btn btn-upfile\" _v-08aa9034=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<input type=\"file\" id=\"uploadfile05\" name=\"uploadfile05\" v-model=\"uploadFile05\" _v-08aa9034=\"\"><span class=\"btn-upfile-text\" _v-08aa9034=\"\">上传附件</span>\n\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t</form>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\n\t\t\t\t\t</tbody></table>\n\t\t\t\t\t<table class=\"table table-bordered table-form\" _v-08aa9034=\"\">\n\t\t\t\t\t\t<caption _v-08aa9034=\"\">装修费用</caption>\n\t\t\t\t\t\t\n\t\t\t\t\t\t\t<tbody _v-08aa9034=\"\"><tr _v-08aa9034=\"\">\n\t\t\t\t\t\t\t\t<th _v-08aa9034=\"\">装修押金</th>\n\t\t\t\t\t\t\t\t<td _v-08aa9034=\"\"><input type=\"text\" readonly=\"\" _v-08aa9034=\"\"></td>\n\t\t\t\t\t\t\t\t<td _v-08aa9034=\"\">装修管理费</td>\n\t\t\t\t\t\t\t\t<td _v-08aa9034=\"\"><input type=\"text\" readonly=\"\" _v-08aa9034=\"\"></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-08aa9034=\"\">\n\t\t\t\t\t\t\t\t<th _v-08aa9034=\"\">出入证工本费</th>\n\t\t\t\t\t\t\t\t<td _v-08aa9034=\"\"><input type=\"text\" readonly=\"\" _v-08aa9034=\"\"></td>\n\t\t\t\t\t\t\t\t<td _v-08aa9034=\"\">出入证押金</td>\n\t\t\t\t\t\t\t\t<td _v-08aa9034=\"\"><input type=\"text\" readonly=\"\" _v-08aa9034=\"\"></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-08aa9034=\"\">\n\t\t\t\t\t\t\t\t<th _v-08aa9034=\"\"></th>\n\t\t\t\t\t\t\t\t<td colspan=\"3\" _v-08aa9034=\"\"><button class=\"btn\" @click=\"submit\" _v-08aa9034=\"\">提交申请</button></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\n\t\t\t\t\t</tbody></table>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\t\n\t</div>\t\n</div>\n";
+	module.exports = "\n<ol class=\"breadcrumb\" _v-08aa9034=\"\">你当前的位置：\n\t<li _v-08aa9034=\"\"><a _v-08aa9034=\"\">联东首页</a></li>\n\t<li _v-08aa9034=\"\"><a _v-08aa9034=\"\">业务办理</a></li>\n\t<li _v-08aa9034=\"\"><a _v-08aa9034=\"\">装修办理</a></li>\n\t<li class=\"active\" _v-08aa9034=\"\">反馈信息</li>\n</ol>\n<div class=\"container\" _v-08aa9034=\"\">\n\t<div class=\"row\" _v-08aa9034=\"\">\n\t\t<div class=\"col-xs-12\" _v-08aa9034=\"\">\n\t\t\t<div class=\"panel panel-default\" _v-08aa9034=\"\">\n\t\t\t\t<div class=\"panel-body\" _v-08aa9034=\"\">\n\t\t\t\t    <ul class=\"clearfix nav-line nav-step decnavstep\" _v-08aa9034=\"\">\n\t\t\t\t        <li _v-08aa9034=\"\"><a class=\"step active\" _v-08aa9034=\"\">装修须知<i class=\"step-right\" _v-08aa9034=\"\"></i></a></li>\n\t\t\t\t        <li _v-08aa9034=\"\"><a class=\"step active\" _v-08aa9034=\"\"><i class=\"step-left\" _v-08aa9034=\"\"></i>填写信息<i class=\"step-right\" _v-08aa9034=\"\"></i></a></li>\n\t\t\t\t        <li _v-08aa9034=\"\"><a class=\"step active\" _v-08aa9034=\"\"><i class=\"step-left\" _v-08aa9034=\"\"></i>已审核<i class=\"step-right\" _v-08aa9034=\"\"></i></a></li>\n\t\t\t\t        <li _v-08aa9034=\"\"><a class=\"step active\" _v-08aa9034=\"\"><i class=\"step-left\" _v-08aa9034=\"\"></i>反馈信息<i class=\"step-right\" _v-08aa9034=\"\"></i></a></li>\n\t\t\t\t        <li _v-08aa9034=\"\"><a class=\"step\" _v-08aa9034=\"\"><i class=\"step-left\" _v-08aa9034=\"\"></i>完成</a></li>\n\t\t\t\t    </ul>\n\t\t\t\t\t<table class=\"table table-bordered table-form\" _v-08aa9034=\"\">\n\t\t\t\t\t\t<caption _v-08aa9034=\"\">基本信息填写</caption>\n\t\t\t\t\t\t\n\t\t\t\t\t\t\t<tbody _v-08aa9034=\"\"><tr _v-08aa9034=\"\">\n\t\t\t\t\t\t\t\t<th _v-08aa9034=\"\"><span class=\"text-orange\" _v-08aa9034=\"\">* </span>楼号</th>\n\t\t\t\t\t\t\t\t<td _v-08aa9034=\"\">{{ isDecHouseInfo.house }}</td>\n\t\t\t\t\t\t\t\t<th _v-08aa9034=\"\">客户姓名</th>\n\t\t\t\t\t\t\t\t<td _v-08aa9034=\"\">{{ feedbackInfo.clientName }}</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-08aa9034=\"\">\n\t\t\t\t\t\t\t\t<th _v-08aa9034=\"\"><span class=\"text-orange\" _v-08aa9034=\"\">* </span>申请日期</th>\n\t\t\t\t\t\t\t\t<td _v-08aa9034=\"\">{{ feedbackInfo.applyTime | TimeYMD }}</td>\n\t\t\t\t\t\t\t\t<th _v-08aa9034=\"\">预计工期（天）</th>\n\t\t\t\t\t\t\t\t<td _v-08aa9034=\"\">{{ feedbackInfo.antipateTime }}</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-08aa9034=\"\">\n\t\t\t\t\t\t\t\t<th _v-08aa9034=\"\"><span class=\"text-orange\" _v-08aa9034=\"\">* </span>现场管理人</th>\n\t\t\t\t\t\t\t\t<td _v-08aa9034=\"\">{{ feedbackInfo.localeCustodian }}</td>\n\t\t\t\t\t\t\t\t<th _v-08aa9034=\"\">现场管理人电话</th>\n\t\t\t\t\t\t\t\t<td _v-08aa9034=\"\">{{ feedbackInfo.localeCustodianPhone }}</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-08aa9034=\"\">\n\t\t\t\t\t\t\t\t<th _v-08aa9034=\"\"><span class=\"text-orange\" _v-08aa9034=\"\">* </span>装修部位</th>\n\t\t\t\t\t\t\t\t<td _v-08aa9034=\"\">{{ feedbackInfo.decorationParts }}</td>\n\t\t\t\t\t\t\t\t<th _v-08aa9034=\"\">装修面积</th>\n\t\t\t\t\t\t\t\t<td _v-08aa9034=\"\">{{ feedbackInfo.decorateArea | unitSquareMetre }}</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-08aa9034=\"\">\n\t\t\t\t\t\t\t\t<th _v-08aa9034=\"\"><span class=\"text-orange\" _v-08aa9034=\"\">* </span>施工人数</th>\n\t\t\t\t\t\t\t\t<td _v-08aa9034=\"\">{{ feedbackInfo.constructPeopleNumber }}</td>\n\t\t\t\t\t\t\t\t<th _v-08aa9034=\"\">装修公司</th>\n\t\t\t\t\t\t\t\t<td _v-08aa9034=\"\">{{ feedbackInfo.decorationCompany }}</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-08aa9034=\"\">\n\t\t\t\t\t\t\t\t<th _v-08aa9034=\"\"><span class=\"text-orange\" _v-08aa9034=\"\">* </span>装修负责人</th>\n\t\t\t\t\t\t\t\t<td _v-08aa9034=\"\">{{ feedbackInfo.decorationLeader }}</td>\n\t\t\t\t\t\t\t\t<th _v-08aa9034=\"\">装修负责人电话</th>\n\t\t\t\t\t\t\t\t<td _v-08aa9034=\"\">{{ feedbackInfo.decorationLeaderPhone }}</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\n\t\t\t\t\t</tbody></table>\n\t\t\t\t\t<!-- <table class=\"table table-bordered table-form\">\n\t\t\t\t\t\t<caption style=\"position:relative\">装修内容明细<button class=\"btn pull-right\" style=\"position:absolute;right:20px;top:20px\" @click=\"addDetailContent\">添加</button></caption>\n\t\t\t\t\t\t<body>\n\t\t\t\t\t\t\t<tr v-for=\"(index,detailContent) in userEditDetailContent\">\n\t\t\t\t\t\t\t\t<th><span class=\"text-orange\" v-show=\"index==0\">* </span>明细{{ index+1 }}</th>\n\t\t\t\t\t\t\t\t<td class=\"nobd-rgiht\"><input type=\"text\" v-model=\"detailContent\"></td>\n\t\t\t\t\t\t\t\t<td class=\"text-right nobd-left\"><button class=\"btn\" @click=\"deleteDetailContent(index)\">删除</button></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t</body>\n\t\t\t\t\t</table>\n\t\t\t\t\t<table class=\"table table-bordered table-form\">\n\t\t\t\t\t\t<caption>资料获取与上传</caption>\n\t\t\t\t\t\t<body>\n\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t\t\t\t<th>资料获取</th>\n\t\t\t\t\t\t\t\t<td class=\"nobd-rgiht\">装修入驻模板下载《装修入驻资料模板》</td>\n\t\t\t\t\t\t\t\t<td class=\"text-right nobd-left\"><a href=\"\" class=\"btn\" download=\"/enterApply/downLoad\">下載</a></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t\t\t\t<th rowspan=\"6\">客户上传附件</th>\n\t\t\t\t\t\t\t\t<td class=\"nobd-rgiht\">1、装修单位《营业执照》《资质等级证书》（加盖公章）<span class=\"text-success\" v-show=\"decorationMaterialList[0].materialAddress\">&ensp;&ensp;<i class=\"icon icon01 i-suc01\"></i>&ensp;已上传</span></td>\n\t\t\t\t\t\t\t\t<td class=\"text-right nobd-left\">\n\t\t\t\t\t\t\t\t\t<form name=\"uploadfile00form\" enctype=\"multipart/form-data\" method=\"post\" action=\"/dist/enterApply/fileUpload\">\n\t\t\t\t\t\t\t\t\t\t<div class=\"btn btn-upfile\">\n\t\t\t\t\t\t\t\t\t\t\t<input type=\"file\" id=\"uploadfile00\" name=\"uploadfile00\" v-model=\"uploadFile00\"><span class=\"btn-upfile-text\">上传附件</span>\n\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t</form>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t\t\t\t<td class=\"nobd-rgiht\">2、《装修图纸》<span class=\"text-orange\"><span class=\"text-orange\">* </span>必填</span><span class=\"text-success\" v-show=\"decorationMaterialList[1].materialAddress\">&ensp;&ensp;<i class=\"icon icon01 i-suc01\"></i>&ensp;已上传</span></td>\n\t\t\t\t\t\t\t\t<td class=\"text-right nobd-left\">\n\t\t\t\t\t\t\t\t\t<form name=\"uploadfile01form\" enctype=\"multipart/form-data\" method=\"post\" action=\"/dist/enterApply/fileUpload\">\n\t\t\t\t\t\t\t\t\t\t<div class=\"btn btn-upfile\">\n\t\t\t\t\t\t\t\t\t\t\t<input type=\"file\" id=\"uploadfile01\" name=\"uploadfile01\" v-model=\"uploadFile01\"><span class=\"btn-upfile-text\">上传附件</span>\n\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t</form>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t\t\t\t<td class=\"nobd-rgiht\">3、《装修承诺书》<span class=\"text-orange\"><span class=\"text-orange\">* </span>必填</span><span class=\"text-success\" v-show=\"decorationMaterialList[2].materialAddress\">&ensp;&ensp;<i class=\"icon icon01 i-suc01\"></i>&ensp;已上传</span></td>\n\t\t\t\t\t\t\t\t<td class=\"text-right nobd-left\">\n\t\t\t\t\t\t\t\t\t<form name=\"uploadfile02form\" enctype=\"multipart/form-data\" method=\"post\" action=\"/dist/enterApply/fileUpload\">\n\t\t\t\t\t\t\t\t\t\t<div class=\"btn btn-upfile\">\n\t\t\t\t\t\t\t\t\t\t\t<input type=\"file\" id=\"uploadfile02\" name=\"uploadfile02\" v-model=\"uploadFile02\"><span class=\"btn-upfile-text\">上传附件</span>\n\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t</form>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t\t\t\t<td class=\"nobd-rgiht\">4、《消防安全责任书》<span class=\"text-success\" v-show=\"decorationMaterialList[3].materialAddress\">&ensp;&ensp;<i class=\"icon icon01 i-suc01\"></i>&ensp;已上传</span></td>\n\t\t\t\t\t\t\t\t<td class=\"text-right nobd-left\">\n\t\t\t\t\t\t\t\t\t<form name=\"uploadfile03form\" enctype=\"multipart/form-data\" method=\"post\" action=\"/dist/enterApply/fileUpload\">\n\t\t\t\t\t\t\t\t\t\t<div class=\"btn btn-upfile\">\n\t\t\t\t\t\t\t\t\t\t\t<input type=\"file\" id=\"uploadfile03\" name=\"uploadfile03\" v-model=\"uploadFile03\"><span class=\"btn-upfile-text\">上传附件</span>\n\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t</form>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t\t\t\t<td class=\"nobd-rgiht\">5、《装修施工委托书》<span class=\"text-success\" v-show=\"decorationMaterialList[4].materialAddress\">&ensp;&ensp;<i class=\"icon icon01 i-suc01\"></i>&ensp;已上传</span></td>\n\t\t\t\t\t\t\t\t<td class=\"text-right nobd-left\">\n\t\t\t\t\t\t\t\t\t<form name=\"uploadfile04form\" enctype=\"multipart/form-data\" method=\"post\" action=\"/dist/enterApply/fileUpload\">\n\t\t\t\t\t\t\t\t\t\t<div class=\"btn btn-upfile\">\n\t\t\t\t\t\t\t\t\t\t\t<input type=\"file\" id=\"uploadfile04\" name=\"uploadfile04\" v-model=\"uploadFile04\"><span class=\"btn-upfile-text\">上传附件</span>\n\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t</form>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t\t\t\t<td class=\"nobd-rgiht\">6、   其它<span class=\"text-success\" v-show=\"decorationMaterialList[5].materialAddress\">&ensp;&ensp;<i class=\"icon icon01 i-suc01\"></i>&ensp;已上传</span></td>\n\t\t\t\t\t\t\t\t<td class=\"text-right nobd-left\">\n\t\t\t\t\t\t\t\t\t<form name=\"uploadfile05form\" enctype=\"multipart/form-data\" method=\"post\" action=\"/dist/enterApply/fileUpload\">\n\t\t\t\t\t\t\t\t\t\t<div class=\"btn btn-upfile\">\n\t\t\t\t\t\t\t\t\t\t\t<input type=\"file\" id=\"uploadfile05\" name=\"uploadfile05\" v-model=\"uploadFile05\"><span class=\"btn-upfile-text\">上传附件</span>\n\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t</form>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t</body>\n\t\t\t\t\t</table> -->\n\t\t\t\t\t<table class=\"table table-bordered table-form\" _v-08aa9034=\"\">\n\t\t\t\t\t\t<caption _v-08aa9034=\"\">装修费用</caption>\n\t\t\t\t\t\t\n\t\t\t\t\t\t\t<tbody _v-08aa9034=\"\"><tr _v-08aa9034=\"\">\n\t\t\t\t\t\t\t\t<th _v-08aa9034=\"\">装修押金</th>\n\t\t\t\t\t\t\t\t<td _v-08aa9034=\"\">{{ feedbackInfo.decorationDeposit | currency '￥' 2 }}</td>\n\t\t\t\t\t\t\t\t<th _v-08aa9034=\"\">装修管理费</th>\n\t\t\t\t\t\t\t\t<td _v-08aa9034=\"\">{{ feedbackInfo.decorationManagementCost | currency '￥' 2 }}</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-08aa9034=\"\">\n\t\t\t\t\t\t\t\t<th _v-08aa9034=\"\">出入证工本费</th>\n\t\t\t\t\t\t\t\t<td _v-08aa9034=\"\">{{ feedbackInfo.passPapersCost | currency '￥' 2 }}</td>\n\t\t\t\t\t\t\t\t<th _v-08aa9034=\"\">出入证押金</th>\n\t\t\t\t\t\t\t\t<td _v-08aa9034=\"\">{{ feedbackInfo.passPapersDeposit | currency '￥' 2 }}</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-08aa9034=\"\">\n\t\t\t\t\t\t\t\t<th _v-08aa9034=\"\">反馈意见</th>\n\t\t\t\t\t\t\t\t<td colspan=\"3\" _v-08aa9034=\"\">\n\t\t\t\t\t\t\t\t\t<ol _v-08aa9034=\"\">\n\t\t\t\t\t\t\t\t\t\t<li _v-08aa9034=\"\">{{ feedbackInfo.feedback1 }}</li>\n\t\t\t\t\t\t\t\t\t\t<li _v-08aa9034=\"\">{{ feedbackInfo.feedback2 }}</li>\n\t\t\t\t\t\t\t\t\t</ol>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-08aa9034=\"\">\n\t\t\t\t\t\t\t\t<th _v-08aa9034=\"\"></th>\n\t\t\t\t\t\t\t\t<td colspan=\"3\" _v-08aa9034=\"\"><button class=\"btn\" @click=\"goPay\" _v-08aa9034=\"\">去支付</button></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\n\t\t\t\t\t</tbody></table>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\t\n\t</div>\t\n</div>\n";
 
 /***/ }),
-/* 298 */
+/* 299 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__webpack_require__(299)
-	__vue_script__ = __webpack_require__(300)
-	__vue_template__ = __webpack_require__(301)
+	__webpack_require__(300)
+	__vue_script__ = __webpack_require__(301)
+	__vue_template__ = __webpack_require__(302)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -42004,13 +42632,13 @@ webpackJsonp([0],[
 	})()}
 
 /***/ }),
-/* 299 */
+/* 300 */
 /***/ (function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 300 */
+/* 301 */
 /***/ (function(module, exports) {
 
 	"use strict";
@@ -42037,16 +42665,40 @@ webpackJsonp([0],[
 	// 				<div class="panel-body">
 	// 				    <ul class="clearfix nav-line nav-step decnavstep">
 	// 				        <li><a class="step active">装修须知<i class="step-right"></i></a></li>
-	// 				        <li><a class="step"><i class="step-left"></i>填写信息<i class="step-right"></i></a></li>
-	// 				        <li><a class="step"><i class="step-left"></i>审核<i class="step-right"></i></a></li>
-	// 				        <li><a class="step"><i class="step-left"></i>反馈信息<i class="step-right"></i></a></li>
-	// 				        <li><a class="step"><i class="step-left"></i>完成</a></li>
+	// 				        <li><a class="step active"><i class="step-left"></i>填写信息<i class="step-right"></i></a></li>
+	// 				        <li><a class="step active"><i class="step-left"></i>已审核<i class="step-right"></i></a></li>
+	// 				        <li><a class="step active"><i class="step-left"></i>反馈信息<i class="step-right"></i></a></li>
+	// 				        <li><a class="step active"><i class="step-left"></i>完成</a></li>
 	// 				    </ul>
 	// 					<table class="table table-bordered table-form">
 	// 						<tbody>
 	// 							<tr>
 	// 								<th>装修施工许可证</th>
-	// 								<td></td>
+	// 								<td><pre>装修施工许可证
+	// 编号：LDWY/SC-BJYL-KF-F041                           No[
+	// 1、所有表格名称为四号黑体，编号部分为五号，Arial，加粗，后面需要加NO.。表格内容应为五号字，请对所有表格进行修改。
+	// 2、为了美观，请将所有表格边线调至页边距以内。表格左对齐。].     
+	//
+	// 单元编号：                                                                             
+	// 用户名称：                         联系人及电话：                                
+	// 施工承包商：                                                                         
+	// 负责人及电话：                   现场/消防负责人：                             
+	// 监理公司：                                      现场负责人及电话：                
+	// 施工内容：                                                                    
+	//
+	//
+	// 有效期：          年      月    日至          年      月     日
+	//  _________________分公司（公章）
+	// 注意：（公共区域不允许施工）
+	// 1.物业公司仅对设计中可能存在的问题提出改进建议，所有设计责任应由二装设计公司承担，包括所有材料的选定、方案的确定等。（如空调系统布置、电源线路负荷等。）
+	// 2.园区原设计空调系统为大开间设计，当需增加隔断时必须请二装设计师仔细核算确认各区域空调系统能力，否则会导致空调效果变差。
+	//   物业管理公司将提出有关消防系统建议，但最终意见以消防局审定为准（消防局审定结果需递交客服部）
+	// 3.此装修许可证须加盖章后方可生效，如有任何涂改，即刻作废。客户在装修时，应将此证张贴在装修单元内醒目位置。
+	//
+	//
+	//
+	//
+	// </pre></td>
 	// 							</tr>
 	// 							<tr>
 	// 								<th></th>
@@ -42081,17 +42733,17 @@ webpackJsonp([0],[
 	// </script>
 
 /***/ }),
-/* 301 */
+/* 302 */
 /***/ (function(module, exports) {
 
-	module.exports = "\n<ol class=\"breadcrumb\" _v-6cccbf98=\"\">你当前的位置：\n\t<li _v-6cccbf98=\"\"><a _v-6cccbf98=\"\">联东首页</a></li>\n\t<li _v-6cccbf98=\"\"><a _v-6cccbf98=\"\">业务办理</a></li>\n\t<li class=\"active\" _v-6cccbf98=\"\">装修办理</li>\n</ol>\n<div class=\"container\" _v-6cccbf98=\"\">\n\t<div class=\"row\" _v-6cccbf98=\"\">\n\t\t<div class=\"col-xs-12\" _v-6cccbf98=\"\">\n\t\t\t<div class=\"panel panel-default\" _v-6cccbf98=\"\">\n\t\t\t\t<div class=\"panel-body\" _v-6cccbf98=\"\">\n\t\t\t\t    <ul class=\"clearfix nav-line nav-step decnavstep\" _v-6cccbf98=\"\">\n\t\t\t\t        <li _v-6cccbf98=\"\"><a class=\"step active\" _v-6cccbf98=\"\">装修须知<i class=\"step-right\" _v-6cccbf98=\"\"></i></a></li>\n\t\t\t\t        <li _v-6cccbf98=\"\"><a class=\"step\" _v-6cccbf98=\"\"><i class=\"step-left\" _v-6cccbf98=\"\"></i>填写信息<i class=\"step-right\" _v-6cccbf98=\"\"></i></a></li>\n\t\t\t\t        <li _v-6cccbf98=\"\"><a class=\"step\" _v-6cccbf98=\"\"><i class=\"step-left\" _v-6cccbf98=\"\"></i>审核<i class=\"step-right\" _v-6cccbf98=\"\"></i></a></li>\n\t\t\t\t        <li _v-6cccbf98=\"\"><a class=\"step\" _v-6cccbf98=\"\"><i class=\"step-left\" _v-6cccbf98=\"\"></i>反馈信息<i class=\"step-right\" _v-6cccbf98=\"\"></i></a></li>\n\t\t\t\t        <li _v-6cccbf98=\"\"><a class=\"step\" _v-6cccbf98=\"\"><i class=\"step-left\" _v-6cccbf98=\"\"></i>完成</a></li>\n\t\t\t\t    </ul>\n\t\t\t\t\t<table class=\"table table-bordered table-form\" _v-6cccbf98=\"\">\n\t\t\t\t\t\t<tbody _v-6cccbf98=\"\">\n\t\t\t\t\t\t\t<tr _v-6cccbf98=\"\">\n\t\t\t\t\t\t\t\t<th _v-6cccbf98=\"\">装修施工许可证</th>\n\t\t\t\t\t\t\t\t<td _v-6cccbf98=\"\"></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-6cccbf98=\"\">\n\t\t\t\t\t\t\t\t<th _v-6cccbf98=\"\"></th>\n\t\t\t\t\t\t\t\t<td _v-6cccbf98=\"\"><span class=\"text-orange\" _v-6cccbf98=\"\">* </span>请您携带装修纸质资料到物业进行现场办理</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-6cccbf98=\"\">\n\t\t\t\t\t\t\t\t<th _v-6cccbf98=\"\"></th>\n\t\t\t\t\t\t\t\t<td _v-6cccbf98=\"\"><button class=\"btn\" _v-6cccbf98=\"\">下载</button></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t</tbody>\n\t\t\t\t\t</table>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\t\n\t</div>\t\n</div>\n";
+	module.exports = "\n<ol class=\"breadcrumb\" _v-6cccbf98=\"\">你当前的位置：\n\t<li _v-6cccbf98=\"\"><a _v-6cccbf98=\"\">联东首页</a></li>\n\t<li _v-6cccbf98=\"\"><a _v-6cccbf98=\"\">业务办理</a></li>\n\t<li class=\"active\" _v-6cccbf98=\"\">装修办理</li>\n</ol>\n<div class=\"container\" _v-6cccbf98=\"\">\n\t<div class=\"row\" _v-6cccbf98=\"\">\n\t\t<div class=\"col-xs-12\" _v-6cccbf98=\"\">\n\t\t\t<div class=\"panel panel-default\" _v-6cccbf98=\"\">\n\t\t\t\t<div class=\"panel-body\" _v-6cccbf98=\"\">\n\t\t\t\t    <ul class=\"clearfix nav-line nav-step decnavstep\" _v-6cccbf98=\"\">\n\t\t\t\t        <li _v-6cccbf98=\"\"><a class=\"step active\" _v-6cccbf98=\"\">装修须知<i class=\"step-right\" _v-6cccbf98=\"\"></i></a></li>\n\t\t\t\t        <li _v-6cccbf98=\"\"><a class=\"step active\" _v-6cccbf98=\"\"><i class=\"step-left\" _v-6cccbf98=\"\"></i>填写信息<i class=\"step-right\" _v-6cccbf98=\"\"></i></a></li>\n\t\t\t\t        <li _v-6cccbf98=\"\"><a class=\"step active\" _v-6cccbf98=\"\"><i class=\"step-left\" _v-6cccbf98=\"\"></i>已审核<i class=\"step-right\" _v-6cccbf98=\"\"></i></a></li>\n\t\t\t\t        <li _v-6cccbf98=\"\"><a class=\"step active\" _v-6cccbf98=\"\"><i class=\"step-left\" _v-6cccbf98=\"\"></i>反馈信息<i class=\"step-right\" _v-6cccbf98=\"\"></i></a></li>\n\t\t\t\t        <li _v-6cccbf98=\"\"><a class=\"step active\" _v-6cccbf98=\"\"><i class=\"step-left\" _v-6cccbf98=\"\"></i>完成</a></li>\n\t\t\t\t    </ul>\n\t\t\t\t\t<table class=\"table table-bordered table-form\" _v-6cccbf98=\"\">\n\t\t\t\t\t\t<tbody _v-6cccbf98=\"\">\n\t\t\t\t\t\t\t<tr _v-6cccbf98=\"\">\n\t\t\t\t\t\t\t\t<th _v-6cccbf98=\"\">装修施工许可证</th>\n\t\t\t\t\t\t\t\t<td _v-6cccbf98=\"\"><pre _v-6cccbf98=\"\">装修施工许可证\n编号：LDWY/SC-BJYL-KF-F041                           No[\n1、所有表格名称为四号黑体，编号部分为五号，Arial，加粗，后面需要加NO.。表格内容应为五号字，请对所有表格进行修改。\n2、为了美观，请将所有表格边线调至页边距以内。表格左对齐。].     \n\n单元编号：                                                                             \n用户名称：                         联系人及电话：                                \n施工承包商：                                                                         \n负责人及电话：                   现场/消防负责人：                             \n监理公司：                                      现场负责人及电话：                \n施工内容：                                                                    \n                                                                                 \n       \n有效期：          年      月    日至          年      月     日\n _________________分公司（公章）\n注意：（公共区域不允许施工）\n1.物业公司仅对设计中可能存在的问题提出改进建议，所有设计责任应由二装设计公司承担，包括所有材料的选定、方案的确定等。（如空调系统布置、电源线路负荷等。）\n2.园区原设计空调系统为大开间设计，当需增加隔断时必须请二装设计师仔细核算确认各区域空调系统能力，否则会导致空调效果变差。\n  物业管理公司将提出有关消防系统建议，但最终意见以消防局审定为准（消防局审定结果需递交客服部）\n3.此装修许可证须加盖章后方可生效，如有任何涂改，即刻作废。客户在装修时，应将此证张贴在装修单元内醒目位置。\n\n\n\n\n</pre></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-6cccbf98=\"\">\n\t\t\t\t\t\t\t\t<th _v-6cccbf98=\"\"></th>\n\t\t\t\t\t\t\t\t<td _v-6cccbf98=\"\"><span class=\"text-orange\" _v-6cccbf98=\"\">* </span>请您携带装修纸质资料到物业进行现场办理</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-6cccbf98=\"\">\n\t\t\t\t\t\t\t\t<th _v-6cccbf98=\"\"></th>\n\t\t\t\t\t\t\t\t<td _v-6cccbf98=\"\"><button class=\"btn\" _v-6cccbf98=\"\">下载</button></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t</tbody>\n\t\t\t\t\t</table>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\t\n\t</div>\t\n</div>\n";
 
 /***/ }),
-/* 302 */
+/* 303 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__vue_template__ = __webpack_require__(303)
+	__vue_template__ = __webpack_require__(304)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -42108,19 +42760,19 @@ webpackJsonp([0],[
 	})()}
 
 /***/ }),
-/* 303 */
+/* 304 */
 /***/ (function(module, exports) {
 
 	module.exports = "\r\n\t<aside id=\"aside\">\r\n\t\t<ul class=\"nav aside-nav\">\r\n\t\t\t<li><a  v-link-active v-link=\"{ path: '/home/index/mine/rent', activeClass: 'active'}\"><i class=\"icon icon01 i-payment12\"></i>账户资料</a></li>\r\n\t\t\t<li><a  v-link-active v-link=\"{ path: '/home/index/mine/changephone', activeClass: 'active'}\"><i class=\"icon icon01 i-payment13\"></i>修改手机号</a></li>\r\n\t\t\t<li><a  v-link-active v-link=\"{ path: '/home/index/mine/password', activeClass: 'active'}\"><i class=\"icon icon01 i-payment14\"></i>修改密码</a></li>\r\n\t\t\t<li><a  v-link-active v-link=\"{ path: '/home/index/mine/userinfo', activeClass: 'active'}\"><i class=\"icon icon01 i-payment15\"></i>修改资料</a></li>\r\n\t\t\t<li><a  v-link-active v-link=\"{ path: '/home/index/mine/msglist', activeClass: 'active'}\"><i class=\"icon icon01 i-payment16\"></i>我的消息</a></li>\r\n\t\t</ul>\r\n\t</aside>\r\n\t<article id=\"article\">\r\n\t\t\t<router-view></router-view>\r\n\t</article>\r\n";
 
 /***/ }),
-/* 304 */
+/* 305 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__webpack_require__(305)
-	__vue_script__ = __webpack_require__(306)
-	__vue_template__ = __webpack_require__(307)
+	__webpack_require__(306)
+	__vue_script__ = __webpack_require__(307)
+	__vue_template__ = __webpack_require__(308)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -42137,13 +42789,13 @@ webpackJsonp([0],[
 	})()}
 
 /***/ }),
-/* 305 */
+/* 306 */
 /***/ (function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 306 */
+/* 307 */
 /***/ (function(module, exports) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {'use strict';
@@ -42177,34 +42829,174 @@ webpackJsonp([0],[
 	// 				<div class="panel-body">
 	// 					<div class="btn-warp">
 	// 						<button class="btn">全选</button>
-	// 						<button class="btn">删除</button>
-	// 						<button class="btn">标记已读</button>
-	// 						<button class="btn">全部已读</button>
+	// 						<button class="btn" @click="deleteMessage">删除</button>
+	// 						<!-- <button class="btn">标记已读</button>
+	// 						<button class="btn">全部已读</button> -->
 	// 					</div>
-	// 					<table class="table table-bordered table-data table-msglist">
-	// 						<thead>
-	// 							<tr>
-	// 								<th>标题内容</th>
-	// 								<th>消息类型</th>
-	// 								<th>发布时间</th>
-	// 							</tr>
-	// 						</thead>
-	// 						<tbody>
-	// 							<tr>
-	// 								<td>
-	// 									<a>
-	// 									    <label class="checkbox-container" data-type="checkbox" for="mike" :checked="checkedNames.indexOf('Mike')!=-1">
-	// 									        <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+	// 					<form id="message">
+	// 						<table class="table table-bordered table-data table-msglist">
+	// 							<thead>
+	// 								<tr>
+	// 									<th>标题内容</th>
+	// 									<th>消息类型</th>
+	// 									<th>发布时间</th>
+	// 								</tr>
+	// 							</thead>
+	// 							<tbody>
+	// 								<tr v-for="message in messages">
+	// 									<td>
+	// 									    <label class="checkbox-container" data-type="checkbox" :for="'message'+message.message_manage_id" :checked="userCheckedMessage.indexOf(message.message_manage_id)!=-1">
+	// 									        <input type="checkbox" :id="'message'+message.message_manage_id" name="message_manage_id" :value="message.message_manage_id" v-model="userCheckedMessage">
 	// 									        <i class="icon icon01 i_radio"></i>
 	// 									    </label>
-	// 									        <span class="checkbox_txt">消息消息消息消息消息消息消息消息消息消息</span>
-	// 								    </a>
-	// 								</td>
-	// 								<td>活动消息-优惠活动</td>
-	// 								<td>2014-06-02  12:36:42</td>
-	// 							</tr>
-	// 						</tbody>
-	// 					</table>
+	// 									    <a class="checkbox_txt link" v-link="{ path: '/home/index/mine/msglist/msgdetail?message_manage_id=' + message.message_manage_id }">{{ message.content | ellipsis 50 }}</a>
+	// 									</td>
+	// 									<td>活动消息-优惠活动</td>
+	// 									<td>{{ message.create_time | TimeYMDHMS }}</td>
+	// 								</tr>
+	// 							</tbody>
+	// 						</table>
+	// 					</form>
+	// 				</div>
+	// 			</div>
+	// 		</div>	
+	// 	</div>	
+	// </div>
+	// </template>
+	// <script>
+
+	exports.default = {
+	    filters: {},
+	    directives: {},
+	    components: {},
+	    data: function data() {
+	        return {
+	            userInfo: global.userInfo,
+	            userCheckedMessage: [],
+	            dianbiaoChecked: '',
+	            messages: null
+	        };
+	    },
+
+	    watch: {
+	        userCheckedMessage: function userCheckedMessage(newValue, oldValue) {
+	            console.log(newValue);
+	        }
+	    },
+	    ready: function ready() {
+	        var _this2 = this;
+
+	        var customerids = [];
+	        var _this = this;
+	        for (var i = 0; i < this.userInfo.houseInfos.length; i++) {
+	            // 遍历客户id
+	            customerids.push(userInfo.houseInfos[i].pk_customerid);
+	        }
+	        this.$http.post(global.HttpPath + '/homePage/findMessageByCustomer', {
+	            params: {
+	                pk_customerid: customerids.join(',')
+	            }
+	        }).then(function (response) {
+	            // 响应成功回调
+	            _this2.$set('messages', response.data);
+	            console.log(response.data);
+	        }, function (error) {
+	            // 响应失败回调
+	            console.log('我的消息-error:', error);
+	        }).catch(function (response) {
+	            // 程序错误捕获
+	            console.log('我的消息-catch:', response);
+	        });
+	        // $.ajax({
+	        //     type: "get",
+	        //     url: global.HttpPath + '/messageManage/deleteMessageManages',  // 批量删除消息
+	        //     data: {message_manage_id: 2},
+	        //     // data: $('#message').serialize(),
+	        //     dataType: 'json',
+	        //     success: function(data){
+	        //         console.log(data)
+	        //     }
+	        // });
+	    },
+	    beforeDestroy: function beforeDestroy() {},
+
+	    methods: {
+	        deleteMessage: function deleteMessage() {}
+	    }
+	};
+	// </script>
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
+
+/***/ }),
+/* 308 */
+/***/ (function(module, exports) {
+
+	module.exports = "\n<ol class=\"breadcrumb\" _v-2caa9137=\"\">你当前的位置：\n\t<li _v-2caa9137=\"\"><a _v-2caa9137=\"\">联东首页</a></li>\n\t<li class=\"active\" _v-2caa9137=\"\">我的消息</li>\n</ol>\n<div class=\"container\" _v-2caa9137=\"\">\n\t<div class=\"row\" _v-2caa9137=\"\">\n\t\t<div class=\"col-xs-12\" _v-2caa9137=\"\">\n\t\t\t<div class=\"panel panel-default\" _v-2caa9137=\"\">\n\t\t\t\t<div class=\"panel-heading\" _v-2caa9137=\"\"><h1 _v-2caa9137=\"\">我的消息</h1></div>\n\t\t\t\t<div class=\"panel-body\" _v-2caa9137=\"\">\n\t\t\t\t\t<div class=\"btn-warp\" _v-2caa9137=\"\">\n\t\t\t\t\t\t<button class=\"btn\" _v-2caa9137=\"\">全选</button>\n\t\t\t\t\t\t<button class=\"btn\" @click=\"deleteMessage\" _v-2caa9137=\"\">删除</button>\n\t\t\t\t\t\t<!-- <button class=\"btn\">标记已读</button>\n\t\t\t\t\t\t<button class=\"btn\">全部已读</button> -->\n\t\t\t\t\t</div>\n\t\t\t\t\t<form id=\"message\" _v-2caa9137=\"\">\n\t\t\t\t\t\t<table class=\"table table-bordered table-data table-msglist\" _v-2caa9137=\"\">\n\t\t\t\t\t\t\t<thead _v-2caa9137=\"\">\n\t\t\t\t\t\t\t\t<tr _v-2caa9137=\"\">\n\t\t\t\t\t\t\t\t\t<th _v-2caa9137=\"\">标题内容</th>\n\t\t\t\t\t\t\t\t\t<th _v-2caa9137=\"\">消息类型</th>\n\t\t\t\t\t\t\t\t\t<th _v-2caa9137=\"\">发布时间</th>\n\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t</thead>\n\t\t\t\t\t\t\t<tbody _v-2caa9137=\"\">\n\t\t\t\t\t\t\t\t<tr v-for=\"message in messages\" _v-2caa9137=\"\">\n\t\t\t\t\t\t\t\t\t<td _v-2caa9137=\"\">\n\t\t\t\t\t\t\t\t\t    <label class=\"checkbox-container\" data-type=\"checkbox\" :for=\"'message'+message.message_manage_id\" :checked=\"userCheckedMessage.indexOf(message.message_manage_id)!=-1\" _v-2caa9137=\"\">\n\t\t\t\t\t\t\t\t\t        <input type=\"checkbox\" :id=\"'message'+message.message_manage_id\" name=\"message_manage_id\" :value=\"message.message_manage_id\" v-model=\"userCheckedMessage\" _v-2caa9137=\"\">\n\t\t\t\t\t\t\t\t\t        <i class=\"icon icon01 i_radio\" _v-2caa9137=\"\"></i>\n\t\t\t\t\t\t\t\t\t    </label>\n\t\t\t\t\t\t\t\t\t    <a class=\"checkbox_txt link\" v-link=\"{ path: '/home/index/mine/msglist/msgdetail?message_manage_id=' + message.message_manage_id }\" _v-2caa9137=\"\">{{ message.content | ellipsis 50 }}</a>\n\t\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t\t\t<td _v-2caa9137=\"\">活动消息-优惠活动</td>\n\t\t\t\t\t\t\t\t\t<td _v-2caa9137=\"\">{{ message.create_time | TimeYMDHMS }}</td>\n\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t</tbody>\n\t\t\t\t\t\t</table>\n\t\t\t\t\t</form>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\t\n\t</div>\t\n</div>\n";
+
+/***/ }),
+/* 309 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	var __vue_script__, __vue_template__
+	__webpack_require__(310)
+	__vue_script__ = __webpack_require__(311)
+	__vue_template__ = __webpack_require__(312)
+	module.exports = __vue_script__ || {}
+	if (module.exports.__esModule) module.exports = module.exports.default
+	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
+	if (true) {(function () {  module.hot.accept()
+	  var hotAPI = __webpack_require__(150)
+	  hotAPI.install(__webpack_require__(1), true)
+	  if (!hotAPI.compatible) return
+	  var id = "E:\\1MissLi\\item\\item9_liandong_wuye\\git_upload\\src\\views\\home\\mine\\msgdetail.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, __vue_template__)
+	  }
+	})()}
+
+/***/ }),
+/* 310 */
+/***/ (function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 311 */
+/***/ (function(module, exports) {
+
+	/* WEBPACK VAR INJECTION */(function(global) {'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	// <style scoped lang="sass">
+	// 	.btn-warp {
+	// 		padding-bottom: 20px;
+	// 		.btn+.btn {
+	// 			margin-left: 10px;
+	// 		}
+	// 	}
+	// 	.table-msglist {
+	// 		td:first-child {
+	// 			text-align: left;
+	// 		}
+	// 	}
+	// </style>
+	// <template>
+	// <ol class="breadcrumb">你当前的位置：
+	// 	<li><a>联东首页</a></li>
+	// 	<li class="active">我的消息</li>
+	// </ol>
+	// <div class="container">
+	// 	<div class="row">
+	// 		<div class="col-xs-12">
+	// 			<div class="panel panel-default">
+	// 				<div class="panel-heading"><h1>{{ messagesDetail.title }}</h1></div>
+	// 				<div class="panel-body">
+	// 				<h2>{{ messagesDetail.type }}</h2>
+	// 				<pre>{{ messagesDetail.content }}</pre>
 	// 				</div>
 	// 			</div>
 	// 		</div>	
@@ -42222,7 +43014,7 @@ webpackJsonp([0],[
 	            userInfo: global.userInfo,
 	            userCheckedHousInfo: '',
 	            dianbiaoChecked: '',
-	            message: null
+	            messagesDetail: null
 	        };
 	    },
 
@@ -42231,51 +43023,44 @@ webpackJsonp([0],[
 	            console.log(newValue);
 	        }
 	    },
-	    ready: function ready() {
+	    created: function created() {
 	        var _this = this;
-
-	        var customerids = [];
-	        for (var i = 0; i < this.userInfo.houseInfos.length; i++) {
-	            // 遍历客户id
-	            customerids.push(userInfo.houseInfos[i].pk_customerid);
-	        }
-	        this.$http.post(global.HttpPath + '/homePage/findMessageByCustomer', { // 查询通知消息的标题列表
-	            params: {
-	                pk_customerid: customerids.join(',')
+	        $.ajax({
+	            type: "get",
+	            url: global.HttpPath + '/messageManage/messageManageNotice?' + window.location.href.split('?')[1], // 
+	            // data: {
+	            //      message_manage_id: '1'
+	            //  },
+	            dataType: 'json',
+	            success: function success(data) {
+	                _this.$set('messagesDetail', data);
+	                console.log(data);
 	            }
-	        }).then(function (response) {
-	            // 响应成功回调
-	            _this.$set('message', response.data);
-	            console.log(response.data);
-	        }, function (error) {
-	            // 响应失败回调
-	            console.log('我的消息-error:', error);
-	        }).catch(function (response) {
-	            // 程序错误捕获
-	            console.log('我的消息-catch:', response);
 	        });
 	    },
 	    beforeDestroy: function beforeDestroy() {},
 
-	    methods: {}
+	    methods: {
+	        click: function click() {}
+	    }
 	};
 	// </script>
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ }),
-/* 307 */
+/* 312 */
 /***/ (function(module, exports) {
 
-	module.exports = "\n<ol class=\"breadcrumb\" _v-2caa9137=\"\">你当前的位置：\n\t<li _v-2caa9137=\"\"><a _v-2caa9137=\"\">联东首页</a></li>\n\t<li class=\"active\" _v-2caa9137=\"\">我的消息</li>\n</ol>\n<div class=\"container\" _v-2caa9137=\"\">\n\t<div class=\"row\" _v-2caa9137=\"\">\n\t\t<div class=\"col-xs-12\" _v-2caa9137=\"\">\n\t\t\t<div class=\"panel panel-default\" _v-2caa9137=\"\">\n\t\t\t\t<div class=\"panel-heading\" _v-2caa9137=\"\"><h1 _v-2caa9137=\"\">我的消息</h1></div>\n\t\t\t\t<div class=\"panel-body\" _v-2caa9137=\"\">\n\t\t\t\t\t<div class=\"btn-warp\" _v-2caa9137=\"\">\n\t\t\t\t\t\t<button class=\"btn\" _v-2caa9137=\"\">全选</button>\n\t\t\t\t\t\t<button class=\"btn\" _v-2caa9137=\"\">删除</button>\n\t\t\t\t\t\t<button class=\"btn\" _v-2caa9137=\"\">标记已读</button>\n\t\t\t\t\t\t<button class=\"btn\" _v-2caa9137=\"\">全部已读</button>\n\t\t\t\t\t</div>\n\t\t\t\t\t<table class=\"table table-bordered table-data table-msglist\" _v-2caa9137=\"\">\n\t\t\t\t\t\t<thead _v-2caa9137=\"\">\n\t\t\t\t\t\t\t<tr _v-2caa9137=\"\">\n\t\t\t\t\t\t\t\t<th _v-2caa9137=\"\">标题内容</th>\n\t\t\t\t\t\t\t\t<th _v-2caa9137=\"\">消息类型</th>\n\t\t\t\t\t\t\t\t<th _v-2caa9137=\"\">发布时间</th>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t</thead>\n\t\t\t\t\t\t<tbody _v-2caa9137=\"\">\n\t\t\t\t\t\t\t<tr _v-2caa9137=\"\">\n\t\t\t\t\t\t\t\t<td _v-2caa9137=\"\">\n\t\t\t\t\t\t\t\t\t<a _v-2caa9137=\"\">\n\t\t\t\t\t\t\t\t\t    <label class=\"checkbox-container\" data-type=\"checkbox\" for=\"mike\" :checked=\"checkedNames.indexOf('Mike')!=-1\" _v-2caa9137=\"\">\n\t\t\t\t\t\t\t\t\t        <input type=\"checkbox\" id=\"mike\" value=\"Mike\" v-model=\"checkedNames\" _v-2caa9137=\"\">\n\t\t\t\t\t\t\t\t\t        <i class=\"icon icon01 i_radio\" _v-2caa9137=\"\"></i>\n\t\t\t\t\t\t\t\t\t    </label>\n\t\t\t\t\t\t\t\t\t        <span class=\"checkbox_txt\" _v-2caa9137=\"\">消息消息消息消息消息消息消息消息消息消息</span>\n\t\t\t\t\t\t\t\t    </a>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t\t<td _v-2caa9137=\"\">活动消息-优惠活动</td>\n\t\t\t\t\t\t\t\t<td _v-2caa9137=\"\">2014-06-02  12:36:42</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t</tbody>\n\t\t\t\t\t</table>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\t\n\t</div>\t\n</div>\n";
+	module.exports = "\n<ol class=\"breadcrumb\" _v-d08ca9ac=\"\">你当前的位置：\n\t<li _v-d08ca9ac=\"\"><a _v-d08ca9ac=\"\">联东首页</a></li>\n\t<li class=\"active\" _v-d08ca9ac=\"\">我的消息</li>\n</ol>\n<div class=\"container\" _v-d08ca9ac=\"\">\n\t<div class=\"row\" _v-d08ca9ac=\"\">\n\t\t<div class=\"col-xs-12\" _v-d08ca9ac=\"\">\n\t\t\t<div class=\"panel panel-default\" _v-d08ca9ac=\"\">\n\t\t\t\t<div class=\"panel-heading\" _v-d08ca9ac=\"\"><h1 _v-d08ca9ac=\"\">{{ messagesDetail.title }}</h1></div>\n\t\t\t\t<div class=\"panel-body\" _v-d08ca9ac=\"\">\n\t\t\t\t<h2 _v-d08ca9ac=\"\">{{ messagesDetail.type }}</h2>\n\t\t\t\t<pre _v-d08ca9ac=\"\">{{ messagesDetail.content }}</pre>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\t\n\t</div>\t\n</div>\n";
 
 /***/ }),
-/* 308 */
+/* 313 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__webpack_require__(309)
-	__vue_script__ = __webpack_require__(310)
-	__vue_template__ = __webpack_require__(311)
+	__webpack_require__(314)
+	__vue_script__ = __webpack_require__(315)
+	__vue_template__ = __webpack_require__(316)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -42292,13 +43077,13 @@ webpackJsonp([0],[
 	})()}
 
 /***/ }),
-/* 309 */
+/* 314 */
 /***/ (function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 310 */
+/* 315 */
 /***/ (function(module, exports) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {'use strict';
@@ -42398,19 +43183,19 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ }),
-/* 311 */
+/* 316 */
 /***/ (function(module, exports) {
 
 	module.exports = "\n<ol class=\"breadcrumb\" _v-631e6133=\"\">你当前的位置：\n\t<li _v-631e6133=\"\"><a href=\"#\" _v-631e6133=\"\">联东首页</a></li>\n\t<li class=\"active\" _v-631e6133=\"\">修改密码</li>\n</ol>\n<div class=\"container\" _v-631e6133=\"\">\n\t<div class=\"row\" _v-631e6133=\"\">\n\t\t<div class=\"col-xs-12\" _v-631e6133=\"\">\n\t\t\t<div class=\"panel panel-default\" _v-631e6133=\"\">\n\t\t\t\t<div class=\"panel-heading\" _v-631e6133=\"\"><h1 _v-631e6133=\"\">修改密码</h1></div>\n\t\t\t\t<div class=\"panel-body\" _v-631e6133=\"\">\n\t\t\t\t\t<table class=\"table table-bordered table-form\" _v-631e6133=\"\">\n\t\t\t\t\t\t<tbody _v-631e6133=\"\">\n\t\t\t\t\t\t\t<tr _v-631e6133=\"\">\n\t\t\t\t\t\t\t\t<th _v-631e6133=\"\">手机号码</th>\n\t\t\t\t\t\t\t\t<td _v-631e6133=\"\"><input type=\"text\" name=\"\" _v-631e6133=\"\"><button class=\"btn\" style=\"margin-left:10px;\" _v-631e6133=\"\">获取验证码</button></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-631e6133=\"\">\n\t\t\t\t\t\t\t\t<th _v-631e6133=\"\">验证码</th>\n\t\t\t\t\t\t\t\t<td _v-631e6133=\"\"><input type=\"text\" name=\"\" _v-631e6133=\"\"></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-631e6133=\"\">\n\t\t\t\t\t\t\t\t<th _v-631e6133=\"\">新密码</th>\n\t\t\t\t\t\t\t\t<td _v-631e6133=\"\"><input type=\"text\" name=\"\" _v-631e6133=\"\"></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-631e6133=\"\">\n\t\t\t\t\t\t\t\t<th _v-631e6133=\"\">确认新密码</th>\n\t\t\t\t\t\t\t\t<td _v-631e6133=\"\"><input type=\"text\" name=\"\" _v-631e6133=\"\"></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-631e6133=\"\">\n\t\t\t\t\t\t\t\t<th _v-631e6133=\"\"></th>\n\t\t\t\t\t\t\t\t<td _v-631e6133=\"\"><button class=\"btn\" _v-631e6133=\"\">提交修改</button></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t</tbody>\n\t\t\t\t\t</table>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\t\n\t</div>\t\n</div>\n";
 
 /***/ }),
-/* 312 */
+/* 317 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__webpack_require__(313)
-	__vue_script__ = __webpack_require__(314)
-	__vue_template__ = __webpack_require__(315)
+	__webpack_require__(318)
+	__vue_script__ = __webpack_require__(319)
+	__vue_template__ = __webpack_require__(320)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -42427,13 +43212,13 @@ webpackJsonp([0],[
 	})()}
 
 /***/ }),
-/* 313 */
+/* 318 */
 /***/ (function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 314 */
+/* 319 */
 /***/ (function(module, exports) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {'use strict';
@@ -42529,17 +43314,17 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ }),
-/* 315 */
+/* 320 */
 /***/ (function(module, exports) {
 
 	module.exports = "\n<ol class=\"breadcrumb\" _v-3b3671d6=\"\">你当前的位置：\n\t<li _v-3b3671d6=\"\"><a href=\"#\" _v-3b3671d6=\"\">联东首页</a></li>\n\t<li class=\"active\" _v-3b3671d6=\"\">修改手机号</li>\n</ol>\n<div class=\"container\" _v-3b3671d6=\"\">\n\t<div class=\"row\" _v-3b3671d6=\"\">\n\t\t<div class=\"col-xs-12\" _v-3b3671d6=\"\">\n\t\t\t<div class=\"panel panel-default\" _v-3b3671d6=\"\">\n\t\t\t\t<div class=\"panel-heading\" _v-3b3671d6=\"\"><h1 _v-3b3671d6=\"\">修改手机号</h1></div>\n\t\t\t\t<div class=\"panel-body\" _v-3b3671d6=\"\">\n\t\t\t\t\t<table class=\"table table-bordered table-form\" _v-3b3671d6=\"\">\n\t\t\t\t\t\t<tbody _v-3b3671d6=\"\">\n\t\t\t\t\t\t\t<tr _v-3b3671d6=\"\">\n\t\t\t\t\t\t\t\t<th _v-3b3671d6=\"\">登录密码</th>\n\t\t\t\t\t\t\t\t<td _v-3b3671d6=\"\"><input type=\"text\" name=\"\" _v-3b3671d6=\"\"></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-3b3671d6=\"\">\n\t\t\t\t\t\t\t\t<th _v-3b3671d6=\"\">新手机号码</th>\n\t\t\t\t\t\t\t\t<td _v-3b3671d6=\"\"><input type=\"text\" name=\"\" _v-3b3671d6=\"\"><button class=\"btn\" style=\"margin-left:10px;\" _v-3b3671d6=\"\">获取验证码</button></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-3b3671d6=\"\">\n\t\t\t\t\t\t\t\t<th _v-3b3671d6=\"\">验证码</th>\n\t\t\t\t\t\t\t\t<td _v-3b3671d6=\"\"><input type=\"text\" name=\"\" _v-3b3671d6=\"\"></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-3b3671d6=\"\">\n\t\t\t\t\t\t\t\t<th _v-3b3671d6=\"\"></th>\n\t\t\t\t\t\t\t\t<td _v-3b3671d6=\"\"><button class=\"btn\" _v-3b3671d6=\"\">提交修改</button></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t</tbody>\n\t\t\t\t\t</table>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\t\n\t</div>\t\n</div>\n";
 
 /***/ }),
-/* 316 */
+/* 321 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__vue_template__ = __webpack_require__(317)
+	__vue_template__ = __webpack_require__(322)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -42556,19 +43341,19 @@ webpackJsonp([0],[
 	})()}
 
 /***/ }),
-/* 317 */
+/* 322 */
 /***/ (function(module, exports) {
 
 	module.exports = "\r\n\t<aside id=\"aside\">\r\n\t\t<ul class=\"nav aside-nav\">\r\n\t\t\t<li><a v-link-active v-link=\"{ path: '/home/agreement/houseinfo', activeClass: 'active'}\"><i class=\"icon icon01 i-payment09\"></i>房产信息</a></li>\r\n\t\t\t<li><a v-link-active v-link=\"{ path: '/home/agreement/sales', activeClass: 'active'}\"><i class=\"icon icon01 i-payment10\"></i>销售合同</a></li>\r\n\t\t\t<li><a v-link-active v-link=\"{ path: '/home/agreement/lease', activeClass: 'active'}\"><i class=\"icon icon01 i-payment11\"></i>租赁合同</a></li>\r\n\t\t</ul>\r\n\t</aside>\r\n\t<article id=\"article\">\r\n\t\t\t<router-view></router-view>\r\n\t</article>\r\n";
 
 /***/ }),
-/* 318 */
+/* 323 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__webpack_require__(319)
-	__vue_script__ = __webpack_require__(320)
-	__vue_template__ = __webpack_require__(321)
+	__webpack_require__(324)
+	__vue_script__ = __webpack_require__(325)
+	__vue_template__ = __webpack_require__(326)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -42585,13 +43370,13 @@ webpackJsonp([0],[
 	})()}
 
 /***/ }),
-/* 319 */
+/* 324 */
 /***/ (function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 320 */
+/* 325 */
 /***/ (function(module, exports) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {'use strict';
@@ -42704,19 +43489,19 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ }),
-/* 321 */
+/* 326 */
 /***/ (function(module, exports) {
 
 	module.exports = "\n<ol class=\"breadcrumb\" _v-65da7f2a=\"\">你当前的位置：\n\t<li _v-65da7f2a=\"\"><a _v-65da7f2a=\"\">联东首页</a></li>\n\t<li _v-65da7f2a=\"\"><a _v-65da7f2a=\"\">房产合同信息</a></li>\n\t<li class=\"active\" _v-65da7f2a=\"\">房产信息</li>\n</ol>\n<div class=\"container\" _v-65da7f2a=\"\">\n\t<div class=\"row\" _v-65da7f2a=\"\">\n\t\t<div class=\"col-xs-12\" _v-65da7f2a=\"\">\n\t\t\t<div class=\"panel panel-default\" _v-65da7f2a=\"\">\n\t\t\t\t<div class=\"panel-heading\" _v-65da7f2a=\"\"><h1 _v-65da7f2a=\"\">房产信息</h1></div>\n\t\t\t\t<div class=\"panel-body\" _v-65da7f2a=\"\">\n\t\t\t\t\t<table class=\"table table-bordered table-form\" _v-65da7f2a=\"\">\n\t\t\t\t\t\t<tbody _v-65da7f2a=\"\">\n\t\t\t\t\t\t\t<tr _v-65da7f2a=\"\">\n\t\t\t\t\t\t\t\t<th _v-65da7f2a=\"\">项目信息</th>\n\t\t\t\t\t\t\t\t<td _v-65da7f2a=\"\">{{ houseInfo.project }}</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-65da7f2a=\"\">\n\t\t\t\t\t\t\t\t<th _v-65da7f2a=\"\">房产名称</th>\n\t\t\t\t\t\t\t\t<td _v-65da7f2a=\"\">\n\t\t                            <select class=\"form-control\" v-model=\"pk_house\" _v-65da7f2a=\"\">\n\t\t\t                            <template v-for=\"(index,houseInfo) in userInfo.houseInfos\" _v-65da7f2a=\"\">\n\t\t\t\t                            <option :value=\"houseInfo.pk_house\" :selected=\"index==0\" _v-65da7f2a=\"\">{{ houseInfo.house }}</option>\n\t\t\t                            </template>\n\t\t                            </select>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-65da7f2a=\"\">\n\t\t\t\t\t\t\t\t<th _v-65da7f2a=\"\">业态</th>\n\t\t\t\t\t\t\t\t<td _v-65da7f2a=\"\">{{ houseInfo.situation }}</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-65da7f2a=\"\">\n\t\t\t\t\t\t\t\t<th _v-65da7f2a=\"\">房产面积</th>\n\t\t\t\t\t\t\t\t<td _v-65da7f2a=\"\">{{ houseInfo.nbuildarea }}</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-65da7f2a=\"\">\n\t\t\t\t\t\t\t\t<th _v-65da7f2a=\"\">项目电话</th>\n\t\t\t\t\t\t\t\t<td _v-65da7f2a=\"\">{{ houseInfo.projectVO.object_phone }}</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-65da7f2a=\"\">\n\t\t\t\t\t\t\t\t<th _v-65da7f2a=\"\">项目地址</th>\n\t\t\t\t\t\t\t\t<td _v-65da7f2a=\"\">{{ houseInfo.projectVO.project_address }}</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-65da7f2a=\"\">\n\t\t\t\t\t\t\t\t<th _v-65da7f2a=\"\">地图信息</th>\n\t\t\t\t\t\t\t\t<td _v-65da7f2a=\"\">地图信息</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t</tbody>\n\t\t\t\t\t</table>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\t\n\t</div>\t\n</div>\n";
 
 /***/ }),
-/* 322 */
+/* 327 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__webpack_require__(323)
-	__vue_script__ = __webpack_require__(324)
-	__vue_template__ = __webpack_require__(325)
+	__webpack_require__(328)
+	__vue_script__ = __webpack_require__(329)
+	__vue_template__ = __webpack_require__(330)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -42733,13 +43518,13 @@ webpackJsonp([0],[
 	})()}
 
 /***/ }),
-/* 323 */
+/* 328 */
 /***/ (function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 324 */
+/* 329 */
 /***/ (function(module, exports) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {'use strict';
@@ -42854,19 +43639,19 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ }),
-/* 325 */
+/* 330 */
 /***/ (function(module, exports) {
 
 	module.exports = "\n<ol class=\"breadcrumb\" _v-35aed112=\"\">你当前的位置：\n\t<li _v-35aed112=\"\"><a _v-35aed112=\"\">联东首页</a></li>\n\t<li _v-35aed112=\"\"><a _v-35aed112=\"\">房产合同信息</a></li>\n\t<li class=\"active\" _v-35aed112=\"\">租赁合同</li>\n</ol>\n<div class=\"container\" _v-35aed112=\"\">\n\t<div class=\"row\" _v-35aed112=\"\">\n\t\t<div class=\"col-xs-12\" _v-35aed112=\"\">\n\t\t\t<div class=\"panel panel-default\" _v-35aed112=\"\">\n\t\t\t\t<div class=\"panel-heading\" _v-35aed112=\"\"><h1 _v-35aed112=\"\">租赁合同</h1></div>\n\t\t\t\t<div class=\"panel-body\" _v-35aed112=\"\">\n\t\t\t\t\t<table class=\"table table-bordered table-form\" _v-35aed112=\"\">\n\t\t\t\t\t\t<tbody _v-35aed112=\"\">\n\t\t\t\t\t\t\t<tr _v-35aed112=\"\">\n\t\t\t\t\t\t\t\t<th _v-35aed112=\"\">房产名称</th>\n\t\t\t\t\t\t\t\t<td _v-35aed112=\"\">\n\t\t                            <select class=\"form-control\" v-model=\"userCheckedHouseInfo\" _v-35aed112=\"\">\n\t\t\t                            <template v-for=\"(index01, houseInfo) in leaseHouseInfos\" _v-35aed112=\"\">\n\t\t                            \t\t<option :value=\"index01\" :selected=\"index01==0\" _v-35aed112=\"\">{{ houseInfo.house }}</option>\n\t\t\t                            </template>\n\t\t                            </select>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-35aed112=\"\">\n\t\t\t\t\t\t\t\t<th _v-35aed112=\"\">租赁面积</th>\n\t\t\t\t\t\t\t\t<td _v-35aed112=\"\">{{ leaseHouseInfo.nrentarea }}</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-35aed112=\"\">\n\t\t\t\t\t\t\t\t<th _v-35aed112=\"\">租赁起止日期</th>\n\t\t\t\t\t\t\t\t<td _v-35aed112=\"\">{{ leaseHouseInfo.dpactstart | TimeYMD }} ~ {{ leaseHouseInfo.dpactend | TimeYMD }}</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-35aed112=\"\">\n\t\t\t\t\t\t\t\t<th _v-35aed112=\"\">首笔租金应缴金额</th>\n\t\t\t\t\t\t\t\t<td _v-35aed112=\"\">{{ leaseHouseInfo.nsbzjyjmny | currency '￥' 2 }}</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-35aed112=\"\">\n\t\t\t\t\t\t\t\t<th _v-35aed112=\"\">首笔租金应缴日期</th>\n\t\t\t\t\t\t\t\t<td _v-35aed112=\"\">{{ leaseHouseInfo.dysdate | TimeYMD }}</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-35aed112=\"\">\n\t\t\t\t\t\t\t\t<th _v-35aed112=\"\">合同已收总金额</th>\n\t\t\t\t\t\t\t\t<td _v-35aed112=\"\">{{ leaseHouseInfo.nhtssmny | currency '￥' 2 }}</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-35aed112=\"\">\n\t\t\t\t\t\t\t\t<th _v-35aed112=\"\">租赁保证金</th>\n\t\t\t\t\t\t\t\t<td _v-35aed112=\"\">{{ leaseHouseInfo.nzlbzjmny | currency '￥' 2 }}</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-35aed112=\"\">\n\t\t\t\t\t\t\t\t<th _v-35aed112=\"\">合同应收总金额</th>\n\t\t\t\t\t\t\t\t<td _v-35aed112=\"\">{{ leaseHouseInfo.nhtysmny | currency '￥' 2 }}</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t</tbody>\n\t\t\t\t\t</table>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\t\n\t</div>\t\n</div>\n";
 
 /***/ }),
-/* 326 */
+/* 331 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__webpack_require__(327)
-	__vue_script__ = __webpack_require__(328)
-	__vue_template__ = __webpack_require__(329)
+	__webpack_require__(332)
+	__vue_script__ = __webpack_require__(333)
+	__vue_template__ = __webpack_require__(334)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) { (typeof module.exports === "function" ? module.exports.options : module.exports).template = __vue_template__ }
@@ -42883,13 +43668,13 @@ webpackJsonp([0],[
 	})()}
 
 /***/ }),
-/* 327 */
+/* 332 */
 /***/ (function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 328 */
+/* 333 */
 /***/ (function(module, exports) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {'use strict';
@@ -43032,13 +43817,13 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ }),
-/* 329 */
+/* 334 */
 /***/ (function(module, exports) {
 
 	module.exports = "\n<ol class=\"breadcrumb\" _v-fb6e2dae=\"\">你当前的位置：\n\t<li _v-fb6e2dae=\"\"><a _v-fb6e2dae=\"\">联东首页</a></li>\n\t<li _v-fb6e2dae=\"\"><a _v-fb6e2dae=\"\">房产合同信息</a></li>\n\t<li class=\"active\" _v-fb6e2dae=\"\">销售合同</li>\n</ol>\n<div class=\"container\" _v-fb6e2dae=\"\">\n\t<div class=\"row\" _v-fb6e2dae=\"\">\n\t\t<div class=\"col-xs-12\" _v-fb6e2dae=\"\">\n\t\t\t<div class=\"panel panel-default\" _v-fb6e2dae=\"\">\n\t\t\t\t<div class=\"panel-heading\" _v-fb6e2dae=\"\"><h1 _v-fb6e2dae=\"\">销售合同信息</h1></div>\n\t\t\t\t<div class=\"panel-body\" _v-fb6e2dae=\"\">\n\t\t\t\t\t<table class=\"table table-bordered table-form\" _v-fb6e2dae=\"\">\n\t\t\t\t\t\t<tbody _v-fb6e2dae=\"\">\n\t\t\t\t\t\t\t<tr _v-fb6e2dae=\"\">\n\t\t\t\t\t\t\t\t<th _v-fb6e2dae=\"\">房产名称</th>\n\t\t\t\t\t\t\t\t<td _v-fb6e2dae=\"\">\n\t\t                            <select class=\"form-control\" v-model=\"userCheckedHousInfo\" _v-fb6e2dae=\"\">\n\t\t\t                            <template v-for=\"(index,houseInfo) in salesHouseInfos\" _v-fb6e2dae=\"\">\n\t\t\t\t                            <option :value=\"index\" _v-fb6e2dae=\"\">{{ houseInfo[0].house }}</option>\n\t\t\t                            </template>\n\t\t                            </select>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-fb6e2dae=\"\">\n\t\t\t\t\t\t\t\t<th _v-fb6e2dae=\"\">销售面积</th>\n\t\t\t\t\t\t\t\t<td _v-fb6e2dae=\"\">{{ salesHouseInfo[0].nsellarea }}</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-fb6e2dae=\"\">\n\t\t\t\t\t\t\t\t<th _v-fb6e2dae=\"\">单价</th>\n\t\t\t\t\t\t\t\t<td _v-fb6e2dae=\"\">{{ salesHouseInfo[0].nprice | currency '￥' 2 }}</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-fb6e2dae=\"\">\n\t\t\t\t\t\t\t\t<th _v-fb6e2dae=\"\">折扣金额</th>\n\t\t\t\t\t\t\t\t<td _v-fb6e2dae=\"\">{{ salesHouseInfo[0].nythisdiscountmny | currency '￥' 2 }}</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-fb6e2dae=\"\">\n\t\t\t\t\t\t\t\t<th _v-fb6e2dae=\"\">折后签约总价</th>\n\t\t\t\t\t\t\t\t<td _v-fb6e2dae=\"\">{{ salesHouseInfo[0].nytotalmnysign | currency '￥' 2 }}</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t</tbody>\n\t\t\t\t\t</table>\n\t\t\t\t\t<table class=\"table table-bordered table-data\" style=\"margin-top:30px;\" _v-fb6e2dae=\"\">\n\t\t\t\t\t\t<thead _v-fb6e2dae=\"\">\n\t\t\t\t\t\t\t<tr _v-fb6e2dae=\"\">\n\t\t\t\t\t\t\t\t<th colspan=\"5\" _v-fb6e2dae=\"\">销售进程</th>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-fb6e2dae=\"\">\n\t\t\t\t\t\t\t\t<th _v-fb6e2dae=\"\">购房进程</th>\n\t\t\t\t\t\t\t\t<th _v-fb6e2dae=\"\">应完成日期</th>\n\t\t\t\t\t\t\t\t<th _v-fb6e2dae=\"\">应收金额</th>\n\t\t\t\t\t\t\t\t<th _v-fb6e2dae=\"\">实收金额</th>\n\t\t\t\t\t\t\t\t<th _v-fb6e2dae=\"\">收款日期</th>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t</thead>\n\t\t\t\t\t\t<tbody _v-fb6e2dae=\"\">\n\t\t\t\t\t\t\t<tr v-for=\"item in salesHouseInfo\" _v-fb6e2dae=\"\">\n\t\t\t\t\t\t\t\t<td _v-fb6e2dae=\"\">{{ item.fpmcourse }}</td>\n\t\t\t\t\t\t\t\t<td _v-fb6e2dae=\"\">{{ item.dbefinishdate | TimeYMD }}</td>\n\t\t\t\t\t\t\t\t<td _v-fb6e2dae=\"\">{{ item.nyshouldmny | currency '￥' 2 }}</td>\n\t\t\t\t\t\t\t\t<td _v-fb6e2dae=\"\">{{ item.nyfactmny | currency '￥' 2 }}</td>\n\t\t\t\t\t\t\t\t<td _v-fb6e2dae=\"\">收款日期</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t</tbody>\n\t\t\t\t\t</table>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\t\n\t</div>\t\n</div>\n";
 
 /***/ }),
-/* 330 */
+/* 335 */
 /***/ (function(module, exports) {
 
 	"use strict";

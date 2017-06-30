@@ -30,5 +30,5 @@ public interface DecorationApplyMapper {
 
     DecorationApply findDecorationApplyByHouseId(@Param("houseInfoId") String houseInfoId);
 
-
+    void updatePayState(@Param("paymentStatus") String paymentStatus, @Param("decorationApplyId") Long decorationApplyId);
 }

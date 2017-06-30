@@ -19,7 +19,7 @@ public class FeeAccountVO implements Serializable {
 	private String pk_fee;// 费用项目主键
 	private String pk_account;// 银行账号主键
 	private String account;// 银行账号
-	private String vdef1;// 备用文本字段1
+	private String vdef1;// 收款公司主键
 	private String vdef2;// 备用文本字段2
 	private String vdef3;// 备用文本字段3
 	private String vdef4;// 备用文本字段4

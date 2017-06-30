@@ -92,5 +92,10 @@ public class DecorationApplyServiceImpl implements IDecorationApplyService {
         return decorationApplyMapper.findDecorationApplyByHouseId(houseInfoId);
     }
 
+    @Override
+    public void updatePayState(String paymentStatus, Long decorationApplyId) {
+        decorationApplyMapper.updatePayState(paymentStatus, decorationApplyId);
+    }
+
 
 }

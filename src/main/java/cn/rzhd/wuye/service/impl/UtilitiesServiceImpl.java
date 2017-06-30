@@ -8,6 +8,8 @@ import com.github.pagehelper.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,7 +43,37 @@ public class UtilitiesServiceImpl implements IUtilitiesService {
     }
 
     @Override
-    public void changeStatus(UtilitiesDetails details) {
-        mapper.changeStatus(details);
+    public void changeStatus(Long id) {
+        mapper.changeStatus(id);
+    }
+
+    @Override
+    public List<Map<String, Object>> getElectricByProject(Long userId) {
+        return mapper.getElectricByProject(userId);
+    }
+
+    @Override
+    public List<Map<String, Object>> getWaterByProject(Long userId) {
+        return mapper.getWaterByProject(userId);
+    }
+
+    @Override
+    public BigDecimal getAstrictPaid(String houseInfoId, Date startDate, Date endDate) {
+        return mapper.getAstrictPaid(houseInfoId,startDate,endDate);
+    }
+
+    @Override
+    public String getCompanyName(String pk_feeType) {
+        return mapper.getCompanyName(pk_feeType);
+    }
+
+    @Override
+    public String getCompanyAccount(String pk_feeType) {
+        return mapper.getCompanyAccount(pk_feeType);
+    }
+
+    @Override
+    public String getCostType(String pk_feeType) {
+        return mapper.getCostType(pk_feeType);
     }
 }

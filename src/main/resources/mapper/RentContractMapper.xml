@@ -4,6 +4,7 @@
 
 	<select id="getAll"  resultMap="RentContractBackMap">
 		SELECT
+			DISTINCT
 			P.PROJECT_NAME,
 			r."house",
 			c."vcname",
@@ -69,6 +70,7 @@
             SERVICE_PHONE,
             OBJECT_PHONE,
             "pk_customerid",
+			"nrentarea",
             p.VSHORTNAME AS projectName
         FROM "T_Rent_Contract"
             JOIN T_PROJECT_INFO p ON "pk_project" = p.PK_PROJECT

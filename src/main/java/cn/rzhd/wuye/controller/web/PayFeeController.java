@@ -62,10 +62,10 @@ public class PayFeeController {
      * @return
      */
     @RequestMapping("/utilitiesPurchase")
-    public Map<String,Object> utilitiesPurchase(PayFeeQuery query){
+    public Map<String,Object> utilitiesPurchase(@RequestBody PayFeeQuery query){
         Map<String, Object> map = payFeeService.payElectricFee(query);
-        BigDecimal waterFee = payFeeService.payWaterFee(query);
-        map.put("waterFee",waterFee);
+        Map<String, BigDecimal> waterMap = payFeeService.payWaterFee(query);
+        map.putAll(waterMap);
         return map;
     }
 

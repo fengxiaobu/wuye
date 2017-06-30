@@ -53,9 +53,33 @@ public class EnterApply implements Serializable {
      */
     private Date updateTime;
     /**
+     * 物业支付状态
+     */
+    private String wyState;
+    /**
+     * 开发支付状态
+     */
+    private String kfState;
+    /**
      * 房产信息
      */
     private HouseInfoDetails houseInfoDetails;
+
+    public String getWyState() {
+        return wyState;
+    }
+
+    public void setWyState(String wyState) {
+        this.wyState = wyState;
+    }
+
+    public String getKfState() {
+        return kfState;
+    }
+
+    public void setKfState(String kfState) {
+        this.kfState = kfState;
+    }
 
     public Long getEnterApplyId() {
         return enterApplyId;

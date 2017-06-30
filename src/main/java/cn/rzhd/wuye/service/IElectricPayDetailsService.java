@@ -3,8 +3,6 @@ package cn.rzhd.wuye.service;
 import cn.rzhd.wuye.bean.ElectricFeePayDetails;
 import cn.rzhd.wuye.vo.query.UtilitiesQuery;
 
-import java.math.BigDecimal;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -15,8 +13,6 @@ public interface IElectricPayDetailsService {
     List<ElectricFeePayDetails> queryAll(UtilitiesQuery query);
 
     void addDetails(ElectricFeePayDetails details);
-
-    BigDecimal getAstrictPaid(String houseInfoId, Date startDate,Date endDate);
 
     ElectricFeePayDetails getLastRecords(UtilitiesQuery query);
 }

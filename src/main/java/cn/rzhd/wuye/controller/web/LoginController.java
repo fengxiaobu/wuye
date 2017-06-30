@@ -46,8 +46,8 @@ public class LoginController {
             for (Customer cus : customers) {
                 List<PactVO> pactVOS = rentContractService.queryByCustomer(cus.getPk_customerid());
                 for (PactVO vo : pactVOS) {
-                    ReletApply reletApply = reletApplyService.findReletApply(vo.getPk_house());
-                    RetreatLeaseApply retreatLeaseApply = retreatLeaseApplyService.findRetreatLeaseApply(vo.getPk_house());
+                    List<ReletApply> reletApply = reletApplyService.findReletApply(vo.getPk_house());
+                    List<RetreatLeaseApply> retreatLeaseApply = retreatLeaseApplyService.findRetreatLeaseApply(vo.getPk_house());
                     //获取房产状态
                     HouseInfoDetails houseInfoDetails = houseInfoDetailsService.selectByPkHouse(vo.getPk_house());
                     if (reletApply != null) {

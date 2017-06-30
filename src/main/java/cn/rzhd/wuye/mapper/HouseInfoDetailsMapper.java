@@ -19,7 +19,7 @@ public interface HouseInfoDetailsMapper {
 
     int updateByPrimaryKey(HouseVO record);
 
-    void updateHouse(@Param("pkHouse") String pkHouse, @Param("enterApplyState") String enterApplyState);
+    void updateHouse(@Param("pkHouse") String pkHouse, @Param("enterApplyState") String enterApplyState, @Param("decorationapplystate") String decorationapplystate);
 
     List<HouseVO> getAll();
 

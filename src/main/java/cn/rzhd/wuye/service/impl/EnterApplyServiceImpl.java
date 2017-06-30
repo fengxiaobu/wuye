@@ -111,4 +111,10 @@ public class EnterApplyServiceImpl implements IEnterApplyService {
     public List<Map<String, Value>> getEnterApplyByIDAndState(String pkHouse) {
         return enterApplyMapper.getEnterApplyByIDAndState(pkHouse);
     }
+
+    @Override
+    public void updatePayState(String wyState, String kfState, Long enterApplyId) {
+        enterApplyMapper.updatePayState(wyState, kfState, enterApplyId);
+    }
+
 }

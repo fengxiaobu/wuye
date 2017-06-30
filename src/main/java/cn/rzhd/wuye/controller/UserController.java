@@ -147,20 +147,8 @@ public class UserController {
 
     }
 
-    @RequestMapping("/getAllHouseInfo")
-    public String houseInfoDetails(Model model, Integer pageNum, Integer pageSize) {
-        PageHelper.startPage(pageNum, pageSize);
-        List<HouseInfo> houseInfos = houseInfoService.getAllHouseinfo();
-
-        Page page = (Page) houseInfos;
-        model.addAttribute("allHouse", houseInfos);
-
-        model.addAttribute("pages", page.getPages());
-        return "houseinfo/houseInfo";
-    }
-
     @RequestMapping("/getAllUser")
-    public String UserList(Model model, Integer pageNum, Integer pageSize) {
+    public String CustomerList(Model model, Integer pageNum, Integer pageSize) {
         PageHelper.startPage(pageNum, pageSize);
         List<Customer> customers = customerService.queryAll();
 
@@ -170,6 +158,11 @@ public class UserController {
 
         model.addAttribute("pages", page.getPages());
         return "customer/customerList";
+    }
+    
+    @RequestMapping("/customerEdit")
+    public String CustomerEdit(Model model,String vccode) {
+        return "customer/customerEdit";
     }
 
     @RequestMapping("index")

@@ -12,6 +12,8 @@
         <result column="NOTES" property="notes"/>
         <result column="CREATION_TIME" property="creationTime"/>
         <result column="UPDATE_TIME" property="updateTime"/>
+        <result column="WYSTATE" property="wyState"/>
+        <result column="KFSTATE" property="kfState"/>
         <association property="houseInfoDetails" javaType="cn.rzhd.wuye.bean.HouseInfoDetails">
             <id column="pk_house" property="pkHouse" jdbcType="CHAR"/>
             <result column="pk_corp" property="pkCorp" jdbcType="CHAR"/>
@@ -190,4 +192,15 @@
         DELETE FROM T_ENTER_APPLY
         WHERE ENTER_APPLY_ID = #{enterApplyId}
     </delete>
+    <update id="updatePayState">
+        UPDATE T_ENTER_APPLY apply
+        SET
+        <if test="wyState !=null">
+            WYSTATE=#{wyState}
+        </if>
+        <if test="kfState !=null">
+            KFSTATE=#{kfState}
+        </if>
+        WHERE ENTER_APPLY_ID = #{enterApplyId}
+    </update>
 </mapper>
