@@ -27,4 +27,10 @@ public interface IPropertyFeePayDetailsService {
     List<Map<String, Object>> getByProject(Long userId);
 
     List<PropertyFeePayDetails> queryByProject(PropertyRecordsQuery query);
+
+    String getCostType(String feeType,String pk_corp);
+
+    String getCompanyAccount(String feeType,String pk_corp);
+
+    String getCompanyName(String feeType,String pk_corp);
 }
