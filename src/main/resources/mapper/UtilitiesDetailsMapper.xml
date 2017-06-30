@@ -345,7 +345,7 @@
             JOIN T_PROJECT_INFO ON T_HOUSE_INFO_DETAILS."pk_project" = T_PROJECT_INFO.PK_PROJECT
             JOIN T_MANAGE ON T_HOUSE_INFO_DETAILS.MANAGE_ID = T_MANAGE."pk_manageId"
             JOIN T_MANAGE_USER ON T_MANAGE_USER.MANAGE_ID = T_MANAGE."pk_manageId"
-        WHERE T_MANAGE_USER.USER_ID = #{userId} AND FEE_TYPE = '电费' AND T_UTILITIES_DETAILS.STATUS = 'Y'
+        WHERE T_MANAGE_USER.USER_ID = #{userId} AND ELECTRIC_POWER IS NOT NULL AND T_UTILITIES_DETAILS.STATUS = 'Y'
     </select>
     <resultMap id="waterMap" type="java.util.Map">
         <id property="detailsId" column="UTILITIES_DETAILS_ID"/>
@@ -403,7 +403,7 @@
             JOIN T_PROJECT_INFO ON T_HOUSE_INFO_DETAILS."pk_project" = T_PROJECT_INFO.PK_PROJECT
             JOIN T_MANAGE ON T_HOUSE_INFO_DETAILS.MANAGE_ID = T_MANAGE."pk_manageId"
             JOIN T_MANAGE_USER ON T_MANAGE_USER.MANAGE_ID = T_MANAGE."pk_manageId"
-        WHERE T_MANAGE_USER.USER_ID = #{userId} AND FEE_TYPE = '水费' AND T_UTILITIES_DETAILS.STATUS = 'Y'
+        WHERE T_MANAGE_USER.USER_ID = #{userId} AND TUNNAGE IS NOT NULL AND T_UTILITIES_DETAILS.STATUS = 'Y'
     </select>
     <select id="getAstrictPaid" resultType="bigdecimal">
         SELECT SUM(NVL(PAID_IN, 0))

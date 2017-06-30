@@ -12,7 +12,8 @@
         <result property="propertyName" column="propertyName"/>
     </resultMap>
     <select id="queryAmmeters" resultMap="baseMap">
-        select "id",
+        select
+            "id",
             "pk_project",
             "pk_house",
             "ammeter_no",
@@ -22,7 +23,8 @@
         WHERE "pk_house"='${houseInfoId}'
     </select>
     <select id="getAllAmmeters" resultType="cn.rzhd.wuye.bean.Ammeter">
-        select a."id",
+        select
+            a."id",
             a."pk_project",
             p."project" AS projectName,
             a."pk_house",
