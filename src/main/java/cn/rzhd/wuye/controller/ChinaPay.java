@@ -196,18 +196,17 @@ public class ChinaPay {
                     System.out.println("缴费记录生成失败:未知的缴费类型(物业,开发,水电)");
                 }
             }
-
             System.out.println("*************************                               ******************************");
             System.out.println("*************************                               ******************************");
-            System.out.println("***********************交易成功************************");
+            System.out.println("***********************返回报文解析成功************************");
             System.out.println("*************************                               ******************************");
-            response.getWriter().write("success  返回报文解析成功");
+           // response.getWriter().write("success  返回报文解析成功");
         } else {
             System.out.println("*************************                               ******************************");
             System.out.println("*************************                               ******************************");
             System.out.println("***********************交易失败************************");
             System.out.println("*************************                               ******************************");
-            response.getWriter().write("fail");
+           // response.getWriter().write("fail");
         }
     }
 
