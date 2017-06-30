@@ -63,17 +63,17 @@ public class UtilitiesServiceImpl implements IUtilitiesService {
     }
 
     @Override
-    public String getCompanyName(String pk_feeType) {
-        return mapper.getCompanyName(pk_feeType);
+    public String getCompanyName(String pk_feeType,String pk_corp) {
+        return mapper.getCompanyName(pk_feeType,pk_corp);
     }
 
     @Override
-    public String getCompanyAccount(String pk_feeType) {
-        return mapper.getCompanyAccount(pk_feeType);
+    public String getCompanyAccount(String pk_feeType,String pk_corp) {
+        return mapper.getCompanyAccount(pk_feeType,pk_corp);
     }
 
     @Override
-    public String getCostType(String pk_feeType) {
-        return mapper.getCostType(pk_feeType);
+    public String getCostType(String pk_feeType,String pk_corp) {
+        return mapper.getCostType(pk_feeType,pk_corp);
     }
 }

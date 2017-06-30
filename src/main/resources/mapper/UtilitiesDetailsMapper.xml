@@ -151,8 +151,8 @@
             TUNNAGE,
             STATUS
         FROM T_UTILITIES_DETAILS
-        WHERE HOUSE_INFO_ID = #{houseInfoId} AND PAY_TIME &gt;= to_date(#{startDate}, 'YYYY-MM-DD') AND PAY_TIME &lt;=
-         to_date(#{endDate}, 'YYYY-MM-DD') AND STATUS = 'Y'
+        WHERE HOUSE_INFO_ID = #{houseInfoId} AND PAY_TIME &gt;= to_date(#{startDate}, 'YYYY-MM-DD') AND
+              PAY_TIME &lt;= to_date(#{endDate}, 'YYYY-MM-DD') AND STATUS = 'Y'
     </select>
 
     <select id="getLastElectric" parameterType="cn.rzhd.wuye.vo.query.UtilitiesQuery" resultMap="BaseResultMap">
@@ -412,20 +412,23 @@
               AND PAY_TIME &lt; #{endDate}
               AND PAY_TIME &gt; #{startDate}
     </select>
-    <select id="getCompanyName" parameterType="string" resultType="string">
+
+    <select id="getCompanyName" resultType="string">
         SELECT "unitname"
         FROM T_COMPANY
             JOIN T_BANK_ACCOUNT ON "vdef1" = T_COMPANY."pk_corp"
-        WHERE "pk_fee" = #{pk_feeType}
+            JOIN T_FEE_TYPES ON T_FEE_TYPES."pk_fee" = T_BANK_ACCOUNT."pk_fee"
+        WHERE T_FEE_TYPES."feecode" = #{pk_feeType} AND T_FEE_TYPES."pk_corp" = #{pk_corp}
     </select>
-    <select id="getCompanyAccount" parameterType="string" resultType="string">
+    <select id="getCompanyAccount" resultType="string">
         SELECT "account"
         FROM T_BANK_ACCOUNT
-        WHERE "pk_fee" = #{pk_feeType}
+            JOIN T_FEE_TYPES ON T_FEE_TYPES."pk_fee" = T_BANK_ACCOUNT."pk_fee"
+        WHERE "feecode" = #{pk_feeType} AND T_FEE_TYPES."pk_corp" = #{pk_corp}
     </select>
-    <select id="getCostType" resultType="string" parameterType="string">
+    <select id="getCostType" resultType="string">
         SELECT "feename"
         FROM T_FEE_TYPES
-        WHERE "pk_fee" = #{pk_feeType}
+        WHERE "feecode" = #{pk_feeType} AND "pk_corp" = #{pk_corp}
     </select>
 </mapper>

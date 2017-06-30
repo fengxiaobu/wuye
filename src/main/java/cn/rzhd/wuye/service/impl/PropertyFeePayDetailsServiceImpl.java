@@ -53,4 +53,19 @@ public class PropertyFeePayDetailsServiceImpl implements IPropertyFeePayDetailsS
     public List<PropertyFeePayDetails> queryByProject(PropertyRecordsQuery query) {
         return mapper.queryByProject(query);
     }
+
+    @Override
+    public String getCostType(String feeType, String pk_corp) {
+        return mapper.getCostType(feeType,pk_corp);
+    }
+
+    @Override
+    public String getCompanyAccount(String feeType, String pk_corp) {
+        return mapper.getCompanyAccount(feeType,pk_corp);
+    }
+
+    @Override
+    public String getCompanyName(String feeType, String pk_corp) {
+        return mapper.getCompanyName(feeType,pk_corp);
+    }
 }

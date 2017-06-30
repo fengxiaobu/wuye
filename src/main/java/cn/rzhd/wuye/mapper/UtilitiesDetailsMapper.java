@@ -35,9 +35,9 @@ public interface UtilitiesDetailsMapper {
 
     BigDecimal getAstrictPaid(@Param("houseInfoId") String houseInfoId, @Param("startDate") Date startDate, @Param("endDate") Date endDate);
 
-    String getCompanyName(String pk_feeType);
+    String getCompanyName(@Param("pk_feeType") String pk_feeType,@Param("pk_corp") String pk_corp);
 
-    String getCompanyAccount(String pk_feeType);
+    String getCompanyAccount(@Param("pk_feeType") String pk_feeType,@Param("pk_corp")String pk_corp);
 
-    String getCostType(String pk_feeType);
+    String getCostType(@Param("pk_feeType") String pk_feeType,@Param("pk_corp") String pk_corp);
 }

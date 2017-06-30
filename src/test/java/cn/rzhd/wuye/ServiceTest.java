@@ -6,10 +6,12 @@ import cn.rzhd.wuye.service.ICompanyService;
 import cn.rzhd.wuye.service.IKfFeeService;
 import cn.rzhd.wuye.service.IPropertyFeeService;
 import cn.rzhd.wuye.uploadclient.Exception;
+import cn.rzhd.wuye.utils.IDUtils;
 import cn.rzhd.wuye.utils.JsonUtils;
 import cn.rzhd.wuye.utils.MD5Utils;
 import cn.rzhd.wuye.vo.*;
 import com.github.pagehelper.StringUtil;
+import com.xiaoleilu.hutool.lang.Base64;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -141,13 +143,11 @@ public class ServiceTest extends BaseTest {
      */
     @Test
     public void testUpload() throws RemoteException, Exception {
-        String s = "wuye,123456/shuifei,654321";
-        String[] split = s.split("/");
-        for (String s1 : split) {
-            String[] split1 = s1.split(",");
-            System.out.println("费用类型:"+split1[0]);
-            System.out.println("缴费记录ID:"+split1[1]);
-        }
+        String s = IDUtils.genLongUID().toString();
+        System.out.println(s);
+        String encode = Base64.encode(s);
+        String s1 = Base64.decodeStr(encode);
+        System.out.println(s1);
 
     }
 }

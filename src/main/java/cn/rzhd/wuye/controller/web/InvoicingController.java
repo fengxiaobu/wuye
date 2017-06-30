@@ -36,6 +36,8 @@ public class InvoicingController {
         propertyFeePayDetails.setCarteTime(new Date());
         propertyFeePayDetails.setPayTime(new Date());
         propertyFeePayDetails.setPropertyFeePayDetails(id);
+        propertyFeePayDetails.setCollectingAccount(propertyFeePayDetailsService.getCompanyAccount(propertyFeePayDetails.getFeecode(), propertyFeePayDetails.getPk_corp()));
+        propertyFeePayDetails.setCollectingCompany(propertyFeePayDetailsService.getCompanyName(propertyFeePayDetails.getFeecode(),propertyFeePayDetails.getPk_corp()));
         propertyFeePayDetailsService.addDetails(propertyFeePayDetails);
         return id.toString();
     }
@@ -56,17 +58,9 @@ public class InvoicingController {
         details.setUtilitiesDetailsId(id);
         details.setCarteTime(new Date());
         details.setPayTime(new Date());
-        details.setCostType(utilitiesService.getCostType(details.getCostType()));
-        //新创建一个水电缴费对象,用于分割一部分水费数据到其中;
-//        UtilitiesDetails newOne = new UtilitiesDetails();
-//        newOne.setUtilitiesDetailsId(id);
-//        newOne.setCarteTime(new Date());
-//        newOne.setClientName(details.getClientName());
-//        newOne.setCollectingAccount(details.getCollectingAccount());
-//        newOne.setCollectingCompany(details.getCollectingCompany());
-//        newOne.setCostType("水费");
-        details.setCollectingAccount(utilitiesService.getCompanyAccount(details.getCostType()));
-        details.setCollectingCompany(utilitiesService.getCompanyName(details.getCostType()));
+        details.setCostType(utilitiesService.getCostType(details.getCostType(), details.getPk_corp()));
+        details.setCollectingAccount(utilitiesService.getCompanyAccount(details.getCostType(), details.getPk_corp()));
+        details.setCollectingCompany(utilitiesService.getCompanyName(details.getCostType(), details.getPk_corp()));
         utilitiesService.addDetails(details);
         return id.toString();
     }

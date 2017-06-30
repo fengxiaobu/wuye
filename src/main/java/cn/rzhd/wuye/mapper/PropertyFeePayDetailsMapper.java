@@ -4,6 +4,7 @@ import cn.rzhd.wuye.bean.PropertyFeePayDetails;
 import cn.rzhd.wuye.vo.query.PropertyFeePayDetailsQuery;
 import cn.rzhd.wuye.vo.query.PropertyRecordsQuery;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Map;
@@ -28,4 +29,10 @@ public interface PropertyFeePayDetailsMapper {
     List<PropertyFeePayDetails> queryByProject(PropertyRecordsQuery query);
 
     List<Map<String, Object>> getByProject(Long userId);
+
+    String getCostType(@Param("feeType") String feeType,@Param("pk_corp") String pk_corp);
+
+    String getCompanyAccount(@Param("feeType") String feeType,@Param("pk_corp") String pk_corp);
+
+    String getCompanyName(@Param("feeType") String feeType,@Param("pk_corp") String pk_corp);
 }
