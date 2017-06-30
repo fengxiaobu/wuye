@@ -151,8 +151,8 @@
             TUNNAGE,
             STATUS
         FROM T_UTILITIES_DETAILS
-        WHERE HOUSE_INFO_ID = #{houseInfoId} AND PAY_TIME BETWEEN to_date(#{startDate}, 'YYYY-MM-DD') AND
-        to_date(#{endDate}, 'YYYY-MM-DD') AND STATUS = 'Y'
+        WHERE HOUSE_INFO_ID = #{houseInfoId} AND PAY_TIME &gt;= to_date(#{startDate}, 'YYYY-MM-DD') AND
+              PAY_TIME &lt;= to_date(#{endDate}, 'YYYY-MM-DD') AND STATUS = 'Y'
     </select>
 
     <select id="getLastElectric" parameterType="cn.rzhd.wuye.vo.query.UtilitiesQuery" resultMap="BaseResultMap">
@@ -309,7 +309,6 @@
         <!--<result property="customerId" column="CUSTOMER_ID"/>-->
 
 
-
     </resultMap>
     <select id="getElectricByProject" parameterType="long" resultMap="electricMap">
         SELECT
@@ -326,27 +325,27 @@
             PAYABLE,
             PAID_IN,
             VOUCHER_NUMBER,
---             INVOICE,
+            --             INVOICE,
             INVOICE_NUMBER,
             INVOICE_NOTES,
             INVOICE_STATUS,
             COLLECTING_COMPANY,
             COLLECTING_ACCOUNT,
---             INVOICE_COMPANY,
+            --             INVOICE_COMPANY,
             PAY_TIME,
---             CARTE_TIME,
---             T_UTILITIES_DETAILS.UPDATE_TIME,
---             CUSTOMER_ID,
+            --             CARTE_TIME,
+            --             T_UTILITIES_DETAILS.UPDATE_TIME,
+            --             CUSTOMER_ID,
             T_UTILITIES_DETAILS.STATUS,
             AMMETER_NUMBER,
             MULTIPLYING_POWER,
             ELECTRIC_POWER
         FROM T_UTILITIES_DETAILS
-            JOIN T_HOUSE_INFO_DETAILS ON T_HOUSE_INFO_DETAILS."pk_house"=T_UTILITIES_DETAILS.HOUSE_INFO_ID
-            JOIN T_PROJECT_INFO ON T_HOUSE_INFO_DETAILS."pk_project"=T_PROJECT_INFO.PK_PROJECT
-            JOIN T_MANAGE ON T_HOUSE_INFO_DETAILS.MANAGE_ID=T_MANAGE."pk_manageId"
-            JOIN T_MANAGE_USER ON T_MANAGE_USER.MANAGE_ID=T_MANAGE."pk_manageId"
-        WHERE T_MANAGE_USER.USER_ID=#{userId} AND FEE_TYPE='电费' AND T_UTILITIES_DETAILS.STATUS='Y'
+            JOIN T_HOUSE_INFO_DETAILS ON T_HOUSE_INFO_DETAILS."pk_house" = T_UTILITIES_DETAILS.HOUSE_INFO_ID
+            JOIN T_PROJECT_INFO ON T_HOUSE_INFO_DETAILS."pk_project" = T_PROJECT_INFO.PK_PROJECT
+            JOIN T_MANAGE ON T_HOUSE_INFO_DETAILS.MANAGE_ID = T_MANAGE."pk_manageId"
+            JOIN T_MANAGE_USER ON T_MANAGE_USER.MANAGE_ID = T_MANAGE."pk_manageId"
+        WHERE T_MANAGE_USER.USER_ID = #{userId} AND FEE_TYPE = '电费' AND T_UTILITIES_DETAILS.STATUS = 'Y'
     </select>
     <resultMap id="waterMap" type="java.util.Map">
         <id property="detailsId" column="UTILITIES_DETAILS_ID"/>
@@ -400,11 +399,11 @@
             T_UTILITIES_DETAILS.STATUS,
             TUNNAGE
         FROM T_UTILITIES_DETAILS
-            JOIN T_HOUSE_INFO_DETAILS ON T_HOUSE_INFO_DETAILS."pk_house"=T_UTILITIES_DETAILS.HOUSE_INFO_ID
-            JOIN T_PROJECT_INFO ON T_HOUSE_INFO_DETAILS."pk_project"=T_PROJECT_INFO.PK_PROJECT
-            JOIN T_MANAGE ON T_HOUSE_INFO_DETAILS.MANAGE_ID=T_MANAGE."pk_manageId"
-            JOIN T_MANAGE_USER ON T_MANAGE_USER.MANAGE_ID=T_MANAGE."pk_manageId"
-        WHERE T_MANAGE_USER.USER_ID=#{userId} AND FEE_TYPE='水费' AND T_UTILITIES_DETAILS.STATUS='Y'
+            JOIN T_HOUSE_INFO_DETAILS ON T_HOUSE_INFO_DETAILS."pk_house" = T_UTILITIES_DETAILS.HOUSE_INFO_ID
+            JOIN T_PROJECT_INFO ON T_HOUSE_INFO_DETAILS."pk_project" = T_PROJECT_INFO.PK_PROJECT
+            JOIN T_MANAGE ON T_HOUSE_INFO_DETAILS.MANAGE_ID = T_MANAGE."pk_manageId"
+            JOIN T_MANAGE_USER ON T_MANAGE_USER.MANAGE_ID = T_MANAGE."pk_manageId"
+        WHERE T_MANAGE_USER.USER_ID = #{userId} AND FEE_TYPE = '水费' AND T_UTILITIES_DETAILS.STATUS = 'Y'
     </select>
     <select id="getAstrictPaid" resultType="bigdecimal">
         SELECT SUM(NVL(PAID_IN, 0))
@@ -413,13 +412,23 @@
               AND PAY_TIME &lt; #{endDate}
               AND PAY_TIME &gt; #{startDate}
     </select>
-    <select id="getCompanyName" parameterType="string" resultType="string">
-        SELECT "unitname" FROM T_COMPANY JOIN T_BANK_ACCOUNT ON "vdef1"=T_COMPANY."pk_corp" WHERE "pk_fee"=#{pk_feeType}
+
+    <select id="getCompanyName" resultType="string">
+        SELECT "unitname"
+        FROM T_COMPANY
+            JOIN T_BANK_ACCOUNT ON "vdef1" = T_COMPANY."pk_corp"
+            JOIN T_FEE_TYPES ON T_FEE_TYPES."pk_fee" = T_BANK_ACCOUNT."pk_fee"
+        WHERE T_FEE_TYPES."feecode" = #{pk_feeType} AND T_FEE_TYPES."pk_corp" = #{pk_corp}
     </select>
-    <select id="getCompanyAccount" parameterType="string" resultType="string">
-        SELECT "account" FROM T_BANK_ACCOUNT WHERE "pk_fee"=#{pk_feeType}
+    <select id="getCompanyAccount" resultType="string">
+        SELECT "account"
+        FROM T_BANK_ACCOUNT
+            JOIN T_FEE_TYPES ON T_FEE_TYPES."pk_fee" = T_BANK_ACCOUNT."pk_fee"
+        WHERE "feecode" = #{pk_feeType} AND T_FEE_TYPES."pk_corp" = #{pk_corp}
     </select>
-    <select id="getCostType" resultType="string" parameterType="string">
-        SELECT "feename" FROM T_FEE_TYPES WHERE "pk_fee"=#{pk_feeType}
+    <select id="getCostType" resultType="string">
+        SELECT "feename"
+        FROM T_FEE_TYPES
+        WHERE "feecode" = #{pk_feeType} AND "pk_corp" = #{pk_corp}
     </select>
 </mapper>

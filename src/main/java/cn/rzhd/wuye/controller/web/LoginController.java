@@ -50,9 +50,9 @@ public class LoginController {
                     List<RetreatLeaseApply> retreatLeaseApply = retreatLeaseApplyService.findRetreatLeaseApply(vo.getPk_house());
                     //获取房产状态
                     HouseInfoDetails houseInfoDetails = houseInfoDetailsService.selectByPkHouse(vo.getPk_house());
-                    if (reletApply != null) {
+                    if (reletApply.size() > 0) {
                         vo.setContractStatus("1");
-                    } else if (retreatLeaseApply != null) {
+                    } else if (retreatLeaseApply.size() > 0) {
                         vo.setContractStatus("-1");
                     } else {
                         vo.setContractStatus("0");

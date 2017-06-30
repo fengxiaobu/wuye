@@ -138,26 +138,70 @@
             </tbody>
           </table>
 </form>
+<form id="tui"  >
+<input type="text" name="houseInfoId" value='22'>
+<input type="text" name="clientName" value='45'>
+<input type="text" name="houseAcreage" value='44'>
+</form>
+
 </body>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/libs/jquery-1.11.3.min.js"></script>
 <script type="text/javascript">
 
 var json =  {
-    	//"\"houseInfoId\"":'222'
-        houseInfoId: '222',
-        decorateDetailList: [{ // 装修详情
-            "detailOrder": '11', // 明细顺序
-            "detailContent": '43' // 明细内容
-        }]};
-        alert(JSON.stringify(json));
+    	houseInfoId: "11", // 房产id
+        clientName: "22", // 客户名称
+        houseAcreage: 45, // 房产面积
+        leaseStartTime: null, // 租赁开始日期
+        leaseEndTime: null, // 租赁结束日期
+        retreaTime: null, // 续租开始日期
+        retreaEndTime: null // 续租结束时间
+    	
+    };
+       // alert(JSON.stringify(json));
+        
+        
+        //         /*请求参数： 
+        //         --------------------------------------------------*/
+        // /*续租*/
+         
+
+
+        // /*退租*/
+        // // houseInfoId: null, // 房产id
+        // houseNumber: null, // 房产编号
+        // // houseAcreage: null, // 房产面积
+        // // leaseStartTime: null, // 租赁开始日期
+        // // leaseEndTime: null, // 租赁结束日期
+        // retreatLeaseTime: null, // 退租日期
+        // arrearsRent: null, // 欠缴租金
+        // creationTime: null, // 提交日期
+        // updateTime: null, // 修改日期
+
+        
+          var _url = 'http://localhost:8080/wuye/dist' + '/insertReletApply'; // 续租
+          var _url = 'http://localhost:8080/wuye/dist' + '/insertRetreatLease'; // 退租申请
+        
+        
+        
+        
             $.ajax({
                 type: "post",
-                contentType: "application/json",
+                //contentType: "application/json",
                // contentType:"text/json,html,xml;charset=utf-8",
                dataType: 'json',
-                url: '${pageContext.request.contextPath}/dist' + '/upload/batch', // 
-               // data: $('#decinfoedit').serialize(),
-                data: JSON.stringify(json), 
+                url: '${pageContext.request.contextPath}/dist' + '/insertReletApply', // 
+                data: $('#tui').serialize(),
+               /*  data: {
+                	houseInfoId: "11", // 房产id
+                    clientName: "22", // 客户名称
+                    houseAcreage: 45, // 房产面积
+                    leaseStartTime: null, // 租赁开始日期
+                    leaseEndTime: null, // 租赁结束日期
+                    retreaTime: null, // 续租开始日期
+                    retreaEndTime: null // 续租结束时间
+                	
+                },  */
                /*  {
                 	//"\"houseInfoId\"":'222'
                 houseInfoId: '222',
@@ -212,31 +256,6 @@ var json =  {
 
 
             
-        //         /*请求参数： 
-        //         --------------------------------------------------*/
-        // /*续租*/
-        // houseInfoId: null, // 房产id
-        // clientName: global.userInfo.user.username, // 客户名称
-        // houseAcreage: 45, // 房产面积
-        // leaseStartTime: null, // 租赁开始日期
-        // leaseEndTime: null, // 租赁结束日期
-        // retreaTime: null, // 续租开始日期
-        // retreaEndTime: null, // 续租结束时间
-
-
-        // /*退租*/
-        // // houseInfoId: null, // 房产id
-        // houseNumber: null, // 房产编号
-        // // houseAcreage: null, // 房产面积
-        // // leaseStartTime: null, // 租赁开始日期
-        // // leaseEndTime: null, // 租赁结束日期
-        // retreatLeaseTime: null, // 退租日期
-        // arrearsRent: null, // 欠缴租金
-        // creationTime: null, // 提交日期
-        // updateTime: null, // 修改日期
-
-        
-          var _url = 'http://localhost:8080/wuye/dist' + '/insertReletApply'; // 续租
-          var _url = 'http://localhost:8080/wuye/dist' + '/insertRetreatLease'; // 退租申请
+     
 </script>
 </html>

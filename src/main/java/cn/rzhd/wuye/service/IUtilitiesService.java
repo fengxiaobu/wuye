@@ -27,9 +27,9 @@ public interface IUtilitiesService {
 
     BigDecimal getAstrictPaid(String houseInfoId, Date startDate, Date endDate);
 
-    String getCompanyName(String pk_feeType);
+    String getCompanyName(String pk_feeType,String pk_corp);
 
-    String getCompanyAccount(String pk_feeType);
+    String getCompanyAccount(String pk_feeType,String pk_corp);
 
-    String getCostType(String pk_feeType);
+    String getCostType(String pk_feeType,String pk_corp);
 }

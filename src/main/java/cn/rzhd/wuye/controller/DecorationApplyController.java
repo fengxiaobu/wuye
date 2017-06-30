@@ -8,10 +8,14 @@ import cn.rzhd.wuye.utils.IDUtils;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.xiaoleilu.hutool.util.NumberUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -85,20 +89,23 @@ public class DecorationApplyController {
         decorationApply.setApplyTime(date);
         decorationApply.setCreationTime(date);
         System.out.println("aLong = " + aLong);
+
         try {
             if (decorationApply.getDecorateArea() != null) {
+                double mul = NumberUtil.mul(decorationApply.getDecorateArea(), 100);
                 //装修押金
-                if (decorationApply.getDecorateArea() < 1000) {
+                if (NumberUtil.compare(decorationApply.getDecorateArea(), 1000) == -1) {
                     decorationApply.setDecorationDeposit(new BigDecimal(5000.00));
-                } else if (decorationApply.getDecorateArea() >= 1000) {
+                } else if (NumberUtil.compare(decorationApply.getDecorateArea(), 1000) != -1) {
                     decorationApply.setDecorationDeposit(new BigDecimal(10000.00));
                 }
+
                 //装修管理费
-                decorationApply.setDecorationManagementCost(new BigDecimal(decorationApply.getDecorateArea() * 3));
+                decorationApply.setDecorationManagementCost(new BigDecimal(NumberUtil.mul(decorationApply.getDecorateArea(), 3)));
                 //出入证工本费
-                decorationApply.setPassPapersCost(new BigDecimal(decorationApply.getConstructPeopleNumber() * 10));
+                decorationApply.setPassPapersCost(new BigDecimal(NumberUtil.mul(decorationApply.getConstructPeopleNumber(), 10)));
                 //出入证押金
-                decorationApply.setPassPapersDeposit(new BigDecimal(decorationApply.getConstructPeopleNumber() * 10));
+                decorationApply.setPassPapersDeposit(new BigDecimal(NumberUtil.mul(decorationApply.getConstructPeopleNumber(), 10)));
                 //装修申请
                 System.out.println("/ndecorationApply = " + decorationApply + "/n");
                 decorationApplyService.insert(decorationApply);
@@ -202,7 +209,7 @@ public class DecorationApplyController {
         if (decorationApply.getDecorationApplyId() == null) {
             result.put("state", "0");
             result.put("msg", "ID不能为空!");
-           // return result;
+            // return result;
         }
 
         int i = decorationApplyService.updateByPrimaryKey(decorationApply);
@@ -225,7 +232,7 @@ public class DecorationApplyController {
         System.out.println("i = " + i);
         result.put("state", "1");
 
-       // return result;
+        // return result;
         return "redirect:/dist/toDecorationApplyList";
     }
 
@@ -308,10 +315,18 @@ public class DecorationApplyController {
         return "decoration/decorationApplyEdit";
     }
 
+    /**
+     * 删除装修申请信息
+     *
+     * @param decorationApplyId
+     * @return
+     */
     @RequestMapping("/deleteDecorationApplyByID")
     public String deleteDecorationApplyByID(Long decorationApplyId) {
         if (decorationApplyId != null) {
             decorationApplyService.deleteByPrimaryKey(decorationApplyId);
+            DecorationApply decorationApply = decorationApplyService.selectByPrimaryKey(decorationApplyId);
+            houseInfoDetailsService.updateHouse(decorationApply.getHouseInfoId(), null, "0");
         }
         return "redirect:/dist/toDecorationApplyList";
     }

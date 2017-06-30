@@ -205,11 +205,29 @@
             T_PROPERTY_FEE_PAY_DETAILS.STATUS,
             FEETYPE
         FROM T_PROPERTY_FEE_PAY_DETAILS
-            JOIN T_HOUSE_INFO_DETAILS ON T_HOUSE_INFO_DETAILS."pk_house"=T_PROPERTY_FEE_PAY_DETAILS.HOUSE_INFO_ID
-            JOIN T_PROJECT_INFO ON T_HOUSE_INFO_DETAILS."pk_project"=T_PROJECT_INFO.PK_PROJECT
-            JOIN T_MANAGE ON T_HOUSE_INFO_DETAILS.MANAGE_ID=T_MANAGE."pk_manageId"
-            JOIN T_MANAGE_USER ON T_MANAGE_USER.MANAGE_ID=T_MANAGE."pk_manageId"
-        WHERE T_MANAGE_USER.USER_ID=#{userId} AND T_PROPERTY_FEE_PAY_DETAILS.STATUS='Y'
+            JOIN T_HOUSE_INFO_DETAILS ON T_HOUSE_INFO_DETAILS."pk_house" = T_PROPERTY_FEE_PAY_DETAILS.HOUSE_INFO_ID
+            JOIN T_PROJECT_INFO ON T_HOUSE_INFO_DETAILS."pk_project" = T_PROJECT_INFO.PK_PROJECT
+            JOIN T_MANAGE ON T_HOUSE_INFO_DETAILS.MANAGE_ID = T_MANAGE."pk_manageId"
+            JOIN T_MANAGE_USER ON T_MANAGE_USER.MANAGE_ID = T_MANAGE."pk_manageId"
+        WHERE T_MANAGE_USER.USER_ID = #{userId} AND T_PROPERTY_FEE_PAY_DETAILS.STATUS = 'Y'
 
+    </select>
+    <select id="getCostType" resultType="string">
+        SELECT "feename"
+        FROM T_FEE_TYPES
+        WHERE "feecode" = #{feeType} AND "pk_corp" = #{pk_corp}
+    </select>
+    <select id="getCompanyAccount" resultType="string">
+        SELECT "account"
+        FROM T_BANK_ACCOUNT
+            JOIN T_FEE_TYPES ON T_FEE_TYPES."pk_fee" = T_BANK_ACCOUNT."pk_fee"
+        WHERE "feecode" = #{feeType} AND T_FEE_TYPES."pk_corp" = #{pk_corp}
+    </select>
+    <select id="getCompanyName" resultType="string">
+        SELECT "unitname"
+        FROM T_COMPANY
+            JOIN T_BANK_ACCOUNT ON T_COMPANY."pk_corp" = "vdef1"
+            JOIN T_FEE_TYPES ON T_FEE_TYPES."pk_fee" = T_BANK_ACCOUNT."pk_fee"
+        WHERE T_FEE_TYPES."pk_corp" = #{pk_corp} AND "feecode" = #{feeType}
     </select>
 </mapper>
