@@ -7,9 +7,9 @@ public interface ICustomerCentreService {
 
     <T> T findCustomerInfo(Customer customer);
     
-    void updateLogo(Customer customer);
+    void updateLogo(String LOGO,String vccode);
     
-    void updatePhone(Customer customer);
+    void updatePhone(String bindingPhone,String vccode);
     
     /**
      * @param customerId

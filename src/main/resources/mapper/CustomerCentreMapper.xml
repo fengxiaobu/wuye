@@ -73,14 +73,10 @@
     </resultMap>
 
     <update id="updateLogo">
-        UPDATE "T_Customer"
-        SET LOGO = #{customer.LOGO}
-        WHERE "pk_customerid" = #{customer.pk_customerid}
+         UPDATE "T_Customer" SET  LOGO = #{LOGO} WHERE "vccode"=#{vccode}
     </update>
     <update id="updatePhone">
-        UPDATE "T_Customer"
-        SET vpreferredtel = #{customer.vpreferredtel}
-        WHERE "pk_customerid" = #{customer.pk_customerid}
+    	UPDATE "T_Customer" SET  "Binding_Phone" = #{bindingPhone} WHERE "vccode"=#{vccode}
     </update>
     <update id="updatePerfectInformation">
         UPDATE

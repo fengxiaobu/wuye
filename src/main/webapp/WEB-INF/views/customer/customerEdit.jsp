@@ -8,7 +8,38 @@
 	href="${pageContext.request.contextPath}/js/libs/bootstrap/css/bootstrap.css">
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/css/reset.css">
+<style type="text/css">
+		.file {
+			position: relative;
+			display: inline-block;
+			background: #D0EEFF;
+			border: 1px solid #99D3F5;
+			border-radius: 4px;
+			padding: 4px 12px;
+			overflow: hidden;
+			color: #1E88C7;
+			text-decoration: none;
+			text-indent: 0;
+			line-height: 20px;
+		}
+		
+		.file input {
+			position: absolute;
+			font-size: 100px;
+			right: 0;
+			top: 0;
+			opacity: 0;
+		}
+		
+		.file:hover {
+			background: #AADFFD;
+			border-color: #78C3F3;
+			color: #004974;
+			text-decoration: none;
+		}
+</style>
 </head>
+
 <body>
 
 	<!-- 路径导航 开始 -->
@@ -28,7 +59,9 @@
 				<div class="form-group">
 					<label for="exampleInputFile" class="col-sm-2 control-label">LOGO</label>
 					<div class="col-sm-10">
-						<input type="file" id="exampleInputFile">
+									<a href="javascript:;" class="file">选择文件
+									    <input type="file" name="" id="" accept="image/png,image/gif,image/jpg">
+									</a>
 					</div>
 				</div>
 				<div class="form-group">
