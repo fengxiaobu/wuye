@@ -5,76 +5,149 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 public class HouseInfoDetails implements Serializable {
+    /**
+     * 房产主键
+     */
     private String pkHouse;
-
+    /**
+     * 公司主键
+     */
     private String pkCorp;
-
+    /**
+     * 项目主键
+     */
     private String pkProject;
-
+    /**
+     * 项目名称
+     */
     private String project;
-
+    /**
+     * 楼栋
+     */
     private String building;
-
+    /**
+     * 楼层
+     */
     private String ifloor;
-
+    /**
+     * 单元
+     */
     private String vhcell;
-
+    /**
+     * 房号
+     */
     private String vhnum;
-
+    /**
+     * 房产编码
+     */
     private String vhcode;
-
+    /**
+     * 房产名称
+     */
     private String vhname;
-
+    /**
+     * 朝向
+     */
     private String otation;
-
+    /**
+     * 业态
+     */
     private String room;
-
+    /**
+     * 销售方式
+     */
     private String situation;
-
+    /**
+     * 运营状态
+     */
     private String fsellmethod;
-
+    /**
+     * 运营状态
+     */
     private String managestate;
-
+    /**
+     * 建筑面积
+     */
     private String nbuildarea;
-
+    /**
+     * 套内面积
+     */
     private String ninarea;
-
+    /**
+     * 租赁面积
+     */
     private String nleaseoutarea;
-
+    /**
+     * 物业面积
+     */
     private String nmanagearea;
-
+    /**
+     * 销售面积
+     */
     private String nsellarea;
-
+    /**
+     * 公摊面积
+     */
     private String npublicarea;
-
+    /**
+     * 地下室面积
+     */
     private String nunderlinearea;
-
+    /**
+     * 花园面积
+     */
     private String ngardenarea;
-
+    /**
+     * 实测公摊面积
+     */
     private String nrpublicarea;
-
+    /**
+     * 实测套内面积
+     */
     private String nrinarea;
-
+    /**
+     * 实测建筑面积
+     */
     private String nrbuildarea;
-
+    /**
+     * 实测地下室面积
+     */
     private String nrunderlinearea;
-
+    /**
+     * 实测花园面积
+     */
     private String nrgardenarea;
-
+    /**
+     * 首次限制开始日期
+     */
     private Date startdate;
-
+    /**
+     * 首次限制结束日期
+     */
     private Date enddate;
-
+    /**
+     * 首次限缴金额
+     */
     private BigDecimal firstmny;
-
+    /**
+     * 每月限制金额
+     */
     private BigDecimal everymny;
-
+    /**
+     * 缴费限制状态(Y--启用,N--禁用)
+     */
     private String astrictstatus;
-
+    /**
+     * 缴费限制更新时间
+     */
     private Date updatedate;
-
+    /**
+     * 入住申请状态
+     */
     private String enterapplyState;
-
+    /**
+     * 装修申请状态
+     */
     private String decorationapplystate;
 
     private ProjectInfo projectInfo;
