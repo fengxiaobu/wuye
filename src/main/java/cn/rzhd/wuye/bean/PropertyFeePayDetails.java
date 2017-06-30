@@ -16,6 +16,10 @@ import java.util.List;
 */
 public class PropertyFeePayDetails implements Serializable{
 	private static final long serialVersionUID = 1L;
+    /**
+     * 公司主键
+     */
+	private String pk_corp;
 	/**
 	 * 物业缴费详情id
 	 */
@@ -32,6 +36,10 @@ public class PropertyFeePayDetails implements Serializable{
 	 * 费用类型
 	 */
 	private String costType;
+	/**
+	 * 费用编码(装修管理费)
+	 */
+	private String feecode;
 	/**
 	 * 支付方式
 	 */
@@ -380,5 +388,21 @@ public class PropertyFeePayDetails implements Serializable{
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+	public String getFeecode() {
+		return feecode;
+	}
+
+	public void setFeecode(String feecode) {
+		this.feecode = feecode;
+	}
+
+    public String getPk_corp() {
+        return pk_corp;
+    }
+
+    public void setPk_corp(String pk_corp) {
+        this.pk_corp = pk_corp;
     }
 }

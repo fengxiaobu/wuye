@@ -161,17 +161,17 @@ public class ChinaPay {
         if (ChinaPayHelper.verify(resultMap)) {
             //验证成功调用方法使缴费记录生效
             String merResv = Base64.decodeStr(resultMap.get("MerResv"));
-            System.out.println("----------------------------解析Base64"+merResv);
+            System.out.println("----------------------------解析Base64" + merResv);
             JSONArray objects = JSON.parseArray(merResv);
-            System.out.println("---------------------------------解析JSON"+objects);
+            System.out.println("---------------------------------解析JSON" + objects);
             Iterator<Object> iterator = objects.iterator();
-            System.out.println("---------------------------获得迭代器"+iterator);
+            System.out.println("---------------------------获得迭代器" + iterator);
             while (iterator.hasNext()) {
                 CallBackVO vo = JSON.toJavaObject((JSON) iterator.next(), CallBackVO.class);
                 System.out.println("-----------------------------------------------------------------");
                 System.out.println("-----------------------------------------------------------------");
                 System.out.println("-----------------------------------------------------------------");
-                System.out.println("费用类型:"+vo.getType()+",费用记录ID:"+vo.getId());
+                System.out.println("费用类型:" + vo.getType() + ",费用记录ID:" + vo.getId());
                 System.out.println("-----------------------------------------------------------------");
                 System.out.println("-----------------------------------------------------------------");
                 System.out.println("-----------------------------------------------------------------");
@@ -184,27 +184,29 @@ public class ChinaPay {
                 } else if ("shuidian".equals(vo.getType())) {
                     shuidian.changeStatus(vo.getId());
                 } else if ("rzwuye".equals(vo.getType())) {
-                    enterApplyService.updatePayState("1", null, vo.getId());
+                    enterApplyService.updatePayState("1", null, vo.getApplyId());
+                    wuye.changeStatus(vo.getId());
                 } else if ("rzkaifa".equals(vo.getType())) {
-                    enterApplyService.updatePayState(null, "1", vo.getId());
+                    enterApplyService.updatePayState(null, "1", vo.getApplyId());
+                    kaifa.changeStatus(vo.getId());
                 } else if ("zxfy".equals(vo.getType())) {
-                    decorationApplyService.updatePayState("1", vo.getId());
+                    decorationApplyService.updatePayState("1", vo.getApplyId());
+                    wuye.changeStatus(vo.getId());
                 } else {
                     System.out.println("缴费记录生成失败:未知的缴费类型(物业,开发,水电)");
                 }
             }
-
             System.out.println("*************************                               ******************************");
             System.out.println("*************************                               ******************************");
-            System.out.println("***********************交易成功************************");
+            System.out.println("***********************返回报文解析成功************************");
             System.out.println("*************************                               ******************************");
-            response.getWriter().write("success  返回报文解析成功");
+           // response.getWriter().write("success  返回报文解析成功");
         } else {
             System.out.println("*************************                               ******************************");
             System.out.println("*************************                               ******************************");
             System.out.println("***********************交易失败************************");
             System.out.println("*************************                               ******************************");
-            response.getWriter().write("fail");
+           // response.getWriter().write("fail");
         }
     }
 
@@ -290,6 +292,7 @@ public class ChinaPay {
 
     /**
      * 扫码支付
+     *
      * @param req
      * @param orderAmt
      * @param commodityMsg

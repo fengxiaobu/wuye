@@ -182,5 +182,6 @@
             RETREA_END_TIME,
             house.*
         FROM T_RELET_APPLY apply LEFT JOIN T_HOUSE_INFO_DETAILS house ON apply.HOUSE_INFO_ID = house."pk_house"
+        WHERE apply.HOUSE_INFO_ID = #{houseInfoId}
     </select>
 </mapper>

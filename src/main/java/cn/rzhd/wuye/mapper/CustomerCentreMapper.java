@@ -15,9 +15,9 @@ public interface CustomerCentreMapper {
 
     List<Map<String, Object>> findHouse(@Param("customer") Customer customer);
 
-    void updateLogo(@Param("customer") Customer customer);
+    void updateLogo(@Param("LOGO") String LOGO,@Param("vccode") String vccode);
 
-    void updatePhone(@Param("customer") Customer customer);
+    void updatePhone(@Param("bindingPhone") String bindingPhone,@Param("vccode") String vccode);
 
 
 

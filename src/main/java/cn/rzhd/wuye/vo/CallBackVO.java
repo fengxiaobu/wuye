@@ -11,6 +11,7 @@ public class CallBackVO implements Serializable {
 
     private String type;//费用类型(wuye-物业,kaifa-开发,shuidian-水电)
     private Long id;//缴费记录ID
+    private Long applyId;//房产主键
 
     public String getType() {
         return type;
@@ -26,5 +27,13 @@ public class CallBackVO implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getApplyId() {
+        return applyId;
+    }
+
+    public void setApplyId(Long applyId) {
+        this.applyId = applyId;
     }
 }

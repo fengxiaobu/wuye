@@ -7,12 +7,8 @@ import cn.rzhd.wuye.service.IRetreatLeaseApplyService;
 import cn.rzhd.wuye.utils.IDUtils;
 import com.github.pagehelper.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import org.springframework.web.bind.annotation.RequestBody;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -66,6 +62,7 @@ public class ReletApplyController {
 
     /**
      * 更新续租
+     *
      * @param reletApply
      * @param model
      * @return
@@ -86,9 +83,7 @@ public class ReletApplyController {
     }
 
     /**
-     *
      * @param model
-     *
      * @return
      */
     @RequestMapping("/findReletApply")
@@ -101,6 +96,7 @@ public class ReletApplyController {
 
     /**
      * 获取所有退租申请信息
+     *
      * @param model
      * @return
      */
@@ -113,6 +109,7 @@ public class ReletApplyController {
 
     /**
      * 根据房产ID获取退租申请信息
+     *
      * @param pkHouse
      * @return
      */
@@ -194,8 +191,9 @@ public class ReletApplyController {
             return result;
         }
         List<RetreatLeaseApply> retreatLeaseApply = retreatLeaseApplyService.findRetreatLeaseApply(houseInfoId);
+
         result.put("state", "1");
-        result.put("data", retreatLeaseApply);
+        result.put("data", retreatLeaseApply.get(0));
         return result;
     }
 }

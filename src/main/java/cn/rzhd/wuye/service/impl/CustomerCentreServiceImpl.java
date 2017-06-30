@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,13 +30,13 @@ public class CustomerCentreServiceImpl implements ICustomerCentreService {
 	}
 
 	@Override
-	public void updateLogo(Customer customer) {
-		mapper.updateLogo(customer);
+	public void updateLogo(String LOGO,String vccode) {
+		mapper.updateLogo(LOGO, vccode);
 	}
 
 	@Override
-	public void updatePhone(Customer customer) {
-		mapper.updatePhone(customer);
+	public void updatePhone(String bindingPhone,String vccode) {
+		mapper.updatePhone(bindingPhone, vccode);
 
 	}
 

@@ -45,8 +45,8 @@ public class CustomerServiceImpl implements ICustomerService {
     }
 
     @Override
-    public void updadteState(String currentFlow, String vcCode) {
-        mapper.updadteState(currentFlow,vcCode);
+    public void updadteState(String currentFlow, String houseInfoId) {
+        mapper.updadteState(currentFlow,houseInfoId);
     }
 
 	@Override
