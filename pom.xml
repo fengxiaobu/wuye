@@ -395,11 +395,13 @@
                     <className>cn.rzhd.wuye.wsserver.UpdateDataServiceImpl</className>
                 </configuration>
                 <executions>
-                    <execution>
+                <!-- 
+                   <execution>
                         <goals>
                             <goal>java2wsdl</goal>
                         </goals>
                     </execution>
+                     --> 
                     <execution>
                         <id>spring-boot-starter-tomcat</id>
                     </execution>
