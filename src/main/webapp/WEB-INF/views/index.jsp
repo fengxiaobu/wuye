@@ -87,10 +87,6 @@
                                 <div class="panel-header">
                                     <a href="${pageContext.request.contextPath}/propertyRecords/index" target="main">物业缴费记录</a>
                                 </div>
-                                <div class="panel-header">
-                                    <a data-toggle="collapse" data-parent="#"
-                                       href="#">收费清单</a>
-                                </div>
                             </li>
 
                             <li class="panel" role="tab">
@@ -99,10 +95,6 @@
                                 </div>
                                 <div class="panel-header">
                                     <a href="${pageContext.request.contextPath}/kfRecords/index" target="main">开发缴费记录</a>
-                                </div>
-                                <div class="panel-header">
-                                    <a data-toggle="collapse" data-parent="#aside_two_02"
-                                       href="#">收费清单</a>
                                 </div>
                             </li>
                             <li class="panel" role="tab">

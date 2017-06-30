@@ -17,7 +17,7 @@ import java.util.Map;
 @RequestMapping("/utilitiesRecords")
 public class UtilitiesRecordsController {
     @Autowired
-    IUtilitiesService service;
+    private IUtilitiesService service;
 
     @RequestMapping("/electricIndex")
     public ModelAndView electricIndex(){
@@ -36,6 +36,20 @@ public class UtilitiesRecordsController {
         List<Map<String,Object>> result = service.getWaterByProject(userId);
         mav.addObject("waterRecords",result);
         mav.setViewName("payment/water");
+        return mav;
+    }
+
+    @RequestMapping("/electricDetails")
+    public ModelAndView electricDetails(){
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("payment/electricDetails");
+        return mav;
+    }
+
+    @RequestMapping("/waterDetails")
+    public ModelAndView waterDetails(){
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("payment/waterDetails");
         return mav;
     }
 }
