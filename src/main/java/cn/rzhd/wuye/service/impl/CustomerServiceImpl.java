@@ -15,6 +15,7 @@ import java.util.List;
  */
 @Service
 public class CustomerServiceImpl implements ICustomerService {
+    @SuppressWarnings("SpringJavaAutowiringInspection")
     @Autowired
     CustomerMapper mapper;
 
@@ -45,8 +46,8 @@ public class CustomerServiceImpl implements ICustomerService {
     }
 
     @Override
-    public void updadteState(String currentFlow, String houseInfoId) {
-        mapper.updadteState(currentFlow,houseInfoId);
+    public void updadteState(String currentFlow, String vccode) {
+        mapper.updadteState(currentFlow,vccode);
     }
 
 	@Override

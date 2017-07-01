@@ -170,13 +170,13 @@
     <select id="getAll" resultMap="houseVOBackMap">
         SELECT
             DISTINCT
+            H."vhcode",
             H."pk_project",
             s."pk_house",
             P.PK_PROJECT,
             c."pk_customerid",
             c."vcname",
             P.PROJECT_NAME,
-            H."vhcode",
             H."nsellarea",
             s."nprice",
             s."nythisdiscountmny",
@@ -253,6 +253,10 @@
         <result column="UPDATEDATE" property="updatedate" jdbcType="DATE"/>
         <result column="ENTERAPPLY_STATE" property="enterapplyState" jdbcType="VARCHAR"/>
         <result column="DECORATIONAPPLYSTATE" property="decorationapplystate" jdbcType="VARCHAR"/>
-
+        <result column="ALREADY_FINISH" property="alreadyFinish" jdbcType="VARCHAR"/>
     </resultMap>
+    
+    <update id="updadteState">
+        UPDATE T_HOUSE_INFO_DETAILS SET ALREADY_FINISH = #{alreadyFinish}  WHERE "houseInfoId" = #{houseInfoId}
+    </update>
 </mapper>

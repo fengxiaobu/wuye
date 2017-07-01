@@ -1,28 +1,23 @@
 package cn.rzhd.wuye.controller.web;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Hashtable;
-import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-
+import cn.rzhd.wuye.bean.Customer;
+import cn.rzhd.wuye.bean.PerfectInformation;
+import cn.rzhd.wuye.service.ICustomerCentreService;
+import cn.rzhd.wuye.service.ICustomerService;
+import cn.rzhd.wuye.service.IHouseInfoDetailsService;
+import cn.rzhd.wuye.service.IPerfectInformationService;
+import cn.rzhd.wuye.utils.Client;
+import cn.rzhd.wuye.utils.JsonUtils;
+import cn.rzhd.wuye.utils.MD5Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import cn.rzhd.wuye.bean.Customer;
-import cn.rzhd.wuye.bean.PerfectInformation;
-import cn.rzhd.wuye.service.ICustomerCentreService;
-import cn.rzhd.wuye.service.ICustomerService;
-import cn.rzhd.wuye.service.IPerfectInformationService;
-import cn.rzhd.wuye.utils.Client;
-import cn.rzhd.wuye.utils.JsonUtils;
-import cn.rzhd.wuye.utils.MD5Utils;
+import javax.servlet.http.HttpServletRequest;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.util.*;
 
 /**
  * © 2017 RZHD.CN
@@ -45,6 +40,8 @@ public class CustomerCentreController {
 	ICustomerService customerService;
 	@Autowired
 	private ICustomerCentreService customerCentreService;
+	@Autowired
+	IHouseInfoDetailsService houseInfoDetailsService;
 
 	/**
 	 * 查询用户信息和入驻信息
@@ -146,29 +143,6 @@ public class CustomerCentreController {
 		return result;
 	}
 
-	/**
-	 * 修改资料
-	 *
-	 * @param perfectInformation
-	 * @return
-	 */
-	@RequestMapping(value = "/updatePerfectInformation", method = RequestMethod.POST)
-	public Map<String, Object> updatePerfectInformation(PerfectInformation perfectInformation, String houseInfoId) {
-		Map<String, Object> result = new Hashtable<>();
-		
-		try {
-			perfectInformation.setPerfectInformationId(houseInfoId);
-			perfectInformation.setUpdateTime(new Date());
-			perfectInformationService.updateByHouseInfoId(perfectInformation);
-			customerService.updadteState("1", houseInfoId);
-			result.put("state", "1");
-			return result;
-		} catch (Exception e) {
-			result.put("state", "0");
-			result.put("msg", e.getMessage());
-			return result;
-		}
-	}
 
 	/**
 	 * 完善资料
@@ -179,10 +153,17 @@ public class CustomerCentreController {
 	public Map<String, Object> savePerfectInformation(PerfectInformation perfectInformation, String houseInfoId) {
 		Map<String, Object> result = new Hashtable<>();
 		try {
-			perfectInformation.setPerfectInformationId(houseInfoId);
-			perfectInformation.setCarteTime(new Date());
-			perfectInformationService.save(perfectInformation);
-			customerService.updadteState("1", houseInfoId);
+			if (perfectInformation.getPerfectInformationId() == null && "".equals(perfectInformation.getPerfectInformationId())) {
+				perfectInformation.setUpdateTime(new Date());
+				//修改
+				perfectInformationService.updateByHouseInfoId(perfectInformation);
+			}else {
+				//保存
+				perfectInformation.setPerfectInformationId(houseInfoId);
+				perfectInformation.setCarteTime(new Date());
+				perfectInformationService.save(perfectInformation);
+				houseInfoDetailsService.updadteState("1", houseInfoId);
+			}
 			result.put("state", "1");
 			return result;
 		} catch (Exception e) {

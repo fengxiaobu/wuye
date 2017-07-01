@@ -250,7 +250,7 @@ public class ChinaPay {
         request.getSession().setAttribute("pay", result);
     }
 
-    @RequestMapping("/dist/pay")
+    /*@RequestMapping("/dist/pay")
     @ResponseBody
     public Map<String, Object> getResponsePay(HttpServletRequest request) {
         Map<String, Object> result = new HashMap<>();
@@ -265,7 +265,7 @@ public class ChinaPay {
         request.getSession().removeAttribute("pay");
         System.out.println("删除session");
         return result;
-    }
+    }*/
 
     /**
      * 获取入驻支付结果
@@ -332,6 +332,67 @@ public class ChinaPay {
         return objectMap;
     }
 
+    /**
+     * 临时改变支付状态
+     *
+     * @param merResv
+     * @return
+     */
+    @RequestMapping("dist/updatePayState")
+    @ResponseBody
+    public Map<String, String> updatePayState(String merResv) {
+        Map<String, String> result = new Hashtable<>();
+        try {
+            merResv = Base64.decodeStr(merResv);
+            JSONArray objects = JSON.parseArray(merResv);
+            System.out.println("---------------------------------解析JSON" + objects);
+            Iterator<Object> iterator = objects.iterator();
+            System.out.println("---------------------------获得迭代器" + iterator);
+            while (iterator.hasNext()) {
+                CallBackVO vo = JSON.toJavaObject((JSON) iterator.next(), CallBackVO.class);
+                System.out.println("-----------------------------------------------------------------");
+                System.out.println("费用类型:" + vo.getType() + ",费用记录ID:" + vo.getId());
+                System.out.println("-----------------------------------------------------------------");
+                if ("wuye".equals(vo.getType())) {
+                    wuye.changeStatus(vo.getId());
+                    result.put("msg", "wuye");
+                } else if ("kaifa".equals(vo.getType())) {
+                    kaifa.changeStatus(vo.getId());
+                    result.put("msg", "kaifa");
+                } else if ("shuidian".equals(vo.getType())) {
+                    shuidian.changeStatus(vo.getId());
+                    result.put("msg", "shuidian");
+                } else if ("rzwuye".equals(vo.getType())) {
+                    enterApplyService.updatePayState("2", null, vo.getApplyId());
+                    wuye.changeStatus(vo.getId());
+                    result.put("msg", "rzwuye");
+                } else if ("rzkaifa".equals(vo.getType())) {
+                    enterApplyService.updatePayState(null, "2", vo.getApplyId());
+                    kaifa.changeStatus(vo.getId());
+                    result.put("msg", "rzkaifa");
+                } else if ("zxfy".equals(vo.getType())) {
+                    decorationApplyService.updatePayState("1", vo.getApplyId());
+                    wuye.changeStatus(vo.getId());
+                    result.put("msg", "zxfy");
+                } else {
+                    System.out.println("缴费记录生成失败:未知的缴费类型(物业,开发,水电)");
+                    result.put("msg", "缴费记录生成失败:未知的缴费类型(物业,开发,水电)");
+                    result.put("state", "0");
+                    return result;
+                }
+                result.put("state", "1");
+                return result;
+            }
+        } catch (Exception e) {
+            result.put("msg", "erro" + e.getMessage());
+            result.put("state", "0");
+            e.printStackTrace();
+            return result;
+        }
+        result.put("msg", "未知错误!");
+        result.put("state", "0");
+        return result;
+    }
 
     public void test() {
         Date date = new Date();

@@ -1,24 +1,21 @@
 package cn.rzhd.wuye.service.impl;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
-
 import cn.rzhd.wuye.bean.TPort;
 import cn.rzhd.wuye.bean.TPortExample;
 import cn.rzhd.wuye.bean.TPortExample.Criteria;
 import cn.rzhd.wuye.mapper.TPortMapper;
 import cn.rzhd.wuye.utils.IDUtils;
 import cn.rzhd.wuye.utils.PageDataGridResult;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.xiaoleilu.hutool.util.StrUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 
 /**
  * @ClassName PortServiceImpl
@@ -30,6 +27,7 @@ import cn.rzhd.wuye.utils.PageDataGridResult;
 @Service
 public class PortServiceImpl {
 
+    @SuppressWarnings("SpringJavaAutowiringInspection")
     @Autowired
     private TPortMapper mapper;
 
@@ -40,7 +38,7 @@ public class PortServiceImpl {
     public void save(TPort tPort) {
         tPort.setUpdateTime(new Date());
         //编辑
-        if(StringUtils.isNotBlank(tPort.getId())){
+        if(StrUtil.isNotBlank(tPort.getId())){
             mapper.updateByPrimaryKey(tPort);
         }
         //新增
@@ -61,14 +59,14 @@ public class PortServiceImpl {
         DateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
 
         Criteria criteria = example.createCriteria();
-        if (StringUtils.isNotBlank(title)) {
+        if (StrUtil.isNotBlank(title)) {
             criteria.andTitleLike("%"+title+"%");
         }
-        if (StringUtils.isNotBlank(startTime)) {
+        if (StrUtil.isNotBlank(startTime)) {
 
             criteria.andUpdateTimeLessThanOrEqualTo(fmt.parse(startTime));
         }
-        if (StringUtils.isNotBlank(endTime)) {
+        if (StrUtil.isNotBlank(endTime)) {
             criteria.andUpdateTimeGreaterThanOrEqualTo(fmt.parse(endTime));
 
         }

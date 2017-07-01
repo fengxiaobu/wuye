@@ -71,5 +71,10 @@ public class HouseInfoDetailsServiceImpl implements IHouseInfoDetailsService {
         List<HouseVO> houseVOs = mapper.selectAll();
         return houseVOs;
     }
+    
+    @Override
+    public void updadteState(String alreadyFinish, String houseInfoId) {
+        mapper.updadteState(alreadyFinish,houseInfoId);
+    }
 
 }

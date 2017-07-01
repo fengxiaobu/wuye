@@ -326,9 +326,25 @@ public class DecorationApplyController {
         return "redirect:/dist/toDecorationApplyList";
     }
 
-    public Map<String, String> updateDecorationApplyState() {
+    /**
+     * 完成装修流程
+     *
+     * @param decorationApplyId
+     * @return
+     */
+    @RequestMapping("/updateDecorationApplyState")
+    @ResponseBody
+    public Map<String, String> updateDecorationApplyState(Long decorationApplyId) {
         Map<String, String> result = new Hashtable<>();
-
-        return  result;
+        try {
+            decorationApplyService.updatePayState("1", decorationApplyId);
+            result.put("state", "1");
+            return result;
+        } catch (Exception e) {
+            e.printStackTrace();
+            result.put("state", "0");
+            result.put("msg", "erro" + e.getMessage());
+            return result;
+        }
     }
 }

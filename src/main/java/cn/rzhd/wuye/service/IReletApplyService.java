@@ -19,6 +19,6 @@ public interface IReletApplyService {
 
     int updateByPrimaryKey(ReletApply record);
 
-    List<ReletApply> findReletApply(String houseInfoId);
+    List<ReletApply> findReletApply(String houseInfoId, String customerId);
 
 }

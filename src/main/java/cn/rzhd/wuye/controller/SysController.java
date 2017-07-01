@@ -1,6 +1,5 @@
 package cn.rzhd.wuye.controller;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.xiaoleilu.hutool.util.StrUtil;
 
 import cn.rzhd.wuye.bean.TDictInfo;
 import cn.rzhd.wuye.bean.TDictType;
@@ -49,7 +50,7 @@ public class SysController {
     @RequestMapping(value="editrename",method = RequestMethod.POST)
     public ResponseEntity<Void> editrename(TDictInfo dictInfo) {
         try {
-            if(dictInfo == null || StringUtils.isBlank(dictInfo.getId())){
+            if(dictInfo == null || StrUtil.isBlank(dictInfo.getId())){
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
             }
             this.dictInfoService.updateDictInfoById(dictInfo);
