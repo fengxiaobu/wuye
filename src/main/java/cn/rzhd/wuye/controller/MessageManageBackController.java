@@ -19,7 +19,7 @@ import cn.rzhd.wuye.service.IMessageManageService;
  *
  */
 @Controller
-@RequestMapping("/dist/messageManageBack")
+@RequestMapping("/messageManageBack")
 public class MessageManageBackController {
 	@Autowired
 	IMessageManageService messageManageService;

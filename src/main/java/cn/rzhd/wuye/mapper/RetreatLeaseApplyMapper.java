@@ -16,7 +16,7 @@ public interface RetreatLeaseApplyMapper {
 
     int insert(RetreatLeaseApply record);
 
-    RetreatLeaseApply selectByPrimaryKey(@Param("retreatLeaseApplyId") Long retreatLeaseApplyId);
+    RetreatLeaseApply selectByPrimaryKey(Long retreatLeaseApplyId);
 
     List<RetreatLeaseApply> selectAll();
 

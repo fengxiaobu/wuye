@@ -20,6 +20,14 @@ public class RetreatLeaseApply implements Serializable {
 
     private static final long serialVersionUID = 1L;
     /**
+     * 客户信息
+     */
+    private Customer customer;
+    /**
+     * 客户ID
+     */
+    private String customerId;
+    /**
      * 退租申请id
      */
     private Long retreatLeaseApplyId;
@@ -77,8 +85,23 @@ public class RetreatLeaseApply implements Serializable {
      */
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date updateTime;
-
     private HouseInfoDetails houseInfoDetails;
+
+    public String getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
 
     public HouseInfoDetails getHouseInfoDetails() {
         return houseInfoDetails;
@@ -143,6 +166,7 @@ public class RetreatLeaseApply implements Serializable {
     public void setLeaseEndTime(Date leaseEndTime) {
         this.leaseEndTime = leaseEndTime;
     }
+
     /**
      * @return the retreatLeaseTime
      */

@@ -17,7 +17,7 @@
     <ol class="breadcrumb">
         <li><a href="#">首页</a></li>
         <li><a href="#">业务办理</a></li>
-        <li class="active">续租申请列表</li>
+        <li class="active">退租申请列表</li>
     </ol>
 </div>
 <!-- 路径导航 结束 -->
@@ -26,7 +26,7 @@
     </div>
     <div class="panel panel-default tudiqianyue">
         <div class="panel-heading">
-            <div class="col-xs-4">续租申请列表</div>
+            <div class="col-xs-4">退租申请列表</div>
             <div class="col-xs-8 panel-oprerate">
                 <div class="col-xs-6dd">
                     <form action="${pageContext.request.contextPath}/dist/enterApply/search" method="post">
@@ -72,7 +72,7 @@
                     <th rowspan="2">租赁开始时间</th>
                     <th rowspan="2">租赁结束日期</th>
                     <th rowspan="2">退租日期</th>
-                    <th rowspan="2">租赁类型</th>
+                    <th rowspan="2">退租类型</th>
                     <th rowspan="2">欠缴租金</th>
                     <th rowspan="2">租赁保证金</th>
                     <th rowspan="2">准推租赁保证金</th>
@@ -88,20 +88,21 @@
                         <td>${status.index+1}</td>
                         <td>${retreatLeaseApply.houseInfoDetails.project}</td>
                         <td>${retreatLeaseApply.houseInfoDetails.vhname}</td>
+                        <td>${retreatLeaseApply.customer.vcname}</td>
                         <td>${retreatLeaseApply.houseAcreage}</td>
                         <td><fmt:formatDate value="${retreatLeaseApply.leaseStartTime}" pattern="yyyy-MM-dd"/></td>
                         <td><fmt:formatDate value="${retreatLeaseApply.leaseEndTime}" pattern="yyyy-MM-dd"/></td>
                         <td><fmt:formatDate value="${retreatLeaseApply.retreatLeaseTime}" pattern="yyyy-MM-dd"/></td>
-                        <td>${retreatLeaseApply.retreatLeaseType}</td>
-                        <td>${enterApply.arrearsRent}</td>
-                        <td>${enterApply.leaseDeposit}</td>
-                        <td>${enterApply.permitRetreatLeaseDeposit}</td>
+                        <td>${retreatLeaseApply.retreatLeaseType}正常退租</td>
+                        <td>${retreatLeaseApply.arrearsRent}</td>
+                        <td>${retreatLeaseApply.leaseDeposit}</td>
+                        <td>${retreatLeaseApply.permitRetreatLeaseDeposit}</td>
                         <td><fmt:formatDate value="${retreatLeaseApply.creationTime}" pattern="yyyy-MM-dd"/></td>
                         <td><a class="btn btn-info"
-                               href="${pageContext.request.contextPath}/dist/enterApply/deleteEnterApply?enterApplyId=${enterApply.enterApplyId}"
+                               href="${pageContext.request.contextPath}/dist/enterApply/deleteEnterApply?retreatLeaseApplyId=${retreatLeaseApply.retreatLeaseApplyId}"
                                role="button">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;<a
                                 class="btn btn-info"
-                                href="${pageContext.request.contextPath}/dist/enterApply/enterApplyEdit?enterApplyId=${enterApply.enterApplyId}&houseInfoId=${enterApply.houseId}"
+                                href="${pageContext.request.contextPath}/reletApply/toRetreatLeaseDeatail?retreatLeaseApplyId=${retreatLeaseApply.retreatLeaseApplyId}"
                                 role="button">编辑</a></td>
                     </tr>
                 </c:forEach>

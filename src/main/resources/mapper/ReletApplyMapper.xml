@@ -83,19 +83,45 @@
                 <result column="MORE_PLEDGE" property="morePledge"/>
             </association>
         </association>
+        <association property="customer" javaType="cn.rzhd.wuye.bean.Customer">
+            <id property="pk_customerid" column="pk_customerid"/>
+            <result property="pk_corp" column="pk_corp"/>
+            <result property="fccategory" column="fccategory"/>
+            <result property="vccode" column="vccode"/>
+            <result property="vcname" column="vcname"/>
+            <result property="vpcnamespell" column="vpcnamespell"/>
+            <result property="vpreferredtel" column="vpreferredtel"/>
+            <result property="vccardnum" column="vccardnum"/>
+            <result property="vcaddress" column="vcaddress"/>
+            <result property="ccpostalcode" column="ccpostalcode"/>
+            <result property="dregdate" column="dregdate"/>
+            <result property="vregplace" column="vregplace"/>
+            <result property="vmemcardno" column="vmemcardno"/>
+            <result property="vpcemail" column="vpcemail"/>
+            <result property="nproperty" column="nproperty"/>
+            <result property="LOGO" column="LOGO"/>
+            <result property="companyType" column="Company_Type"/>
+            <!-- <result property="password" column="Password"/>-->
+            <result property="bindingPhone" column="Binding_Phone"/>
+            <result property="currentFlow" column="CURRENT_FLOW"/>
+            <result property="alreadyFinish" column="ALREADY_FINISH"/>
+            <result property="currentHouseId" column="CURRENT_HOUSE_ID"/>
+            <result property="updateData" column="update_data"/>
+        </association>
+
     </resultMap>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
         DELETE FROM T_RELET_APPLY
         WHERE RELET_APPLY_ID = #{reletApplyId}
     </delete>
     <insert id="insert" parameterType="cn.rzhd.wuye.bean.ReletApply">
-        INSERT INTO T_RELET_APPLY (RELET_APPLY_ID, HOUSE_INFO_ID, CLIENT_NAME,
+        INSERT INTO T_RELET_APPLY (RELET_APPLY_ID, HOUSE_INFO_ID, CUSTOMERID,
                                    HOUSE_ACREAGE, LEASE_START_TIME, LEASE_END_TIME,
                                    RETREA_TIME, RETREA_TYPE,
                                    SINGLE_PRICE, SUBTOTAL, PRIVILEGE_SUM,
                                    LEASE_DEPOSIT, TOTAL, CREATION_TIME,
                                    UPDATE_TIME, RETREA_END_TIME)
-        VALUES (#{reletApplyId}, #{houseInfoId}, #{clientName},
+        VALUES (#{reletApplyId}, #{houseInfoId}, #{customerId},
                                  #{houseAcreage}, #{leaseStartTime}, #{leaseEndTime},
                                  #{retreaTime}, #{retreaType},
                                  #{singlePrice}, #{subtotal}, #{privilegeSum},
@@ -105,7 +131,7 @@
     <update id="updateByPrimaryKey" parameterType="cn.rzhd.wuye.bean.ReletApply">
         UPDATE T_RELET_APPLY
         SET HOUSE_INFO_ID    = #{houseInfoId},
-            CLIENT_NAME      = #{clientName},
+            CUSTOMERID       = #{customerId},
             HOUSE_ACREAGE    = #{houseAcreage},
             LEASE_START_TIME = #{leaseStartTime},
             LEASE_END_TIME   = #{leaseEndTime},
@@ -123,65 +149,35 @@
     </update>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
         SELECT
-            RELET_APPLY_ID,
-            HOUSE_INFO_ID,
-            CLIENT_NAME,
-            HOUSE_ACREAGE,
-            LEASE_START_TIME,
-            LEASE_END_TIME,
-            RETREA_TIME,
-            SINGLE_PRICE,
-            SUBTOTAL,
-            PRIVILEGE_SUM,
-            LEASE_DEPOSIT,
-            TOTAL,
-            CREATION_TIME,
-            UPDATE_TIME,
-            RETREA_END_TIME,
-            house.*
-        FROM T_RELET_APPLY apply LEFT JOIN T_HOUSE_INFO_DETAILS house ON apply.HOUSE_INFO_ID = house."pk_house"
+            DISTINCT *
+        FROM
+            T_RELET_APPLY aaply
+            LEFT JOIN "T_Customer" cust ON
+                                            aaply.CUSTOMERID = cust."pk_customerid"
+            LEFT JOIN T_HOUSE_INFO_DETAILS house ON
+                                                     aaply.HOUSE_INFO_ID = house."pk_house"
         WHERE RELET_APPLY_ID = #{reletApplyId}
     </select>
     <select id="selectAll" resultMap="BaseResultMap">
         SELECT
-            RELET_APPLY_ID,
-            HOUSE_INFO_ID,
-            CLIENT_NAME,
-            HOUSE_ACREAGE,
-            LEASE_START_TIME,
-            LEASE_END_TIME,
-            RETREA_TIME,
-            SINGLE_PRICE,
-            SUBTOTAL,
-            PRIVILEGE_SUM,
-            LEASE_DEPOSIT,
-            TOTAL,
-            CREATION_TIME,
-            UPDATE_TIME,
-            RETREA_END_TIME,
-            house.*
-        FROM T_RELET_APPLY apply LEFT JOIN T_HOUSE_INFO_DETAILS house ON apply.HOUSE_INFO_ID = house."pk_house"
+            DISTINCT *
+        FROM
+            T_RELET_APPLY aaply
+            LEFT JOIN "T_Customer" cust ON
+                                            aaply.CUSTOMERID = cust."pk_customerid"
+            LEFT JOIN T_HOUSE_INFO_DETAILS house ON
+                                                     aaply.HOUSE_INFO_ID = house."pk_house"
     </select>
 
     <select id="findReletApply" resultMap="BaseResultMap">
         SELECT
-            RELET_APPLY_ID,
-            HOUSE_INFO_ID,
-            CLIENT_NAME,
-            HOUSE_ACREAGE,
-            LEASE_START_TIME,
-            LEASE_END_TIME,
-            RETREA_TIME,
-            SINGLE_PRICE,
-            SUBTOTAL,
-            PRIVILEGE_SUM,
-            LEASE_DEPOSIT,
-            TOTAL,
-            CREATION_TIME,
-            UPDATE_TIME,
-            RETREA_END_TIME,
-            house.*
-        FROM T_RELET_APPLY apply LEFT JOIN T_HOUSE_INFO_DETAILS house ON apply.HOUSE_INFO_ID = house."pk_house"
-        WHERE apply.HOUSE_INFO_ID = #{houseInfoId}
+            DISTINCT *
+        FROM
+            T_RELET_APPLY aaply
+            LEFT JOIN "T_Customer" cust ON
+                                            aaply.CUSTOMERID = cust."pk_customerid"
+            LEFT JOIN T_HOUSE_INFO_DETAILS house ON
+                                                     aaply.HOUSE_INFO_ID = house."pk_house"
+        WHERE HOUSE_INFO_ID = #{houseInfoId}
     </select>
 </mapper>

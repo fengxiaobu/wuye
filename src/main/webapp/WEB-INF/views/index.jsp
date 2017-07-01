@@ -123,19 +123,19 @@
                         <ul class="panel-group level02" id="aside_three_011">
                         	<li class="panel" role="tab">
                                 <div class="panel-header">
-                                    <a href="${pageContext.request.contextPath}/dist/houseInfoDetailsBack/getHouseInfoDetailsList?pageNum=1&pageSize=10" target="main">房产信息</a>
+                                    <a href="${pageContext.request.contextPath}/houseInfoDetailsBack/getHouseInfoDetailsList?pageNum=1&pageSize=10" target="main">房产信息</a>
                                 </div>
                             </li>
                         
                             <li class="panel" role="tab">
                                 <div class="panel-header">
-                                    <a href="${pageContext.request.contextPath}/dist/sellContractBack/getSellContractList?pageNum=1&pageSize=10" target="main">销售合同表</a>
+                                    <a href="${pageContext.request.contextPath}/sellContractBack/getSellContractList?pageNum=1&pageSize=10" target="main">销售合同表</a>
                                 </div>
                             </li>
 
                             <li class="panel" role="tab">
                                 <div class="panel-header">
-                                    <a href="${pageContext.request.contextPath}/dist/rentContractBack/getRentContractList?pageNum=1&pageSize=10" target="main">租赁合同表</a>
+                                    <a href="${pageContext.request.contextPath}/rentContractBack/getRentContractList?pageNum=1&pageSize=10" target="main">租赁合同表</a>
                                 </div>
                             </li>
                         </ul>
@@ -233,33 +233,33 @@
 
                             <li class="panel" role="tab">
                                 <div class="panel-header">
-                                    <a  target="main" href="#">系统设置</a>
+                                    <a  target="main" href="${basePath}/page/system/sys">系统信息设置</a>
                                 </div>
                                 <div class="panel-header">
-                                    <a  target="main"  href="#">入住完成-提示信息</a>
-                                </div>
-                            </li>
-
-                            <li class="panel" role="tab">
-                                <div class="panel-header">
-                                    <a target="main"  href="#">项目设置</a>
+                                    <a  target="main"  href="${basePath}/page/system/checkinprompt">入住提示信息</a>
                                 </div>
                             </li>
 
                             <li class="panel" role="tab">
                                 <div class="panel-header">
-                                    <a  target="main"  href="#">物业开票列表</a>
-                                </div>
-                            </li>
-                            <li class="panel" role="tab">
-                                <div class="panel-header">
-                                    <a  target="main"  href="#">开发开票列表</a>
+                                    <a target="main"  href="${basePath}/page/system/project/projectlist">项目设置</a>
                                 </div>
                             </li>
 
                             <li class="panel" role="tab">
                                 <div class="panel-header">
-                                    <a target="main" href="${pageContext.request.contextPath}/system/ammeterIndex">电表</a>
+                                    <a  target="main"  href="${basePath}/page/system/bill/propertylist">物业开票列表</a>
+                                </div>
+                            </li>
+                            <li class="panel" role="tab">
+                                <div class="panel-header">
+                                    <a  target="main"  href="${basePath}/page/system/bill/develist">开发开票列表</a>
+                                </div>
+                            </li>
+
+                            <li class="panel" role="tab">
+                                <div class="panel-header">
+                                    <a target="main" href="${basePath}/page/system/ammeter/ammelist">电表</a>
                                 </div>
                             </li>
                         </ul>
@@ -278,10 +278,10 @@
                         <ul class="panel-group level02" id="aside_six_011">
                             <li class="panel" role="tab">
                                 <div class="panel-header">
-                                    <a href="${pageContext.request.contextPath}/dist/messageManageBack/getMessageManageList?pageNum=1&pageSize=10" target="main">通知列表</a>
+                                    <a href="${pageContext.request.contextPath}/messageManageBack/getMessageManageList?pageNum=1&pageSize=10" target="main">通知列表</a>
                                 </div>
                                 <div class="panel-header">
-                                    <a href="${pageContext.request.contextPath}/dist/messageManageBack/messageManageEdit" target="main">发布通知</a>
+                                    <a href="${pageContext.request.contextPath}/messageManageBack/messageManageEdit" target="main">发布通知</a>
                                 </div>
                             </li>
                         </ul>

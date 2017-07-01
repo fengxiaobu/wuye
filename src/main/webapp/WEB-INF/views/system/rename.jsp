@@ -5,8 +5,6 @@
 <meta charset="utf-8">
 <title>更名</title>
  <%@include file="/common/common.jsp" %>
- <script charset="utf-8" src="${scriptsPath}/libs/kindeditor/kindeditor-min.js"></script>
- <script charset="utf-8" src="${scriptsPath}/libs/kindeditor/zh_CN.js"></script>
 </head>
 <body>
 

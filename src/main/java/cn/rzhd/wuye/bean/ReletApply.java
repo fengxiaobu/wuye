@@ -20,6 +20,10 @@ public class ReletApply implements Serializable {
 
     private static final long serialVersionUID = 1L;
     /**
+     * 客户
+     */
+    private Customer customer;
+    /**
      * 续租申请id
      */
     private Long reletApplyId;
@@ -27,10 +31,6 @@ public class ReletApply implements Serializable {
      * 房产id
      */
     private String houseInfoId;
-    /**
-     * 客户名称
-     */
-    private String clientName;
     /**
      * 房产面积
      */
@@ -88,8 +88,15 @@ public class ReletApply implements Serializable {
      */
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date retreaEndTime;
-
     private HouseInfoDetails houseInfoDetails;
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
 
     public HouseInfoDetails getHouseInfoDetails() {
         return houseInfoDetails;
@@ -107,19 +114,6 @@ public class ReletApply implements Serializable {
         this.retreaEndTime = retreaEndTime;
     }
 
-    /**
-     * @return the clientName
-     */
-    public String getClientName() {
-        return clientName;
-    }
-
-    /*
-    @param clientName the clientName to set
-    */
-    public void setClientName(String clientName) {
-        this.clientName = clientName;
-    }
 
     /**
      * @return the houseAcreage
