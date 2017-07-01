@@ -343,6 +343,7 @@ public class ChinaPay {
     public Map<String, String> updatePayState(String merResv) {
         Map<String, String> result = new Hashtable<>();
         try {
+            merResv = Base64.decodeStr(merResv);
             JSONArray objects = JSON.parseArray(merResv);
             System.out.println("---------------------------------解析JSON" + objects);
             Iterator<Object> iterator = objects.iterator();
