@@ -22,12 +22,9 @@ public class SellContractBackController {
 	
     @RequestMapping("/getSellContractList")
     public String sellContractList(Model model, Integer pageNum, Integer pageSize) {
-    	System.out.println(2222);
     	PageHelper.startPage(pageNum, pageSize);
 		List<SignVO> signVOs = sellContractService.getBackAll();
-		System.out.println(signVOs.size());
 		Page page = (Page) signVOs;
-		System.out.println(signVOs.size());
 
 		model.addAttribute("sellContractList", signVOs);
 
