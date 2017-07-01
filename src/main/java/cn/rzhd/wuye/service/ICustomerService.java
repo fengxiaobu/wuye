@@ -13,12 +13,15 @@ public interface ICustomerService {
     List<Customer> loginByPwd(Customer customer);
 
     void addCustomer(CustomerVO customer);
+
     /**
      * 此方法用于处理ERP推送更新数据,可能update也可能insert,在此方法中进行判断后执行
+     *
      * @param customerVO
      */
     void saveCustomer(CustomerVO customerVO) throws Exception;
-    void updadteState(String currentFlow,  String houseInfoId);
-    
+
+    void updadteState(String currentFlow, String vccode);
+
     List<Customer> queryAll();
 }

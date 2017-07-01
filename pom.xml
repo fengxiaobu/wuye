@@ -328,34 +328,22 @@
             <artifactId>bcprov-jdk15on</artifactId>
             <version>1.47</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+     <!--   &lt;!&ndash; https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 &ndash;&gt;
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>3.5</version>
-        </dependency>
+        </dependency>-->
         <!-- https://mvnrepository.com/artifact/commons-beanutils/commons-beanutils -->
-        <dependency>
+       <!-- <dependency>
             <groupId>commons-beanutils</groupId>
             <artifactId>commons-beanutils</artifactId>
             <version>1.6</version>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>com.xiaoleilu</groupId>
             <artifactId>hutool-all</artifactId>
             <version>3.0.7</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/org.jodd/jodd-core -->
-        <dependency>
-            <groupId>org.jodd</groupId>
-            <artifactId>jodd-core</artifactId>
-            <version>3.8.6</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/org.jodd/jodd-http -->
-        <dependency>
-            <groupId>org.jodd</groupId>
-            <artifactId>jodd-http</artifactId>
-            <version>3.8.6</version>
         </dependency>
         <dependency>
             <groupId>chinapay</groupId>
@@ -396,13 +384,13 @@
                     <className>cn.rzhd.wuye.wsserver.UpdateDataServiceImpl</className>
                 </configuration>
                 <executions>
-                <!-- 
-                    <execution>
-                        <goals>
-                            <goal>java2wsdl</goal>
-                        </goals>
-                    </execution>
-                     -->
+                    <!--
+                        <execution>
+                            <goals>
+                                <goal>java2wsdl</goal>
+                            </goals>
+                        </execution>
+                         -->
                     <execution>
                         <id>spring-boot-starter-tomcat</id>
                     </execution>

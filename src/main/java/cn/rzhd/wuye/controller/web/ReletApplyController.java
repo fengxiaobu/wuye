@@ -5,6 +5,7 @@ import cn.rzhd.wuye.bean.RetreatLeaseApply;
 import cn.rzhd.wuye.service.IReletApplyService;
 import cn.rzhd.wuye.service.IRetreatLeaseApplyService;
 import cn.rzhd.wuye.utils.IDUtils;
+import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -161,16 +162,17 @@ public class ReletApplyController {
      */
     @RequestMapping("/dist/findReletApply")
     @ResponseBody
-    public Map<String, Object> findReletApply(String houseInfoId,String customerId) {
+    public Map<String, Object> findReletApply(String houseInfoId, String customerId) {
         Map<String, Object> result = new HashMap<>();
         if (StringUtil.isEmpty(houseInfoId)) {
             result.put("state", "0");
             result.put("msg", "房产ID不能为空");
             return result;
         }
-        List<ReletApply> reletApply = reletApplyService.findReletApply(houseInfoId,customerId);
+        List<ReletApply> reletApply = reletApplyService.findReletApply(houseInfoId, customerId);
+        String jsonString = JSON.toJSONString(reletApply);
         result.put("state", "1");
-        result.put("data", reletApply);
+        result.put("data", jsonString);
         return result;
     }
 
@@ -182,17 +184,17 @@ public class ReletApplyController {
      */
     @RequestMapping("/dist/findRetreatLease")
     @ResponseBody
-    public Map<String, Object> findRetreatLease(String houseInfoId,String customerId) {
+    public Map<String, Object> findRetreatLease(String houseInfoId, String customerId) {
         Map<String, Object> result = new HashMap<>();
         if (StringUtil.isEmpty(houseInfoId)) {
             result.put("state", "0");
             result.put("msg", "房产ID不能为空");
             return result;
         }
-        List<RetreatLeaseApply> retreatLeaseApply = retreatLeaseApplyService.findRetreatLeaseApply(houseInfoId,customerId);
-
+        List<RetreatLeaseApply> retreatLeaseApply = retreatLeaseApplyService.findRetreatLeaseApply(houseInfoId, customerId);
+        String jsonString = JSON.toJSONString(retreatLeaseApply);
         result.put("state", "1");
-        result.put("data", retreatLeaseApply.get(0));
+        result.put("data", jsonString);
         return result;
     }
 
