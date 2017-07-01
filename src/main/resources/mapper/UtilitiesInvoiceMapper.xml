@@ -71,4 +71,21 @@
             BASIC_ELECTRIC_INVOICE_SUM
         FROM T_UTILITIES_INVOICE
     </select>
+    <select id="selectByDetailsId" parameterType="long" resultType="cn.rzhd.wuye.bean.UtilitiesInvoice">
+        SELECT
+            UTILITIES_INVOICE_ID,
+            INVOICE_TYPE,
+            INVOICE_COMPANY,
+            BASIC_WATER_FEE,
+            BASIC_WATER_INVOICE_SUM,
+            CARTE_TIME,
+            UPDATE_TIME,
+            UTILITIES_DETAILS_ID,
+            BASIC_ELECTRIC_FEE,
+            BASIC_ELECTRIC_INVOICE_SUM
+        FROM T_UTILITIES_INVOICE
+        WHERE UTILITIES_DETAILS_ID=#{detailsId}
+    </select>
+    <select id="getTripleByDetailsId" resultType="map" parameterType="long">
+    </select>
 </mapper>
