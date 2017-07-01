@@ -1,14 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
     <title>首页</title>
-    <link rel="stylesheet" type="text/css"
-          href="${pageContext.request.contextPath}/js/libs/bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css">
+	<%@include file="/common/common.jsp" %>
 </head>
 <body>
 
@@ -25,40 +21,43 @@
     <div class="panel panel-default">
     </div>
     <div class="panel panel-default tudiqianyue">
-        <div class="panel-heading">
-            <div class="col-xs-4">装修申请列表</div>
-            <div class="col-xs-8 panel-oprerate">
-                <div class="col-xs-6dd">
-                    <form action="${pageContext.request.contextPath}/dist/enterApply/search" method="post">
-                        <span>申请日期&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                        <span style="margin-right: 10px"><input style="height: 35px;width: 220px;" type="text"
-                                                                name="startDate" placeholder="&nbsp;&nbsp;开始时间">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;到</span>
-
-                        <span style="margin-right: 50px"><input style="height: 35px;width: 220px;" type="text"
-                                                                name="endDate" placeholder="&nbsp;&nbsp;结束时间"></span>
-                        <span style="margin-right: 50px"><input style="height: 35px;width: 120px;" type="text"
-                                                                name="projectName"
-                                                                placeholder="&nbsp;&nbsp;项目名称"></span>
-                        <span style="margin-right: 50px"><input style="height: 35px;width: 120px;" name="clientName"
-                                                                type="text" placeholder="&nbsp;&nbsp;用户名"></span>
-                        <%--<a class="btn btn-info" type="button"><span class="glyphicon glyphicon-search"></span>搜素
-                        </a>--%>
-                        <button class="btn btn-default" style="background-color: #5bc0de" type="submit"><span
-                                class="glyphicon glyphicon-search">搜素</span></button>
-                    </form>
-                    <%--<a target="main" href="${pageContext.request.contextPath}/enterApply/toEnterApplyAdd" class="btn btn-info" type="button"><span class="glyphicon glyphicon-plus"></span>新增
-                    </a>--%>
-                </div>
-                <div class="col-xs-12">
-                    <button class="btn btn-default" id="tudiqianyue-remove" type="button"><span
-                            class="glyphicon glyphicon-remove"></span>取消
-                    </button>
-                    <button class="btn btn-success" id="tudiqianyue-ok" type="button"><span
-                            class="glyphicon glyphicon-ok"></span>提交
-                    </button>
-                </div>
-            </div>
-        </div>
+    	
+    	<div class="panel-heading">
+			<div class="col-xs-4">装修申请列表</div>
+				<form action="${basePath}/dist/enterApply/search" method="post">
+				<div class="col-xs-8 panel-oprerate">
+						<!-- <a href="#"  class="btn btn-info" target="iframe_ch_ch">新增	</a> -->
+						<button id="query" type="submit" class="btn btn-info">搜索</button>
+				</div>
+				
+				
+				<div class="form-inline">
+					<div class="form-group">
+							<label>申请日期：</label>
+							<div id="form_datetime" class="input-group date form_datetime" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input1" data-link-format="yyyy-mm-dd">
+			                    <input id="showdate1" class="form-control" size="16" type="text" value="" readonly="readonly">
+			                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+								<span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+			              </div>
+						  <input type="hidden" id="dtp_input1" name="nextReturnTime" value="" />
+						  至
+							<div id="form_datetime2" class="input-group date form_datetime" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input1" data-link-format="yyyy-mm-dd">
+			                    <input id="showdate2" class="form-control" size="16" type="text" value="" readonly="readonly">
+			                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+								<span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+			              </div>
+						  
+							
+					</div>
+					<div class="form-group">
+							<label>项目或用户名：</label>
+							<input type="hidden" id="dtp_input2" name="nextReturnTime" value="" /> 
+							<input type="text"
+								class="form-control quanxianmingcheng" placeholder="项目名称、用户名">
+					</div>
+				</div>
+				</form>
+		</div>
         <div class="panel-body">
             <table class="table table-bordered tudiqianyue-table">
                 <thead>
@@ -143,8 +142,6 @@
 
 </div>
 </body>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/libs/jquery-1.11.3.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/libs/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript">
     var tableEdit = {
         content: function (option) {
