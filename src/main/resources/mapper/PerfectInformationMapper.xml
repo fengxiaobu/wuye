@@ -163,4 +163,8 @@
             U_RAVINE_PROPERTY_ID
         FROM T_PERFECT_INFORMATION
     </select>
+    
+    <select id="selectByHouseInfoId" parameterType="String" resultMap="BaseResultMap">
+    	SELECT * FROM T_PERFECT_INFORMATION WHERE "HOUSE_INFO_ID" = #{houseInfoId}
+    </select>
 </mapper>

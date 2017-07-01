@@ -196,8 +196,8 @@
     </select>
 
     <resultMap type="cn.rzhd.wuye.vo.HouseVO" id="houseVOBackMap">
-        <id property="pk_project" column="pk_project"/>
-        <result property="vhcode" column="vhcode"/>
+        <id property="vhcode" column="vhcode"/>
+        <result property="pk_project" column="pk_project"/>
         <result property="nsellarea" column="nsellarea"/>
         <association property="projectVO" javaType="cn.rzhd.wuye.vo.ProjectVO">
             <id property="pk_project" column="PK_PROJECT"/>

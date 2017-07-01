@@ -2,6 +2,7 @@ package cn.rzhd.wuye;
 
 import cn.rzhd.wuye.bean.Company;
 import cn.rzhd.wuye.common.WebService;
+import cn.rzhd.wuye.mapper.HouseInfoDetailsMapper;
 import cn.rzhd.wuye.service.ICompanyService;
 import cn.rzhd.wuye.service.IHouseInfoDetailsService;
 import cn.rzhd.wuye.utils.JsonUtils;
@@ -12,6 +13,8 @@ import cn.rzhd.wuye.vo.ResponseVO;
 import com.github.pagehelper.StringUtil;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import static org.junit.Assert.*;
 
 import java.util.List;
 
@@ -24,6 +27,8 @@ public class HouseInfoDetailsServiceTest extends BaseTest {
     IHouseInfoDetailsService service;
     @Autowired
     ICompanyService companyService;
+    @Autowired
+    HouseInfoDetailsMapper mapper;
 
     @Test
     public void getByIdTest1() {
@@ -35,12 +40,14 @@ public class HouseInfoDetailsServiceTest extends BaseTest {
     }
 
     @Test
+	public void test1() throws Exception {
+		System.out.println(mapper.getAll().size());
+	}
+    
+    @Test
     public void getAll() throws Exception {
         List<HouseVO> houseVOs = service.getBackAll();
-        for (HouseVO houseVO : houseVOs) {
-            String vhcode = houseVO.getVhcode();
-            System.out.println(vhcode);
-        }
+        System.out.println(houseVOs.size());
     }
 
     @Test

@@ -29,13 +29,8 @@ public class HouseInfoDetailsBackController {
 
     @RequestMapping("/getHouseInfoDetailsList")
     public String houseInfoDetailsList(Model model, Integer pageNum, Integer pageSize) {
-        PageHelper.startPage(pageNum, pageSize);
         List<HouseVO> houseVOs = houseInfoDetailsService.getBackAll();
-        
-        PageInfo<HouseVO> pageInfo = new PageInfo<>(houseVOs);
-        List<HouseVO> result = pageInfo.getList();
-        System.out.println(result.size());
-    
+        System.out.println(houseVOs.size());
        
 //        model.addAttribute("houseInfoDetailsList", page.getResult());
 //
