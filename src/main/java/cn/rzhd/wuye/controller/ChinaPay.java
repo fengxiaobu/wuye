@@ -55,8 +55,8 @@ public class ChinaPay {
         //前台页面传过来的
         ChinaPayHelper chinaPayHelper = new ChinaPayHelper();
         requestVO.setRemoteAddr(HttpUtils.getIpAddr(req));
-        requestVO.setMerOrderNo(RandomUtil.randomString(32));
-        requestVO.setBankInstNo("700000000000017");
+        requestVO.setMerOrderNo(RandomUtil.randomNumbers(23));
+        //requestVO.setBankInstNo("700000000000017");
         requestVO.setCommodityMsg("物业测试");
         requestVO.setMerResv("交易商品");
         // requestVO.setAcqCode("");

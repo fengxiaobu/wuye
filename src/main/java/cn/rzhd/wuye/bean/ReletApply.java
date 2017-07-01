@@ -23,6 +23,11 @@ public class ReletApply implements Serializable {
      * 客户
      */
     private Customer customer;
+
+    /**
+     * 客户ID
+     */
+    private String customerId;
     /**
      * 续租申请id
      */
@@ -89,6 +94,14 @@ public class ReletApply implements Serializable {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date retreaEndTime;
     private HouseInfoDetails houseInfoDetails;
+
+    public String getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
+    }
 
     public Customer getCustomer() {
         return customer;

@@ -61,8 +61,7 @@ public class RetreatLeaseApply implements Serializable {
     /**
      * 退租类型
      */
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date retreatLeaseType;
+    private String retreatLeaseType;
     /**
      * 欠缴租金
      */
@@ -181,17 +180,11 @@ public class RetreatLeaseApply implements Serializable {
         this.retreatLeaseTime = retreatLeaseTime;
     }
 
-    /**
-     * @return the retreatLeaseType
-     */
-    public Date getRetreatLeaseType() {
+    public String getRetreatLeaseType() {
         return retreatLeaseType;
     }
 
-    /*
-    @param retreatLeaseType the retreatLeaseType to set
-    */
-    public void setRetreatLeaseType(Date retreatLeaseType) {
+    public void setRetreatLeaseType(String retreatLeaseType) {
         this.retreatLeaseType = retreatLeaseType;
     }
 

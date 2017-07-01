@@ -99,7 +99,7 @@
                         <td>${retreatLeaseApply.permitRetreatLeaseDeposit}</td>
                         <td><fmt:formatDate value="${retreatLeaseApply.creationTime}" pattern="yyyy-MM-dd"/></td>
                         <td><a class="btn btn-info"
-                               href="${pageContext.request.contextPath}/dist/enterApply/deleteEnterApply?retreatLeaseApplyId=${retreatLeaseApply.retreatLeaseApplyId}"
+                               href="${pageContext.request.contextPath}/reletApply/deleteReletApplyLeaseDeatail?retreatLeaseApplyId=${retreatLeaseApply.retreatLeaseApplyId}"
                                role="button">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;<a
                                 class="btn btn-info"
                                 href="${pageContext.request.contextPath}/reletApply/toRetreatLeaseDeatail?retreatLeaseApplyId=${retreatLeaseApply.retreatLeaseApplyId}"

@@ -17,15 +17,9 @@
 <form action="${pageContext.request.contextPath}/pay" method="post">
     <table>
         <tr>
-            <td>商户订单号:</td>
-            <td><input type="text" name="MerOrderNo" value="RZHD123456789"/></td>
-        </tr>
-
-        <tr>
             <td>订单金额:</td>
             <td><input type="text" name="OrderAmt" value="10"/></td>
         </tr>
-
     </table>
     <input type="submit" value="toPAy">
 </form>
