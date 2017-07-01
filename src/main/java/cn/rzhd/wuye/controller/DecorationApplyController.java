@@ -22,10 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.*;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * luopa 在 2017/6/7 创建.
@@ -209,7 +206,6 @@ public class DecorationApplyController {
         if (decorationApply.getDecorationApplyId() == null) {
             result.put("state", "0");
             result.put("msg", "ID不能为空!");
-            // return result;
         }
 
         int i = decorationApplyService.updateByPrimaryKey(decorationApply);
@@ -227,7 +223,6 @@ public class DecorationApplyController {
                 HouseInfoDetails houseInfoDetails = houseInfoDetailsService.selectByPkHouse(decorationApply.getHouseInfoId());
                 houseInfoDetailsService.updateHouse(houseInfoDetails.getPkHouse(), null, "0");
             }
-
         }
         System.out.println("i = " + i);
         result.put("state", "1");
@@ -324,10 +319,16 @@ public class DecorationApplyController {
     @RequestMapping("/deleteDecorationApplyByID")
     public String deleteDecorationApplyByID(Long decorationApplyId) {
         if (decorationApplyId != null) {
-            decorationApplyService.deleteByPrimaryKey(decorationApplyId);
             DecorationApply decorationApply = decorationApplyService.selectByPrimaryKey(decorationApplyId);
+            decorationApplyService.deleteByPrimaryKey(decorationApplyId);
             houseInfoDetailsService.updateHouse(decorationApply.getHouseInfoId(), null, "0");
         }
         return "redirect:/dist/toDecorationApplyList";
+    }
+
+    public Map<String, String> updateDecorationApplyState() {
+        Map<String, String> result = new Hashtable<>();
+
+        return  result;
     }
 }

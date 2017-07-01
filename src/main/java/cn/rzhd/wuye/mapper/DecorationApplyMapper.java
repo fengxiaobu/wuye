@@ -20,7 +20,7 @@ public interface DecorationApplyMapper {
 
     int insert(DecorationApply record);
 
-    DecorationApply selectByPrimaryKey(Long decorationApplyId);
+    DecorationApply selectByPrimaryKey(@Param("decorationApplyId") Long decorationApplyId);
 
     int updateByPrimaryKey(DecorationApply record);
 

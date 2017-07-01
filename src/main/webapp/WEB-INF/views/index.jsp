@@ -251,13 +251,6 @@
                                     <a  target="main"  href="#">物业开票列表</a>
                                 </div>
                             </li>
-
-                            <li class="panel" role="tab">
-                                <div class="panel-header">
-                                    <a target="main"  href="#">开发开票列表</a>
-                                </div>
-                            </li>
-
                             <li class="panel" role="tab">
                                 <div class="panel-header">
                                     <a  target="main"  href="#">开发开票列表</a>

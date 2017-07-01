@@ -280,7 +280,7 @@
         DELETE FROM T_DECORATION_APPLY
         WHERE DECORATION_APPLY_ID = #{decorationApplyId}
     </delete>
-    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap">
         SELECT *
         FROM
             T_DECORATION_APPLY apply, T_HOUSE_INFO_DETAILS house, T_PROJECT_INFO project
