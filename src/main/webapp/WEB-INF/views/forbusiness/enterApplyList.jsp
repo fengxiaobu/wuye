@@ -1,15 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
     <title>首页</title>
-    <link rel="stylesheet" type="text/css"
-          href="${pageContext.request.contextPath}/js/libs/bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css">
-    <link href="${pageContext.request.contextPath}/js/libs/datetimepicker/datetimepicker.min.css" rel="stylesheet" media="screen">
+	 <%@include file="/common/common.jsp" %>
 </head>
 
 <body>
@@ -26,7 +21,7 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<div class="col-xs-4">入住申请列表</div>
-						<form action="${pageContext.request.contextPath}/dist/enterApply/search" method="post">
+						<form action="${basePath}/dist/enterApply/search" method="post">
 						<div class="col-xs-8 panel-oprerate">
 								<a href="#"  class="btn btn-info" target="iframe_ch_ch">新增	</a>
 						</div>
@@ -41,7 +36,7 @@
 										<span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
 					              </div>
 								  <input type="hidden" id="dtp_input1" name="nextReturnTime" value="" />
-								  -
+								  至
 									<div id="form_datetime2" class="input-group date form_datetime col-sm-3" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input1" data-link-format="yyyy-mm-dd">
 					                    <input id="showdate2" class="form-control" size="16" type="text" value="" readonly="readonly">
 					                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
@@ -101,12 +96,6 @@
 			<input type="hidden" id="projectId" class="project_id_class" value="${projectId }">
 		
 </body>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/libs/jquery-1.11.3.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/libs/bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/libs/layer/layer.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/libs/datetimepicker/datetimepicker.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/libs/datetimepicker/datetimepicker.zh-CN.js" charset="UTF-8"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/common.js"></script>
 <script type="text/javascript">
  $(function(){
  	formdate('#form_datetime');
