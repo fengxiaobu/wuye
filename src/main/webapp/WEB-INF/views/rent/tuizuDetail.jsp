@@ -24,7 +24,7 @@
         <div class="col-xs-12">
             <div class="panel panel-default tudiqianyue">
                 <form class="form-horizontal"
-                      action="${pageContext.request.contextPath}/dist/enterApply/updateEnterApply" method="post">
+                      action="${pageContext.request.contextPath}/reletApply/updateReletApplyLeaseDeatail" method="post">
                     <div class="form-group" style="margin-top: 50px">
                         <input type="hidden" name="retreatLeaseApplyId"
                                value="${retreatLeaseApply.retreatLeaseApplyId}"/>
@@ -92,7 +92,7 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">准退租赁保证金:</label>
                         <div class="col-sm-10">
-                            <input class="col-sm-2 control-label" type="text" name=""
+                            <input class="col-sm-2 control-label" type="text" name="permitRetreatLeaseDeposit"
                                    value="${retreatLeaseApply.permitRetreatLeaseDeposit}">
                         </div>
                     </div>

@@ -103,18 +103,18 @@ function qqEditor(){
 		});
 		K.create('#contentqq', {
 			//统计直属
-			/* afterChange : function() {
-				var  residue = 10-this.count();
-				if(residue<=0){
-				}
-					K('.word_count1').html(residue);
+			 afterChange : function() {
+					K('#count').val(this.count());
 				
-			}, */
+			}, 
 			themeType : 'qq',
 			items : [
 				'bold','italic','underline','fontname','fontsize','forecolor','hilitecolor','plug-align','plug-order','plug-indent','link'
-			]
+			],
+	
+		afterBlur:function(){this.sync();}
 		});
 	});
+	
 }
 

@@ -43,7 +43,7 @@ public class ReletApplyServiceImpl implements IReletApplyService {
     }
 
     @Override
-    public List<ReletApply> findReletApply(String houseInfoId) {
-        return reletApplyMapper.findReletApply(houseInfoId);
+    public List<ReletApply> findReletApply(String houseInfoId, String customerId) {
+        return reletApplyMapper.findReletApply(houseInfoId,customerId);
     }
 }

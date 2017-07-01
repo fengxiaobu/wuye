@@ -149,8 +149,14 @@ public class HouseInfoDetails implements Serializable {
      * 装修申请状态
      */
     private String decorationapplystate;
+    /**
+     * 是否第一次完善资料(1--是,0--否)
+     */
+    private String alreadyFinish;
 
     private ProjectInfo projectInfo;
+    
+    
 
     public ProjectInfo getProjectInfo() {
         return projectInfo;
@@ -447,4 +453,14 @@ public class HouseInfoDetails implements Serializable {
     public void setDecorationapplystate(String decorationapplystate) {
         this.decorationapplystate = decorationapplystate == null ? null : decorationapplystate.trim();
     }
+
+	public String getAlreadyFinish() {
+		return alreadyFinish;
+	}
+
+	public void setAlreadyFinish(String alreadyFinish) {
+		this.alreadyFinish = alreadyFinish;
+	}
+
+    
 }

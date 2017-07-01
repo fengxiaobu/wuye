@@ -130,18 +130,47 @@
     </insert>
     <update id="updateByPrimaryKey" parameterType="cn.rzhd.wuye.bean.RetreatLeaseApply">
         UPDATE T_RETREAT_LEASE_APPLY
-        SET HOUSE_INFO_ID                = #{houseInfoId},
-            HOUSE_NUMBER                 = #{houseNumber},
-            HOUSE_ACREAGE                = #{houseAcreage},
-            LEASE_START_TIME             = #{leaseStartTime},
-            LEASE_END_TIME               = #{leaseEndTime},
-            RETREAT_LEASE_TIME           = #{retreatLeaseTime},
-            RETREAT_LEASE_TYPE           = #{retreatLeaseType},
-            ARREARS_RENT                 = #{arrearsRent},
-            LEASE_DEPOSIT                = #{leaseDeposit},
-            PERMIT_RETREAT_LEASE_DEPOSIT = #{permitRetreatLeaseDeposit},
-            CREATION_TIME                = #{creationTime},
-            UPDATE_TIME                  = #{updateTime}, CUSTOMERID = #{customerId}
+        SET
+        <if test="houseInfoId !=null">
+            HOUSE_INFO_ID = #{houseInfoId}
+        </if>
+        <if test="houseNumber !=null">
+            HOUSE_NUMBER = #{houseNumber}
+        </if>
+        <if test="houseAcreage !=null">
+            HOUSE_ACREAGE = #{houseAcreage}
+        </if>
+        <if test="leaseStartTime !=null">
+            LEASE_START_TIME = #{leaseStartTime}
+        </if>
+        <if test="leaseEndTime !=null">
+            LEASE_END_TIME = #{leaseEndTime}
+        </if>
+        <if test="retreatLeaseTime !=null">
+            RETREAT_LEASE_TIME = #{retreatLeaseTime}
+        </if>
+
+        <if test="retreatLeaseType !=null">
+            RETREAT_LEASE_TYPE = #{retreatLeaseType}
+        </if>
+        <if test="arrearsRent !=null">
+            ARREARS_RENT = #{arrearsRent}
+        </if>
+        <if test="leaseDeposit !=null">
+            LEASE_DEPOSIT = #{leaseDeposit}
+        </if>
+        <if test="permitRetreatLeaseDeposit !=null">
+            PERMIT_RETREAT_LEASE_DEPOSIT = #{permitRetreatLeaseDeposit}
+        </if>
+        <if test="creationTime !=null">
+            CREATION_TIME = #{creationTime}
+        </if>
+        <if test="updateTime !=null">
+            UPDATE_TIME = #{updateTime}
+        </if>
+        <if test="customerId !=null">
+            CUSTOMERID = #{customerId}
+        </if>
         WHERE RETREAT_LEASE_APPLY_ID = #{retreatLeaseApplyId}
     </update>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
@@ -175,6 +204,6 @@
             LEFT JOIN T_HOUSE_INFO_DETAILS house ON
                                                      aaply.HOUSE_INFO_ID = house."pk_house"
         WHERE
-            HOUSE_INFO_ID = #{houseInfoId}
+            HOUSE_INFO_ID = #{houseInfoId} AND CUSTOMERID = #{customerId}
     </select>
 </mapper>

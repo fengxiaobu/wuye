@@ -5,7 +5,9 @@ import cn.rzhd.wuye.bean.RetreatLeaseApply;
 import cn.rzhd.wuye.service.IReletApplyService;
 import cn.rzhd.wuye.service.IRetreatLeaseApplyService;
 import cn.rzhd.wuye.utils.IDUtils;
+import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.StringUtil;
+import com.xiaoleilu.hutool.util.StrUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -161,38 +163,39 @@ public class ReletApplyController {
      */
     @RequestMapping("/dist/findReletApply")
     @ResponseBody
-    public Map<String, Object> findReletApply(String houseInfoId) {
+    public Map<String, Object> findReletApply(String houseInfoId, String customerId) {
         Map<String, Object> result = new HashMap<>();
         if (StringUtil.isEmpty(houseInfoId)) {
             result.put("state", "0");
             result.put("msg", "房产ID不能为空");
             return result;
         }
-        List<ReletApply> reletApply = reletApplyService.findReletApply(houseInfoId);
+        List<ReletApply> reletApply = reletApplyService.findReletApply(houseInfoId, customerId);
+        String jsonString = JSON.toJSONString(reletApply);
         result.put("state", "1");
-        result.put("data", reletApply);
+        result.put("data", jsonString);
         return result;
     }
 
     /**
-     * 根据房产ID获取退租信息
+     * 获取退租信息
      *
      * @param houseInfoId
      * @return
      */
     @RequestMapping("/dist/findRetreatLease")
     @ResponseBody
-    public Map<String, Object> findRetreatLease(String houseInfoId) {
+    public Map<String, Object> findRetreatLease(String houseInfoId, String customerId) {
         Map<String, Object> result = new HashMap<>();
-        if (StringUtil.isEmpty(houseInfoId)) {
+        if (StrUtil.isEmpty(houseInfoId) && StrUtil.isEmpty(customerId)) {
             result.put("state", "0");
-            result.put("msg", "房产ID不能为空");
+            result.put("msg", "ID不能为空");
             return result;
         }
-        List<RetreatLeaseApply> retreatLeaseApply = retreatLeaseApplyService.findRetreatLeaseApply(houseInfoId);
-
+        List<RetreatLeaseApply> retreatLeaseApply = retreatLeaseApplyService.findRetreatLeaseApply(houseInfoId, customerId);
+        String jsonString = JSON.toJSONString(retreatLeaseApply);
         result.put("state", "1");
-        result.put("data", retreatLeaseApply.get(0));
+        result.put("data", jsonString);
         return result;
     }
 
@@ -233,6 +236,24 @@ public class ReletApplyController {
     }
 
     /**
+     * 编辑退租信息
+     *
+     * @param retreatLeaseApply
+     * @return
+     */
+    @RequestMapping("reletApply/updateReletApplyLeaseDeatail")
+    public String updateReletApplyLeaseDeatail(RetreatLeaseApply retreatLeaseApply) {
+        try {
+            if (retreatLeaseApply != null) {
+                retreatLeaseApplyService.updateByPrimaryKey(retreatLeaseApply);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "redirect:/findRetreatLeaseApply";
+    }
+
+    /**
      * 查看退租信息
      *
      * @param retreatLeaseApplyId
@@ -259,9 +280,24 @@ public class ReletApplyController {
     @RequestMapping("reletApply/deleteReletApplyDeatail")
     public String deleteReletApplyDeatail(Long reletApplyId) {
         if (reletApplyId != null) {
-            ReletApply reletApply = reletApplyService.selectByPrimaryKey(reletApplyId);
+            reletApplyService.deleteByPrimaryKey(reletApplyId);
             return "redirect:/findReletApply";
         }
         return "redirect:/findReletApply";
+    }
+
+    /**
+     * 删除退租信息
+     *
+     * @param retreatLeaseApplyId
+     * @return
+     */
+    @RequestMapping("reletApply/deleteReletApplyLeaseDeatail")
+    public String deleteReletApplyLeaseDeatail(Long retreatLeaseApplyId) {
+        if (retreatLeaseApplyId != null) {
+            retreatLeaseApplyService.deleteByPrimaryKey(retreatLeaseApplyId);
+            return "redirect:/findRetreatLeaseApply";
+        }
+        return "redirect:/findRetreatLeaseApply";
     }
 }
