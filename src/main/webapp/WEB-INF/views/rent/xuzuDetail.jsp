@@ -25,7 +25,7 @@
         <div class="col-xs-12">
             <div class="panel panel-default tudiqianyue">
                 <form class="form-horizontal"
-                      action="${pageContext.request.contextPath}/dist/reletApply/updateEnterApply" method="post">
+                      action="${pageContext.request.contextPath}/reletApply/updateReletApplyDeatail" method="post">
                     <div class="form-group" style="margin-top: 50px">
                         <input type="hidden" name="reletApplyId" value="${reletApply.reletApplyId}"/>
                         <label class="col-sm-2 control-label">项目名称:</label>
@@ -72,13 +72,13 @@
                                     value="${reletApply.retreaEndTime}" pattern="yyyy-MM-dd HH:dd:ss"/></label>
                         </div>
                     </div>
-                    <div class="form-group">
+                  <%--  <div class="form-group">
                         <label class="col-sm-2 control-label">XXX年租赁单价:</label>
                         <div class="col-sm-10">
-                            <%--    <input class="col-sm-2 control-label" type="text" name="subtotal"
-                                       value="${subtotal.subtotal}">--%>
+                            &lt;%&ndash;    <input class="col-sm-2 control-label" type="text" name="subtotal"
+                                       value="${subtotal.subtotal}">&ndash;%&gt;
                         </div>
-                    </div>
+                    </div>--%>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">小计:</label>
                         <div class="col-sm-10">
@@ -103,7 +103,7 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">总计:</label>
                         <div class="col-sm-10">
-                            <input class="col-sm-2 control-label" type="text" name="" value="${reletApply.total}">
+                            <input class="col-sm-2 control-label" type="text" name="total" value="${reletApply.total}">
                         </div>
                     </div>
                     <div class="form-group">

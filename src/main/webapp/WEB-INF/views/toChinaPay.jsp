@@ -84,10 +84,10 @@
              <td>AcqCode:</td>
              <td><input name="AcqCode" type="hidden" value="${AcqCode}"></td>
          </tr>--%>
-        <tr>
+       <%-- <tr>
             <td>BankInstNo:</td>
             <td><input name="BankInstNo" type="hidden" value="${BankInstNo}"></td>
-        </tr>
+        </tr>--%>
         <tr>
             <td>CommodityMsg:</td>
             <td><input name="CommodityMsg" type="hidden" value="${CommodityMsg}"></td>

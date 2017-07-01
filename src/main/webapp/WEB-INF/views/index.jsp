@@ -208,13 +208,13 @@
                         <ul class="panel-group level02" id="aside_five_02">
                             <li class="panel" role="tab">
                                 <div class="panel-header">
-                                    <a  target="main"  href="${basePath}/page/system/rename">更名</a>
+                                    <a  target="main"  href="${basePath}/admin/sys/rename/1">更名</a>
                                 </div>
                             </li>
 
                             <li class="panel" role="tab">
                                 <div class="panel-header">
-                                    <a  target="main"  href="${basePath}/page/system/decoinfo">装修须知</a>
+                                    <a  target="main"  href="${basePath}/admin/sys/decoinfo/2">装修须知</a>
                                 </div>
                             </li>
 
@@ -236,7 +236,7 @@
                                     <a  target="main" href="${basePath}/page/system/sys">系统信息设置</a>
                                 </div>
                                 <div class="panel-header">
-                                    <a  target="main"  href="${basePath}/page/system/checkinprompt">入住提示信息</a>
+                                    <a  target="main"  href="${basePath}/admin/sys/checkinprompt/3">入住提示信息</a>
                                 </div>
                             </li>
 
