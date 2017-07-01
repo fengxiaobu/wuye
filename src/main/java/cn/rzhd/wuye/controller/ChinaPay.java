@@ -362,11 +362,11 @@ public class ChinaPay {
                     shuidian.changeStatus(vo.getId());
                     result.put("msg", "shuidian");
                 } else if ("rzwuye".equals(vo.getType())) {
-                    enterApplyService.updatePayState("1", null, vo.getApplyId());
+                    enterApplyService.updatePayState("2", null, vo.getApplyId());
                     wuye.changeStatus(vo.getId());
                     result.put("msg", "rzwuye");
                 } else if ("rzkaifa".equals(vo.getType())) {
-                    enterApplyService.updatePayState(null, "1", vo.getApplyId());
+                    enterApplyService.updatePayState(null, "2", vo.getApplyId());
                     kaifa.changeStatus(vo.getId());
                     result.put("msg", "rzkaifa");
                 } else if ("zxfy".equals(vo.getType())) {

@@ -66,14 +66,15 @@
             "house",
 			"dpactstart",
 			"dpactend",
-            "pk_project",
             SERVICE_PHONE,
             OBJECT_PHONE,
             "pk_customerid",
 			"nrentarea",
-            p.VSHORTNAME AS projectName
+            p.VSHORTNAME AS projectName,
+			T_HOUSE_INFO.STAR_LEVEL grades
         FROM "T_Rent_Contract"
-            JOIN T_PROJECT_INFO p ON "pk_project" = p.PK_PROJECT
+            JOIN T_PROJECT_INFO p ON "T_Rent_Contract"."pk_project" = p.PK_PROJECT
+			JOIN T_HOUSE_INFO ON "pk_house"=T_HOUSE_INFO.HOUSE_INFO_ID
         WHERE "pk_customerid" = #{customerId}
     </select>
 

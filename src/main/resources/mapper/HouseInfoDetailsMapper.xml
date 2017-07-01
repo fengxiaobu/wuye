@@ -253,6 +253,6 @@
         <result column="UPDATEDATE" property="updatedate" jdbcType="DATE"/>
         <result column="ENTERAPPLY_STATE" property="enterapplyState" jdbcType="VARCHAR"/>
         <result column="DECORATIONAPPLYSTATE" property="decorationapplystate" jdbcType="VARCHAR"/>
-        <association property="projectInfo" column="pk_project" select="cn.rzhd.wuye.mapper.ProjectInfoMapper.selectByPrimaryKey"/>
+
     </resultMap>
 </mapper>

@@ -34,10 +34,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.lang.reflect.InvocationTargetException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * luopa 在 2017/5/25 创建.
@@ -423,5 +420,20 @@ public class EnterApplyController {
             result.put("msg", "erro" + e.getMessage());
             return result;
         }
+    }
+
+    /**
+     * 完成入驻流程
+     *
+     * @param enterApplyId
+     * @return
+     */
+    @RequestMapping("/updateEnterApplyState")
+    @ResponseBody
+    public Map<String, String> updateEnterApplyState(Long enterApplyId) {
+        Map<String, String> result = new Hashtable<>();
+        enterApplyService.updatePayState("-1", "-1", enterApplyId);
+        result.put("state", "1");
+        return result;
     }
 }
