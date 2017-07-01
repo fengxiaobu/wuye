@@ -267,13 +267,6 @@
                                     <a data-toggle="collapse" target="main"  href="#">开发开票列表</a>
                                 </div>
                             </li>
-
-                            <li class="panel" role="tab">
-                                <div class="panel-header">
-                                    <a data-toggle="collapse" target="main"  href="#">开发开票列表</a>
-                                </div>
-                            </li>
-
                             <li class="panel" role="tab">
                                 <div class="panel-header">
                                     <a target="main" href="${pageContext.request.contextPath}/system/ammeterIndex">电表</a>

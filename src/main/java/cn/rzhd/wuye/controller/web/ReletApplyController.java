@@ -142,7 +142,6 @@ public class ReletApplyController {
                 result.put("msg", "房产ID不能为空!");
                 return result;
             }
-
             retreatLeaseApplyService.insert(retreatLeaseApply);
         } catch (Exception e) {
             result.put("state", "0");
@@ -195,5 +194,74 @@ public class ReletApplyController {
         result.put("state", "1");
         result.put("data", retreatLeaseApply.get(0));
         return result;
+    }
+
+    /**
+     * 查看续租信息
+     *
+     * @param reletApplyId
+     * @param model
+     * @return
+     */
+    @RequestMapping("reletApply/toReletApplyDeatail")
+    public String toReletApplyDeatail(Long reletApplyId, Model model) {
+        if (reletApplyId != null) {
+            ReletApply reletApply = reletApplyService.selectByPrimaryKey(reletApplyId);
+            model.addAttribute("reletApply", "reletApply");
+            return "rent/xuzuDetail";
+        }
+        model.addAttribute("msg", "ID不能为空!");
+        return "redirect:/findReletApply";
+    }
+
+    /**
+     * 编辑续租信息
+     *
+     * @param reletApply
+     * @return
+     */
+    @RequestMapping("reletApply/updateReletApplyDeatail")
+    public String updateReletApplyDeatail(ReletApply reletApply) {
+        try {
+            if (reletApply != null) {
+                reletApplyService.updateByPrimaryKey(reletApply);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "redirect:/findReletApply";
+    }
+
+    /**
+     * 查看退租信息
+     *
+     * @param retreatLeaseApplyId
+     * @param model
+     * @return
+     */
+    @RequestMapping("reletApply/toRetreatLeaseDeatail")
+    public String toRetreatLeaseDeatail(Long retreatLeaseApplyId, Model model) {
+        if (retreatLeaseApplyId != null) {
+            RetreatLeaseApply retreatLeaseApply = retreatLeaseApplyService.selectByPrimaryKey(retreatLeaseApplyId);
+            model.addAttribute("retreatLeaseApply", "retreatLeaseApply");
+            return "rent/tuizuDetail";
+        }
+        model.addAttribute("msg", "ID不能为空!");
+        return "redirect:/findRetreatLeaseApply";
+    }
+
+    /**
+     * 删除续租信息
+     *
+     * @param reletApplyId
+     * @return
+     */
+    @RequestMapping("reletApply/deleteReletApplyDeatail")
+    public String deleteReletApplyDeatail(Long reletApplyId) {
+        if (reletApplyId != null) {
+            ReletApply reletApply = reletApplyService.selectByPrimaryKey(reletApplyId);
+            return "redirect:/findReletApply";
+        }
+        return "redirect:/findReletApply";
     }
 }
