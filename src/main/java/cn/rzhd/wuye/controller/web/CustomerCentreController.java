@@ -1,6 +1,5 @@
 package cn.rzhd.wuye.controller.web;
 
-<<<<<<< HEAD
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.Date;
@@ -10,18 +9,13 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-=======
->>>>>>> b29cddbdf6146c93652d50e95405083435e40938
 import cn.rzhd.wuye.bean.Customer;
 import cn.rzhd.wuye.bean.PerfectInformation;
 import cn.rzhd.wuye.service.ICustomerCentreService;
@@ -29,20 +23,7 @@ import cn.rzhd.wuye.service.ICustomerService;
 import cn.rzhd.wuye.service.IPerfectInformationService;
 import cn.rzhd.wuye.utils.Client;
 import cn.rzhd.wuye.utils.JsonUtils;
-<<<<<<< HEAD
 import cn.rzhd.wuye.utils.MD5Utils;
-=======
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.util.*;
->>>>>>> b29cddbdf6146c93652d50e95405083435e40938
 
 /**
  * © 2017 RZHD.CN
@@ -57,7 +38,6 @@ import java.util.*;
 
 @RestController
 @RequestMapping(value = "/dist/CustomerCentre", method = RequestMethod.POST)
-@SessionAttributes("Vcode")
 public class CustomerCentreController{
 
 	@Autowired
