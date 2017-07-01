@@ -81,7 +81,7 @@
 						 </div>
 						  <div class="form-group">
 						    <label class="col-sm-2 control-label ">更新时间:</label>
-						     <div class="input-group col-sm-3">
+						     <div class="col-sm-3">
 						     	 
 						     	 <input class="form-control" type="text" placeholder="2017-07-1" readonly>
 						    </div>

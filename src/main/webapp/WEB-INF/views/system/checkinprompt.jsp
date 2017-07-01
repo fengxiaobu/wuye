@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>装修须知</title>
+<title>入住提示信息</title>
  <%@include file="/common/common.jsp" %>
 </head>
 <body>
@@ -14,7 +14,7 @@
 	<ol class="breadcrumb">
 		<li><a href="#">首页</a></li>
 		<li><a href="#">系统设置</a></li>
-		<li class="active">装修须知</li>
+		<li class="active">入住提示信息</li>
 	</ol>
 </div>
 
@@ -22,7 +22,7 @@
 <div class="col-xs-12">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<div class="col-xs-4">装修须知</div>
+			<div class="col-xs-4">入住提示信息</div>
 		</div>
 		<div class="panel-body project_sign_box">
 		<textarea id="contentqq" class="project_sign" rows="9" name="risk_content" cols="150" style="visibility:hidden;"></textarea>
