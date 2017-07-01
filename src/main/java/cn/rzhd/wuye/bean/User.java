@@ -44,7 +44,9 @@ public class User implements Serializable {
 	 * 备注
 	 */
 	private String note;
-
+	/**
+	 * 密码
+	 */
 	private String password;
 
 	public Long getUserId() {
