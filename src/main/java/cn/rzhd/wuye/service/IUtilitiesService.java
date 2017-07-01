@@ -32,4 +32,6 @@ public interface IUtilitiesService {
     String getCompanyAccount(String pk_feeType,String pk_corp);
 
     String getCostType(String pk_feeType,String pk_corp);
+
+    Map<String,Object> getByPrimaryKey(Long id);
 }

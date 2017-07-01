@@ -40,8 +40,9 @@ public class UtilitiesRecordsController {
     }
 
     @RequestMapping("/electricDetails")
-    public ModelAndView electricDetails(){
+    public ModelAndView electricDetails(Long id){
         ModelAndView mav = new ModelAndView();
+        Map<String,Object> result = service.getByPrimaryKey(id);
         mav.setViewName("payment/electricDetails");
         return mav;
     }
