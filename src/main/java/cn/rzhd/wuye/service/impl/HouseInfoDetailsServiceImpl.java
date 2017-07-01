@@ -73,8 +73,8 @@ public class HouseInfoDetailsServiceImpl implements IHouseInfoDetailsService {
     }
     
     @Override
-    public void updadteState(String currentFlow, String houseInfoId) {
-        mapper.updadteState(currentFlow,houseInfoId);
+    public void updadteState(String alreadyFinish, String houseInfoId) {
+        mapper.updadteState(alreadyFinish,houseInfoId);
     }
 
 }

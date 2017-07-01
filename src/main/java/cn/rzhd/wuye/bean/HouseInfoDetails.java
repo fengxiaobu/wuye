@@ -150,9 +150,9 @@ public class HouseInfoDetails implements Serializable {
      */
     private String decorationapplystate;
     /**
-     * 当前入驻流程状态(0-未办理,1-完成完善资料,2-完成资料提交,3-完成审核,4-完成入驻费用交纳)
+     * 是否第一次完善资料(1--是,0--否)
      */
-    private String currentFlow;
+    private String alreadyFinish;
 
     private ProjectInfo projectInfo;
     
@@ -454,12 +454,13 @@ public class HouseInfoDetails implements Serializable {
         this.decorationapplystate = decorationapplystate == null ? null : decorationapplystate.trim();
     }
 
-	public String getCurrentFlow() {
-		return currentFlow;
+	public String getAlreadyFinish() {
+		return alreadyFinish;
 	}
 
-	public void setCurrentFlow(String currentFlow) {
-		this.currentFlow = currentFlow;
+	public void setAlreadyFinish(String alreadyFinish) {
+		this.alreadyFinish = alreadyFinish;
 	}
+
     
 }

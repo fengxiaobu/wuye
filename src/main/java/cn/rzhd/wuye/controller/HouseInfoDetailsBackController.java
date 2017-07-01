@@ -1,26 +1,22 @@
 package cn.rzhd.wuye.controller;
 
-import cn.rzhd.wuye.bean.HouseInfoDetails;
-import cn.rzhd.wuye.service.IHouseInfoDetailsService;
-import cn.rzhd.wuye.utils.PageDataGridResult;
-import cn.rzhd.wuye.vo.HouseVO;
-import com.github.pagehelper.Page;
-import com.github.pagehelper.PageHelper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+
+import cn.rzhd.wuye.bean.HouseInfoDetails;
+import cn.rzhd.wuye.service.IHouseInfoDetailsService;
+import cn.rzhd.wuye.vo.HouseVO;
 
 /**
  * @author ghr-2017/6/16
@@ -34,12 +30,16 @@ public class HouseInfoDetailsBackController {
     @RequestMapping("/getHouseInfoDetailsList")
     public String houseInfoDetailsList(Model model, Integer pageNum, Integer pageSize) {
         PageHelper.startPage(pageNum, pageSize);
-        List<HouseVO> HouseVOs = houseInfoDetailsService.getBackAll();
-
-        Page page = (Page) HouseVOs;
-        model.addAttribute("houseInfoDetailsList", HouseVOs);
-
-        model.addAttribute("pages", page.getPages());
+        List<HouseVO> houseVOs = houseInfoDetailsService.getBackAll();
+        
+        PageInfo<HouseVO> pageInfo = new PageInfo<>(houseVOs);
+        List<HouseVO> result = pageInfo.getList();
+        System.out.println(result.size());
+    
+       
+//        model.addAttribute("houseInfoDetailsList", page.getResult());
+//
+//        model.addAttribute("pages", page.getPages());
         return "contract/houseInfoDetails";
     }
     

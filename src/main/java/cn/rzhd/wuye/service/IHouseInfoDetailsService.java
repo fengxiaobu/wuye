@@ -38,5 +38,5 @@ public interface IHouseInfoDetailsService {
 
     HouseInfoDetails selectByPkHouse(String pkHouse);
 
-	void updadteState(String currentFlow, String houseInfoId);
+	void updadteState(String alreadyFinish, String houseInfoId);
 }
