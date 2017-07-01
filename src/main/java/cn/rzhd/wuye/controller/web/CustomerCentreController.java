@@ -146,29 +146,6 @@ public class CustomerCentreController {
 		return result;
 	}
 
-	/**
-	 * 修改资料
-	 *
-	 * @param perfectInformation
-	 * @return
-	 */
-	@RequestMapping(value = "/updatePerfectInformation", method = RequestMethod.POST)
-	public Map<String, Object> updatePerfectInformation(PerfectInformation perfectInformation, String houseInfoId) {
-		Map<String, Object> result = new Hashtable<>();
-		
-		try {
-			perfectInformation.setPerfectInformationId(houseInfoId);
-			perfectInformation.setUpdateTime(new Date());
-			perfectInformationService.updateByHouseInfoId(perfectInformation);
-			customerService.updadteState("1", houseInfoId);
-			result.put("state", "1");
-			return result;
-		} catch (Exception e) {
-			result.put("state", "0");
-			result.put("msg", e.getMessage());
-			return result;
-		}
-	}
 
 	/**
 	 * 完善资料
@@ -179,10 +156,17 @@ public class CustomerCentreController {
 	public Map<String, Object> savePerfectInformation(PerfectInformation perfectInformation, String houseInfoId) {
 		Map<String, Object> result = new Hashtable<>();
 		try {
-			perfectInformation.setPerfectInformationId(houseInfoId);
-			perfectInformation.setCarteTime(new Date());
-			perfectInformationService.save(perfectInformation);
-			customerService.updadteState("1", houseInfoId);
+			if (perfectInformation.getPerfectInformationId() == null && "".equals(perfectInformation.getPerfectInformationId())) {
+				perfectInformation.setUpdateTime(new Date());
+				//修改
+				perfectInformationService.updateByHouseInfoId(perfectInformation);
+			}else {
+				//保存
+				perfectInformation.setPerfectInformationId(houseInfoId);
+				perfectInformation.setCarteTime(new Date());
+				perfectInformationService.save(perfectInformation);
+				customerService.updadteState("1", houseInfoId);
+			}
 			result.put("state", "1");
 			return result;
 		} catch (Exception e) {
