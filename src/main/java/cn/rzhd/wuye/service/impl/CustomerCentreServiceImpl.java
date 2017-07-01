@@ -55,8 +55,14 @@ public class CustomerCentreServiceImpl implements ICustomerCentreService {
 
 	@Override
 	public void updatePassword(String password, String vccode) {
-		password = MD5Utils.md5(password);
-		mapper.updatePassword(password,vccode);
+		String pwd= MD5Utils.md5(password);
+		mapper.updatePassword(pwd,vccode);
 
+	}
+
+	@Override
+	public String getPassword(String vccode) {
+		String password = mapper.selectPassword(vccode);
+		return password;
 	}
 }
