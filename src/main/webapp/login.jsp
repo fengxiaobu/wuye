@@ -70,7 +70,7 @@
 		.login-left {
 			width: 546px;
 			height: 542px;
-			background: rgba(0,154,248,0.3) url(${pageContext.request.contextPath}/imgs/logo01.png) no-repeat center center;
+			background: rgba(0,154,248,0.3) url(${pageContext.request.contextPath}/imgs/logo02.png) no-repeat center center;
 		}
 		.login-right {
 			width: 427px;
@@ -108,48 +108,6 @@
 </script>
 </head>
 <body>
-	<!-- 登录-v2 开始 -->
-	<!-- <div class="popup-container popup-msg login-container02 hide">
-		<div class="popup-main">
-			<div class="popup-section">
-				<div class="popup-content popup-anim-scale container">
-					<form>
-						<div class="form-group">
-							<img src="../imgs_test/logo_1.png">
-						</div>
-						<div class="form-group label-line">
-							<label for="username">用户名：</label>
-							<input type="text" class="form-control" id="username" placeholder="请输入用户名">
-						</div>
-						<div class="form-group label-line">
-							<label class="form-label" for="userpwd">密&emsp;码：</label>
-							<input type="password" class="form-control" id="userpwd" placeholder="请输入密码">
-						</div>
-						<div class="form-group label-line">
-							<div class="row">
-								<div class="col-xs-8">
-									<label class="form-label" for="userpwd">验证码：</label>
-									<input type="text" class="form-control" id="" placeholder="请输入验证码">
-								</div>
-		  						<div class="col-xs-4">
-		  							<div class="validate-code"><img src="../imgs_test/validate-code.png"></div>
-		  						</div>
-							</div>	
-						</div>
-						<div class="checkbox">
-							<label>
-								<input type="checkbox">记住密码
-							</label>
-						</div>
-						<div class="text-center">
-							<button type="submit" class="btn btn-success btn-login">登录</button>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div> -->
-	<!-- 登录-v2 结束 -->
 	<!-- 登录-v2 开始 -->
 	<div class="popup-container popup-msg login-container02">
 		<div class="popup-main">

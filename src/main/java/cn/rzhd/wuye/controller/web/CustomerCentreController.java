@@ -8,14 +8,14 @@ import cn.rzhd.wuye.service.IPerfectInformationService;
 import cn.rzhd.wuye.utils.Client;
 import cn.rzhd.wuye.utils.JsonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
-import java.io.*;
+import javax.servlet.http.HttpSession;
+import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -31,7 +31,7 @@ import java.util.*;
 
 @RestController
 @RequestMapping(value = "/dist/CustomerCentre", method = RequestMethod.POST)
-public class CustomerCentreController extends HttpServlet {
+public class CustomerCentreController{
 
 	@Autowired
 	IPerfectInformationService perfectInformationService;
@@ -55,7 +55,6 @@ public class CustomerCentreController extends HttpServlet {
 	/**
 	 * 修改logo
 	 *
-	 * @param customer
 	 * @return
 	 */
 
@@ -72,43 +71,59 @@ public class CustomerCentreController extends HttpServlet {
 		}
 	}
 
-	String vcode = Client.createRandomVcode();
 
 	@RequestMapping(value = "/getVcode", method = RequestMethod.POST)
-	public String getVcode(String bindingPhone) {
+	public void getVcode(String bindingPhone,HttpSession httpSession) {
 		String sn = "SDK-CSL-010-00073";
 		String pwd = "22baa8)d-d5";
+		
+		String vcode = Client.createRandomVcode();
+		
 		try {
 			Client client = new Client(sn, pwd);
 			String content = URLEncoder.encode("您的验证码为：" + vcode + "【联东物业】", "utf8");
-
+			
+			httpSession.setAttribute("vcode", vcode); 
+			System.out.println("获取："+vcode);
+			
 			String result_mt = client.mdsmssend(bindingPhone, content, "", "", "", "");
 			System.out.print(result_mt);
-			
-			return vcode;
+
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
-		return null;
 	}
 
 	/**
 	 * 修改绑定号码
 	 *
-	 * @param customer
 	 * @return
 	 */
 	@RequestMapping(value = "/updatePhone", method = RequestMethod.POST)
-	public Map<String, String> updatePhone(String bindingPhone, String vccode) {
+	public Map<String, String> updatePhone(HttpSession httpSession,String bindingPhone, String vccode,String verificationCode) {
 		Map<String, String> result = new HashMap<>();
-
-		try {
+		
+		
+		String vcode = (String)httpSession.getAttribute("vcode");  
+		System.out.println("获取后："+vcode);
+		
+		if (verificationCode.equals(vcode)) {
 			customerCentreService.updatePhone(bindingPhone, vccode);
 			result.put("msg", "修改成功");
-		} catch (Exception e) {
-			e.printStackTrace();
 		}
 		result.put("msg", "修改失败");
+		return result;
+	}
+
+	/**
+	 * 修改密码
+	 *
+	 * @return
+	 */
+	@RequestMapping(value = "/updatePassword", method = RequestMethod.POST)
+	public Map<String, String> updatePassword(String password, String vccode,String verificationCode) {
+		Map<String, String> result = new HashMap<>();
+		customerCentreService.updatePassword(password,vccode);
 		return result;
 	}
 
@@ -128,7 +143,6 @@ public class CustomerCentreController extends HttpServlet {
 	 * 完善资料
 	 *
 	 * @param perfectInformation
-	 * @param Vccode
 	 */
 	@RequestMapping(value = "/savePerfectInformation", method = RequestMethod.POST)
 	public Map<String, Object> savePerfectInformation(PerfectInformation perfectInformation, String houseInfoId) {
@@ -147,49 +161,4 @@ public class CustomerCentreController extends HttpServlet {
 		}
 	}
 
-	@RequestMapping(value = "/upload", method = RequestMethod.POST)
-	@ResponseBody
-	public Map<String, String> upload(@RequestParam("file") MultipartFile file, HttpServletRequest request) {
-		Map<String, String> result = new HashMap<>();
-
-		String savePath = request.getServletContext().getRealPath("/upload/");
-		SimpleDateFormat df1 = new SimpleDateFormat("yyyy_MM_dd");// 设置日期格式
-		SimpleDateFormat df2 = new SimpleDateFormat("HH_mm_ss_SSSS");// 设置日期格式
-		String dateDir1 = df1.format(new Date());// new Date()为获取当前系统时间
-		String dateDir2 = df2.format(new Date());// new Date()为获取当前系统时间
-		String serviceName = file.getOriginalFilename().substring(0, file.getOriginalFilename().lastIndexOf("."))
-				+ file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
-
-		File tempFile = new File(savePath + dateDir1 + "/" + dateDir2 + File.separator + serviceName);
-		String path = "/upload/" + dateDir1 + "/" + dateDir2 + File.separator + serviceName;
-		if (!tempFile.getParentFile().exists()) {
-			tempFile.getParentFile().mkdirs();
-		}
-		if (!file.isEmpty()) {
-			try {
-				BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(tempFile));
-				out.write(file.getBytes());
-				out.flush();
-				out.close();
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();
-				result.put("state", "0");
-				result.put("msg", "文件找不到");
-				return result;
-			} catch (IOException e) {
-				e.printStackTrace();
-				result.put("state", "0");
-				result.put("msg", "上传失败," + e.getMessage());
-				return result;
-			}
-			result.put("state", "1");
-			result.put("msg", "上传成功");
-			result.put("url", path);
-			return result;
-		} else {
-			result.put("state", "0");
-			result.put("msg", "上传失败，因为文件是空的");
-			return result;
-		}
-	}
 }

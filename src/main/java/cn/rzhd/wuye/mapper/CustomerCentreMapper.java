@@ -26,4 +26,6 @@ public interface CustomerCentreMapper {
     PerfectInformation findInfoById(String customerId);
 
     List<PerfectInformation> getAll();
+
+	void updatePassword(String password, String vccode);
 }

@@ -18,7 +18,7 @@ import java.util.Map;
 @RequestMapping("/propertyRecords")
 public class PropertyRecordsController {
     @Autowired
-    IPropertyFeePayDetailsService propertyFeePayDetailsService;
+    private IPropertyFeePayDetailsService propertyFeePayDetailsService;
 
     @RequestMapping("/index")
     public ModelAndView index(){
