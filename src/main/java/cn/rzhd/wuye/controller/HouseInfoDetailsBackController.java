@@ -26,7 +26,7 @@ import java.util.Map;
  * @author ghr-2017/6/16
  */
 @Controller
-@RequestMapping("/dist/houseInfoDetailsBack")
+@RequestMapping("/houseInfoDetailsBack")
 public class HouseInfoDetailsBackController {
     @Autowired
     IHouseInfoDetailsService houseInfoDetailsService;
@@ -40,7 +40,7 @@ public class HouseInfoDetailsBackController {
         model.addAttribute("houseInfoDetailsList", HouseVOs);
 
         model.addAttribute("pages", page.getPages());
-        return "contract/houseInfoDetails2";
+        return "contract/houseInfoDetails";
     }
     
     @RequestMapping("/getHouseInfoDetails")

@@ -158,7 +158,7 @@ public class CustomerCentreController {
 		
 		try {
 			perfectInformation.setPerfectInformationId(houseInfoId);
-			perfectInformation.setCarteTime(new Date());
+			perfectInformation.setUpdateTime(new Date());
 			perfectInformationService.updateByHouseInfoId(perfectInformation);
 			customerService.updadteState("1", houseInfoId);
 			result.put("state", "1");
