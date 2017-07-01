@@ -1,5 +1,7 @@
 package cn.rzhd.wuye;
 
+import static org.junit.Assert.*;
+
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
@@ -62,4 +64,11 @@ public class PerfectInformationTest extends BaseTest {
 		}
 	}
 
+	
+	@Test
+	public void test3() throws Exception {
+		String houseInfoId="1031AM100000000192Q2";
+		PerfectInformation information = mapper.selectByHouseInfoId(houseInfoId);
+		System.out.println(information);
+	}
 }

@@ -1,5 +1,7 @@
 package cn.rzhd.wuye.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,13 +15,13 @@ public class PerfectInformationServiceImpl implements IPerfectInformationService
 	PerfectInformationMapper mapper;
 
 	@Override
-	public PerfectInformation getByVccode(String perfectInformationId) {
-		PerfectInformation perfectInformation = mapper.selectByPrimaryKey(perfectInformationId);
+	public PerfectInformation getByHouseInfoId(String houseInfoId) {
+		PerfectInformation perfectInformation = mapper.selectByHouseInfoId(houseInfoId);
 		return perfectInformation;
 	}
 
 	@Override
-	public void updateByVccode(PerfectInformation perfectInformation) {
+	public void updateByHouseInfoId(PerfectInformation perfectInformation) {
 		mapper.updateByPrimaryKey(perfectInformation);
 	}
 
@@ -31,6 +33,12 @@ public class PerfectInformationServiceImpl implements IPerfectInformationService
 	@Override
 	public void updateFlow(String vccode) {
 		mapper.updateFlow(vccode);
+	}
+
+	@Override
+	public List<PerfectInformation> getAll() {
+		List<PerfectInformation> perfectInformations = mapper.selectAll();
+		return perfectInformations;
 	}
 
 }

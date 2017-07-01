@@ -14,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
 import cn.rzhd.wuye.bean.Customer;
 import cn.rzhd.wuye.bean.PerfectInformation;
@@ -37,8 +36,8 @@ import cn.rzhd.wuye.utils.MD5Utils;
  */
 
 @RestController
-@RequestMapping(value = "/dist/CustomerCentre", method = RequestMethod.POST)
-public class CustomerCentreController{
+@RequestMapping("/dist/CustomerCentre")
+public class CustomerCentreController {
 
 	@Autowired
 	IPerfectInformationService perfectInformationService;
@@ -78,27 +77,26 @@ public class CustomerCentreController{
 		}
 	}
 
-
 	@RequestMapping(value = "/getVcode", method = RequestMethod.POST)
 	public Map<String, String> getVcode(String bindingPhone) {
 		Map<String, String> result = new HashMap<>();
-		
+
 		String sn = "SDK-CSL-010-00073";
 		String pwd = "22baa8)d-d5";
-		
+
 		String vcode = Client.createRandomVcode();
-		
+
 		try {
 			Client client = new Client(sn, pwd);
 			String content = URLEncoder.encode("您的验证码为：" + vcode + "【联东物业】", "utf8");
-			
+
 			String result_mt = client.mdsmssend(bindingPhone, content, "", "", "", "");
 			System.out.print(result_mt);
 
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
-		
+
 		result.put("vcode", vcode);
 		return result;
 	}
@@ -109,18 +107,23 @@ public class CustomerCentreController{
 	 * @return
 	 */
 	@RequestMapping("/updatePhone")
-	public Map<String, String> updatePhone(String bindingPhone, String vccode,String password) {
+	public Map<String, String> updatePhone(String bindingPhone, String vccode, String password) {
 		Map<String, String> result = new HashMap<>();
-		String pwd= customerCentreService.getPassword(vccode);
+		String pwd = customerCentreService.getPassword(vccode);
 		password = MD5Utils.md5(password);
-		try {
-			if (password.equals(pwd)) {
+		if (password.equals(pwd)) {
+			try {
 				customerCentreService.updatePhone(bindingPhone, vccode);
+				result.put("message", "修改成功");
+			} catch (Exception e) {
+				e.printStackTrace();
+				result.put("message", "修改失败");
 			}
-			result.put("msg", "修改成功");
-		} catch (Exception e) {
-			e.printStackTrace();
-			result.put("msg", "修改失败");
+			result.put("state", "0");
+			result.put("msg", "密码正确");
+		}else {
+			result.put("state", "1");
+			result.put("msg", "密码错误");
 		}
 		return result;
 	}
@@ -134,7 +137,7 @@ public class CustomerCentreController{
 	public Map<String, String> updatePassword(String password, String vccode) {
 		Map<String, String> result = new HashMap<>();
 		try {
-			customerCentreService.updatePassword(password,vccode);
+			customerCentreService.updatePassword(password, vccode);
 			result.put("msg", "修改成功");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -150,9 +153,21 @@ public class CustomerCentreController{
 	 * @return
 	 */
 	@RequestMapping(value = "/updatePerfectInformation", method = RequestMethod.POST)
-	public void updatePerfectInformation(PerfectInformation perfectInformation, String Vccode) {
-		perfectInformation.setPerfectInformationId(Vccode);
-		perfectInformationService.updateByVccode(perfectInformation);
+	public Map<String, Object> updatePerfectInformation(PerfectInformation perfectInformation, String houseInfoId) {
+		Map<String, Object> result = new Hashtable<>();
+		
+		try {
+			perfectInformation.setPerfectInformationId(houseInfoId);
+			perfectInformation.setCarteTime(new Date());
+			perfectInformationService.updateByHouseInfoId(perfectInformation);
+			customerService.updadteState("1", houseInfoId);
+			result.put("state", "1");
+			return result;
+		} catch (Exception e) {
+			result.put("state", "0");
+			result.put("msg", e.getMessage());
+			return result;
+		}
 	}
 
 	/**
@@ -176,5 +191,13 @@ public class CustomerCentreController{
 			return result;
 		}
 	}
+	
+	
+	@RequestMapping("/getPerfectInformation")
+	public PerfectInformation getPerfectInformation(String houseInfoId) {
+		PerfectInformation perfectInformation = perfectInformationService.getByHouseInfoId(houseInfoId);
+		return perfectInformation;
+	}
+	
 
 }
