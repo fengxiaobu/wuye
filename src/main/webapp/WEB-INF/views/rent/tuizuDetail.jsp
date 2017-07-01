@@ -1,5 +1,4 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
@@ -27,89 +26,81 @@
                 <form class="form-horizontal"
                       action="${pageContext.request.contextPath}/dist/enterApply/updateEnterApply" method="post">
                     <div class="form-group" style="margin-top: 50px">
-                        <input type="hidden" name="enterApplyId" value="${enterApply.enterApplyId}"/>
-                        <input type="hidden" name="houseId" value="${enterApply.houseId}"/>
+                        <input type="hidden" name="retreatLeaseApplyId"
+                               value="${retreatLeaseApply.retreatLeaseApplyId}"/>
                         <label class="col-sm-2 control-label">项目名称:</label>
                         <div class="col-sm-10">
-                            <label class="col-sm-2 control-label">${enterApply.houseInfoDetails.project}</label>
+                            <label class="col-sm-2 control-label">${retreatLeaseApply.houseInfoDetails.project}</label>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">房产信息:</label>
                         <div class="col-sm-10">
-                            <label class="col-sm-2 control-label">${enterApply.houseInfoDetails.vhname}</label>
+                            <label class="col-sm-2 control-label">
+                                <td>${retreatLeaseApply.houseInfoDetails.vhname}</td>
+                            </label>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">租赁面积:</label>
                         <div class="col-sm-10">
-                            <label class="col-sm-2 control-label">${enterApply.houseInfoDetails.vhname}</label>
+                            <label class="col-sm-2 control-label">${retreatLeaseApply.houseAcreage}</label>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">客户名称:</label>
                         <div class="col-sm-10">
-                            <label class="col-sm-2 control-label">${enterApply.clientName}</label>
+                            <label class="col-sm-2 control-label">
+                                <td>${retreatLeaseApply.customer.vcname}</td>
+                            </label>
                         </div>
                     </div>
-                    <%--<div class="form-group">
+                    <div class="form-group">
                         <label class="col-sm-2 control-label">租赁开始时间:</label>
                         <div class="col-sm-10">
-                            <label class="col-sm-2 control-label">${enterApply.applyTime}</label>
-                        </div>
-                    </div>--%>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">租赁结束时间:</label>
-                        <div class="col-sm-10">
-                            <label class="col-sm-2 control-label">${enterApply.applyTime}</label>
+                            <label class="col-sm-2 control-label"><fmt:formatDate
+                                    value="${retreatLeaseApply.leaseStartTime}" pattern="yyyy-MM-dd"/></label>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">续租开始日期:</label>
+                        <label class="col-sm-2 control-label">退租时间:</label>
                         <div class="col-sm-10">
-                            <label class="col-sm-2 control-label">${enterApply.applyTime}</label>
+                            <label class="col-sm-2 control-label"><fmt:formatDate
+                                    value="${retreatLeaseApply.leaseEndTime}" pattern="yyyy-MM-dd"/></label>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">续租结束日期:</label>
+                        <label class="col-sm-2 control-label">退租类型:</label>
                         <div class="col-sm-10">
-                            <input class="col-sm-2 control-label" type="text" name="" value=""/>
+                            <label class="col-sm-2 control-label">
+                                <td>${retreatLeaseApply.retreatLeaseType}正常退租</td>
+                                正常退租</label>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">租金单价:</label>
+                        <label class="col-sm-2 control-label">欠缴租金:</label>
                         <div class="col-sm-10">
-                            <input class="col-sm-2 control-label" type="text" name="" value=""/>
+                            <label class="col-sm-2 control-label">${retreatLeaseApply.arrearsRent}</label>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">小计:</label>
+                        <label class="col-sm-2 control-label">租赁保证金:</label>
                         <div class="col-sm-10">
-                            <input class="col-sm-2 control-label" type="text" name="" value=""/>
+                            <label class="col-sm-2 control-label">${retreatLeaseApply.leaseDeposit}</label>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">优惠金额:</label>
+                        <label class="col-sm-2 control-label">准退租赁保证金:</label>
                         <div class="col-sm-10">
-                            <input class="col-sm-2 control-label" type="text" name="" value=""/>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">租赁保证金额:</label>
-                        <div class="col-sm-10">
-                            <input class="col-sm-2 control-label" type="text" name="" value=""/>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">总计:</label>
-                        <div class="col-sm-10">
-                            <input class="col-sm-2 control-label" type="text" name="" value=""/>
+                            <input class="col-sm-2 control-label" type="text" name=""
+                                   value="${retreatLeaseApply.permitRetreatLeaseDeposit}">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">提交日期:</label>
                         <div class="col-sm-10">
-                            <label class="col-sm-2 control-label">${enterApply.applyTime}</label>
+                            <label class="col-sm-2 control-label"><fmt:formatDate
+                                    value="${retreatLeaseApply.creationTime}" pattern="yyyy-MM-dd HH:dd:ss"/></label>
                         </div>
                     </div>
                     <div class="form-group" style="margin-left:360px">

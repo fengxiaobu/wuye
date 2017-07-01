@@ -207,7 +207,7 @@ public class ReletApplyController {
     public String toReletApplyDeatail(Long reletApplyId, Model model) {
         if (reletApplyId != null) {
             ReletApply reletApply = reletApplyService.selectByPrimaryKey(reletApplyId);
-            model.addAttribute("reletApply", "reletApply");
+            model.addAttribute("reletApply", reletApply);
             return "rent/xuzuDetail";
         }
         model.addAttribute("msg", "ID不能为空!");
@@ -243,7 +243,7 @@ public class ReletApplyController {
     public String toRetreatLeaseDeatail(Long retreatLeaseApplyId, Model model) {
         if (retreatLeaseApplyId != null) {
             RetreatLeaseApply retreatLeaseApply = retreatLeaseApplyService.selectByPrimaryKey(retreatLeaseApplyId);
-            model.addAttribute("retreatLeaseApply", "retreatLeaseApply");
+            model.addAttribute("retreatLeaseApply", retreatLeaseApply);
             return "rent/tuizuDetail";
         }
         model.addAttribute("msg", "ID不能为空!");

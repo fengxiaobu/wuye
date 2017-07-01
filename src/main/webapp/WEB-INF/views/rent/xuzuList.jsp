@@ -17,7 +17,7 @@
     <ol class="breadcrumb">
         <li><a href="#">首页</a></li>
         <li><a href="#">业务办理</a></li>
-        <li class="active">退租申请列表</li>
+        <li class="active">续租申请列表</li>
     </ol>
 </div>
 <!-- 路径导航 结束 -->
@@ -26,7 +26,7 @@
     </div>
     <div class="panel panel-default tudiqianyue">
         <div class="panel-heading">
-            <div class="col-xs-4">退租申请列表</div>
+            <div class="col-xs-4">续租申请列表</div>
             <div class="col-xs-8 panel-oprerate">
                 <div class="col-xs-6dd">
                     <form action="${pageContext.request.contextPath}/dist/enterApply/search" method="post">
@@ -89,7 +89,7 @@
                         <td>${status.index+1}</td>
                         <td>${reletApply.houseInfoDetails.project}</td>
                         <td>${reletApply.houseInfoDetails.vhname}</td>
-                        <td>${reletApply.clientName}</td>
+                        <td>${reletApply.customer.vcname}</td>
                         <td>${reletApply.houseAcreage}</td>
                         <td><fmt:formatDate value="${reletApply.leaseStartTime}" pattern="yyyy-MM-dd"/></td>
                         <td><fmt:formatDate value="${reletApply.leaseEndTime}" pattern="yyyy-MM-dd"/></td>
