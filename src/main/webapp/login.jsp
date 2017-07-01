@@ -69,7 +69,7 @@
 		} 
 		.login-left {
 			width: 546px;
-			height: 542px;
+/* 			height: 542px; */
 			background: rgba(0,154,248,0.3) url(${pageContext.request.contextPath}/imgs/logo02.png) no-repeat center center;
 		}
 		.login-right {

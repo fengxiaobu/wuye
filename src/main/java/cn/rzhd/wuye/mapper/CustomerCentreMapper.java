@@ -27,5 +27,7 @@ public interface CustomerCentreMapper {
 
     List<PerfectInformation> getAll();
 
-	void updatePassword(String password, String vccode);
+	void updatePassword(@Param("password")String password, @Param("vccode")String vccode);
+	
+	String selectPassword(String vccode);
 }

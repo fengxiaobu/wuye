@@ -40,15 +40,19 @@ public class UtilitiesRecordsController {
     }
 
     @RequestMapping("/electricDetails")
-    public ModelAndView electricDetails(){
+    public ModelAndView electricDetails(Long id){
         ModelAndView mav = new ModelAndView();
+        Map<String,Object> result = service.getElectricByPrimaryKey(id);
+        mav.addObject("result",result);
         mav.setViewName("payment/electricDetails");
         return mav;
     }
 
     @RequestMapping("/waterDetails")
-    public ModelAndView waterDetails(){
+    public ModelAndView waterDetails(Long id){
         ModelAndView mav = new ModelAndView();
+        Map<String, Object> result = service.getWaterByPrimaryKey(id);
+        mav.addObject("result",result);
         mav.setViewName("payment/waterDetails");
         return mav;
     }

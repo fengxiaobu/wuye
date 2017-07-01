@@ -20,4 +20,6 @@ public interface ICustomerCentreService {
     void updatePerfectInformation(PerfectInformation perfectInformation);
 
 	void updatePassword(String password, String vccode);
+	
+	String getPassword(String vccode);
 }

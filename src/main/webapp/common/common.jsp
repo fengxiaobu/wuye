@@ -1,7 +1,6 @@
 <%@ page isELIgnored="false" %>  
-<%@ page language="java" pageEncoding="UTF-8"%>  
-<%@ page import="java.util.Date"%>  
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
+<%@ page language="java" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>  
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>  
 <%  

@@ -76,4 +76,14 @@ public class UtilitiesServiceImpl implements IUtilitiesService {
     public String getCostType(String pk_feeType,String pk_corp) {
         return mapper.getCostType(pk_feeType,pk_corp);
     }
+
+    @Override
+    public Map<String, Object> getElectricByPrimaryKey(Long id) {
+        return mapper.getElectricByPrimaryKey(id);
+    }
+
+    @Override
+    public Map<String, Object> getWaterByPrimaryKey(Long id) {
+        return mapper.getWaterByPrimaryKey(id);
+    }
 }

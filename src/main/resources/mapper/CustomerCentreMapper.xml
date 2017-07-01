@@ -80,8 +80,12 @@
     </update>
     
     <update id="updatePassword">
-    	UPDATE "T_Customer" set "Password" =  #{password} WHERE "vccode"=#{vccode}
+    	UPDATE "T_Customer" SET  "Password" = #{password} WHERE "vccode"=#{vccode}
     </update>
+    
+    <select id="selectPassword" parameterType="String" resultType="String">
+    	SELECT DISTINCT "Password" FROM "T_Customer" WHERE "vccode"=#{vccode}
+    </select>
     
     <update id="updatePerfectInformation">
         UPDATE

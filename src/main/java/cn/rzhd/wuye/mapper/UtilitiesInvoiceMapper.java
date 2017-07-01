@@ -5,6 +5,8 @@ import org.apache.ibatis.annotations.Mapper;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
+
 @Mapper
 public interface UtilitiesInvoiceMapper {
     int deleteByPrimaryKey(BigDecimal utilitiesInvoiceId);
@@ -16,4 +18,9 @@ public interface UtilitiesInvoiceMapper {
     List<UtilitiesInvoice> selectAll();
 
     int updateByPrimaryKey(UtilitiesInvoice record);
+
+    List<UtilitiesInvoice> selectByDetailsId(Long detailsId);
+
+    List<Map<String,String>> getTripleByDetailsId(Long detailsId);
+
 }

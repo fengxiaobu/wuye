@@ -431,4 +431,112 @@
         FROM T_FEE_TYPES
         WHERE "feecode" = #{pk_feeType} AND "pk_corp" = #{pk_corp}
     </select>
+    <resultMap id="electricMapByPrimaryKey" type="java.util.Map">
+        <id property="detailsId" column="UTILITIES_DETAILS_ID"/>
+        <result property="projectName" column="PROJECT_NAME"/>
+        <result property="houseCode" column="vhcode"/>
+        <result property="clientName" column="CLIENT_NAME"/>
+        <result property="payManner" column="PAY_MANNER"/>
+        <result property="ammeterNo" column="AMMETER_NUMBER"/>
+        <result property="multiply" column="MULTIPLYING_POWER"/>
+        <result property="payTime" column="PAY_TIME"/>
+        <result property="paidIn" column="PAID_IN"/>
+        <result property="electricPower" column="ELECTRIC_POWER"/>
+        <result property="collectingCompany" column="COLLECTING_COMPANY"/>
+        <result property="collectingAccount" column="COLLECTING_ACCOUNT"/>
+        <result property="voucherNumber" column="VOUCHER_NUMBER"/>
+        <result property="invoiceNumber" column="INVOICE_NUMBER"/>
+        <result property="invoiceNotes" column="INVOICE_NOTES"/>
+        <result property="costType" column="FEE_TYPE"/>
+        <result property="invoiceStatus" column="INVOICE_STATUS"/>
+        <result property="isWritten" column="IS_WRITTEN"/>
+        <!--开票相关-->
+        <!--<result property="agencyPayCredential" column=""/>-->
+        <!--<collection property="invoices" javaType="cn.rzhd.wuye.bean.UtilitiesInvoice" select="cn.rzhd.wuye.mapper.UtilitiesInvoiceMapper.selectByDetailsId" column="UTILITIES_DETAILS_ID"/>-->
+        <!--<collection property="tripleAgreements" javaType="map" select="cn.rzhd.wuye.mapper.UtilitiesInvoiceMapper" column="UTILITIES_DETAILS_ID"/>-->
+
+        <!--<result property="invoice" column="INVOICE"/>-->
+        <!--<result property="invoiceCompany" column="INVOICE_COMPANY"/>-->
+        <!--<result property="carteTime" column="CARTE_TIME"/>-->
+        <!--<result property="updateTime" column="UPDATE_TIME"/>-->
+        <!--<result property="customerId" column="CUSTOMER_ID"/>-->
+    </resultMap>
+    <select id="getElectricByPrimaryKey" resultMap="electricMapByPrimaryKey" parameterType="long">
+        SELECT
+            DISTINCT
+            UTILITIES_DETAILS_ID,
+            T_PROJECT_INFO.PROJECT_NAME,
+            T_HOUSE_INFO_DETAILS."vhcode",
+            CLIENT_NAME,
+            FEE_TYPE,
+            PAY_MANNER,
+            PAID_IN,
+            VOUCHER_NUMBER,
+            INVOICE_NUMBER,
+            INVOICE_NOTES,
+            INVOICE_STATUS,
+            COLLECTING_COMPANY,
+            COLLECTING_ACCOUNT,
+            PAY_TIME,
+            AMMETER_NUMBER,
+            MULTIPLYING_POWER,
+            ELECTRIC_POWER,
+            IS_WRITTEN
+        FROM T_UTILITIES_DETAILS
+            JOIN T_HOUSE_INFO_DETAILS ON HOUSE_INFO_ID = "pk_house"
+            JOIN T_PROJECT_INFO ON T_HOUSE_INFO_DETAILS."pk_project" = T_PROJECT_INFO.PK_PROJECT
+        WHERE UTILITIES_DETAILS_ID = #{detailsId}
+    </select>
+    <resultMap id="waterMapByPrimaryKey" type="java.util.Map">
+        <id property="detailsId" column="UTILITIES_DETAILS_ID"/>
+        <result property="projectName" column="PROJECT_NAME"/>
+        <result property="houseCode" column="vhcode"/>
+        <result property="clientName" column="CLIENT_NAME"/>
+        <result property="payManner" column="PAY_MANNER"/>
+        <result property="payTime" column="PAY_TIME"/>
+        <result property="paidIn" column="PAID_IN"/>
+        <result property="tunnage" column="TUNNAGE"/>
+        <result property="collectingCompany" column="COLLECTING_COMPANY"/>
+        <result property="collectingAccount" column="COLLECTING_ACCOUNT"/>
+        <result property="voucherNumber" column="VOUCHER_NUMBER"/>
+        <result property="invoiceNumber" column="INVOICE_NUMBER"/>
+        <result property="invoiceNotes" column="INVOICE_NOTES"/>
+        <result property="costType" column="FEE_TYPE"/>
+        <result property="invoiceStatus" column="INVOICE_STATUS"/>
+        <result property="isWritten" column="IS_WRITTEN"/>
+        <!--开票相关-->
+        <!--<result property="agencyPayCredential" column=""/>-->
+        <!--<collection property="invoices" javaType="cn.rzhd.wuye.bean.UtilitiesInvoice" select="cn.rzhd.wuye.mapper.UtilitiesInvoiceMapper.selectByDetailsId" column="UTILITIES_DETAILS_ID"/>-->
+        <!--<collection property="tripleAgreements" javaType="map" select="cn.rzhd.wuye.mapper.UtilitiesInvoiceMapper" column="UTILITIES_DETAILS_ID"/>-->
+
+        <!--<result property="invoice" column="INVOICE"/>-->
+        <!--<result property="invoiceCompany" column="INVOICE_COMPANY"/>-->
+        <!--<result property="carteTime" column="CARTE_TIME"/>-->
+        <!--<result property="updateTime" column="UPDATE_TIME"/>-->
+        <!--<result property="customerId" column="CUSTOMER_ID"/>-->
+    </resultMap>
+    <select id="getWaterByPrimaryKey" parameterType="long" resultMap="waterMapByPrimaryKey">
+        SELECT
+            DISTINCT
+            UTILITIES_DETAILS_ID,
+            T_PROJECT_INFO.PROJECT_NAME,
+            T_HOUSE_INFO_DETAILS."vhcode",
+            CLIENT_NAME,
+            FEE_TYPE,
+            PAY_MANNER,
+            PAID_IN,
+            VOUCHER_NUMBER,
+            INVOICE_NUMBER,
+            INVOICE_NOTES,
+            INVOICE_STATUS,
+            COLLECTING_COMPANY,
+            COLLECTING_ACCOUNT,
+            PAY_TIME,
+            TUNNAGE,
+            IS_WRITTEN
+        FROM T_UTILITIES_DETAILS
+            JOIN T_HOUSE_INFO_DETAILS ON HOUSE_INFO_ID = "pk_house"
+            JOIN T_PROJECT_INFO ON T_HOUSE_INFO_DETAILS."pk_project" = T_PROJECT_INFO.PK_PROJECT
+        WHERE UTILITIES_DETAILS_ID = #{detailsId}
+    </select>
 </mapper>
