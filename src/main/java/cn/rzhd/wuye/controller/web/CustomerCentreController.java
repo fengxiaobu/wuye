@@ -4,6 +4,7 @@ import cn.rzhd.wuye.bean.Customer;
 import cn.rzhd.wuye.bean.PerfectInformation;
 import cn.rzhd.wuye.service.ICustomerCentreService;
 import cn.rzhd.wuye.service.ICustomerService;
+import cn.rzhd.wuye.service.IHouseInfoDetailsService;
 import cn.rzhd.wuye.service.IPerfectInformationService;
 import cn.rzhd.wuye.utils.Client;
 import cn.rzhd.wuye.utils.JsonUtils;
@@ -39,6 +40,8 @@ public class CustomerCentreController {
 	ICustomerService customerService;
 	@Autowired
 	private ICustomerCentreService customerCentreService;
+	@Autowired
+	IHouseInfoDetailsService houseInfoDetailsService;
 
 	/**
 	 * 查询用户信息和入驻信息
@@ -147,7 +150,7 @@ public class CustomerCentreController {
 	 * @param perfectInformation
 	 */
 	@RequestMapping(value = "/savePerfectInformation", method = RequestMethod.POST)
-	public Map<String, Object> savePerfectInformation(PerfectInformation perfectInformation, String vccode) {
+	public Map<String, Object> savePerfectInformation(PerfectInformation perfectInformation, String houseInfoId) {
 		Map<String, Object> result = new Hashtable<>();
 		try {
 			if (perfectInformation.getPerfectInformationId() == null && "".equals(perfectInformation.getPerfectInformationId())) {
@@ -156,10 +159,10 @@ public class CustomerCentreController {
 				perfectInformationService.updateByHouseInfoId(perfectInformation);
 			}else {
 				//保存
-				perfectInformation.setPerfectInformationId(vccode);
+				perfectInformation.setPerfectInformationId(houseInfoId);
 				perfectInformation.setCarteTime(new Date());
 				perfectInformationService.save(perfectInformation);
-				customerService.updadteState("1", vccode);
+				houseInfoDetailsService.updadteState("1", houseInfoId);
 			}
 			result.put("state", "1");
 			return result;

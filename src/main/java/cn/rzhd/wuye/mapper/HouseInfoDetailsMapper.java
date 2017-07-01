@@ -30,4 +30,6 @@ public interface HouseInfoDetailsMapper {
 
     HouseInfoDetails selectByPkHouse(@Param("pkHouse") String pkHouse);
 
+    void updadteState(@Param("currentFlow") String currentFlow, @Param("houseInfoId") String houseInfoId);
+
 }

@@ -129,10 +129,4 @@
         FROM "T_Customer"
     </select>
 
-    <update id="updadteState">
-        UPDATE "T_Customer"
-        SET CURRENT_FLOW = #{currentFlow}
-        WHERE "vccode" = #{vccode}
-    </update>
-
 </mapper>

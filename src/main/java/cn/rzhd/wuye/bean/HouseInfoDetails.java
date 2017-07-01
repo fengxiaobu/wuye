@@ -149,8 +149,14 @@ public class HouseInfoDetails implements Serializable {
      * 装修申请状态
      */
     private String decorationapplystate;
+    /**
+     * 当前入驻流程状态(0-未办理,1-完成完善资料,2-完成资料提交,3-完成审核,4-完成入驻费用交纳)
+     */
+    private String currentFlow;
 
     private ProjectInfo projectInfo;
+    
+    
 
     public ProjectInfo getProjectInfo() {
         return projectInfo;
@@ -447,4 +453,13 @@ public class HouseInfoDetails implements Serializable {
     public void setDecorationapplystate(String decorationapplystate) {
         this.decorationapplystate = decorationapplystate == null ? null : decorationapplystate.trim();
     }
+
+	public String getCurrentFlow() {
+		return currentFlow;
+	}
+
+	public void setCurrentFlow(String currentFlow) {
+		this.currentFlow = currentFlow;
+	}
+    
 }
