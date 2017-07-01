@@ -43,7 +43,7 @@ public class RetreatLeaseApplyServiceImpl implements IRetreatLeaseApplyService {
     }
 
     @Override
-    public List<RetreatLeaseApply> findRetreatLeaseApply(String houseInfoId) {
-        return retreatLeaseApplyMapper.findRetreatLeaseApply(houseInfoId);
+    public List<RetreatLeaseApply> findRetreatLeaseApply(String houseInfoId, String customerId) {
+        return retreatLeaseApplyMapper.findRetreatLeaseApply(houseInfoId,customerId);
     }
 }
