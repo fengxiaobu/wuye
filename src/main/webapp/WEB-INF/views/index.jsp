@@ -362,7 +362,7 @@
 
                             <li class="panel" role="tab">
                                 <div class="panel-header">
-                                    <a href="/roleList" target="main">角色列表</a>
+                                    <a href="${pageContext.request.contextPath}/admin/role/roleIndex" target="main">角色列表</a>
                                 </div>
                             </li>
                             <li class="panel" role="tab">

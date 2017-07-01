@@ -15,79 +15,24 @@
             <form class="form-horizontal">
 
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">人员姓名：</label>
+                    <label class="col-sm-2 control-label">角色名称：</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control">
+                        <input type="hidden" name="roleId" value="${role.roleId}">
+                        <input type="text" class="form-control" name="name" value="${role.name}">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">登录账户：</label>
+                    <label class="col-sm-2 control-label">描述：</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" name="note" value="${role.note}">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">工号：</label>
+                    <label class="col-sm-2 control-label">系统权限：</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control">
-                    </div>
-                </div>
 
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">备注：</label>
-                    <div class="col-sm-10">
-                        <textarea class="form-control" rows="6"></textarea>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label  class="col-sm-2 control-label">性别：</label>
-                    <div class="col-sm-3">
-                        <select class="form-control">
-                            <option>男</option>
-                            <option>女</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">所属角色：</label>
-                    <div class="col-sm-10">
-                        <table>
-                            <tr>
-                                <td><input type="checkbox">系统管理员&nbsp;&nbsp;</td>
-                                <td><input type="checkbox">项目经理&nbsp;&nbsp;</td>
-                                <td><input type="checkbox">项目负责人&nbsp;&nbsp;</td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox">物业客服&nbsp;&nbsp;</td>
-                                <td><input type="checkbox">开发客服&nbsp;&nbsp;</td>
-                                <td><input type="checkbox">财务&nbsp;&nbsp;</td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">所属项目：</label>
-                    <div class="col-sm-10">
-                        <select name="#" id="1" multiple="multiple" >
-                            <option value="1">test1</option>
-                            <option value="2">test1</option>
-                            <option value="3">test1</option>
-                            <option value="4">test1</option>
-                            <option value="5">test1</option>
-                            <option value="6">test1</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">在职状态：</label>
-                    <div class="col-sm-10">
-                        <textarea class="form-control" rows="6"></textarea>
                     </div>
                 </div>
 

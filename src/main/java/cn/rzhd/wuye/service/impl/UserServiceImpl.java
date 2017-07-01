@@ -163,5 +163,10 @@ public class UserServiceImpl implements IUserService {
         userMapper.delete(id);
     }
 
+    @Override
+    public User getByUsername(String username) {
+        return userMapper.getByUsername(username);
+    }
+
 
 }

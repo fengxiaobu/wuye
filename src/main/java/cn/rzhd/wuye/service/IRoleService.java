@@ -13,4 +13,6 @@ public interface IRoleService {
     void addMyRole(Long roleId,Long userId);
 
     void removeAllMyRole(Long id);
+
+    List<Role> getAllRoles();
 }

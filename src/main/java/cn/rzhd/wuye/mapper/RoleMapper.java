@@ -17,4 +17,7 @@ public interface RoleMapper {
     void addMyRole(@Param("roleId") Long roleId,@Param("userId") Long userId);
 
     void removeByUser(Long id);
+
+    List<Role> getAllRoles();
+
 }

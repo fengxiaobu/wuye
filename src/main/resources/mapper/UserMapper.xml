@@ -71,6 +71,19 @@
         FROM T_USER
         WHERE USER_ID = #{id}
     </select>
+    <select id="getByUsername" parameterType="string" resultType="cn.rzhd.wuye.bean.User">
+        SELECT
+            USER_ID AS userId,
+            USERNAME,
+            REALNAME,
+            WORK_NO AS workNo,
+            GENDER,
+            STATUS,
+            NOTE,
+            "PASSWORD"
+        FROM T_USER
+        WHERE USERNAME=#{username}
+    </select>
 
 
     <sql id="allColumns">
