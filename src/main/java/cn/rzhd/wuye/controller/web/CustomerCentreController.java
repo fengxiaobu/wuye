@@ -1,5 +1,21 @@
 package cn.rzhd.wuye.controller.web;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Hashtable;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.SessionAttributes;
+
 import cn.rzhd.wuye.bean.Customer;
 import cn.rzhd.wuye.bean.PerfectInformation;
 import cn.rzhd.wuye.service.ICustomerCentreService;
@@ -7,16 +23,7 @@ import cn.rzhd.wuye.service.ICustomerService;
 import cn.rzhd.wuye.service.IPerfectInformationService;
 import cn.rzhd.wuye.utils.Client;
 import cn.rzhd.wuye.utils.JsonUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.util.*;
+import cn.rzhd.wuye.utils.MD5Utils;
 
 /**
  * © 2017 RZHD.CN
@@ -73,7 +80,9 @@ public class CustomerCentreController{
 
 
 	@RequestMapping(value = "/getVcode", method = RequestMethod.POST)
-	public void getVcode(String bindingPhone,HttpSession httpSession) {
+	public Map<String, String> getVcode(String bindingPhone) {
+		Map<String, String> result = new HashMap<>();
+		
 		String sn = "SDK-CSL-010-00073";
 		String pwd = "22baa8)d-d5";
 		
@@ -83,15 +92,15 @@ public class CustomerCentreController{
 			Client client = new Client(sn, pwd);
 			String content = URLEncoder.encode("您的验证码为：" + vcode + "【联东物业】", "utf8");
 			
-			httpSession.setAttribute("vcode", vcode); 
-			System.out.println("获取："+vcode);
-			
 			String result_mt = client.mdsmssend(bindingPhone, content, "", "", "", "");
 			System.out.print(result_mt);
 
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
+		
+		result.put("vcode", vcode);
+		return result;
 	}
 
 	/**
@@ -99,19 +108,20 @@ public class CustomerCentreController{
 	 *
 	 * @return
 	 */
-	@RequestMapping(value = "/updatePhone", method = RequestMethod.POST)
-	public Map<String, String> updatePhone(HttpSession httpSession,String bindingPhone, String vccode,String verificationCode) {
+	@RequestMapping("/updatePhone")
+	public Map<String, String> updatePhone(String bindingPhone, String vccode,String password) {
 		Map<String, String> result = new HashMap<>();
-		
-		
-		String vcode = (String)httpSession.getAttribute("vcode");  
-		System.out.println("获取后："+vcode);
-		
-		if (verificationCode.equals(vcode)) {
-			customerCentreService.updatePhone(bindingPhone, vccode);
+		String pwd= customerCentreService.getPassword(vccode);
+		password = MD5Utils.md5(password);
+		try {
+			if (password.equals(pwd)) {
+				customerCentreService.updatePhone(bindingPhone, vccode);
+			}
 			result.put("msg", "修改成功");
+		} catch (Exception e) {
+			e.printStackTrace();
+			result.put("msg", "修改失败");
 		}
-		result.put("msg", "修改失败");
 		return result;
 	}
 
@@ -121,9 +131,15 @@ public class CustomerCentreController{
 	 * @return
 	 */
 	@RequestMapping(value = "/updatePassword", method = RequestMethod.POST)
-	public Map<String, String> updatePassword(String password, String vccode,String verificationCode) {
+	public Map<String, String> updatePassword(String password, String vccode) {
 		Map<String, String> result = new HashMap<>();
-		customerCentreService.updatePassword(password,vccode);
+		try {
+			customerCentreService.updatePassword(password,vccode);
+			result.put("msg", "修改成功");
+		} catch (Exception e) {
+			e.printStackTrace();
+			result.put("msg", "修改失败");
+		}
 		return result;
 	}
 
