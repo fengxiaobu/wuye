@@ -253,6 +253,10 @@
         <result column="UPDATEDATE" property="updatedate" jdbcType="DATE"/>
         <result column="ENTERAPPLY_STATE" property="enterapplyState" jdbcType="VARCHAR"/>
         <result column="DECORATIONAPPLYSTATE" property="decorationapplystate" jdbcType="VARCHAR"/>
-
+        <result column="CURRENT_FLOW" property="currentFlow" jdbcType="VARCHAR"/>
     </resultMap>
+    
+    <update id="updadteState">
+        UPDATE T_HOUSE_INFO_DETAILS SET CURRENT_FLOW = #{currentFlow}  WHERE "houseInfoId" = #{houseInfoId}
+    </update>
 </mapper>

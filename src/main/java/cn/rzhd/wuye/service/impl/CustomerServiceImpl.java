@@ -44,10 +44,6 @@ public class CustomerServiceImpl implements ICustomerService {
         }
     }
 
-    @Override
-    public void updadteState(String currentFlow, String houseInfoId) {
-        mapper.updadteState(currentFlow,houseInfoId);
-    }
 
 	@Override
 	public List<Customer> queryAll() {

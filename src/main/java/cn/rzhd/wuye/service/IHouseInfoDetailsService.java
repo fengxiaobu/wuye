@@ -37,4 +37,6 @@ public interface IHouseInfoDetailsService {
     void updateHouse(String pkHouse, String enterApplyState,String decorationapplystate);
 
     HouseInfoDetails selectByPkHouse(String pkHouse);
+
+	void updadteState(String currentFlow, String houseInfoId);
 }
