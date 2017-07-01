@@ -96,7 +96,7 @@
             U_RAVINE_PROPERTY_ID       = #{uRavinePropertyId}
         WHERE PERFECT_INFORMATION_ID = #{perfectInformationId}
     </update>
-    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+    <select id="selectByHouseInfoId" resultMap="BaseResultMap" parameterType="String">
         SELECT
             PERFECT_INFORMATION_ID,
             HOUSE_INFO_ID,
@@ -128,7 +128,7 @@
             UPDATE_TIME,
             U_RAVINE_PROPERTY_ID
         FROM T_PERFECT_INFORMATION
-        WHERE PERFECT_INFORMATION_ID = #{perfectInformationId}
+        WHERE HOUSE_INFO_ID = #{houseInfoId}
     </select>
     <select id="selectAll" resultMap="BaseResultMap">
         SELECT
