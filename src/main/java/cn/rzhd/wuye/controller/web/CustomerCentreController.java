@@ -1,20 +1,5 @@
 package cn.rzhd.wuye.controller.web;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Hashtable;
-import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-
 import cn.rzhd.wuye.bean.Customer;
 import cn.rzhd.wuye.bean.PerfectInformation;
 import cn.rzhd.wuye.service.ICustomerCentreService;
@@ -24,6 +9,15 @@ import cn.rzhd.wuye.service.IPerfectInformationService;
 import cn.rzhd.wuye.utils.Client;
 import cn.rzhd.wuye.utils.JsonUtils;
 import cn.rzhd.wuye.utils.MD5Utils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.http.HttpServletRequest;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.util.*;
 
 /**
  * © 2017 RZHD.CN
