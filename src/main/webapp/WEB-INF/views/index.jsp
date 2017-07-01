@@ -11,9 +11,7 @@
 <head>
     <meta charset="utf-8">
     <title>首页</title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/js/libs/bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css">
-    
+ <%@include file="/common/common.jsp" %>    
 <script type="text/javascript">
 	function logout() {
 		location.href="/loginOut";
@@ -210,59 +208,52 @@
                         <ul class="panel-group level02" id="aside_five_02">
                             <li class="panel" role="tab">
                                 <div class="panel-header">
-                                    <a data-toggle="collapse" target="main"  href="#">更名</a>
+                                    <a  target="main"  href="${basePath}/page/system/rename">更名</a>
                                 </div>
                             </li>
 
                             <li class="panel" role="tab">
                                 <div class="panel-header">
-                                    <a data-toggle="collapse" target="main"  href="#">装修须知</a>
+                                    <a  target="main"  href="${basePath}/page/system/decoinfo">装修须知</a>
                                 </div>
                             </li>
 
                             <li class="panel" role="tab">
                                 <div class="panel-header">
-                                    <a data-toggle="collapse" target="main"  href="#">单个房产电费购买限制</a>
+                                    <a  target="main"  href="${basePath}/page/system/waterele/houslist">房产电费限制</a>
                                 </div>
 
                             </li>
 
                             <li class="panel" role="tab">
                                 <div class="panel-header">
-                                    <a data-toggle="collapse" data-parent="#aside_five_02" href="#">项目电费购买限制</a>
+                                    <a  target="main"  href="${basePath}/page/system/waterele/projectlist">项目电费限制</a>
                                 </div>
                             </li>
 
                             <li class="panel" role="tab">
                                 <div class="panel-header">
-                                    <a data-toggle="collapse" target="main" href="#">系统设置</a>
+                                    <a  target="main" href="#">系统设置</a>
                                 </div>
                                 <div class="panel-header">
-                                    <a data-toggle="collapse" target="main"  href="#">入住完成-提示信息</a>
-                                </div>
-                            </li>
-
-                            <li class="panel" role="tab">
-                                <div class="panel-header">
-                                    <a data-toggle="collapse" target="main"  href="#">项目设置</a>
+                                    <a  target="main"  href="#">入住完成-提示信息</a>
                                 </div>
                             </li>
 
                             <li class="panel" role="tab">
                                 <div class="panel-header">
-                                    <a data-toggle="collapse" target="main"  href="#">物业开票列表</a>
+                                    <a target="main"  href="#">项目设置</a>
                                 </div>
                             </li>
 
                             <li class="panel" role="tab">
                                 <div class="panel-header">
-                                    <a data-toggle="collapse" target="main"  href="#">开发开票列表</a>
+                                    <a  target="main"  href="#">物业开票列表</a>
                                 </div>
                             </li>
-
                             <li class="panel" role="tab">
                                 <div class="panel-header">
-                                    <a data-toggle="collapse" target="main"  href="#">开发开票列表</a>
+                                    <a  target="main"  href="#">开发开票列表</a>
                                 </div>
                             </li>
 
@@ -393,8 +384,6 @@
 </article>
 
 </body>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/libs/jquery-1.11.3.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/libs/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/main.js"></script>
 <script type="text/javascript">
 

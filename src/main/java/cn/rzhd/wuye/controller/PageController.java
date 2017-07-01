@@ -19,8 +19,25 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/page/")
 public class PageController {
 
+    
     /**
-     * 土地管理模块通用菜单跳转
+     * 通用菜单跳转
+     * 
+     * @param pageName
+     *            需要跳转的页面
+     * @param projectId
+     *            项目id
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "{menu}/{mod}/{pageName}", method = RequestMethod.GET)
+    public String toPage(@PathVariable("menu") String menu, @PathVariable("mod") String mod,@PathVariable("pageName") String pageName, Model model,
+            HttpServletRequest request) {
+
+        return menu + "/" + mod + "/" + pageName;
+    }
+    /**
+     * 通用菜单跳转
      * 
      * @param pageName
      *            需要跳转的页面
@@ -33,6 +50,7 @@ public class PageController {
     public String toPage(@PathVariable("menu") String menu, @PathVariable("pageName") String pageName, Model model,
             HttpServletRequest request) {
 
-        return menu + "/" + pageName + "/";
+        return menu + "/" + pageName;
     }
+   
 }

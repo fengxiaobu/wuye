@@ -101,10 +101,10 @@
                         <td>${reletApply.leaseDeposit}</td>
                         <td>${reletApply.total}</td>
                         <td><a class="btn btn-info"
-                               href="${pageContext.request.contextPath}/dist/enterApply/deleteEnterApply?enterApplyId=${enterApply.enterApplyId}"
+                               href="${pageContext.request.contextPath}/reletApply/deleteReletApplyDeatail?reletApplyId=${reletApply.reletApplyId}"
                                role="button">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;<a
                                 class="btn btn-info"
-                                href="${pageContext.request.contextPath}/dist/enterApply/enterApplyEdit?enterApplyId=${enterApply.enterApplyId}&houseInfoId=${enterApply.houseId}"
+                                href="${pageContext.request.contextPath}/reletApply/toReletApplyDeatail?reletApplyId=${reletApply.reletApplyId}"
                                 role="button">编辑</a></td>
                     </tr>
                 </c:forEach>

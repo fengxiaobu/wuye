@@ -32,9 +32,9 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">房产信息:</label>
+                        <label class="col-sm-2 control-label">房产编码:</label>
                         <div class="col-sm-10">
-                            <label class="col-sm-2 control-label">${houseInfo}</label>
+                            <label class="col-sm-2 control-label">${vhcode}</label>
                         </div>
                     </div>
                     <div class="form-group">
@@ -138,6 +138,13 @@
                             </tr>
                         </c:forEach>
                         </table>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">写卡状态:</label>
+                        <div class="col-sm-10">
+                            <label class="col-sm-2 control-label"><input type="radio">已写</label>
+                            <label class="col-sm-2 control-label"><input type="radio">未写</label>
+                        </div>
                     </div>
                 </table>
             </form>

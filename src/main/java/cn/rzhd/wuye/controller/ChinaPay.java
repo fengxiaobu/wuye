@@ -42,6 +42,8 @@ public class ChinaPay {
     IEnterApplyService enterApplyService;
     @Autowired
     IDecorationApplyService decorationApplyService;
+    @Autowired
+    ICustomerService customerService;
 
     @RequestMapping("/topay")
     public String toPay() {
@@ -118,7 +120,8 @@ public class ChinaPay {
     Map<String, Object> pay(HttpServletRequest req, String orderAmt, String commodityMsg, String merResv, String bankInstNo) throws IOException {
         RequestVO requestVO = new RequestVO();
         // merResv = Base64.encodeUrlSafe(merResv);
-        requestVO.setOrderAmt(orderAmt);
+        requestVO.setOrderAmt("10");
+        // requestVO.setOrderAmt(orderAmt);
         requestVO.setCommodityMsg(commodityMsg);
         requestVO.setMerResv(merResv);
         requestVO.setBankInstNo(bankInstNo);
@@ -200,13 +203,13 @@ public class ChinaPay {
             System.out.println("*************************                               ******************************");
             System.out.println("***********************返回报文解析成功************************");
             System.out.println("*************************                               ******************************");
-           // response.getWriter().write("success  返回报文解析成功");
+            // response.getWriter().write("success  返回报文解析成功");
         } else {
             System.out.println("*************************                               ******************************");
             System.out.println("*************************                               ******************************");
             System.out.println("***********************交易失败************************");
             System.out.println("*************************                               ******************************");
-           // response.getWriter().write("fail");
+            // response.getWriter().write("fail");
         }
     }
 
@@ -236,22 +239,15 @@ public class ChinaPay {
             result.put("state", "success");
             result.put("data", resultMap);
             //response.getWriter().write("success  返回报文解析成功");
-
         } else {
             // response.getWriter().write("fail");
             result.put("state", "fail");
             result.put("data", resultMap);
         }
         request.setAttribute("pay", result);
-       /* for(Map.Entry<String, String> entry:resultMap.entrySet()){
-            System.out.println("entry" + entry.getKey()+"   "+entry.getValue());
-            request.setAttribute(entry.getKey(), entry.getValue());
-        }*/
-        //response.getWriter().write(result.toString());
+
         System.out.println("验签" + result);
         request.getSession().setAttribute("pay", result);
-        //转发请求到页面
-        //return "forward:dist/pay";
     }
 
     @RequestMapping("/dist/pay")
