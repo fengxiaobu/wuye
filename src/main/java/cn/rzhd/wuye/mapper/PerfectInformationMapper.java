@@ -14,9 +14,10 @@ public interface PerfectInformationMapper {
 
 	void updateByPrimaryKey(PerfectInformation perfectInformation);
 
-	PerfectInformation selectByPrimaryKey(String perfectInformationId);
+	PerfectInformation selectByHouseInfoId(String houseInfoId);
 
 	List<PerfectInformation> selectAll();
 	
 	void updateFlow(String vccode);
+	
 }

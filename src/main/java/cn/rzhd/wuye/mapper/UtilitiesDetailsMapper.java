@@ -41,5 +41,7 @@ public interface UtilitiesDetailsMapper {
 
     String getCostType(@Param("pk_feeType") String pk_feeType,@Param("pk_corp") String pk_corp);
 
-    Map<String,Object> getElectricByPrimaryKey(Long id);
+    Map<String,Object> getElectricByPrimaryKey(Long detailsId);
+
+    Map<String,Object> getWaterByPrimaryKey(Long detailsId);
 }

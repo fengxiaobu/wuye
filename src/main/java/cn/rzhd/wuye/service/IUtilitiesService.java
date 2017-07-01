@@ -33,5 +33,8 @@ public interface IUtilitiesService {
 
     String getCostType(String pk_feeType,String pk_corp);
 
-    Map<String,Object> getByPrimaryKey(Long id);
+    Map<String,Object> getElectricByPrimaryKey(Long id);
+
+    Map<String,Object> getWaterByPrimaryKey(Long id);
+
 }

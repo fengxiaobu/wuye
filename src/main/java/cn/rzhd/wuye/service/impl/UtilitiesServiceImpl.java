@@ -78,7 +78,12 @@ public class UtilitiesServiceImpl implements IUtilitiesService {
     }
 
     @Override
-    public Map<String, Object> getByPrimaryKey(Long id) {
+    public Map<String, Object> getElectricByPrimaryKey(Long id) {
         return mapper.getElectricByPrimaryKey(id);
+    }
+
+    @Override
+    public Map<String, Object> getWaterByPrimaryKey(Long id) {
+        return mapper.getWaterByPrimaryKey(id);
     }
 }

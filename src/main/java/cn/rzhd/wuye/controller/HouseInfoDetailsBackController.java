@@ -2,13 +2,19 @@ package cn.rzhd.wuye.controller;
 
 import cn.rzhd.wuye.bean.HouseInfoDetails;
 import cn.rzhd.wuye.service.IHouseInfoDetailsService;
+import cn.rzhd.wuye.utils.PageDataGridResult;
 import cn.rzhd.wuye.vo.HouseVO;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
@@ -34,9 +40,9 @@ public class HouseInfoDetailsBackController {
         model.addAttribute("houseInfoDetailsList", HouseVOs);
 
         model.addAttribute("pages", page.getPages());
-        return "contract/houseInfoDetails";
+        return "contract/houseInfoDetails2";
     }
-
+    
     @RequestMapping("/getHouseInfoDetails")
     @ResponseBody
     public Map<String, Object> getHouseInfoDetails(String pkHouses) {

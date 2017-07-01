@@ -233,33 +233,33 @@
 
                             <li class="panel" role="tab">
                                 <div class="panel-header">
-                                    <a  target="main" href="#">系统设置</a>
+                                    <a  target="main" href="${basePath}/page/system/sys">系统信息设置</a>
                                 </div>
                                 <div class="panel-header">
-                                    <a  target="main"  href="#">入住完成-提示信息</a>
-                                </div>
-                            </li>
-
-                            <li class="panel" role="tab">
-                                <div class="panel-header">
-                                    <a target="main"  href="#">项目设置</a>
+                                    <a  target="main"  href="${basePath}/page/system/checkinprompt">入住提示信息</a>
                                 </div>
                             </li>
 
                             <li class="panel" role="tab">
                                 <div class="panel-header">
-                                    <a  target="main"  href="#">物业开票列表</a>
-                                </div>
-                            </li>
-                            <li class="panel" role="tab">
-                                <div class="panel-header">
-                                    <a  target="main"  href="#">开发开票列表</a>
+                                    <a target="main"  href="${basePath}/page/system/project/projectlist">项目设置</a>
                                 </div>
                             </li>
 
                             <li class="panel" role="tab">
                                 <div class="panel-header">
-                                    <a target="main" href="${pageContext.request.contextPath}/system/ammeterIndex">电表</a>
+                                    <a  target="main"  href="${basePath}/page/system/bill/propertylist">物业开票列表</a>
+                                </div>
+                            </li>
+                            <li class="panel" role="tab">
+                                <div class="panel-header">
+                                    <a  target="main"  href="${basePath}/page/system/bill/develist">开发开票列表</a>
+                                </div>
+                            </li>
+
+                            <li class="panel" role="tab">
+                                <div class="panel-header">
+                                    <a target="main" href="${basePath}/page/system/ammeter/ammelist">电表</a>
                                 </div>
                             </li>
                         </ul>

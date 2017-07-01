@@ -178,6 +178,6 @@
                                             aaply.CUSTOMERID = cust."pk_customerid"
             LEFT JOIN T_HOUSE_INFO_DETAILS house ON
                                                      aaply.HOUSE_INFO_ID = house."pk_house"
-        WHERE apply.HOUSE_INFO_ID = #{houseInfoId}
+        WHERE HOUSE_INFO_ID = #{houseInfoId}
     </select>
 </mapper>

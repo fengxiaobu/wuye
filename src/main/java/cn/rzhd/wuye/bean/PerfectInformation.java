@@ -373,4 +373,20 @@ public class PerfectInformation implements Serializable {
 		this.updateTime = updateTime;
 	}
 
+	@Override
+	public String toString() {
+		return "PerfectInformation [perfectInformationId=" + perfectInformationId + ", houseInfoId=" + houseInfoId
+				+ ", companyType=" + companyType + ", customerId=" + customerId + ", housePropertyId=" + housePropertyId
+				+ ", companyEstablishTime=" + companyEstablishTime + ", signInFund=" + signInFund
+				+ ", industryInvolvedId=" + industryInvolvedId + ", uRavinePropertyId=" + uRavinePropertyId
+				+ ", mainProduct=" + mainProduct + ", companyCoverageId=" + companyCoverageId + ", employeeNumber="
+				+ employeeNumber + ", propertyToAccess=" + propertyToAccess + ", propertyToAccessContact="
+				+ propertyToAccessContact + ", emergencyContactPerson=" + emergencyContactPerson
+				+ ", emergencyContactNumber=" + emergencyContactNumber + ", isHighNew=" + isHighNew + ", highNewType="
+				+ highNewType + ", certificateTime=" + certificateTime + ", patentTypeId=" + patentTypeId
+				+ ", patentNumber=" + patentNumber + ", isUpBazaar=" + isUpBazaar + ", upBazaarTypeId=" + upBazaarTypeId
+				+ ", hangBoardTime=" + hangBoardTime + ", stockCode=" + stockCode + ", notes=" + notes + ", status="
+				+ status + ", carteTime=" + carteTime + ", updateTime=" + updateTime + "]";
+	}
+
 }

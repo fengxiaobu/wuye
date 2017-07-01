@@ -1,7 +1,6 @@
 <%@ page isELIgnored="false" %>  
-<%@ page language="java" pageEncoding="UTF-8"%>  
-<%@ page import="java.util.Date"%>  
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
+<%@ page language="java" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>  
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>  
 <%  
@@ -10,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <c:set var="basePath" value="<%=basePath %>"  scope="session"/>  
   
 <c:set var="contextPath" value="${pageContext.request.contextPath}" scope="session"/>  
-<c:set var="imagesPath" value="${basePath}/imags"  scope="session"/>  
+<c:set var="imagesPath" value="${basePath}/imgs"  scope="session"/>  
 <c:set var="stylesPath" value="${basePath}/css"  scope="session"/>  
 <c:set var="scriptsPath" value="${basePath}/js"  scope="session"/>  
   
@@ -39,5 +38,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link href="${scriptsPath}/libs/datetimepicker/datetimepicker.min.css" rel="stylesheet" media="screen">
 <script type="text/javascript" src="${scriptsPath}/libs/datetimepicker/datetimepicker.min.js"></script>
 <script type="text/javascript" src="${scriptsPath}/libs/datetimepicker/datetimepicker.zh-CN.js" charset="UTF-8"></script>
+<script charset="utf-8" src="${scriptsPath}/libs/kindeditor/kindeditor-min.js"></script>
+<script charset="utf-8" src="${scriptsPath}/libs/kindeditor/zh_CN.js"></script>
+<script type="text/javascript" src="${scriptsPath}/libs/fileupload/js/uploadfile.js"></script>
 <script type="text/javascript" src="${scriptsPath}/common.js"  charset="utf-8"></script>
+
   
