@@ -6,9 +6,7 @@
 <head>
     <meta charset="utf-8">
     <title>首页</title>
-    <link rel="stylesheet" type="text/css"
-          href="${pageContext.request.contextPath}/js/libs/bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css">
+   <%@include file="/common/common.jsp" %>
 </head>
 <body>
 
@@ -25,7 +23,7 @@
     <div class="panel panel-default">
     </div>
     <div class="panel panel-default tudiqianyue">
-        <div class="panel-heading">
+        <%-- <div class="panel-heading">
             <div class="col-xs-4">入住资料列表</div>
             <div class="col-xs-8 panel-oprerate">
                 <div class="col-xs-6dd">
@@ -49,7 +47,38 @@
                     </button>
                 </div>
             </div>
-        </div>
+        </div> --%>
+        <div class="panel-heading">
+			<div class="col-xs-4">入住资料列表</div>
+				<form action="${basePath}/enterApply/search" method="post">
+				<div class="col-xs-8 panel-oprerate">
+						<a href="#"  class="btn btn-info" target="iframe_ch_ch">新增	</a>
+				</div>
+				
+				
+				<div class="form-inline">
+					<div class="form-group">
+							<label>更新日期：</label>
+							<div id="form_datetime" class="input-group date form_datetime col-sm-3" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input1" data-link-format="yyyy-mm-dd">
+			                    <input id="showdate1" class="form-control" size="16" type="text" value="" readonly="readonly">
+			                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+								<span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+			              </div>
+						  <input type="hidden" id="dtp_input1" name="startDate" value="" />
+						  至
+							<div id="form_datetime2" class="input-group date form_datetime col-sm-3" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input1" data-link-format="yyyy-mm-dd">
+			                    <input id="showdate2" class="form-control" size="16" type="text" value="" readonly="readonly">
+			                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+								<span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+			              </div>
+						  <input type="hidden" id="dtp_input2" name="endDate" value="" /> 
+							<input type="text"
+								class="form-control quanxianmingcheng" placeholder="项目名称、用户名">
+						<button id="query" type="submit" class="btn btn-info danxi_saixuan">搜索</button>
+					</div>
+				</div>
+				</form>
+		</div>
         <div class="panel-body">
             <table class="table table-bordered tudiqianyue-table">
                 <thead>
@@ -73,7 +102,7 @@
                         <td>${enterMaterial.materialName}</td>
                         <td>${enterMaterial.user.username}</td>
                         <td><fmt:formatDate value="${enterMaterial.updateTime }" pattern="yyyy-MM-dd"/></td>
-                        <td><a class="btn btn-info" href="#" role="button">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;<a
+                        <td><a class="btn btn-warning" href="#" role="button">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;<a
                                 class="btn btn-info"
                                 href="${pageContext.request.contextPath}/enterApply/enterApplyEdit?enterApplyId=${enterApply.enterApplyId}"
                                 role="button">编辑</a></td>
