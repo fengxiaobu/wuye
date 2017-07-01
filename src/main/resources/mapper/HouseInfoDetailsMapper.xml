@@ -220,7 +220,6 @@
     <resultMap id="Result" type="cn.rzhd.wuye.bean.HouseInfoDetails">
         <id column="pk_house" property="pkHouse" jdbcType="CHAR"/>
         <result column="pk_corp" property="pkCorp" jdbcType="CHAR"/>
-        <result column="pk_project" property="pkProject" jdbcType="VARCHAR"/>
         <result column="project" property="project" jdbcType="VARCHAR"/>
         <result column="building" property="building" jdbcType="VARCHAR"/>
         <result column="ifloor" property="ifloor" jdbcType="VARCHAR"/>
@@ -254,5 +253,6 @@
         <result column="UPDATEDATE" property="updatedate" jdbcType="DATE"/>
         <result column="ENTERAPPLY_STATE" property="enterapplyState" jdbcType="VARCHAR"/>
         <result column="DECORATIONAPPLYSTATE" property="decorationapplystate" jdbcType="VARCHAR"/>
+
     </resultMap>
 </mapper>

@@ -161,14 +161,14 @@ public class ReletApplyController {
      */
     @RequestMapping("/dist/findReletApply")
     @ResponseBody
-    public Map<String, Object> findReletApply(String houseInfoId) {
+    public Map<String, Object> findReletApply(String houseInfoId,String customerId) {
         Map<String, Object> result = new HashMap<>();
         if (StringUtil.isEmpty(houseInfoId)) {
             result.put("state", "0");
             result.put("msg", "房产ID不能为空");
             return result;
         }
-        List<ReletApply> reletApply = reletApplyService.findReletApply(houseInfoId);
+        List<ReletApply> reletApply = reletApplyService.findReletApply(houseInfoId,customerId);
         result.put("state", "1");
         result.put("data", reletApply);
         return result;
@@ -182,14 +182,14 @@ public class ReletApplyController {
      */
     @RequestMapping("/dist/findRetreatLease")
     @ResponseBody
-    public Map<String, Object> findRetreatLease(String houseInfoId) {
+    public Map<String, Object> findRetreatLease(String houseInfoId,String customerId) {
         Map<String, Object> result = new HashMap<>();
         if (StringUtil.isEmpty(houseInfoId)) {
             result.put("state", "0");
             result.put("msg", "房产ID不能为空");
             return result;
         }
-        List<RetreatLeaseApply> retreatLeaseApply = retreatLeaseApplyService.findRetreatLeaseApply(houseInfoId);
+        List<RetreatLeaseApply> retreatLeaseApply = retreatLeaseApplyService.findRetreatLeaseApply(houseInfoId,customerId);
 
         result.put("state", "1");
         result.put("data", retreatLeaseApply.get(0));

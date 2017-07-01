@@ -32,6 +32,9 @@ public class PactVO implements Serializable {
     private String nsbzjyjmny;// 首笔租金应交金额
     private String projectName;// 项目名称
     private String contractStatus;// 合同状态-1--退租,0--正常,1--续租
+    private String servicePhone;//项目服务电话
+    private String objectPhone;//
+    private String grades;//评级
     private String vdef3;// 备用文本字段3
     private String vdef4;// 备用文本字段4
     private String vdef5;// 备用文本字段5
@@ -270,6 +273,30 @@ public class PactVO implements Serializable {
 
     public void setState(String state) {
         this.state = state;
+    }
+
+    public String getServicePhone() {
+        return servicePhone;
+    }
+
+    public void setServicePhone(String servicePhone) {
+        this.servicePhone = servicePhone;
+    }
+
+    public String getObjectPhone() {
+        return objectPhone;
+    }
+
+    public void setObjectPhone(String objectPhone) {
+        this.objectPhone = objectPhone;
+    }
+
+    public String getGrades() {
+        return grades;
+    }
+
+    public void setGrades(String grades) {
+        this.grades = grades;
     }
 
     @Override

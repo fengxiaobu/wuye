@@ -175,6 +175,6 @@
             LEFT JOIN T_HOUSE_INFO_DETAILS house ON
                                                      aaply.HOUSE_INFO_ID = house."pk_house"
         WHERE
-            HOUSE_INFO_ID = #{houseInfoId}
+            HOUSE_INFO_ID = #{houseInfoId} AND CUSTOMERID=#{customerId}
     </select>
 </mapper>

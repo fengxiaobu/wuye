@@ -178,6 +178,17 @@
                                             aaply.CUSTOMERID = cust."pk_customerid"
             LEFT JOIN T_HOUSE_INFO_DETAILS house ON
                                                      aaply.HOUSE_INFO_ID = house."pk_house"
-        WHERE HOUSE_INFO_ID = #{houseInfoId}
+        WHERE HOUSE_INFO_ID = #{houseInfoId} AND CUSTOMERID=#{customerId}
+    </select>
+    <select id="findReletApplyByCustomerId" resultMap="BaseResultMap">
+        SELECT
+            DISTINCT *
+        FROM
+            T_RELET_APPLY aaply
+            LEFT JOIN "T_Customer" cust ON
+                                            aaply.CUSTOMERID = cust."pk_customerid"
+            LEFT JOIN T_HOUSE_INFO_DETAILS house ON
+                                                     aaply.HOUSE_INFO_ID = house."pk_house"
+        WHERE aaply.CUSTOMERID = #{customerId}
     </select>
 </mapper>
