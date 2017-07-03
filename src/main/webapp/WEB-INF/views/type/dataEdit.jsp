@@ -14,8 +14,10 @@
 		<div class="col-xs-12">
 			<div class="panel panel-default">
 				<div class="panel-body">
-				
+				  <form class="form-horizontal" action="${pageContext.request.contextPath}/typeRefinement/addOrUpdate" method="post">
 					<div class="form-horizontal">
+						<input type="hidden" name="typeDifferentiateId">
+						<input type="hidden" name="typeRefinementId">
 						<div class="form-group">
 							<label class="col-sm-2 control-label">
 								<c:if test="${typeRefinement.typeDifferentiateId=='1'}" >
@@ -36,9 +38,12 @@
 								<c:if test="${typeRefinement.typeDifferentiateId=='6'}" >
 								　　退租类型：
 								</c:if>
+								<c:if test="${typeRefinement.typeDifferentiateId=='9'}" >
+								　　通知类型：
+								</c:if>
 							</label>
 							<div class="col-sm-3">
-								<input type="text" class="form-control renwushixiang" placeholder=""  value="${typeRefinement.typeRefinementName }">
+								<input type="text" class="form-control renwushixiang" name="typeRefinementName" value="${typeRefinement.typeRefinementName }">
 							</div>
 						</div>
 						<div class="form-group">
@@ -61,6 +66,7 @@
 							</div>
 						</div>
 					</div>
+					</form>
 				</div>
 			</div>
 		</div>

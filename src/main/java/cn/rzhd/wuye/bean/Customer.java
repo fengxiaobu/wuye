@@ -107,6 +107,8 @@ public class Customer implements Serializable {
 	private String alreadyFinish;
 
 	private Date updateData;
+	
+	private PactVO pactVO;
 
 	public Date getUpdateData() {
 		return updateData;
@@ -298,6 +300,14 @@ public class Customer implements Serializable {
 
 	public void setAlreadyFinish(String alreadyFinish) {
 		this.alreadyFinish = alreadyFinish;
+	}
+
+	public PactVO getPactVO() {
+		return pactVO;
+	}
+
+	public void setPactVO(PactVO pactVO) {
+		this.pactVO = pactVO;
 	}
 
 	@Override

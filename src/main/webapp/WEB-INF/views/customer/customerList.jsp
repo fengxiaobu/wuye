@@ -38,7 +38,8 @@
                 <thead>
                 <tr class="info">
                     <th rowspan="2">序号</th>
-                    <th rowspan="2">业主类型<br/></th>
+                    <th rowspan="2">房产</th>
+                    <th rowspan="2">业主类型</th>
                     <th rowspan="2">客户名称</th>
                     <th rowspan="2">绑定手机</th>
                     <th rowspan="2">更新日期</th>
@@ -49,6 +50,7 @@
 	               <c:forEach items="${customers}" var="customers" varStatus="status">
 		                    <tr class="tudiqianyue-tdtr">
 		                        <td>${status.index+1}</td>
+		                        <td>${customers.pactVO.house}</td>
 		                        <td>
 			                        <c:if test="${customers.companyType eq 1}">企业</c:if>  
 	                				<c:if test="${customers.companyType eq 0}">个人</c:if>  
