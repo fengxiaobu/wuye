@@ -9,6 +9,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.xiaoleilu.hutool.util.NumberUtil;
+import com.xiaoleilu.hutool.util.StrUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -346,5 +347,27 @@ public class DecorationApplyController {
             result.put("msg", "erro" + e.getMessage());
             return result;
         }
+    }
+
+    /**
+     * 获取是否已申请装修
+     *
+     * @param pkHouse
+     * @param customerId
+     * @return
+     */
+    @RequestMapping("/getDecorationApplyCount")
+    @ResponseBody
+    public Map<String, String> getCount(String pkHouse, String customerId) {
+        Map<String, String> result = new Hashtable<>();
+        if (StrUtil.isEmpty(pkHouse) && StrUtil.isEmpty(customerId)) {
+            result.put("state", "0");
+            result.put("msg", "ID为空");
+            return result;
+        }
+        Integer count = decorationApplyService.getCount(pkHouse, customerId);
+        result.put("state", "1");
+        result.put("data", "count");
+        return result;
     }
 }

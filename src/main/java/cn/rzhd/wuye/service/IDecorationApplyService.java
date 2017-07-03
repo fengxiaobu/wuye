@@ -26,4 +26,6 @@ public interface IDecorationApplyService {
     DecorationApply findDecorationApplyByHouseId(String houseInfoId);
 
     void updatePayState(String paymentStatus, Long decorationApplyId);
+
+    Integer getCount(String pkHouse, String customerId);
 }

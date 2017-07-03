@@ -33962,6 +33962,7 @@ webpackJsonp([0],[
 	                                        var houseInfo = null;
 	                                        houseInfo = _data[i].houseInfos[k];
 	                                        houseInfo.pk_customerid = _data[i].pk_customerid; // 项目id
+	                                        houseInfo.pk_corp = _data[i].pk_corp; // 公司主键
 	                                        houseInfos.push(houseInfo);
 	                                        if (houseInfo.houseInfoDetails && houseInfo.houseInfoDetails.enterapplyState == -1) {
 	                                            _isFinishFirstEnter = true;
@@ -35567,92 +35568,95 @@ webpackJsonp([0],[
 									}
 
 									var _this = this;
-
-									$.ajax({ // 获取入驻，装修状态
-													type: "post",
-													async: false,
-													contentType: "application/json",
-													url: global.HttpPath + '/customer/login',
-													data: (0, _stringify2.default)({
-																	vccode: global.userInfo.user.useraccount,
-																	password: global.userInfo.user.userpwd
-													}),
-													dataType: 'json',
-													success: function success(data) {
-																	if (data.success) {
-																					/*用户信息*/
-																					console.log('userData', JSON.parse((0, _stringify2.default)(data)));
-																					var _data = data.data;
-																					var _isFinishEnter = false;
-																					var houseInfos = []; // 将所有房产放到一个数组
-																					var _isDecHouseInfo = {};
-																					if (_data.length) {
-																									for (var i = 0; i < _data.length; i++) {
-																													if (_data[i].houseInfos.length) {
-																																	for (var k = 0; k < _data[i].houseInfos.length; k++) {
-																																					var _houseInfo = null;
-																																					_houseInfo = _data[i].houseInfos[k];
-																																					_houseInfo.pk_customerid = _data[i].pk_customerid; // 项目id
-																																					houseInfos.push(_houseInfo);
-																																					if (_houseInfo.houseVO && _houseInfo.houseVO.vdef8 == -1) {
-																																									_isFinishEnter = true;
-																																					}
-																																					if (parseInt(_houseInfo && _houseInfo.houseInfoDetails ? _houseInfo.houseInfoDetails.decorationapplystate : 0, 10) != -1) {
-																																									// 是否有房产申请办理装修
-																																									if (parseInt(_houseInfo ? _houseInfo.houseInfoDetails.decorationapplystate : 0, 10)) {
-																																													_isDecHouseInfo = _houseInfo;
+									global.getUserDataFn = function (_this) {
+													$.ajax({ // 获取入驻，装修状态
+																	type: "post",
+																	async: false,
+																	contentType: "application/json",
+																	url: global.HttpPath + '/customer/login',
+																	data: (0, _stringify2.default)({
+																					vccode: global.userInfo.user.useraccount,
+																					password: global.userInfo.user.userpwd
+																	}),
+																	dataType: 'json',
+																	success: function success(data) {
+																					if (data.success) {
+																									/*用户信息*/
+																									console.log('userData', JSON.parse((0, _stringify2.default)(data)));
+																									var _data = data.data;
+																									var _isFinishEnter = false;
+																									var houseInfos = []; // 将所有房产放到一个数组
+																									var _isDecHouseInfo = {};
+																									if (_data.length) {
+																													for (var i = 0; i < _data.length; i++) {
+																																	if (_data[i].houseInfos.length) {
+																																					for (var k = 0; k < _data[i].houseInfos.length; k++) {
+																																									var _houseInfo = null;
+																																									_houseInfo = _data[i].houseInfos[k];
+																																									_houseInfo.pk_customerid = _data[i].pk_customerid; // 项目id
+																																									_houseInfo.pk_corp = _data[i].pk_corp; // 公司主键
+																																									houseInfos.push(_houseInfo);
+																																									if (_houseInfo.houseVO && _houseInfo.houseVO.vdef8 == -1) {
+																																													_isFinishEnter = true;
+																																									}
+																																									if (parseInt(_houseInfo && _houseInfo.houseInfoDetails ? _houseInfo.houseInfoDetails.decorationapplystate : 0, 10) != -1) {
+																																													// 是否有房产申请办理装修
+																																													if (parseInt(_houseInfo ? _houseInfo.houseInfoDetails.decorationapplystate : 0, 10)) {
+																																																	_isDecHouseInfo = _houseInfo;
+																																													}
 																																									}
 																																					}
 																																	}
 																													}
 																									}
-																					}
-																					global.isEVPI = false;
-																					for (var customer = 0; customer < _data.length; customer++) {
-																									if (_data[customer].currentFlow == 1) {
-																													global.isEVPI = true;
-																													break;
+																									global.isEVPI = false;
+																									for (var customer = 0; customer < _data.length; customer++) {
+																													if (_data[customer].currentFlow == 1) {
+																																	global.isEVPI = true;
+																																	break;
+																													}
 																									}
-																					}
-																					global.userInfo = {
-																									user: {
-																													username: data.data[0].vcname,
-																													userid: data.data[0].vccode,
-																													useraccount: global.userInfo.user.useraccount,
-																													userpwd: global.userInfo.user.userpwd
-																									},
-																									houseInfos: houseInfos,
-																									customers: data.data
-																					};
-																					console.log('房产信息', JSON.parse((0, _stringify2.default)(global.userInfo.houseInfos)));
-																					var _noEnterHouseInfos = [];
-																					var _isEnterHouseInfo = {};
-																					if (!global.isEVPI) {
-																									// 完善资料
-																									// _this.$router.go('/home/business/enter/userinfo');
-																									_noEnterHouseInfos = houseInfos;
-																					} else {
-																									var _houseInfos = houseInfos;
-																									if (_houseInfos && _houseInfos.length) {
-																													for (var k = 0; k < _houseInfos.length; k++) {
-																																	var _houseInfo = _houseInfos[k];
-																																	if (parseInt(_houseInfo && _houseInfo.houseInfoDetails ? _houseInfo.houseInfoDetails.enterapplyState : 0, 10) != -1) {
-																																					// 是否有房产正在办理入驻中
-																																					if (!parseInt(_houseInfo ? _houseInfo.houseInfoDetails.enterapplyState : 0, 10)) {
-																																									_noEnterHouseInfos.push(_houseInfo);
-																																					} else {
-																																									_isEnterHouseInfo = _houseInfo;
+																									global.userInfo = {
+																													user: {
+																																	username: data.data[0].vcname,
+																																	userid: data.data[0].vccode,
+																																	useraccount: global.userInfo.user.useraccount,
+																																	userpwd: global.userInfo.user.userpwd
+																													},
+																													houseInfos: houseInfos,
+																													customers: data.data
+																									};
+																									console.log('房产信息', JSON.parse((0, _stringify2.default)(global.userInfo.houseInfos)));
+																									var _noEnterHouseInfos = [];
+																									var _isEnterHouseInfo = {};
+																									if (!global.isEVPI) {
+																													// 完善资料
+																													// _this.$router.go('/home/business/enter/userinfo');
+																													_noEnterHouseInfos = houseInfos;
+																									} else {
+																													var _houseInfos = houseInfos;
+																													if (_houseInfos && _houseInfos.length) {
+																																	for (var k = 0; k < _houseInfos.length; k++) {
+																																					var _houseInfo = _houseInfos[k];
+																																					if (parseInt(_houseInfo && _houseInfo.houseInfoDetails ? _houseInfo.houseInfoDetails.enterapplyState : 0, 10) != -1) {
+																																									// 是否有房产正在办理入驻中
+																																									if (!parseInt(_houseInfo ? _houseInfo.houseInfoDetails.enterapplyState : 0, 10)) {
+																																													_noEnterHouseInfos.push(_houseInfo);
+																																									} else {
+																																													_isEnterHouseInfo = _houseInfo;
+																																									}
 																																					}
 																																	}
 																													}
 																									}
-																					}
-																					global.noEnterHouseInfos = _noEnterHouseInfos;
-																					global.isEnterHouseInfo = _isEnterHouseInfo;
-																					global.isDecHouseInfo = _isDecHouseInfo; // 正在申请装修的房产
-																	} else {}
-													}
-									});
+																									global.noEnterHouseInfos = _noEnterHouseInfos;
+																									global.isEnterHouseInfo = _isEnterHouseInfo;
+																									global.isDecHouseInfo = _isDecHouseInfo; // 正在申请装修的房产
+																					} else {}
+																	}
+													});
+									};
+									global.getUserDataFn(this);
 					},
 					beforeDestroy: function beforeDestroy() {},
 
@@ -36629,10 +36633,10 @@ webpackJsonp([0],[
 	// 							</tr>
 	// 							<tr>
 	// 								<th></th>
-	// 								<td><a class="btn" :disabled="disabledSubmit" @click="updatePayState">立即支付</a></td>
+	// 								<!-- <td><a class="btn" :disabled="disabledSubmit" @click="updatePayState">立即支付</a></td> -->
 	//
 	//
-	// 								<td style="display:none">
+	// 								<td>
 	// 									<form name= "myform" method='post'  :action='postUrl'  target="_blank">
 	// 										<!-- <input type="hide" :name="key" :value="value" v-for="(key, value) in sendpay"> -->
 	// 										<template v-for="(key, value) in sendpay">
@@ -36640,7 +36644,7 @@ webpackJsonp([0],[
 	// 										</template>
 	// 										<button class="btn" type="submit" :disabled="disabledSubmit" @click="submit">提交</button>
 	// 									</form>
-	// 										<!-- <button class="btn" type="submit" @click="submit">提交</button> -->
+	// 										<button class="btn" type="submit" @click="submit">提交</button>
 	// 								</td>
 	// 							</tr>
 	// 						</tbody>
@@ -36880,7 +36884,7 @@ webpackJsonp([0],[
 													this.$set('goodsInfo', this.$router.params);
 													this.$set('orderAmt', parseInt(this.$router.params.totalPrice, 10) * 100);
 													this.$set('houseInfoId', _houseInfo.pk_house);
-													this.$set('customerId', _houseInfo.pk_customerId);
+													this.$set('customerId', _houseInfo.pk_customerid);
 									} else {
 													window.history.go(-1);
 									}
@@ -36912,6 +36916,7 @@ webpackJsonp([0],[
 																									case 'wuye':
 																									case 'rzwuye':
 																									case 'kaifa':
+																													console.log('this.customerId', this.customerId);
 																													var _generatedRecordParams = (_generatedRecordParam = {
 																																	houseInfoId: this.houseInfoId, // 房产id
 																																	customerId: this.customerId, // 客户id
@@ -37079,24 +37084,6 @@ webpackJsonp([0],[
 									},
 									goBack: function goBack() {
 													window.history.go(-1);
-									},
-									updatePayState: function updatePayState() {
-													var _this = this;
-													console.log('_this.sendpay.merResv', _this.sendpay.MerResv);
-													$.ajax({
-																	type: "post",
-																	// contentType: "application/json",
-																	url: global.HttpPath + '/updatePayState',
-																	data: { merResv: new Base64().encode((0, _stringify2.default)(global.paymentRecordsIds)) },
-																	success: function success(data) {
-																					if (data.state == 1) {
-																									$('#payment-modal').modal({ // 打开弹窗
-																													keyboard: false,
-																													backdrop: 'static'
-																									});
-																					}
-																	}
-													});
 									}
 					}
 	};
@@ -37107,7 +37094,7 @@ webpackJsonp([0],[
 /* 211 */
 /***/ (function(module, exports) {
 
-	module.exports = "\n<ol class=\"breadcrumb\" _v-48d71bb0=\"\">你当前的位置：\n\t<li _v-48d71bb0=\"\"><a _v-48d71bb0=\"\">联东首页</a></li>\n\t<li _v-48d71bb0=\"\"><a _v-48d71bb0=\"\">费用缴纳</a></li>\n\t<!-- <li><a v-link=\"{ path: '/home/payment/estates', activeClass: 'active'}\"></a></li> -->\n\t<li class=\"active\" _v-48d71bb0=\"\">选择银行</li>\n</ol>\n<div class=\"container\" _v-48d71bb0=\"\">\n\t<div class=\"row\" _v-48d71bb0=\"\">\n\t\t<div class=\"col-xs-12\" _v-48d71bb0=\"\">\n\t\t\t<div class=\"panel panel-default\" _v-48d71bb0=\"\">\n\t\t\t\t<div class=\"panel-heading\" _v-48d71bb0=\"\"><h1 _v-48d71bb0=\"\">确认信息</h1></div>\n\t\t\t\t<div class=\"panel-body\" _v-48d71bb0=\"\">\n\t\t\t\t\t<table class=\"table table-bordered table-form\" _v-48d71bb0=\"\">\n\t\t\t\t\t\t<tbody _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t<tr _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t<th _v-48d71bb0=\"\">客户名称</th>\n\t\t\t\t\t\t\t\t<td _v-48d71bb0=\"\">{{ userInfo.user.username }}</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t<th _v-48d71bb0=\"\">项目名称</th>\n\t\t\t\t\t\t\t\t<td _v-48d71bb0=\"\">{{ goodsInfo.houseInfo.projectName }}</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t<th _v-48d71bb0=\"\">房产名称</th>\n\t\t\t\t\t\t\t\t<td _v-48d71bb0=\"\">{{ goodsInfo.houseInfo.house }}</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t<th _v-48d71bb0=\"\">商品信息</th>\n\t\t\t\t\t\t\t\t<td _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t<table class=\"table table-bordered table-data\" _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t\t<thead _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<tr _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t\t\t\t<th v-for=\"item in goodsInfo.goodsInfos\" _v-48d71bb0=\"\">{{ item.feetype }}</th>\n\t\t\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t</thead>\n\t\t\t\t\t\t\t\t\t\t<tbody _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<tr _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t\t\t\t<td v-for=\"item in goodsInfo.goodsInfos\" _v-48d71bb0=\"\">{{ item.price | currency '￥' 2 }}</td>\n\t\t\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t</tbody>\n\t\t\t\t\t\t\t\t\t</table>\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t<th _v-48d71bb0=\"\">总价</th>\n\t\t\t\t\t\t\t\t<td _v-48d71bb0=\"\"><strong class=\"total_price\" _v-48d71bb0=\"\">{{ goodsInfo.totalPrice | currency '￥' 2 }}</strong></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t</tbody>\n\t\t\t\t\t</table>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\t<div class=\"panel panel-default\" _v-48d71bb0=\"\">\n\t\t\t\t<div class=\"panel-heading\" _v-48d71bb0=\"\"><h1 _v-48d71bb0=\"\">选择银行</h1></div>\n\t\t\t\t<div class=\"panel-body\" _v-48d71bb0=\"\">\n\t\t\t\t\t<table class=\"table table-bordered table-form\" _v-48d71bb0=\"\">\n\t\t\t\t\t\t<tbody _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t<tr _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t<th _v-48d71bb0=\"\">银行选择</th>\n\t\t\t\t\t\t\t\t<td _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t<template v-for=\"bank in banks\" _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t\t<label class=\"checkbox-container paycheck\" :checked=\"bankInstNo == bank.code\" :for=\"'bank'+bank.code\" _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<input type=\"radio\" v-model=\"bankInstNo\" :value=\"bank.code\" :id=\"'bank'+bank.code\" _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<span class=\"checkbox_txt\" _v-48d71bb0=\"\">{{ bank.name }}</span>\n\t\t\t\t\t\t\t\t\t\t</label>\n\t\t\t\t\t\t\t\t\t</template>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t<th _v-48d71bb0=\"\"></th>\n\t\t\t\t\t\t\t\t<td _v-48d71bb0=\"\"><a class=\"btn\" :disabled=\"disabledSubmit\" @click=\"updatePayState\" _v-48d71bb0=\"\">立即支付</a></td>\n\n\n\t\t\t\t\t\t\t\t<td style=\"display:none\" _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t<form name=\"myform\" method=\"post\" :action=\"postUrl\" target=\"_blank\" _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t\t<!-- <input type=\"hide\" :name=\"key\" :value=\"value\" v-for=\"(key, value) in sendpay\"> -->\n\t\t\t\t\t\t\t\t\t\t<template v-for=\"(key, value) in sendpay\" _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<input type=\"hidden\" :name=\"key\" :value=\"value\" style=\"\" _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t\t</template>\n\t\t\t\t\t\t\t\t\t\t<button class=\"btn\" type=\"submit\" :disabled=\"disabledSubmit\" @click=\"submit\" _v-48d71bb0=\"\">提交</button>\n\t\t\t\t\t\t\t\t\t</form>\n\t\t\t\t\t\t\t\t\t\t<!-- <button class=\"btn\" type=\"submit\" @click=\"submit\">提交</button> -->\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t</tbody>\n\t\t\t\t\t</table>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\t\n\t</div>\n\n\n\n\n\n<!-- 弹窗 开始 -->\n<div class=\"modal fade\" id=\"payment-modal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" _v-48d71bb0=\"\">\n\t<div class=\"modal-dialog\" role=\"document\" _v-48d71bb0=\"\">\n\t\t<div class=\"modal-content\" _v-48d71bb0=\"\">\n\t\t\t<div class=\"modal-header\" _v-48d71bb0=\"\">\n\t\t\t\t<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\" _v-48d71bb0=\"\"><span aria-hidden=\"true\" _v-48d71bb0=\"\">×</span></button>\n\t\t\t\t<h4 class=\"modal-title\" id=\"myModalLabel\" _v-48d71bb0=\"\">确认</h4>\n\t\t\t</div>\n\t\t\t<div class=\"modal-body\" _v-48d71bb0=\"\">\n\t\t\t\t缴费是否完成？\n\t\t\t</div>\n\t\t\t<div class=\"modal-footer\" _v-48d71bb0=\"\">\n\t\t\t\t<button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\" @click=\"goToPage\" _v-48d71bb0=\"\">支付完成</button>\n\t\t\t\t<button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\" @click=\"goBack\" _v-48d71bb0=\"\">支付遇到问题</button>\n\t\t\t\t<!-- <button type=\"button\" class=\"btn btn-primary\">Save changes</button> -->\n\t\t\t</div>\n\t\t</div>\n\t</div>\n</div>\n<!-- 弹窗 结束 -->\n</div>\n";
+	module.exports = "\n<ol class=\"breadcrumb\" _v-48d71bb0=\"\">你当前的位置：\n\t<li _v-48d71bb0=\"\"><a _v-48d71bb0=\"\">联东首页</a></li>\n\t<li _v-48d71bb0=\"\"><a _v-48d71bb0=\"\">费用缴纳</a></li>\n\t<!-- <li><a v-link=\"{ path: '/home/payment/estates', activeClass: 'active'}\"></a></li> -->\n\t<li class=\"active\" _v-48d71bb0=\"\">选择银行</li>\n</ol>\n<div class=\"container\" _v-48d71bb0=\"\">\n\t<div class=\"row\" _v-48d71bb0=\"\">\n\t\t<div class=\"col-xs-12\" _v-48d71bb0=\"\">\n\t\t\t<div class=\"panel panel-default\" _v-48d71bb0=\"\">\n\t\t\t\t<div class=\"panel-heading\" _v-48d71bb0=\"\"><h1 _v-48d71bb0=\"\">确认信息</h1></div>\n\t\t\t\t<div class=\"panel-body\" _v-48d71bb0=\"\">\n\t\t\t\t\t<table class=\"table table-bordered table-form\" _v-48d71bb0=\"\">\n\t\t\t\t\t\t<tbody _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t<tr _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t<th _v-48d71bb0=\"\">客户名称</th>\n\t\t\t\t\t\t\t\t<td _v-48d71bb0=\"\">{{ userInfo.user.username }}</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t<th _v-48d71bb0=\"\">项目名称</th>\n\t\t\t\t\t\t\t\t<td _v-48d71bb0=\"\">{{ goodsInfo.houseInfo.projectName }}</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t<th _v-48d71bb0=\"\">房产名称</th>\n\t\t\t\t\t\t\t\t<td _v-48d71bb0=\"\">{{ goodsInfo.houseInfo.house }}</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t<th _v-48d71bb0=\"\">商品信息</th>\n\t\t\t\t\t\t\t\t<td _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t<table class=\"table table-bordered table-data\" _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t\t<thead _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<tr _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t\t\t\t<th v-for=\"item in goodsInfo.goodsInfos\" _v-48d71bb0=\"\">{{ item.feetype }}</th>\n\t\t\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t</thead>\n\t\t\t\t\t\t\t\t\t\t<tbody _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<tr _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t\t\t\t<td v-for=\"item in goodsInfo.goodsInfos\" _v-48d71bb0=\"\">{{ item.price | currency '￥' 2 }}</td>\n\t\t\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t</tbody>\n\t\t\t\t\t\t\t\t\t</table>\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t<th _v-48d71bb0=\"\">总价</th>\n\t\t\t\t\t\t\t\t<td _v-48d71bb0=\"\"><strong class=\"total_price\" _v-48d71bb0=\"\">{{ goodsInfo.totalPrice | currency '￥' 2 }}</strong></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t</tbody>\n\t\t\t\t\t</table>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\t<div class=\"panel panel-default\" _v-48d71bb0=\"\">\n\t\t\t\t<div class=\"panel-heading\" _v-48d71bb0=\"\"><h1 _v-48d71bb0=\"\">选择银行</h1></div>\n\t\t\t\t<div class=\"panel-body\" _v-48d71bb0=\"\">\n\t\t\t\t\t<table class=\"table table-bordered table-form\" _v-48d71bb0=\"\">\n\t\t\t\t\t\t<tbody _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t<tr _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t<th _v-48d71bb0=\"\">银行选择</th>\n\t\t\t\t\t\t\t\t<td _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t<template v-for=\"bank in banks\" _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t\t<label class=\"checkbox-container paycheck\" :checked=\"bankInstNo == bank.code\" :for=\"'bank'+bank.code\" _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<input type=\"radio\" v-model=\"bankInstNo\" :value=\"bank.code\" :id=\"'bank'+bank.code\" _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<span class=\"checkbox_txt\" _v-48d71bb0=\"\">{{ bank.name }}</span>\n\t\t\t\t\t\t\t\t\t\t</label>\n\t\t\t\t\t\t\t\t\t</template>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t<th _v-48d71bb0=\"\"></th>\n\t\t\t\t\t\t\t\t<!-- <td><a class=\"btn\" :disabled=\"disabledSubmit\" @click=\"updatePayState\">立即支付</a></td> -->\n\n\n\t\t\t\t\t\t\t\t<td _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t<form name=\"myform\" method=\"post\" :action=\"postUrl\" target=\"_blank\" _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t\t<!-- <input type=\"hide\" :name=\"key\" :value=\"value\" v-for=\"(key, value) in sendpay\"> -->\n\t\t\t\t\t\t\t\t\t\t<template v-for=\"(key, value) in sendpay\" _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<input type=\"hidden\" :name=\"key\" :value=\"value\" style=\"\" _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t\t</template>\n\t\t\t\t\t\t\t\t\t\t<button class=\"btn\" type=\"submit\" :disabled=\"disabledSubmit\" @click=\"submit\" _v-48d71bb0=\"\">提交</button>\n\t\t\t\t\t\t\t\t\t</form>\n\t\t\t\t\t\t\t\t\t\t<button class=\"btn\" type=\"submit\" @click=\"submit\" _v-48d71bb0=\"\">提交</button>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t</tbody>\n\t\t\t\t\t</table>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\t\n\t</div>\n\n\n\n\n\n<!-- 弹窗 开始 -->\n<div class=\"modal fade\" id=\"payment-modal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" _v-48d71bb0=\"\">\n\t<div class=\"modal-dialog\" role=\"document\" _v-48d71bb0=\"\">\n\t\t<div class=\"modal-content\" _v-48d71bb0=\"\">\n\t\t\t<div class=\"modal-header\" _v-48d71bb0=\"\">\n\t\t\t\t<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\" _v-48d71bb0=\"\"><span aria-hidden=\"true\" _v-48d71bb0=\"\">×</span></button>\n\t\t\t\t<h4 class=\"modal-title\" id=\"myModalLabel\" _v-48d71bb0=\"\">确认</h4>\n\t\t\t</div>\n\t\t\t<div class=\"modal-body\" _v-48d71bb0=\"\">\n\t\t\t\t缴费是否完成？\n\t\t\t</div>\n\t\t\t<div class=\"modal-footer\" _v-48d71bb0=\"\">\n\t\t\t\t<button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\" @click=\"goToPage\" _v-48d71bb0=\"\">支付完成</button>\n\t\t\t\t<button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\" @click=\"goBack\" _v-48d71bb0=\"\">支付遇到问题</button>\n\t\t\t\t<!-- <button type=\"button\" class=\"btn btn-primary\">Save changes</button> -->\n\t\t\t</div>\n\t\t</div>\n\t</div>\n</div>\n<!-- 弹窗 结束 -->\n</div>\n";
 
 /***/ }),
 /* 212 */
@@ -37530,8 +37517,8 @@ webpackJsonp([0],[
 						waterAmout: this.waterAmout ? this.waterAmout : 0,
 						electricCountBy: this.electricCountBy,
 						waterCountBy: this.waterCountBy,
-						electricPrice: this.ammeters.electricityPrice,
-						waterPrice: this.ammeters.waterPrice,
+						electricPrice: this.ammeters ? this.ammeters.electricityPrice : null,
+						waterPrice: this.ammeters ? this.ammeters.waterPrice : null,
 						houseInfoIds: this.houseInfoIds
 					}),
 					dataType: 'json',
@@ -37571,7 +37558,7 @@ webpackJsonp([0],[
 
 										ammeterNumber: _this.multiply, // 电表号
 										multiplyingPower: _this.multiply, // 倍率
-										electricPower: '' }, {
+										electricPower: data.electricPower }, {
 										feetype: '水费',
 										nyshouldmny: _this.waterTotle,
 										houseInfoId: _this.houseInfoId, // 房产id
@@ -37587,7 +37574,7 @@ webpackJsonp([0],[
 										collectingAccount: '', // 收款账户
 										payTime: '', // 交费日期
 
-										tunnage: '' }]
+										tunnage: data.tunnage }]
 								};
 							}
 						}
@@ -39256,85 +39243,86 @@ webpackJsonp([0],[
 	    },
 
 	    watch: {},
-	    // created () {
-	    //     var _this = this;
+	    created: function created() {
+	        var _this = this;
 
-	    //     $.ajax({ // 获取入驻，装修状态
-	    //        type: "post",
-	    //        async: false,
-	    //         contentType: "application/json",
-	    //        url: global.HttpPath + '/customer/login',
-	    //        data: JSON.stringify({
-	    //            vccode: global.userInfo.user.useraccount,
-	    //            password: global.userInfo.user.userpwd
-	    //        }),
-	    //        dataType: 'json',
-	    //        success: function(data){
-	    //             if(data.success) {
-	    //                 /*用户信息*/
-	    //                 console.log('userData', data)
-	    //                 var _data = data.data;
-	    //                 var _isFinishEnter = false;
-	    //                 var houseInfos = [];  // 将所有房产放到一个数组
-	    //                 var _isDecHouseInfo = {};
-	    //                 if(_data.length) {
-	    //                     for(var i = 0; i < _data.length; i++) {
-	    //                         if(_data[i].houseInfos.length) {
-	    //                             for(var k = 0; k < _data[i].houseInfos.length; k++) {
-	    //                                 var _houseInfo = null;
-	    //                                 _houseInfo = _data[i].houseInfos[k];
-	    //                                 _houseInfo.pk_customerid = _data[i].pk_customerid; // 项目id
-	    //                                 houseInfos.push(_houseInfo);
-	    //                                 if(_houseInfo.houseVO&&_houseInfo.houseVO.vdef8 == -1) {
-	    //                                     _isFinishEnter = true;
-	    //                                 }
-	    //                                 if(parseInt(_houseInfo&&_houseInfo.houseInfoDetails?_houseInfo.houseInfoDetails.decorationapplystate:0,10) != -1) { // 是否有房产申请办理装修
-	    //                                     if(parseInt(_houseInfo?_houseInfo.houseInfoDetails.decorationapplystate:0,10)) {
-	    //                                         _isDecHouseInfo = _houseInfo;
-	    //                                     }
-	    //                                 }
-	    //                             }
-	    //                         }
-	    //                     }
-	    //                 }
-	    //                 global.isEVPI = false;
-	    //                 for(var customer = 0; customer < _data.length; customer++) {
-	    //                     if(_data[customer].currentFlow==1) {
-	    //                         global.isEVPI = true;
-	    //                         break;
-	    //                     }
-	    //                 }
-	    //                 global.userInfo.houseInfos = houseInfos;
-	    //                 console.log('房产信息',global.userInfo.houseInfos)
-	    //                 var _noEnterHouseInfos = [];
-	    //                 var _isEnterHouseInfo = {};
-	    //                 if(!global.isEVPI) { // 完善资料
-	    //                     // _this.$router.go('/home/business/enter/userinfo');
-	    //                     _noEnterHouseInfos = houseInfos;
-	    //                 } else {
-	    //                     var _houseInfos = houseInfos;
-	    //                     if(_houseInfos && _houseInfos.length) {
-	    //                         for(var k = 0; k < _houseInfos.length; k++) {
-	    //                             var _houseInfo = _houseInfos[k];
-	    //                             if(parseInt(_houseInfo&&_houseInfo.houseInfoDetails?_houseInfo.houseInfoDetails.enterapplyState:0,10) != -1) { // 是否有房产正在办理入驻中
-	    //                                 if(!parseInt(_houseInfo?_houseInfo.houseInfoDetails.enterapplyState:0,10)) {
-	    //                                     _noEnterHouseInfos.push(_houseInfo);
-	    //                                 } else {
-	    //                                     _isEnterHouseInfo = _houseInfo;
-	    //                                 }
-	    //                             }
-	    //                         }
-	    //                     }
-	    //                 } 
-	    //                 global.noEnterHouseInfos = _noEnterHouseInfos;
-	    //                 global.isEnterHouseInfo = _isEnterHouseInfo;
-	    //                 global.isDecHouseInfo = _isDecHouseInfo; // 正在申请装修的房产
-	    //             } else {
+	        global.getUserDataFn(this);
+	        // $.ajax({ // 获取入驻，装修状态
+	        //    type: "post",
+	        //    async: false,
+	        //     contentType: "application/json",
+	        //    url: global.HttpPath + '/customer/login',
+	        //    data: JSON.stringify({
+	        //        vccode: global.userInfo.user.useraccount,
+	        //        password: global.userInfo.user.userpwd
+	        //    }),
+	        //    dataType: 'json',
+	        //    success: function(data){
+	        //         if(data.success) {
+	        //             /*用户信息*/
+	        //             console.log('userData', data)
+	        //             var _data = data.data;
+	        //             var _isFinishEnter = false;
+	        //             var houseInfos = [];  // 将所有房产放到一个数组
+	        //             var _isDecHouseInfo = {};
+	        //             if(_data.length) {
+	        //                 for(var i = 0; i < _data.length; i++) {
+	        //                     if(_data[i].houseInfos.length) {
+	        //                         for(var k = 0; k < _data[i].houseInfos.length; k++) {
+	        //                             var _houseInfo = null;
+	        //                             _houseInfo = _data[i].houseInfos[k];
+	        //                             _houseInfo.pk_customerid = _data[i].pk_customerid; // 项目id
+	        //                             houseInfos.push(_houseInfo);
+	        //                             if(_houseInfo.houseVO&&_houseInfo.houseVO.vdef8 == -1) {
+	        //                                 _isFinishEnter = true;
+	        //                             }
+	        //                             if(parseInt(_houseInfo&&_houseInfo.houseInfoDetails?_houseInfo.houseInfoDetails.decorationapplystate:0,10) != -1) { // 是否有房产申请办理装修
+	        //                                 if(parseInt(_houseInfo?_houseInfo.houseInfoDetails.decorationapplystate:0,10)) {
+	        //                                     _isDecHouseInfo = _houseInfo;
+	        //                                 }
+	        //                             }
+	        //                         }
+	        //                     }
+	        //                 }
+	        //             }
+	        //             global.isEVPI = false;
+	        //             for(var customer = 0; customer < _data.length; customer++) {
+	        //                 if(_data[customer].currentFlow==1) {
+	        //                     global.isEVPI = true;
+	        //                     break;
+	        //                 }
+	        //             }
+	        //             global.userInfo.houseInfos = houseInfos;
+	        //             console.log('房产信息',global.userInfo.houseInfos)
+	        //             var _noEnterHouseInfos = [];
+	        //             var _isEnterHouseInfo = {};
+	        //             if(!global.isEVPI) { // 完善资料
+	        //                 // _this.$router.go('/home/business/enter/userinfo');
+	        //                 _noEnterHouseInfos = houseInfos;
+	        //             } else {
+	        //                 var _houseInfos = houseInfos;
+	        //                 if(_houseInfos && _houseInfos.length) {
+	        //                     for(var k = 0; k < _houseInfos.length; k++) {
+	        //                         var _houseInfo = _houseInfos[k];
+	        //                         if(parseInt(_houseInfo&&_houseInfo.houseInfoDetails?_houseInfo.houseInfoDetails.enterapplyState:0,10) != -1) { // 是否有房产正在办理入驻中
+	        //                             if(!parseInt(_houseInfo?_houseInfo.houseInfoDetails.enterapplyState:0,10)) {
+	        //                                 _noEnterHouseInfos.push(_houseInfo);
+	        //                             } else {
+	        //                                 _isEnterHouseInfo = _houseInfo;
+	        //                             }
+	        //                         }
+	        //                     }
+	        //                 }
+	        //             } 
+	        //             global.noEnterHouseInfos = _noEnterHouseInfos;
+	        //             global.isEnterHouseInfo = _isEnterHouseInfo;
+	        //             global.isDecHouseInfo = _isDecHouseInfo; // 正在申请装修的房产
+	        //         } else {
 
-	    //             }
-	    //        }
-	    //     });
-	    // },
+	        //         }
+	        //    }
+	        // });
+	    },
 	    beforeDestroy: function beforeDestroy() {},
 
 	    methods: {
@@ -39437,7 +39425,7 @@ webpackJsonp([0],[
 	    },
 
 	    watch: {},
-	    created: function created() {
+	    ready: function ready() {
 	        if (!global.isEVPI) {
 	            // 未完善资料
 	            this.$router.go('/home/business/enter/userinfo');
@@ -39958,7 +39946,7 @@ webpackJsonp([0],[
 								methods: {
 															next: function next() {
 																						var _params = {
-																													Vccode: this.Vccode, // 用戶id
+																													// Vccode: this.Vccode, // 用戶id
 																													houseInfoId: this.houseInfoId, // 房产id
 																													companyType: this.companyType, // 企业类型
 																													customerId: this.customerId, // 客户id
@@ -40256,6 +40244,7 @@ webpackJsonp([0],[
 	            --------------------------------------------------*/
 													enterAdviceNote: null, // 入驻通知书地址
 													houseInfoId: global.isEnterHouseInfo ? global.isEnterHouseInfo.pk_house : null, // 房产id
+													customerId: global.isEnterHouseInfo ? global.isEnterHouseInfo.pk_customerid : null, // 房产id
 													clientName: global.userInfo.user.username, // 客户名称
 													notes: null, // 备注
 													pkproject: global.isEnterHouseInfo ? global.isEnterHouseInfo.pk_project : null };
@@ -40360,6 +40349,7 @@ webpackJsonp([0],[
 													var _params = {
 																	enterAdviceNote: this.enterAdviceNote,
 																	houseId: this.houseInfoId,
+																	customerId: this.customerId,
 																	clientName: this.clientName,
 																	notes: this.notes
 													};
@@ -41096,7 +41086,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */(function(global) {'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-					value: true
+	    value: true
 	});
 	// <style scoped lang="sass">
 	// </style>
@@ -41112,7 +41102,8 @@ webpackJsonp([0],[
 	// 			<div class="panel panel-default">
 	// 				<div class="panel-heading"><h1>退续租申请</h1></div>
 	// 				<div class="panel-body">
-	// 					<table class="table table-bordered table-form" v-show="liveInHouseInfos.length!=0">
+	//                 	<div class="tips" v-show="arrearsRent">您当前有物业欠费，不能进行续退租操作，请结清后再操作<a class="pull-right" v-link="{ path: '/home/payment/arrears' }">去缴费</a></div>
+	// 					<table class="table table-bordered table-form" v-show="liveInHouseInfos.length!=0" v-show="!arrearsRent">
 	// 						<tbody>
 	// 							<tr>
 	// 								<th>房产名称</th>
@@ -41210,122 +41201,151 @@ webpackJsonp([0],[
 	// </template>
 	// <script>
 	var _curDate = new Date().getFullYear() + '-' + (Array(2).join(0) + (new Date().getMonth() + 1)).slice(-2) + '-' + (Array(2).join(0) + new Date().getDate()).slice(-2); // 当前日期
+	var _curMonth = new Date().getFullYear() + '-' + (Array(2).join(0) + (new Date().getMonth() + 1)).slice(-2); // 当前月
 
 	/*
 		1、退租日期不能小于等于租赁开始日期，不能大于（可以小于等于）租赁截止日期；
 		2、退租日期小于租赁截止日期则退租类型为提前退租
 	*/
 	exports.default = {
-					filters: {},
-					directives: {},
-					components: {},
-					data: function data() {
-									return {
-													userInfo: global.userInfo,
-													userCheckedHouseInfo: null, // 选择的房产-默认为第一套房产
-													userCheckedApplyType: 0, // 0-续租；1-退租
-													reletHouseInfos: [],
-													liveInHouseInfos: [], // 租住中的房产
-													retreaEndTimeClick: { // 续租截止日期配置参数
-																	startDate: _curDate,
-																	setStartDate: '#retreaTime'
-													},
-													retreatLeaseTimeClick: { // 退租日期配置参数
-																	startDate: _curDate,
-																	setStartDate: "#leaseStartTime",
-																	setEndDate: "#leaseEndTime"
-													},
+	    filters: {},
+	    directives: {},
+	    components: {},
+	    data: function data() {
+	        return {
+	            userInfo: global.userInfo,
+	            userCheckedHouseInfo: null, // 选择的房产-默认为第一套房产
+	            userCheckedApplyType: 0, // 0-续租；1-退租
+	            reletHouseInfos: [],
+	            liveInHouseInfos: [], // 租住中的房产
+	            retreaEndTimeClick: { // 续租截止日期配置参数
+	                startDate: _curDate,
+	                setStartDate: '#retreaTime'
+	            },
+	            retreatLeaseTimeClick: { // 退租日期配置参数
+	                startDate: _curDate,
+	                setStartDate: "#leaseStartTime",
+	                setEndDate: "#leaseEndTime"
+	            },
 
-													/*请求参数： 
+	            /*请求参数： 
 	            --------------------------------------------------*/
-													/*续租*/
-													houseInfoId: null, // 房产id
-													clientName: global.userInfo.user.username, // 客户名称
-													houseAcreage: null, // 房产面积
-													leaseStartTime: null, // 租赁开始日期
-													leaseEndTime: null, // 租赁结束日期
-													retreaTime: null, // 续租开始日期 为截止日期的+1天
-													retreaEndTime: null, // 续租结束时间
+	            /*续租*/
+	            houseInfoId: null, // 房产id
+	            clientName: global.userInfo.user.username, // 客户名称
+	            houseAcreage: null, // 房产面积
+	            leaseStartTime: null, // 租赁开始日期
+	            leaseEndTime: null, // 租赁结束日期
+	            retreaTime: null, // 续租开始日期 为截止日期的+1天
+	            retreaEndTime: null, // 续租结束时间
 
 
-													/*退租*/
-													// houseInfoId: null, // 房产id
-													houseNumber: null, // 房产编号
-													// houseAcreage: null, // 房产面积
-													// leaseStartTime: null, // 租赁开始日期
-													// leaseEndTime: null, // 租赁结束日期
-													retreatLeaseTime: null, // 退租日期
-													arrearsRent: null };
-					},
+	            /*退租*/
+	            // houseInfoId: null, // 房产id
+	            houseNumber: null, // 房产编号
+	            // houseAcreage: null, // 房产面积
+	            // leaseStartTime: null, // 租赁开始日期
+	            // leaseEndTime: null, // 租赁结束日期
+	            retreatLeaseTime: null, // 退租日期
+	            arrearsRent: null };
+	    },
 
-					watch: {
-									userCheckedHouseInfo: function userCheckedHouseInfo(newValue, oldValue) {
-													var houseInfo = this.userInfo.houseInfos[newValue];
-													console.log('houseInfo', houseInfo);
-													this.customerId = houseInfo.pk_customerid;
-													this.houseInfoId = houseInfo.pk_house;
-													this.leaseStartTime = houseInfo.dpactstart;
-													this.leaseEndTime = houseInfo.dpactend;
-													this.houseNumber = houseInfo.house;
-													var _retreaTime = new Date(new Date(houseInfo.dpactend).setDate(new Date(houseInfo.dpactend).getDate() + 1));
-													this.retreaTime = _retreaTime.getFullYear() + '-' + (Array(2).join(0) + (_retreaTime.getMonth() + 1)).slice(-2) + '-' + (Array(2).join(0) + _retreaTime.getDate()).slice(-2); // 设置续租开始日期 为截止日期的+1天
-													this.houseAcreage = houseInfo.houseInfoDetails.nleaseoutarea;
-									}
-					},
-					created: function created() {
-									var _houseInfos = [];
-									for (var i = 0; i < this.userInfo.houseInfos.length; i++) {
-													if (this.userInfo.houseInfos[i].contractStatus == 0) {
-																	// 遍历所有租住中的房产 contractStatus:  -1--退租,0--正常,1--续租
-																	this.liveInHouseInfos.push(this.userInfo.houseInfos[i]);
-													}
-									}
-					},
-					beforeDestroy: function beforeDestroy() {},
+	    watch: {
+	        userCheckedHouseInfo: function userCheckedHouseInfo(newValue, oldValue) {
+	            var houseInfo = this.userInfo.houseInfos[newValue];
+	            console.log('houseInfo', houseInfo);
+	            this.customerId = houseInfo.pk_customerid;
+	            this.houseInfoId = houseInfo.pk_house;
+	            this.leaseStartTime = houseInfo.dpactstart;
+	            this.leaseEndTime = houseInfo.dpactend;
+	            this.houseNumber = houseInfo.house;
+	            var _retreaTime = new Date(new Date(houseInfo.dpactend).setDate(new Date(houseInfo.dpactend).getDate() + 1));
+	            this.retreaTime = _retreaTime.getFullYear() + '-' + (Array(2).join(0) + (_retreaTime.getMonth() + 1)).slice(-2) + '-' + (Array(2).join(0) + _retreaTime.getDate()).slice(-2); // 设置续租开始日期 为截止日期的+1天
+	            this.houseAcreage = houseInfo.houseInfoDetails.nleaseoutarea;
 
-					methods: {
-									submit: function submit() {
-													if (this.userCheckedApplyType == 0) {
-																	var _params = {
-																					houseInfoId: this.houseInfoId,
-																					clientName: this.clientName,
-																					houseAcreage: this.houseAcreage,
-																					leaseStartTime: this.leaseStartTime,
-																					leaseEndTime: this.leaseEndTime,
-																					retreaTime: this.retreaTime,
-																					retreaEndTime: this.retreaEndTime
-																	};
-																	var _url = global.HttpPath + '/insertReletApply'; // 续租
-													} else if (this.userCheckedApplyType == 1) {
-																	var _params = {
-																					customerId: this.customerId,
-																					houseInfoId: this.houseInfoId,
-																					houseNumber: this.houseNumber,
-																					houseAcreage: this.houseAcreage,
-																					leaseStartTime: this.leaseStartTime,
-																					leaseEndTime: this.leaseEndTime,
-																					retreatLeaseTime: this.retreatLeaseTime,
-																					arrearsRent: this.arrearsRent
-																	};
-																	var _url = global.HttpPath + '/insertRetreatLease'; // 退租申请
-													}
-													$.ajax({
-																	type: "post",
-																	url: _url,
-																	data: $('.rent').serialize(),
-																	dataType: 'json',
-																	success: function success(data) {
-																					console.log(data);
-																					if (data.state == 1) {
-																									$('#mymodal').modal({ // 打开弹窗
-																													keyboard: false,
-																													backdrop: 'static'
-																									});
-																					}
-																	}
-													});
-									}
-					}
+	            /*开发欠费记录*/
+	            var _this = this;
+	            this.$http.get(global.HttpPath + '/arrearsDetails/propertyDetailsList', {
+	                params: {
+	                    houseInfoId: houseInfo.pk_house,
+	                    customerId: houseInfo.pk_customerid,
+	                    startDate: '1900-01-01',
+	                    endDate: _curMonth
+	                }
+	            }).then(function (response) {
+	                // 响应成功回调
+	                console.log('data: -----', response.data);
+
+	                var data = response.data.rows;
+	                var _arrearsRent = 0;
+	                for (var i = 0; i < data.length; i++) {
+	                    _arrearsRent += Number(data[i].arrears, 10);
+	                }
+	                console.log('_arrearsRent', _arrearsRent);
+	                _this.$set('arrearsRent', _arrearsRent);
+	            }, function (error) {
+	                // 响应失败回调
+	                console.log('欠费明细-error:', error);
+	            }).catch(function (response) {
+	                // 程序错误捕获
+	                console.log('欠费明细-catch:', response);
+	            });
+	        }
+	    },
+	    created: function created() {
+	        var _houseInfos = [];
+	        for (var i = 0; i < this.userInfo.houseInfos.length; i++) {
+	            if (this.userInfo.houseInfos[i].contractStatus == 0) {
+	                // 遍历所有租住中的房产 contractStatus:  -1--退租,0--正常,1--续租
+	                this.liveInHouseInfos.push(this.userInfo.houseInfos[i]);
+	            }
+	        }
+	    },
+	    beforeDestroy: function beforeDestroy() {},
+
+	    methods: {
+	        submit: function submit() {
+	            if (this.userCheckedApplyType == 0) {
+	                var _params = {
+	                    houseInfoId: this.houseInfoId,
+	                    clientName: this.clientName,
+	                    houseAcreage: this.houseAcreage,
+	                    leaseStartTime: this.leaseStartTime,
+	                    leaseEndTime: this.leaseEndTime,
+	                    retreaTime: this.retreaTime,
+	                    retreaEndTime: this.retreaEndTime
+	                };
+	                var _url = global.HttpPath + '/insertReletApply'; // 续租
+	            } else if (this.userCheckedApplyType == 1) {
+	                var _params = {
+	                    customerId: this.customerId,
+	                    houseInfoId: this.houseInfoId,
+	                    houseNumber: this.houseNumber,
+	                    houseAcreage: this.houseAcreage,
+	                    leaseStartTime: this.leaseStartTime,
+	                    leaseEndTime: this.leaseEndTime,
+	                    retreatLeaseTime: this.retreatLeaseTime,
+	                    arrearsRent: this.arrearsRent
+	                };
+	                var _url = global.HttpPath + '/insertRetreatLease'; // 退租申请
+	            }
+	            $.ajax({
+	                type: "post",
+	                url: _url,
+	                data: $('.rent').serialize(),
+	                dataType: 'json',
+	                success: function success(data) {
+	                    console.log(data);
+	                    if (data.state == 1) {
+	                        $('#mymodal').modal({ // 打开弹窗
+	                            keyboard: false,
+	                            backdrop: 'static'
+	                        });
+	                    }
+	                }
+	            });
+	        }
+	    }
 	};
 	// </script>
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
@@ -41334,7 +41354,7 @@ webpackJsonp([0],[
 /* 271 */
 /***/ (function(module, exports) {
 
-	module.exports = "\n<ol class=\"breadcrumb\" _v-f6343874=\"\">你当前的位置：\n\t<li _v-f6343874=\"\"><a _v-f6343874=\"\">联东首页</a></li>\n\t<li _v-f6343874=\"\"><a _v-f6343874=\"\">业务办理</a></li>\n\t<li class=\"active\" _v-f6343874=\"\">退续租申请</li>\n</ol>\n<div class=\"container\" _v-f6343874=\"\">\n\t<div class=\"row\" _v-f6343874=\"\">\n\t\t<div class=\"col-xs-12\" _v-f6343874=\"\">\n\t\t\t<div class=\"panel panel-default\" _v-f6343874=\"\">\n\t\t\t\t<div class=\"panel-heading\" _v-f6343874=\"\"><h1 _v-f6343874=\"\">退续租申请</h1></div>\n\t\t\t\t<div class=\"panel-body\" _v-f6343874=\"\">\n\t\t\t\t\t<table class=\"table table-bordered table-form\" v-show=\"liveInHouseInfos.length!=0\" _v-f6343874=\"\">\n\t\t\t\t\t\t<tbody _v-f6343874=\"\">\n\t\t\t\t\t\t\t<tr _v-f6343874=\"\">\n\t\t\t\t\t\t\t\t<th _v-f6343874=\"\">房产名称</th>\n\t\t\t\t\t\t\t\t<td _v-f6343874=\"\">\n\t\t                            <select class=\"form-control\" v-model=\"userCheckedHouseInfo\" _v-f6343874=\"\">\n\t\t\t                            <template v-for=\"(index,houseInfo) in liveInHouseInfos\" _v-f6343874=\"\">\n\t\t\t\t                            <option :value=\"index\" :selected=\"index==0\" _v-f6343874=\"\">{{ houseInfo.house }}</option>\n\t\t\t                            </template>\n\t\t                            </select>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-f6343874=\"\">\n\t\t\t\t\t\t\t\t<th _v-f6343874=\"\">租赁面积</th>\n\t\t\t\t\t\t\t\t<td _v-f6343874=\"\">{{ houseAcreage }}</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-f6343874=\"\">\n\t\t\t\t\t\t\t\t<th _v-f6343874=\"\">租赁起止日期</th>\n\t\t\t\t\t\t\t\t<td _v-f6343874=\"\">\n\t\t\t\t\t\t\t\t\t<input id=\"leaseStartTime\" type=\"text\" readonly=\"\" v-model=\"leaseStartTime\" style=\"width: 90px;\" _v-f6343874=\"\">\n\t\t                            ~\n\t\t\t\t\t\t\t\t\t<input id=\"leaseEndTime\" type=\"text\" readonly=\"\" v-model=\"leaseEndTime\" style=\"width: 90px;\" _v-f6343874=\"\">\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-f6343874=\"\">\n\t\t\t\t\t\t\t\t<th _v-f6343874=\"\">类型</th>\n\t\t\t\t\t\t\t\t<td _v-f6343874=\"\">\n\t\t                            <select class=\"form-control\" v-model=\"userCheckedApplyType\" _v-f6343874=\"\">\n\t\t                                <option :value=\"0\" _v-f6343874=\"\">续租</option>\n\t\t                                <option :value=\"1\" _v-f6343874=\"\">退租</option>\n\t\t                            </select>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr v-show=\"userCheckedApplyType==0\" _v-f6343874=\"\">\n\t\t\t\t\t\t\t\t<th _v-f6343874=\"\">续租开始日期</th>\n\t\t\t\t\t\t\t\t<td _v-f6343874=\"\"><input id=\"retreaTime\" type=\"text\" readonly=\"\" v-model=\"retreaTime\" _v-f6343874=\"\"></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr v-show=\"userCheckedApplyType==0\" _v-f6343874=\"\">\n\t\t\t\t\t\t\t\t<th _v-f6343874=\"\">续租截止日期</th>\n\t\t\t\t\t\t\t\t<td _v-f6343874=\"\"><input class=\"editdate\" id=\"retreaEndTimeClick\" type=\"text\" readonly=\"\" v-model=\"retreaEndTime\" v-datetimepicker=\"retreaEndTimeClick\" _v-f6343874=\"\"></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr v-show=\"userCheckedApplyType==1\" _v-f6343874=\"\">\n\t\t\t\t\t\t\t\t<th _v-f6343874=\"\">退租日期</th>\n\t\t\t\t\t\t\t\t<td _v-f6343874=\"\"><input class=\"editdate\" id=\"retreatLeaseTime\" type=\"text\" readonly=\"\" v-model=\"retreatLeaseTime\" v-datetimepicker=\"retreatLeaseTimeClick\" _v-f6343874=\"\"></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr v-show=\"userCheckedApplyType==1\" _v-f6343874=\"\">\n\t\t\t\t\t\t\t\t<th _v-f6343874=\"\">退租类型</th>\n\t\t\t\t\t\t\t\t<td _v-f6343874=\"\">\n\t\t\t\t\t\t\t\t\t<span v-show=\"retreatLeaseTime &amp;&amp; Date.parse(new Date(retreatLeaseTime))<Date.parse(new Date(leaseEndTime))\" _v-f6343874=\"\">提前退租</span>\n\t\t\t\t\t\t\t\t\t<span v-show=\"retreatLeaseTime &amp;&amp; Date.parse(new Date(retreatLeaseTime))==Date.parse(new Date(leaseEndTime))\" _v-f6343874=\"\">正常退租</span>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-f6343874=\"\">\n\t\t\t\t\t\t\t\t<th _v-f6343874=\"\"></th>\n\t\t\t\t\t\t\t\t<td _v-f6343874=\"\"><button class=\"btn\" @click=\"submit\" _v-f6343874=\"\">提交申请</button></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t</tbody>\n\t\t\t\t\t</table>\n\t\t\t\t\t<div v-show=\"liveInHouseInfos.length==0\" _v-f6343874=\"\">暂无租住的房产</div>\n\t\t\t\t<form class=\"rent\" _v-f6343874=\"\">\n\t\t\t\t\t<input type=\"hidden\" id=\"houseInfoId\" name=\"houseInfoId\" v-model=\"houseInfoId\" _v-f6343874=\"\">\n\t\t\t\t\t<input type=\"hidden\" id=\"clientName\" name=\"clientName\" v-model=\"clientName\" _v-f6343874=\"\">\n\t\t\t\t\t<input type=\"hidden\" id=\"houseAcreage\" name=\"houseAcreage\" v-model=\"houseAcreage\" _v-f6343874=\"\">\n\t\t\t\t\t<input type=\"hidden\" id=\"leaseStartTime\" name=\"leaseStartTime\" v-model=\"leaseStartTime\" _v-f6343874=\"\">\n\t\t\t\t\t<input type=\"hidden\" id=\"leaseEndTime\" name=\"leaseEndTime\" v-model=\"leaseEndTime\" _v-f6343874=\"\">\n\t\t\t\t\t<input type=\"hidden\" id=\"retreaTime\" name=\"retreaTime\" v-model=\"retreaTime\" _v-f6343874=\"\">\n\t\t\t\t\t<input type=\"hidden\" id=\"retreaEndTime\" name=\"retreaEndTime\" v-model=\"retreaEndTime\" _v-f6343874=\"\">\n\t\t\t\t\t<input type=\"hidden\" id=\"houseNumber\" name=\"houseNumber\" v-model=\"houseNumber\" _v-f6343874=\"\">\n\t\t\t\t\t<input type=\"hidden\" id=\"retreatLeaseTime\" name=\"retreatLeaseTime\" v-model=\"retreatLeaseTime\" _v-f6343874=\"\">\n\t\t\t\t\t<input type=\"hidden\" id=\"arrearsRent\" name=\"arrearsRent\" v-model=\"arrearsRent\" _v-f6343874=\"\">\n\t\t\t\t\t<input type=\"hidden\" id=\"creationTime\" name=\"creationTime\" v-model=\"creationTime\" _v-f6343874=\"\">\n\t\t\t\t</form>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\t\n\t</div>\t\n</div>\n<!-- 弹窗 开始 -->\n<div class=\"modal fade\" id=\"mymodal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" _v-f6343874=\"\">\n\t<div class=\"modal-dialog\" role=\"document\" _v-f6343874=\"\">\n\t\t<div class=\"modal-content\" _v-f6343874=\"\">\n\t\t\t<div class=\"modal-header\" _v-f6343874=\"\">\n\t\t\t\t<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\" _v-f6343874=\"\"><span aria-hidden=\"true\" _v-f6343874=\"\">×</span></button>\n\t\t\t\t<h4 class=\"modal-title\" id=\"myModalLabel\" _v-f6343874=\"\">提示</h4>\n\t\t\t</div>\n\t\t\t<div class=\"modal-body\" _v-f6343874=\"\">\n\t\t\t\t提交申请成功!\n\t\t\t</div>\n\t\t\t<div class=\"modal-footer\" _v-f6343874=\"\">\n\t\t\t\t<button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\" _v-f6343874=\"\">确定</button>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n</div>\n<!-- 弹窗 结束 -->\n";
+	module.exports = "\n<ol class=\"breadcrumb\" _v-f6343874=\"\">你当前的位置：\n\t<li _v-f6343874=\"\"><a _v-f6343874=\"\">联东首页</a></li>\n\t<li _v-f6343874=\"\"><a _v-f6343874=\"\">业务办理</a></li>\n\t<li class=\"active\" _v-f6343874=\"\">退续租申请</li>\n</ol>\n<div class=\"container\" _v-f6343874=\"\">\n\t<div class=\"row\" _v-f6343874=\"\">\n\t\t<div class=\"col-xs-12\" _v-f6343874=\"\">\n\t\t\t<div class=\"panel panel-default\" _v-f6343874=\"\">\n\t\t\t\t<div class=\"panel-heading\" _v-f6343874=\"\"><h1 _v-f6343874=\"\">退续租申请</h1></div>\n\t\t\t\t<div class=\"panel-body\" _v-f6343874=\"\">\n                \t<div class=\"tips\" v-show=\"arrearsRent\" _v-f6343874=\"\">您当前有物业欠费，不能进行续退租操作，请结清后再操作<a class=\"pull-right\" v-link=\"{ path: '/home/payment/arrears' }\" _v-f6343874=\"\">去缴费</a></div>\n\t\t\t\t\t<table class=\"table table-bordered table-form\" v-show=\"liveInHouseInfos.length!=0\" _v-f6343874=\"\">\n\t\t\t\t\t\t<tbody _v-f6343874=\"\">\n\t\t\t\t\t\t\t<tr _v-f6343874=\"\">\n\t\t\t\t\t\t\t\t<th _v-f6343874=\"\">房产名称</th>\n\t\t\t\t\t\t\t\t<td _v-f6343874=\"\">\n\t\t                            <select class=\"form-control\" v-model=\"userCheckedHouseInfo\" _v-f6343874=\"\">\n\t\t\t                            <template v-for=\"(index,houseInfo) in liveInHouseInfos\" _v-f6343874=\"\">\n\t\t\t\t                            <option :value=\"index\" :selected=\"index==0\" _v-f6343874=\"\">{{ houseInfo.house }}</option>\n\t\t\t                            </template>\n\t\t                            </select>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-f6343874=\"\">\n\t\t\t\t\t\t\t\t<th _v-f6343874=\"\">租赁面积</th>\n\t\t\t\t\t\t\t\t<td _v-f6343874=\"\">{{ houseAcreage }}</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-f6343874=\"\">\n\t\t\t\t\t\t\t\t<th _v-f6343874=\"\">租赁起止日期</th>\n\t\t\t\t\t\t\t\t<td _v-f6343874=\"\">\n\t\t\t\t\t\t\t\t\t<input id=\"leaseStartTime\" type=\"text\" readonly=\"\" v-model=\"leaseStartTime\" style=\"width: 90px;\" _v-f6343874=\"\">\n\t\t                            ~\n\t\t\t\t\t\t\t\t\t<input id=\"leaseEndTime\" type=\"text\" readonly=\"\" v-model=\"leaseEndTime\" style=\"width: 90px;\" _v-f6343874=\"\">\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-f6343874=\"\">\n\t\t\t\t\t\t\t\t<th _v-f6343874=\"\">类型</th>\n\t\t\t\t\t\t\t\t<td _v-f6343874=\"\">\n\t\t                            <select class=\"form-control\" v-model=\"userCheckedApplyType\" _v-f6343874=\"\">\n\t\t                                <option :value=\"0\" _v-f6343874=\"\">续租</option>\n\t\t                                <option :value=\"1\" _v-f6343874=\"\">退租</option>\n\t\t                            </select>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr v-show=\"userCheckedApplyType==0\" _v-f6343874=\"\">\n\t\t\t\t\t\t\t\t<th _v-f6343874=\"\">续租开始日期</th>\n\t\t\t\t\t\t\t\t<td _v-f6343874=\"\"><input id=\"retreaTime\" type=\"text\" readonly=\"\" v-model=\"retreaTime\" _v-f6343874=\"\"></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr v-show=\"userCheckedApplyType==0\" _v-f6343874=\"\">\n\t\t\t\t\t\t\t\t<th _v-f6343874=\"\">续租截止日期</th>\n\t\t\t\t\t\t\t\t<td _v-f6343874=\"\"><input class=\"editdate\" id=\"retreaEndTimeClick\" type=\"text\" readonly=\"\" v-model=\"retreaEndTime\" v-datetimepicker=\"retreaEndTimeClick\" _v-f6343874=\"\"></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr v-show=\"userCheckedApplyType==1\" _v-f6343874=\"\">\n\t\t\t\t\t\t\t\t<th _v-f6343874=\"\">退租日期</th>\n\t\t\t\t\t\t\t\t<td _v-f6343874=\"\"><input class=\"editdate\" id=\"retreatLeaseTime\" type=\"text\" readonly=\"\" v-model=\"retreatLeaseTime\" v-datetimepicker=\"retreatLeaseTimeClick\" _v-f6343874=\"\"></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr v-show=\"userCheckedApplyType==1\" _v-f6343874=\"\">\n\t\t\t\t\t\t\t\t<th _v-f6343874=\"\">退租类型</th>\n\t\t\t\t\t\t\t\t<td _v-f6343874=\"\">\n\t\t\t\t\t\t\t\t\t<span v-show=\"retreatLeaseTime &amp;&amp; Date.parse(new Date(retreatLeaseTime))<Date.parse(new Date(leaseEndTime))\" _v-f6343874=\"\">提前退租</span>\n\t\t\t\t\t\t\t\t\t<span v-show=\"retreatLeaseTime &amp;&amp; Date.parse(new Date(retreatLeaseTime))==Date.parse(new Date(leaseEndTime))\" _v-f6343874=\"\">正常退租</span>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-f6343874=\"\">\n\t\t\t\t\t\t\t\t<th _v-f6343874=\"\"></th>\n\t\t\t\t\t\t\t\t<td _v-f6343874=\"\"><button class=\"btn\" @click=\"submit\" _v-f6343874=\"\">提交申请</button></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t</tbody>\n\t\t\t\t\t</table>\n\t\t\t\t\t<div v-show=\"liveInHouseInfos.length==0\" _v-f6343874=\"\">暂无租住的房产</div>\n\t\t\t\t<form class=\"rent\" _v-f6343874=\"\">\n\t\t\t\t\t<input type=\"hidden\" id=\"houseInfoId\" name=\"houseInfoId\" v-model=\"houseInfoId\" _v-f6343874=\"\">\n\t\t\t\t\t<input type=\"hidden\" id=\"clientName\" name=\"clientName\" v-model=\"clientName\" _v-f6343874=\"\">\n\t\t\t\t\t<input type=\"hidden\" id=\"houseAcreage\" name=\"houseAcreage\" v-model=\"houseAcreage\" _v-f6343874=\"\">\n\t\t\t\t\t<input type=\"hidden\" id=\"leaseStartTime\" name=\"leaseStartTime\" v-model=\"leaseStartTime\" _v-f6343874=\"\">\n\t\t\t\t\t<input type=\"hidden\" id=\"leaseEndTime\" name=\"leaseEndTime\" v-model=\"leaseEndTime\" _v-f6343874=\"\">\n\t\t\t\t\t<input type=\"hidden\" id=\"retreaTime\" name=\"retreaTime\" v-model=\"retreaTime\" _v-f6343874=\"\">\n\t\t\t\t\t<input type=\"hidden\" id=\"retreaEndTime\" name=\"retreaEndTime\" v-model=\"retreaEndTime\" _v-f6343874=\"\">\n\t\t\t\t\t<input type=\"hidden\" id=\"houseNumber\" name=\"houseNumber\" v-model=\"houseNumber\" _v-f6343874=\"\">\n\t\t\t\t\t<input type=\"hidden\" id=\"retreatLeaseTime\" name=\"retreatLeaseTime\" v-model=\"retreatLeaseTime\" _v-f6343874=\"\">\n\t\t\t\t\t<input type=\"hidden\" id=\"arrearsRent\" name=\"arrearsRent\" v-model=\"arrearsRent\" _v-f6343874=\"\">\n\t\t\t\t\t<input type=\"hidden\" id=\"creationTime\" name=\"creationTime\" v-model=\"creationTime\" _v-f6343874=\"\">\n\t\t\t\t</form>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\t\n\t</div>\t\n</div>\n<!-- 弹窗 开始 -->\n<div class=\"modal fade\" id=\"mymodal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" _v-f6343874=\"\">\n\t<div class=\"modal-dialog\" role=\"document\" _v-f6343874=\"\">\n\t\t<div class=\"modal-content\" _v-f6343874=\"\">\n\t\t\t<div class=\"modal-header\" _v-f6343874=\"\">\n\t\t\t\t<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\" _v-f6343874=\"\"><span aria-hidden=\"true\" _v-f6343874=\"\">×</span></button>\n\t\t\t\t<h4 class=\"modal-title\" id=\"myModalLabel\" _v-f6343874=\"\">提示</h4>\n\t\t\t</div>\n\t\t\t<div class=\"modal-body\" _v-f6343874=\"\">\n\t\t\t\t提交申请成功!\n\t\t\t</div>\n\t\t\t<div class=\"modal-footer\" _v-f6343874=\"\">\n\t\t\t\t<button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\" _v-f6343874=\"\">确定</button>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n</div>\n<!-- 弹窗 结束 -->\n";
 
 /***/ }),
 /* 272 */
@@ -42314,6 +42334,7 @@ webpackJsonp([0],[
 					global.isDecHouseInfo = houseInfo;
 				}
 				this.houseInfoId = houseInfo.pk_house;
+				this.customerId = houseInfo.pk_customerid;
 				this.decorateArea = houseInfo.houseInfoDetails.nbuildarea;
 				console.log(houseInfo.nrentarea, houseInfo);
 			},
@@ -42394,6 +42415,7 @@ webpackJsonp([0],[
 			submit: function submit() {
 				var _this = this;
 				var _params = {
+					customerId: this.customerId,
 					houseInfoId: this.houseInfoId,
 					clientName: this.clientName,
 					antipateTime: this.antipateTime,
@@ -44351,11 +44373,10 @@ webpackJsonp([0],[
 
 															var _this = this;
 															for (var i = 0; i < global.userInfo.houseInfos.length; i++) {
-																						if (global.userInfo.houseInfos[i].houseInfoDetails.alreadyFinish == 1) {
-																													// 已完善资料
-																													var _alreadyFinishHouseInfo = global.userInfo.houseInfos[i];
-																													_this.editHouseInfos.push(_alreadyFinishHouseInfo);
-																						}
+																						// if(global.userInfo.houseInfos[i].houseInfoDetails.alreadyFinish == 1) { // 已完善资料
+																						var _alreadyFinishHouseInfo = global.userInfo.houseInfos[i];
+																						_this.editHouseInfos.push(_alreadyFinishHouseInfo);
+																						// }
 															}
 
 															var _this = this;

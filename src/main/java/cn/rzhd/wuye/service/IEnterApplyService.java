@@ -43,4 +43,6 @@ public interface IEnterApplyService {
     List<Map<String, JsonFormat.Value>> getEnterApplyByIDAndState(String pkHouse);
 
     void updatePayState(String wyState, String kfState, Long enterApplyId);
+
+    Integer getCount(String pkHouse, String customerId);
 }
