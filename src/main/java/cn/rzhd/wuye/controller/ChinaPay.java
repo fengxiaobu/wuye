@@ -129,7 +129,7 @@ public class ChinaPay {
         System.out.println("Base64.decodeStr(merResv) = " + Base64.decodeStr(merResv));
         //前台页面传过来的
         ChinaPayHelper chinaPayHelper = new ChinaPayHelper();
-        requestVO.setRemoteAddr(HttpUtils.getIpAddr(req));
+        // requestVO.setRemoteAddr(HttpUtils.getIpAddr(req));
         requestVO.setMerOrderNo(RandomUtil.randomString(32));
         //requestVO.setBankInstNo("700000000000017");
         //requestVO.setCommodityMsg("物业测试");

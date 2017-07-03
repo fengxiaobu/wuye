@@ -36644,7 +36644,7 @@ webpackJsonp([0],[
 	// 										</template>
 	// 										<button class="btn" type="submit" :disabled="disabledSubmit" @click="submit">提交</button>
 	// 									</form>
-	// 										<button class="btn" type="submit" @click="submit">提交</button>
+	// 										<!-- <button class="btn" type="submit" @click="submit">提交</button> -->
 	// 								</td>
 	// 							</tr>
 	// 						</tbody>
@@ -36945,11 +36945,11 @@ webpackJsonp([0],[
 																									success: function success(data) {
 																													console.log('生成水电缴费记录', data);
 																													var _merResvParam = {
-																																	id: data,
+																																	id: data + '',
 																																	type: this.thisType
 																													};
 																													if (_this.goodsInfo.applyId) {
-																																	_merResvParam.applyId = _this.goodsInfo.applyId; // 申请ID
+																																	_merResvParam.applyId = _this.goodsInfo.applyId + ''; // 申请ID
 																													}
 																													global.paymentRecordsIds.push(_merResvParam);
 																													if (_this.goodsInfo.canInvoice) {// 开票
@@ -37094,7 +37094,7 @@ webpackJsonp([0],[
 /* 211 */
 /***/ (function(module, exports) {
 
-	module.exports = "\n<ol class=\"breadcrumb\" _v-48d71bb0=\"\">你当前的位置：\n\t<li _v-48d71bb0=\"\"><a _v-48d71bb0=\"\">联东首页</a></li>\n\t<li _v-48d71bb0=\"\"><a _v-48d71bb0=\"\">费用缴纳</a></li>\n\t<!-- <li><a v-link=\"{ path: '/home/payment/estates', activeClass: 'active'}\"></a></li> -->\n\t<li class=\"active\" _v-48d71bb0=\"\">选择银行</li>\n</ol>\n<div class=\"container\" _v-48d71bb0=\"\">\n\t<div class=\"row\" _v-48d71bb0=\"\">\n\t\t<div class=\"col-xs-12\" _v-48d71bb0=\"\">\n\t\t\t<div class=\"panel panel-default\" _v-48d71bb0=\"\">\n\t\t\t\t<div class=\"panel-heading\" _v-48d71bb0=\"\"><h1 _v-48d71bb0=\"\">确认信息</h1></div>\n\t\t\t\t<div class=\"panel-body\" _v-48d71bb0=\"\">\n\t\t\t\t\t<table class=\"table table-bordered table-form\" _v-48d71bb0=\"\">\n\t\t\t\t\t\t<tbody _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t<tr _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t<th _v-48d71bb0=\"\">客户名称</th>\n\t\t\t\t\t\t\t\t<td _v-48d71bb0=\"\">{{ userInfo.user.username }}</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t<th _v-48d71bb0=\"\">项目名称</th>\n\t\t\t\t\t\t\t\t<td _v-48d71bb0=\"\">{{ goodsInfo.houseInfo.projectName }}</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t<th _v-48d71bb0=\"\">房产名称</th>\n\t\t\t\t\t\t\t\t<td _v-48d71bb0=\"\">{{ goodsInfo.houseInfo.house }}</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t<th _v-48d71bb0=\"\">商品信息</th>\n\t\t\t\t\t\t\t\t<td _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t<table class=\"table table-bordered table-data\" _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t\t<thead _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<tr _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t\t\t\t<th v-for=\"item in goodsInfo.goodsInfos\" _v-48d71bb0=\"\">{{ item.feetype }}</th>\n\t\t\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t</thead>\n\t\t\t\t\t\t\t\t\t\t<tbody _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<tr _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t\t\t\t<td v-for=\"item in goodsInfo.goodsInfos\" _v-48d71bb0=\"\">{{ item.price | currency '￥' 2 }}</td>\n\t\t\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t</tbody>\n\t\t\t\t\t\t\t\t\t</table>\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t<th _v-48d71bb0=\"\">总价</th>\n\t\t\t\t\t\t\t\t<td _v-48d71bb0=\"\"><strong class=\"total_price\" _v-48d71bb0=\"\">{{ goodsInfo.totalPrice | currency '￥' 2 }}</strong></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t</tbody>\n\t\t\t\t\t</table>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\t<div class=\"panel panel-default\" _v-48d71bb0=\"\">\n\t\t\t\t<div class=\"panel-heading\" _v-48d71bb0=\"\"><h1 _v-48d71bb0=\"\">选择银行</h1></div>\n\t\t\t\t<div class=\"panel-body\" _v-48d71bb0=\"\">\n\t\t\t\t\t<table class=\"table table-bordered table-form\" _v-48d71bb0=\"\">\n\t\t\t\t\t\t<tbody _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t<tr _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t<th _v-48d71bb0=\"\">银行选择</th>\n\t\t\t\t\t\t\t\t<td _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t<template v-for=\"bank in banks\" _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t\t<label class=\"checkbox-container paycheck\" :checked=\"bankInstNo == bank.code\" :for=\"'bank'+bank.code\" _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<input type=\"radio\" v-model=\"bankInstNo\" :value=\"bank.code\" :id=\"'bank'+bank.code\" _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<span class=\"checkbox_txt\" _v-48d71bb0=\"\">{{ bank.name }}</span>\n\t\t\t\t\t\t\t\t\t\t</label>\n\t\t\t\t\t\t\t\t\t</template>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t<th _v-48d71bb0=\"\"></th>\n\t\t\t\t\t\t\t\t<!-- <td><a class=\"btn\" :disabled=\"disabledSubmit\" @click=\"updatePayState\">立即支付</a></td> -->\n\n\n\t\t\t\t\t\t\t\t<td _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t<form name=\"myform\" method=\"post\" :action=\"postUrl\" target=\"_blank\" _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t\t<!-- <input type=\"hide\" :name=\"key\" :value=\"value\" v-for=\"(key, value) in sendpay\"> -->\n\t\t\t\t\t\t\t\t\t\t<template v-for=\"(key, value) in sendpay\" _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<input type=\"hidden\" :name=\"key\" :value=\"value\" style=\"\" _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t\t</template>\n\t\t\t\t\t\t\t\t\t\t<button class=\"btn\" type=\"submit\" :disabled=\"disabledSubmit\" @click=\"submit\" _v-48d71bb0=\"\">提交</button>\n\t\t\t\t\t\t\t\t\t</form>\n\t\t\t\t\t\t\t\t\t\t<button class=\"btn\" type=\"submit\" @click=\"submit\" _v-48d71bb0=\"\">提交</button>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t</tbody>\n\t\t\t\t\t</table>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\t\n\t</div>\n\n\n\n\n\n<!-- 弹窗 开始 -->\n<div class=\"modal fade\" id=\"payment-modal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" _v-48d71bb0=\"\">\n\t<div class=\"modal-dialog\" role=\"document\" _v-48d71bb0=\"\">\n\t\t<div class=\"modal-content\" _v-48d71bb0=\"\">\n\t\t\t<div class=\"modal-header\" _v-48d71bb0=\"\">\n\t\t\t\t<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\" _v-48d71bb0=\"\"><span aria-hidden=\"true\" _v-48d71bb0=\"\">×</span></button>\n\t\t\t\t<h4 class=\"modal-title\" id=\"myModalLabel\" _v-48d71bb0=\"\">确认</h4>\n\t\t\t</div>\n\t\t\t<div class=\"modal-body\" _v-48d71bb0=\"\">\n\t\t\t\t缴费是否完成？\n\t\t\t</div>\n\t\t\t<div class=\"modal-footer\" _v-48d71bb0=\"\">\n\t\t\t\t<button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\" @click=\"goToPage\" _v-48d71bb0=\"\">支付完成</button>\n\t\t\t\t<button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\" @click=\"goBack\" _v-48d71bb0=\"\">支付遇到问题</button>\n\t\t\t\t<!-- <button type=\"button\" class=\"btn btn-primary\">Save changes</button> -->\n\t\t\t</div>\n\t\t</div>\n\t</div>\n</div>\n<!-- 弹窗 结束 -->\n</div>\n";
+	module.exports = "\n<ol class=\"breadcrumb\" _v-48d71bb0=\"\">你当前的位置：\n\t<li _v-48d71bb0=\"\"><a _v-48d71bb0=\"\">联东首页</a></li>\n\t<li _v-48d71bb0=\"\"><a _v-48d71bb0=\"\">费用缴纳</a></li>\n\t<!-- <li><a v-link=\"{ path: '/home/payment/estates', activeClass: 'active'}\"></a></li> -->\n\t<li class=\"active\" _v-48d71bb0=\"\">选择银行</li>\n</ol>\n<div class=\"container\" _v-48d71bb0=\"\">\n\t<div class=\"row\" _v-48d71bb0=\"\">\n\t\t<div class=\"col-xs-12\" _v-48d71bb0=\"\">\n\t\t\t<div class=\"panel panel-default\" _v-48d71bb0=\"\">\n\t\t\t\t<div class=\"panel-heading\" _v-48d71bb0=\"\"><h1 _v-48d71bb0=\"\">确认信息</h1></div>\n\t\t\t\t<div class=\"panel-body\" _v-48d71bb0=\"\">\n\t\t\t\t\t<table class=\"table table-bordered table-form\" _v-48d71bb0=\"\">\n\t\t\t\t\t\t<tbody _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t<tr _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t<th _v-48d71bb0=\"\">客户名称</th>\n\t\t\t\t\t\t\t\t<td _v-48d71bb0=\"\">{{ userInfo.user.username }}</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t<th _v-48d71bb0=\"\">项目名称</th>\n\t\t\t\t\t\t\t\t<td _v-48d71bb0=\"\">{{ goodsInfo.houseInfo.projectName }}</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t<th _v-48d71bb0=\"\">房产名称</th>\n\t\t\t\t\t\t\t\t<td _v-48d71bb0=\"\">{{ goodsInfo.houseInfo.house }}</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t<th _v-48d71bb0=\"\">商品信息</th>\n\t\t\t\t\t\t\t\t<td _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t<table class=\"table table-bordered table-data\" _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t\t<thead _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<tr _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t\t\t\t<th v-for=\"item in goodsInfo.goodsInfos\" _v-48d71bb0=\"\">{{ item.feetype }}</th>\n\t\t\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t</thead>\n\t\t\t\t\t\t\t\t\t\t<tbody _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<tr _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t\t\t\t<td v-for=\"item in goodsInfo.goodsInfos\" _v-48d71bb0=\"\">{{ item.price | currency '￥' 2 }}</td>\n\t\t\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t</tbody>\n\t\t\t\t\t\t\t\t\t</table>\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t<th _v-48d71bb0=\"\">总价</th>\n\t\t\t\t\t\t\t\t<td _v-48d71bb0=\"\"><strong class=\"total_price\" _v-48d71bb0=\"\">{{ goodsInfo.totalPrice | currency '￥' 2 }}</strong></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t</tbody>\n\t\t\t\t\t</table>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\t<div class=\"panel panel-default\" _v-48d71bb0=\"\">\n\t\t\t\t<div class=\"panel-heading\" _v-48d71bb0=\"\"><h1 _v-48d71bb0=\"\">选择银行</h1></div>\n\t\t\t\t<div class=\"panel-body\" _v-48d71bb0=\"\">\n\t\t\t\t\t<table class=\"table table-bordered table-form\" _v-48d71bb0=\"\">\n\t\t\t\t\t\t<tbody _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t<tr _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t<th _v-48d71bb0=\"\">银行选择</th>\n\t\t\t\t\t\t\t\t<td _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t<template v-for=\"bank in banks\" _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t\t<label class=\"checkbox-container paycheck\" :checked=\"bankInstNo == bank.code\" :for=\"'bank'+bank.code\" _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<input type=\"radio\" v-model=\"bankInstNo\" :value=\"bank.code\" :id=\"'bank'+bank.code\" _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<span class=\"checkbox_txt\" _v-48d71bb0=\"\">{{ bank.name }}</span>\n\t\t\t\t\t\t\t\t\t\t</label>\n\t\t\t\t\t\t\t\t\t</template>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t<th _v-48d71bb0=\"\"></th>\n\t\t\t\t\t\t\t\t<!-- <td><a class=\"btn\" :disabled=\"disabledSubmit\" @click=\"updatePayState\">立即支付</a></td> -->\n\n\n\t\t\t\t\t\t\t\t<td _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t<form name=\"myform\" method=\"post\" :action=\"postUrl\" target=\"_blank\" _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t\t<!-- <input type=\"hide\" :name=\"key\" :value=\"value\" v-for=\"(key, value) in sendpay\"> -->\n\t\t\t\t\t\t\t\t\t\t<template v-for=\"(key, value) in sendpay\" _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<input type=\"hidden\" :name=\"key\" :value=\"value\" style=\"\" _v-48d71bb0=\"\">\n\t\t\t\t\t\t\t\t\t\t</template>\n\t\t\t\t\t\t\t\t\t\t<button class=\"btn\" type=\"submit\" :disabled=\"disabledSubmit\" @click=\"submit\" _v-48d71bb0=\"\">提交</button>\n\t\t\t\t\t\t\t\t\t</form>\n\t\t\t\t\t\t\t\t\t\t<!-- <button class=\"btn\" type=\"submit\" @click=\"submit\">提交</button> -->\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t</tbody>\n\t\t\t\t\t</table>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\t\n\t</div>\n\n\n\n\n\n<!-- 弹窗 开始 -->\n<div class=\"modal fade\" id=\"payment-modal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" _v-48d71bb0=\"\">\n\t<div class=\"modal-dialog\" role=\"document\" _v-48d71bb0=\"\">\n\t\t<div class=\"modal-content\" _v-48d71bb0=\"\">\n\t\t\t<div class=\"modal-header\" _v-48d71bb0=\"\">\n\t\t\t\t<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\" _v-48d71bb0=\"\"><span aria-hidden=\"true\" _v-48d71bb0=\"\">×</span></button>\n\t\t\t\t<h4 class=\"modal-title\" id=\"myModalLabel\" _v-48d71bb0=\"\">确认</h4>\n\t\t\t</div>\n\t\t\t<div class=\"modal-body\" _v-48d71bb0=\"\">\n\t\t\t\t缴费是否完成？\n\t\t\t</div>\n\t\t\t<div class=\"modal-footer\" _v-48d71bb0=\"\">\n\t\t\t\t<button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\" @click=\"goToPage\" _v-48d71bb0=\"\">支付完成</button>\n\t\t\t\t<button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\" @click=\"goBack\" _v-48d71bb0=\"\">支付遇到问题</button>\n\t\t\t\t<!-- <button type=\"button\" class=\"btn btn-primary\">Save changes</button> -->\n\t\t\t</div>\n\t\t</div>\n\t</div>\n</div>\n<!-- 弹窗 结束 -->\n</div>\n";
 
 /***/ }),
 /* 212 */
@@ -41308,6 +41308,7 @@ webpackJsonp([0],[
 	            if (this.userCheckedApplyType == 0) {
 	                var _params = {
 	                    houseInfoId: this.houseInfoId,
+	                    customerId: this.customerId,
 	                    clientName: this.clientName,
 	                    houseAcreage: this.houseAcreage,
 	                    leaseStartTime: this.leaseStartTime,
@@ -42583,8 +42584,9 @@ webpackJsonp([0],[
 	            data: { houseInfoId: global.isDecHouseInfo.pk_house },
 	            dataType: 'json',
 	            success: function success(data) {
+	                var _data = JSON.parse(data.data);
 	                console.log('装修审核结果： ', data);
-	                _this.$set('auditStatus', data.data ? data.data.auditStatus : null);
+	                _this.$set('auditStatus', _data ? _data.auditStatus : null);
 	                if (_this.auditStatus == 1) {
 	                    _this.$router.go('/home/business/decoration/decfeedback');
 	                }
@@ -42876,7 +42878,10 @@ webpackJsonp([0],[
 	            url: global.HttpPath + '/findDecorationApplyByHouseId', // 获取装修申请结果 -->0未审核；1成功；2，失败
 	            data: { houseInfoId: global.isDecHouseInfo.pk_house },
 	            dataType: 'json',
-	            success: function success(data) {
+	            success: function success(_data) {
+	                var data = _data;
+	                data.data = JSON.parse(_data.data);
+
 	                console.log('装修审核结果： ', data);
 	                _this.$set('auditStatus', data.data ? data.data.auditStatus : null);
 	                _this.$set('feedbackInfo', data.data);
@@ -42916,6 +42921,7 @@ webpackJsonp([0],[
 	                }
 
 	                this.$router.go('/home/payment/pay');
+	                var _this = this;
 	                this.$router.params = {
 	                    totalPrice: _totalPrice,
 	                    payType: 'zxfy',
@@ -42928,7 +42934,7 @@ webpackJsonp([0],[
 	                        feetypeKey: 'feetype',
 	                        priceKey: 'paidIn'
 	                    },
-	                    applyId: null,
+	                    applyId: _this.feedbackInfo.decorationApplyId,
 	                    houseInfo: global.isDecHouseInfo,
 	                    goods: _goodsAry };
 	            }
@@ -43140,6 +43146,13 @@ webpackJsonp([0],[
 					value: true
 	});
 	// <style scoped lang="sass">
+	// 		select[disabled],
+	// 		textarea[disabled] {
+	// 			border: none;
+	// 			background-color: transparent;
+	// 			cursor: default;
+	// 			appearance: none;
+	// 		}
 	// </style>
 	// <template>
 	// <ol class="breadcrumb">你当前的位置：
@@ -43161,21 +43174,21 @@ webpackJsonp([0],[
 	// 					<tbody>
 	// 						<tr>
 	// 							<th>客户名称</th>
-	// 							<td><input type="text" readonly v-model="projectName"></td>
+	// 							<td><input readonly type="text" readonly v-model="projectName"></td>
 	// 							<th rowspan="2">公司logo</th>
 	// 							<td rowspan="2">
 	// 								<img :src="uploaduserphotoUrl" class="img-circle" style="width: 104px;height: 104px;">
 	// 								&emsp;
 	// 								<form name="uploaduserphotoform" enctype="multipart/form-data" method="post" action="/dist/upload" style="display: inline-block;white-space: nowrap;">
-	// 									<div class="btn-upfile">
-	// 										<input type="file" id="uploaduserphoto" name="uploaduserphoto" v-model="uploaduserphoto"><span class="btn-upfile-text text-orange">修改logo</span>
+	// 									<div class="btn-upfile" style="height:30px">
+	// 										<input readonly type="file" id="uploaduserphoto" name="uploaduserphoto" v-model="uploaduserphoto"><span class="btn-upfile-text text-orange" style="height: 30px;">修改logo</span>
 	// 									</div>
 	// 								</form>
 	// 							</td>
 	// 						</tr>
 	// 						<tr>
 	// 							<th>手机号码</th>
-	// 							<td><input type="text" readonly v-model="" style="width: 120px;"><a class="text-orange" v-link="{ path: '/home/index/mine/changephone' }">修改</a></td>
+	// 							<td><input readonly type="text" readonly v-model="" style="width: 120px;"><a class="text-orange" v-link="{ path: '/home/index/mine/changephone' }">修改</a></td>
 	// 						</tr>
 	// 					</tbody>
 	// 				</table>
@@ -43185,7 +43198,7 @@ webpackJsonp([0],[
 	// 						<tr>
 	// 							<th>房产名称</th>
 	// 							<td>
-	// 				                <select class="form-control" v-model="userCheckedHouseInfo">
+	// 				                <select class="form-control" v-model="userCheckedHouseInfo" >
 	// 				                    <template v-for="(index01, houseInfo) in noEnterHouseInfos">
 	// 				                		<option :value="index01" :selected="index01==0">{{ houseInfo.house }}</option>
 	// 				                    </template>
@@ -43195,31 +43208,23 @@ webpackJsonp([0],[
 	// 						</tr>
 	// 						<tr>
 	// 							<th>项目名称</th>
-	// 							<td><input type="text" readonly v-model="projectName"></td>
+	// 							<td><input readonly type="text" readonly v-model="projectName"></td>
 	// 						</tr>
 	// 						<tr>
 	// 							<th>客户名称</th>
-	// 							<td><input type="text" :value="userInfo.user.username" readonly>&ensp;注：租、售合同的签约主体</td>
+	// 							<td><input readonly type="text" :value="userInfo.user.username" readonly>&ensp;注：租、售合同的签约主体</td>
 	// 						</tr>
 	// 						<tr>
 	// 							<th>业主类型</th>
 	// 							<td>
-	// 							    <label class="checkbox-container" data-type="radio" for="geren" :checked="companyType == 0">
-	// 							        <input type="radio" id="geren" value="0" v-model="companyType">
-	// 							        <i class="icon icon01 i_radio"></i>
-	// 							        <span class="checkbox_txt">个人</span>
-	// 							    </label>
-	// 							    <label class="checkbox-container" data-type="radio" for="qiye" :checked="companyType == 1">
-	// 							        <input type="radio" id="qiye" value="1" v-model="companyType">
-	// 							        <i class="icon icon01 i_radio"></i>
-	// 							        <span class="checkbox_txt">企业</span>
-	// 							    </label>
+	// 						        <span class="checkbox_txt" v-show="companyType == 0">个人</span>
+	// 						        <span class="checkbox_txt" v-show="companyType == 1">企业</span>
 	// 							</td>
 	// 						</tr>
 	// 						<tr>
 	// 							<th><span class="text-orange">* </span>房产使用属性</th>
 	// 							<td>
-	// 				                <select class="form-control" v-model="housePropertyId">
+	// 				                <select disabled class="form-control" v-model="housePropertyId">
 	// 				                    <template v-for="(index,item) in housePropertyIdList.typeRefinementList">
 	// 				                        <option :value="item.typeRefinementId">{{ item.typeRefinementName }}</option>
 	// 				                    </template>
@@ -43229,7 +43234,7 @@ webpackJsonp([0],[
 	// 						<tr>
 	// 							<th><span class="text-orange">* </span>企业在U谷中的属性</th>
 	// 							<td>
-	// 				                <select class="form-control" v-model="URavinePropertyId">
+	// 				                <select disabled class="form-control" v-model="URavinePropertyId" >
 	// 				                    <template v-for="(index, item) in URavinePropertyIdList.typeRefinementList">
 	// 				                        <option :value="item.typeRefinementId">{{ item.typeRefinementName }}</option>
 	// 				                    </template>
@@ -43239,17 +43244,17 @@ webpackJsonp([0],[
 	// 						<tr>
 	// 							<th><span class="text-orange">* </span>入驻企业成立时间</th>
 	// 							<td>
-	// 				                <input class="editdate"  type="text" name="" readonly v-model="companyEstablishTime" v-datetimepicker="companyEstablishTimeClick">
+	// 				                <input readonly  type="text" name="" readonly v-model="companyEstablishTime">
 	// 							</td>
 	// 						</tr>
 	// 						<tr>
 	// 							<th><span class="text-orange">* </span>注册资本金（万）</th>
-	// 							<td><input type="text" v-model="signInFund"></td>
+	// 							<td><input readonly type="text" v-model="signInFund"></td>
 	// 						</tr>
 	// 						<tr>
 	// 							<th><span class="text-orange">* </span>所属行业</th>
 	// 							<td>
-	// 				                <select class="form-control" v-model="industryInvolvedId">
+	// 				                <select disabled class="form-control" v-model="industryInvolvedId">
 	// 				                    <template v-for="(index,item) in industryInvolvedIdList.typeRefinementList">
 	// 				                        <option :value="item.typeRefinementId">{{ item.typeRefinementName }}</option>
 	// 				                    </template>
@@ -43258,12 +43263,12 @@ webpackJsonp([0],[
 	// 						</tr>
 	// 						<tr>
 	// 							<th><span class="text-orange">* </span>主营业务或主导产品</th>
-	// 							<td><input type="text" v-model="mainProduct"></td>
+	// 							<td><input readonly type="text" v-model="mainProduct"></td>
 	// 						</tr>
 	// 						<tr>
 	// 							<th><span class="text-orange">* </span>公司覆盖区域</th>
 	// 							<td>
-	// 				                <select class="form-control" v-model="companyCoverageId">
+	// 				                <select disabled class="form-control" v-model="companyCoverageId">
 	// 				                    <template v-for="(index,item) in companyCoverageIdList.typeRefinementList">
 	// 				                        <option :value="item.typeRefinementId">{{ item.typeRefinementName }}</option>
 	// 				                    </template>
@@ -43272,108 +43277,92 @@ webpackJsonp([0],[
 	// 						</tr>
 	// 						<tr>
 	// 							<th><span class="text-orange">* </span>职工总人数</th>
-	// 							<td><input type="text" v-model="employeeNumber"></td>
+	// 							<td><input readonly type="text" v-model="employeeNumber"></td>
 	// 						</tr>
 	// 						<tr>
 	// 							<th><span class="text-orange">* </span>物业对接人</th>
-	// 							<td><input type="text" v-model="propertyToAccess"></td>
+	// 							<td><input readonly type="text" v-model="propertyToAccess"></td>
 	// 						</tr>
 	// 						<tr>
 	// 							<th><span class="text-orange">* </span>联系方式</th>
-	// 							<td><input type="text" v-model="propertyToAccessContact"></td>
+	// 							<td><input readonly type="text" v-model="propertyToAccessContact"></td>
 	// 						</tr>
 	// 						<tr>
 	// 							<th><span class="text-orange">* </span>紧急联系人</th>
-	// 							<td><input type="text" v-model="emergencyContactPerson"></td>
+	// 							<td><input readonly type="text" v-model="emergencyContactPerson"></td>
 	// 						</tr>
 	// 						<tr>
 	// 							<th><span class="text-orange">* </span>联系方式</th>
-	// 							<td><input type="text" v-model="emergencyContactNumber"></td>
+	// 							<td><input readonly type="text" v-model="emergencyContactNumber"></td>
 	// 						</tr>
 	// 						<tr>
 	// 							<th>是否高新</th>
 	// 							<td>
-	// 							    <label class="checkbox-container" data-type="radio" for="shigaoxin" :checked="isHighNew == 0">
-	// 							        <input type="radio" id="shigaoxin" value="0" v-model="isHighNew">
-	// 							        <i class="icon icon01 i_radio"></i>
-	// 							        <span class="checkbox_txt">是</span>
-	// 							    </label>
-	// 							    <label class="checkbox-container" data-type="radio" for="bushigaoxin" :checked="isHighNew == 1">
-	// 							        <input type="radio" id="bushigaoxin" value="1" v-model="isHighNew">
-	// 							        <i class="icon icon01 i_radio"></i>
-	// 							        <span class="checkbox_txt">否</span>
-	// 							    </label>
+	// 						        <span class="checkbox_txt" v-show="isHighNew == 0">是</span>
+	// 						        <span class="checkbox_txt" v-show="isHighNew == 1">否</span>
 	// 							</td>
 	// 						</tr>
-	// 						<tr>
+	// 						<tr v-show="isHighNew==0">
 	// 							<th>高新类型</th>
 	// 							<td>
-	// 				                <select class="form-control" v-model="highNewType">
+	// 				                <select disabled class="form-control" v-model="highNewType">
 	// 				                    <option value="0" selected>国家高新</option>
 	// 				                    <option value="1">省级高新</option>
 	// 				                    <option value="2">市级高新</option>
 	// 				                </select>
 	// 							</td>
 	// 						</tr>
-	// 						<tr>
+	// 						<tr v-show="isHighNew==0">
 	// 							<th>发证时间</th>
 	// 							<td>
-	// 				                <input class="editdate"  type="text" name="" readonly v-model="certificateTime" v-datetimepicker="certificateTimeClick">
+	// 				                <input readonly  type="text" name="" readonly v-model="certificateTime">
 	// 				            </td>
 	// 						</tr>
-	// 						<tr>
+	// 						<tr v-show="isHighNew==0">
 	// 							<th>专利类型</th>
 	// 							<td>
-	// 				                <select class="form-control" v-model="patentTypeId">
+	// 				                <select disabled class="form-control" v-model="patentTypeId">
 	// 				                    <template v-for="(index,item) in patentTypeIdList.typeRefinementList">
 	// 				                        <option :value="item.typeRefinementId">{{ item.typeRefinementName }}</option>
 	// 				                    </template>
 	// 				                </select>
 	// 							</td>
 	// 						</tr>
-	// 						<tr>
+	// 						<tr v-show="isHighNew==0">
 	// 							<th>专利个数</th>
-	// 							<td><input type="text" v-model="patentNumber"></td>
+	// 							<td><input readonly type="text" v-model="patentNumber"></td>
 	// 						</tr>
 	// 						<tr>
 	// 							<th>是否上市</th>
 	// 							<td>
-	// 							    <label class="checkbox-container" data-type="radio" for="shangshi" :checked="isUpBazaar == 0">
-	// 							        <input type="radio" id="shangshi" value="0" v-model="isUpBazaar">
-	// 							        <i class="icon icon01 i_radio"></i>
-	// 							        <span class="checkbox_txt">是</span>
-	// 							    </label>
-	// 							    <label class="checkbox-container" data-type="radio" for="bushangshi" :checked="isUpBazaar == 1">
-	// 							        <input type="radio" id="bushangshi" value="1" v-model="isUpBazaar">
-	// 							        <i class="icon icon01 i_radio"></i>
-	// 							        <span class="checkbox_txt">否</span>
-	// 							    </label>
+	// 						        <span class="checkbox_txt" v-show="isUpBazaar == 0">是</span>
+	// 						        <span class="checkbox_txt" v-show="isUpBazaar == 1">否</span>
 	// 							    &ensp;&ensp;&ensp;注：所在分公司或其母公司上市，均可列为上市
 	// 							</td>
 	// 						</tr>
-	// 						<tr>
+	// 						<tr v-show="isUpBazaar==0">
 	// 							<th>上市类型</th>
 	// 							<td>
-	// 				                <select class="form-control" v-model="upBazaarTypeId">
+	// 				                <select disabled class="form-control" v-model="upBazaarTypeId">
 	// 				                    <template v-for="(index,item) in upBazaarTypeIdList.typeRefinementList">
 	// 				                        <option :value="item.typeRefinementId">{{ item.typeRefinementName }}</option>
 	// 				                    </template>
 	// 				                </select>
 	// 							</td>
 	// 						</tr>
-	// 						<tr>
+	// 						<tr v-show="isUpBazaar==0">
 	// 							<th>挂牌时间</th>
 	// 							<td>
-	// 				                <input class="editdate" id="hangBoardTime" type="text" name="" readonly v-model="hangBoardTime" v-datetimepicker="hangBoardTimeClick">
+	// 				                <input readonly id="hangBoardTime" type="text" name="" readonly v-model="hangBoardTime">
 	// 							</td>
 	// 						</tr>
-	// 						<tr>
+	// 						<tr v-show="isUpBazaar==0">
 	// 							<th>股票代码</th>
-	// 							<td><input type="text" v-model="stockCode"></td>
+	// 							<td><input readonly type="text" v-model="stockCode"></td>
 	// 						</tr>
-	// 						<tr>
+	// 						<tr v-show="isUpBazaar==0">
 	// 							<th>备注信息</th>
-	// 							<td><textarea v-model="notes"></textarea></td>
+	// 							<td><textarea disabled v-model="notes"></textarea></td>
 	// 						</tr>
 	// 						<!-- <tr>
 	// 							<th></th>
@@ -43479,6 +43468,42 @@ webpackJsonp([0],[
 													this.customerId = houseInfo.pk_customerid;
 													this.houseInfoId = houseInfo.pk_house;
 													this.projectName = houseInfo.projectName;
+
+													var _this = this;
+													$.ajax({
+																	type: "post",
+																	url: global.HttpPath + '/CustomerCentre/getPerfectInformation', // 获取当前资料（做回显用）
+																	data: { houseInfoId: _this.houseInfoId },
+																	// data: {houseInfoId: '1040AM1000000000SVVZ'},
+																	dataType: 'json',
+																	success: function success(data) {
+																					console.log('获取资料： ', data);
+																					_this.$set('companyType', data.companyType);
+																					_this.$set('customerId', data.customerId);
+																					_this.$set('housePropertyId', data.housePropertyId);
+																					_this.$set('companyEstablishTime', data.companyEstablishTime);
+																					_this.$set('signInFund', data.signInFund);
+																					_this.$set('industryInvolvedId', data.industryInvolvedId);
+																					_this.$set('URavinePropertyId', data.uravinePropertyId);
+																					_this.$set('mainProduct', data.mainProduct);
+																					_this.$set('companyCoverageId', data.companyCoverageId);
+																					_this.$set('employeeNumber', data.employeeNumber);
+																					_this.$set('propertyToAccess', data.propertyToAccess);
+																					_this.$set('propertyToAccessContact', data.propertyToAccessContact);
+																					_this.$set('emergencyContactPerson', data.emergencyContactPerson);
+																					_this.$set('emergencyContactNumber', data.emergencyContactNumber);
+																					_this.$set('isHighNew', data.isHighNew);
+																					_this.$set('highNewType', data.highNewType);
+																					_this.$set('certificateTime', data.certificateTime);
+																					_this.$set('patentTypeId', data.patentTypeId);
+																					_this.$set('patentNumber', data.patentNumber);
+																					_this.$set('isUpBazaar', data.isUpBazaar);
+																					_this.$set('upBazaarTypeId', data.upBazaarTypeId);
+																					_this.$set('hangBoardTime', data.hangBoardTime);
+																					_this.$set('stockCode', data.stockCode);
+																					_this.$set('notes', data.notes);
+																	}
+													});
 									},
 									uploaduserphoto: function uploaduserphoto(newValue, oldValue) {
 													var _this = this;
@@ -43695,7 +43720,7 @@ webpackJsonp([0],[
 /* 308 */
 /***/ (function(module, exports) {
 
-	module.exports = "\n<ol class=\"breadcrumb\" _v-6b4c2a8e=\"\">你当前的位置：\n    <li _v-6b4c2a8e=\"\"><a _v-6b4c2a8e=\"\">联东首页</a></li>\n    <li class=\"active cur-breadcrumb\" _v-6b4c2a8e=\"\">账户资料</li>\n</ol>\n<div class=\"container\" _v-6b4c2a8e=\"\">\n    <div class=\"row\" _v-6b4c2a8e=\"\">\n        <div class=\"col-xs-12\" _v-6b4c2a8e=\"\">\n            <div class=\"panel panel-default\" _v-6b4c2a8e=\"\">\n            \t<div class=\"panel-heading\" _v-6b4c2a8e=\"\"><h1 _v-6b4c2a8e=\"\">账户资料</h1></div>\n                <div class=\"panel-body\" _v-6b4c2a8e=\"\">\n\t\t\t\t<table class=\"table table-bordered table-form\" _v-6b4c2a8e=\"\">\n\t\t\t\t\t<caption _v-6b4c2a8e=\"\">基本资料</caption>\n\t\t\t\t\t<colgroup _v-6b4c2a8e=\"\"><col width=\"20%\" _v-6b4c2a8e=\"\">\n\t\t\t\t\t<col width=\"30%\" _v-6b4c2a8e=\"\">\n\t\t\t\t\t<col width=\"20%\" _v-6b4c2a8e=\"\">\n\t\t\t\t\t<col width=\"30%\" _v-6b4c2a8e=\"\">\n\t\t\t\t\t</colgroup><tbody _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t<tr _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t<th _v-6b4c2a8e=\"\">客户名称</th>\n\t\t\t\t\t\t\t<td _v-6b4c2a8e=\"\"><input type=\"text\" readonly=\"\" v-model=\"projectName\" _v-6b4c2a8e=\"\"></td>\n\t\t\t\t\t\t\t<th rowspan=\"2\" _v-6b4c2a8e=\"\">公司logo</th>\n\t\t\t\t\t\t\t<td rowspan=\"2\" _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t\t<img :src=\"uploaduserphotoUrl\" class=\"img-circle\" style=\"width: 104px;height: 104px;\" _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t\t \n\t\t\t\t\t\t\t\t<form name=\"uploaduserphotoform\" enctype=\"multipart/form-data\" method=\"post\" action=\"/dist/upload\" style=\"display: inline-block;white-space: nowrap;\" _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t\t\t<div class=\"btn-upfile\" _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t\t\t\t<input type=\"file\" id=\"uploaduserphoto\" name=\"uploaduserphoto\" v-model=\"uploaduserphoto\" _v-6b4c2a8e=\"\"><span class=\"btn-upfile-text text-orange\" _v-6b4c2a8e=\"\">修改logo</span>\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t</form>\n\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t<tr _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t<th _v-6b4c2a8e=\"\">手机号码</th>\n\t\t\t\t\t\t\t<td _v-6b4c2a8e=\"\"><input type=\"text\" readonly=\"\" v-model=\"\" style=\"width: 120px;\" _v-6b4c2a8e=\"\"><a class=\"text-orange\" v-link=\"{ path: '/home/index/mine/changephone' }\" _v-6b4c2a8e=\"\">修改</a></td>\n\t\t\t\t\t\t</tr>\n\t\t\t\t\t</tbody>\n\t\t\t\t</table>\n\t\t\t\t<table class=\"table table-bordered table-form\" _v-6b4c2a8e=\"\">\n\t\t\t\t\t<caption _v-6b4c2a8e=\"\">资料信息</caption>\n\t\t\t\t\t<tbody _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t<tr _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t<th _v-6b4c2a8e=\"\">房产名称</th>\n\t\t\t\t\t\t\t<td _v-6b4c2a8e=\"\">\n\t\t\t\t                <select class=\"form-control\" v-model=\"userCheckedHouseInfo\" _v-6b4c2a8e=\"\">\n\t\t\t\t                    <template v-for=\"(index01, houseInfo) in noEnterHouseInfos\" _v-6b4c2a8e=\"\">\n\t\t\t\t                \t\t<option :value=\"index01\" :selected=\"index01==0\" _v-6b4c2a8e=\"\">{{ houseInfo.house }}</option>\n\t\t\t\t                    </template>\n\t\t\t\t                </select>\n\t\t\t\t                <span class=\"text-orange\" v-show=\"noEnterHouseInfos.length==0\" _v-6b4c2a8e=\"\">暂无房产可选</span>\n\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t<tr _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t<th _v-6b4c2a8e=\"\">项目名称</th>\n\t\t\t\t\t\t\t<td _v-6b4c2a8e=\"\"><input type=\"text\" readonly=\"\" v-model=\"projectName\" _v-6b4c2a8e=\"\"></td>\n\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t<tr _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t<th _v-6b4c2a8e=\"\">客户名称</th>\n\t\t\t\t\t\t\t<td _v-6b4c2a8e=\"\"><input type=\"text\" :value=\"userInfo.user.username\" readonly=\"\" _v-6b4c2a8e=\"\"> 注：租、售合同的签约主体</td>\n\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t<tr _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t<th _v-6b4c2a8e=\"\">业主类型</th>\n\t\t\t\t\t\t\t<td _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t    <label class=\"checkbox-container\" data-type=\"radio\" for=\"geren\" :checked=\"companyType == 0\" _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t        <input type=\"radio\" id=\"geren\" value=\"0\" v-model=\"companyType\" _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t        <i class=\"icon icon01 i_radio\" _v-6b4c2a8e=\"\"></i>\n\t\t\t\t\t\t\t        <span class=\"checkbox_txt\" _v-6b4c2a8e=\"\">个人</span>\n\t\t\t\t\t\t\t    </label>\n\t\t\t\t\t\t\t    <label class=\"checkbox-container\" data-type=\"radio\" for=\"qiye\" :checked=\"companyType == 1\" _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t        <input type=\"radio\" id=\"qiye\" value=\"1\" v-model=\"companyType\" _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t        <i class=\"icon icon01 i_radio\" _v-6b4c2a8e=\"\"></i>\n\t\t\t\t\t\t\t        <span class=\"checkbox_txt\" _v-6b4c2a8e=\"\">企业</span>\n\t\t\t\t\t\t\t    </label>\n\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t<tr _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t<th _v-6b4c2a8e=\"\"><span class=\"text-orange\" _v-6b4c2a8e=\"\">* </span>房产使用属性</th>\n\t\t\t\t\t\t\t<td _v-6b4c2a8e=\"\">\n\t\t\t\t                <select class=\"form-control\" v-model=\"housePropertyId\" _v-6b4c2a8e=\"\">\n\t\t\t\t                    <template v-for=\"(index,item) in housePropertyIdList.typeRefinementList\" _v-6b4c2a8e=\"\">\n\t\t\t\t                        <option :value=\"item.typeRefinementId\" _v-6b4c2a8e=\"\">{{ item.typeRefinementName }}</option>\n\t\t\t\t                    </template>\n\t\t\t\t                </select>\n\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t<tr _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t<th _v-6b4c2a8e=\"\"><span class=\"text-orange\" _v-6b4c2a8e=\"\">* </span>企业在U谷中的属性</th>\n\t\t\t\t\t\t\t<td _v-6b4c2a8e=\"\">\n\t\t\t\t                <select class=\"form-control\" v-model=\"URavinePropertyId\" _v-6b4c2a8e=\"\">\n\t\t\t\t                    <template v-for=\"(index, item) in URavinePropertyIdList.typeRefinementList\" _v-6b4c2a8e=\"\">\n\t\t\t\t                        <option :value=\"item.typeRefinementId\" _v-6b4c2a8e=\"\">{{ item.typeRefinementName }}</option>\n\t\t\t\t                    </template>\n\t\t\t\t                </select>\n\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t<tr _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t<th _v-6b4c2a8e=\"\"><span class=\"text-orange\" _v-6b4c2a8e=\"\">* </span>入驻企业成立时间</th>\n\t\t\t\t\t\t\t<td _v-6b4c2a8e=\"\">\n\t\t\t\t                <input class=\"editdate\" type=\"text\" name=\"\" readonly=\"\" v-model=\"companyEstablishTime\" v-datetimepicker=\"companyEstablishTimeClick\" _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t<tr _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t<th _v-6b4c2a8e=\"\"><span class=\"text-orange\" _v-6b4c2a8e=\"\">* </span>注册资本金（万）</th>\n\t\t\t\t\t\t\t<td _v-6b4c2a8e=\"\"><input type=\"text\" v-model=\"signInFund\" _v-6b4c2a8e=\"\"></td>\n\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t<tr _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t<th _v-6b4c2a8e=\"\"><span class=\"text-orange\" _v-6b4c2a8e=\"\">* </span>所属行业</th>\n\t\t\t\t\t\t\t<td _v-6b4c2a8e=\"\">\n\t\t\t\t                <select class=\"form-control\" v-model=\"industryInvolvedId\" _v-6b4c2a8e=\"\">\n\t\t\t\t                    <template v-for=\"(index,item) in industryInvolvedIdList.typeRefinementList\" _v-6b4c2a8e=\"\">\n\t\t\t\t                        <option :value=\"item.typeRefinementId\" _v-6b4c2a8e=\"\">{{ item.typeRefinementName }}</option>\n\t\t\t\t                    </template>\n\t\t\t\t                </select>\n\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t<tr _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t<th _v-6b4c2a8e=\"\"><span class=\"text-orange\" _v-6b4c2a8e=\"\">* </span>主营业务或主导产品</th>\n\t\t\t\t\t\t\t<td _v-6b4c2a8e=\"\"><input type=\"text\" v-model=\"mainProduct\" _v-6b4c2a8e=\"\"></td>\n\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t<tr _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t<th _v-6b4c2a8e=\"\"><span class=\"text-orange\" _v-6b4c2a8e=\"\">* </span>公司覆盖区域</th>\n\t\t\t\t\t\t\t<td _v-6b4c2a8e=\"\">\n\t\t\t\t                <select class=\"form-control\" v-model=\"companyCoverageId\" _v-6b4c2a8e=\"\">\n\t\t\t\t                    <template v-for=\"(index,item) in companyCoverageIdList.typeRefinementList\" _v-6b4c2a8e=\"\">\n\t\t\t\t                        <option :value=\"item.typeRefinementId\" _v-6b4c2a8e=\"\">{{ item.typeRefinementName }}</option>\n\t\t\t\t                    </template>\n\t\t\t\t                </select>\n\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t<tr _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t<th _v-6b4c2a8e=\"\"><span class=\"text-orange\" _v-6b4c2a8e=\"\">* </span>职工总人数</th>\n\t\t\t\t\t\t\t<td _v-6b4c2a8e=\"\"><input type=\"text\" v-model=\"employeeNumber\" _v-6b4c2a8e=\"\"></td>\n\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t<tr _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t<th _v-6b4c2a8e=\"\"><span class=\"text-orange\" _v-6b4c2a8e=\"\">* </span>物业对接人</th>\n\t\t\t\t\t\t\t<td _v-6b4c2a8e=\"\"><input type=\"text\" v-model=\"propertyToAccess\" _v-6b4c2a8e=\"\"></td>\n\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t<tr _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t<th _v-6b4c2a8e=\"\"><span class=\"text-orange\" _v-6b4c2a8e=\"\">* </span>联系方式</th>\n\t\t\t\t\t\t\t<td _v-6b4c2a8e=\"\"><input type=\"text\" v-model=\"propertyToAccessContact\" _v-6b4c2a8e=\"\"></td>\n\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t<tr _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t<th _v-6b4c2a8e=\"\"><span class=\"text-orange\" _v-6b4c2a8e=\"\">* </span>紧急联系人</th>\n\t\t\t\t\t\t\t<td _v-6b4c2a8e=\"\"><input type=\"text\" v-model=\"emergencyContactPerson\" _v-6b4c2a8e=\"\"></td>\n\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t<tr _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t<th _v-6b4c2a8e=\"\"><span class=\"text-orange\" _v-6b4c2a8e=\"\">* </span>联系方式</th>\n\t\t\t\t\t\t\t<td _v-6b4c2a8e=\"\"><input type=\"text\" v-model=\"emergencyContactNumber\" _v-6b4c2a8e=\"\"></td>\n\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t<tr _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t<th _v-6b4c2a8e=\"\">是否高新</th>\n\t\t\t\t\t\t\t<td _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t    <label class=\"checkbox-container\" data-type=\"radio\" for=\"shigaoxin\" :checked=\"isHighNew == 0\" _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t        <input type=\"radio\" id=\"shigaoxin\" value=\"0\" v-model=\"isHighNew\" _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t        <i class=\"icon icon01 i_radio\" _v-6b4c2a8e=\"\"></i>\n\t\t\t\t\t\t\t        <span class=\"checkbox_txt\" _v-6b4c2a8e=\"\">是</span>\n\t\t\t\t\t\t\t    </label>\n\t\t\t\t\t\t\t    <label class=\"checkbox-container\" data-type=\"radio\" for=\"bushigaoxin\" :checked=\"isHighNew == 1\" _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t        <input type=\"radio\" id=\"bushigaoxin\" value=\"1\" v-model=\"isHighNew\" _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t        <i class=\"icon icon01 i_radio\" _v-6b4c2a8e=\"\"></i>\n\t\t\t\t\t\t\t        <span class=\"checkbox_txt\" _v-6b4c2a8e=\"\">否</span>\n\t\t\t\t\t\t\t    </label>\n\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t<tr _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t<th _v-6b4c2a8e=\"\">高新类型</th>\n\t\t\t\t\t\t\t<td _v-6b4c2a8e=\"\">\n\t\t\t\t                <select class=\"form-control\" v-model=\"highNewType\" _v-6b4c2a8e=\"\">\n\t\t\t\t                    <option value=\"0\" selected=\"\" _v-6b4c2a8e=\"\">国家高新</option>\n\t\t\t\t                    <option value=\"1\" _v-6b4c2a8e=\"\">省级高新</option>\n\t\t\t\t                    <option value=\"2\" _v-6b4c2a8e=\"\">市级高新</option>\n\t\t\t\t                </select>\n\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t<tr _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t<th _v-6b4c2a8e=\"\">发证时间</th>\n\t\t\t\t\t\t\t<td _v-6b4c2a8e=\"\">\n\t\t\t\t                <input class=\"editdate\" type=\"text\" name=\"\" readonly=\"\" v-model=\"certificateTime\" v-datetimepicker=\"certificateTimeClick\" _v-6b4c2a8e=\"\">\n\t\t\t\t            </td>\n\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t<tr _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t<th _v-6b4c2a8e=\"\">专利类型</th>\n\t\t\t\t\t\t\t<td _v-6b4c2a8e=\"\">\n\t\t\t\t                <select class=\"form-control\" v-model=\"patentTypeId\" _v-6b4c2a8e=\"\">\n\t\t\t\t                    <template v-for=\"(index,item) in patentTypeIdList.typeRefinementList\" _v-6b4c2a8e=\"\">\n\t\t\t\t                        <option :value=\"item.typeRefinementId\" _v-6b4c2a8e=\"\">{{ item.typeRefinementName }}</option>\n\t\t\t\t                    </template>\n\t\t\t\t                </select>\n\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t<tr _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t<th _v-6b4c2a8e=\"\">专利个数</th>\n\t\t\t\t\t\t\t<td _v-6b4c2a8e=\"\"><input type=\"text\" v-model=\"patentNumber\" _v-6b4c2a8e=\"\"></td>\n\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t<tr _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t<th _v-6b4c2a8e=\"\">是否上市</th>\n\t\t\t\t\t\t\t<td _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t    <label class=\"checkbox-container\" data-type=\"radio\" for=\"shangshi\" :checked=\"isUpBazaar == 0\" _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t        <input type=\"radio\" id=\"shangshi\" value=\"0\" v-model=\"isUpBazaar\" _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t        <i class=\"icon icon01 i_radio\" _v-6b4c2a8e=\"\"></i>\n\t\t\t\t\t\t\t        <span class=\"checkbox_txt\" _v-6b4c2a8e=\"\">是</span>\n\t\t\t\t\t\t\t    </label>\n\t\t\t\t\t\t\t    <label class=\"checkbox-container\" data-type=\"radio\" for=\"bushangshi\" :checked=\"isUpBazaar == 1\" _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t        <input type=\"radio\" id=\"bushangshi\" value=\"1\" v-model=\"isUpBazaar\" _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t        <i class=\"icon icon01 i_radio\" _v-6b4c2a8e=\"\"></i>\n\t\t\t\t\t\t\t        <span class=\"checkbox_txt\" _v-6b4c2a8e=\"\">否</span>\n\t\t\t\t\t\t\t    </label>\n\t\t\t\t\t\t\t       注：所在分公司或其母公司上市，均可列为上市\n\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t<tr _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t<th _v-6b4c2a8e=\"\">上市类型</th>\n\t\t\t\t\t\t\t<td _v-6b4c2a8e=\"\">\n\t\t\t\t                <select class=\"form-control\" v-model=\"upBazaarTypeId\" _v-6b4c2a8e=\"\">\n\t\t\t\t                    <template v-for=\"(index,item) in upBazaarTypeIdList.typeRefinementList\" _v-6b4c2a8e=\"\">\n\t\t\t\t                        <option :value=\"item.typeRefinementId\" _v-6b4c2a8e=\"\">{{ item.typeRefinementName }}</option>\n\t\t\t\t                    </template>\n\t\t\t\t                </select>\n\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t<tr _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t<th _v-6b4c2a8e=\"\">挂牌时间</th>\n\t\t\t\t\t\t\t<td _v-6b4c2a8e=\"\">\n\t\t\t\t                <input class=\"editdate\" id=\"hangBoardTime\" type=\"text\" name=\"\" readonly=\"\" v-model=\"hangBoardTime\" v-datetimepicker=\"hangBoardTimeClick\" _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t<tr _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t<th _v-6b4c2a8e=\"\">股票代码</th>\n\t\t\t\t\t\t\t<td _v-6b4c2a8e=\"\"><input type=\"text\" v-model=\"stockCode\" _v-6b4c2a8e=\"\"></td>\n\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t<tr _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t<th _v-6b4c2a8e=\"\">备注信息</th>\n\t\t\t\t\t\t\t<td _v-6b4c2a8e=\"\"><textarea v-model=\"notes\" _v-6b4c2a8e=\"\"></textarea></td>\n\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t<!-- <tr>\n\t\t\t\t\t\t\t<th></th>\n\t\t\t\t\t\t\t<td><button class=\"btn\" @click=\"next\">保存并下一步</button></td>\n\t\t\t\t\t\t</tr> -->\n\t\t\t\t\t</tbody>\n\t\t\t\t</table>\n                </div>\n            </div>\n        </div>  \n    </div>\n</div>\n\n\n\n<!-- 弹窗 开始 -->\n<!-- Small modal -->\n<div class=\"modal fade bs-example-modal-sm\" id=\"tips-modal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"mySmallModalLabel\" _v-6b4c2a8e=\"\">\n  <div class=\"modal-dialog modal-sm\" role=\"document\" _v-6b4c2a8e=\"\">\n    <div class=\"modal-content\" _v-6b4c2a8e=\"\">\n\t    <div class=\"modal-header\" _v-6b4c2a8e=\"\">\n\t\t\t<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\" _v-6b4c2a8e=\"\"><span aria-hidden=\"true\" _v-6b4c2a8e=\"\">×</span></button>\n\t\t\t<h4 class=\"modal-title\" id=\"myLargeModalLabel\" _v-6b4c2a8e=\"\">提示</h4>\n\t\t</div>\n\t    <div class=\"modal-body\" _v-6b4c2a8e=\"\">\n      \t\t{{ tipsModalText }}\n\t\t</div>\n    </div>\n  </div>\n</div>\n<!-- 弹窗 结束 -->\n";
+	module.exports = "\n<ol class=\"breadcrumb\" _v-6b4c2a8e=\"\">你当前的位置：\n    <li _v-6b4c2a8e=\"\"><a _v-6b4c2a8e=\"\">联东首页</a></li>\n    <li class=\"active cur-breadcrumb\" _v-6b4c2a8e=\"\">账户资料</li>\n</ol>\n<div class=\"container\" _v-6b4c2a8e=\"\">\n    <div class=\"row\" _v-6b4c2a8e=\"\">\n        <div class=\"col-xs-12\" _v-6b4c2a8e=\"\">\n            <div class=\"panel panel-default\" _v-6b4c2a8e=\"\">\n            \t<div class=\"panel-heading\" _v-6b4c2a8e=\"\"><h1 _v-6b4c2a8e=\"\">账户资料</h1></div>\n                <div class=\"panel-body\" _v-6b4c2a8e=\"\">\n\t\t\t\t<table class=\"table table-bordered table-form\" _v-6b4c2a8e=\"\">\n\t\t\t\t\t<caption _v-6b4c2a8e=\"\">基本资料</caption>\n\t\t\t\t\t<colgroup _v-6b4c2a8e=\"\"><col width=\"20%\" _v-6b4c2a8e=\"\">\n\t\t\t\t\t<col width=\"30%\" _v-6b4c2a8e=\"\">\n\t\t\t\t\t<col width=\"20%\" _v-6b4c2a8e=\"\">\n\t\t\t\t\t<col width=\"30%\" _v-6b4c2a8e=\"\">\n\t\t\t\t\t</colgroup><tbody _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t<tr _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t<th _v-6b4c2a8e=\"\">客户名称</th>\n\t\t\t\t\t\t\t<td _v-6b4c2a8e=\"\"><input readonly=\"\" type=\"text\" v-model=\"projectName\" _v-6b4c2a8e=\"\"></td>\n\t\t\t\t\t\t\t<th rowspan=\"2\" _v-6b4c2a8e=\"\">公司logo</th>\n\t\t\t\t\t\t\t<td rowspan=\"2\" _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t\t<img :src=\"uploaduserphotoUrl\" class=\"img-circle\" style=\"width: 104px;height: 104px;\" _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t\t \n\t\t\t\t\t\t\t\t<form name=\"uploaduserphotoform\" enctype=\"multipart/form-data\" method=\"post\" action=\"/dist/upload\" style=\"display: inline-block;white-space: nowrap;\" _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t\t\t<div class=\"btn-upfile\" style=\"height:30px\" _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t\t\t\t<input readonly=\"\" type=\"file\" id=\"uploaduserphoto\" name=\"uploaduserphoto\" v-model=\"uploaduserphoto\" _v-6b4c2a8e=\"\"><span class=\"btn-upfile-text text-orange\" style=\"height: 30px;\" _v-6b4c2a8e=\"\">修改logo</span>\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t</form>\n\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t<tr _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t<th _v-6b4c2a8e=\"\">手机号码</th>\n\t\t\t\t\t\t\t<td _v-6b4c2a8e=\"\"><input readonly=\"\" type=\"text\" v-model=\"\" style=\"width: 120px;\" _v-6b4c2a8e=\"\"><a class=\"text-orange\" v-link=\"{ path: '/home/index/mine/changephone' }\" _v-6b4c2a8e=\"\">修改</a></td>\n\t\t\t\t\t\t</tr>\n\t\t\t\t\t</tbody>\n\t\t\t\t</table>\n\t\t\t\t<table class=\"table table-bordered table-form\" _v-6b4c2a8e=\"\">\n\t\t\t\t\t<caption _v-6b4c2a8e=\"\">资料信息</caption>\n\t\t\t\t\t<tbody _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t<tr _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t<th _v-6b4c2a8e=\"\">房产名称</th>\n\t\t\t\t\t\t\t<td _v-6b4c2a8e=\"\">\n\t\t\t\t                <select class=\"form-control\" v-model=\"userCheckedHouseInfo\" _v-6b4c2a8e=\"\">\n\t\t\t\t                    <template v-for=\"(index01, houseInfo) in noEnterHouseInfos\" _v-6b4c2a8e=\"\">\n\t\t\t\t                \t\t<option :value=\"index01\" :selected=\"index01==0\" _v-6b4c2a8e=\"\">{{ houseInfo.house }}</option>\n\t\t\t\t                    </template>\n\t\t\t\t                </select>\n\t\t\t\t                <span class=\"text-orange\" v-show=\"noEnterHouseInfos.length==0\" _v-6b4c2a8e=\"\">暂无房产可选</span>\n\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t<tr _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t<th _v-6b4c2a8e=\"\">项目名称</th>\n\t\t\t\t\t\t\t<td _v-6b4c2a8e=\"\"><input readonly=\"\" type=\"text\" v-model=\"projectName\" _v-6b4c2a8e=\"\"></td>\n\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t<tr _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t<th _v-6b4c2a8e=\"\">客户名称</th>\n\t\t\t\t\t\t\t<td _v-6b4c2a8e=\"\"><input readonly=\"\" type=\"text\" :value=\"userInfo.user.username\" _v-6b4c2a8e=\"\"> 注：租、售合同的签约主体</td>\n\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t<tr _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t<th _v-6b4c2a8e=\"\">业主类型</th>\n\t\t\t\t\t\t\t<td _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t        <span class=\"checkbox_txt\" v-show=\"companyType == 0\" _v-6b4c2a8e=\"\">个人</span>\n\t\t\t\t\t\t        <span class=\"checkbox_txt\" v-show=\"companyType == 1\" _v-6b4c2a8e=\"\">企业</span>\n\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t<tr _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t<th _v-6b4c2a8e=\"\"><span class=\"text-orange\" _v-6b4c2a8e=\"\">* </span>房产使用属性</th>\n\t\t\t\t\t\t\t<td _v-6b4c2a8e=\"\">\n\t\t\t\t                <select disabled=\"\" class=\"form-control\" v-model=\"housePropertyId\" _v-6b4c2a8e=\"\">\n\t\t\t\t                    <template v-for=\"(index,item) in housePropertyIdList.typeRefinementList\" _v-6b4c2a8e=\"\">\n\t\t\t\t                        <option :value=\"item.typeRefinementId\" _v-6b4c2a8e=\"\">{{ item.typeRefinementName }}</option>\n\t\t\t\t                    </template>\n\t\t\t\t                </select>\n\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t<tr _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t<th _v-6b4c2a8e=\"\"><span class=\"text-orange\" _v-6b4c2a8e=\"\">* </span>企业在U谷中的属性</th>\n\t\t\t\t\t\t\t<td _v-6b4c2a8e=\"\">\n\t\t\t\t                <select disabled=\"\" class=\"form-control\" v-model=\"URavinePropertyId\" _v-6b4c2a8e=\"\">\n\t\t\t\t                    <template v-for=\"(index, item) in URavinePropertyIdList.typeRefinementList\" _v-6b4c2a8e=\"\">\n\t\t\t\t                        <option :value=\"item.typeRefinementId\" _v-6b4c2a8e=\"\">{{ item.typeRefinementName }}</option>\n\t\t\t\t                    </template>\n\t\t\t\t                </select>\n\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t<tr _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t<th _v-6b4c2a8e=\"\"><span class=\"text-orange\" _v-6b4c2a8e=\"\">* </span>入驻企业成立时间</th>\n\t\t\t\t\t\t\t<td _v-6b4c2a8e=\"\">\n\t\t\t\t                <input readonly=\"\" type=\"text\" name=\"\" v-model=\"companyEstablishTime\" _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t<tr _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t<th _v-6b4c2a8e=\"\"><span class=\"text-orange\" _v-6b4c2a8e=\"\">* </span>注册资本金（万）</th>\n\t\t\t\t\t\t\t<td _v-6b4c2a8e=\"\"><input readonly=\"\" type=\"text\" v-model=\"signInFund\" _v-6b4c2a8e=\"\"></td>\n\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t<tr _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t<th _v-6b4c2a8e=\"\"><span class=\"text-orange\" _v-6b4c2a8e=\"\">* </span>所属行业</th>\n\t\t\t\t\t\t\t<td _v-6b4c2a8e=\"\">\n\t\t\t\t                <select disabled=\"\" class=\"form-control\" v-model=\"industryInvolvedId\" _v-6b4c2a8e=\"\">\n\t\t\t\t                    <template v-for=\"(index,item) in industryInvolvedIdList.typeRefinementList\" _v-6b4c2a8e=\"\">\n\t\t\t\t                        <option :value=\"item.typeRefinementId\" _v-6b4c2a8e=\"\">{{ item.typeRefinementName }}</option>\n\t\t\t\t                    </template>\n\t\t\t\t                </select>\n\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t<tr _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t<th _v-6b4c2a8e=\"\"><span class=\"text-orange\" _v-6b4c2a8e=\"\">* </span>主营业务或主导产品</th>\n\t\t\t\t\t\t\t<td _v-6b4c2a8e=\"\"><input readonly=\"\" type=\"text\" v-model=\"mainProduct\" _v-6b4c2a8e=\"\"></td>\n\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t<tr _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t<th _v-6b4c2a8e=\"\"><span class=\"text-orange\" _v-6b4c2a8e=\"\">* </span>公司覆盖区域</th>\n\t\t\t\t\t\t\t<td _v-6b4c2a8e=\"\">\n\t\t\t\t                <select disabled=\"\" class=\"form-control\" v-model=\"companyCoverageId\" _v-6b4c2a8e=\"\">\n\t\t\t\t                    <template v-for=\"(index,item) in companyCoverageIdList.typeRefinementList\" _v-6b4c2a8e=\"\">\n\t\t\t\t                        <option :value=\"item.typeRefinementId\" _v-6b4c2a8e=\"\">{{ item.typeRefinementName }}</option>\n\t\t\t\t                    </template>\n\t\t\t\t                </select>\n\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t<tr _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t<th _v-6b4c2a8e=\"\"><span class=\"text-orange\" _v-6b4c2a8e=\"\">* </span>职工总人数</th>\n\t\t\t\t\t\t\t<td _v-6b4c2a8e=\"\"><input readonly=\"\" type=\"text\" v-model=\"employeeNumber\" _v-6b4c2a8e=\"\"></td>\n\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t<tr _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t<th _v-6b4c2a8e=\"\"><span class=\"text-orange\" _v-6b4c2a8e=\"\">* </span>物业对接人</th>\n\t\t\t\t\t\t\t<td _v-6b4c2a8e=\"\"><input readonly=\"\" type=\"text\" v-model=\"propertyToAccess\" _v-6b4c2a8e=\"\"></td>\n\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t<tr _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t<th _v-6b4c2a8e=\"\"><span class=\"text-orange\" _v-6b4c2a8e=\"\">* </span>联系方式</th>\n\t\t\t\t\t\t\t<td _v-6b4c2a8e=\"\"><input readonly=\"\" type=\"text\" v-model=\"propertyToAccessContact\" _v-6b4c2a8e=\"\"></td>\n\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t<tr _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t<th _v-6b4c2a8e=\"\"><span class=\"text-orange\" _v-6b4c2a8e=\"\">* </span>紧急联系人</th>\n\t\t\t\t\t\t\t<td _v-6b4c2a8e=\"\"><input readonly=\"\" type=\"text\" v-model=\"emergencyContactPerson\" _v-6b4c2a8e=\"\"></td>\n\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t<tr _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t<th _v-6b4c2a8e=\"\"><span class=\"text-orange\" _v-6b4c2a8e=\"\">* </span>联系方式</th>\n\t\t\t\t\t\t\t<td _v-6b4c2a8e=\"\"><input readonly=\"\" type=\"text\" v-model=\"emergencyContactNumber\" _v-6b4c2a8e=\"\"></td>\n\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t<tr _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t<th _v-6b4c2a8e=\"\">是否高新</th>\n\t\t\t\t\t\t\t<td _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t        <span class=\"checkbox_txt\" v-show=\"isHighNew == 0\" _v-6b4c2a8e=\"\">是</span>\n\t\t\t\t\t\t        <span class=\"checkbox_txt\" v-show=\"isHighNew == 1\" _v-6b4c2a8e=\"\">否</span>\n\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t<tr v-show=\"isHighNew==0\" _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t<th _v-6b4c2a8e=\"\">高新类型</th>\n\t\t\t\t\t\t\t<td _v-6b4c2a8e=\"\">\n\t\t\t\t                <select disabled=\"\" class=\"form-control\" v-model=\"highNewType\" _v-6b4c2a8e=\"\">\n\t\t\t\t                    <option value=\"0\" selected=\"\" _v-6b4c2a8e=\"\">国家高新</option>\n\t\t\t\t                    <option value=\"1\" _v-6b4c2a8e=\"\">省级高新</option>\n\t\t\t\t                    <option value=\"2\" _v-6b4c2a8e=\"\">市级高新</option>\n\t\t\t\t                </select>\n\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t<tr v-show=\"isHighNew==0\" _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t<th _v-6b4c2a8e=\"\">发证时间</th>\n\t\t\t\t\t\t\t<td _v-6b4c2a8e=\"\">\n\t\t\t\t                <input readonly=\"\" type=\"text\" name=\"\" v-model=\"certificateTime\" _v-6b4c2a8e=\"\">\n\t\t\t\t            </td>\n\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t<tr v-show=\"isHighNew==0\" _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t<th _v-6b4c2a8e=\"\">专利类型</th>\n\t\t\t\t\t\t\t<td _v-6b4c2a8e=\"\">\n\t\t\t\t                <select disabled=\"\" class=\"form-control\" v-model=\"patentTypeId\" _v-6b4c2a8e=\"\">\n\t\t\t\t                    <template v-for=\"(index,item) in patentTypeIdList.typeRefinementList\" _v-6b4c2a8e=\"\">\n\t\t\t\t                        <option :value=\"item.typeRefinementId\" _v-6b4c2a8e=\"\">{{ item.typeRefinementName }}</option>\n\t\t\t\t                    </template>\n\t\t\t\t                </select>\n\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t<tr v-show=\"isHighNew==0\" _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t<th _v-6b4c2a8e=\"\">专利个数</th>\n\t\t\t\t\t\t\t<td _v-6b4c2a8e=\"\"><input readonly=\"\" type=\"text\" v-model=\"patentNumber\" _v-6b4c2a8e=\"\"></td>\n\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t<tr _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t<th _v-6b4c2a8e=\"\">是否上市</th>\n\t\t\t\t\t\t\t<td _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t        <span class=\"checkbox_txt\" v-show=\"isUpBazaar == 0\" _v-6b4c2a8e=\"\">是</span>\n\t\t\t\t\t\t        <span class=\"checkbox_txt\" v-show=\"isUpBazaar == 1\" _v-6b4c2a8e=\"\">否</span>\n\t\t\t\t\t\t\t       注：所在分公司或其母公司上市，均可列为上市\n\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t<tr v-show=\"isUpBazaar==0\" _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t<th _v-6b4c2a8e=\"\">上市类型</th>\n\t\t\t\t\t\t\t<td _v-6b4c2a8e=\"\">\n\t\t\t\t                <select disabled=\"\" class=\"form-control\" v-model=\"upBazaarTypeId\" _v-6b4c2a8e=\"\">\n\t\t\t\t                    <template v-for=\"(index,item) in upBazaarTypeIdList.typeRefinementList\" _v-6b4c2a8e=\"\">\n\t\t\t\t                        <option :value=\"item.typeRefinementId\" _v-6b4c2a8e=\"\">{{ item.typeRefinementName }}</option>\n\t\t\t\t                    </template>\n\t\t\t\t                </select>\n\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t<tr v-show=\"isUpBazaar==0\" _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t<th _v-6b4c2a8e=\"\">挂牌时间</th>\n\t\t\t\t\t\t\t<td _v-6b4c2a8e=\"\">\n\t\t\t\t                <input readonly=\"\" id=\"hangBoardTime\" type=\"text\" name=\"\" v-model=\"hangBoardTime\" _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t<tr v-show=\"isUpBazaar==0\" _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t<th _v-6b4c2a8e=\"\">股票代码</th>\n\t\t\t\t\t\t\t<td _v-6b4c2a8e=\"\"><input readonly=\"\" type=\"text\" v-model=\"stockCode\" _v-6b4c2a8e=\"\"></td>\n\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t<tr v-show=\"isUpBazaar==0\" _v-6b4c2a8e=\"\">\n\t\t\t\t\t\t\t<th _v-6b4c2a8e=\"\">备注信息</th>\n\t\t\t\t\t\t\t<td _v-6b4c2a8e=\"\"><textarea disabled=\"\" v-model=\"notes\" _v-6b4c2a8e=\"\"></textarea></td>\n\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t<!-- <tr>\n\t\t\t\t\t\t\t<th></th>\n\t\t\t\t\t\t\t<td><button class=\"btn\" @click=\"next\">保存并下一步</button></td>\n\t\t\t\t\t\t</tr> -->\n\t\t\t\t\t</tbody>\n\t\t\t\t</table>\n                </div>\n            </div>\n        </div>  \n    </div>\n</div>\n\n\n\n<!-- 弹窗 开始 -->\n<!-- Small modal -->\n<div class=\"modal fade bs-example-modal-sm\" id=\"tips-modal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"mySmallModalLabel\" _v-6b4c2a8e=\"\">\n  <div class=\"modal-dialog modal-sm\" role=\"document\" _v-6b4c2a8e=\"\">\n    <div class=\"modal-content\" _v-6b4c2a8e=\"\">\n\t    <div class=\"modal-header\" _v-6b4c2a8e=\"\">\n\t\t\t<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\" _v-6b4c2a8e=\"\"><span aria-hidden=\"true\" _v-6b4c2a8e=\"\">×</span></button>\n\t\t\t<h4 class=\"modal-title\" id=\"myLargeModalLabel\" _v-6b4c2a8e=\"\">提示</h4>\n\t\t</div>\n\t    <div class=\"modal-body\" _v-6b4c2a8e=\"\">\n      \t\t{{ tipsModalText }}\n\t\t</div>\n    </div>\n  </div>\n</div>\n<!-- 弹窗 结束 -->\n";
 
 /***/ }),
 /* 309 */
@@ -44359,11 +44384,35 @@ webpackJsonp([0],[
 																						$.ajax({
 																													type: "post",
 																													url: global.HttpPath + '/CustomerCentre/getPerfectInformation', // 获取当前资料（做回显用）
-																													// data: {houseInfoId: _this.houseInfoId},
-																													data: { houseInfoId: '1031AM1000000001HT2Z' },
+																													data: { houseInfoId: _this.houseInfoId },
+																													// data: {houseInfoId: '1040AM1000000000SVVZ'},
 																													dataType: 'json',
 																													success: function success(data) {
 																																				console.log('获取资料： ', data);
+																																				_this.$set('companyType', data.companyType);
+																																				_this.$set('customerId', data.customerId);
+																																				_this.$set('housePropertyId', data.housePropertyId);
+																																				_this.$set('companyEstablishTime', data.companyEstablishTime);
+																																				_this.$set('signInFund', data.signInFund);
+																																				_this.$set('industryInvolvedId', data.industryInvolvedId);
+																																				_this.$set('URavinePropertyId', data.uravinePropertyId);
+																																				_this.$set('mainProduct', data.mainProduct);
+																																				_this.$set('companyCoverageId', data.companyCoverageId);
+																																				_this.$set('employeeNumber', data.employeeNumber);
+																																				_this.$set('propertyToAccess', data.propertyToAccess);
+																																				_this.$set('propertyToAccessContact', data.propertyToAccessContact);
+																																				_this.$set('emergencyContactPerson', data.emergencyContactPerson);
+																																				_this.$set('emergencyContactNumber', data.emergencyContactNumber);
+																																				_this.$set('isHighNew', data.isHighNew);
+																																				_this.$set('highNewType', data.highNewType);
+																																				_this.$set('certificateTime', data.certificateTime);
+																																				_this.$set('patentTypeId', data.patentTypeId);
+																																				_this.$set('patentNumber', data.patentNumber);
+																																				_this.$set('isUpBazaar', data.isUpBazaar);
+																																				_this.$set('upBazaarTypeId', data.upBazaarTypeId);
+																																				_this.$set('hangBoardTime', data.hangBoardTime);
+																																				_this.$set('stockCode', data.stockCode);
+																																				_this.$set('notes', data.notes);
 																													}
 																						});
 															}
@@ -44749,7 +44798,9 @@ webpackJsonp([0],[
 																	data: { bindingPhone: _this.bindingPhone },
 																	dataType: 'json',
 																	success: function success(data) {
-																					_this.$set('getedVcode', data.vcode);
+																					if (data.state == 0) {
+																									_this.$set('getedVcode', data.vcode);
+																					}
 																					// console.log('验证码： ', data.vcode)
 																	}
 													});
@@ -44843,7 +44894,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */(function(global) {'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-					value: true
+		value: true
 	});
 
 	var _stringify = __webpack_require__(173);
@@ -44899,6 +44950,7 @@ webpackJsonp([0],[
 	// 										<span v-show="countdown==0">获取验证码</span>
 	// 										<span v-show="countdown>0">{{ countdown }}s</span>
 	// 									</button>
+	// 									<span class="text-orange" v-html="getedVcodeTopsTxt"></span>
 	// 								</td>
 	// 							</tr>
 	// 							<tr>
@@ -44936,113 +44988,118 @@ webpackJsonp([0],[
 	// <script>
 
 	exports.default = {
-					filters: {},
-					directives: {},
-					components: {},
-					data: function data() {
-									return {
-													userInfo: global.userInfo,
-													countdown: 0,
-													password: null,
-													passwordTipsTxt: null,
-													validateCode: null, // 验证码
-													tipsModalText: null, // 提示信息
-													pwdStatus: {
-																	passwordTipsTxt: null,
-																	pwdValidateStatus: false
-													},
+		filters: {},
+		directives: {},
+		components: {},
+		data: function data() {
+			return {
+				userInfo: global.userInfo,
+				countdown: 0,
+				password: null,
+				passwordTipsTxt: null,
+				validateCode: null, // 验证码
+				getedVcodeTopsTxt: null, // 验证码
+				tipsModalText: null, // 提示信息
+				pwdStatus: {
+					passwordTipsTxt: null,
+					pwdValidateStatus: false
+				},
 
-													/*请求参数： 
-	            --------------------------------------------------*/
-													bindingPhone: null
-									};
-					},
+				/*请求参数： 
+	   --------------------------------------------------*/
+				bindingPhone: null
+			};
+		},
 
-					watch: {},
-					ready: function ready() {},
-					beforeDestroy: function beforeDestroy() {},
+		watch: {},
+		ready: function ready() {},
+		beforeDestroy: function beforeDestroy() {},
 
-					methods: {
-									getVcode: function getVcode() {
-													var _this = this;
-													if (!_this.bindingPhone) {
-																	return;
-													}
+		methods: {
+			getVcode: function getVcode() {
+				var _this = this;
+				if (!_this.bindingPhone) {
+					return;
+				}
 
-													_this.countdown = 60;
-													(function countdown() {
-																	setTimeout(function () {
-																					if (_this.countdown > 0) {
-																									countdown();
-																									_this.countdown--;
-																					} else {
-																									_this.countdown = 0;
-																					}
-																	}, 1000);
-													})();
-													$.ajax({
-																	type: "post",
-																	// contentType: "application/json",
-																	url: global.HttpPath + '/CustomerCentre//getVcode', // 获取验证码
-																	data: { bindingPhone: _this.bindingPhone },
-																	dataType: 'json',
-																	success: function success(data) {
-																					_this.$set('getedVcode', data.vcode);
-																					// console.log('验证码： ', data.vcode)
-																	}
-													});
-									},
-									validatePwd: function validatePwd() {
-													var _this = this;
-													$.ajax({ // 验证密码
-																	type: "post",
-																	async: false,
-																	contentType: "application/json",
-																	url: global.HttpPath + '/customer/login',
-																	data: (0, _stringify2.default)({
-																					vccode: global.userInfo.user.useraccount,
-																					password: this.password
-																	}),
-																	dataType: 'json',
-																	success: function success(data) {
-																					if (data.success) {
-																									_this.pwdStatus.passwordTipsTxt = '<i class="icon icon01 i-suc01">';
-																									_this.pwdStatus.pwdValidateStatus = true;
-																					} else {
-																									_this.pwdStatus.passwordTipsTxt = '密码错误!';
-																									_this.pwdStatus.pwdValidateStatus = false;
-																					}
-																	}
-													});
-									},
-									submit: function submit() {
-													var _this = this;
-													console.log(_this.validateCode, _this.getedVcode);
-													console.log(_this.validateCode == _this.getedVcode, _this.pwdStatus.pwdValidateStatus);
-													if (!(_this.validateCode == _this.getedVcode && _this.pwdStatus.pwdValidateStatus)) {
-																	return;
-													}
-													$.ajax({
-																	type: "post",
-																	url: global.HttpPath + '/CustomerCentre/updatePhone', // 修改手机号
-																	data: {
-																					bindingPhone: _this.bindingPhone,
-																					vccode: global.userInfo.user.userid,
-																					password: this.password
-																	},
-																	dataType: 'json',
-																	success: function success(data) {
-																					console.log(data);
-																					if (data.state == 0) {
-																									$('#tips-modal').modal({// 打开弹窗
-																													// keyboard: false,
-																													// backdrop: 'static'
-																									});
-																					}
-																	}
-													});
-									}
+				_this.countdown = 60;
+				(function countdown() {
+					setTimeout(function () {
+						if (_this.countdown > 0) {
+							countdown();
+							_this.countdown--;
+						} else {
+							_this.countdown = 0;
+						}
+					}, 1000);
+				})();
+				$.ajax({
+					type: "post",
+					// contentType: "application/json",
+					url: global.HttpPath + '/CustomerCentre//getVcode', // 获取验证码
+					data: { bindingPhone: _this.bindingPhone },
+					dataType: 'json',
+					success: function success(data) {
+						if (data.state == 0) {
+							_this.$set('getedVcode', data.vcode);
+						} else {
+							_this.$set('getedVcodeTopsTxt', data.msg);
+						}
+						// console.log('验证码： ', data.vcode)
 					}
+				});
+			},
+			validatePwd: function validatePwd() {
+				var _this = this;
+				$.ajax({ // 验证密码
+					type: "post",
+					async: false,
+					contentType: "application/json",
+					url: global.HttpPath + '/customer/login',
+					data: (0, _stringify2.default)({
+						vccode: global.userInfo.user.useraccount,
+						password: this.password
+					}),
+					dataType: 'json',
+					success: function success(data) {
+						if (data.success) {
+							_this.pwdStatus.passwordTipsTxt = '<i class="icon icon01 i-suc01">';
+							_this.pwdStatus.pwdValidateStatus = true;
+						} else {
+							_this.pwdStatus.passwordTipsTxt = '密码错误!';
+							_this.pwdStatus.pwdValidateStatus = false;
+						}
+					}
+				});
+			},
+			submit: function submit() {
+				var _this = this;
+				console.log(_this.validateCode, _this.getedVcode);
+				console.log(_this.validateCode == _this.getedVcode, _this.pwdStatus.pwdValidateStatus);
+				if (!(_this.validateCode == _this.getedVcode && _this.pwdStatus.pwdValidateStatus)) {
+					return;
+				}
+				$.ajax({
+					type: "post",
+					url: global.HttpPath + '/CustomerCentre/updatePhone', // 修改手机号
+					data: {
+						bindingPhone: _this.bindingPhone,
+						vccode: global.userInfo.user.userid,
+						password: this.password
+					},
+					dataType: 'json',
+					success: function success(data) {
+						console.log(data);
+						if (data.state == 0) {
+							$('#tips-modal').modal({// 打开弹窗
+								// keyboard: false,
+								// backdrop: 'static'
+							});
+						}
+					}
+				});
+			}
+		}
 	};
 	// </script>
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
@@ -45051,7 +45108,7 @@ webpackJsonp([0],[
 /* 328 */
 /***/ (function(module, exports) {
 
-	module.exports = "\n<ol class=\"breadcrumb\" _v-3b3671d6=\"\">你当前的位置：\n\t<li _v-3b3671d6=\"\"><a href=\"#\" _v-3b3671d6=\"\">联东首页</a></li>\n\t<li class=\"active\" _v-3b3671d6=\"\">修改手机号</li>\n</ol>\n<div class=\"container\" _v-3b3671d6=\"\">\n\t<div class=\"row\" _v-3b3671d6=\"\">\n\t\t<div class=\"col-xs-12\" _v-3b3671d6=\"\">\n\t\t\t<div class=\"panel panel-default\" _v-3b3671d6=\"\">\n\t\t\t\t<div class=\"panel-heading\" _v-3b3671d6=\"\"><h1 _v-3b3671d6=\"\">修改手机号</h1></div>\n\t\t\t\t<div class=\"panel-body\" _v-3b3671d6=\"\">\n\t\t\t\t\t<table class=\"table table-bordered table-form\" _v-3b3671d6=\"\">\n\t\t\t\t\t\t<tbody _v-3b3671d6=\"\">\n\t\t\t\t\t\t\t<tr _v-3b3671d6=\"\">\n\t\t\t\t\t\t\t\t<th _v-3b3671d6=\"\">登录密码</th>\n\t\t\t\t\t\t\t\t<td _v-3b3671d6=\"\"><input type=\"password\" v-model=\"password\" @blur=\"validatePwd\" autocomplete=\"off\" _v-3b3671d6=\"\"> <span class=\"text-orange\" v-html=\"pwdStatus.passwordTipsTxt\" _v-3b3671d6=\"\"></span></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-3b3671d6=\"\">\n\t\t\t\t\t\t\t\t<th _v-3b3671d6=\"\">新手机号码</th>\n\t\t\t\t\t\t\t\t<td _v-3b3671d6=\"\"><input type=\"text\" v-model=\"bindingPhone\" _v-3b3671d6=\"\">\n\t\t\t\t\t\t\t\t\t<button class=\"btn\" style=\"margin-left:10px;\" @click=\"getVcode\" :disabled=\"countdown>0\" _v-3b3671d6=\"\">\n\t\t\t\t\t\t\t\t\t\t<span v-show=\"countdown==0\" _v-3b3671d6=\"\">获取验证码</span>\n\t\t\t\t\t\t\t\t\t\t<span v-show=\"countdown>0\" _v-3b3671d6=\"\">{{ countdown }}s</span>\n\t\t\t\t\t\t\t\t\t</button>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-3b3671d6=\"\">\n\t\t\t\t\t\t\t\t<th _v-3b3671d6=\"\">验证码</th>\n\t\t\t\t\t\t\t\t<td _v-3b3671d6=\"\"><input type=\"text\" v-model=\"validateCode\" _v-3b3671d6=\"\"></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-3b3671d6=\"\">\n\t\t\t\t\t\t\t\t<th _v-3b3671d6=\"\"></th>\n\t\t\t\t\t\t\t\t<td _v-3b3671d6=\"\"><button class=\"btn\" @click=\"submit\" _v-3b3671d6=\"\">提交修改</button></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t</tbody>\n\t\t\t\t\t</table>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\t\n\t</div>\t\n</div>\n<!-- 弹窗 开始 -->\n<!-- Small modal -->\n<div class=\"modal fade bs-example-modal-sm\" id=\"tips-modal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"mySmallModalLabel\" _v-3b3671d6=\"\">\n  <div class=\"modal-dialog modal-sm\" role=\"document\" _v-3b3671d6=\"\">\n    <div class=\"modal-content\" _v-3b3671d6=\"\">\n\t    <div class=\"modal-header\" _v-3b3671d6=\"\">\n\t\t\t<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\" _v-3b3671d6=\"\"><span aria-hidden=\"true\" _v-3b3671d6=\"\">×</span></button>\n\t\t\t<h4 class=\"modal-title\" id=\"myLargeModalLabel\" _v-3b3671d6=\"\">提示</h4>\n\t\t</div>\n\t    <div class=\"modal-body\" _v-3b3671d6=\"\">\n      \t\t修改手机号成功！\n\t\t</div>\n    </div>\n  </div>\n</div>\n<!-- 弹窗 结束 -->\n";
+	module.exports = "\n<ol class=\"breadcrumb\" _v-3b3671d6=\"\">你当前的位置：\n\t<li _v-3b3671d6=\"\"><a href=\"#\" _v-3b3671d6=\"\">联东首页</a></li>\n\t<li class=\"active\" _v-3b3671d6=\"\">修改手机号</li>\n</ol>\n<div class=\"container\" _v-3b3671d6=\"\">\n\t<div class=\"row\" _v-3b3671d6=\"\">\n\t\t<div class=\"col-xs-12\" _v-3b3671d6=\"\">\n\t\t\t<div class=\"panel panel-default\" _v-3b3671d6=\"\">\n\t\t\t\t<div class=\"panel-heading\" _v-3b3671d6=\"\"><h1 _v-3b3671d6=\"\">修改手机号</h1></div>\n\t\t\t\t<div class=\"panel-body\" _v-3b3671d6=\"\">\n\t\t\t\t\t<table class=\"table table-bordered table-form\" _v-3b3671d6=\"\">\n\t\t\t\t\t\t<tbody _v-3b3671d6=\"\">\n\t\t\t\t\t\t\t<tr _v-3b3671d6=\"\">\n\t\t\t\t\t\t\t\t<th _v-3b3671d6=\"\">登录密码</th>\n\t\t\t\t\t\t\t\t<td _v-3b3671d6=\"\"><input type=\"password\" v-model=\"password\" @blur=\"validatePwd\" autocomplete=\"off\" _v-3b3671d6=\"\"> <span class=\"text-orange\" v-html=\"pwdStatus.passwordTipsTxt\" _v-3b3671d6=\"\"></span></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-3b3671d6=\"\">\n\t\t\t\t\t\t\t\t<th _v-3b3671d6=\"\">新手机号码</th>\n\t\t\t\t\t\t\t\t<td _v-3b3671d6=\"\"><input type=\"text\" v-model=\"bindingPhone\" _v-3b3671d6=\"\">\n\t\t\t\t\t\t\t\t\t<button class=\"btn\" style=\"margin-left:10px;\" @click=\"getVcode\" :disabled=\"countdown>0\" _v-3b3671d6=\"\">\n\t\t\t\t\t\t\t\t\t\t<span v-show=\"countdown==0\" _v-3b3671d6=\"\">获取验证码</span>\n\t\t\t\t\t\t\t\t\t\t<span v-show=\"countdown>0\" _v-3b3671d6=\"\">{{ countdown }}s</span>\n\t\t\t\t\t\t\t\t\t</button>\n\t\t\t\t\t\t\t\t\t<span class=\"text-orange\" v-html=\"getedVcodeTopsTxt\" _v-3b3671d6=\"\"></span>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-3b3671d6=\"\">\n\t\t\t\t\t\t\t\t<th _v-3b3671d6=\"\">验证码</th>\n\t\t\t\t\t\t\t\t<td _v-3b3671d6=\"\"><input type=\"text\" v-model=\"validateCode\" _v-3b3671d6=\"\"></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-3b3671d6=\"\">\n\t\t\t\t\t\t\t\t<th _v-3b3671d6=\"\"></th>\n\t\t\t\t\t\t\t\t<td _v-3b3671d6=\"\"><button class=\"btn\" @click=\"submit\" _v-3b3671d6=\"\">提交修改</button></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t</tbody>\n\t\t\t\t\t</table>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\t\n\t</div>\t\n</div>\n<!-- 弹窗 开始 -->\n<!-- Small modal -->\n<div class=\"modal fade bs-example-modal-sm\" id=\"tips-modal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"mySmallModalLabel\" _v-3b3671d6=\"\">\n  <div class=\"modal-dialog modal-sm\" role=\"document\" _v-3b3671d6=\"\">\n    <div class=\"modal-content\" _v-3b3671d6=\"\">\n\t    <div class=\"modal-header\" _v-3b3671d6=\"\">\n\t\t\t<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\" _v-3b3671d6=\"\"><span aria-hidden=\"true\" _v-3b3671d6=\"\">×</span></button>\n\t\t\t<h4 class=\"modal-title\" id=\"myLargeModalLabel\" _v-3b3671d6=\"\">提示</h4>\n\t\t</div>\n\t    <div class=\"modal-body\" _v-3b3671d6=\"\">\n      \t\t修改手机号成功！\n\t\t</div>\n    </div>\n  </div>\n</div>\n<!-- 弹窗 结束 -->\n";
 
 /***/ }),
 /* 329 */

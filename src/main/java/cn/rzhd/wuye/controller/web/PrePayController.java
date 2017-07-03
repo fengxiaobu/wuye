@@ -1,7 +1,9 @@
 package cn.rzhd.wuye.controller.web;
 
+import cn.rzhd.wuye.bean.EnterApply;
 import cn.rzhd.wuye.bean.KfFee;
 import cn.rzhd.wuye.bean.PropertyFee;
+import cn.rzhd.wuye.service.IEnterApplyService;
 import cn.rzhd.wuye.service.IKfFeeService;
 import cn.rzhd.wuye.service.IPropertyFeeService;
 import cn.rzhd.wuye.utils.PageDataGridResult;
@@ -17,7 +19,6 @@ import java.util.List;
 
 /**
  * Created by hasee on 2017/6/8.
- *
  */
 @RestController
 @RequestMapping("/dist/prePay")
@@ -27,11 +28,13 @@ public class PrePayController {
     IPropertyFeeService propertyFeeService;
     @Autowired
     IKfFeeService kfFeeService;
+    @Autowired
+    IEnterApplyService enterApplyService;
 
     @RequestMapping("/propertyFeeList")
-    public PageDataGridResult propertyFeeList(@RequestBody FeeDataQuery query){
+    public PageDataGridResult propertyFeeList(@RequestBody FeeDataQuery query) {
         PageDataGridResult result = new PageDataGridResult();
-        PageHelper.startPage(query.getStartPage(),query.getPageSize());
+        PageHelper.startPage(query.getStartPage(), query.getPageSize());
         List<PropertyFee> list = propertyFeeService.queryAll(query);
         PageInfo pageInfo = new PageInfo(list);
         List pageInfoList = pageInfo.getList();
@@ -41,9 +44,9 @@ public class PrePayController {
     }
 
     @RequestMapping("/kfFeeList")
-    public PageDataGridResult kfFeeList(@RequestBody FeeDataQuery query){
+    public PageDataGridResult kfFeeList(@RequestBody FeeDataQuery query) {
         PageDataGridResult result = new PageDataGridResult();
-        PageHelper.startPage(query.getStartPage(),query.getPageSize());
+        PageHelper.startPage(query.getStartPage(), query.getPageSize());
         List<KfFee> list = kfFeeService.queryAll(query);
         PageInfo pageInfo = new PageInfo(list);
         List pageInfoList = pageInfo.getList();
@@ -83,6 +86,9 @@ public class PrePayController {
         List<PropertyFee> list = propertyFeeService.rzselectAll(query);
         PageInfo pageInfo = new PageInfo(list);
         List pageInfoList = pageInfo.getList();
+
+        EnterApply enterApply = enterApplyService.getEnterApply(query.getHouseInfoId(), query.getCustomerId());
+        pageInfoList.add(enterApply);
         result.setTotal(pageInfo.getTotal());
         result.setRows(pageInfoList);
         return result;
