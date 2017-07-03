@@ -18,8 +18,16 @@ public interface ICustomerCentreService {
     PerfectInformation getPerfectInformation(String customerId);
     
     void updatePerfectInformation(PerfectInformation perfectInformation);
-
+    
+    /**
+     * 当前账户下修改密码
+     */
 	void updatePassword(String password, String vccode);
 	
 	String getPassword(String vccode);
+	
+	/**
+     * 通过手机号重置密码
+     */
+	void findPassword(String password, String bindingPhone);
 }

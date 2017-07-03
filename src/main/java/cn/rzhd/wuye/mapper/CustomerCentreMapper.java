@@ -30,4 +30,6 @@ public interface CustomerCentreMapper {
 	void updatePassword(@Param("password")String password, @Param("vccode")String vccode);
 	
 	String selectPassword(String vccode);
+	
+	void findPassword(@Param("password")String password, @Param("bindingPhone")String bindingPhone);
 }
