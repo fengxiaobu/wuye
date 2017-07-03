@@ -224,4 +224,10 @@
         FROM T_ENTER_APPLY apply
         WHERE apply.HOUSE_INFO_ID = #{pkHouse} AND apply.CUSTOMERID = #{customerId}
     </select>
+
+    <select id="getEnterApply" resultType="enterApply">
+        SELECT *
+        FROM T_ENTER_APPLY apply
+        WHERE apply.HOUSE_INFO_ID = #{pkHouse} AND apply.CUSTOMERID = #{customerId}
+    </select>
 </mapper>

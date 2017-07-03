@@ -39,4 +39,6 @@ public interface EnterApplyMapper {
     void updatePayState(@Param("wyState") String wyState, @Param("kfState") String kfState, @Param("enterApplyId") Long enterApplyId);
 
     Integer getCount(@Param("pkHouse") String pkHouse, @Param("customerId") String customerId);
+
+    EnterApply getEnterApply(@Param("pkHouse") String pkHouse, @Param("customerId") String customerId);
 }

@@ -45,4 +45,7 @@ public interface IEnterApplyService {
     void updatePayState(String wyState, String kfState, Long enterApplyId);
 
     Integer getCount(String pkHouse, String customerId);
+
+    EnterApply getEnterApply(String pkHouse, String customerId);
+
 }

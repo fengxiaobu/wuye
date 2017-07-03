@@ -100,7 +100,12 @@ public class EnterApplyServiceImpl implements IEnterApplyService {
 
     @Override
     public Integer getCount(String pkHouse, String customerId) {
-        return enterApplyMapper.getCount(pkHouse,customerId);
+        return enterApplyMapper.getCount(pkHouse, customerId);
+    }
+
+    @Override
+    public EnterApply getEnterApply(String pkHouse, String customerId) {
+        return enterApplyMapper.getEnterApply(pkHouse, customerId);
     }
 
 }

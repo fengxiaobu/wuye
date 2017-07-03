@@ -4,11 +4,11 @@ import cn.rzhd.wuye.bean.DecorationApply;
 import cn.rzhd.wuye.bean.DecorationNotice;
 import cn.rzhd.wuye.bean.HouseInfoDetails;
 import cn.rzhd.wuye.service.*;
-import cn.rzhd.wuye.utils.IDUtils;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.xiaoleilu.hutool.util.NumberUtil;
+import com.xiaoleilu.hutool.util.RandomUtil;
 import com.xiaoleilu.hutool.util.StrUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -80,7 +80,7 @@ public class DecorationApplyController {
         System.out.println("decorationApply = " + decorationApply);
         Map<String, String> result = new HashMap<>();
         Date date = new Date();
-        Long aLong = IDUtils.genLongUID();
+        Long aLong = Long.valueOf(RandomUtil.randomNumbers(16));
         decorationApply.setDecorationApplyId(aLong);
         decorationApply.setAuditStatus(0);
         decorationApply.setIsSpecialDecoration(0);
@@ -184,7 +184,7 @@ public class DecorationApplyController {
         DecorationApply decorationApply = decorationApplyService.findDecorationApplyByHouseId(houseInfoId);
         if (decorationApply != null) {
             result.put("state", "1");
-            result.put("data", decorationApply);
+            result.put("data", JSON.toJSONString(decorationApply));
         } else if (decorationApply == null) {
             result.put("state", "0");
             result.put("data", "null");
