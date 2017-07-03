@@ -75,7 +75,6 @@
                 <tbody class="tudiqianyue-tbody">
                 <c:forEach items="${kfRecords}" var="item">
                     <tr class="tudiqianyue-tdtr">
-
                         <td>${item.detailsId}</td>
                         <td>${item.projectName}</td>
                         <td>${item.houseCode}</td>

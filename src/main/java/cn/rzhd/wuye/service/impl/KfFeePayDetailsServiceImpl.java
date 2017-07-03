@@ -41,4 +41,19 @@ public class KfFeePayDetailsServiceImpl implements IKfFeePayDetailsService {
     public List<Map<String, Object>> getByProject(Long userId) {
         return mapper.getByProject(userId);
     }
+
+    @Override
+    public String getCompanyAccount(String feecode, String pk_corp) {
+        return mapper.getCompanyAccount(feecode,pk_corp);
+    }
+
+    @Override
+    public String getCostType(String feecode, String pk_corp) {
+        return mapper.getCostType(feecode,pk_corp);
+    }
+
+    @Override
+    public String getCompanyName(String feecode, String pk_corp) {
+        return mapper.getCompanyName(feecode,pk_corp);
+    }
 }
