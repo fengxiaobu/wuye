@@ -78,7 +78,11 @@ public class CustomerCentreController {
 	public Map<String, String> getVcode(String bindingPhone) {
 		Map<String, String> result = new HashMap<>();
 		List<String> allPhone = customerService.allPhone();
+		// 包含这个手机号不能绑定，没包含则绑定
 		if (allPhone.contains(bindingPhone)) {
+			result.put("state", "0");
+			result.put("msg", "该手机号已绑定");
+		}else {
 			try {
 				String vcode = Client.createRandomVcode();
 				String sn = "SDK-CSL-010-00073";
@@ -90,12 +94,12 @@ public class CustomerCentreController {
 				String result_mt = client.mdsmssend(bindingPhone, content, "", "", "", "");
 				System.out.print(result_mt);
 				result.put("vcode", vcode);
-				
-			} catch (UnsupportedEncodingException e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			result.put("state", "1");
+			result.put("msg", "该手机号未绑定");
 		}
-
 
 		return result;
 	}

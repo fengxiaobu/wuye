@@ -133,8 +133,8 @@
         WHERE "houseInfoId" = #{houseInfoId}
     </update>
     
-    <select id="selectPhone">
-    	SELECT "Binding_Phone" FROM "T_Customer" 
+    <select id="selectPhone" resultType="String">
+    	SELECT DISTINCT "Binding_Phone" FROM "T_Customer"
     </select>
 
 </mapper>
