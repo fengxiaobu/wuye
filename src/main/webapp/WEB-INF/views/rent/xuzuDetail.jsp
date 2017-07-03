@@ -55,30 +55,30 @@
                         <label class="col-sm-2 control-label">租赁结束时间:</label>
                         <div class="col-sm-10">
                             <label class="col-sm-2 control-label"><fmt:formatDate
-                                    value="${reletApply.leaseEndTime}" pattern="yyyy-MM-dd HH:dd:ss"/></label>
+                                    value="${reletApply.leaseEndTime}" pattern="yyyy-MM-dd"/></label>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">续租开始时间:</label>
                         <div class="col-sm-10">
                             <label class="col-sm-2 control-label"><fmt:formatDate
-                                    value="${reletApply.retreaEndTime}" pattern="yyyy-MM-dd HH:dd:ss"/></label>
+                                    value="${reletApply.retreaEndTime}" pattern="yyyy-MM-dd"/></label>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">续租结束时间:</label>
                         <div class="col-sm-10">
                             <label class="col-sm-2 control-label"><fmt:formatDate
-                                    value="${reletApply.retreaEndTime}" pattern="yyyy-MM-dd HH:dd:ss"/></label>
+                                    value="${reletApply.retreaEndTime}" pattern="yyyy-MM-dd"/></label>
                         </div>
                     </div>
-                  <%--  <div class="form-group">
-                        <label class="col-sm-2 control-label">XXX年租赁单价:</label>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">租赁单价:</label>
                         <div class="col-sm-10">
-                            &lt;%&ndash;    <input class="col-sm-2 control-label" type="text" name="subtotal"
-                                       value="${subtotal.subtotal}">&ndash;%&gt;
+                            <input class="col-sm-2 control-label" type="text" name="singlePrice"
+                                   value="${reletApply.singlePrice}"><span>元/平方米</span>
                         </div>
-                    </div>--%>
+                    </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">小计:</label>
                         <div class="col-sm-10">
@@ -110,7 +110,7 @@
                         <label class="col-sm-2 control-label">提交时间:</label>
                         <div class="col-sm-10">
                             <label class="col-sm-2 control-label"><fmt:formatDate
-                                    value="${reletApply.creationTime}" pattern="yyyy-MM-dd HH:dd:ss"/></label>
+                                    value="${reletApply.creationTime}" pattern="yyyy-MM-dd"/></label>
                         </div>
                     </div>
                     <div class="form-group" style="margin-left:360px">
