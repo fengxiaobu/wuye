@@ -55,4 +55,10 @@ public class CustomerServiceImpl implements ICustomerService {
 		List<Customer> customers = mapper.getAll();
 		return customers;
 	}
+
+	@Override
+	public List<String> allPhone() {
+		List<String> phones = mapper.selectPhone();
+		return phones;
+	}
 }
