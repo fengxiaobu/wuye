@@ -27,6 +27,9 @@
         <result property="alreadyFinish" column="ALREADY_FINISH"/>
         <result property="currentHouseId" column="CURRENT_HOUSE_ID"/>
         <result property="updateData" column="update_data"/>
+        <collection property="">
+        	
+        </collection>
     </resultMap>
     <select id="loginByPwd" parameterType="cn.rzhd.wuye.bean.Customer" resultMap="customerMap">
         SELECT
@@ -125,8 +128,7 @@
 
     <!--临时用于拉取数据的查询所有-->
     <select id="getAll" resultMap="customerMap">
-        SELECT *
-        FROM "T_Customer"
+        SELECT DISTINCT c.*,r."house" FROM "T_Customer" c LEFT JOIN "T_Rent_Contract" r ON c."pk_customerid" = r."pk_customerid"
     </select>
     <update id="updadteState">
         UPDATE "T_Customer"
