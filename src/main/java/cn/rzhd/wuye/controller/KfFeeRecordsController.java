@@ -30,4 +30,12 @@ public class KfFeeRecordsController {
         mav.setViewName("payment/kaifa");
         return mav;
     }
+
+    @RequestMapping("payFeeRecords")
+    public ModelAndView payFeeRecords(){
+        Long userId = UserContext.getUser().getUserId();
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("payment/kaifajiaofei");
+        return mav;
+    }
 }

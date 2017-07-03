@@ -67,7 +67,7 @@ public class PerfectInformationTest extends BaseTest {
 	
 	@Test
 	public void test3() throws Exception {
-		String houseInfoId="1031AM100000000192Q2";
+		String houseInfoId="1040AM1000000000SVVZ";
 		PerfectInformation information = mapper.selectByHouseInfoId(houseInfoId);
 		System.out.println(information);
 	}

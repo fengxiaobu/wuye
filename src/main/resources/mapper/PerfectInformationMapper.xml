@@ -32,6 +32,7 @@
         <result column="UPDATE_TIME" property="updateTime"/>
         <result column="U_RAVINE_PROPERTY_ID" property="uRavinePropertyId"/>
     </resultMap>
+    
     <delete id="deleteByPrimaryKey" parameterType="String">
         DELETE FROM T_PERFECT_INFORMATION
         WHERE PERFECT_INFORMATION_ID = #{perfectInformationId}
@@ -162,5 +163,9 @@
             UPDATE_TIME,
             U_RAVINE_PROPERTY_ID
         FROM T_PERFECT_INFORMATION
+    </select>
+    
+    <select id="selectByHouseInfoId" resultMap="BaseResultMap">
+    	SELECT * FROM T_PERFECT_INFORMATION WHERE "HOUSE_INFO_ID" = #{houseInfoId}
     </select>
 </mapper>

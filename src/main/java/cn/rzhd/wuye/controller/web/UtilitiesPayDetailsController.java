@@ -30,7 +30,7 @@ public class UtilitiesPayDetailsController {
     public PageDataGridResult getList(UtilitiesQuery query){
         PageHelper.startPage(query.getStartPage(),query.getPageSize());
         List<UtilitiesDetails> result = service.queryAll(query);
-        PageInfo pageInfo = new PageInfo(result);
+        PageInfo<UtilitiesDetails> pageInfo = new PageInfo<>(result);
         PageDataGridResult pageResult = new PageDataGridResult();
         pageResult.setTotal(pageInfo.getTotal());
         pageResult.setRows(pageInfo.getList());

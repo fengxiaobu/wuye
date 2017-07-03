@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
@@ -36,18 +37,14 @@
                 </tr>
                 </thead>
                 <tbody class="tudiqianyue-tbody">
+                <c:forEach items="${roles}" var="role">
                 <tr class="tudiqianyue-tdtr">
-                    <td>1</td>
-                    <td>Admin</td>
-                    <td>test</td>
-                    <td><a href="#">编辑</a>|<a href="#">删除</a></td>
+                    <td>${role.roleId}</td>
+                    <td>${role.name}</td>
+                    <td>${role.note}</td>
+                    <td><a href="${pageContext.request.contextPath}/">编辑</a>|<a href="#">删除</a></td>
                 </tr>
-                <tr class="tudiqianyue-tdtr">
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
+                </c:forEach>
                 </tbody>
             </table>
         </div>

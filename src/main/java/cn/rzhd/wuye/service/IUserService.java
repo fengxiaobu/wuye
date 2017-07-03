@@ -30,4 +30,6 @@ public interface IUserService {
     Long saveUser(User user);
 
     void delete(Long id);
+
+    User getByUsername(String username);
 }

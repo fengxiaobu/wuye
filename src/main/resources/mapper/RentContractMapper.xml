@@ -74,7 +74,7 @@
 			T_HOUSE_INFO.STAR_LEVEL grades
         FROM "T_Rent_Contract"
             JOIN T_PROJECT_INFO p ON "T_Rent_Contract"."pk_project" = p.PK_PROJECT
-			JOIN T_HOUSE_INFO ON "pk_house"=T_HOUSE_INFO.HOUSE_INFO_ID
+			LEFT JOIN T_HOUSE_INFO ON "pk_house"=T_HOUSE_INFO.HOUSE_INFO_ID
         WHERE "pk_customerid" = #{customerId}
     </select>
 

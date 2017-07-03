@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
@@ -29,17 +30,13 @@ public class HouseInfoDetailsBackController {
 
     @RequestMapping("/getHouseInfoDetailsList")
     public String houseInfoDetailsList(Model model, Integer pageNum, Integer pageSize) {
-        PageHelper.startPage(pageNum, pageSize);
+    	PageHelper.startPage(pageNum, pageSize);
         List<HouseVO> houseVOs = houseInfoDetailsService.getBackAll();
-        
-        PageInfo<HouseVO> pageInfo = new PageInfo<>(houseVOs);
-        List<HouseVO> result = pageInfo.getList();
-        System.out.println(result.size());
-    
        
-//        model.addAttribute("houseInfoDetailsList", page.getResult());
-//
-//        model.addAttribute("pages", page.getPages());
+        Page page = (Page) houseVOs;
+        
+        model.addAttribute("houseInfoDetailsList", houseVOs);
+
         return "contract/houseInfoDetails";
     }
     

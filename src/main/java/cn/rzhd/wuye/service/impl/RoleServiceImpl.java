@@ -30,4 +30,9 @@ public class RoleServiceImpl implements IRoleService {
     public void removeAllMyRole(Long id) {
         mapper.removeByUser(id);
     }
+
+    @Override
+    public List<Role> getAllRoles() {
+        return mapper.getAllRoles();
+    }
 }

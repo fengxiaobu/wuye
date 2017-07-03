@@ -3,6 +3,7 @@ package cn.rzhd.wuye.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import cn.rzhd.wuye.bean.PerfectInformation;
 
@@ -14,7 +15,7 @@ public interface PerfectInformationMapper {
 
 	void updateByPrimaryKey(PerfectInformation perfectInformation);
 
-	PerfectInformation selectByHouseInfoId(String houseInfoId);
+	PerfectInformation selectByHouseInfoId(@Param("houseInfoId")String houseInfoId);
 
 	List<PerfectInformation> selectAll();
 	

@@ -43,7 +43,7 @@ public class PerfectInformation implements Serializable {
 	/**
 	 * 入驻企业成立时间
 	 */
-	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date companyEstablishTime;
 	/**
 	 * 注册资本金
@@ -96,7 +96,7 @@ public class PerfectInformation implements Serializable {
 	/**
 	 * 发证时间
 	 */
-	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date certificateTime;
 	/**
 	 * 专利类型id
@@ -117,7 +117,7 @@ public class PerfectInformation implements Serializable {
 	/**
 	 * 挂牌时间
 	 */
-	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date hangBoardTime;
 	/**
 	 * 股票代码
