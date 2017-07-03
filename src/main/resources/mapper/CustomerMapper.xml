@@ -27,9 +27,6 @@
         <result property="alreadyFinish" column="ALREADY_FINISH"/>
         <result property="currentHouseId" column="CURRENT_HOUSE_ID"/>
         <result property="updateData" column="update_data"/>
-        <collection property="">
-        	
-        </collection>
     </resultMap>
     <select id="loginByPwd" parameterType="cn.rzhd.wuye.bean.Customer" resultMap="customerMap">
         SELECT
@@ -135,5 +132,9 @@
         SET CURRENT_FLOW = #{currentFlow}
         WHERE "houseInfoId" = #{houseInfoId}
     </update>
+    
+    <select id="selectPhone">
+    	SELECT "Binding_Phone" FROM "T_Customer" 
+    </select>
 
 </mapper>

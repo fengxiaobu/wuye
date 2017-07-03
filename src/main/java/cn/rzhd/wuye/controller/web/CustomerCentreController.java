@@ -77,24 +77,26 @@ public class CustomerCentreController {
 	@RequestMapping(value = "/getVcode", method = RequestMethod.POST)
 	public Map<String, String> getVcode(String bindingPhone) {
 		Map<String, String> result = new HashMap<>();
-
-		String sn = "SDK-CSL-010-00073";
-		String pwd = "22baa8)d-d5";
-
-		String vcode = Client.createRandomVcode();
-
-		try {
-			Client client = new Client(sn, pwd);
-			String content = URLEncoder.encode("您的验证码为：" + vcode + "【联东物业】", "utf8");
-
-			String result_mt = client.mdsmssend(bindingPhone, content, "", "", "", "");
-			System.out.print(result_mt);
-
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
+		List<String> allPhone = customerService.allPhone();
+		if (allPhone.contains(bindingPhone)) {
+			try {
+				String vcode = Client.createRandomVcode();
+				String sn = "SDK-CSL-010-00073";
+				String pwd = "22baa8)d-d5";
+				
+				Client client = new Client(sn, pwd);
+				String content = URLEncoder.encode("您的验证码为：" + vcode + "【联东物业】", "utf8");
+				
+				String result_mt = client.mdsmssend(bindingPhone, content, "", "", "", "");
+				System.out.print(result_mt);
+				result.put("vcode", vcode);
+				
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
 		}
 
-		result.put("vcode", vcode);
+
 		return result;
 	}
 
