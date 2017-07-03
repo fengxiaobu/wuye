@@ -30,4 +30,12 @@ public class PropertyRecordsController {
         mav.setViewName("payment/wuye");
         return mav;
     }
+
+    @RequestMapping("/payFeeRecords")
+    public ModelAndView payFeeRecords(){
+        Long userId = UserContext.getUser().getUserId();
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("payment/wuyejiaofei");
+        return mav;
+    }
 }
