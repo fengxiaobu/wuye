@@ -37,17 +37,19 @@ public class InvoicingController {
         propertyFeePayDetails.setPayTime(new Date());
         propertyFeePayDetails.setPropertyFeePayDetails(id);
         propertyFeePayDetails.setCollectingAccount(propertyFeePayDetailsService.getCompanyAccount(propertyFeePayDetails.getFeecode(), propertyFeePayDetails.getPk_corp()));
-        propertyFeePayDetails.setCollectingCompany(propertyFeePayDetailsService.getCompanyName(propertyFeePayDetails.getFeecode(),propertyFeePayDetails.getPk_corp()));
+        propertyFeePayDetails.setCollectingCompany(propertyFeePayDetailsService.getCompanyName(propertyFeePayDetails.getFeecode(), propertyFeePayDetails.getPk_corp()));
         propertyFeePayDetailsService.addDetails(propertyFeePayDetails);
         return id.toString();
     }
 
     @RequestMapping("/records/kfFee")
-    public String property(@RequestBody KfFeePayDetails kfFeePayDetails) {
+    public String kfFee(@RequestBody KfFeePayDetails kfFeePayDetails) {
         Long id = IDUtils.genLongUID();
         kfFeePayDetails.setCarteTime(new Date());
         kfFeePayDetails.setPayTime(new Date());
         kfFeePayDetails.setKfFeePayDetailsId(id);
+        kfFeePayDetails.setCollectingAccount(kfFeePayDetailsService.getCompanyAccount(kfFeePayDetails.getFeecode(), kfFeePayDetails.getPk_corp()));
+        kfFeePayDetails.setCollectingCompany(kfFeePayDetailsService.getCompanyName(kfFeePayDetails.getFeecode(), kfFeePayDetails.getPk_corp()));
         kfFeePayDetailsService.addDetails(kfFeePayDetails);
         return id.toString();
     }

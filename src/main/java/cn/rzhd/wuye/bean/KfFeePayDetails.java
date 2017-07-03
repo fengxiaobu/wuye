@@ -106,6 +106,14 @@ public class KfFeePayDetails implements Serializable {
      * 缴费记录是否生效(Y--生效,N--未生效)
      */
     private String status = "N";
+    /**
+     * 费用编码
+     */
+    private String feecode;
+    /**
+     * 缴费公司
+     */
+    private String pk_corp;
 
     public Long getKfFeePayDetailsId() {
         return kfFeePayDetailsId;
@@ -297,5 +305,21 @@ public class KfFeePayDetails implements Serializable {
 
     public void setCostType(String costType) {
         this.costType = costType;
+    }
+
+    public String getFeecode() {
+        return feecode;
+    }
+
+    public void setFeecode(String feecode) {
+        this.feecode = feecode;
+    }
+
+    public String getPk_corp() {
+        return pk_corp;
+    }
+
+    public void setPk_corp(String pk_corp) {
+        this.pk_corp = pk_corp;
     }
 }
