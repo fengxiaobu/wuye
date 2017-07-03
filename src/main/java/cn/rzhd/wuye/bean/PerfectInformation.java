@@ -140,239 +140,180 @@ public class PerfectInformation implements Serializable {
 	 * 修改时间
 	 */
 	private Date updateTime;
-
 	public String getPerfectInformationId() {
 		return perfectInformationId;
 	}
-
 	public void setPerfectInformationId(String perfectInformationId) {
 		this.perfectInformationId = perfectInformationId;
 	}
-
 	public String getHouseInfoId() {
 		return houseInfoId;
 	}
-
 	public void setHouseInfoId(String houseInfoId) {
 		this.houseInfoId = houseInfoId;
 	}
-
 	public Integer getCompanyType() {
 		return companyType;
 	}
-
 	public void setCompanyType(Integer companyType) {
 		this.companyType = companyType;
 	}
-
 	public String getCustomerId() {
 		return customerId;
 	}
-
 	public void setCustomerId(String customerId) {
 		this.customerId = customerId;
 	}
-
 	public Long getHousePropertyId() {
 		return housePropertyId;
 	}
-
 	public void setHousePropertyId(Long housePropertyId) {
 		this.housePropertyId = housePropertyId;
 	}
-
 	public Date getCompanyEstablishTime() {
 		return companyEstablishTime;
 	}
-
 	public void setCompanyEstablishTime(Date companyEstablishTime) {
 		this.companyEstablishTime = companyEstablishTime;
 	}
-
 	public BigDecimal getSignInFund() {
 		return signInFund;
 	}
-
 	public void setSignInFund(BigDecimal signInFund) {
 		this.signInFund = signInFund;
 	}
-
 	public Long getIndustryInvolvedId() {
 		return industryInvolvedId;
 	}
-
 	public void setIndustryInvolvedId(Long industryInvolvedId) {
 		this.industryInvolvedId = industryInvolvedId;
 	}
-
-	public Long getURavinePropertyId() {
+	public Long getuRavinePropertyId() {
 		return uRavinePropertyId;
 	}
-
-	public void setURavinePropertyId(Long uRavinePropertyId) {
-		uRavinePropertyId = uRavinePropertyId;
+	public void setuRavinePropertyId(Long uRavinePropertyId) {
+		this.uRavinePropertyId = uRavinePropertyId;
 	}
-
 	public String getMainProduct() {
 		return mainProduct;
 	}
-
 	public void setMainProduct(String mainProduct) {
 		this.mainProduct = mainProduct;
 	}
-
 	public Long getCompanyCoverageId() {
 		return companyCoverageId;
 	}
-
 	public void setCompanyCoverageId(Long companyCoverageId) {
 		this.companyCoverageId = companyCoverageId;
 	}
-
 	public Long getEmployeeNumber() {
 		return employeeNumber;
 	}
-
 	public void setEmployeeNumber(Long employeeNumber) {
 		this.employeeNumber = employeeNumber;
 	}
-
 	public String getPropertyToAccess() {
 		return propertyToAccess;
 	}
-
 	public void setPropertyToAccess(String propertyToAccess) {
 		this.propertyToAccess = propertyToAccess;
 	}
-
 	public String getPropertyToAccessContact() {
 		return propertyToAccessContact;
 	}
-
 	public void setPropertyToAccessContact(String propertyToAccessContact) {
 		this.propertyToAccessContact = propertyToAccessContact;
 	}
-
 	public String getEmergencyContactPerson() {
 		return emergencyContactPerson;
 	}
-
 	public void setEmergencyContactPerson(String emergencyContactPerson) {
 		this.emergencyContactPerson = emergencyContactPerson;
 	}
-
 	public String getEmergencyContactNumber() {
 		return emergencyContactNumber;
 	}
-
 	public void setEmergencyContactNumber(String emergencyContactNumber) {
 		this.emergencyContactNumber = emergencyContactNumber;
 	}
-
 	public Integer getIsHighNew() {
 		return isHighNew;
 	}
-
 	public void setIsHighNew(Integer isHighNew) {
 		this.isHighNew = isHighNew;
 	}
-
 	public Integer getHighNewType() {
 		return highNewType;
 	}
-
 	public void setHighNewType(Integer highNewType) {
 		this.highNewType = highNewType;
 	}
-
 	public Date getCertificateTime() {
 		return certificateTime;
 	}
-
 	public void setCertificateTime(Date certificateTime) {
 		this.certificateTime = certificateTime;
 	}
-
 	public Long getPatentTypeId() {
 		return patentTypeId;
 	}
-
 	public void setPatentTypeId(Long patentTypeId) {
 		this.patentTypeId = patentTypeId;
 	}
-
 	public Integer getPatentNumber() {
 		return patentNumber;
 	}
-
 	public void setPatentNumber(Integer patentNumber) {
 		this.patentNumber = patentNumber;
 	}
-
 	public Integer getIsUpBazaar() {
 		return isUpBazaar;
 	}
-
 	public void setIsUpBazaar(Integer isUpBazaar) {
 		this.isUpBazaar = isUpBazaar;
 	}
-
 	public Long getUpBazaarTypeId() {
 		return upBazaarTypeId;
 	}
-
 	public void setUpBazaarTypeId(Long upBazaarTypeId) {
 		this.upBazaarTypeId = upBazaarTypeId;
 	}
-
 	public Date getHangBoardTime() {
 		return hangBoardTime;
 	}
-
 	public void setHangBoardTime(Date hangBoardTime) {
 		this.hangBoardTime = hangBoardTime;
 	}
-
 	public String getStockCode() {
 		return stockCode;
 	}
-
 	public void setStockCode(String stockCode) {
 		this.stockCode = stockCode;
 	}
-
 	public String getNotes() {
 		return notes;
 	}
-
 	public void setNotes(String notes) {
 		this.notes = notes;
 	}
-
 	public Integer getStatus() {
 		return status;
 	}
-
 	public void setStatus(Integer status) {
 		this.status = status;
 	}
-
 	public Date getCarteTime() {
 		return carteTime;
 	}
-
 	public void setCarteTime(Date carteTime) {
 		this.carteTime = carteTime;
 	}
-
 	public Date getUpdateTime() {
 		return updateTime;
 	}
-
 	public void setUpdateTime(Date updateTime) {
 		this.updateTime = updateTime;
 	}
-
 	@Override
 	public String toString() {
 		return "PerfectInformation [perfectInformationId=" + perfectInformationId + ", houseInfoId=" + houseInfoId

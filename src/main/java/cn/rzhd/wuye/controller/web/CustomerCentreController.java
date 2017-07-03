@@ -148,24 +148,6 @@ public class CustomerCentreController {
 		return result;
 	}
 
-	/**
-	 * 修改密码
-	 *
-	 * @return
-	 */
-	@RequestMapping(value = "/updatePassword", method = RequestMethod.POST)
-	public Map<String, String> updatePassword(String password, String vccode) {
-		Map<String, String> result = new HashMap<>();
-		try {
-			customerCentreService.updatePassword(password, vccode);
-			result.put("msg", "修改成功");
-		} catch (Exception e) {
-			e.printStackTrace();
-			result.put("msg", "修改失败");
-		}
-		return result;
-	}
-
 
 	/**
 	 * 完善资料
@@ -175,29 +157,36 @@ public class CustomerCentreController {
 	@RequestMapping(value = "/savePerfectInformation", method = RequestMethod.POST)
 	public Map<String, Object> savePerfectInformation(PerfectInformation perfectInformation, String houseInfoId) {
 		Map<String, Object> result = new Hashtable<>();
-		try {
+		
 			if (perfectInformation.getPerfectInformationId() == null || "".equals(perfectInformation.getPerfectInformationId())) {
 				//保存
-				perfectInformation.setPerfectInformationId(houseInfoId);
-				perfectInformation.setCarteTime(new Date());
-				perfectInformationService.save(perfectInformation);
-				houseInfoDetailsService.updadteState("1", houseInfoId);
-				result.put("state", "1");
-				result.put("msg", "保存成功");
+				try {
+					perfectInformation.setPerfectInformationId(houseInfoId);
+					perfectInformation.setCarteTime(new Date());
+					perfectInformationService.save(perfectInformation);
+					houseInfoDetailsService.updadteState("1", houseInfoId);
+					result.put("state", "1");
+					result.put("msg", "保存成功");
+				} catch (Exception e) {
+					result.put("state", "0");
+					result.put("msg", e.getMessage());
+					return result;
+				}
 			}else {
-				perfectInformation.setUpdateTime(new Date());
-				//修改
-				perfectInformationService.updateByHouseInfoId(perfectInformation);
-				result.put("state", "2");
-				result.put("msg", "修改成功");
+				try {
+					perfectInformation.setUpdateTime(new Date());
+					//修改
+					perfectInformationService.updateByHouseInfoId(perfectInformation);
+					result.put("state", "2");
+					result.put("msg", "修改成功");
+				} catch (Exception e) {
+					result.put("state", "0");
+					result.put("msg", e.getMessage());
+					return result;
+				}
 			}
 			return result;
-		} catch (Exception e) {
-			result.put("state", "0");
-			result.put("msg", e.getMessage());
-			return result;
-		}
-	}
+		} 
 	
 	
 	@RequestMapping("/getPerfectInformation")
@@ -206,7 +195,10 @@ public class CustomerCentreController {
 		return perfectInformation;
 	}
 	
-	@RequestMapping(value = "/findPassword", method = RequestMethod.POST)
+	/**
+	 * 修改密码
+	 * */
+	@RequestMapping(value = "/updatePassword", method = RequestMethod.POST)
 	public Map<String, String> findPassword(String bindingPhone, String password) {
 		Map<String, String> result = new HashMap<>();
 		try {
