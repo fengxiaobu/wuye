@@ -199,7 +199,7 @@
             WYSTATE=#{wyState}
         </if>
         <if test="kfState !=null">
-            KFSTSTE=#{kfState}
+            KFSTATE=#{kfState}
         </if>
         WHERE ENTER_APPLY_ID = #{enterApplyId}
     </update>

@@ -154,15 +154,15 @@ public class CustomerCentreController {
 		Map<String, Object> result = new Hashtable<>();
 		try {
 			if (perfectInformation.getPerfectInformationId() == null && "".equals(perfectInformation.getPerfectInformationId())) {
-				perfectInformation.setUpdateTime(new Date());
-				//修改
-				perfectInformationService.updateByHouseInfoId(perfectInformation);
-			}else {
 				//保存
 				perfectInformation.setPerfectInformationId(houseInfoId);
 				perfectInformation.setCarteTime(new Date());
 				perfectInformationService.save(perfectInformation);
 				houseInfoDetailsService.updadteState("1", houseInfoId);
+			}else {
+				perfectInformation.setUpdateTime(new Date());
+				//修改
+				perfectInformationService.updateByHouseInfoId(perfectInformation);
 			}
 			result.put("state", "1");
 			return result;

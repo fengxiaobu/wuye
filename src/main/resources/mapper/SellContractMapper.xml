@@ -86,23 +86,24 @@
 		#{nyfactmny}, #{nyshouldinterestmny}, #{nyfactinterestmny})
 	</insert>
 	<select id="getAll" resultMap="sellContractBackMap">
-		SELECT
-		DISTINCT
-		s."pk_house",
-		P.PROJECT_NAME,
-		p.VCODE,
-		c."vcname",
-		s."nsellarea",
-		s."nprice",
-		s."nythisdiscountmny",
-		s."nytotalmnysign",
-		s."fpmcourse"
-		FROM
-		"T_Sell_Contract" s
-		LEFT JOIN T_PROJECT_INFO p on s."pk_project"=p.PK_PROJECT
-		LEFT JOIN
-		"T_Customer" c on s."pk_customerid" = c."pk_customerid"
+				SELECT 
+					DISTINCT
+					s."pk_house",
+					c."vcname",
+					P .PROJECT_NAME,
+					P .VCODE,
+					s."nsellarea",
+					s."nprice",
+					s."nythisdiscountmny",
+					s."nytotalmnysign",
+					s."fpmcourse"
+				FROM
+					"T_Sell_Contract" s
+				LEFT JOIN T_PROJECT_INFO P ON s."pk_project" = P .PK_PROJECT
+				LEFT JOIN "T_Customer" c ON s."pk_customerid" = c."pk_customerid"
+
 	</select>
+	
 	<resultMap type="cn.rzhd.wuye.vo.SignVO" id="sellContractBackMap">
 		<id property="pk_house" column="pk_house" />
 		<result property="nsellarea" column="nsellarea" />
