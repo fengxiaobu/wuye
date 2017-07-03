@@ -31,4 +31,6 @@ public interface DecorationApplyMapper {
     DecorationApply findDecorationApplyByHouseId(@Param("houseInfoId") String houseInfoId);
 
     void updatePayState(@Param("paymentStatus") String paymentStatus, @Param("decorationApplyId") Long decorationApplyId);
+
+    Integer getCount(@Param("pkHouse") String pkHouse, @Param("customerId") String customerId);
 }

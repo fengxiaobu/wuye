@@ -113,7 +113,7 @@
     </delete>
     <insert id="insert" parameterType="cn.rzhd.wuye.bean.RetreatLeaseApply">
         INSERT INTO T_RETREAT_LEASE_APPLY (RETREAT_LEASE_APPLY_ID, HOUSE_INFO_ID,
-                                           HOUSE_NUMBER, HOUSE_ACREAGE, LEASE_START_TIME,
+                                           ., HOUSE_ACREAGE, LEASE_START_TIME,
                                            LEASE_END_TIME, RETREAT_LEASE_TIME,
                                            RETREAT_LEASE_TYPE, ARREARS_RENT, LEASE_DEPOSIT,
                                            PERMIT_RETREAT_LEASE_DEPOSIT, CREATION_TIME, UPDATE_TIME, CUSTOMERID
