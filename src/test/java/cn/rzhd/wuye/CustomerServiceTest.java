@@ -47,6 +47,17 @@ public class CustomerServiceTest extends BaseTest {
 
 
     }
+    
+    @Test
+	public void test3() throws Exception {
+    	String phone = "11000000000000";
+		List<String> allPhone = service.allPhone();
+		if (allPhone.contains(phone)) {
+			System.out.println("有这个手机号,绑补刀");
+		}else {
+			System.out.println("没得，可以绑");
+		}
+	}
 
     @Test
     public void addCustomerTest(){

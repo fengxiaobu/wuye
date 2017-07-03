@@ -100,7 +100,7 @@
                         <label class="col-sm-2 control-label">提交日期:</label>
                         <div class="col-sm-10">
                             <label class="col-sm-2 control-label"><fmt:formatDate
-                                    value="${retreatLeaseApply.creationTime}" pattern="yyyy-MM-dd HH:dd:ss"/></label>
+                                    value="${retreatLeaseApply.creationTime}" pattern="yyyy-MM-dd"/></label>
                         </div>
                     </div>
                     <div class="form-group" style="margin-left:360px">

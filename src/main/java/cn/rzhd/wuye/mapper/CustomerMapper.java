@@ -39,4 +39,6 @@ public interface CustomerMapper {
     void updadteState(@Param("currentFlow") String currentFlow, @Param("houseInfoId") String houseInfoId);
 
     //void updadteState(@Param("currentFlow") String currentFlow, @Param("vccode") String vccode);
+    
+    List<String> selectPhone();
 }

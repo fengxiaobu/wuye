@@ -24,4 +24,6 @@ public interface ICustomerService {
     void updadteState(String currentFlow, String vccode);
 
     List<Customer> queryAll();
+    
+    List<String> allPhone();
 }

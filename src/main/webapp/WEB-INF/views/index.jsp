@@ -313,7 +313,7 @@
                             <ul class="panel-group level02" id="aside_seven_02">
                                 <li class="panel" role="tab">
                                     <div class="panel-header">
-                                        <a data-toggle="collapse" data-parent="#aside_seven_02" href="#">通知类型</a>
+                                        <a href="${pageContext.request.contextPath}/typeRefinement/getTypeData?pageNum=1&pageSize=10&typeDifferentiateId=9" target="main">通知类型</a>
                                     </div>
                                 </li>
 

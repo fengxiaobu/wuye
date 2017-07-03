@@ -65,6 +65,36 @@ public class EnterApply implements Serializable {
      */
     private HouseInfoDetails houseInfoDetails;
 
+    /**
+     * 客户ID
+     *
+     * @return
+     */
+    private String customerId;
+
+    /**
+     * 客户信息
+     *
+     * @return
+     */
+    private Customer customer;
+
+    public String getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
     public String getWyState() {
         return wyState;
     }

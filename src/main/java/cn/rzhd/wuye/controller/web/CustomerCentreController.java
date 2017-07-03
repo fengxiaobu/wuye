@@ -77,24 +77,30 @@ public class CustomerCentreController {
 	@RequestMapping(value = "/getVcode", method = RequestMethod.POST)
 	public Map<String, String> getVcode(String bindingPhone) {
 		Map<String, String> result = new HashMap<>();
-
-		String sn = "SDK-CSL-010-00073";
-		String pwd = "22baa8)d-d5";
-
-		String vcode = Client.createRandomVcode();
-
-		try {
-			Client client = new Client(sn, pwd);
-			String content = URLEncoder.encode("您的验证码为：" + vcode + "【联东物业】", "utf8");
-
-			String result_mt = client.mdsmssend(bindingPhone, content, "", "", "", "");
-			System.out.print(result_mt);
-
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
+		List<String> allPhone = customerService.allPhone();
+		// 包含这个手机号不能绑定，没包含则绑定
+		if (allPhone.contains(bindingPhone)) {
+			result.put("state", "0");
+			result.put("msg", "该手机号已绑定");
+		}else {
+			try {
+				String vcode = Client.createRandomVcode();
+				String sn = "SDK-CSL-010-00073";
+				String pwd = "22baa8)d-d5";
+				
+				Client client = new Client(sn, pwd);
+				String content = URLEncoder.encode("您的验证码为：" + vcode + "【联东物业】", "utf8");
+				
+				String result_mt = client.mdsmssend(bindingPhone, content, "", "", "", "");
+				System.out.print(result_mt);
+				result.put("vcode", vcode);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			result.put("state", "1");
+			result.put("msg", "该手机号未绑定");
 		}
 
-		result.put("vcode", vcode);
 		return result;
 	}
 
