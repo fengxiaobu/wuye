@@ -4,7 +4,6 @@
     <resultMap id="BaseResultMap" type="cn.rzhd.wuye.bean.ReletApply">
         <id column="RELET_APPLY_ID" property="reletApplyId"/>
         <result column="HOUSE_INFO_ID" property="houseInfoId"/>
-        <result column="CLIENT_NAME" property="clientName"/>
         <result column="HOUSE_ACREAGE" property="houseAcreage"/>
         <result column="LEASE_START_TIME" property="leaseStartTime"/>
         <result column="LEASE_END_TIME" property="leaseEndTime"/>
@@ -18,6 +17,7 @@
         <result column="CREATION_TIME" property="creationTime"/>
         <result column="UPDATE_TIME" property="updateTime"/>
         <result column="RETREA_END_TIME" property="retreaEndTime"/>
+        <result column="CUSTOMERID" property="customerId"/>
         <association property="houseInfoDetails" javaType="cn.rzhd.wuye.bean.HouseInfoDetails">
             <id column="pk_house" property="pkHouse" jdbcType="CHAR"/>
             <result column="pk_corp" property="pkCorp" jdbcType="CHAR"/>
