@@ -27,6 +27,10 @@
         <result property="alreadyFinish" column="ALREADY_FINISH"/>
         <result property="currentHouseId" column="CURRENT_HOUSE_ID"/>
         <result property="updateData" column="update_data"/>
+        <association property="pactVO" javaType="cn.rzhd.wuye.vo.PactVO" >
+        	<id property="pk_customerid" column="pk_customerid"/>
+        	<result property="house" column="house"/>
+        </association>
     </resultMap>
     <select id="loginByPwd" parameterType="cn.rzhd.wuye.bean.Customer" resultMap="customerMap">
         SELECT
