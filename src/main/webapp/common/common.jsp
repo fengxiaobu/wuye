@@ -42,5 +42,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script charset="utf-8" src="${scriptsPath}/libs/kindeditor/zh_CN.js"></script>
 <script type="text/javascript" src="${scriptsPath}/libs/fileupload/js/uploadfile.js"></script>
 <script type="text/javascript" src="${scriptsPath}/common.js"  charset="utf-8"></script>
+<script type="text/javascript" src="${scriptsPath}/libs/pageBar/jqPaginator.js"></script>
 
   

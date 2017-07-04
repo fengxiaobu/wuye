@@ -28,7 +28,7 @@ public interface PropertyFeePayDetailsMapper {
 
     List<PropertyFeePayDetails> queryByProject(PropertyRecordsQuery query);
 
-    List<Map<String, Object>> getByProject(Long userId);
+    List<Map<String, Object>> getByProject(PropertyRecordsQuery query);
 
     String getCostType(@Param("feeType") String feeType,@Param("pk_corp") String pk_corp);
 

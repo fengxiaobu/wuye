@@ -1,5 +1,8 @@
 package cn.rzhd.wuye.vo.query;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 /**
@@ -30,6 +33,10 @@ public class PropertyRecordsQuery extends BaseQuery {
      * 关键字
      */
     private String keyWords;
+    /**
+     * 后台系统用户ID
+     */
+    private Long userId;
 
     public String getHouseInfoId() {
         return houseInfoId;
@@ -38,19 +45,19 @@ public class PropertyRecordsQuery extends BaseQuery {
     public void setHouseInfoId(String houseInfoId) {
         this.houseInfoId = houseInfoId;
     }
-
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     public Date getStartDate() {
         return startDate;
     }
-
+    @JsonFormat(pattern = "yyyy-MM-dd")
     public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
-
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     public Date getEndDate() {
         return endDate;
     }
-
+    @JsonFormat(pattern = "yyyy-MM-dd")
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
@@ -77,5 +84,26 @@ public class PropertyRecordsQuery extends BaseQuery {
 
     public void setKeyWords(String keyWords) {
         this.keyWords = keyWords;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    @Override
+    public String toString() {
+        return "PropertyRecordsQuery{" +
+                "houseInfoId='" + houseInfoId + '\'' +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", feeType='" + feeType + '\'' +
+                ", payManner='" + payManner + '\'' +
+                ", keyWords='" + keyWords + '\'' +
+                ", userId=" + userId +
+                '}';
     }
 }

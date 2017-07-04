@@ -28,12 +28,14 @@
             <div class="col-xs-4">物业缴费记录</div>
             <div class="col-xs-8 panel-oprerate">
                 <div class="col-xs-12">
-                    <span style="margin-right: 50px"><input style="height: 35px;width: 320px;" type="text"></span>至
-                    <span style="margin-right: 50px"><input style="height: 35px;width: 320px;" type="text"></span>
-                    <span style="margin-right: 50px"><input style="height: 35px;width: 320px;" type="text"
-                                                            placeholder="项目名称,房产编码,客户名称,单据号"></span>
-                    <button class="btn btn-info" type="button"><span class="glyphicon glyphicon-search"></span>搜素
-                    </button>
+                    <form action="${pageContext.request.contextPath}/propertyRecords/index" method="post">
+                        <span style="margin-right: 50px"><input id="startPicker"  type="text" name="startDate" value="${query.startDate}"></span>至
+                        <span style="margin-right: 50px"><input id="endPicker"  type="text" name="endDate" ${query.endDate}></span>
+                        <span style="margin-right: 50px"><input style="height: 35px;width: 320px;" type="text"
+                                                                placeholder="项目名称,房产编码,客户名称" name="keyWords" value="${query.keyWords}"></span>
+                        <button class="btn btn-info"><span class="glyphicon glyphicon-search"></span>搜素
+                        </button>
+                    </form>
                 </div>
                 <div class="col-xs-12">
                     <button class="btn btn-default" id="tudiqianyue-remove" type="button"><span
@@ -117,8 +119,8 @@
     </div>
 
 </body>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/libs/jquery-1.11.3.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/libs/bootstrap/js/bootstrap.min.js"></script>
+<jsp:include page="../../../common/common.jsp"/>
+
 <script type="text/javascript">
     var tableEdit = {
         content: function (option) {
@@ -274,5 +276,7 @@
     $("#tudiqianyue-remove").click(function () {
 
     });
+    $('#startPicker').datetimepicker();
+    $('#endPicker').datetimepicker();
 </script>
 </html>
