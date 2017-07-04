@@ -33,39 +33,38 @@
             <result column="ROLE" property="role"/>
         </association>
         <association property="projectInfo" javaType="cn.rzhd.wuye.bean.ProjectInfo">
-                <id column="PK_PROJECT" property="pkProject"/>
-                <result column="PROJECT_NAME" property="projectName"/>
-                <result column="PROJECT_ADDRESS" property="projectAddress"/>
-                <result column="DEVELOPMENT_COLLECTING_COMPANY" property="developmentCollectingCompany"/>
-                <result column="DEVELOPMENT_COLLECTING_ACCOUNT" property="developmentCollectingAccount"/>
-                <result column="PROPERTY_COLLECTING_COMPANY" property="propertyCollectingCompany"/>
-                <result column="PROPERTY_COLLECTING_ACCOUNT" property="propertyCollectingAccount"/>
-                <result column="WATER_PRICE" property="waterPrice"/>
-                <result column="ELECTRICITY_PRICE" property="electricityPrice"/>
-                <result column="SERVICE_PHONE" property="servicePhone"/>
-                <result column="OBJECT_PHONE" property="objectPhone"/>
-                <result column="CREATION_TIME" property="creationTime"/>
-                <result column="UPDATE_TIME" property="updateTime"/>
-                <result column="STATUS" property="status"/>
-                <result column="PK_CORP" property="pkCorp"/>
-                <result column="VCODE" property="vcode"/>
-                <result column="VSHORTNAME" property="vshortname"/>
-                <result column="PK_RESPONSECORP" property="pkResponsecorp"/>
-                <result column="VINCODE" property="vincode"/>
-                <result column="DECORATE_MANAGE" property="decorateManage"/>
-                <result column="PASSCARD_PLEDGE" property="passcardPledge"/>
-                <result column="PASSCARD_COST" property="passcardCost"/>
-                <result column="DECORATE_AREA" property="decorateArea"/>
-                <result column="LESS_PLEDGE" property="lessPledge"/>
-                <result column="MORE_PLEDGE" property="morePledge"/>
-            </association>
+            <id column="PK_PROJECT" property="pkProject"/>
+            <result column="PROJECT_NAME" property="projectName"/>
+            <result column="PROJECT_ADDRESS" property="projectAddress"/>
+            <result column="DEVELOPMENT_COLLECTING_COMPANY" property="developmentCollectingCompany"/>
+            <result column="DEVELOPMENT_COLLECTING_ACCOUNT" property="developmentCollectingAccount"/>
+            <result column="PROPERTY_COLLECTING_COMPANY" property="propertyCollectingCompany"/>
+            <result column="PROPERTY_COLLECTING_ACCOUNT" property="propertyCollectingAccount"/>
+            <result column="WATER_PRICE" property="waterPrice"/>
+            <result column="ELECTRICITY_PRICE" property="electricityPrice"/>
+            <result column="SERVICE_PHONE" property="servicePhone"/>
+            <result column="OBJECT_PHONE" property="objectPhone"/>
+            <result column="CREATION_TIME" property="creationTime"/>
+            <result column="UPDATE_TIME" property="updateTime"/>
+            <result column="STATUS" property="status"/>
+            <result column="PK_CORP" property="pkCorp"/>
+            <result column="VCODE" property="vcode"/>
+            <result column="VSHORTNAME" property="vshortname"/>
+            <result column="PK_RESPONSECORP" property="pkResponsecorp"/>
+            <result column="VINCODE" property="vincode"/>
+            <result column="DECORATE_MANAGE" property="decorateManage"/>
+            <result column="PASSCARD_PLEDGE" property="passcardPledge"/>
+            <result column="PASSCARD_COST" property="passcardCost"/>
+            <result column="DECORATE_AREA" property="decorateArea"/>
+            <result column="LESS_PLEDGE" property="lessPledge"/>
+            <result column="MORE_PLEDGE" property="morePledge"/>
+        </association>
     </resultMap>
 
 
     <!-- 入驻资料列表分页查询 -->
     <select id="findEnterMaterial" resultMap="enterMaterialMap">
-        SELECT
-           *
+        SELECT *
         FROM
             T_ENTER_MATERIAL mater
             LEFT JOIN T_USER tuser ON mater.USER_ID = tuser.USER_ID
@@ -81,11 +80,10 @@
             T_ENTER_MATERIAL mater
             LEFT JOIN T_USER tuser ON mater.USER_ID = tuser.USER_ID
             LEFT JOIN T_PROJECT_INFO pro ON mater.PK_PROJECT = pro.PK_PROJECT
-        WHERE mater.ENTER_MATERIAL_ID=#{enterMaterialId}
+        WHERE mater.ENTER_MATERIAL_ID = #{enterMaterialId}
     </select>
-
-    <!--入驻申请列表条件查询-->
-    <select id="findEnterMaterialBypkproject" resultMap="enterMterial">
+    <!--获取项目资料-->
+    <select id="findEnterMaterialBypkprojectId" resultType="cn.rzhd.wuye.bean.EnterMaterial">
         SELECT
             ENTER_MATERIAL_ID,
             PK_PROJECT,
@@ -95,7 +93,48 @@
             NOTES,
             USER_ID,
             UPDATE_TIME
-        FROM T_ENTER_MATERIAL
-        WHERE PK_PROJECT = '${pkproject}'
+        FROM
+            T_ENTER_MATERIAL
+        WHERE PK_PROJECT = #{pkProject}
     </select>
+
+    <!--入驻申请列表条件查询-->
+    <select id="findEnterMaterialBypkproject" parameterType="cn.rzhd.wuye.vo.query.ApplyQuery"
+            resultMap="enterMaterialMap">
+        SELECT DISTINCT
+        enter.ENTER_MATERIAL_ID,
+        enter.PK_PROJECT,
+        enter.MATERIAL_NAME,
+        enter.MATERIAL_ADDRESS,
+        enter.BASIC_INFO,
+        enter.NOTES,
+        enter.USER_ID,
+        enter.UPDATE_TIME
+        FROM T_ENTER_MATERIAL enter LEFT JOIN T_USER us ON enter.USER_ID = us.USER_ID
+        LEFT JOIN T_PROJECT_INFO project ON enter.PK_PROJECT = project.PK_PROJECT
+        <where>
+            <if test="startDate != null">
+                <if test="endDate != null">
+                    enter.UPDATE_TIME BETWEEN #{startDate}
+                    AND #{endDate}
+                </if>
+            </if>
+            <if test="clientName != null">
+                AND us.USERNAME=#{clientName} OR enter.MATERIAL_NAME=#{clientName} OR project.PROJECT_NAME=#{clientName}
+            </if>
+        </where>
+        ORDER BY enter.UPDATE_TIME DESC
+    </select>
+
+    <insert id="insertEnterMaterial" parameterType="cn.rzhd.wuye.bean.EnterMaterial">
+        INSERT INTO T_ENTER_MATERIAL (ENTER_MATERIAL_ID, PK_PROJECT, MATERIAL_NAME, MATERIAL_ADDRESS, BASIC_INFO, NOTES, USER_ID, UPDATE_TIME)
+        VALUES
+            (#{enterMaterialId}, #{pkProject}, #{materialName}, #{materialAddress}, #{basicInfo}, #{notes}, #{userId},
+             #{updateTime});
+    </insert>
+
+    <delete id="delEnterMaterial">
+        DELETE FROM T_ENTER_MATERIAL
+        WHERE ENTER_MATERIAL_ID = #{enterMaterialId}
+    </delete>
 </mapper>

@@ -1,7 +1,7 @@
 package cn.rzhd.wuye.service;
 
 import cn.rzhd.wuye.bean.EnterApply;
-import cn.rzhd.wuye.vo.query.EnterApplyQuery;
+import cn.rzhd.wuye.vo.query.ApplyQuery;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.util.List;
@@ -32,7 +32,7 @@ public interface IEnterApplyService {
 
     int updateEnterApply(EnterApply enterApply);
 
-    List<Map<String, JsonFormat.Value>> findEnterApplyByQuery(EnterApplyQuery enterApplyQuery);
+    List<Map<String, JsonFormat.Value>> findEnterApplyByQuery(ApplyQuery enterApplyQuery);
 
     /**
      * 获取审核完成后的结果

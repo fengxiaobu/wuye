@@ -1,7 +1,7 @@
 package cn.rzhd.wuye.mapper;
 
 import cn.rzhd.wuye.bean.DecorationApply;
-import cn.rzhd.wuye.vo.query.EnterApplyQuery;
+import cn.rzhd.wuye.vo.query.ApplyQuery;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -26,11 +26,13 @@ public interface DecorationApplyMapper {
 
     List<Map<String, JsonFormat.Value>> findDecorationApplyList();
 
-    List<Map<String, JsonFormat.Value>> findDecorationApplyListByQuery(EnterApplyQuery enterApplyQuery);
+    List<Map<String, JsonFormat.Value>> findDecorationApplyListByQuery(ApplyQuery enterApplyQuery);
 
     DecorationApply findDecorationApplyByHouseId(@Param("houseInfoId") String houseInfoId);
 
     void updatePayState(@Param("paymentStatus") String paymentStatus, @Param("decorationApplyId") Long decorationApplyId);
 
     Integer getCount(@Param("pkHouse") String pkHouse, @Param("customerId") String customerId);
+
+    DecorationApply getDecorationApplyByOrder(@Param("pkHouse") String pkHouse, @Param("customerId") String customerId);
 }

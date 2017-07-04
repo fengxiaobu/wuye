@@ -191,6 +191,7 @@
             LEFT JOIN T_HOUSE_INFO_DETAILS house ON
                                                      aaply.HOUSE_INFO_ID = house."pk_house"
         WHERE RELET_APPLY_ID = #{reletApplyId}
+        ORDER BY aaply.CREATION_TIME DESC
     </select>
     <select id="selectAll" resultMap="BaseResultMap">
         SELECT
@@ -201,6 +202,7 @@
                                             aaply.CUSTOMERID = cust."pk_customerid"
             LEFT JOIN T_HOUSE_INFO_DETAILS house ON
                                                      aaply.HOUSE_INFO_ID = house."pk_house"
+        ORDER BY aaply.CREATION_TIME DESC
     </select>
 
     <select id="findReletApply" resultMap="BaseResultMap">
@@ -213,6 +215,7 @@
             LEFT JOIN T_HOUSE_INFO_DETAILS house ON
                                                      aaply.HOUSE_INFO_ID = house."pk_house"
         WHERE HOUSE_INFO_ID = #{houseInfoId} AND CUSTOMERID = #{customerId}
+        ORDER BY aaply.CREATION_TIME DESC
     </select>
     <select id="findReletApplyByCustomerId" resultMap="BaseResultMap">
         SELECT
@@ -224,5 +227,6 @@
             LEFT JOIN T_HOUSE_INFO_DETAILS house ON
                                                      aaply.HOUSE_INFO_ID = house."pk_house"
         WHERE aaply.CUSTOMERID = #{customerId}
+        ORDER BY aaply.CREATION_TIME DESC
     </select>
 </mapper>

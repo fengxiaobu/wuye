@@ -29,7 +29,7 @@
                 <label class="col-sm-2 control-label">项目名称:</label>
                 <div class="col-sm-10">
                    <select name="" style="width: 100px">
-                       <option value=""></option>
+                       <option value="${enterMaterial}"></option>
                    </select>
                 </div>
             </div>

@@ -1,5 +1,6 @@
 package cn.rzhd.wuye.controller;
 
+import cn.rzhd.wuye.bean.EnterApply;
 import cn.rzhd.wuye.common.ChinaPayHelper;
 import cn.rzhd.wuye.common.ChinaPaySignUtils;
 import cn.rzhd.wuye.common.RequestVO;
@@ -10,9 +11,11 @@ import cn.rzhd.wuye.utils.HttpUtils;
 import cn.rzhd.wuye.vo.CallBackVO;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.xiaoleilu.hutool.date.DateField;
 import com.xiaoleilu.hutool.date.DateUtil;
 import com.xiaoleilu.hutool.lang.Base64;
+import com.xiaoleilu.hutool.util.BeanUtil;
 import com.xiaoleilu.hutool.util.RandomUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -44,6 +47,8 @@ public class ChinaPay {
     IDecorationApplyService decorationApplyService;
     @Autowired
     ICustomerService customerService;
+    @Autowired
+    IHouseInfoDetailsService houseInfoDetailsService;
 
     @RequestMapping("/topay")
     public String toPay() {
@@ -126,7 +131,7 @@ public class ChinaPay {
         requestVO.setCommodityMsg(commodityMsg);
         requestVO.setMerResv(merResv);
         requestVO.setBankInstNo(bankInstNo);
-        requestVO.setMerOrderNo(RandomUtil.randomNumbers(32));
+        requestVO.setMerOrderNo(RandomUtil.randomNumbers(22));
 
         // requestVO.setRemoteAddr(HttpUtils.getIpAddr(req));
         //requestVO.setBankInstNo("700000000000017");
@@ -209,6 +214,23 @@ public class ChinaPay {
         }
     }
 
+    /*@RequestMapping("/dist/pay")
+    @ResponseBody
+    public Map<String, Object> getResponsePay(HttpServletRequest request) {
+        Map<String, Object> result = new HashMap<>();
+        Object pay = request.getSession().getAttribute("pay");
+        if (pay == null) {
+            result.put("state", "0");
+            result.put("msg", "未获取到数据!");
+            return result;
+        }
+        result.put("state", "1");
+        result.put("data", pay);
+        request.getSession().removeAttribute("pay");
+        System.out.println("删除session");
+        return result;
+    }*/
+
     /**
      * 前台解析报文
      *
@@ -245,23 +267,6 @@ public class ChinaPay {
         System.out.println("验签" + result);
         request.getSession().setAttribute("pay", result);
     }
-
-    /*@RequestMapping("/dist/pay")
-    @ResponseBody
-    public Map<String, Object> getResponsePay(HttpServletRequest request) {
-        Map<String, Object> result = new HashMap<>();
-        Object pay = request.getSession().getAttribute("pay");
-        if (pay == null) {
-            result.put("state", "0");
-            result.put("msg", "未获取到数据!");
-            return result;
-        }
-        result.put("state", "1");
-        result.put("data", pay);
-        request.getSession().removeAttribute("pay");
-        System.out.println("删除session");
-        return result;
-    }*/
 
     /**
      * 获取入驻支付结果
@@ -359,15 +364,32 @@ public class ChinaPay {
                     shuidian.changeStatus(vo.getId());
                     result.put("msg", "shuidian");
                 } else if ("rzwuye".equals(vo.getType())) {
-                    enterApplyService.updatePayState("2", null, vo.getApplyId());
+                    List<Map<String, JsonFormat.Value>> enterApplyByID = enterApplyService.getEnterApplyByID(vo.getApplyId());
+                    if (enterApplyByID.size() > 0) {
+                        Map<String, JsonFormat.Value> stringValueMap = enterApplyByID.get(0);
+                        EnterApply enterApply = BeanUtil.mapToBean(stringValueMap, EnterApply.class, true);
+                        enterApplyService.updatePayState("1", null, enterApply.getEnterApplyId());
+                        if ("1".equals(enterApply.getKfState())) {
+                            houseInfoDetailsService.updateHouse(String.valueOf(enterApply.getEnterApplyId()), "3", null);
+                        }
+                    }
                     wuye.changeStatus(vo.getId());
                     result.put("msg", "rzwuye");
                 } else if ("rzkaifa".equals(vo.getType())) {
-                    enterApplyService.updatePayState(null, "2", vo.getApplyId());
+                    List<Map<String, JsonFormat.Value>> enterApplyByID = enterApplyService.getEnterApplyByID(vo.getApplyId());
+                    if (enterApplyByID.size() > 0) {
+                        Map<String, JsonFormat.Value> stringValueMap = enterApplyByID.get(0);
+                        EnterApply enterApply = BeanUtil.mapToBean(stringValueMap, EnterApply.class, true);
+                        enterApplyService.updatePayState(null, "1", enterApply.getEnterApplyId());
+                        if ("1".equals(enterApply.getWyState())) {
+                            enterApplyService.updatePayState(null, "3", vo.getApplyId());
+                        }
+                    }
                     kaifa.changeStatus(vo.getId());
                     result.put("msg", "rzkaifa");
                 } else if ("zxfy".equals(vo.getType())) {
-                    decorationApplyService.updatePayState("1", vo.getApplyId());
+                    houseInfoDetailsService.updateHouse(String.valueOf(vo.getApplyId()), null, "3");
+                    // decorationApplyService.updatePayState("3", vo.getApplyId());
                     wuye.changeStatus(vo.getId());
                     result.put("msg", "zxfy");
                 } else {
