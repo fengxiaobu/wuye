@@ -136,6 +136,11 @@
         FROM T_HOUSE_INFO_DETAILS
     </select>
 
+	<select id="selectHouseInfoDetailsById" resultType="cn.rzhd.wuye.bean.HouseInfoDetails">
+        SELECT *
+        FROM T_HOUSE_INFO_DETAILS
+        where "pk_house" = #{pkHouse}
+    </select>
     <select id="getHouseInfoByName" parameterType="String" resultMap="houseVOMap">
         SELECT
             "pk_project",
@@ -268,12 +273,12 @@
     
      <update id="updatehouseByPkHouse" parameterType="cn.rzhd.wuye.bean.HouseInfoDetails">
      	UPDATE T_HOUSE_INFO_DETAILS
-			SET STARTDATE = to_date(#{startdate},'YYYY-MM-DD'),
-			ENDDATE = to_date(#{enddate},'YYYY-MM-DD'),
+			SET STARTDATE = #{startdate},
+			ENDDATE = #{enddate},
 			FIRSTMNY = #{firstmny},
 			EVERYMNY = #{everymny},
 			ASTRICTSTATUS = #{astrictstatus},
-			UPDATEDATE = to_date(#{updatedate},'YYYY-MM-DD')
+			UPDATEDATE = #{updatedate}
 			WHERE  "pk_house" = #{pkHouse}
     </update>
 </mapper>

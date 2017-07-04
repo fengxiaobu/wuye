@@ -38,4 +38,6 @@ public interface HouseInfoDetailsMapper {
      */
     void updatehouseByPkHouse(HouseInfoDetails houseInfoDetails);
 
+    HouseInfoDetails selectHouseInfoDetailsById(String pkHouse);
+
 }

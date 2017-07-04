@@ -52,19 +52,19 @@
 						<div class="form-group">
 							<label class="col-sm-2 control-label ">首次限制开始日期：</label>
 							 <div id="form_datetime" class="input-group date form_datetime col-sm-3" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input1" data-link-format="yyyy-mm-dd">
-				                    <input class="form-control" size="16" type="text" value="${houseVO.startdate }" readonly>
+				                    <input class="form-control" size="16" type="text" value="<fmt:formatDate value='${houseVO.startdate }' pattern='yyyy-MM-dd'/>"  readonly>
 				                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
 									<span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
-				              </div>
-							  <input type="hidden" id="dtp_input1" name="startdate" value="${houseVO.startdate }" /> <br>
+				              </div>                                                 
+							  <input type="hidden" id="dtp_input1" name="startdate"  value="<fmt:formatDate value='${houseVO.startdate }' pattern='yyyy-MM-dd'/>"/> <br>
 							
 							<label class="col-sm-2 control-label ">首次限制截止日期：</label>
 							 <div id="form_datetime2" class="input-group date form_datetime col-sm-3" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-				                    <input class="form-control" size="16" type="text" value="${houseVO.enddate }" readonly>
+				                    <input class="form-control" size="16" type="text"  value="<fmt:formatDate value='${houseVO.enddate}' pattern='yyyy-MM-dd'/>"  readonly>
 				                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
 									<span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
 				              </div>
-							  <input type="hidden" id="dtp_input2" name="enddate" value="${houseVO.enddate }" /> <br>
+							  <input type="hidden" id="dtp_input2" name="enddate"  value="<fmt:formatDate value='${forumReply.createDate}' pattern='yyyy-MM-dd'/>"   /> <br>
 						</div>
 						
 						<div class="form-group">
@@ -86,17 +86,17 @@
 						  <div class="form-group">
 						  	 <label class="col-sm-2 control-label ">状态：</label>
 							 <label class="radio-inline">
-							  <input type="radio" name="astrictstatus" id="inlineRadio1" value="${houseVO.astrictstatus=='Y'?'checked':''}"> 启用
+							  <input type="radio" name="astrictstatus" id="inlineRadio1" value="Y" ${houseVO.astrictstatus=='Y'?'checked':''}> 启用
 							</label>
 							<label class="radio-inline">
-							  <input type="radio" name="astrictstatus" id="inlineRadio2" value="${houseVO.astrictstatus=='N'?'checked':''}"> 禁用
+							  <input type="radio" name="astrictstatus" id="inlineRadio2" value="N" ${houseVO.astrictstatus=='N'?'checked':''}> 禁用
 							</label>
 						 </div>
 						  <div class="form-group">
 						    <label class="col-sm-2 control-label ">更新时间:</label>
 						     <div class="col-sm-3">
 						     	 
-						     	 <input class="form-control" type="text" placeholder="${houseVO.updatedate}" readonly>
+						     	 <input class="form-control" type="text"  value="<fmt:formatDate value='${houseVO.updatedate}' pattern='yyyy-MM-dd HH:mm'/>" readonly>
 						    </div>
 						   
 						 </div>
@@ -132,8 +132,8 @@ $("#btn_submit").click(function(){
 			//提交到后台的RESTful
 			$.ajax({
 			   type: "POST",
-			   url: "${basePath}/page/sys/updatehouse",
-			   data: $("#formproject").serialize(),
+			   url: "${basePath}/admin/sys/updatehouse",
+			   data: $("#formquery").serialize(),
 			   statusCode :{
 				   201 : function(){
 						layer.alert('房产水电限制编辑成功!', {icon: 6,skin: 'layer-ext-moon'},function(){location.href = "${basePath}/page/system/waterele/houslist" })

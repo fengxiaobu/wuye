@@ -6,6 +6,9 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class HouseInfoDetails implements Serializable {
     /**
      * 房产主键
@@ -144,7 +147,8 @@ public class HouseInfoDetails implements Serializable {
     /**
      * 缴费限制更新时间
      */
-    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd")
+    //@JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd")
+    @JSONField(format="yyyy-MM-dd")
     private Date updatedate;
     /**
      * 入住申请状态
