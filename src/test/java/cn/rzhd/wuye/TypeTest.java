@@ -18,17 +18,4 @@ public class TypeTest extends BaseTest {
 	@Autowired
 	TypeDifferentiateMapper dmapper;
 
-	@Test
-	public void test1() throws Exception {
-		List<TypeRefinement> dataList = mapper.getDataList(2);
-		for (TypeRefinement typeRefinement : dataList) {
-			System.out.println(typeRefinement);
-		}
-	}
-
-	@Test
-	public void test2() throws Exception {
-		TypeDifferentiate typeDifferentiate = dmapper.getDataName(1);
-		System.out.println(typeDifferentiate);
-	}
 }

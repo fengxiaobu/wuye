@@ -14,7 +14,7 @@ public class TypeDifferentiateServiceImpl implements ITypeDifferentiateService {
 	private TypeDifferentiateMapper mapper;
 
 	@Override
-	public TypeDifferentiate getDataName(Integer typeDifferentiateId) {
+	public TypeDifferentiate getDataName(Long typeDifferentiateId) {
 		TypeDifferentiate typeDifferentiate = mapper.getDataName(typeDifferentiateId);
 		return typeDifferentiate;
 	}
