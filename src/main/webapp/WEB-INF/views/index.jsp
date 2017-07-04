@@ -240,14 +240,14 @@
                                     </div>
                                 </li>
 
-                                <li class="panel" role="tab">
-                                    <div class="panel-header">
-                                        <a  target="main" href="${basePath}/page/system/sys">系统信息设置</a>
-                                    </div>
-                                    <div class="panel-header">
-                                        <a  target="main"  href="${basePath}/admin/sys/checkinprompt/3">入住提示信息</a>
-                                    </div>
-                                </li>
+                            <li class="panel" role="tab">
+                                <div class="panel-header">
+                                    <a  target="main" href="${basePath}/admin/sys/set">系统信息设置</a>
+                                </div>
+                                <div class="panel-header">
+                                    <a  target="main"  href="${basePath}/admin/sys/checkinprompt/3">入住提示信息</a>
+                                </div>
+                            </li>
 
                                 <li class="panel" role="tab">
                                     <div class="panel-header">

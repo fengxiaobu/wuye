@@ -33,7 +33,7 @@
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="col-sm-2 control-label ">上次更新时间：${dictInfo.updateTime }</label>
+		<label class="col-sm-2 control-label ">上次更新时间：<fmt:formatDate value="${dictInfo.updateTime }" pattern="yyyy-MM-dd HH:mm:ss"/></label>
 			
 	</div>
 	<div class="form-group">
