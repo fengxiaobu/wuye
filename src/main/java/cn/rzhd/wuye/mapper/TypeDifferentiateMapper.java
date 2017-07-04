@@ -18,5 +18,5 @@ public interface TypeDifferentiateMapper {
     
      void updateTypeDifferentiateById(@Param("typeDifferentiate")TypeDifferentiate typeDifferentiate);
      
-     TypeDifferentiate getDataName(Integer typeDifferentiateId);
+     TypeDifferentiate getDataName(Long typeDifferentiateId);
 }

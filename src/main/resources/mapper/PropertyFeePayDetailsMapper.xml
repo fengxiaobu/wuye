@@ -105,22 +105,7 @@
         FROM T_PROPERTY_FEE_PAY_DETAILS
         <include refid="whereSql"/>
     </select>
-    <sql id="records">
-        <where>
-            AND HOUSE_INFO_ID IN (select "pk_house" from T_HOUSE_INFO_DETAILS WHERE "pk_project"=#{projectId})
-            <if test="startDate != null and endDate != null">
-                AND PAY_TIME &gt;= startDate AND PAY_TIME &lt;= endDate
-            </if>
-            <if test="feeType != null">
-                AND FEETYPE=#{feeType}
-            </if>
-            <if test="payManner != null">
-                AND PAY_MANNER=#{payManner}
-            </if>
-            <if test="keyWords != null AND keyWords != ''">
-            </if>
-        </where>
-    </sql>
+
     <select id="queryByProject" parameterType="cn.rzhd.wuye.vo.query.PropertyRecordsQuery">
         SELECT
             PROPERTY_FEE_PAY_DETAILS_ID,
@@ -176,41 +161,62 @@
         <result property="customerId" column="CUSTOMER_ID"/>
         <result property="status" column="STATUS"/>
     </resultMap>
-    <select id="getByProject" parameterType="long" resultMap="map">
-        SELECT
-            DISTINCT
-            PROPERTY_FEE_PAY_DETAILS_ID,
-            T_PROJECT_INFO.PROJECT_NAME,
-            T_HOUSE_INFO_DETAILS."vhcode",
-            CLIENT_NAME,
-            FEETYPE,
-            PAY_MANNER,
-            PAY_MONTH,
-            START_DATE,
-            END_DATE,
-            PAYABLE,
-            PAID_IN,
-            VOUCHER_NUMBER,
-            INVOICE,
-            INVOICE_NUMBER,
-            INVOICE_NOTES,
-            INVOICE_STATUS,
-            COLLECTING_COMPANY,
-            COLLECTING_ACCOUNT,
-            INVOICE_COMPANY,
-            PAY_TIME,
-            CARTE_TIME,
-            T_PROPERTY_FEE_PAY_DETAILS.UPDATE_TIME,
-            CUSTOMER_ID,
-            T_PROPERTY_FEE_PAY_DETAILS.STATUS,
-            FEETYPE
+    <sql id="querySql">
+        <where>
+            AND T_MANAGE_USER.USER_ID = #{userId} AND T_PROPERTY_FEE_PAY_DETAILS.STATUS = 'Y'
+            <if test="startDate!=null and endDate!=null">
+                AND PAY_TIME &gt;= #{startDate} AND PAY_TIME &lt;= #{endDate}
+            </if>
+            <if test="feeType!=null">
+                AND FEE_TYPE = #{feeType}
+            </if>
+            <if test="payManner!=null">
+                AND PAY_MANNER = #{payManner}
+            </if>
+            <if test="keyWords !=null and keyWords!=''">
+                AND (
+                T_PROJECT_INFO.PROJECT_NAME LIKE '%'||'${keyWords}'||'%'
+                OR T_HOUSE_INFO_DETAILS."vhcode" LIKE '%'||'${keyWords}'||'%'
+                OR CLIENT_NAME LIKE '%'||'${keyWords}'||'%'
+                )
+            </if>
+        </where>
+    </sql>
+    <select id="getByProject" parameterType="cn.rzhd.wuye.vo.query.PropertyRecordsQuery" resultMap="map">
+        SELECT * FROM (SELECT
+        DISTINCT
+        PROPERTY_FEE_PAY_DETAILS_ID,
+        T_PROJECT_INFO.PROJECT_NAME,
+        T_HOUSE_INFO_DETAILS."vhcode",
+        CLIENT_NAME,
+        FEETYPE,
+        PAY_MANNER,
+        PAY_MONTH,
+        START_DATE,
+        END_DATE,
+        PAYABLE,
+        PAID_IN,
+        VOUCHER_NUMBER,
+        INVOICE,
+        INVOICE_NUMBER,
+        INVOICE_NOTES,
+        INVOICE_STATUS,
+        COLLECTING_COMPANY,
+        COLLECTING_ACCOUNT,
+        INVOICE_COMPANY,
+        PAY_TIME,
+        CARTE_TIME,
+        T_PROPERTY_FEE_PAY_DETAILS.UPDATE_TIME,
+        CUSTOMER_ID,
+        T_PROPERTY_FEE_PAY_DETAILS.STATUS,
+        ROWNUM AS r
         FROM T_PROPERTY_FEE_PAY_DETAILS
-            JOIN T_HOUSE_INFO_DETAILS ON T_HOUSE_INFO_DETAILS."pk_house" = T_PROPERTY_FEE_PAY_DETAILS.HOUSE_INFO_ID
-            JOIN T_PROJECT_INFO ON T_HOUSE_INFO_DETAILS."pk_project" = T_PROJECT_INFO.PK_PROJECT
-            JOIN T_MANAGE ON T_HOUSE_INFO_DETAILS.MANAGE_ID = T_MANAGE."pk_manageId"
-            JOIN T_MANAGE_USER ON T_MANAGE_USER.MANAGE_ID = T_MANAGE."pk_manageId"
-        WHERE T_MANAGE_USER.USER_ID = #{userId} AND T_PROPERTY_FEE_PAY_DETAILS.STATUS = 'Y'
-
+        JOIN T_HOUSE_INFO_DETAILS ON T_HOUSE_INFO_DETAILS."pk_house" = T_PROPERTY_FEE_PAY_DETAILS.HOUSE_INFO_ID
+        JOIN T_PROJECT_INFO ON T_HOUSE_INFO_DETAILS."pk_project" = T_PROJECT_INFO.PK_PROJECT
+        JOIN T_MANAGE ON T_HOUSE_INFO_DETAILS.MANAGE_ID = T_MANAGE."pk_manageId"
+        JOIN T_MANAGE_USER ON T_MANAGE_USER.MANAGE_ID = T_MANAGE."pk_manageId"
+        <include refid="querySql"/>
+        ORDER BY PAY_TIME DESC) WHERE r &gt;#{startNum} AND r &lt;=#{endNum}
     </select>
     <select id="getCostType" resultType="string">
         SELECT "feename"
@@ -229,5 +235,15 @@
             JOIN T_BANK_ACCOUNT ON T_COMPANY."pk_corp" = "vdef1"
             JOIN T_FEE_TYPES ON T_FEE_TYPES."pk_fee" = T_BANK_ACCOUNT."pk_fee"
         WHERE T_FEE_TYPES."pk_corp" = #{pk_corp} AND "feecode" = #{feeType}
+    </select>
+    <select id="countByQuery" parameterType="cn.rzhd.wuye.vo.query.PropertyRecordsQuery" resultType="integer">
+        SELECT
+        COUNT(*)
+        FROM T_PROPERTY_FEE_PAY_DETAILS
+        JOIN T_HOUSE_INFO_DETAILS ON T_HOUSE_INFO_DETAILS."pk_house" = T_PROPERTY_FEE_PAY_DETAILS.HOUSE_INFO_ID
+        JOIN T_PROJECT_INFO ON T_HOUSE_INFO_DETAILS."pk_project" = T_PROJECT_INFO.PK_PROJECT
+        JOIN T_MANAGE ON T_HOUSE_INFO_DETAILS.MANAGE_ID = T_MANAGE."pk_manageId"
+        JOIN T_MANAGE_USER ON T_MANAGE_USER.MANAGE_ID = T_MANAGE."pk_manageId"
+        <include refid="querySql"/>
     </select>
 </mapper>

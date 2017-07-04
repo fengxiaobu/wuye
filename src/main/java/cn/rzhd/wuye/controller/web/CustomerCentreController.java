@@ -73,50 +73,67 @@ public class CustomerCentreController {
 			return result;
 		}
 	}
-
-	@RequestMapping(value = "/getVcode", method = RequestMethod.POST)
-	public Map<String, String> getVcode(String bindingPhone,Integer type) {
+	
+	/**
+	 * 重置密码获取验证码
+	 * */
+	@RequestMapping(value = "/getVcodeReset", method = RequestMethod.POST)
+	public Map<String, String> getVcodeReset(String bindingPhone) {
 		Map<String, String> result = new HashMap<>();
 		List<String> allPhone = customerService.allPhone();
 		//包含则绑定了，不包含则没绑定
 		if (allPhone.contains(bindingPhone)) {
-			if (type==0) {
-				try {
-					String vcode = Client.createRandomVcode();
-					String sn = "SDK-CSL-010-00073";
-					String pwd = "22baa8)d-d5";
-					
-					Client client = new Client(sn, pwd);
-					String content = URLEncoder.encode("您的验证码为：" + vcode + "【联东物业】", "utf8");
-					
-					String result_mt = client.mdsmssend(bindingPhone, content, "", "", "", "");
-					System.out.print(result_mt);
-					result.put("vcode", vcode);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+			result.put("state", "0");
+			result.put("msg", "该手机号已绑定");
+			try {
+				String vcode = Client.createRandomVcode();
+				String sn = "SDK-CSL-010-00073";
+				String pwd = "22baa8)d-d5";
+				
+				Client client = new Client(sn, pwd);
+				String content = URLEncoder.encode("您的验证码为：" + vcode + "【联东物业】", "utf8");
+				
+				String result_mt = client.mdsmssend(bindingPhone, content, "", "", "", "");
+				System.out.print(result_mt);
+				result.put("vcode", vcode);
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
+		}else {
+			result.put("state", "1");
+			result.put("msg", "该手机号未绑定");
+		}
+		return result;
+	}
+	
+	/**
+	 * 修改手机号获取验证码
+	 * */
+	@RequestMapping(value = "/getVcodeModify", method = RequestMethod.POST)
+	public Map<String, String> getVcodeModify(String bindingPhone) {
+		Map<String, String> result = new HashMap<>();
+		List<String> allPhone = customerService.allPhone();
+		//包含则绑定了，不包含则没绑定
+		if (allPhone.contains(bindingPhone)) {
 			result.put("state", "0");
 			result.put("msg", "该手机号已绑定");
 		}else {
-			if (type==1) {
-				try {
-					String vcode = Client.createRandomVcode();
-					String sn = "SDK-CSL-010-00073";
-					String pwd = "22baa8)d-d5";
-					
-					Client client = new Client(sn, pwd);
-					String content = URLEncoder.encode("您的验证码为：" + vcode + "【联东物业】", "utf8");
-					
-					String result_mt = client.mdsmssend(bindingPhone, content, "", "", "", "");
-					System.out.print(result_mt);
-					result.put("vcode", vcode);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
 			result.put("state", "1");
 			result.put("msg", "该手机号未绑定");
+			try {
+				String vcode = Client.createRandomVcode();
+				String sn = "SDK-CSL-010-00073";
+				String pwd = "22baa8)d-d5";
+				
+				Client client = new Client(sn, pwd);
+				String content = URLEncoder.encode("您的验证码为：" + vcode + "【联东物业】", "utf8");
+				
+				String result_mt = client.mdsmssend(bindingPhone, content, "", "", "", "");
+				System.out.print(result_mt);
+				result.put("vcode", vcode);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		return result;
 	}

@@ -264,4 +264,16 @@
         SET ALREADY_FINISH = #{alreadyFinish}
         WHERE "pk_house" = #{houseInfoId}
     </update>
+    
+    
+     <update id="updatehouseByPkHouse" parameterType="cn.rzhd.wuye.bean.HouseInfoDetails">
+     	UPDATE T_HOUSE_INFO_DETAILS
+			SET STARTDATE = to_date(#{startdate},'YYYY-MM-DD'),
+			ENDDATE = to_date(#{enddate},'YYYY-MM-DD'),
+			FIRSTMNY = #{firstmny},
+			EVERYMNY = #{everymny},
+			ASTRICTSTATUS = #{astrictstatus},
+			UPDATEDATE = to_date(#{updatedate},'YYYY-MM-DD')
+			WHERE  "pk_house" = #{pkHouse}
+    </update>
 </mapper>

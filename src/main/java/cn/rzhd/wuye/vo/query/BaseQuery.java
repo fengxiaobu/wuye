@@ -13,6 +13,8 @@ public class BaseQuery implements Serializable{
     private String customerId;
     private Integer startPage = 1;
     private Integer pageSize = 10;
+    private Integer startNum;
+    private Integer endNum;
 
     public String getCustomerId() {
         return customerId;
@@ -37,4 +39,21 @@ public class BaseQuery implements Serializable{
     public void setPageSize(Integer pageSize) {
         this.pageSize = pageSize;
     }
+
+    public Integer getStartNum() {
+        return (startPage-1)*pageSize;
+    }
+
+    public void setStartNum(Integer startNum) {
+        this.startNum = startNum;
+    }
+
+    public Integer getEndNum() {
+        return startPage*pageSize;
+    }
+
+    public void setEndNum(Integer endNum) {
+        this.endNum = endNum;
+    }
+
 }

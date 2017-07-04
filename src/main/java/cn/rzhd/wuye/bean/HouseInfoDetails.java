@@ -1,5 +1,7 @@
 package cn.rzhd.wuye.bean;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -120,10 +122,12 @@ public class HouseInfoDetails implements Serializable {
     /**
      * 首次限制开始日期
      */
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd")
     private Date startdate;
     /**
      * 首次限制结束日期
      */
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd")
     private Date enddate;
     /**
      * 首次限缴金额
@@ -140,6 +144,7 @@ public class HouseInfoDetails implements Serializable {
     /**
      * 缴费限制更新时间
      */
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd")
     private Date updatedate;
     /**
      * 入住申请状态

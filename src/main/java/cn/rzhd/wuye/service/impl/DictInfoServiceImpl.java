@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import cn.rzhd.wuye.bean.TDictInfo;
 import cn.rzhd.wuye.bean.TDictInfoExample;
 import cn.rzhd.wuye.mapper.TDictInfoMapper;
-import cn.rzhd.wuye.mapper.TDictTypeMapper;
 import cn.rzhd.wuye.service.IDictInfoService;
 
 
@@ -26,9 +25,6 @@ import cn.rzhd.wuye.service.IDictInfoService;
  */
 @Service
 public class DictInfoServiceImpl implements IDictInfoService{
-
-    @Autowired
-    private TDictTypeMapper dictTypeMapper;
     @Autowired
     private TDictInfoMapper dictInfoMapper;
     

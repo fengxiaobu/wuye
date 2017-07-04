@@ -28,7 +28,9 @@
             <div class="col-xs-8 panel-oprerate">
                 <div class="col-xs-6dd">
                     <form action="" method="post">
-                       	<a class="btn btn-info" href="" role="button">新增</a>
+                       	<a href="${pageContext.request.contextPath}/messageManageBack/messageManageEdit" class="btn btn-info"><span
+                            class="glyphicon glyphicon-plus"></span>新增
+                    </a>
                     </form>
                 </div>
             </div>
@@ -52,14 +54,15 @@
                     <tr class="tudiqianyue-tdtr">
                         <td>${status.index+1}</td>
                         <td>${messageManageList.type}</td>
-                        <td>${messageManageList.name}</td>
+                        <td>${messageManageList.title}</td>
                         <td>${messageManageList.range}</td>
                         <td>
                         	<c:if test="${messageManageList.status eq 1}">上架</c:if>  
                 			<c:if test="${messageManageList.status eq 0}">下架</c:if>  
                         </td>
                         <td><fmt:formatDate value="${messageManageList.create_time}" pattern="yyyy-MM-dd"/></td>
-                        <td><a class="btn btn-info" href="${pageContext.request.contextPath}/dist/messageManageBack/messageManageEdit?message_manage_id=${messageManageList.message_manage_id}" role="button">编辑</a><a class="btn btn-info" href="" role="button">删除</a></td>
+                        <td><a class="btn btn-info" href="${pageContext.request.contextPath}/messageManageBack/messageManageEdit?message_manage_id=${messageManageList.message_manage_id}" role="button">编辑</a>
+                        <a class="btn btn-info" onclick="del('${messageManageList.message_manage_id}',this)" role="button">删除</a></td>
                     </tr>
                 </c:forEach>
                 </tbody>
@@ -72,7 +75,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/libs/jquery-1.11.3.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/libs/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript">
-    var tableEdit = {
+var tableEdit = {
         content: function (option) {
             var _tableEdit = this;
             if ($(".tudiqianyue").is(".tableedit")) {
@@ -142,89 +145,34 @@
             });
         },
     };
-    // function tableEdit(option) {
-    // 	if($(".tudiqianyue").is(".tableedit")) {
-    // 		$(".tudiqianyue-tdtr").find("td").css({
-    // 			"border": "",
-    // 			"background": ""
-    // 		});
-    // 	}
-    // 	$(".tudiqianyue").addClass("tableedit");
-    // 	var tr = $(".tudiqianyue-tdtr").length;
-    // 	$(".tudiqianyue-tdtr").each(function(_index,_this) {
-    // 		var trIndex = _index;
-    // 		console.log(_index)
-    // 		$(this).find("td").each(function(_index,_this) {
-    // 			var tdIndex = _index;
-    // 			// $(this).attr("contenteditable","true");
-    // 			if(tdIndex == option.start) {
-    // 				$(this).css({"border-left": "2px solid red"});
-    // 			}
-    // 			if(tdIndex == option.end) {
-    // 				$(this).css({"border-right": "2px solid red"});
-    // 			}
-    // 			if(trIndex == 0 && tdIndex >= option.start && tdIndex <= option.end) {
-    // 				$(this).css({"border-top": "3px solid red"})
-    // 			}
-    // 			if(trIndex == tr-1 && tdIndex >= option.start && tdIndex <= option.end) {
-    // 				$(this).css({"border-bottom": "3px solid red"})
-    // 			}
-    // 			if(tdIndex >= option.start && tdIndex <= option.end) {
-    // 				$(this).css({"background":"#fff"}).attr("contenteditable","true");
-    // 			}
-    // 		});
-    // 	});
+    
+$("#edit-xieyi").click(function () {
+    tableEdit.content({
+        start: 1,
+        end: 3,
+        cancel: "#tudiqianyue-remove",
+        callback: function (data) {
+        }
+    })
+});
+$("#edit-hetong").click(function () {
+    tableEdit.content({
+        start: 3,
+        end: 6,
+        callback: function (data) {
 
-    // 	function close() {
-    // 		$(".tudiqianyue").removeClass("tableedit");
-    // 		$(".tudiqianyue-tdtr").each(function(_index,_this) {
-    // 			var trIndex = _index;
-    // 			console.log(_index)
-    // 			$(this).find("td").each(function(_index,_this) {
-    // 				var tdIndex = _index;
-    // 				// $(this).attr("contenteditable","true");
-    // 				if(tdIndex == option.start) {
-    // 					$(this).css({"border-left": ""})
-    // 				}
-    // 				if(tdIndex == option.end) {
-    // 					$(this).css({"border-right": ""})
-    // 				}
-    // 				if(trIndex == 0 && tdIndex >= option.start && tdIndex <= option.end) {
-    // 					$(this).css({"border-top": ""})
-    // 				}
-    // 				if(trIndex == tr-1 && tdIndex >= option.start && tdIndex <= option.end) {
-    // 					$(this).css({"border-bottom": ""})
-    // 				}
-    // 				if(tdIndex >= option.start && tdIndex <= option.end) {
-    // 					$(this).css({"background":"#fff"}).attr("contenteditable","false");
-    // 				}
-    // 			});
-    // 		});
-    // 	};
-    // 	return close;
-    // }
-
-    $("#edit-xieyi").click(function () {
-        tableEdit.content({
-            start: 1,
-            end: 3,
-            cancel: "#tudiqianyue-remove",
-            callback: function (data) {
-                console.log(111111)
+        }
+    })
+});
+function del(id, e) {
+    var r = confirm("你确定要删除这个用户吗?");
+    if (r) {
+        $.post("${pageContext.request.contextPath}/messageManageBack/delete", {"id": id}, function (data) {
+            if (data.success) {
+                $(e).closest("tr").remove();
             }
         })
-    });
-    $("#edit-hetong").click(function () {
-        tableEdit.content({
-            start: 3,
-            end: 6,
-            callback: function (data) {
-
-            }
-        })
-    });
-    $("#tudiqianyue-remove").click(function () {
-
-    });
+    }
+}
 </script>
 </html>

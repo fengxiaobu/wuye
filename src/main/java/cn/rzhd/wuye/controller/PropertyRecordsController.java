@@ -2,6 +2,7 @@ package cn.rzhd.wuye.controller;
 
 import cn.rzhd.wuye.service.IPropertyFeePayDetailsService;
 import cn.rzhd.wuye.utils.UserContext;
+import cn.rzhd.wuye.vo.query.PropertyRecordsQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,12 +22,14 @@ public class PropertyRecordsController {
     private IPropertyFeePayDetailsService propertyFeePayDetailsService;
 
     @RequestMapping("/index")
-    public ModelAndView index(){
-        Long userId = UserContext.getUser().getUserId();
+    public ModelAndView index(PropertyRecordsQuery query){
+        query.setUserId(UserContext.getUser().getUserId());
         List<Map<String, Object>> result = new ArrayList<>();
-        result.addAll(propertyFeePayDetailsService.getByProject(userId));
+        result.addAll(propertyFeePayDetailsService.getByProject(query));
+        Integer total = propertyFeePayDetailsService.countByQuery(query);
         ModelAndView mav = new ModelAndView();
         mav.addObject("propertyRecords",result);
+        mav.addObject("query",query);
         mav.setViewName("payment/wuye");
         return mav;
     }

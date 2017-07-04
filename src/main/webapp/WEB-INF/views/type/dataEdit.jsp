@@ -16,12 +16,12 @@
 				<div class="panel-body">
 				  <form class="form-horizontal" action="${pageContext.request.contextPath}/typeRefinement/addOrUpdate" method="post">
 					<div class="form-horizontal">
-						<input type="hidden" name="typeDifferentiateId">
-						<input type="hidden" name="typeRefinementId">
+						<input type="hidden" name="typeRefinementId" value="${typeRefinement.typeRefinementId}">
+						<input type="hidden" name="typeDifferentiateId" value="${typeRefinement.typeDifferentiateId}">
 						<div class="form-group">
 							<label class="col-sm-2 control-label">
 								<c:if test="${typeRefinement.typeDifferentiateId=='1'}" >
-								　　房产使用属性：
+					　			房产使用属性：
 								</c:if>
 								<c:if test="${typeRefinement.typeDifferentiateId=='2'}" >
 								　　属性：

@@ -1,7 +1,6 @@
 package cn.rzhd.wuye.service;
 
 import cn.rzhd.wuye.bean.TDictInfo;
-import cn.rzhd.wuye.bean.TDictType;
 
 /**
  * @ClassName IDictInfoService

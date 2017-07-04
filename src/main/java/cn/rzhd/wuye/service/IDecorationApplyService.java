@@ -28,4 +28,6 @@ public interface IDecorationApplyService {
     void updatePayState(String paymentStatus, Long decorationApplyId);
 
     Integer getCount(String pkHouse, String customerId);
+
+    DecorationApply getDecorationApplyByOrder(String pkHouse, String customerId);
 }

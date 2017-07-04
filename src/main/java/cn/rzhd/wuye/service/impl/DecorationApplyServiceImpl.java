@@ -102,4 +102,9 @@ public class DecorationApplyServiceImpl implements IDecorationApplyService {
         return decorationApplyMapper.getCount(pkHouse, customerId);
     }
 
+    @Override
+    public DecorationApply getDecorationApplyByOrder(String pkHouse, String customerId) {
+        return decorationApplyMapper.getDecorationApplyByOrder(pkHouse,customerId);
+    }
+
 }

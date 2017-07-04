@@ -6,6 +6,8 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 /**
  * 房产数据VO
  * 
@@ -49,6 +51,7 @@ public class HouseVO implements Serializable {
 	private BigDecimal firstMoney;// 首次限制缴费金额
 	private BigDecimal everyMoney;// 每月限制缴费金额
 	private String astrictStatus;// 限制缴费状态Y--启用,N--禁用
+	@JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd")
 	private Date updateDate;// 更新时间
 
 	private ProjectInfo projectInfo;//关联的项目信息
@@ -58,7 +61,9 @@ public class HouseVO implements Serializable {
 	private String vdef9;// 备用字段9
 	private String vdef10;// 备用字段10
 
+	@JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd")
 	private Date startdate;
+	@JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd")
 	private Date enddate;
 	private Long firstmny;
 	private Long everymny;

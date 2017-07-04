@@ -28,12 +28,15 @@
             <div class="col-xs-4">物业缴费记录</div>
             <div class="col-xs-8 panel-oprerate">
                 <div class="col-xs-12">
-                    <span style="margin-right: 50px"><input style="height: 35px;width: 320px;" type="text"></span>至
-                    <span style="margin-right: 50px"><input style="height: 35px;width: 320px;" type="text"></span>
-                    <span style="margin-right: 50px"><input style="height: 35px;width: 320px;" type="text"
-                                                            placeholder="项目名称,房产编码,客户名称,单据号"></span>
-                    <button class="btn btn-info" type="button"><span class="glyphicon glyphicon-search"></span>搜素
-                    </button>
+                    <form action="${pageContext.request.contextPath}/propertyRecords/index" method="post">
+                        <span style="margin-right: 50px"><input id="startPicker"  type="text"></span>至
+
+                        <span style="margin-right: 50px"><input id="endPicker"  type="text"></span>
+                        <span style="margin-right: 50px"><input style="height: 35px;width: 320px;" type="text"
+                                                                placeholder="项目名称,房产编码,客户名称" id="keyWords"></span>
+                        <button class="btn btn-info"><span class="glyphicon glyphicon-search"></span>搜素
+                        </button>
+                    </form>
                 </div>
                 <div class="col-xs-12">
                     <button class="btn btn-default" id="tudiqianyue-remove" type="button"><span
@@ -113,12 +116,12 @@
                 </c:forEach>
                 </tbody>
             </table>
+            <div id="Pagination" class="pagination"></div>
         </div>
     </div>
-
 </body>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/libs/jquery-1.11.3.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/libs/bootstrap/js/bootstrap.min.js"></script>
+<jsp:include page="../../../common/common.jsp"/>
+
 <script type="text/javascript">
     var tableEdit = {
         content: function (option) {
@@ -274,5 +277,40 @@
     $("#tudiqianyue-remove").click(function () {
 
     });
+    $('#startPicker').datetimepicker();
+    $('#endPicker').datetimepicker();
+
+
+    $(function () {
+        var pageCount=50;  //分页总数量
+        // $("#pagination").pagination(pageCount); //简单初始化方法
+
+
+        $("#pagination").pagination(pageCount,    //分布总数量，必须参数
+            {
+                callback: PageCallback,  //PageCallback() 为翻页调用次函数。
+                prev_text: "« 上一页",
+                next_text: "下一页 »",
+                items_per_page:10,
+                num_edge_entries: 2,       //两侧首尾分页条目数
+                num_display_entries: 10,    //连续分页主体部分分页条目数
+                current_page: 0,   //当前页索引
+                link_to: "?id=__id__"  //分页的js中会自动把"__id__"替换为当前的数。0　
+            });
+
+    });
+
+    function PageCallback(page_index,jq)
+    {
+        $.ajax({
+            type: "POST",
+            dataType: "text",
+            url: '后台处理地址',      //提交到一般处理程序请求数据
+            data: "pageIndex=" + (pageIndex) + "&pageSize=" + pageSize,          //提交两个参数：pageIndex(页面索引)，pageSize(显示条数)
+            success: function(data) {
+                //后台服务返回数据，重新加载数据
+            }
+        });
+    }
 </script>
 </html>

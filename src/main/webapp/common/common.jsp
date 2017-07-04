@@ -34,13 +34,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link rel="stylesheet" type="text/css" href="${stylesPath}/reset.css">
 <script type="text/javascript" src="${scriptsPath}/libs/jquery-1.11.3.min.js"  charset="utf-8"></script>
 <script type="text/javascript" src="${scriptsPath}/libs/bootstrap/js/bootstrap.min.js"  charset="utf-8"></script>
+<script type="text/javascript" src="${scriptsPath}/libs/zTree/js/jquery.ztree.all.min.js"  charset="utf-8"></script>
 <script type="text/javascript" src="${scriptsPath}/libs/layer/layer.js"  charset="utf-8"></script>
 <link href="${scriptsPath}/libs/datetimepicker/datetimepicker.min.css" rel="stylesheet" media="screen">
+<link rel="stylesheet" type="text/css" href="${scriptsPath}/libs/zTree/css/zTreeStyle/demo.css">
+<link rel="stylesheet" type="text/css" href="${scriptsPath}/libs/zTree/css/zTreeStyle/zTreeStyle.css">
 <script type="text/javascript" src="${scriptsPath}/libs/datetimepicker/datetimepicker.min.js"></script>
 <script type="text/javascript" src="${scriptsPath}/libs/datetimepicker/datetimepicker.zh-CN.js" charset="UTF-8"></script>
 <script charset="utf-8" src="${scriptsPath}/libs/kindeditor/kindeditor-min.js"></script>
 <script charset="utf-8" src="${scriptsPath}/libs/kindeditor/zh_CN.js"></script>
 <script type="text/javascript" src="${scriptsPath}/libs/fileupload/js/uploadfile.js"></script>
 <script type="text/javascript" src="${scriptsPath}/common.js"  charset="utf-8"></script>
+<script type="text/javascript" src="${scriptsPath}/libs/pageBar/jqPaginator.js"></script>
 
   

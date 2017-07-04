@@ -24,7 +24,7 @@ public interface IPropertyFeePayDetailsService {
 
     void changeStatus(Long id);
 
-    List<Map<String, Object>> getByProject(Long userId);
+    List<Map<String, Object>> getByProject(PropertyRecordsQuery query);
 
     List<PropertyFeePayDetails> queryByProject(PropertyRecordsQuery query);
 
@@ -33,4 +33,6 @@ public interface IPropertyFeePayDetailsService {
     String getCompanyAccount(String feeType,String pk_corp);
 
     String getCompanyName(String feeType,String pk_corp);
+
+    Integer countByQuery(PropertyRecordsQuery query);
 }

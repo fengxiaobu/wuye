@@ -20,50 +20,31 @@ public class TypeRefinementServiceImpl implements ITypeRefinementService {
     private TypeDifferentiateMapper difMapper;
 
 	@Override
-	public List<TypeRefinement> getDataList(Integer typeDifferentiateId) {
+	public List<TypeRefinement> getDataList(Long typeDifferentiateId) {
 		List<TypeRefinement> typeRefinements = mapper.getDataList(typeDifferentiateId);
 		return typeRefinements;
 	}
 
 	@Override
-	public TypeRefinement getOneData(Integer typeRefinementId) {
+	public TypeRefinement getOneData(Long typeRefinementId) {
 		TypeRefinement typeRefinement = mapper.getOneData(typeRefinementId);
 		return typeRefinement;
 	}
+
+	@Override
+	public void delete(Long typeRefinementId) {
+		mapper.delete(typeRefinementId);
+	}
+
+	@Override
+	public void save(TypeRefinement typerefinement) {
+		mapper.addTypeRefinementName(typerefinement);
+	}
+
+	@Override
+	public void update(TypeRefinement typerefinement) {
+		mapper.updatetypeRefinementById(typerefinement);
+	}
     
-/*    @Override
-    public void addTypeRefinement(TypeRefinementVo typeRefinementVo) {
-		TypeRefinement typeRefinement = new TypeRefinement();
-
-		TypeRefinement nameIsRepeat = mapper.findTypeRefinementNameIsRepeat(typeRefinementVo.getTypeRefinementName());
-		if (nameIsRepeat != null ) {
-			//执行修改操作
-//	    nameIsRepeat.setTypeRefinementId(nameIsRepeat.getTypeDifferentiateId());
-			nameIsRepeat.setStatus(typeRefinementVo.getStatus());
-			nameIsRepeat.setNote(typeRefinementVo.getNote());
-			nameIsRepeat.setUpdateTime(new Date());
-			mapper.updatetypeRefinementById(nameIsRepeat);
-
-		}else {
-			//执行新建操作
-			Long findRefinementId = mapper.findRefinementId();
-			if (findRefinementId == null || findRefinementId == 0) {
-				typeRefinement.setTypeRefinementId(Long.valueOf("1"));
-			}else {
-				typeRefinement.setTypeRefinementId(findRefinementId+1);
-			}
-
-//	    TypeDifferentiate typeDifferentiate = mapper.findTypeDifferentiateIdByName(typeRefinementVo.getTypeDifferentiateName());
-			TypeDifferentiate typeDifferentiate = difMapper.findTypeDifferentiateNameIsRepeat(typeRefinementVo.getTypeDifferentiateName());
-			typeRefinement.setTypeDifferentiateId(typeDifferentiate.getTypeDifferentiateId());
-			typeRefinement.setTypeRefinementName(typeRefinementVo.getTypeRefinementName());
-			typeRefinement.setStatus(typeRefinementVo.getStatus());
-			typeRefinement.setNote(typeRefinementVo.getNote());
-			typeRefinement.setCreateTime(new Date());
-			mapper.addTypeRefinementName(typeRefinement);
-
-		}
-
-	}*/
 
 }

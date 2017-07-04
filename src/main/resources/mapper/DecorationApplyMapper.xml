@@ -314,10 +314,11 @@
     </delete>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap">
         <include refid="select"/>
-        WHERE apply.DECORATION_APPLY_ID = #{decorationApplyId}
+        WHERE apply.DECORATION_APPLY_ID = #{decorationApplyId} ORDER BY apply.APPLY_TIME DESC
     </select>
     <select id="findDecorationApplyList" resultMap="DecorationApplyMapper">
         <include refid="select"/>
+        ORDER BY apply.APPLY_TIME DESC
     </select>
     <select id="findDecorationApplyListByQuery" parameterType="cn.rzhd.wuye.vo.query.ApplyQuery"
             resultMap="DecorationApplyMapper">
@@ -337,9 +338,10 @@
     </select>
     <select id="findDecorationApplyByHouseId" resultMap="BaseResultMap">
         SELECT *
-        FROM T_DECORATION_APPLY
-        WHERE
-            HOUSE_INFO_ID = '${houseInfoId}'
+        FROM (SELECT *
+              FROM T_DECORATION_APPLY
+              ORDER BY APPLY_TIME DESC)
+        WHERE HOUSE_INFO_ID = '${houseInfoId}' AND rownum = 1
     </select>
 
     <update id="updatePayState">
@@ -351,5 +353,10 @@
         SELECT count(apply.DECORATION_APPLY_ID)
         FROM T_DECORATION_APPLY apply
         WHERE apply.HOUSE_INFO_ID = #{pkHouse} AND apply.CUSTOMERID = #{customerId}
+        ORDER BY apply.APPLY_TIME DESC
+    </select>
+    <select id="getDecorationApplyByOrder" resultMap="BaseResultMap">
+        <include refid="select"/>
+        WHERE apply.HOUSE_INFO_ID = #{pkHouse} AND apply.CUSTOMERID = #{customerId}AND rownum = 1
     </select>
 </mapper>
