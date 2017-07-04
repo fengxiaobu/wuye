@@ -25,8 +25,8 @@
 								
 							<div class="form-inline">
 								<div class="form-group">
-									<label>房产名称：</label>
-									<input type="text" class="form-control quanxianmingcheng" placeholder="房产名称">
+									<label>房产编号：</label>
+									<input type="text"  id="vhcode" class="form-control quanxianmingcheng" placeholder="房产编号">
 									<button id="query" type="submit" class="btn btn-info danxi_saixuan">搜索</button>
 								</div>
 							</div>
@@ -40,7 +40,7 @@
 							<tr class="info">
 			                    <th rowspan="2">序号</th>
 			                    <th rowspan="2">项目名称<br/></th>
-			                    <th rowspan="2">房产</th>
+			                    <th rowspan="2">房产编号</th>
 			                    <th rowspan="2">客户名称</th>
 			                    <th rowspan="2">首次限制开始日期</th>
 			                    <th rowspan="2">首次限制截止日期</th>
@@ -50,24 +50,12 @@
 			                    <th rowspan="2">操作</th>
 			                </tr>
 						</thead>
-						<tbody class="tudiqianyue-tbody">
-							<tr>
-								<td>1</td>
-								<td>2</td>
-								<td>3</td>
-								<td>4</td>
-								<td>5</td>
-								<td>6</td>
-								<td>7</td>
-								<td>8</td>
-								<td>9</td>
-								<td>
-									 <a class="btn btn-info"  href="${basePath}/page/system/waterele/housrestedit" role="button">编辑</a></td>
-								</td>
-							</tr>
+						<tbody id="productList">
 		                </tbody>
 		            </table>
-		            
+		            <div colspan="9">
+		   				<ul class="pagination" id="pagination1"></ul>
+					</div>
 				</div>
 			</div>
 			</div>
@@ -75,7 +63,86 @@
 		
 </body>
 <script type="text/javascript">
+$(function(){	
+	var pageSize = 10;
+	getData(1,pageSize) ;
+	
+	//查询
+	$("#query").click(function(){
+		getData(1,pageSize) ;
+	});
+	
+	//回车搜索
+	$(document).keydown(function(event) {
+		if (event.keyCode == 13) {
+			$("#query").click();
+		}
+	});
+	
+});
 
+//加载分页显示数据
+function getData(num,pageSize,f){
+	var vhcode = $("#vhcode").val();
+	$.ajax({
+		url:"${basePath}/admin/sys/queryHouseListByPage",
+		type:"GET",
+		contentType:"text/json,html,xml;charset=utf-8",
+		dataType:"json",
+		data : {
+			vhcode:vhcode,//房产编号
+             page : num,//当前页
+             rows : pageSize
+         },
+		cache:false,
+		statusCode : {
+			200 : function(data) {
+				 $("#productList tr").remove();
+		          var results = data.rows;
+		          var totalPages = data.total%pageSize==0?Math.floor(data.total/pageSize):Math.floor(data.total/pageSize+1);
+		          if(results.length!=0){
+		        	  console.log(results)
+			          for (var i = 0; i < results.length; i++) {
+			        	  var rowContent = "<tr>"
+		              		  + "<td>"+(i+1)+"</td>"
+		                      + "<td>"+isnull(results[i].project)+"</td>"
+		                      + "<td>"+isnull(results[i].vhcode)+"</td>"
+		                      + "<td>"+isnull(results[i].vcname)+"</td>"
+		                      + "<td>"+isnull(results[i].startdate)+"</td>"
+		                      + "<td>"+isnull(results[i].enddate)+"</td>"
+		                      + "<td>"+isnull(results[i].firstmny)+"</td>"
+		                      + "<td>"+isnull(results[i].everymny)+"</td>"
+		                      + "<td>"+(results[i].astrictstatus=='Y'?'启动':'禁用')+"</td>"
+		                      + "<td>"  
+		                      +"<a class='btn btn-info'  href='${basePath}/admin/sys/housrestedit?pkHouse="+results[i].pkHouse+"&vcname="+results[i].vcname+"' role='button'>编辑</a>"
+		                      +"</td>"
+					          + "</tr>";
+		           		$("#productList").append(rowContent);
+			          }
+		          }else{
+		 			  totalPages = totalPages<=1?1:totalPages;
+		              
+		              //$("#productList").append("<tr><td colspan=\""+$("#thead th").length+"\" style=\"text-align:center\">暂无数据.</td></tr>");
+		 			 $("#productList").append("<tr><td colspan='11'>暂无数据</td></tr>");
+		          }
+					$.jqPaginator('#pagination1', {
+						totalPages : totalPages,
+						visiblePages : pageSize,
+						currentPage : num,
+						onPageChange : function(num1, type) {
+							if(num1 !=num){
+								getData(num1,pageSize) ;
+							}	
+						} 
+					});	
+			},
+			500: function(){
+				layer.msg('网络异常，请稍后再试！', {icon: 5});		
+			}
+			
+		}
+   });	
+}
 </script>
  
 </html>

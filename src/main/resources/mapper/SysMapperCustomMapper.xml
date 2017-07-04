@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.rzhd.wuye.mapper.SysMapperCustom">
+    <resultMap id="baseMap" type="cn.rzhd.wuye.bean.vo.HouseInfoDetailsVo">
+        <id property="pkHouse" column="pk_house"/>
+        <result property="project" column="project"/>
+        <result property="vhcode" column="vhcode"/>
+        <result property="vcname" column="vcname"/>
+        <result property="startdate" column="STARTDATE"/>
+        <result property="enddate" column="ENDDATE"/>
+        <result property="firstmny" column="FIRSTMNY"/>
+        <result property="everymny" column="EVERYMNY"/>
+        <result property="astrictstatus" column="ASTRICTSTATUS"/>
+    </resultMap>
+   <!-- sql片段 -->
+	<sql id="query_house_where">
+		<if test="vhcode!=null">
+				and project.vhcode like '%${vhcode}%'
+		</if>
+	</sql>
+	
+	<!-- 系统设置 房产水电购买列表总数 -->
+    <select id="findHouseCount" resultType="int" parameterType="cn.rzhd.wuye.bean.vo.HouseInfoDetailsQueryVo">
+    SELECT count (*) FROM
+		(
+		    SELECT 
+				h."pk_house" pk_house,
+				h."project" project,
+				(select "vcname" FROM "T_Customer" where "pk_customerid"=rc."pk_customerid") vcname,
+				h."vhcode" vhcode,
+				h.STARTDATE,
+				h.ENDDATE,
+				h.FIRSTMNY,
+				h.EVERYMNY,
+				h.ASTRICTSTATUS
+			FROM T_HOUSE_INFO_DETAILS h
+			LEFT JOIN "T_Rent_Contract" rc  ON h."pk_house" = RC."pk_house"
+		) project
+       <where>
+			<include refid="query_house_where" />
+		</where>
+    </select>
+    
+    <!-- 系统设置 房产水电购买列表分页 -->
+    <select id="findHouseListPage" resultMap="baseMap" parameterType="cn.rzhd.wuye.bean.vo.HouseInfoDetailsQueryVo">
+       <if test="pageQuery!=null"> 
+			select page_2.* from (select page_1.*,
+				rownum page_num from (
+		</if>
+		SELECT * FROM
+		(
+			SELECT 
+				h."pk_house" pk_house,
+				h."project" project,
+				(select "vcname" FROM "T_Customer" where "pk_customerid"=rc."pk_customerid") vcname,
+				h."vhcode" vhcode,
+				h.STARTDATE,
+				h.ENDDATE,
+				h.FIRSTMNY,
+				h.EVERYMNY,
+				h.ASTRICTSTATUS
+			FROM T_HOUSE_INFO_DETAILS h
+			LEFT JOIN "T_Rent_Contract" rc  ON h."pk_house" = RC."pk_house"
+		) project
+		<where>
+			<include refid="query_house_where" />
+		</where>
+		
+		<if test="pageQuery!=null">
+			) page_1
+        <![CDATA[
+         where rownum <= ${pageQuery.PageQuery_end}) page_2
+		 where page_2.page_num > ${pageQuery.PageQuery_start}
+		 ]]>
+		</if>
+    </select>
+</mapper>

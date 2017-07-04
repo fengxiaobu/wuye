@@ -32,4 +32,10 @@ public interface HouseInfoDetailsMapper {
 
     void updadteState(@Param("alreadyFinish") String alreadyFinish, @Param("houseInfoId") String houseInfoId);
 
+    /**
+     * @Description 更新房产水电限制信息
+     * @param houseInfoDetails
+     */
+    void updatehouseByPkHouse(HouseInfoDetails houseInfoDetails);
+
 }
