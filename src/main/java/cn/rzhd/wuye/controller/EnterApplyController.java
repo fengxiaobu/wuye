@@ -401,7 +401,8 @@ public class EnterApplyController {
     @ResponseBody
     public Map<String, String> updateEnterApplyState(Long enterApplyId) {
         Map<String, String> result = new Hashtable<>();
-        enterApplyService.updatePayState("-1", "-1", enterApplyId);
+
+        enterApplyService.updatePayState("1", "1", enterApplyId);
         result.put("state", "1");
         return result;
     }
@@ -417,6 +418,7 @@ public class EnterApplyController {
     @ResponseBody
     public Map<String, String> getCount(String pkHouse, String customerId) {
         Map<String, String> result = new Hashtable<>();
+
         if (StrUtil.isEmpty(pkHouse) && StrUtil.isEmpty(customerId)) {
             result.put("state", "0");
             result.put("msg", "ID为空");
