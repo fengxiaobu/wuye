@@ -22,5 +22,9 @@ public interface MessageManageMapper {
 	
 	List<String> getAllType();
 	
-	void deleteOne(String message_manage_id);
+	void deleteOne(Long message_manage_id);
+
+	void save(MessageManage messageManage);
+
+	void update(MessageManage messageManage);
 }

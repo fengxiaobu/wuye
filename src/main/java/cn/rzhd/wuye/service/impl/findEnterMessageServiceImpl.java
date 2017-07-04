@@ -8,17 +8,18 @@ import org.springframework.stereotype.Service;
 import cn.rzhd.wuye.bean.MessageManage;
 import cn.rzhd.wuye.mapper.MessageManageMapper;
 import cn.rzhd.wuye.service.IMessageManageService;
+
 @Service
 public class findEnterMessageServiceImpl implements IMessageManageService {
 
-    @Autowired
-    private MessageManageMapper mapper;
-    
-    @Override
-    public MessageManage findEnterMessage() {
-	MessageManage findEnterMessage = mapper.findEnterMessage();
-	return findEnterMessage;
-    }
+	@Autowired
+	private MessageManageMapper mapper;
+
+	@Override
+	public MessageManage findEnterMessage() {
+		MessageManage findEnterMessage = mapper.findEnterMessage();
+		return findEnterMessage;
+	}
 
 	@Override
 	public List<MessageManage> getAllMessage() {
@@ -44,8 +45,18 @@ public class findEnterMessageServiceImpl implements IMessageManageService {
 	}
 
 	@Override
-	public void deleteMsg(String message_manage_id) {
+	public void deleteMsg(Long message_manage_id) {
 		mapper.deleteOne(message_manage_id);
+	}
+
+	@Override
+	public void save(MessageManage messageManage) {
+		mapper.save(messageManage);
+	}
+
+	@Override
+	public void edit(MessageManage messageManage) {
+		mapper.update(messageManage);
 	}
 
 }

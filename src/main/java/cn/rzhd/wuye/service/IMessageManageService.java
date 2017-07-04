@@ -26,5 +26,10 @@ public interface IMessageManageService {
 	
 	List<String> getAllType();
 	
-	void deleteMsg(String message_manage_id);
+	void deleteMsg(Long message_manage_id);
+
+	void save(MessageManage messageManage);
+
+	void edit(MessageManage messageManage);
+
 }
