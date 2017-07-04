@@ -59,7 +59,7 @@
 		UPDATE_TIME updateTime
 	</sql>
 	
-	<select id="getDataName" parameterType="int" resultType="cn.rzhd.wuye.bean.TypeDifferentiate">
+	<select id="getDataName" parameterType="Long" resultType="cn.rzhd.wuye.bean.TypeDifferentiate">
 		SELECT <include refid="getAllType" /> FROM T_TYPE_DIFFERENTIATE WHERE TYPE_DIFFERENTIATE_ID=#{typeDifferentiateId}
 	</select>
 </mapper>

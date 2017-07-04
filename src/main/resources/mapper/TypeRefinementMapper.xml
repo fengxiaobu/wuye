@@ -4,11 +4,11 @@
 <mapper namespace="cn.rzhd.wuye.mapper.TypeRefinementMapper">
     
     <resultMap id="typeMap" type="cn.rzhd.wuye.bean.TypeRefinement">
-        <id property="typeRefinementId" column="type_refinement_id"/>
-        <result property="typeDifferentiateId" column="type_differentiate_id"/>
-        <result property="typeRefinementName" column="type_refinement_name"/>
-        <result property="note" column="note"/>
-        <result property="status" column="status"/>
+        <id property="typeRefinementId" column="TYPE_REFINEMENT_ID"/>
+        <result property="typeDifferentiateId" column="TYPE_DIFFERENTIATE_ID"/>
+        <result property="typeRefinementName" column="TYPE_REFINEMENT_NAME"/>
+        <result property="note" column="NOTE"/>
+        <result property="status" column="STATUS"/>
         <result property="createTime" column="CREATE_TIME"/>
         <result property="updateTime" column="UPDATE_TIME"/>
     </resultMap>
@@ -56,14 +56,17 @@
 		UPDATE_TIME updateTime
     </sql>
     
-    <select id="getDataList" parameterType="int" resultType="cn.rzhd.wuye.bean.TypeRefinement" >
+    <select id="getDataList" parameterType="Long" resultType="cn.rzhd.wuye.bean.TypeRefinement" >
     	SELECT <include refid="allType" /> FROM T_TYPE_REFINEMENT where TYPE_DIFFERENTIATE_ID = #{typeDifferentiateId}
     </select>
     
-    <select id="getOneData" parameterType="int" resultType="cn.rzhd.wuye.bean.TypeRefinement">
+    <select id="getOneData" parameterType="Long" resultType="cn.rzhd.wuye.bean.TypeRefinement">
     	SELECT <include refid="allType" /> FROM T_TYPE_REFINEMENT WHERE TYPE_REFINEMENT_ID=#{typeRefinementId}
     </select>
     
+    <delete id="delete" parameterType="Long">
+     		DELETE FROM T_TYPE_REFINEMENT WHERE TYPE_REFINEMENT_ID = #{typeRefinementId}
+    </delete>
     
     
     

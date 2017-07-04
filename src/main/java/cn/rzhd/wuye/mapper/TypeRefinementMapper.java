@@ -26,7 +26,9 @@ public interface TypeRefinementMapper {
      * @param typeDifferentiateId
      * @return 获取数据字典
      */
-    List<TypeRefinement> getDataList(Integer typeDifferentiateId);
+    List<TypeRefinement> getDataList(Long typeDifferentiateId);
     
-    TypeRefinement getOneData(Integer typeRefinementId);
+    TypeRefinement getOneData(Long typeRefinementId);
+
+	void delete(Long typeRefinementId);
 }

@@ -5,10 +5,14 @@ import java.util.List;
 import cn.rzhd.wuye.bean.TypeRefinement;
 
 public interface ITypeRefinementService {
-    
-    // void addTypeRefinement(TypeRefinementVo typeRefinementVo);
 
-	List<TypeRefinement> getDataList(Integer typeDifferentiateId);
-	
-	TypeRefinement getOneData(Integer typeRefinementId);
+	List<TypeRefinement> getDataList(Long typeDifferentiateId);
+
+	TypeRefinement getOneData(Long typeRefinementId);
+
+	void delete(Long typeRefinementId);
+
+	void save(TypeRefinement typerefinement);
+
+	void update(TypeRefinement typerefinement);
 }
