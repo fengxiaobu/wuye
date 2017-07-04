@@ -188,7 +188,39 @@
             </association>
         </association>
     </resultMap>
-
+    <sql id="select">
+        SELECT
+            DECORATION_APPLY_ID,
+            HOUSE_INFO_ID,
+            CLIENT_NAME,
+            APPLY_TIME,
+            ANTIPATE_TIME,
+            LOCALE_CUSTODIAN,
+            LOCALE_CUSTODIAN_PHONE,
+            DECORATION_PARTS,
+            DECORATE_AREA,
+            CONSTRUCT_PEOPLE_NUMBER,
+            DECORATION_COMPANY,
+            DECORATION_LEADER,
+            "DECORATION_ LEADER_PHONE",
+            DECORATION_DEPOSIT,
+            DECORATION_MANAGEMENT_COST,
+            PASS_PAPERS_COST,
+            PASS_PAPERS_DEPOSIT,
+            AUDIT_STATUS,
+            FEEDBACK1,
+            FEEDBACK2,
+            IS_SPECIAL_DECORATION,
+            SPECIAL_DECORATION_FILE,
+            CREATION_TIME,
+            UPDATE_TIME,
+            PAYMENT_STATUS,
+            CUSTOMERID,
+            house.*,
+            customer.*
+        FROM T_DECORATION_APPLY apply LEFT JOIN T_HOUSE_INFO_DETAILS house ON apply.HOUSE_INFO_ID = house."pk_house"
+            LEFT JOIN "T_Customer" customer ON apply.CUSTOMERID = customer."pk_customerid"
+    </sql>
     <update id="updateByPrimaryKey" parameterType="cn.rzhd.wuye.bean.DecorationApply">
         UPDATE T_DECORATION_APPLY
         SET HOUSE_INFO_ID              = #{houseInfoId},
@@ -245,7 +277,7 @@
                 SPECIAL_DECORATION_FILE,
                 CREATION_TIME,
                 UPDATE_TIME,
-                PAYMENT_STATUS
+                PAYMENT_STATUS, CUSTOMERID
             )
         VALUES (
             #{decorationApplyId},
@@ -272,7 +304,7 @@
             #{specialDecorationFile},
             #{creationTime},
             #{updateTime},
-            #{paymentStatus}
+            #{paymentStatus}, #{customerId}
         )
     </insert>
 
@@ -281,58 +313,35 @@
         WHERE DECORATION_APPLY_ID = #{decorationApplyId}
     </delete>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap">
-        SELECT *
-        FROM
-            T_DECORATION_APPLY apply, T_HOUSE_INFO_DETAILS house, T_PROJECT_INFO project
-        WHERE
-            apply.HOUSE_INFO_ID = house."pk_house"
-            AND
-            house."pk_project" = project.PK_PROJECT
-            AND
-            DECORATION_APPLY_ID = #{decorationApplyId}
+        <include refid="select"/>
+        WHERE apply.DECORATION_APPLY_ID = #{decorationApplyId} ORDER BY apply.APPLY_TIME DESC
     </select>
     <select id="findDecorationApplyList" resultMap="DecorationApplyMapper">
-        SELECT
-            apply.*,
-            house.*,
-            project.*
-        FROM T_DECORATION_APPLY apply, T_HOUSE_INFO_DETAILS house, T_PROJECT_INFO project
-        WHERE apply.HOUSE_INFO_ID = house."pk_house" AND house."pk_project" = project.PK_PROJECT
+        <include refid="select"/>
+        ORDER BY apply.APPLY_TIME DESC
     </select>
-    <select id="findDecorationApplyListByQuery" resultMap="DecorationApplyMapper">
-        SELECT
-            DECORATION_APPLY_ID,
-            HOUSE_INFO_ID,
-            CLIENT_NAME,
-            APPLY_TIME,
-            ANTIPATE_TIME,
-            LOCALE_CUSTODIAN,
-            LOCALE_CUSTODIAN_PHONE,
-            DECORATION_PARTS,
-            DECORATE_AREA,
-            CONSTRUCT_PEOPLE_NUMBER,
-            DECORATION_COMPANY,
-            DECORATION_LEADER,
-            "DECORATION_ LEADER_PHONE",
-            DECORATION_DEPOSIT,
-            DECORATION_MANAGEMENT_COST,
-            PASS_PAPERS_COST,
-            PASS_PAPERS_DEPOSIT,
-            AUDIT_STATUS,
-            FEEDBACK1,
-            FEEDBACK2,
-            IS_SPECIAL_DECORATION,
-            SPECIAL_DECORATION_FILE,
-            CREATION_TIME,
-            UPDATE_TIME,
-            PAYMENT_STATUS
-        FROM T_DECORATION_APPLY
+    <select id="findDecorationApplyListByQuery" parameterType="cn.rzhd.wuye.vo.query.ApplyQuery"
+            resultMap="DecorationApplyMapper">
+        <include refid="select"/>
+        <where>
+            <if test="startDate != null">
+                <if test="endDate != null">
+                    apply.APPLY_TIME BETWEEN #{startDate}
+                    AND #{endDate}
+                </if>
+            </if>
+            <if test="clientName != null">
+                AND apply.CLIENT_NAME=#{clientName} OR house."project"=#{clientName}
+            </if>
+        </where>
+        ORDER BY apply.APPLY_TIME DESC
     </select>
     <select id="findDecorationApplyByHouseId" resultMap="BaseResultMap">
         SELECT *
-        FROM T_DECORATION_APPLY
-        WHERE
-            HOUSE_INFO_ID = '${houseInfoId}'
+        FROM (SELECT *
+              FROM T_DECORATION_APPLY
+              ORDER BY APPLY_TIME DESC)
+        WHERE HOUSE_INFO_ID = '${houseInfoId}' AND rownum = 1
     </select>
 
     <update id="updatePayState">
@@ -344,5 +353,10 @@
         SELECT count(apply.DECORATION_APPLY_ID)
         FROM T_DECORATION_APPLY apply
         WHERE apply.HOUSE_INFO_ID = #{pkHouse} AND apply.CUSTOMERID = #{customerId}
+        ORDER BY apply.APPLY_TIME DESC
+    </select>
+    <select id="getDecorationApplyByOrder" resultMap="BaseResultMap">
+        <include refid="select"/>
+        WHERE apply.HOUSE_INFO_ID = '${pkHouse}' AND apply.CUSTOMERID = '${customerId}' AND rownum = 1
     </select>
 </mapper>

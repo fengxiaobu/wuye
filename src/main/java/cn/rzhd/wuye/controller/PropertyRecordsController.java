@@ -23,10 +23,10 @@ public class PropertyRecordsController {
 
     @RequestMapping("/index")
     public ModelAndView index(PropertyRecordsQuery query){
-        System.out.println(query);
         query.setUserId(UserContext.getUser().getUserId());
         List<Map<String, Object>> result = new ArrayList<>();
         result.addAll(propertyFeePayDetailsService.getByProject(query));
+        Integer total = propertyFeePayDetailsService.countByQuery(query);
         ModelAndView mav = new ModelAndView();
         mav.addObject("propertyRecords",result);
         mav.addObject("query",query);

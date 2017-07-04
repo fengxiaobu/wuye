@@ -1,6 +1,7 @@
 package cn.rzhd.wuye.mapper;
 
 import cn.rzhd.wuye.bean.EnterMaterial;
+import cn.rzhd.wuye.vo.query.ApplyQuery;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -25,10 +26,10 @@ public interface EnterMaterialMapper {
     /**
      * 根据房产ID查询入驻资料信息
      *
-     * @param pkproject
+     * @param query
      * @return
      */
-    EnterMaterial findEnterMaterialBypkproject(@Param("pkproject") String pkproject);
+    List<Map<String, JsonFormat.Value>> findEnterMaterialBypkproject(ApplyQuery query);
 
     /**
      * 根据ID查询入驻资料信息
@@ -37,4 +38,26 @@ public interface EnterMaterialMapper {
      * @return
      */
     EnterMaterial findEnterMaterialByKey(@Param("enterMaterialId") Long enterMaterialId);
+
+    /**
+     * 查询项目资料
+     *
+     * @param trim
+     * @return
+     */
+    EnterMaterial findEnterMaterialBypkprojectId(@Param("pkProject") String trim);
+
+    /**
+     * 新增
+     *
+     * @param enterMaterial
+     */
+    void insertEnterMaterial(EnterMaterial enterMaterial);
+
+    /**
+     * 删除
+     *
+     * @param enterMaterialId
+     */
+    void delEnterMaterial(@Param("enterMaterialId") Long enterMaterialId);
 }

@@ -77,4 +77,14 @@ public class HouseInfoDetailsServiceImpl implements IHouseInfoDetailsService {
         mapper.updadteState(alreadyFinish,houseInfoId);
     }
 
+    @Override
+    public void updatehouse(HouseInfoDetails houseInfoDetails) {
+        mapper.updatehouseByPkHouse(houseInfoDetails);
+    }
+
+    @Override
+    public HouseInfoDetails selectHouseInfoDetailsById(String pkHouse) {
+        return mapper.selectHouseInfoDetailsById(pkHouse);
+    }
+
 }

@@ -387,6 +387,20 @@
             <artifactId>spring-boot</artifactId>
             <version>1.5.3.RELEASE</version>
         </dependency>
+		
+		<!-- kaptcha验证码 -->
+		<dependency>  
+            <groupId>com.github.penggle</groupId>  
+            <artifactId>kaptcha</artifactId>  
+            <version>2.3.2</version>  
+              
+            <exclusions>  
+                <exclusion>  
+                    <artifactId>javax.servlet-api</artifactId>  
+                    <groupId>javax.servlet</groupId>  
+                </exclusion>  
+            </exclusions>  
+        </dependency>  
 
         <!-- https://mvnrepository.com/artifact/org.apache.tomcat/tomcat-util -->
         <!--   <dependency>

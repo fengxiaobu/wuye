@@ -109,12 +109,15 @@
         <if test="enterApplyState!=null">
             SET
             ENTERAPPLY_STATE = #{enterApplyState}
+            where "pk_house" = (SELECT HOUSE_INFO_ID FROM WUYE.T_ENTER_APPLY apply WHERE
+            apply.ENTER_APPLY_ID=#{pkHouse})
         </if>
         <if test="decorationapplystate!=null">
-            SET
-            DECORATIONAPPLYSTATE=#{decorationapplystate}
+            SET DECORATIONAPPLYSTATE=#{decorationapplystate}
+            where
+            "pk_house" = ( SELECT HOUSE_INFO_ID FROM WUYE.T_DECORATION_APPLY apply WHERE
+            apply.DECORATION_APPLY_ID=#{pkHouse})
         </if>
-        WHERE "pk_house" = '${pkHouse}'
     </update>
 
     <select id="selectByPrimaryKey" resultMap="BaseResultMap">
@@ -133,6 +136,11 @@
         FROM T_HOUSE_INFO_DETAILS
     </select>
 
+	<select id="selectHouseInfoDetailsById" resultType="cn.rzhd.wuye.bean.HouseInfoDetails">
+        SELECT *
+        FROM T_HOUSE_INFO_DETAILS
+        where "pk_house" = #{pkHouse}
+    </select>
     <select id="getHouseInfoByName" parameterType="String" resultMap="houseVOMap">
         SELECT
             "pk_project",
@@ -255,8 +263,22 @@
         <result column="DECORATIONAPPLYSTATE" property="decorationapplystate" jdbcType="VARCHAR"/>
         <result column="ALREADY_FINISH" property="alreadyFinish" jdbcType="VARCHAR"/>
     </resultMap>
-    
+
     <update id="updadteState">
-        UPDATE T_HOUSE_INFO_DETAILS SET ALREADY_FINISH = #{alreadyFinish}  WHERE "pk_house" = #{houseInfoId}
+        UPDATE T_HOUSE_INFO_DETAILS
+        SET ALREADY_FINISH = #{alreadyFinish}
+        WHERE "pk_house" = #{houseInfoId}
+    </update>
+    
+    
+     <update id="updatehouseByPkHouse" parameterType="cn.rzhd.wuye.bean.HouseInfoDetails">
+     	UPDATE T_HOUSE_INFO_DETAILS
+			SET STARTDATE = #{startdate},
+			ENDDATE = #{enddate},
+			FIRSTMNY = #{firstmny},
+			EVERYMNY = #{everymny},
+			ASTRICTSTATUS = #{astrictstatus},
+			UPDATEDATE = #{updatedate}
+			WHERE  "pk_house" = #{pkHouse}
     </update>
 </mapper>

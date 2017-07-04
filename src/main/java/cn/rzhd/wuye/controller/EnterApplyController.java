@@ -6,8 +6,7 @@ import cn.rzhd.wuye.bean.PropertyFee;
 import cn.rzhd.wuye.bean.ReName;
 import cn.rzhd.wuye.service.*;
 import cn.rzhd.wuye.utils.JsonUtils;
-import cn.rzhd.wuye.utils.StringTimeUtil;
-import cn.rzhd.wuye.vo.query.EnterApplyQuery;
+import cn.rzhd.wuye.vo.query.ApplyQuery;
 import cn.rzhd.wuye.vo.query.FeeDataQuery;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
@@ -17,6 +16,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.github.pagehelper.StringUtil;
 import com.xiaoleilu.hutool.io.FileUtil;
+import com.xiaoleilu.hutool.util.RandomUtil;
 import com.xiaoleilu.hutool.util.StrUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -28,9 +28,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.lang.reflect.InvocationTargetException;
 import java.text.SimpleDateFormat;
@@ -137,19 +137,22 @@ public class EnterApplyController {
     /**
      * 条件查询
      *
-     * @param model
-     * @param enterApplyQuery
      * @return
      */
     @RequestMapping(value = "/search", method = RequestMethod.POST)
-    public String search(Model model, EnterApplyQuery enterApplyQuery) {
-        System.out.println("日期+++++++++++" + StringTimeUtil.parse(enterApplyQuery.getStartDate()));
-        PageHelper.startPage(1, 5);
-        List<Map<String, JsonFormat.Value>> enterApplyList = enterApplyService.findEnterApplyByQuery(enterApplyQuery);
-        Page page = (Page) enterApplyList;
+    public String search(ApplyQuery query, Model model) {
+        // PageHelper.startPage(1, 5);
+        System.out.println("applyQuery = " + query);
+        List<Map<String, JsonFormat.Value>> enterApplyList = enterApplyService.findEnterApplyByQuery(query);
+        // Page page = (Page) enterApplyList;
+        ModelAndView modelAndView = new ModelAndView();
         model.addAttribute("enterApplyList", enterApplyList);
-
-        model.addAttribute("total", page.getPages());
+        //model.addAttribute("enterApplyList", enterApplyList);
+        model.addAttribute("clientName", query.getClientName());
+        model.addAttribute("startDate", query.getStartDate());
+        model.addAttribute("endDate", query.getEndDate());
+        // model.addAttribute("total", page.getPages());
+        //return "forbusiness/enterApplyList";
         return "forbusiness/enterApplyList";
     }
 
@@ -169,10 +172,10 @@ public class EnterApplyController {
             enterApplyService.updateEnterApply(enterApply);
             if (enterApply.getAuditStatus() == 1) {
                 //修改申请状态
-                houseInfoDetailsService.updateHouse(enterApply.getHouseId(), "2", null);
+                houseInfoDetailsService.updateHouse(String.valueOf(enterApply.getEnterApplyId()), "2", null);
             } else if (enterApply.getAuditStatus() == 2) {
                 //修改申请状态
-                houseInfoDetailsService.updateHouse(enterApply.getHouseId(), "0", null);
+                houseInfoDetailsService.updateHouse(String.valueOf(enterApply.getEnterApplyId()), "2", null);
             }
 
             //查询更新数据
@@ -204,7 +207,7 @@ public class EnterApplyController {
             result.put("msg", "房产ID不能为空!");
             return result;
         }
-        if (StrUtil.isEmpty(enterApply.getCustomerId())){
+        if (StrUtil.isEmpty(enterApply.getCustomerId())) {
 
         }
         if (StringUtil.isEmpty(enterApply.getEnterAdviceNote())) {
@@ -219,12 +222,13 @@ public class EnterApplyController {
             enterApply.setCreationTime(date);
             //初始化审核状态
             enterApply.setAuditStatus(0);
+            enterApply.setEnterApplyId(Long.valueOf(RandomUtil.randomNumbers(16)));
             System.out.println("enterApply = " + enterApply);
             enterApplyService.insertEnterApply(enterApply);
             result.put("state", "1");
             result.put("msg", "成功!");
             //修改申请状态
-            houseInfoDetailsService.updateHouse(enterApply.getHouseId(), "1", null);
+            houseInfoDetailsService.updateHouse(String.valueOf(enterApply.getEnterApplyId()), "2", null);
             return result;
         } catch (Exception e) {
             result.put("state", "0");
@@ -245,7 +249,7 @@ public class EnterApplyController {
     public String deleteEnterApply(Model model, Long enterApplyId, String pkHouse) {
         if (enterApplyId != null) {
             enterApplyService.deleteEnterApply(enterApplyId);
-            houseInfoDetailsService.updateHouse(pkHouse, "0", null);
+            houseInfoDetailsService.updateHouse(String.valueOf(enterApplyId), "2", null);
         }
         //查询更新数据
         //PageHelper.startPage(1, 5);
@@ -257,44 +261,6 @@ public class EnterApplyController {
         return "forbusiness/enterApplyList";
     }
 
-    @RequestMapping("/downLoad")
-    @ResponseBody
-    public String downLoad(HttpServletResponse response, String filePath) {
-        Map result = new HashMap();
-        response.setCharacterEncoding("utf-8");
-        try {
-            String[] fp = filePath.split("\\\\");
-            String fileName = fp[fp.length - 1];// 文件名称
-            System.out.println("-------------------------------上传文件名为=" + fileName);
-
-            //下载机器码文件
-            response.setHeader("conent-type", "application/octet-stream");
-            response.setContentType("application/octet-stream");
-            response.setHeader("Content-Disposition", "attachment; filename=" + new String(fileName.getBytes("ISO-8859-1"), "UTF-8"));
-
-            OutputStream os = response.getOutputStream();
-            BufferedOutputStream bos = new BufferedOutputStream(os);
-
-            InputStream is = null;
-
-            is = new FileInputStream(filePath);
-            BufferedInputStream bis = new BufferedInputStream(is);
-
-            int length = 0;
-            byte[] temp = new byte[1 * 1024 * 10];
-
-            while ((length = bis.read(temp)) != -1) {
-                bos.write(temp, 0, length);
-            }
-            bos.flush();
-            bis.close();
-            bos.close();
-            is.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "OK";
-    }
 
     // 文件上传
     @RequestMapping("/fileUpload")

@@ -35,4 +35,6 @@ public interface PropertyFeePayDetailsMapper {
     String getCompanyAccount(@Param("feeType") String feeType,@Param("pk_corp") String pk_corp);
 
     String getCompanyName(@Param("feeType") String feeType,@Param("pk_corp") String pk_corp);
+
+    Integer countByQuery(PropertyRecordsQuery query);
 }

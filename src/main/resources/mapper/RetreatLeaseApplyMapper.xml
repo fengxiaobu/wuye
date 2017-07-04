@@ -184,6 +184,7 @@
             LEFT JOIN T_HOUSE_INFO_DETAILS house ON
                                                      aaply.HOUSE_INFO_ID = house."pk_house"
         WHERE RETREAT_LEASE_APPLY_ID = #{retreatLeaseApplyId}
+        ORDER BY aaply.CREATION_TIME DESC
     </select>
     <select id="selectAll" resultMap="BaseResultMap">
         SELECT
@@ -193,7 +194,9 @@
             LEFT JOIN "T_Customer" cust ON
                                             aaply.CUSTOMERID = cust."pk_customerid"
             LEFT JOIN T_HOUSE_INFO_DETAILS house ON
+
                                                      aaply.HOUSE_INFO_ID = house."pk_house"
+        ORDER BY aaply.CREATION_TIME DESC
     </select>
     <select id="findRetreatLeaseApply" resultMap="BaseResultMap">
         SELECT
@@ -206,5 +209,6 @@
                                                      aaply.HOUSE_INFO_ID = house."pk_house"
         WHERE
             HOUSE_INFO_ID = #{houseInfoId} AND CUSTOMERID = #{customerId}
+        ORDER BY aaply.CREATION_TIME DESC
     </select>
 </mapper>

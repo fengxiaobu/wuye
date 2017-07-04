@@ -8,11 +8,15 @@ import org.springframework.stereotype.Service;
 import com.xiaoleilu.hutool.util.StrUtil;
 import com.ctc.wstx.util.StringUtil;
 
+import cn.rzhd.wuye.bean.HouseInfoDetails;
 import cn.rzhd.wuye.bean.TSys;
 import cn.rzhd.wuye.bean.TSysExample;
+import cn.rzhd.wuye.bean.vo.HouseInfoDetailsQueryVo;
+import cn.rzhd.wuye.mapper.SysMapperCustom;
 import cn.rzhd.wuye.mapper.TSysMapper;
 import cn.rzhd.wuye.service.ISysServer;
 import cn.rzhd.wuye.utils.IDUtils;
+import cn.rzhd.wuye.utils.PageDataGridResult;
 
 @Service
 public class SysServerImpl implements ISysServer {
@@ -20,6 +24,9 @@ public class SysServerImpl implements ISysServer {
     @Autowired
     private TSysMapper sysMapper;
 
+    @Autowired
+    private SysMapperCustom sysMapperCustom;
+    
     @Override
     public TSys findSysByid(String id) {
         return sysMapper.selectByPrimaryKey(id);
@@ -54,5 +61,20 @@ public class SysServerImpl implements ISysServer {
         }
 
     }
+
+    @Override
+    public int findHouseCount(HouseInfoDetailsQueryVo queryVo) {
+        return sysMapperCustom.findHouseCount(queryVo);
+    }
+
+    @Override
+    public List<HouseInfoDetails> findHouseListPage(HouseInfoDetailsQueryVo queryVo) {
+        return sysMapperCustom.findHouseListPage(queryVo);
+    }
+
+
+
+
+
 
 }
