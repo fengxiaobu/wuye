@@ -134,12 +134,14 @@ public class PerfectInformation implements Serializable {
 	/**
 	 * 创建时间
 	 */
-
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date carteTime;
 	/**
 	 * 修改时间
 	 */
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date updateTime;
+	
 	public String getPerfectInformationId() {
 		return perfectInformationId;
 	}

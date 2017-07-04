@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.xiaoleilu.hutool.util.StrUtil;
+
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -175,7 +177,7 @@ public class CustomerCentreController {
 	public Map<String, Object> savePerfectInformation(PerfectInformation perfectInformation, String houseInfoId) {
 		Map<String, Object> result = new Hashtable<>();
 		
-			if (perfectInformation.getPerfectInformationId() == null || "".equals(perfectInformation.getPerfectInformationId())) {
+			if (StrUtil.isBlank(String.valueOf(perfectInformation.getPerfectInformationId()))) {
 				//保存
 				try {
 					perfectInformation.setPerfectInformationId(houseInfoId);
