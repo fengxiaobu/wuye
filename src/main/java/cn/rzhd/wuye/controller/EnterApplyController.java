@@ -8,6 +8,7 @@ import cn.rzhd.wuye.service.*;
 import cn.rzhd.wuye.utils.JsonUtils;
 import cn.rzhd.wuye.vo.query.ApplyQuery;
 import cn.rzhd.wuye.vo.query.FeeDataQuery;
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -15,6 +16,7 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.github.pagehelper.StringUtil;
+import com.xiaoleilu.hutool.date.DateUtil;
 import com.xiaoleilu.hutool.io.FileUtil;
 import com.xiaoleilu.hutool.util.RandomUtil;
 import com.xiaoleilu.hutool.util.StrUtil;
@@ -56,6 +58,8 @@ public class EnterApplyController {
     IHouseInfoDetailsService houseInfoDetailsService;
     @Autowired
     IReNameService reNameService;
+    @Autowired
+    ICustomerService customerService;
     @Value("${fileDir}")
     private String fileDir;
 
@@ -125,12 +129,19 @@ public class EnterApplyController {
         if (enterApplyList.size() == 1) {
             map = enterApplyList.get(0);
         }
+        if (kfFeeList.size() == 0) {
+
+        }
+        if (propertyFeeList.size() == 0) {
+
+        }
         //入住开发费
         model.addAttribute("kfFeeList", kfFeeList);
         //入住物业费
         model.addAttribute("propertyFeeList", propertyFeeList);
         //入驻申请
         model.addAttribute("enterApply", map);
+
         return "forbusiness/enterApplyEdit";
     }
 
@@ -166,6 +177,8 @@ public class EnterApplyController {
     @RequestMapping("/updateEnterApply")
     public String updateEnterApply(Model model, EnterApply enterApply) {
         try {
+            FeeDataQuery query = new FeeDataQuery();
+            query.setHouseInfoId(enterApply.getHouseId());
             //获取当前时间
             Date date = new Date();
             enterApply.setUpdateTime(date);
@@ -177,7 +190,21 @@ public class EnterApplyController {
                 //修改申请状态
                 houseInfoDetailsService.updateHouse(String.valueOf(enterApply.getEnterApplyId()), "2", null);
             }
+            //入住开发费
+            List<KfFee> kfFeeList = kfFeeService.selectAllRZ(query);
+            //入住物业费
+            List<PropertyFee> propertyFeeList = propertyFeeService.rzselectAll(query);
 
+            if (kfFeeList.size() == 0) {
+                enterApplyService.updatePayState(null, "1", enterApply.getEnterApplyId());
+
+            }
+            if (propertyFeeList.size() == 0) {
+                enterApplyService.updatePayState("1", null, enterApply.getEnterApplyId());
+            }
+            if (kfFeeList.size() == 0 && propertyFeeList.size() == 0) {
+                houseInfoDetailsService.updateHouse(String.valueOf(enterApply.getEnterApplyId()), "3", null);
+            }
             //查询更新数据
             //PageHelper.startPage(1, 500);
             List<Map<String, JsonFormat.Value>> enterApplyList = enterApplyService.findEnterApplyList();
@@ -217,9 +244,8 @@ public class EnterApplyController {
         }
         try {
             //获取当前时间
-            Date date = new Date();
-            enterApply.setApplyTime(date);
-            enterApply.setCreationTime(date);
+            enterApply.setApplyTime(DateUtil.date());
+            enterApply.setCreationTime(DateUtil.date());
             //初始化审核状态
             enterApply.setAuditStatus(0);
             enterApply.setEnterApplyId(Long.valueOf(RandomUtil.randomNumbers(16)));
@@ -229,6 +255,7 @@ public class EnterApplyController {
             result.put("msg", "成功!");
             //修改申请状态
             houseInfoDetailsService.updateHouse(String.valueOf(enterApply.getEnterApplyId()), "2", null);
+
             return result;
         } catch (Exception e) {
             result.put("state", "0");
@@ -333,7 +360,7 @@ public class EnterApplyController {
             }
             List<Map<String, JsonFormat.Value>> mapList = enterApplyService.getEnterApplyByIDAndState(pkHouse);
             result.put("state", "1");
-            result.put("data", mapList);
+            result.put("data", JSON.toJSONString(mapList));
             return result;
         } catch (Exception e) {
             result.put("state", "0");

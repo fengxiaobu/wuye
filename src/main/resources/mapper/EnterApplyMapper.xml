@@ -2,6 +2,20 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="cn.rzhd.wuye.mapper.EnterApplyMapper">
+    <resultMap id="enterApply" type="cn.rzhd.wuye.bean.EnterApply">
+        <id column="ENTER_APPLY_ID" property="enterApplyId"/>
+        <result column="HOUSE_INFO_ID" property="houseId"/>
+        <result column="CLIENT_NAME" property="clientName"/>
+        <result column="APPLY_TIME" property="applyTime"/>
+        <result column="AUDIT_STATUS" property="auditStatus"/>
+        <result column="ENTER_ADVICE_NOTE" property="enterAdviceNote"/>
+        <result column="NOTES" property="notes"/>
+        <result column="CREATION_TIME" property="creationTime"/>
+        <result column="UPDATE_TIME" property="updateTime"/>
+        <result column="WYSTATE" property="wyState"/>
+        <result column="KFSTATE" property="kfState"/>
+        <result column="CUSTOMERID" property="customerId"/>
+    </resultMap>
     <resultMap id="enterApplyMap" type="java.util.Map">
         <id column="ENTER_APPLY_ID" property="enterApplyId"/>
         <result column="HOUSE_INFO_ID" property="houseId"/>
@@ -208,13 +222,15 @@
     </delete>
     <update id="updatePayState">
         UPDATE T_ENTER_APPLY apply
-        SET
-        <if test="wyState !=null">
-            WYSTATE=#{wyState}
-        </if>
-        <if test="kfState !=null">
-            KFSTATE=#{kfState}
-        </if>
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="wyState !=null">
+                WYSTATE=#{wyState},
+            </if>
+
+            <if test="kfState !=null">
+                KFSTATE=#{kfState}
+            </if>
+        </trim>
         WHERE ENTER_APPLY_ID = #{enterApplyId}
     </update>
 
@@ -225,10 +241,10 @@
         ORDER BY apply.CREATION_TIME DESC
     </select>
 
-    <select id="getEnterApply" resultType="enterApply">
+    <select id="getEnterApply" resultMap="enterApply">
         SELECT DISTINCT *
         FROM T_ENTER_APPLY apply
-        WHERE apply.HOUSE_INFO_ID = #{pkHouse} AND apply.CUSTOMERID = #{customerId}
+        WHERE apply.HOUSE_INFO_ID = '${pkHouse}' AND apply.CUSTOMERID = '${customerId}'
         ORDER BY apply.CREATION_TIME DESC
     </select>
 </mapper>

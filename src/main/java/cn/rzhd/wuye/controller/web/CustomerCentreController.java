@@ -9,15 +9,13 @@ import cn.rzhd.wuye.service.IPerfectInformationService;
 import cn.rzhd.wuye.utils.Client;
 import cn.rzhd.wuye.utils.JsonUtils;
 import cn.rzhd.wuye.utils.MD5Utils;
+import com.xiaoleilu.hutool.util.StrUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.xiaoleilu.hutool.util.StrUtil;
-
 import javax.servlet.http.HttpServletRequest;
-import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.*;
 
@@ -196,7 +194,7 @@ public class CustomerCentreController {
 					perfectInformation.setUpdateTime(new Date());
 					//修改
 					perfectInformationService.updateByHouseInfoId(perfectInformation);
-					result.put("state", "2");
+					result.put("state", "1");
 					result.put("msg", "修改成功");
 				} catch (Exception e) {
 					result.put("state", "0");

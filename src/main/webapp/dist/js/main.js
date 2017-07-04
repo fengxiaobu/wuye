@@ -33849,13 +33849,10 @@ webpackJsonp([0],[
 	            pwdAgainStatus: { // 提示信息
 	                passwordTipsTxt: null,
 	                pwdValidateStatus: false
-<<<<<<< HEAD
 	            },
 	            getVcodeStatus: { // 提示信息
 	                getVcodeTipsTxt: null,
 	                pwdValidateStatus: false
-=======
->>>>>>> a3d425d2b087b2c8b4b025d3592259505a6fca71
 	            }
 	        };
 	    },
@@ -34117,7 +34114,6 @@ webpackJsonp([0],[
 	            $.ajax({
 	                type: "post",
 	                // contentType: "application/json",
-<<<<<<< HEAD
 	                url: global.HttpPath + '/CustomerCentre/getVcodeReset', // 获取验证码
 	                data: { bindingPhone: _this.bindingPhone },
 	                dataType: 'json',
@@ -34127,14 +34123,6 @@ webpackJsonp([0],[
 	                        _this.getVcodeStatus.getVcodeTipsTxt = null;
 	                    } else {
 	                        _this.getVcodeStatus.getVcodeTipsTxt = data.msg;
-=======
-	                url: global.HttpPath + '/CustomerCentre//getVcode', // 获取验证码
-	                data: { bindingPhone: _this.bindingPhone },
-	                dataType: 'json',
-	                success: function success(data) {
-	                    if (data.state == 1) {
-	                        _this.$set('getedVcode', data.vcode);
->>>>>>> a3d425d2b087b2c8b4b025d3592259505a6fca71
 	                    }
 	                }
 	            });
@@ -34164,11 +34152,7 @@ webpackJsonp([0],[
 /* 175 */
 /***/ (function(module, exports, __webpack_require__) {
 
-<<<<<<< HEAD
 	module.exports = "\n    <div class=\"popup-container popup-msg login-container\" _v-7e7e42ad=\"\">\n        <div class=\"popup-main\" _v-7e7e42ad=\"\">\n            <div class=\"popup-section\" _v-7e7e42ad=\"\">\n                <div class=\"popup-content container\" _v-7e7e42ad=\"\">\n                    <div _v-7e7e42ad=\"\">\n                        <div class=\"login-left\" _v-7e7e42ad=\"\"><img src=\"" + __webpack_require__(176) + "\" _v-7e7e42ad=\"\"></div>\n                        <div class=\"login-right\" _v-7e7e42ad=\"\">\n                            <div class=\"login-warp\" data-page=\"{{apply}}\" _v-7e7e42ad=\"\">\n                                <!-- 登录 开始 -->\n                                <form class=\"login\" _v-7e7e42ad=\"\">\n                                    <div class=\"login-title\" _v-7e7e42ad=\"\">login<div class=\"errortips\" _v-7e7e42ad=\"\"><label class=\"error\" v-html=\"loginerrmsg\" _v-7e7e42ad=\"\">错误提示信息</label></div></div>\n                                    <div class=\"form-group label-line\" _v-7e7e42ad=\"\">\n                                        <!-- <label for=\"username\">用户名：</label> -->\n                                        <label for=\"username\" _v-7e7e42ad=\"\"><span class=\"icon icon-user\" _v-7e7e42ad=\"\"></span></label>\n                                        <input type=\"text\" class=\"form-control\" id=\"username\" placeholder=\"请输入用户名\" v-focus=\"\" v-model=\"vccode\" _v-7e7e42ad=\"\">\n                                    </div>\n                                    <div class=\"form-group label-line\" _v-7e7e42ad=\"\">\n                                        <!-- <label class=\"form-label\" for=\"userpwd\">密&emsp;码：</label> -->\n                                        <label class=\"form-label\" for=\"userpwd\" _v-7e7e42ad=\"\"><span class=\"icon icon-lock\" _v-7e7e42ad=\"\"></span></label>\n                                        <input type=\"password\" class=\"form-control\" id=\"userpwd\" placeholder=\"请输入密码\" v-model=\"password\" _v-7e7e42ad=\"\">\n                                    </div>\n                                    <div class=\"form-group label-line\" _v-7e7e42ad=\"\">\n                                        <!-- <label class=\"form-label\" for=\"validatecode\">验证码：</label> -->\n                                        <label class=\"form-label\" for=\"validatecode\" _v-7e7e42ad=\"\"><span class=\"icon icon-phone\" _v-7e7e42ad=\"\"></span></label>\n                                        <input type=\"text\" class=\"form-control\" id=\"validatecode\" placeholder=\"请输入验证码\" _v-7e7e42ad=\"\">\n                                        <div class=\"validate-code\" _v-7e7e42ad=\"\"><img src=\"" + __webpack_require__(177) + "\" _v-7e7e42ad=\"\"></div>\n                                    </div>\n                                    <div class=\"other\" _v-7e7e42ad=\"\">\n                                            <label class=\"checkbox-container\" data-type=\"checkbox\" for=\"issaveuser\" :checked=\"isSaveUser\" _v-7e7e42ad=\"\">\n                                                <input type=\"checkbox\" id=\"issaveuser\" value=\"Jack\" v-model=\"isSaveUser\" _v-7e7e42ad=\"\">\n                                                <i class=\"icon icon01 i_radio\" _v-7e7e42ad=\"\"></i>\n                                                <span class=\"checkbox_txt\" _v-7e7e42ad=\"\">记住密码</span>\n                                            </label>\n                                        <a class=\"forgetpwd\" @click=\"next\" _v-7e7e42ad=\"\">忘记密码</a>\n                                    </div>\n                                    <div class=\"text-center\" _v-7e7e42ad=\"\">\n                                        <button type=\"button\" class=\"btn btn-lg btn-login\" @click=\"login\" _v-7e7e42ad=\"\">登录</button>\n                                    </div>\n                                </form>\n                                <!-- 登录 结束 -->\n\n                                <!-- 找回密码 开始 -->\n                                    <!-- 找回密码1 开始 -->\n                                    <form class=\"apply apply1\" _v-7e7e42ad=\"\">\n                                        <a class=\"prev\" @click=\"prev\" v-show=\"apply==1||apply==2\" _v-7e7e42ad=\"\">返回</a>\n                                        <!-- <div class=\"login-title\">重置密码</div> -->\n                                        <div class=\"login-title\" _v-7e7e42ad=\"\">重置密码<div class=\"errortips\" _v-7e7e42ad=\"\"><label class=\"error\" v-html=\"getVcodeStatus.getVcodeTipsTxt\" _v-7e7e42ad=\"\">错误提示信息</label></div></div>\n                                        <div class=\"form-group label-line\" _v-7e7e42ad=\"\">\n                                            <!-- <label for=\"username\">用户名：</label> -->\n                                            <label for=\"fd-userphone\" _v-7e7e42ad=\"\"><span class=\"icon icon-user\" _v-7e7e42ad=\"\"></span></label>\n                                            <input type=\"text\" class=\"form-control\" id=\"fd-userphone\" placeholder=\"请输入您的手机号\" v-model=\"bindingPhone\" _v-7e7e42ad=\"\">\n                                        </div>\n                                        <div class=\"form-group label-line\" _v-7e7e42ad=\"\">\n                                            <!-- <label class=\"form-label\" for=\"validatecode\">验证码：</label> -->\n                                            <label class=\"form-label\" for=\"fd-validatecode\" _v-7e7e42ad=\"\"><span class=\"icon icon-lock\" _v-7e7e42ad=\"\"></span></label>\n                                            <input type=\"text\" class=\"form-control\" id=\"fd-validatecode\" placeholder=\"请输入验证码\" v-model=\"validateCode\" _v-7e7e42ad=\"\">\n                                            <div class=\"validate-code\" _v-7e7e42ad=\"\">\n                                                <!-- <button type=\"button\" class=\"btn send-phonecode\" @click=\"getVcode\">发送验证码</button> -->\n                                                <button type=\"button\" class=\"btn send-phonecode\" @click=\"getVcode\" :disabled=\"countdown>0\" _v-7e7e42ad=\"\">\n                                                    <span v-show=\"countdown==0\" _v-7e7e42ad=\"\">获取验证码</span>\n                                                    <span v-show=\"countdown>0\" _v-7e7e42ad=\"\">{{ countdown }}s</span>\n                                                </button>\n                                            </div>\n                                        </div>\n                                        <ul class=\"step-container\" _v-7e7e42ad=\"\">\n                                            <li class=\"step step1\" _v-7e7e42ad=\"\">1</li>\n                                            <li class=\"step step2\" _v-7e7e42ad=\"\">2</li>\n                                            <li class=\"step step3\" _v-7e7e42ad=\"\">3</li>\n                                        </ul>\n                                        <div class=\"text-center\" _v-7e7e42ad=\"\">\n                                            <button type=\"button\" class=\"btn btn-lg btn-nxet\" @click=\"next\" _v-7e7e42ad=\"\">下一步</button>\n                                        </div>\n                                    </form>\n                                    <!-- 找回密码1 结束 -->\n                                    <!-- 找回密码2 开始 -->\n                                    <form class=\"apply apply2\" _v-7e7e42ad=\"\">\n                                        <a class=\"prev\" @click=\"prev\" v-show=\"apply==1||apply==2\" _v-7e7e42ad=\"\">返回</a>\n                                        <div class=\"login-title\" _v-7e7e42ad=\"\">重置密码<div class=\"errortips\" _v-7e7e42ad=\"\"><label class=\"error\" v-html=\"pwdAgainStatus.passwordTipsTxt\" _v-7e7e42ad=\"\">错误提示信息</label></div></div>\n                                        <div class=\"form-group label-line\" _v-7e7e42ad=\"\">\n                                            <!-- <label for=\"username\">用户名：</label> -->\n                                            <label for=\"set-userpwd\" _v-7e7e42ad=\"\"><span class=\"icon icon-user\" _v-7e7e42ad=\"\"></span></label>\n                                            <input type=\"password\" autocomplete=\"off\" v-model=\"findPassword\" class=\"form-control\" id=\"set-userpwd\" placeholder=\"请重新设置您的密码\" _v-7e7e42ad=\"\">\n                                        </div>\n                                        <div class=\"form-group label-line\" _v-7e7e42ad=\"\">\n                                            <!-- <label for=\"username\">用户名：</label> -->\n                                            <label for=\"set-userpwdagin\" _v-7e7e42ad=\"\"><span class=\"icon icon-user\" _v-7e7e42ad=\"\"></span></label>\n                                            <input type=\"password\" autocomplete=\"off\" class=\"form-control\" id=\"set-userpwdagin\" placeholder=\"请再次输入您的密码\" v-model=\"passwordAgain\" @blur=\"passwordAgainBlur\" _v-7e7e42ad=\"\"> \n                                        </div>\n                                        <ul class=\"step-container\" _v-7e7e42ad=\"\">\n                                            <li class=\"step step1\" _v-7e7e42ad=\"\">1</li>\n                                            <li class=\"step step2\" _v-7e7e42ad=\"\">2</li>\n                                            <li class=\"step step3\" _v-7e7e42ad=\"\">3</li>\n                                        </ul>\n                                        <div class=\"text-center\" _v-7e7e42ad=\"\">\n                                            <button type=\"button\" class=\"btn btn-lg btn-nxet\" @click=\"next\" _v-7e7e42ad=\"\">完成</button>\n                                        </div>\n                                    </form>\n                                    <!-- 找回密码2 结束 -->\n                                    <!-- 找回密码3 开始 -->\n                                    <form class=\"apply apply3\" _v-7e7e42ad=\"\">\n                                        <div class=\"login-title\" _v-7e7e42ad=\"\">重置密码成功！</div>\n                                        <ul class=\"step-container\" _v-7e7e42ad=\"\">\n                                            <li class=\"step step1\" _v-7e7e42ad=\"\">1</li>\n                                            <li class=\"step step2\" _v-7e7e42ad=\"\">2</li>\n                                            <li class=\"step step3\" _v-7e7e42ad=\"\">3</li>\n                                        </ul>\n                                        <div class=\"text-center\" _v-7e7e42ad=\"\">\n                                            <button type=\"button\" class=\"btn btn-lg btn-nxet\" @click=\"toLogin()\" _v-7e7e42ad=\"\">去登陆</button>\n                                        </div>\n                                    </form>\n                                    <!-- 找回密码3 结束 -->\n                                <!-- 找回密码 结束 -->\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n<router-view _v-7e7e42ad=\"\"></router-view>\n    \n";
-=======
-	module.exports = "\n    <div class=\"popup-container popup-msg login-container\" _v-7e7e42ad=\"\">\n        <div class=\"popup-main\" _v-7e7e42ad=\"\">\n            <div class=\"popup-section\" _v-7e7e42ad=\"\">\n                <div class=\"popup-content container\" _v-7e7e42ad=\"\">\n                    <div _v-7e7e42ad=\"\">\n                        <div class=\"login-left\" _v-7e7e42ad=\"\"><img src=\"" + __webpack_require__(176) + "\" _v-7e7e42ad=\"\"></div>\n                        <div class=\"login-right\" _v-7e7e42ad=\"\">\n                            <div class=\"login-warp\" data-page=\"{{apply}}\" _v-7e7e42ad=\"\">\n                                <!-- 登录 开始 -->\n                                <form class=\"login\" _v-7e7e42ad=\"\">\n                                    <div class=\"login-title\" _v-7e7e42ad=\"\">login<div class=\"errortips\" _v-7e7e42ad=\"\"><label class=\"error\" v-html=\"loginerrmsg\" _v-7e7e42ad=\"\">错误提示信息</label></div></div>\n                                    <div class=\"form-group label-line\" _v-7e7e42ad=\"\">\n                                        <!-- <label for=\"username\">用户名：</label> -->\n                                        <label for=\"username\" _v-7e7e42ad=\"\"><span class=\"icon icon-user\" _v-7e7e42ad=\"\"></span></label>\n                                        <input type=\"text\" class=\"form-control\" id=\"username\" placeholder=\"请输入用户名\" v-focus=\"\" v-model=\"vccode\" _v-7e7e42ad=\"\">\n                                    </div>\n                                    <div class=\"form-group label-line\" _v-7e7e42ad=\"\">\n                                        <!-- <label class=\"form-label\" for=\"userpwd\">密&emsp;码：</label> -->\n                                        <label class=\"form-label\" for=\"userpwd\" _v-7e7e42ad=\"\"><span class=\"icon icon-lock\" _v-7e7e42ad=\"\"></span></label>\n                                        <input type=\"password\" class=\"form-control\" id=\"userpwd\" placeholder=\"请输入密码\" v-model=\"password\" _v-7e7e42ad=\"\">\n                                    </div>\n                                    <div class=\"form-group label-line\" _v-7e7e42ad=\"\">\n                                        <!-- <label class=\"form-label\" for=\"validatecode\">验证码：</label> -->\n                                        <label class=\"form-label\" for=\"validatecode\" _v-7e7e42ad=\"\"><span class=\"icon icon-phone\" _v-7e7e42ad=\"\"></span></label>\n                                        <input type=\"text\" class=\"form-control\" id=\"validatecode\" placeholder=\"请输入验证码\" _v-7e7e42ad=\"\">\n                                        <div class=\"validate-code\" _v-7e7e42ad=\"\"><img src=\"" + __webpack_require__(177) + "\" _v-7e7e42ad=\"\"></div>\n                                    </div>\n                                    <div class=\"other\" _v-7e7e42ad=\"\">\n                                            <label class=\"checkbox-container\" data-type=\"checkbox\" for=\"issaveuser\" :checked=\"isSaveUser\" _v-7e7e42ad=\"\">\n                                                <input type=\"checkbox\" id=\"issaveuser\" value=\"Jack\" v-model=\"isSaveUser\" _v-7e7e42ad=\"\">\n                                                <i class=\"icon icon01 i_radio\" _v-7e7e42ad=\"\"></i>\n                                                <span class=\"checkbox_txt\" _v-7e7e42ad=\"\">记住密码</span>\n                                            </label>\n                                        <a class=\"forgetpwd\" @click=\"next\" _v-7e7e42ad=\"\">忘记密码</a>\n                                    </div>\n                                    <div class=\"text-center\" _v-7e7e42ad=\"\">\n                                        <button type=\"button\" class=\"btn btn-lg btn-login\" @click=\"login\" _v-7e7e42ad=\"\">登录</button>\n                                    </div>\n                                </form>\n                                <!-- 登录 结束 -->\n\n                                <!-- 找回密码 开始 -->\n                                    <!-- 找回密码1 开始 -->\n                                    <form class=\"apply apply1\" _v-7e7e42ad=\"\">\n                                        <a class=\"prev\" @click=\"prev\" v-show=\"apply==1||apply==2\" _v-7e7e42ad=\"\">返回</a>\n                                        <div class=\"login-title\" _v-7e7e42ad=\"\">重置密码</div>\n                                        <div class=\"form-group label-line\" _v-7e7e42ad=\"\">\n                                            <!-- <label for=\"username\">用户名：</label> -->\n                                            <label for=\"fd-userphone\" _v-7e7e42ad=\"\"><span class=\"icon icon-user\" _v-7e7e42ad=\"\"></span></label>\n                                            <input type=\"text\" class=\"form-control\" id=\"fd-userphone\" placeholder=\"请输入您的手机号\" v-model=\"bindingPhone\" _v-7e7e42ad=\"\">\n                                        </div>\n                                        <div class=\"form-group label-line\" _v-7e7e42ad=\"\">\n                                            <!-- <label class=\"form-label\" for=\"validatecode\">验证码：</label> -->\n                                            <label class=\"form-label\" for=\"fd-validatecode\" _v-7e7e42ad=\"\"><span class=\"icon icon-lock\" _v-7e7e42ad=\"\"></span></label>\n                                            <input type=\"text\" class=\"form-control\" id=\"fd-validatecode\" placeholder=\"请输入验证码\" v-model=\"validateCode\" _v-7e7e42ad=\"\">\n                                            <div class=\"validate-code\" _v-7e7e42ad=\"\">\n                                                <!-- <button type=\"button\" class=\"btn send-phonecode\" @click=\"getVcode\">发送验证码</button> -->\n                                                <button type=\"button\" class=\"btn send-phonecode\" @click=\"getVcode\" :disabled=\"countdown>0\" _v-7e7e42ad=\"\">\n                                                    <span v-show=\"countdown==0\" _v-7e7e42ad=\"\">获取验证码</span>\n                                                    <span v-show=\"countdown>0\" _v-7e7e42ad=\"\">{{ countdown }}s</span>\n                                                </button>\n                                            </div>\n                                        </div>\n                                        <ul class=\"step-container\" _v-7e7e42ad=\"\">\n                                            <li class=\"step step1\" _v-7e7e42ad=\"\">1</li>\n                                            <li class=\"step step2\" _v-7e7e42ad=\"\">2</li>\n                                            <li class=\"step step3\" _v-7e7e42ad=\"\">3</li>\n                                        </ul>\n                                        <div class=\"text-center\" _v-7e7e42ad=\"\">\n                                            <button type=\"button\" class=\"btn btn-lg btn-nxet\" @click=\"next\" _v-7e7e42ad=\"\">下一步</button>\n                                        </div>\n                                    </form>\n                                    <!-- 找回密码1 结束 -->\n                                    <!-- 找回密码2 开始 -->\n                                    <form class=\"apply apply2\" _v-7e7e42ad=\"\">\n                                        <a class=\"prev\" @click=\"prev\" v-show=\"apply==1||apply==2\" _v-7e7e42ad=\"\">返回</a>\n                                        <div class=\"login-title\" _v-7e7e42ad=\"\">重置密码<div class=\"errortips\" _v-7e7e42ad=\"\"><label class=\"error\" v-html=\"pwdAgainStatus.passwordTipsTxt\" _v-7e7e42ad=\"\">错误提示信息</label></div></div>\n                                        <div class=\"form-group label-line\" _v-7e7e42ad=\"\">\n                                            <!-- <label for=\"username\">用户名：</label> -->\n                                            <label for=\"set-userpwd\" _v-7e7e42ad=\"\"><span class=\"icon icon-user\" _v-7e7e42ad=\"\"></span></label>\n                                            <input type=\"password\" autocomplete=\"off\" v-model=\"findPassword\" class=\"form-control\" id=\"set-userpwd\" placeholder=\"请重新设置您的密码\" _v-7e7e42ad=\"\">\n                                        </div>\n                                        <div class=\"form-group label-line\" _v-7e7e42ad=\"\">\n                                            <!-- <label for=\"username\">用户名：</label> -->\n                                            <label for=\"set-userpwdagin\" _v-7e7e42ad=\"\"><span class=\"icon icon-user\" _v-7e7e42ad=\"\"></span></label>\n                                            <input type=\"password\" autocomplete=\"off\" class=\"form-control\" id=\"set-userpwdagin\" placeholder=\"请再次输入您的密码\" v-model=\"passwordAgain\" @blur=\"passwordAgainBlur\" _v-7e7e42ad=\"\"> \n                                        </div>\n                                        <ul class=\"step-container\" _v-7e7e42ad=\"\">\n                                            <li class=\"step step1\" _v-7e7e42ad=\"\">1</li>\n                                            <li class=\"step step2\" _v-7e7e42ad=\"\">2</li>\n                                            <li class=\"step step3\" _v-7e7e42ad=\"\">3</li>\n                                        </ul>\n                                        <div class=\"text-center\" _v-7e7e42ad=\"\">\n                                            <button type=\"button\" class=\"btn btn-lg btn-nxet\" @click=\"next\" _v-7e7e42ad=\"\">完成</button>\n                                        </div>\n                                    </form>\n                                    <!-- 找回密码2 结束 -->\n                                    <!-- 找回密码3 开始 -->\n                                    <form class=\"apply apply3\" _v-7e7e42ad=\"\">\n                                        <div class=\"login-title\" _v-7e7e42ad=\"\">重置密码成功！</div>\n                                        <ul class=\"step-container\" _v-7e7e42ad=\"\">\n                                            <li class=\"step step1\" _v-7e7e42ad=\"\">1</li>\n                                            <li class=\"step step2\" _v-7e7e42ad=\"\">2</li>\n                                            <li class=\"step step3\" _v-7e7e42ad=\"\">3</li>\n                                        </ul>\n                                        <div class=\"text-center\" _v-7e7e42ad=\"\">\n                                            <button type=\"button\" class=\"btn btn-lg btn-nxet\" @click=\"toLogin()\" _v-7e7e42ad=\"\">去登陆</button>\n                                        </div>\n                                    </form>\n                                    <!-- 找回密码3 结束 -->\n                                <!-- 找回密码 结束 -->\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n<router-view _v-7e7e42ad=\"\"></router-view>\n    \n";
->>>>>>> a3d425d2b087b2c8b4b025d3592259505a6fca71
 
 /***/ }),
 /* 176 */
@@ -39587,6 +39571,10 @@ webpackJsonp([0],[
 	                // 费用缴纳
 	                this.$router.go('/home/business/enter/enterpay');
 	                break;
+	            case 3:
+	                // 
+	                this.$router.go('/home/business/enter/infook');
+	                break;
 	        }
 	        // }        
 	    },
@@ -40162,6 +40150,7 @@ webpackJsonp([0],[
 																													data: _params,
 																													dataType: 'json',
 																													success: function success(data) {
+																																				console.log('data.state', data.state, data.state == 2);
 																																				if (data.state == 1) {
 																																											global.isEVPI = true;
 																																											_this.$router.go('/home/business/enter/enterapply');
@@ -40811,7 +40800,7 @@ webpackJsonp([0],[
 	// 								<th>开发公司费用</th>
 	// 								<td>
 	// 									<div class="table-warp">
-	// 										<!-- <span class="icon"><span>已支付</span></span> -->
+	//                                         <span class="icon" v-show="kfState==1"><span>已支付</span></span>
 	// 										<table class="table-inner">
 	// 											<tbody>
 	// 												<tr v-for="rzKfFee in rzKfFeeList.rows">
@@ -40824,13 +40813,14 @@ webpackJsonp([0],[
 	// 										</table>
 	// 										<div class="total">物业费用合计：{{ rzKfFeeList.totalPrice | currency '￥' 2 }}</div>
 	// 									</div>
-	//                                     <button class="btn" @click="goPay('kaifa')" v-show="rzKfFeeList.totalPrice!=0">去支付</button>
+	//                                     <button class="btn" @click="goPay('kaifa')" v-show="rzKfFeeList.totalPrice!=0 && kfState==0">去支付</button>
 	// 								</td>
 	// 							</tr>
 	// 							<tr>
 	// 								<th>物业公司费用</th>
 	// 								<td>
 	// 									<div class="table-warp">
+	//                                         <span class="icon" v-show="wyState==1"><span>已支付</span></span>
 	// 										<table class="table-inner">
 	// 											<tbody>
 	// 							<!-- 					<tr>
@@ -40861,7 +40851,7 @@ webpackJsonp([0],[
 	// 										</table>
 	// 										<div class="total">开发费用合计：{{ rzPropertyFeeList.totalPrice | currency '￥' 2 }}</div>
 	// 									</div>
-	// 									<button class="btn" @click="goPay('wuye')" v-show="rzPropertyFeeList.totalPrice!=0">去支付</button>
+	// 									<button class="btn" @click="goPay('wuye')" v-show="rzPropertyFeeList.totalPrice!=0 && kfState==0">去支付</button>
 	// 								</td>
 	// 							</tr>
 	// 						</tbody>
@@ -40881,6 +40871,9 @@ webpackJsonp([0],[
 	        return {
 	            userInfo: global.userInfo,
 	            rzPropertyFeeList: null,
+	            kfState: null,
+	            wyState: null,
+	            enterApplyId: null,
 
 	            /*请求参数： 
 	            --------------------------------------------------*/
@@ -40890,15 +40883,16 @@ webpackJsonp([0],[
 
 	    watch: {},
 	    created: function created() {
-	        var _this = this;
+	        var _this2 = this;
 
 	        this.$http.get(global.HttpPath + '/prePay/rzKfFeeList', { // 获取入驻开发费用数据
 	            params: {
-	                houseInfoId: global.isEnterHouseInfo.pk_house
+	                houseInfoId: global.isEnterHouseInfo.pk_house,
+	                customerId: global.isEnterHouseInfo.pk_customerid
 	            }
 	        }).then(function (response) {
 	            // 响应成功回调
-
+	            var data = response.data;
 	            var rzKfFeeList = response.data;
 	            var totalPrice = 0;
 	            for (var i = 0; i < rzKfFeeList.rows.length; i++) {
@@ -40908,7 +40902,9 @@ webpackJsonp([0],[
 	            }
 	            rzKfFeeList.totalPrice = totalPrice;
 	            console.log(response.data, rzKfFeeList);
-	            _this.$set('rzKfFeeList', rzKfFeeList);
+	            _this2.$set('rzKfFeeList', rzKfFeeList);
+	            _this2.$set('kfState', data.data && JSON.parse(data.data) ? JSON.parse(data.data).kfState : null);
+	            _this2.$set('enterApplyId', data.data && JSON.parse(data.data) ? JSON.parse(data.data).enterApplyId : null);
 	        }, function (error) {
 	            // 响应失败回调
 	            console.log('首页-error:', error);
@@ -40918,7 +40914,8 @@ webpackJsonp([0],[
 	        });
 	        this.$http.get(global.HttpPath + '/prePay/rzPropertyFeeList', { // 获取入驻物业费用
 	            params: {
-	                houseInfoId: global.isEnterHouseInfo.pk_house
+	                houseInfoId: global.isEnterHouseInfo.pk_house,
+	                customerId: global.isEnterHouseInfo.pk_customerid
 	            }
 	        }).then(function (response) {
 	            // 响应成功回调
@@ -40932,7 +40929,9 @@ webpackJsonp([0],[
 	            }
 	            rzPropertyFeeList.totalPrice = totalPrice;
 	            console.log(response.data, rzPropertyFeeList);
-	            _this.$set('rzPropertyFeeList', rzPropertyFeeList);
+	            _this2.$set('rzPropertyFeeList', rzPropertyFeeList);
+	            _this2.$set('wyState', data.data && JSON.parse(data.data) ? JSON.parse(data.data).kfState : null);
+	            _this2.$set('enterApplyId', data.data && JSON.parse(data.data) ? JSON.parse(data.data).enterApplyId : null);
 	        }, function (error) {
 	            // 响应失败回调
 	            console.log('首页-error:', error);
@@ -40960,6 +40959,7 @@ webpackJsonp([0],[
 	                    _totalPrice = this.rzKfFeeList.totalPrice;
 	                    break;
 	            }
+
 	            console.log('this.rzPropertyFeeList.row', this.rzPropertyFeeList.rows);
 	            if (Number(_totalPrice, 10)) {
 	                this.$router.go('/home/payment/pay');
@@ -40970,6 +40970,7 @@ webpackJsonp([0],[
 	                        feetypeKey: 'feetype',
 	                        priceKey: 'nyshouldmny'
 	                    },
+	                    applyId: _this.enterApplyId,
 	                    payType: 'rz' + type,
 	                    goToURL: {
 	                        name: 'enter',
@@ -40989,7 +40990,7 @@ webpackJsonp([0],[
 /* 259 */
 /***/ (function(module, exports) {
 
-	module.exports = "\n\n<ol class=\"breadcrumb\" _v-b0201542=\"\">你当前的位置：\n    <li _v-b0201542=\"\"><a _v-b0201542=\"\">联东首页</a></li>\n    <li _v-b0201542=\"\"><a _v-b0201542=\"\">入驻办理</a></li>\n    <li class=\"active cur-breadcrumb\" _v-b0201542=\"\">费用缴纳</li>\n</ol>\n<div class=\"container\" _v-b0201542=\"\">\n    <div class=\"row\" _v-b0201542=\"\">\n        <div class=\"col-xs-12\" _v-b0201542=\"\">\n            <div class=\"panel panel-default\" _v-b0201542=\"\">\n                <div class=\"panel-body\" _v-b0201542=\"\">\n                    <ul class=\"clearfix nav-line nav-step ruzhustep\" _v-b0201542=\"\">\n                        <li _v-b0201542=\"\"><a class=\"step step01 active\" _v-b0201542=\"\">完善资料<i class=\"step-right\" _v-b0201542=\"\"></i></a></li>\n                        <li _v-b0201542=\"\"><a class=\"step step02 active\" _v-b0201542=\"\"><i class=\"step-left\" _v-b0201542=\"\"></i>入驻办理<i class=\"step-right\" _v-b0201542=\"\"></i></a></li>\n                        <li _v-b0201542=\"\"><a class=\"step step03 active\" _v-b0201542=\"\"><i class=\"step-left\" _v-b0201542=\"\"></i>已审核<i class=\"step-right\" _v-b0201542=\"\"></i></a></li>\n                        <li _v-b0201542=\"\"><a class=\"step step04 active\" _v-b0201542=\"\"><i class=\"step-left\" _v-b0201542=\"\"></i>费用缴纳<i class=\"step-right\" _v-b0201542=\"\"></i></a></li>\n                        <li _v-b0201542=\"\"><a class=\"step step05\" _v-b0201542=\"\"><i class=\"step-left\" _v-b0201542=\"\"></i>入驻完成</a></li>\n                    </ul>\n\t\t\t\t\t<table class=\"table table-bordered table-form\" _v-b0201542=\"\">\n\t\t\t\t\t\t<tbody _v-b0201542=\"\">\n\t\t\t\t\t\t\t<tr _v-b0201542=\"\">\n\t\t\t\t\t\t\t\t<th _v-b0201542=\"\">开发公司费用</th>\n\t\t\t\t\t\t\t\t<td _v-b0201542=\"\">\n\t\t\t\t\t\t\t\t\t<div class=\"table-warp\" _v-b0201542=\"\">\n\t\t\t\t\t\t\t\t\t\t<!-- <span class=\"icon\"><span>已支付</span></span> -->\n\t\t\t\t\t\t\t\t\t\t<table class=\"table-inner\" _v-b0201542=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<tbody _v-b0201542=\"\">\n\t\t\t\t\t\t\t\t\t\t\t\t<tr v-for=\"rzKfFee in rzKfFeeList.rows\" _v-b0201542=\"\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t<th _v-b0201542=\"\">{{ rzKfFee.feetype }}</th>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<td class=\"text-orange\" _v-b0201542=\"\">{{ rzKfFee.nyshouldmny | currency '￥' 2 }}</td>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<th _v-b0201542=\"\">费用区间：</th>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<td _v-b0201542=\"\">{{ rzKfFee.dbegin | TimeYMD }}~{{ rzKfFee.dend | TimeYMD }}</td>\n\t\t\t\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t\t</tbody>\n\t\t\t\t\t\t\t\t\t\t</table>\n\t\t\t\t\t\t\t\t\t\t<div class=\"total\" _v-b0201542=\"\">物业费用合计：{{ rzKfFeeList.totalPrice | currency '￥' 2 }}</div>\n\t\t\t\t\t\t\t\t\t</div>\n                                    <button class=\"btn\" @click=\"goPay('kaifa')\" v-show=\"rzKfFeeList.totalPrice!=0\" _v-b0201542=\"\">去支付</button>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-b0201542=\"\">\n\t\t\t\t\t\t\t\t<th _v-b0201542=\"\">物业公司费用</th>\n\t\t\t\t\t\t\t\t<td _v-b0201542=\"\">\n\t\t\t\t\t\t\t\t\t<div class=\"table-warp\" _v-b0201542=\"\">\n\t\t\t\t\t\t\t\t\t\t<table class=\"table-inner\" _v-b0201542=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<tbody _v-b0201542=\"\">\n\t\t\t\t\t\t\t<!-- \t\t\t\t\t<tr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<th>物业费：</th>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<td class=\"text-orange\">¥5,520.00</td>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<th>费用区间：</th>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<td>2017-03-21~2017-04-20</td>\n\t\t\t\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<th>供暖费：</th>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<td class=\"text-orange\">¥5,520.00</td>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<th>费用区间：</th>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<td>2017-03-21~2017-04-20</td>\n\t\t\t\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<th>基本电费：</th>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<td class=\"text-orange\">¥5,520.00</td>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<th>费用区间：</th>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<td>2017-03-21~2017-04-20</td>\n\t\t\t\t\t\t\t\t\t\t\t\t</tr> -->\n\t\t\t\t\t\t\t\t\t\t\t\t<tr v-for=\"rzPropertyFee in rzPropertyFeeList.rows\" _v-b0201542=\"\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t<th _v-b0201542=\"\">{{ rzPropertyFee.feetype }}</th>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<td class=\"text-orange\" _v-b0201542=\"\">{{ rzPropertyFee.nyshouldmny | currency '￥' 2 }}</td>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<th _v-b0201542=\"\">费用区间：</th>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<td _v-b0201542=\"\">{{ rzPropertyFee.dbegin | TimeYMD }}~{{ rzPropertyFee.dend | TimeYMD }}</td>\n\t\t\t\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t\t</tbody>\n\t\t\t\t\t\t\t\t\t\t</table>\n\t\t\t\t\t\t\t\t\t\t<div class=\"total\" _v-b0201542=\"\">开发费用合计：{{ rzPropertyFeeList.totalPrice | currency '￥' 2 }}</div>\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t<button class=\"btn\" @click=\"goPay('wuye')\" v-show=\"rzPropertyFeeList.totalPrice!=0\" _v-b0201542=\"\">去支付</button>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t</tbody>\n\t\t\t\t\t</table>\n                </div>\n            </div>\n        </div>  \n    </div>\n</div>\n";
+	module.exports = "\n\n<ol class=\"breadcrumb\" _v-b0201542=\"\">你当前的位置：\n    <li _v-b0201542=\"\"><a _v-b0201542=\"\">联东首页</a></li>\n    <li _v-b0201542=\"\"><a _v-b0201542=\"\">入驻办理</a></li>\n    <li class=\"active cur-breadcrumb\" _v-b0201542=\"\">费用缴纳</li>\n</ol>\n<div class=\"container\" _v-b0201542=\"\">\n    <div class=\"row\" _v-b0201542=\"\">\n        <div class=\"col-xs-12\" _v-b0201542=\"\">\n            <div class=\"panel panel-default\" _v-b0201542=\"\">\n                <div class=\"panel-body\" _v-b0201542=\"\">\n                    <ul class=\"clearfix nav-line nav-step ruzhustep\" _v-b0201542=\"\">\n                        <li _v-b0201542=\"\"><a class=\"step step01 active\" _v-b0201542=\"\">完善资料<i class=\"step-right\" _v-b0201542=\"\"></i></a></li>\n                        <li _v-b0201542=\"\"><a class=\"step step02 active\" _v-b0201542=\"\"><i class=\"step-left\" _v-b0201542=\"\"></i>入驻办理<i class=\"step-right\" _v-b0201542=\"\"></i></a></li>\n                        <li _v-b0201542=\"\"><a class=\"step step03 active\" _v-b0201542=\"\"><i class=\"step-left\" _v-b0201542=\"\"></i>已审核<i class=\"step-right\" _v-b0201542=\"\"></i></a></li>\n                        <li _v-b0201542=\"\"><a class=\"step step04 active\" _v-b0201542=\"\"><i class=\"step-left\" _v-b0201542=\"\"></i>费用缴纳<i class=\"step-right\" _v-b0201542=\"\"></i></a></li>\n                        <li _v-b0201542=\"\"><a class=\"step step05\" _v-b0201542=\"\"><i class=\"step-left\" _v-b0201542=\"\"></i>入驻完成</a></li>\n                    </ul>\n\t\t\t\t\t<table class=\"table table-bordered table-form\" _v-b0201542=\"\">\n\t\t\t\t\t\t<tbody _v-b0201542=\"\">\n\t\t\t\t\t\t\t<tr _v-b0201542=\"\">\n\t\t\t\t\t\t\t\t<th _v-b0201542=\"\">开发公司费用</th>\n\t\t\t\t\t\t\t\t<td _v-b0201542=\"\">\n\t\t\t\t\t\t\t\t\t<div class=\"table-warp\" _v-b0201542=\"\">\n                                        <span class=\"icon\" v-show=\"kfState==1\" _v-b0201542=\"\"><span _v-b0201542=\"\">已支付</span></span>\n\t\t\t\t\t\t\t\t\t\t<table class=\"table-inner\" _v-b0201542=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<tbody _v-b0201542=\"\">\n\t\t\t\t\t\t\t\t\t\t\t\t<tr v-for=\"rzKfFee in rzKfFeeList.rows\" _v-b0201542=\"\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t<th _v-b0201542=\"\">{{ rzKfFee.feetype }}</th>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<td class=\"text-orange\" _v-b0201542=\"\">{{ rzKfFee.nyshouldmny | currency '￥' 2 }}</td>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<th _v-b0201542=\"\">费用区间：</th>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<td _v-b0201542=\"\">{{ rzKfFee.dbegin | TimeYMD }}~{{ rzKfFee.dend | TimeYMD }}</td>\n\t\t\t\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t\t</tbody>\n\t\t\t\t\t\t\t\t\t\t</table>\n\t\t\t\t\t\t\t\t\t\t<div class=\"total\" _v-b0201542=\"\">物业费用合计：{{ rzKfFeeList.totalPrice | currency '￥' 2 }}</div>\n\t\t\t\t\t\t\t\t\t</div>\n                                    <button class=\"btn\" @click=\"goPay('kaifa')\" v-show=\"rzKfFeeList.totalPrice!=0 &amp;&amp; kfState==0\" _v-b0201542=\"\">去支付</button>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-b0201542=\"\">\n\t\t\t\t\t\t\t\t<th _v-b0201542=\"\">物业公司费用</th>\n\t\t\t\t\t\t\t\t<td _v-b0201542=\"\">\n\t\t\t\t\t\t\t\t\t<div class=\"table-warp\" _v-b0201542=\"\">\n                                        <span class=\"icon\" v-show=\"wyState==1\" _v-b0201542=\"\"><span _v-b0201542=\"\">已支付</span></span>\n\t\t\t\t\t\t\t\t\t\t<table class=\"table-inner\" _v-b0201542=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<tbody _v-b0201542=\"\">\n\t\t\t\t\t\t\t<!-- \t\t\t\t\t<tr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<th>物业费：</th>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<td class=\"text-orange\">¥5,520.00</td>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<th>费用区间：</th>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<td>2017-03-21~2017-04-20</td>\n\t\t\t\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<th>供暖费：</th>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<td class=\"text-orange\">¥5,520.00</td>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<th>费用区间：</th>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<td>2017-03-21~2017-04-20</td>\n\t\t\t\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<th>基本电费：</th>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<td class=\"text-orange\">¥5,520.00</td>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<th>费用区间：</th>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<td>2017-03-21~2017-04-20</td>\n\t\t\t\t\t\t\t\t\t\t\t\t</tr> -->\n\t\t\t\t\t\t\t\t\t\t\t\t<tr v-for=\"rzPropertyFee in rzPropertyFeeList.rows\" _v-b0201542=\"\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t<th _v-b0201542=\"\">{{ rzPropertyFee.feetype }}</th>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<td class=\"text-orange\" _v-b0201542=\"\">{{ rzPropertyFee.nyshouldmny | currency '￥' 2 }}</td>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<th _v-b0201542=\"\">费用区间：</th>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<td _v-b0201542=\"\">{{ rzPropertyFee.dbegin | TimeYMD }}~{{ rzPropertyFee.dend | TimeYMD }}</td>\n\t\t\t\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t\t</tbody>\n\t\t\t\t\t\t\t\t\t\t</table>\n\t\t\t\t\t\t\t\t\t\t<div class=\"total\" _v-b0201542=\"\">开发费用合计：{{ rzPropertyFeeList.totalPrice | currency '￥' 2 }}</div>\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t<button class=\"btn\" @click=\"goPay('wuye')\" v-show=\"rzPropertyFeeList.totalPrice!=0 &amp;&amp; kfState==0\" _v-b0201542=\"\">去支付</button>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t</tbody>\n\t\t\t\t\t</table>\n                </div>\n            </div>\n        </div>  \n    </div>\n</div>\n";
 
 /***/ }),
 /* 260 */
@@ -41096,15 +41097,12 @@ webpackJsonp([0],[
 	            $.ajax({
 	                type: "post",
 	                url: global.HttpPath + '/enterApply/updateEnterApplyState', // 修改入驻申请状态
-	                data: _params,
+	                data: { enterApplyId: global.isEnterHouseInfo.vdef5 && JSON.parse(global.isEnterHouseInfo.vdef5) ? JSON.parse(global.isEnterHouseInfo.vdef5).enterApplyId : null },
 	                dataType: 'json',
 	                success: function success(res) {
 	                    console.log(res);
 	                    if (res.state == 1) {
-	                        $('#enterapply-modal').modal({ // 打开弹窗
-	                            keyboard: false,
-	                            backdrop: 'static'
-	                        });
+	                        _this.$router.go('/home/business/enter/userinfo');
 	                    }
 	                }
 	            });
@@ -45325,7 +45323,7 @@ webpackJsonp([0],[
 					dataType: 'json',
 					success: function success(data) {
 						console.log(data);
-						if (data.state == 1) {
+						if (data.state == 0) {
 							$('#tips-modal').modal({// 打开弹窗
 								// keyboard: false,
 								// backdrop: 'static'
