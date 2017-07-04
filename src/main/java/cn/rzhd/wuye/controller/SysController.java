@@ -12,8 +12,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.xiaoleilu.hutool.util.StrUtil;
 
 import cn.rzhd.wuye.bean.TDictInfo;
-import cn.rzhd.wuye.bean.TDictType;
+import cn.rzhd.wuye.bean.TSys;
 import cn.rzhd.wuye.service.IDictInfoService;
+import cn.rzhd.wuye.service.ISysServer;
 
 /**
  * @ClassName SysController
@@ -28,6 +29,23 @@ public class SysController {
 
     @Autowired
     private IDictInfoService dictInfoService;
+    
+    @Autowired
+    private ISysServer sysServer;
+    
+    /**
+     * @Description 系统设置数据回显
+     * @param id
+     * @param model
+     * @return
+     */
+    @RequestMapping(value="set",method = RequestMethod.GET)
+    public String set(Model model){
+        TSys result = new TSys();
+        result = this.sysServer.findSysOnlyOne();
+        model.addAttribute("sys", result);
+        return "system/sys";
+    }
     
     /**
      * @Description 跳转到更名须知、装修须知、入住提示信息页面
@@ -63,4 +81,23 @@ public class SysController {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
     }
     
+    /**
+     * @Description 新增或编辑系统设置
+     * @param sys
+     * @return
+     */
+    @RequestMapping(value = "save", method = RequestMethod.POST)
+    public ResponseEntity<Void> save(TSys sys) {
+        try {
+
+            // 新增或编辑
+            this.sysServer.saveOrUpdate(sys);
+
+            // 响应201
+            return ResponseEntity.status(HttpStatus.CREATED).build();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+    }
 }

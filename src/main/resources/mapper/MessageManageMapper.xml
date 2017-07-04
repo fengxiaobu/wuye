@@ -24,8 +24,22 @@
     	SELECT DISTINCT "TYPE" FROM T_MESSAGE_MANAGE
     </select>
     
-	<delete id="deleteOne" parameterType="String">
+	<delete id="deleteOne" parameterType="Long">
 		 DELETE FROM T_MESSAGE_MANAGE WHERE MESSAGE_MANAGE_ID = #{message_manage_id}
 	</delete>    
 	
+	<insert id="save" parameterType="cn.rzhd.wuye.bean.MessageManage">
+		insert into T_MESSAGE_MANAGE (TITLE,
+        CONTENT, NOTE,CREATE_TIME,TYPE,NAME,RANGE,STATUS)
+        values (#{title},#{content},#{note},#{create_time},
+        #{type},#{name},#{range},#{status})
+	</insert>
+	
+	<update id="update" parameterType="cn.rzhd.wuye.bean.MessageManage">
+		UPDATE T_MESSAGE_MANAGE
+		SET  TITLE = #{title}, CONTENT = #{content}, NOTE = #{note}, CREATE_TIME = #{create_time},
+		 TYPE =#{type},NAME =#{name}, RANGE = #{range}, STATUS = #{status}
+		WHERE
+			MESSAGE_MANAGE_ID = #{message_manage_id}
+	</update>
 </mapper>
