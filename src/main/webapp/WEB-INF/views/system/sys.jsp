@@ -81,7 +81,7 @@
 					<div class="form-group">
 					    <label class="col-sm-2 control-label ">更新时间:</label>
 					     <div class="col-sm-3">
-					     	 <input class="form-control" type="text" placeholder="<fmt:formatDate value='${sys.updateTime }' pattern="yyyy-MM-dd"/>" readonly>
+					     	 <input class="form-control" type="text" placeholder="<fmt:formatDate value='${sys.updateTime }' pattern="yyyy-MM-dd HH:mm"/>" readonly>
 					    </div>
 					 </div>
 					<div class="form-group">

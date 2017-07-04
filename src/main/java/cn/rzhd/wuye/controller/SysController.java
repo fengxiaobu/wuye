@@ -73,15 +73,20 @@ public class SysController {
      */
     @RequestMapping(value="housrestedit",method = RequestMethod.GET)
     public String housrestedit(String pkHouse,String vcname,Model model){
-        HouseVO houseVO = new HouseVO();
+        HouseInfoDetails houseVO = new HouseInfoDetails();
         if(StrUtil.isNotBlank(pkHouse)){
-            houseVO = houseInfoDetailsService.selectById(pkHouse);
+            houseVO = houseInfoDetailsService.selectHouseInfoDetailsById(pkHouse);
         }
         model.addAttribute("houseVO", houseVO);
         model.addAttribute("vcname", vcname);
         return "system/waterele/housrestedit";
     }
     
+    /**
+     * @Description 更新房产水电限制
+     * @param houseInfoDetails
+     * @return
+     */
     @RequestMapping(value = "updatehouse", method = RequestMethod.POST)
     public ResponseEntity<Void> updatehouse(HouseInfoDetails houseInfoDetails) {
         try {
