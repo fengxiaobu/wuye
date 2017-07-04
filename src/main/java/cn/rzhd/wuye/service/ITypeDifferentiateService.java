@@ -5,5 +5,6 @@ import cn.rzhd.wuye.bean.TypeDifferentiate;
 public interface ITypeDifferentiateService {
     
 
-	TypeDifferentiate getDataName(Integer typeDifferentiateId);
+	TypeDifferentiate getDataName(Long typeDifferentiateId);
+	
 }

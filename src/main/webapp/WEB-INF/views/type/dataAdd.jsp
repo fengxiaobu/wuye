@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%--  --%><%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
@@ -16,29 +16,28 @@
 				<div class="panel-body">
 				  <form class="form-horizontal" action="${pageContext.request.contextPath}/typeRefinement/addOrUpdate" method="post">
 					<div class="form-horizontal">
-						<input type="hidden" name="typeRefinementId" value="${typeRefinement.typeRefinementId}">
-						<input type="hidden" name="typeDifferentiateId" value="${typeRefinement.typeDifferentiateId}">
+						<input type="hidden" name="typeDifferentiateId" value="${typeDifferentiateId}">
 						<div class="form-group">
 							<label class="col-sm-2 control-label">
-								<c:if test="${typeRefinement.typeDifferentiateId=='1'}" >
+								<c:if test="${typeDifferentiateId=='1'}" >
 					　			房产使用属性：
 								</c:if>
-								<c:if test="${typeRefinement.typeDifferentiateId=='2'}" >
+								<c:if test="${typeDifferentiateId=='2'}" >
 								　　属性：
 								</c:if>
-								<c:if test="${typeRefinement.typeDifferentiateId=='3'}" >
+								<c:if test="${typeDifferentiateId=='3'}" >
 								　　行业：
 								</c:if>
-								<c:if test="${typeRefinement.typeDifferentiateId=='4'}" >
+								<c:if test="${typeDifferentiateId=='4'}" >
 								　　上市类型：
 								</c:if>
-								<c:if test="${typeRefinement.typeDifferentiateId=='5'}" >
+								<c:if test="${typeDifferentiateId=='5'}" >
 								　　类型名称：
 								</c:if>
-								<c:if test="${typeRefinement.typeDifferentiateId=='6'}" >
+								<c:if test="${typeDifferentiateId=='6'}" >
 								　　退租类型：
 								</c:if>
-								<c:if test="${typeRefinement.typeDifferentiateId=='9'}" >
+								<c:if test="${typeDifferentiateId=='9'}" >
 								　　通知类型：
 								</c:if>
 							</label>
@@ -49,14 +48,13 @@
 						<div class="form-group">
 							<label class="col-sm-2 control-label">状态：</label>
 							<div class="col-sm-3">
-								<input type="radio" name="status" value="0" <c:if test="${typeRefinement.status eq 0}">checked="checked"</c:if>/>启用
-								<input type="radio" name="status" value="1" <c:if test="${typeRefinement.status eq 1}">checked="checked"</c:if>/>禁用
+								<input type="radio" name="status" value="0" />启用
+								<input type="radio" name="status" value="1" />禁用
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-2 control-label">更新日期：</label>
 							<div class="col-sm-3">
-								<fmt:formatDate value="${typeRefinement.updateTime}" type="both" pattern="yyyy-MM-dd hh:mm"/>
 							</div>
 
 						</div>
