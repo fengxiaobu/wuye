@@ -277,7 +277,7 @@
                 SPECIAL_DECORATION_FILE,
                 CREATION_TIME,
                 UPDATE_TIME,
-                PAYMENT_STATUS
+                PAYMENT_STATUS, CUSTOMERID
             )
         VALUES (
             #{decorationApplyId},
@@ -304,7 +304,7 @@
             #{specialDecorationFile},
             #{creationTime},
             #{updateTime},
-            #{paymentStatus}
+            #{paymentStatus}, #{customerId}
         )
     </insert>
 
@@ -357,6 +357,6 @@
     </select>
     <select id="getDecorationApplyByOrder" resultMap="BaseResultMap">
         <include refid="select"/>
-        WHERE apply.HOUSE_INFO_ID = #{pkHouse} AND apply.CUSTOMERID = #{customerId}AND rownum = 1
+        WHERE apply.HOUSE_INFO_ID = '${pkHouse}' AND apply.CUSTOMERID = '${customerId}' AND rownum = 1
     </select>
 </mapper>

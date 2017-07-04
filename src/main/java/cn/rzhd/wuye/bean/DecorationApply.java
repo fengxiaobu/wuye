@@ -129,6 +129,16 @@ public class DecorationApply implements Serializable {
      */
     private String paymentStatus;
 
+    private String customerId;
+
+    public String getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
+    }
+
     public String getPaymentStatus() {
         return paymentStatus;
     }

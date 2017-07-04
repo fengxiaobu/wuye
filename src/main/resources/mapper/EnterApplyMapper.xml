@@ -194,11 +194,11 @@
     <insert id="insertEnterApply" parameterType="cn.rzhd.wuye.bean.EnterApply">
         INSERT INTO T_ENTER_APPLY (ENTER_APPLY_ID, HOUSE_INFO_ID, CLIENT_NAME,
                                    APPLY_TIME, AUDIT_STATUS, ENTER_ADVICE_NOTE,
-                                   NOTES, CREATION_TIME, UPDATE_TIME
+                                   NOTES, CREATION_TIME, UPDATE_TIME, CUSTOMERID
         )
-        VALUES (T_ENTER_APPLY_ID_SEQ.Nextval, #{houseId}, #{clientName},
+        VALUES (#{enterApplyId}, #{houseId}, #{clientName},
                 #{applyTime}, #{auditStatus}, #{enterAdviceNote},
-                #{notes}, #{creationTime}, #{updateTime}
+                #{notes}, #{creationTime}, #{updateTime}, #{customerId}
         )
     </insert>
     <!-- 入驻信息删除操作 -->

@@ -16,13 +16,17 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.github.pagehelper.StringUtil;
 import com.xiaoleilu.hutool.io.FileUtil;
+import com.xiaoleilu.hutool.util.RandomUtil;
 import com.xiaoleilu.hutool.util.StrUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -168,10 +172,10 @@ public class EnterApplyController {
             enterApplyService.updateEnterApply(enterApply);
             if (enterApply.getAuditStatus() == 1) {
                 //修改申请状态
-                houseInfoDetailsService.updateHouse(enterApply.getHouseId(), "2", null);
+                houseInfoDetailsService.updateHouse(String.valueOf(enterApply.getEnterApplyId()), "2", null);
             } else if (enterApply.getAuditStatus() == 2) {
                 //修改申请状态
-                houseInfoDetailsService.updateHouse(enterApply.getHouseId(), "0", null);
+                houseInfoDetailsService.updateHouse(String.valueOf(enterApply.getEnterApplyId()), "2", null);
             }
 
             //查询更新数据
@@ -218,12 +222,13 @@ public class EnterApplyController {
             enterApply.setCreationTime(date);
             //初始化审核状态
             enterApply.setAuditStatus(0);
+            enterApply.setEnterApplyId(Long.valueOf(RandomUtil.randomNumbers(16)));
             System.out.println("enterApply = " + enterApply);
             enterApplyService.insertEnterApply(enterApply);
             result.put("state", "1");
             result.put("msg", "成功!");
             //修改申请状态
-            houseInfoDetailsService.updateHouse(enterApply.getHouseId(), "1", null);
+            houseInfoDetailsService.updateHouse(String.valueOf(enterApply.getEnterApplyId()), "2", null);
             return result;
         } catch (Exception e) {
             result.put("state", "0");
@@ -244,7 +249,7 @@ public class EnterApplyController {
     public String deleteEnterApply(Model model, Long enterApplyId, String pkHouse) {
         if (enterApplyId != null) {
             enterApplyService.deleteEnterApply(enterApplyId);
-            houseInfoDetailsService.updateHouse(pkHouse, "0", null);
+            houseInfoDetailsService.updateHouse(String.valueOf(enterApplyId), "2", null);
         }
         //查询更新数据
         //PageHelper.startPage(1, 5);
