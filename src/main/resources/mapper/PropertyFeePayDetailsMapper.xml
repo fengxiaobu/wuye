@@ -183,7 +183,7 @@
         </where>
     </sql>
     <select id="getByProject" parameterType="cn.rzhd.wuye.vo.query.PropertyRecordsQuery" resultMap="map">
-        SELECT
+        SELECT * FROM (SELECT
         DISTINCT
         PROPERTY_FEE_PAY_DETAILS_ID,
         T_PROJECT_INFO.PROJECT_NAME,
@@ -209,14 +209,14 @@
         T_PROPERTY_FEE_PAY_DETAILS.UPDATE_TIME,
         CUSTOMER_ID,
         T_PROPERTY_FEE_PAY_DETAILS.STATUS,
-        FEETYPE
+        ROWNUM AS r
         FROM T_PROPERTY_FEE_PAY_DETAILS
         JOIN T_HOUSE_INFO_DETAILS ON T_HOUSE_INFO_DETAILS."pk_house" = T_PROPERTY_FEE_PAY_DETAILS.HOUSE_INFO_ID
         JOIN T_PROJECT_INFO ON T_HOUSE_INFO_DETAILS."pk_project" = T_PROJECT_INFO.PK_PROJECT
         JOIN T_MANAGE ON T_HOUSE_INFO_DETAILS.MANAGE_ID = T_MANAGE."pk_manageId"
         JOIN T_MANAGE_USER ON T_MANAGE_USER.MANAGE_ID = T_MANAGE."pk_manageId"
         <include refid="querySql"/>
-        ORDER BY PAY_TIME DESC
+        ORDER BY PAY_TIME DESC) WHERE r &gt;#{startNum} AND r &lt;=#{endNum}
     </select>
     <select id="getCostType" resultType="string">
         SELECT "feename"
@@ -235,5 +235,15 @@
             JOIN T_BANK_ACCOUNT ON T_COMPANY."pk_corp" = "vdef1"
             JOIN T_FEE_TYPES ON T_FEE_TYPES."pk_fee" = T_BANK_ACCOUNT."pk_fee"
         WHERE T_FEE_TYPES."pk_corp" = #{pk_corp} AND "feecode" = #{feeType}
+    </select>
+    <select id="countByQuery" parameterType="cn.rzhd.wuye.vo.query.PropertyRecordsQuery" resultType="integer">
+        SELECT
+        COUNT(*)
+        FROM T_PROPERTY_FEE_PAY_DETAILS
+        JOIN T_HOUSE_INFO_DETAILS ON T_HOUSE_INFO_DETAILS."pk_house" = T_PROPERTY_FEE_PAY_DETAILS.HOUSE_INFO_ID
+        JOIN T_PROJECT_INFO ON T_HOUSE_INFO_DETAILS."pk_project" = T_PROJECT_INFO.PK_PROJECT
+        JOIN T_MANAGE ON T_HOUSE_INFO_DETAILS.MANAGE_ID = T_MANAGE."pk_manageId"
+        JOIN T_MANAGE_USER ON T_MANAGE_USER.MANAGE_ID = T_MANAGE."pk_manageId"
+        <include refid="querySql"/>
     </select>
 </mapper>
