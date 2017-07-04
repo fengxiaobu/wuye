@@ -4,11 +4,12 @@ import cn.rzhd.wuye.bean.DecorationApply;
 import cn.rzhd.wuye.bean.DecorationNotice;
 import cn.rzhd.wuye.bean.HouseInfoDetails;
 import cn.rzhd.wuye.service.*;
-import cn.rzhd.wuye.utils.IDUtils;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.xiaoleilu.hutool.util.NumberUtil;
+import com.xiaoleilu.hutool.util.RandomUtil;
+import com.xiaoleilu.hutool.util.StrUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -79,7 +80,7 @@ public class DecorationApplyController {
         System.out.println("decorationApply = " + decorationApply);
         Map<String, String> result = new HashMap<>();
         Date date = new Date();
-        Long aLong = IDUtils.genLongUID();
+        Long aLong = Long.valueOf(RandomUtil.randomNumbers(16));
         decorationApply.setDecorationApplyId(aLong);
         decorationApply.setAuditStatus(0);
         decorationApply.setIsSpecialDecoration(0);
@@ -183,7 +184,7 @@ public class DecorationApplyController {
         DecorationApply decorationApply = decorationApplyService.findDecorationApplyByHouseId(houseInfoId);
         if (decorationApply != null) {
             result.put("state", "1");
-            result.put("data", decorationApply);
+            result.put("data", JSON.toJSONString(decorationApply));
         } else if (decorationApply == null) {
             result.put("state", "0");
             result.put("data", "null");
@@ -346,5 +347,27 @@ public class DecorationApplyController {
             result.put("msg", "erro" + e.getMessage());
             return result;
         }
+    }
+
+    /**
+     * 获取是否已申请装修
+     *
+     * @param pkHouse
+     * @param customerId
+     * @return
+     */
+    @RequestMapping("/getDecorationApplyCount")
+    @ResponseBody
+    public Map<String, String> getCount(String pkHouse, String customerId) {
+        Map<String, String> result = new Hashtable<>();
+        if (StrUtil.isEmpty(pkHouse) && StrUtil.isEmpty(customerId)) {
+            result.put("state", "0");
+            result.put("msg", "ID为空");
+            return result;
+        }
+        Integer count = decorationApplyService.getCount(pkHouse, customerId);
+        result.put("state", "1");
+        result.put("data", "count");
+        return result;
     }
 }

@@ -43,25 +43,6 @@ public class EnterApplyServiceImpl implements IEnterApplyService {
      *
      * @return
      */
- /*   @Override
-    public List<Map<String, Value>> findEnterApplyList(Integer pageNum, Integer pageSize) {
-        Integer pageStartRow = pageNum*pageSize-pageSize+1;
-        Integer pageEndRow = pageStartRow+pageSize-1;
-        RequesterVO requesterVO=new RequesterVO();
-        requesterVO.setKey("liando");
-        requesterVO.setBilltype(LiandoServiceConstant.DATA_TYPE_CORP);
-        //requesterVO.setPk_corp("1028");
-
-        List<Map<String, JsonFormat.Value>> enterApplyList = enterApplyMapper.findEnterApplyList(pageStartRow, pageEndRow);
-        String jsonString = JSON.toJSONString(enterApplyList);
-        List<EnterApply> enterApplies = JSON.parseArray(jsonString, EnterApply.class);
-        for (EnterApply enterApply : enterApplies) {
-            System.out.println("enterApply = " + enterApply);
-        }
-        String baseData = WebService.getBaseData(requesterVO);
-
-        return enterApplyList;
-    }*/
     @Override
     public List<Map<String, Value>> findEnterApplyList() {
      /*   RequesterVO requesterVO=new RequesterVO();
@@ -115,6 +96,16 @@ public class EnterApplyServiceImpl implements IEnterApplyService {
     @Override
     public void updatePayState(String wyState, String kfState, Long enterApplyId) {
         enterApplyMapper.updatePayState(wyState, kfState, enterApplyId);
+    }
+
+    @Override
+    public Integer getCount(String pkHouse, String customerId) {
+        return enterApplyMapper.getCount(pkHouse, customerId);
+    }
+
+    @Override
+    public EnterApply getEnterApply(String pkHouse, String customerId) {
+        return enterApplyMapper.getEnterApply(pkHouse, customerId);
     }
 
 }

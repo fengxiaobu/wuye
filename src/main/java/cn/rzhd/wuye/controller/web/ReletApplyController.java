@@ -42,7 +42,6 @@ public class ReletApplyController {
             Date date = new Date();
             reletApply.setCreationTime(date);
             reletApply.setRetreaTime(date);
-            // reletApply.setType(1);
             reletApply.setReletApplyId(IDUtils.genId15());
 
             if (StringUtil.isEmpty(reletApply.getHouseInfoId())) {

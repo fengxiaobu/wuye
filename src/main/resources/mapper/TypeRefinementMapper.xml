@@ -32,16 +32,16 @@
    <!-- 添加类型 -->
    <insert id="addTypeRefinementName">
    		insert into T_TYPE_REFINEMENT
-   			(TYPE_REFINEMENT_ID,TYPE_DIFFERENTIATE_ID,TYPE_REFINEMENT_NAME,NOTE,STATUS,CREATE_TIME)
+   			(TYPE_DIFFERENTIATE_ID,TYPE_REFINEMENT_NAME,NOTE,STATUS,CREATE_TIME,UPDATE_TIME)
    		values 
-   			(#{typeRefinement.typeRefinementId},#{typeRefinement.typeDifferentiateId},#{typeRefinement.typeRefinementName},
-   			#{typeRefinement.note},#{typeRefinement.status},#{typeRefinement.createTime})
+   			(#{typeRefinement.typeDifferentiateId},#{typeRefinement.typeRefinementName},
+   			#{typeRefinement.note},#{typeRefinement.status},#{typeRefinement.createTime},#{typeRefinement.updateTime})
    </insert>
    
     <!-- 修改类型 -->
     <update id="updatetypeRefinementById">
-    	update T_TYPE_REFINEMENT set STATUS = #{typeRefinement.status},
-    	NOTE = #{typeRefinement.note},UPDATE_TIME = #{typeRefinement.updateTime}
+    	update T_TYPE_REFINEMENT set TYPE_REFINEMENT_NAME=#{typeRefinement.typeRefinementName},STATUS = #{typeRefinement.status},
+    	NOTE = #{typeRefinement.note},CREATE_TIME = #{typeRefinement.createTime},UPDATE_TIME = #{typeRefinement.updateTime}
     		where
     			TYPE_REFINEMENT_ID = #{typeRefinement.typeRefinementId} 
     </update>

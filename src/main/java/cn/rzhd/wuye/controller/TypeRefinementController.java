@@ -27,9 +27,6 @@ public class TypeRefinementController {
     public String getTypeData(Model model, Integer pageNum, Integer pageSize, Integer typeDifferentiateId) {
     	PageHelper.startPage(pageNum, pageSize);
     	List<TypeRefinement> typeRefinements = typeRefinementService.getDataList(typeDifferentiateId);
-    	for (TypeRefinement typeRefinement : typeRefinements) {
-			System.out.println(typeRefinement);
-		}
     	
     	String name = typeDifferentiateService.getDataName(typeDifferentiateId).getTypeDifferentiateName();
     	Page page = (Page) typeRefinements;
@@ -43,6 +40,15 @@ public class TypeRefinementController {
     
     @RequestMapping("/getTypeDataEdit")
     public String getTypeDataEdit(Model model, Integer typeRefinementId) {
+    	
+    	TypeRefinement typeRefinement = typeRefinementService.getOneData(typeRefinementId);
+    	model.addAttribute("typeRefinement", typeRefinement);
+    	
+        return "type/dataEdit";
+    }
+    
+    @RequestMapping("/addOrUpdate")
+    public String saveOrUpdateTypeDataEdit(Model model, Integer typeRefinementId) {
     	
     	TypeRefinement typeRefinement = typeRefinementService.getOneData(typeRefinementId);
     	model.addAttribute("typeRefinement", typeRefinement);

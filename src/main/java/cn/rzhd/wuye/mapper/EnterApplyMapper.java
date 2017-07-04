@@ -37,4 +37,8 @@ public interface EnterApplyMapper {
     List<Map<String, JsonFormat.Value>> findEnterApplyByQuery(EnterApplyQuery enterApplyQuery);
 
     void updatePayState(@Param("wyState") String wyState, @Param("kfState") String kfState, @Param("enterApplyId") Long enterApplyId);
+
+    Integer getCount(@Param("pkHouse") String pkHouse, @Param("customerId") String customerId);
+
+    EnterApply getEnterApply(@Param("pkHouse") String pkHouse, @Param("customerId") String customerId);
 }

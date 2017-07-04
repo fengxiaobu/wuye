@@ -35,7 +35,8 @@
         WHERE UTILITIES_DETAILS_ID = #{utilitiesDetailsId}
     </delete>
     <insert id="insert" parameterType="cn.rzhd.wuye.bean.UtilitiesDetails">
-        INSERT INTO T_UTILITIES_DETAILS (UTILITIES_DETAILS_ID, HOUSE_INFO_ID, CLIENT_NAME, FEE_TYPE, PAY_MANNER, PAY_MONTH,
+        INSERT INTO T_UTILITIES_DETAILS (
+            UTILITIES_DETAILS_ID, HOUSE_INFO_ID, CLIENT_NAME, FEE_TYPE, PAY_MANNER, PAY_MONTH,
                                          START_DATE, END_DATE, PAYABLE,
                                          PAID_IN, VOUCHER_NUMBER, INVOICE,
                                          INVOICE_NUMBER, INVOICE_NOTES, INVOICE_STATUS,

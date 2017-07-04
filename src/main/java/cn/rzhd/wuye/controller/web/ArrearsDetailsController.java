@@ -33,7 +33,7 @@ public class ArrearsDetailsController {
         for (PropertyFee fee : propertyFees) {
             sum = sum.add(new BigDecimal(fee.getNyshouldmny()));
         }
-        result.put("rows",result);
+        result.put("rows",propertyFees);
         result.put("sum",sum);
         return result;
     }

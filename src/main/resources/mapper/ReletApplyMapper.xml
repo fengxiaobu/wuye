@@ -4,7 +4,6 @@
     <resultMap id="BaseResultMap" type="cn.rzhd.wuye.bean.ReletApply">
         <id column="RELET_APPLY_ID" property="reletApplyId"/>
         <result column="HOUSE_INFO_ID" property="houseInfoId"/>
-        <result column="CLIENT_NAME" property="clientName"/>
         <result column="HOUSE_ACREAGE" property="houseAcreage"/>
         <result column="LEASE_START_TIME" property="leaseStartTime"/>
         <result column="LEASE_END_TIME" property="leaseEndTime"/>
@@ -18,6 +17,7 @@
         <result column="CREATION_TIME" property="creationTime"/>
         <result column="UPDATE_TIME" property="updateTime"/>
         <result column="RETREA_END_TIME" property="retreaEndTime"/>
+        <result column="CUSTOMERID" property="customerId"/>
         <association property="houseInfoDetails" javaType="cn.rzhd.wuye.bean.HouseInfoDetails">
             <id column="pk_house" property="pkHouse" jdbcType="CHAR"/>
             <result column="pk_corp" property="pkCorp" jdbcType="CHAR"/>
@@ -130,55 +130,55 @@
     </insert>
     <update id="updateByPrimaryKey" parameterType="cn.rzhd.wuye.bean.ReletApply">
         UPDATE T_RELET_APPLY
-        SET
-        <if test="houseInfoId!=null">
-            HOUSE_INFO_ID = #{houseInfoId}
-        </if>
-        <if test="customerId!=null">
-            CUSTOMERID = #{customerId}
-        </if>
-        <if test="houseAcreage!=null">
-            HOUSE_ACREAGE = #{houseAcreage}
-        </if>
-        <if test="leaseStartTime!=null">
-            LEASE_START_TIME = #{leaseStartTime}
-        </if>
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="houseInfoId!=null">
+                HOUSE_INFO_ID = #{houseInfoId},
+            </if>
+            <if test="customerId!=null">
+                CUSTOMERID = #{customerId},
+            </if>
+            <if test="houseAcreage!=null">
+                HOUSE_ACREAGE = #{houseAcreage},
+            </if>
+            <if test="leaseStartTime!=null">
+                LEASE_START_TIME = #{leaseStartTime},
+            </if>
 
-        <if test="leaseEndTime!=null">
-            LEASE_END_TIME = #{leaseEndTime}
-        </if>
-        <if test="retreaTime!=null">
-            RETREA_TIME = #{retreaTime}
-        </if>
-        <if test="retreaType!=null">
-            RETREA_TYPE = #{retreaType}
-        </if>
-        <if test="singlePrice!=null">
-            SINGLE_PRICE = #{singlePrice}
-        </if>
+            <if test="leaseEndTime!=null">
+                LEASE_END_TIME = #{leaseEndTime},
+            </if>
+            <if test="retreaTime!=null">
+                RETREA_TIME = #{retreaTime},
+            </if>
+            <if test="retreaType!=null">
+                RETREA_TYPE = #{retreaType},
+            </if>
+            <if test="singlePrice!=null">
+                SINGLE_PRICE = #{singlePrice},
+            </if>
 
-        <if test="subtotal!=null">
-            SUBTOTAL = #{subtotal}
-        </if>
-        <if test="privilegeSum!=null">
-            PRIVILEGE_SUM = #{privilegeSum}
-        </if>
-        <if test="leaseDeposit!=null">
-            LEASE_DEPOSIT = #{leaseDeposit}
-        </if>
-
-        <if test="total!=null">
-            TOTAL = #{total}
-        </if>
-        <if test="creationTime!=null">
-            CREATION_TIME = #{creationTime}
-        </if>
-        <if test="updateTime!=null">
-            UPDATE_TIME = #{updateTime}
-        </if>
-        <if test="retreaEndTime!=null">
-            RETREA_END_TIME = #{retreaEndTime}
-        </if>
+            <if test="subtotal!=null">
+                SUBTOTAL = #{subtotal},
+            </if>
+            <if test="privilegeSum!=null">
+                PRIVILEGE_SUM = #{privilegeSum},
+            </if>
+            <if test="leaseDeposit!=null">
+                LEASE_DEPOSIT = #{leaseDeposit},
+            </if>
+            <if test="total!=null">
+                TOTAL = #{total},
+            </if>
+            <if test="creationTime!=null">
+                CREATION_TIME = #{creationTime},
+            </if>
+            <if test="updateTime!=null">
+                UPDATE_TIME = #{updateTime},
+            </if>
+            <if test="retreaEndTime!=null">
+                RETREA_END_TIME = #{retreaEndTime}
+            </if>
+        </trim>
         WHERE RELET_APPLY_ID = #{reletApplyId}
     </update>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">

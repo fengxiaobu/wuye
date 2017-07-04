@@ -97,5 +97,9 @@ public class DecorationApplyServiceImpl implements IDecorationApplyService {
         decorationApplyMapper.updatePayState(paymentStatus, decorationApplyId);
     }
 
+    @Override
+    public Integer getCount(String pkHouse, String customerId) {
+        return decorationApplyMapper.getCount(pkHouse, customerId);
+    }
 
 }

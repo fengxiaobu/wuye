@@ -83,6 +83,10 @@
     	UPDATE "T_Customer" SET  "Password" = #{password} WHERE "vccode"=#{vccode}
     </update>
     
+    <update id="findPassword">
+    	UPDATE "T_Customer" SET  "Password" = #{password} WHERE "Binding_Phone"=#{bindingPhone}
+    </update>
+    
     <select id="selectPassword" parameterType="String" resultType="String">
     	SELECT DISTINCT "Password" FROM "T_Customer" WHERE "vccode"=#{vccode}
     </select>

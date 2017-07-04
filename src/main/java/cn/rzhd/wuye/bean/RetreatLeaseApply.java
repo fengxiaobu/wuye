@@ -84,6 +84,7 @@ public class RetreatLeaseApply implements Serializable {
      */
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date updateTime;
+
     private HouseInfoDetails houseInfoDetails;
 
     public String getCustomerId() {

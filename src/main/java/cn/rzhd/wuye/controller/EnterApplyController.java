@@ -204,6 +204,9 @@ public class EnterApplyController {
             result.put("msg", "房产ID不能为空!");
             return result;
         }
+        if (StrUtil.isEmpty(enterApply.getCustomerId())){
+
+        }
         if (StringUtil.isEmpty(enterApply.getEnterAdviceNote())) {
             result.put("state", "0");
             result.put("msg", "入驻通知书不能为空!");
@@ -434,6 +437,28 @@ public class EnterApplyController {
         Map<String, String> result = new Hashtable<>();
         enterApplyService.updatePayState("-1", "-1", enterApplyId);
         result.put("state", "1");
+        return result;
+    }
+
+    /**
+     * 获取入驻申请表中是否有数据
+     *
+     * @param pkHouse
+     * @param customerId
+     * @return
+     */
+    @RequestMapping("/getEnterApplyCount")
+    @ResponseBody
+    public Map<String, String> getCount(String pkHouse, String customerId) {
+        Map<String, String> result = new Hashtable<>();
+        if (StrUtil.isEmpty(pkHouse) && StrUtil.isEmpty(customerId)) {
+            result.put("state", "0");
+            result.put("msg", "ID为空");
+            return result;
+        }
+        Integer count = enterApplyService.getCount(pkHouse, customerId);
+        result.put("state", "1");
+        result.put("data", count.toString());
         return result;
     }
 }

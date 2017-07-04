@@ -8,7 +8,6 @@ import java.util.Map;
 
 /**
  * Created by hasee on 2017/6/1.
- *
  */
 public interface IKfFeePayDetailsService {
 
@@ -18,5 +17,11 @@ public interface IKfFeePayDetailsService {
 
     void changeStatus(Long id);
 
-    List<Map<String,Object>> getByProject(Long userId);
+    List<Map<String, Object>> getByProject(Long userId);
+
+    String getCompanyAccount(String feecode, String pk_corp);
+
+    String getCostType(String feecode, String pk_corp);
+
+    String getCompanyName(String feecode, String pk_corp);
 }

@@ -48,7 +48,7 @@ public class PerfectInformationTest extends BaseTest {
 		perfectInformation.setPropertyToAccessContact("777");
 		perfectInformation.setSignInFund(new BigDecimal(111));
 		perfectInformation.setUpdateTime(date);
-		perfectInformation.setURavinePropertyId(444L);
+//		perfectInformation.setURavinePropertyId(444L);
 		perfectInformation.setUpBazaarTypeId(1L);
 		perfectInformation.setStockCode("456");
 		perfectInformation.setStatus(11);
@@ -67,7 +67,7 @@ public class PerfectInformationTest extends BaseTest {
 	
 	@Test
 	public void test3() throws Exception {
-		String houseInfoId="1031AM100000000192Q2";
+		String houseInfoId="1040AM1000000000SVVZ";
 		PerfectInformation information = mapper.selectByHouseInfoId(houseInfoId);
 		System.out.println(information);
 	}

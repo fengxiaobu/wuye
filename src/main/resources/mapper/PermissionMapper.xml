@@ -45,7 +45,7 @@
             CODE
         FROM T_PERMISSION
     </select>
-    <select id="getPermissionsByUser" parameterType="long" resultType="cn.rzhd.wuye.bean.Permission">
+    <select id="getPermissionsByUser" parameterType="string" resultType="cn.rzhd.wuye.bean.Permission">
         SELECT
             T_PERMISSION.PERMISSION_ID,
             T_PERMISSION."NAME",
@@ -55,7 +55,8 @@
         FROM T_PERMISSION
             JOIN T_ROLE_PERMISSION ON T_PERMISSION.PERMISSION_ID = T_ROLE_PERMISSION.PERMISSION_ID
             JOIN T_ROLE ON T_ROLE.ROLE_ID = T_ROLE_PERMISSION.ROLE_ID
-            JOIN T_USER_ROLE ON T_USER_ROLE.USER_ID = T_USER.USER_ID
+            JOIN T_USER_ROLE ON T_USER_ROLE.ROLE_ID = T_ROLE.ROLE_ID
+            JOIN T_USER ON T_USER.USER_ID=T_USER_ROLE.USER_ID
         WHERE T_USER.USERNAME = #{username}
     </select>
 </mapper>

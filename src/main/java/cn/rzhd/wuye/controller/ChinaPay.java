@@ -119,18 +119,16 @@ public class ChinaPay {
     public @ResponseBody
     Map<String, Object> pay(HttpServletRequest req, String orderAmt, String commodityMsg, String merResv, String bankInstNo) throws IOException {
         RequestVO requestVO = new RequestVO();
-        // merResv = Base64.encodeUrlSafe(merResv);
+        ChinaPayHelper chinaPayHelper = new ChinaPayHelper();
+
         requestVO.setOrderAmt("10");
-        // requestVO.setOrderAmt(orderAmt);
+        // requestVO.setTranReserved(JSON.toJSONString(sb.toString()));
         requestVO.setCommodityMsg(commodityMsg);
         requestVO.setMerResv(merResv);
         requestVO.setBankInstNo(bankInstNo);
-        System.out.println("requestVO = " + requestVO);
-        System.out.println("Base64.decodeStr(merResv) = " + Base64.decodeStr(merResv));
-        //前台页面传过来的
-        ChinaPayHelper chinaPayHelper = new ChinaPayHelper();
-        requestVO.setRemoteAddr(HttpUtils.getIpAddr(req));
-        requestVO.setMerOrderNo(RandomUtil.randomString(32));
+        requestVO.setMerOrderNo(RandomUtil.randomNumbers(32));
+
+        // requestVO.setRemoteAddr(HttpUtils.getIpAddr(req));
         //requestVO.setBankInstNo("700000000000017");
         //requestVO.setCommodityMsg("物业测试");
         //requestVO.setMerResv("交易商品");
@@ -138,9 +136,7 @@ public class ChinaPay {
         RequestVO vo = chinaPayHelper.getSign(requestVO);
         System.out.println("requestVO = " + requestVO);
         Map<String, Object> objectMap = BeanUtils.objectToMap(requestVO);
-        // Map<String, Object> objectMap = BeanUtil.beanToMap(requestVO);
         Map<String, Object> sign = ChinaPaySignUtils.sign(objectMap);
-        System.out.println("sign = " + sign);
         objectMap.put("Signature", sign.get("sign"));
         objectMap.put("postUrl", "http://newpayment-test.chinapay.com/CTITS/service/rest/page/nref/000000000017/0/0/0/0/0");
         return objectMap;

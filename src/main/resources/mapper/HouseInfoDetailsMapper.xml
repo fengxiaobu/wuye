@@ -257,6 +257,6 @@
     </resultMap>
     
     <update id="updadteState">
-        UPDATE T_HOUSE_INFO_DETAILS SET ALREADY_FINISH = #{alreadyFinish}  WHERE "houseInfoId" = #{houseInfoId}
+        UPDATE T_HOUSE_INFO_DETAILS SET ALREADY_FINISH = #{alreadyFinish}  WHERE "pk_house" = #{houseInfoId}
     </update>
 </mapper>
