@@ -185,7 +185,7 @@ public class CustomerCentreController {
 					perfectInformationService.save(perfectInformation);
 					houseInfoDetailsService.updadteState("1", houseInfoId);
 					result.put("state", "1");
-					result.put("msg", "保存成功");
+					result.put("msg", "成功");
 				} catch (Exception e) {
 					result.put("state", "0");
 					result.put("msg", e.getMessage());
@@ -196,8 +196,8 @@ public class CustomerCentreController {
 					perfectInformation.setUpdateTime(new Date());
 					//修改
 					perfectInformationService.updateByHouseInfoId(perfectInformation);
-					result.put("state", "2");
-					result.put("msg", "修改成功");
+					result.put("state", "1");
+					result.put("msg", "成功");
 				} catch (Exception e) {
 					result.put("state", "0");
 					result.put("msg", e.getMessage());
