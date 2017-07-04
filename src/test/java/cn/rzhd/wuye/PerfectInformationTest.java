@@ -48,7 +48,7 @@ public class PerfectInformationTest extends BaseTest {
 		perfectInformation.setPropertyToAccessContact("777");
 		perfectInformation.setSignInFund(new BigDecimal(111));
 		perfectInformation.setUpdateTime(date);
-		perfectInformation.setURavinePropertyId(444L);
+		//perfectInformation.setURavinePropertyId(444L);
 		perfectInformation.setUpBazaarTypeId(1L);
 		perfectInformation.setStockCode("456");
 		perfectInformation.setStatus(11);

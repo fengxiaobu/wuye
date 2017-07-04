@@ -116,6 +116,7 @@
             LEFT JOIN "T_Customer" customer ON apply.CUSTOMERID = customer."pk_customerid"
         WHERE
             apply.ENTER_APPLY_ID = #{enterApplyId}
+        ORDER BY apply.CREATION_TIME DESC
     </select>
     <select id="getEnterApplyByIDAndState" resultMap="enterApplyMap">
         SELECT DISTINCT *
@@ -126,41 +127,39 @@
             LEFT JOIN "T_Customer" customer ON apply.CUSTOMERID = customer."pk_customerid"
         WHERE
             HOUSE_INFO_ID = '${pkHouse}'
+        ORDER BY apply.CREATION_TIME DESC
     </select>
     <!-- 入驻申请列表分页查询 -->
     <select id="findEnterApplyList" resultMap="enterApplyMap">
         SELECT DISTINCT *
         FROM
-            T_ENTER_APPLY apply LEFT JOIN
-            T_HOUSE_INFO_DETAILS house ON apply.HOUSE_INFO_ID = house."pk_house"
+            T_ENTER_APPLY apply
+            LEFT JOIN T_HOUSE_INFO_DETAILS house ON apply.HOUSE_INFO_ID = house."pk_house"
             LEFT JOIN T_PROJECT_INFO project ON house."pk_project" = project.PK_PROJECT
             LEFT JOIN "T_Customer" customer ON apply.CUSTOMERID = customer."pk_customerid"
+        ORDER BY apply.CREATION_TIME DESC
     </select>
     <!-- 入驻申请列表条件查询 -->
-    <select id="findEnterApplyByQuery" parameterType="cn.rzhd.wuye.vo.query.EnterApplyQuery" resultMap="enterApplyMap">
-        SELECT
-        apply.ENTER_APPLY_ID,project.PROJECT_NAME,house."vhname",apply.CLIENT_NAME,apply.APPLY_TIME,apply.AUDIT_STATUS,apply.HOUSE_INFO_ID
+    <select id="findEnterApplyByQuery" parameterType="cn.rzhd.wuye.vo.query.ApplyQuery" resultMap="enterApplyMap">
+        SELECT DISTINCT
+        *
         FROM
-        T_ENTER_APPLY apply,
-        T_HOUSE_INFO_DETAILS house,
-        T_PROJECT_INFO project
-        WHERE
-        apply.HOUSE_INFO_ID=house."pk_house"
-        AND
-        house."pk_project"=project.PK_PROJECT
-        <if test="startDate != null">
-            <if test="endDate != null">
-                AND BETWEEN apply.APPLY_TIME=to_date(#{startDate},'yyyy-mm-dd')
-                AND apply.APPLY_TIME=to_date(#{endDate},'yyyy-mm-dd')
+        T_ENTER_APPLY apply LEFT JOIN
+        T_HOUSE_INFO_DETAILS house ON apply.HOUSE_INFO_ID = house."pk_house"
+        LEFT JOIN T_PROJECT_INFO project ON house."pk_project" = project.PK_PROJECT
+        LEFT JOIN "T_Customer" customer ON apply.CUSTOMERID = customer."pk_customerid"
+        <where>
+            <if test="startDate != null">
+                <if test="endDate != null">
+                    apply.APPLY_TIME BETWEEN #{startDate}
+                    AND #{endDate}
+                </if>
             </if>
-        </if>
-        <if test="clientName != null">
-            AND CLIENT_NAME=#{clientName}
-        </if>
-        <if test="projectName != null">
-            AND PROJECT_NAME=#{projectName}
-        </if>
-
+            <if test="clientName != null">
+                AND CLIENT_NAME=#{clientName} OR PROJECT_NAME=#{clientName}
+            </if>
+        </where>
+        ORDER BY apply.CREATION_TIME DESC
     </select>
 
     <!-- 用户信息修改 操作-->
@@ -223,11 +222,13 @@
         SELECT count(ENTER_APPLY_ID)
         FROM T_ENTER_APPLY apply
         WHERE apply.HOUSE_INFO_ID = #{pkHouse} AND apply.CUSTOMERID = #{customerId}
+        ORDER BY apply.CREATION_TIME DESC
     </select>
 
     <select id="getEnterApply" resultType="enterApply">
-        SELECT *
+        SELECT DISTINCT *
         FROM T_ENTER_APPLY apply
         WHERE apply.HOUSE_INFO_ID = #{pkHouse} AND apply.CUSTOMERID = #{customerId}
+        ORDER BY apply.CREATION_TIME DESC
     </select>
 </mapper>

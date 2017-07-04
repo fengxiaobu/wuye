@@ -4,6 +4,7 @@ import cn.rzhd.wuye.bean.DecorationApply;
 import cn.rzhd.wuye.bean.DecorationNotice;
 import cn.rzhd.wuye.bean.HouseInfoDetails;
 import cn.rzhd.wuye.service.*;
+import cn.rzhd.wuye.vo.query.ApplyQuery;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -296,6 +297,12 @@ public class DecorationApplyController {
         }
     }
 
+    /**
+     * 所有装修申请
+     *
+     * @param model
+     * @return
+     */
     @RequestMapping("/toDecorationApplyList")
     public String toDecorationApplyList(Model model) {
         List<Map<String, JsonFormat.Value>> decorationApplyList = decorationApplyService.findDecorationApplyList();
@@ -303,6 +310,32 @@ public class DecorationApplyController {
         return "decoration/decorationApplyList";
     }
 
+    /**
+     * 搜索
+     *
+     * @param query
+     * @param model
+     * @return
+     */
+    @RequestMapping("/decoration/search")
+    public String enDecorationSearch(ApplyQuery query, Model model) {
+
+        System.out.println("query = " + query);
+        List<Map<String, JsonFormat.Value>> decorationApplyListByQuery = decorationApplyService.findDecorationApplyListByQuery(query);
+        model.addAttribute("decorationApply", decorationApplyListByQuery);
+        model.addAttribute("clientName", query.getClientName());
+        model.addAttribute("startDate", query.getStartDate());
+        model.addAttribute("endDate", query.getEndDate());
+        return "decoration/decorationApplyList";
+    }
+
+    /**
+     * 去往编辑页面
+     *
+     * @param model
+     * @param decorationApplyId
+     * @return
+     */
     @RequestMapping("toDecorationApply")
     public String toDecorationApplyEdit(Model model, Long decorationApplyId) {
         DecorationApply decorationApply = decorationApplyService.selectByPrimaryKey(decorationApplyId);
@@ -370,4 +403,6 @@ public class DecorationApplyController {
         result.put("data", "count");
         return result;
     }
+
+
 }

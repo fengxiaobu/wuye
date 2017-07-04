@@ -1,6 +1,7 @@
 package cn.rzhd.wuye.service;
 
 import cn.rzhd.wuye.bean.EnterMaterial;
+import cn.rzhd.wuye.vo.query.ApplyQuery;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.util.List;
@@ -12,7 +13,14 @@ import java.util.Map;
 public interface IEnterMaterialService {
     List<Map<String, JsonFormat.Value>> findEnterMaterialList();
 
-    EnterMaterial findEnterMaterialBypkproject(String pkproject);
+    List<Map<String, JsonFormat.Value>> findEnterMaterialBypkproject(ApplyQuery query);
+
     EnterMaterial findEnterMaterialByKey(Long enterMaterialId);
+
+    EnterMaterial findEnterMaterialBypkprojectId(String trim);
+
+    void delEnterMaterial(Long enterMaterialId);
+
+    void insertEnterMaterial(EnterMaterial enterMaterial);
 
 }

@@ -1,7 +1,7 @@
 package cn.rzhd.wuye.service;
 
 import cn.rzhd.wuye.bean.DecorationApply;
-import cn.rzhd.wuye.vo.query.EnterApplyQuery;
+import cn.rzhd.wuye.vo.query.ApplyQuery;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.util.List;
@@ -21,7 +21,7 @@ public interface IDecorationApplyService {
 
     List<Map<String, JsonFormat.Value>> findDecorationApplyList();
 
-    List<Map<String, JsonFormat.Value>> findDecorationApplyListByQuery(EnterApplyQuery enterApplyQuery);
+    List<Map<String, JsonFormat.Value>> findDecorationApplyListByQuery(ApplyQuery enterApplyQuery);
 
     DecorationApply findDecorationApplyByHouseId(String houseInfoId);
 

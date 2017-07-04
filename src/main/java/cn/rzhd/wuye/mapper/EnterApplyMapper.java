@@ -1,7 +1,7 @@
 package cn.rzhd.wuye.mapper;
 
 import cn.rzhd.wuye.bean.EnterApply;
-import cn.rzhd.wuye.vo.query.EnterApplyQuery;
+import cn.rzhd.wuye.vo.query.ApplyQuery;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -34,7 +34,7 @@ public interface EnterApplyMapper {
 
     int updateEnterApply(EnterApply enterApply);
 
-    List<Map<String, JsonFormat.Value>> findEnterApplyByQuery(EnterApplyQuery enterApplyQuery);
+    List<Map<String, JsonFormat.Value>> findEnterApplyByQuery(ApplyQuery enterApplyQuery);
 
     void updatePayState(@Param("wyState") String wyState, @Param("kfState") String kfState, @Param("enterApplyId") Long enterApplyId);
 

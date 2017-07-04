@@ -3,7 +3,7 @@ package cn.rzhd.wuye.service.impl;
 import cn.rzhd.wuye.bean.DecorationApply;
 import cn.rzhd.wuye.mapper.DecorationApplyMapper;
 import cn.rzhd.wuye.service.IDecorationApplyService;
-import cn.rzhd.wuye.vo.query.EnterApplyQuery;
+import cn.rzhd.wuye.vo.query.ApplyQuery;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -83,7 +83,7 @@ public class DecorationApplyServiceImpl implements IDecorationApplyService {
      * @return
      */
     @Override
-    public List<Map<String, JsonFormat.Value>> findDecorationApplyListByQuery(EnterApplyQuery enterApplyQuery) {
+    public List<Map<String, JsonFormat.Value>> findDecorationApplyListByQuery(ApplyQuery enterApplyQuery) {
         return decorationApplyMapper.findDecorationApplyListByQuery(enterApplyQuery);
     }
 
