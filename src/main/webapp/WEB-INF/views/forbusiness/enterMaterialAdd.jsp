@@ -45,36 +45,36 @@
             <div class="form-group">
                 <label class="col-sm-2 control-label">请选择上传的资料包:</label>
                 <div class="col-sm-10">
-                    <form>
-                        <input type="file" name="file1" id="file"/>
-                        <button type="button" id="submitId"/>点击上传
-                    </form>
+                    <input type="hidden" name="materialAddress"/>
+                    <input type="file" name="file" id="file"/>
+                    <button type="button" id="submitId"/>
+                    点击上传
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-2 control-label">基本信息:</label>
                 <div class="col-sm-10">
-                    <textarea name="" rows="3"></textarea>
+                    <textarea name="basicInfo" rows="3"></textarea>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-2 control-label">备注:</label>
                 <div class="col-sm-10">
-                    <textarea name="" rows="3"></textarea>
+                    <textarea name="notes" rows="3"></textarea>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-2 control-label">更新用户:</label>
                 <div class="col-sm-10">
-                    <label class="col-sm-2 control-label"></label>
+                    <label class="col-sm-2 control-label"><shiro:principal property="realname"/></label>
                 </div>
             </div>
-            <div class="form-group">
+           <%-- <div class="form-group">
                 <label class="col-sm-2 control-label">更新日期:</label>
                 <div class="col-sm-10">
                     <input type="datetime-local">
                 </div>
-            </div>
+            </div>--%>
             <div class="form-group">
                 <button type="submit" style="margin-left: 250px;width: 100px" class="btn btn-default">保存</button>
             </div>
@@ -84,116 +84,7 @@
 
 </body>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-2.1.4.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/ajaxfileupload.js"></script>
+<%--<script type="text/javascript" src="${pageContext.request.contextPath}/js/libs/fileupload/js/uploadfile.js"></script>--%>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/libs/bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript">
-    var tableEdit = {
-        content: function (option) {
-            var _tableEdit = this;
-            if ($(".tudiqianyue").is(".tableedit")) {
-                $(".tudiqianyue-tdtr").find("td").css({
-                    "border": "",
-                    "background": ""
-                });
-            }
-            $(".tudiqianyue").addClass("tableedit");
-            var tr = $(".tudiqianyue-tdtr").length;
-            $(".tudiqianyue-tdtr").each(function (_index, _this) {
-                var trIndex = _index;
-                $(this).find("td").each(function (_index, _this) {
-                    var tdIndex = _index;
-                    // $(this).attr("contenteditable","true");
-                    if (tdIndex == option.start) {
-                        $(this).css({"border-left": "2px solid red"});
-                    }
-                    if (tdIndex == option.end) {
-                        $(this).css({"border-right": "2px solid red"});
-                    }
-                    if (trIndex == 0 && tdIndex >= option.start && tdIndex <= option.end) {
-                        $(this).css({"border-top": "3px solid red"})
-                    }
-                    if (trIndex == tr - 1 && tdIndex >= option.start && tdIndex <= option.end) {
-                        $(this).css({"border-bottom": "3px solid red"})
-                    }
-                    if (tdIndex >= option.start && tdIndex <= option.end) {
-                        $(this).css({"background": "#fff"}).attr("contenteditable", "true");
-                    }
-                });
-            });
-            if (option.cancel) {
-                $(option.cancel).click(function () {
-                    _tableEdit.close(option);
-                });
-            }
-            if (typeof option.callback == "function") {
-                option.callback();
-            }
-        },
-        setTd: function (option) {
-        },
-        close: function (option) {
-            $(".tudiqianyue").removeClass("tableedit");
-            $(".tudiqianyue-tdtr").each(function (_index, _this) {
-                var trIndex = _index;
-                var tr = $(".tudiqianyue-tdtr").length;
-                $(this).find("td").each(function (_index, _this) {
-                    var tdIndex = _index;
-                    if (tdIndex == option.start) {
-                        $(this).css({"border-left": ""})
-                    }
-                    if (tdIndex == option.end) {
-                        $(this).css({"border-right": ""})
-                    }
-                    if (trIndex == 0 && tdIndex >= option.start && tdIndex <= option.end) {
-                        $(this).css({"border-top": ""})
-                    }
-                    if (trIndex == tr - 1 && tdIndex >= option.start && tdIndex <= option.end) {
-                        $(this).css({"border-bottom": ""})
-                    }
-                    if (tdIndex >= option.start && tdIndex <= option.end) {
-                        $(this).css({"background": "#fff"}).attr("contenteditable", "false");
-                    }
-                });
-            });
-        },
-    };
 
-
-    $("#edit-xieyi").click(function () {
-        tableEdit.content({
-            start: 1,
-            end: 3,
-            cancel: "#tudiqianyue-remove",
-            callback: function (data) {
-                console.log(111111)
-            }
-        })
-    });
-    $("#edit-hetong").click(function () {
-        tableEdit.content({
-            start: 3,
-            end: 6,
-            callback: function (data) {
-
-            }
-        })
-    });
-    $("#tudiqianyue-remove").click(function () {
-
-    });
-</script>
-<script>
-    $("#submitId").click(function () {
-        alert("dfad");
-            $.ajaxFileUpload({
-                url:'${pageContext.request.contextPath}/dist/upload', //你处理上传文件的服务端
-                secureuri:false,//是否启用安全机制
-                fileElementId:'file',//file的id
-                dataType: 'application/json',//返回的类型
-                success: function (data) {//调用成功时怎么处理
-                    alert("上传成功");
-                }
-            });
-    })
-</script>
 </html>

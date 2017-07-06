@@ -1,18 +1,20 @@
 package cn.rzhd.wuye.controller.web;
 
-import cn.rzhd.wuye.bean.Customer;
-import cn.rzhd.wuye.bean.HouseInfoDetails;
-import cn.rzhd.wuye.bean.ReletApply;
-import cn.rzhd.wuye.bean.RetreatLeaseApply;
+import cn.rzhd.wuye.bean.*;
 import cn.rzhd.wuye.service.*;
 import cn.rzhd.wuye.utils.JsonResult;
 import cn.rzhd.wuye.vo.PactVO;
+import com.alibaba.fastjson.JSON;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.xiaoleilu.hutool.util.StrUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by hasee on 2017/6/1.
@@ -30,6 +32,8 @@ public class LoginController {
     IRetreatLeaseApplyService retreatLeaseApplyService;
     @Autowired
     IHouseInfoDetailsService houseInfoDetailsService;
+    @Autowired
+    IEnterApplyService enterApplyService;
 
     /**
      * @param customer 通过Customer对象将vccode账号,password密码(未加密)封装起来
@@ -50,6 +54,8 @@ public class LoginController {
                     List<RetreatLeaseApply> retreatLeaseApply = retreatLeaseApplyService.findRetreatLeaseApply(vo.getPk_house(), cus.getPk_customerid());
                     //获取房产状态
                     HouseInfoDetails houseInfoDetails = houseInfoDetailsService.selectByPkHouse(vo.getPk_house());
+
+                    EnterApply enterApply = enterApplyService.getEnterApply(vo.getPk_house(), cus.getPk_customerid());
                     if (reletApply.size() > 0) {
                         vo.setContractStatus("1");
                     } else if (retreatLeaseApply.size() > 0) {
@@ -59,6 +65,9 @@ public class LoginController {
                     }
                     if (houseInfoDetails != null) {
                         vo.setHouseInfoDetails(houseInfoDetails);
+                    }
+                    if (enterApply != null) {
+                        vo.setVdef5(JSON.toJSONString(enterApply));
                     }
                 }
                 cus.getHouseInfos().addAll(pactVOS);
@@ -76,6 +85,25 @@ public class LoginController {
 ////                    result.getData().add(pactVOS);
 ////                }
 //            }
+            return result;
+        }
+    }
+
+    public Map<String, Object> getEnterApply(String pkHouse) {
+        Map<String, Object> result = new HashMap<>();
+        try {
+            if (StrUtil.isEmpty(pkHouse)) {
+                result.put("state", "0");
+                result.put("msg", "ID不能为空!");
+                return result;
+            }
+            List<Map<String, JsonFormat.Value>> mapList = enterApplyService.getEnterApplyByIDAndState(pkHouse);
+            result.put("state", "1");
+            result.put("data", JSON.toJSONString(mapList));
+            return result;
+        } catch (Exception e) {
+            result.put("state", "0");
+            result.put("msg", "erro" + e.getMessage());
             return result;
         }
     }

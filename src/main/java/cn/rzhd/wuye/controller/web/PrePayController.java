@@ -8,6 +8,7 @@ import cn.rzhd.wuye.service.IKfFeeService;
 import cn.rzhd.wuye.service.IPropertyFeeService;
 import cn.rzhd.wuye.utils.PageDataGridResult;
 import cn.rzhd.wuye.vo.query.FeeDataQuery;
+import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,6 +69,8 @@ public class PrePayController {
         List<KfFee> list = kfFeeService.selectAllRZ(query);
         PageInfo pageInfo = new PageInfo(list);
         List pageInfoList = pageInfo.getList();
+        EnterApply enterApply = enterApplyService.getEnterApply(query.getHouseInfoId(), query.getCustomerId());
+        result.setData(JSON.toJSONString(enterApply));
         result.setTotal(pageInfo.getTotal());
         result.setRows(pageInfoList);
         return result;
@@ -86,11 +89,10 @@ public class PrePayController {
         List<PropertyFee> list = propertyFeeService.rzselectAll(query);
         PageInfo pageInfo = new PageInfo(list);
         List pageInfoList = pageInfo.getList();
-
         EnterApply enterApply = enterApplyService.getEnterApply(query.getHouseInfoId(), query.getCustomerId());
-        pageInfoList.add(enterApply);
         result.setTotal(pageInfo.getTotal());
         result.setRows(pageInfoList);
+        result.setData(JSON.toJSONString(enterApply));
         return result;
     }
 }

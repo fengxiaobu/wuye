@@ -5,7 +5,7 @@ import cn.rzhd.wuye.mapper.EnterApplyMapper;
 import cn.rzhd.wuye.service.IEnterApplyService;
 import cn.rzhd.wuye.vo.LiandoServiceConstant;
 import cn.rzhd.wuye.vo.RequesterVO;
-import cn.rzhd.wuye.vo.query.EnterApplyQuery;
+import cn.rzhd.wuye.vo.query.ApplyQuery;
 import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonFormat.Value;
@@ -78,7 +78,7 @@ public class EnterApplyServiceImpl implements IEnterApplyService {
     }
 
     @Override
-    public List<Map<String, Value>> findEnterApplyByQuery(EnterApplyQuery enterApplyQuery) {
+    public List<Map<String, Value>> findEnterApplyByQuery(ApplyQuery enterApplyQuery) {
         return enterApplyMapper.findEnterApplyByQuery(enterApplyQuery);
     }
 

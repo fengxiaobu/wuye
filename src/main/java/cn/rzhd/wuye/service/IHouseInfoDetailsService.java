@@ -45,4 +45,12 @@ public interface IHouseInfoDetailsService {
 	 * @param houseInfoDetails
 	 */
     void updatehouse(HouseInfoDetails houseInfoDetails);
+
+    /**
+     * 
+     * @Description 根据主键id查询
+     * @param pkHouse
+     * @return
+     */
+    HouseInfoDetails selectHouseInfoDetailsById(String pkHouse);
 }

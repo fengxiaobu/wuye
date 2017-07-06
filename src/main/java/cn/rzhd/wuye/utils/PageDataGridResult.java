@@ -5,33 +5,42 @@ import java.util.List;
 
 public class PageDataGridResult {
 
-	public PageDataGridResult() {
-	}
+    private long total;
+    private List<?> rows = new ArrayList<>();
+    private String data;
 
-	public PageDataGridResult(long total, List<?> rows) {
-		super();
-		this.total = total;
-		this.rows = rows;
-	}
+    public PageDataGridResult() {
+    }
 
-	private long total;
-	private List<?> rows = new ArrayList<>();
+    public PageDataGridResult(long total, List<?> rows) {
+        super();
+        this.total = total;
+        this.rows = rows;
+    }
 
-	public long getTotal() {
-		return total;
-	}
+    public String getData() {
+        return data;
+    }
 
-	public void setTotal(long total) {
-		this.total = total;
-	}
+    public void setData(String data) {
+        this.data = data;
+    }
 
-	public List<?> getRows() {
-		return rows;
-	}
+    public long getTotal() {
+        return total;
+    }
 
-	public void setRows(List<?> rows) {
-		this.rows = rows;
-	}
+    public void setTotal(long total) {
+        this.total = total;
+    }
 
-	
+    public List<?> getRows() {
+        return rows;
+    }
+
+    public void setRows(List<?> rows) {
+        this.rows = rows;
+    }
+
+
 }
