@@ -126,8 +126,7 @@ public class ChinaPay {
         RequestVO requestVO = new RequestVO();
         ChinaPayHelper chinaPayHelper = new ChinaPayHelper();
 
-        requestVO.setOrderAmt("10");
-        // requestVO.setTranReserved(JSON.toJSONString(sb.toString()));
+        requestVO.setOrderAmt(orderAmt);
         requestVO.setCommodityMsg(commodityMsg);
         requestVO.setMerResv(merResv);
         requestVO.setBankInstNo(bankInstNo);
@@ -268,12 +267,12 @@ public class ChinaPay {
         request.getSession().setAttribute("pay", result);
     }
 
-    /**
+ /*   *//**
      * 获取入驻支付结果
      *
      * @param request
      * @return
-     */
+     *//*
     @RequestMapping("dist/getPayState")
     @ResponseBody
     public Map<String, String> getPayState(HttpServletRequest request) {
@@ -285,7 +284,7 @@ public class ChinaPay {
         result.put("rzkaifa", rzkaifa);
         result.put("rzwuye", rzwuye);
         return result;
-    }
+    }*/
 
     /**
      * 扫码支付
@@ -310,7 +309,7 @@ public class ChinaPay {
         String OrderReserved = JSON.toJSONString(map);
 
         requestVO.setOrderReserved(OrderReserved);
-        requestVO.setOrderAmt(orderAmt);
+        requestVO.setOrderAmt("10");
         requestVO.setCommodityMsg(commodityMsg);
         requestVO.setMerResv(merResv);
         System.out.println("requestVO = " + requestVO);
