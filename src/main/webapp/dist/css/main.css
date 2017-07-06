@@ -7035,6 +7035,7 @@ table{}
 	.btn-upfile {
 	    width: 96px;
 		position: relative;
+		overflow: hidden;
 	}
 	.btn-upfile [type="file"] {
 		position: absolute;
