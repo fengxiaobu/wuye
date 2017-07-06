@@ -1,6 +1,7 @@
 package cn.rzhd.wuye.mapper;
 
 import cn.rzhd.wuye.bean.UtilitiesDetails;
+import cn.rzhd.wuye.vo.query.PropertyRecordsQuery;
 import cn.rzhd.wuye.vo.query.UtilitiesQuery;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -29,9 +30,9 @@ public interface UtilitiesDetailsMapper {
 
     void changeStatus(Long id);
 
-    List<Map<String,Object>> getElectricByProject(Long userId);
+    List<Map<String,Object>> getElectricByProject(PropertyRecordsQuery query);
 
-    List<Map<String,Object>> getWaterByProject(Long userId);
+    List<Map<String,Object>> getWaterByProject(PropertyRecordsQuery query);
 
     BigDecimal getAstrictPaid(@Param("houseInfoId") String houseInfoId, @Param("startDate") Date startDate, @Param("endDate") Date endDate);
 
@@ -44,4 +45,8 @@ public interface UtilitiesDetailsMapper {
     Map<String,Object> getElectricByPrimaryKey(Long detailsId);
 
     Map<String,Object> getWaterByPrimaryKey(Long detailsId);
+
+    Integer countElectricByQuery(PropertyRecordsQuery query);
+
+    Integer countWaterByQuery(PropertyRecordsQuery query);
 }

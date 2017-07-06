@@ -10,11 +10,12 @@ import java.text.SimpleDateFormat;
 public class BaseQuery implements Serializable{
     protected static final long serialVersionUID = 1L;
     protected SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-    private String customerId;
-    private Integer startPage = 1;
-    private Integer pageSize = 10;
-    private Integer startNum;
-    private Integer endNum;
+    protected String customerId;
+    protected Integer startPage = 1;
+    protected Integer pageSize = 10;
+    protected Integer startNum;
+    protected Integer endNum;
+    protected Integer total;
 
     public String getCustomerId() {
         return customerId;
@@ -56,4 +57,11 @@ public class BaseQuery implements Serializable{
         this.endNum = endNum;
     }
 
+    public Integer getTotal() {
+        return total;
+    }
+
+    public void setTotal(Integer total) {
+        this.total = total;
+    }
 }

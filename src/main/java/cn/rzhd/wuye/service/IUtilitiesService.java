@@ -1,6 +1,7 @@
 package cn.rzhd.wuye.service;
 
 import cn.rzhd.wuye.bean.UtilitiesDetails;
+import cn.rzhd.wuye.vo.query.PropertyRecordsQuery;
 import cn.rzhd.wuye.vo.query.UtilitiesQuery;
 
 import java.math.BigDecimal;
@@ -21,9 +22,9 @@ public interface IUtilitiesService {
 
     void changeStatus(Long id);
 
-    List<Map<String,Object>> getElectricByProject(Long userId);
+    List<Map<String,Object>> getElectricByProject(PropertyRecordsQuery query);
 
-    List<Map<String,Object>> getWaterByProject(Long userId);
+    List<Map<String,Object>> getWaterByProject(PropertyRecordsQuery query);
 
     BigDecimal getAstrictPaid(String houseInfoId, Date startDate, Date endDate);
 
@@ -37,4 +38,7 @@ public interface IUtilitiesService {
 
     Map<String,Object> getWaterByPrimaryKey(Long id);
 
+    Integer countElectricByQuery(PropertyRecordsQuery query);
+
+    Integer countWaterByQuery(PropertyRecordsQuery query);
 }

@@ -1,3 +1,4 @@
+<%@ page import="java.text.SimpleDateFormat" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
@@ -34,7 +35,8 @@
                         <span style="margin-right: 50px"><input id="endPicker"  type="text"></span>
                         <span style="margin-right: 50px"><input style="height: 35px;width: 320px;" type="text"
                                                                 placeholder="项目名称,房产编码,客户名称" id="keyWords"></span>
-                        <button class="btn btn-info"><span class="glyphicon glyphicon-search"></span>搜素
+                        <button id="query" class="btn btn-info" type="button"><span
+                                class="glyphicon glyphicon-search"></span>搜素
                         </button>
                     </form>
                 </div>
@@ -75,48 +77,10 @@
                     <th>缴费日期</th>
                 </tr>
                 </thead>
-                <tbody class="tudiqianyue-tbody">
-                <c:forEach items="${propertyRecords}" var="item">
-                    <tr class="tudiqianyue-tdtr">
-
-                        <td>${item.detailsId}</td>
-                        <td>${item.projectName}</td>
-                        <td>${item.houseCode}</td>
-                        <td>${item.clientName}</td>
-                        <td>${item.costType}</td>
-                        <td>${item.updateTime}</td>
-                        <td>${item.payManner}</td>
-                        <td>${item.payMonth}</td>
-                        <td>${item.startDate}</td>
-                        <td>${item.endDate}</td>
-                        <td>${item.payable}</td>
-                        <td>${item.paidIn}</td>
-                        <td>${item.voucherNumber}</td>
-                        <td>${item.invoice}</td>
-                        <td>${item.invoiceNumber}</td>
-                        <td>${item.invoiceNotes}</td>
-                        <td>
-                            <c:choose>
-                                <c:when test="${item.invoiceStatus==0}">
-                                    已开
-                                </c:when>
-                                <c:when test="${item.invoiceStatus==1}">
-                                    需要
-                                </c:when>
-                                <c:when test="${item.invoiceStatus==2}">
-                                    不需要
-                                </c:when>
-                            </c:choose>
-                        </td>
-                        <td>${item.collectingCompany}</td>
-                        <td>${item.collectingAccount}</td>
-                        <td>${item.invoiceCompany}</td>
-                        <td>${item.payTime}</td>
-                    </tr>
-                </c:forEach>
+                <tbody class="tudiqianyue-tbody" id="productList">
                 </tbody>
             </table>
-            <div id="Pagination" class="pagination"></div>
+            <div id="pagination1" class="pagination"></div>
         </div>
     </div>
 </body>
@@ -282,35 +246,117 @@
 
 
     $(function () {
-        var pageCount=50;  //分页总数量
-        // $("#pagination").pagination(pageCount); //简单初始化方法
+        var pageSize = 10;
+        getData(1, pageSize);
 
+        //查询
+        $("#query").click(function () {
+            getData(1, pageSize);
+        });
 
-        $("#pagination").pagination(pageCount,    //分布总数量，必须参数
-            {
-                callback: PageCallback,  //PageCallback() 为翻页调用次函数。
-                prev_text: "« 上一页",
-                next_text: "下一页 »",
-                items_per_page:10,
-                num_edge_entries: 2,       //两侧首尾分页条目数
-                num_display_entries: 10,    //连续分页主体部分分页条目数
-                current_page: 0,   //当前页索引
-                link_to: "?id=__id__"  //分页的js中会自动把"__id__"替换为当前的数。0　
-            });
-
-    });
-
-    function PageCallback(page_index,jq)
-    {
-        $.ajax({
-            type: "POST",
-            dataType: "text",
-            url: '后台处理地址',      //提交到一般处理程序请求数据
-            data: "pageIndex=" + (pageIndex) + "&pageSize=" + pageSize,          //提交两个参数：pageIndex(页面索引)，pageSize(显示条数)
-            success: function(data) {
-                //后台服务返回数据，重新加载数据
+        //回车搜索
+        $(document).keydown(function (event) {
+            if (event.keyCode == 13) {
+                $("#query").click();
             }
         });
+    });
+
+    //加载分页显示数据
+    function getData(num, pageSize, f) {
+        var startDate = $("#startPicker").val();
+        var endDate = $("#endPicker").val();
+        var keyWords = $("#keyWords").val();
+        console.log(JSON.stringify({
+            startDate: startDate,
+            endDate: endDate,
+            keyWords: keyWords,
+            startPage: num,//当前页
+            pageSize: pageSize
+        }))
+        $.ajax({
+                url: "${basePath}/propertyRecords/getIndexData",
+                type: "GET",
+                contentType: "application/json",
+                dataType: "json",
+                data: {
+                    startDate: startDate,
+                    endDate: endDate,
+                    keyWords: keyWords,
+                    startPage: num,//当前页
+                    pageSize: pageSize
+                },
+                cache: false,
+                statusCode: {
+                    200: function (data) {
+                        var result = data.data[0];
+                        $("#productList tr").remove();
+                        var total = data.data[1]['total'];
+                        var pageSize = data.data[1]['pageSize'];
+                        var totalPages = total % pageSize == 0 ? Math.floor(total / pageSize) : Math.floor(total / pageSize + 1);
+                        for (var i = 0; i < result.length; i++) {
+                            var rowContent =
+                                "<tr>" +
+                                "<td>" + isnull(result[i].detailsId) + "</td><td>" + isnull(result[i].projectName) + "</td><td>" + isnull(result[i].houseCode) + "</td><td>" + isnull(result[i].clientName) + "</td><td>" + isnull(result[i].costType) + "</td><td>" + isnull(result[i].updateTime) + "</td> <td>" + isnull(result[i].payManner) + "</td> <td>" + isnull(result[i].payMonth) + "</td> <td>" + isnull(result[i].startDate) + "</td> <td>" + isnull(result[i].endDate) + "</td> <td>" + isnull(result[i].payable) + "</td> <td>" + isnull(result[i].paidIn) + "</td> <td>" + isnull(result[i].voucherNumber) + "</td> <td>" + isnull(result[i].invoice) + "</td> <td>" + isnull(result[i].invoiceNumber) + "</td> <td>" + isnull(result[i].invoiceNotes) + "</td><td>" + isnull(result[i].invoiceStatus) + "</td> <td>" + isnull(result[i].collectingCompany) + "</td> <td>" + isnull(result[i].collectingAccount) + "</td> <td>" + isnull(result[i].invoiceCompany) + "</td> <td>" + isnull(result[i].payTime) + "</td>" +
+                                "</tr>";
+                            $("#productList").append(rowContent);
+                        }
+
+                        $.jqPaginator('#pagination1', {
+                            totalPages: totalPages,
+                            visiblePages: pageSize,
+                            currentPage: num,
+                            onPageChange: function (num1,type) {
+                                if (num1 != num) {
+                                    getData(num1, pageSize);
+                                }
+                            }
+
+                        })
+                    },
+                    500: function () {
+                        layer.msg('网络异常，请稍后再试！', {icon: 5});
+                    }
+
+                }
+            }
+        );
     }
+
+    <%--"<tr class='tudiqianyue-tdtr'>"+--%>
+    <%--"<td>"+${item.detailsId}+"</td>"+--%>
+    <%--"<td>"+${item.projectName}+"</td>"+--%>
+    <%--"<td>"+${item.houseCode}+"</td>"+--%>
+    <%--"<td>"+${item.clientName}+"</td>"+--%>
+    <%--"<td>"+${item.costType}+"</td>"+--%>
+    <%--"<td>"+${item.updateTime}"</td>"+--%>
+    <%--"<td>"+${item.payManner}+"</td>"+--%>
+    <%--"<td>"+${item.payMonth}+"</td>"+--%>
+    <%--"<td>"+${item.startDate}+"</td>"+--%>
+    <%--"<td>"+${item.endDate}+"</td>"+--%>
+    <%--"<td>"+${item.payable}+"</td>"+--%>
+    <%--"<td>"+${item.paidIn}+"</td>"+--%>
+    <%--"<td>"+${item.voucherNumber}+"</td>"+--%>
+    <%--"<td>"+${item.invoice}+"</td>"+--%>
+    <%--"<td>"+${item.invoiceNumber}+"</td>"+--%>
+    <%--"<td>"+${item.invoiceNotes}+"</td>"+--%>
+    <%--"<td>"+--%>
+    <%--<c:choose>--%>
+    <%--<c:when test="${item.invoiceStatus==0}">--%>
+    <%--已开--%>
+    <%--</c:when>--%>
+    <%--<c:when test="${item.invoiceStatus==1}">--%>
+    <%--需要--%>
+    <%--</c:when>--%>
+    <%--<c:when test="${item.invoiceStatus==2}">+--%>
+    <%--"不需要"+--%>
+    <%--"</c:when>"+--%>
+    <%--"</c:choose>"+--%>
+    <%--"</td>"+--%>
+    <%--"<td>"+${item.collectingCompany}+"</td>"+--%>
+    <%--"<td>"+${item.collectingAccount}+"</td>"+--%>
+    <%--"<td>"+${item.invoiceCompany}+"</td>"+--%>
+    <%--"<td>"+${item.payTime}+"</td>"+--%>
+    <%--"</tr>"--%>
 </script>
 </html>

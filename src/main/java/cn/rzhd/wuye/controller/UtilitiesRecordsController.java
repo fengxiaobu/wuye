@@ -1,13 +1,15 @@
 package cn.rzhd.wuye.controller;
 
 import cn.rzhd.wuye.service.IUtilitiesService;
+import cn.rzhd.wuye.utils.JsonResult;
 import cn.rzhd.wuye.utils.UserContext;
+import cn.rzhd.wuye.vo.query.PropertyRecordsQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -20,39 +22,51 @@ public class UtilitiesRecordsController {
     private IUtilitiesService service;
 
     @RequestMapping("/electricIndex")
-    public ModelAndView electricIndex(){
-        Long userId = UserContext.getUser().getUserId();
-        ModelAndView mav = new ModelAndView();
-        List<Map<String,Object>> result = service.getElectricByProject(userId);
-        mav.addObject("electricRecords",result);
-        mav.setViewName("payment/electric");
-        return mav;
+    public String electricIndex() {
+        return "payment/electric";
+    }
+
+    @RequestMapping("/getElectricIndexData")
+    @ResponseBody
+    public JsonResult getElectricIndexData(PropertyRecordsQuery query) {
+        query.setUserId(UserContext.getUser().getUserId());
+        JsonResult result = new JsonResult();
+        result.getData().add(service.getElectricByProject(query));
+        query.setTotal(service.countElectricByQuery(query));
+        result.getData().add(query);
+        return result;
     }
 
     @RequestMapping("/waterIndex")
-    public ModelAndView waterIndex(){
-        Long userId = UserContext.getUser().getUserId();
-        ModelAndView mav = new ModelAndView();
-        List<Map<String,Object>> result = service.getWaterByProject(userId);
-        mav.addObject("waterRecords",result);
-        mav.setViewName("payment/water");
-        return mav;
+    public String waterIndex() {
+        return "payment/water";
+    }
+
+    @RequestMapping("/getWaterIndexData")
+    @ResponseBody
+    public JsonResult getWaterIndexData(PropertyRecordsQuery query) {
+        query.setUserId(UserContext.getUser().getUserId());
+        JsonResult result = new JsonResult();
+        result.getData().add(service.getWaterByProject(query));
+        query.setTotal(service.countWaterByQuery(query));
+        result.getData().add(query);
+        return result;
     }
 
     @RequestMapping("/electricDetails")
-    public ModelAndView electricDetails(Long id){
+    public ModelAndView electricDetails(Long id) {
         ModelAndView mav = new ModelAndView();
-        Map<String,Object> result = service.getElectricByPrimaryKey(id);
-        mav.addObject("result",result);
+        Map<String, Object> result = service.getElectricByPrimaryKey(id);
+        mav.addObject("result", result);
         mav.setViewName("payment/electricDetails");
         return mav;
     }
 
     @RequestMapping("/waterDetails")
-    public ModelAndView waterDetails(Long id){
+    public ModelAndView waterDetails(Long id) {
         ModelAndView mav = new ModelAndView();
         Map<String, Object> result = service.getWaterByPrimaryKey(id);
-        mav.addObject("result",result);
+        mav.addObject("result", result);
         mav.setViewName("payment/waterDetails");
         return mav;
     }
