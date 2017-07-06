@@ -4,6 +4,7 @@ import cn.rzhd.wuye.bean.KfFeePayDetails;
 import cn.rzhd.wuye.mapper.KfFeePayDetailsMapper;
 import cn.rzhd.wuye.service.IKfFeePayDetailsService;
 import cn.rzhd.wuye.vo.query.KfFeePayDetailsQuery;
+import cn.rzhd.wuye.vo.query.PropertyRecordsQuery;
 import com.github.pagehelper.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,8 +39,8 @@ public class KfFeePayDetailsServiceImpl implements IKfFeePayDetailsService {
     }
 
     @Override
-    public List<Map<String, Object>> getByProject(Long userId) {
-        return mapper.getByProject(userId);
+    public List<Map<String, Object>> getByProject(PropertyRecordsQuery query) {
+        return mapper.getByProject(query);
     }
 
     @Override
@@ -55,5 +56,10 @@ public class KfFeePayDetailsServiceImpl implements IKfFeePayDetailsService {
     @Override
     public String getCompanyName(String feecode, String pk_corp) {
         return mapper.getCompanyName(feecode,pk_corp);
+    }
+
+    @Override
+    public Integer countByQuery(PropertyRecordsQuery query) {
+        return mapper.countByQuery(query);
     }
 }

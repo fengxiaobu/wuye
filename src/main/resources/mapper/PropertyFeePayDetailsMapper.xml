@@ -183,7 +183,9 @@
         </where>
     </sql>
     <select id="getByProject" parameterType="cn.rzhd.wuye.vo.query.PropertyRecordsQuery" resultMap="map">
-        SELECT * FROM (SELECT
+        SELECT a2.*,RN FROM (
+        SELECT a1.*,ROWNUM AS RN FROM (
+        SELECT
         DISTINCT
         PROPERTY_FEE_PAY_DETAILS_ID,
         T_PROJECT_INFO.PROJECT_NAME,
@@ -208,15 +210,16 @@
         CARTE_TIME,
         T_PROPERTY_FEE_PAY_DETAILS.UPDATE_TIME,
         CUSTOMER_ID,
-        T_PROPERTY_FEE_PAY_DETAILS.STATUS,
-        ROWNUM AS r
+        T_PROPERTY_FEE_PAY_DETAILS.STATUS
         FROM T_PROPERTY_FEE_PAY_DETAILS
         JOIN T_HOUSE_INFO_DETAILS ON T_HOUSE_INFO_DETAILS."pk_house" = T_PROPERTY_FEE_PAY_DETAILS.HOUSE_INFO_ID
         JOIN T_PROJECT_INFO ON T_HOUSE_INFO_DETAILS."pk_project" = T_PROJECT_INFO.PK_PROJECT
         JOIN T_MANAGE ON T_HOUSE_INFO_DETAILS.MANAGE_ID = T_MANAGE."pk_manageId"
         JOIN T_MANAGE_USER ON T_MANAGE_USER.MANAGE_ID = T_MANAGE."pk_manageId"
         <include refid="querySql"/>
-        ORDER BY PAY_TIME DESC) WHERE r &gt;#{startNum} AND r &lt;=#{endNum}
+        ORDER BY PAY_TIME DESC
+        ) a1 WHERE ROWNUM &lt;=#{endNum}
+        )a2 where RN &gt;#{startNum}
     </select>
     <select id="getCostType" resultType="string">
         SELECT "feename"
@@ -238,7 +241,7 @@
     </select>
     <select id="countByQuery" parameterType="cn.rzhd.wuye.vo.query.PropertyRecordsQuery" resultType="integer">
         SELECT
-        COUNT(*)
+        COUNT(DISTINCT PROPERTY_FEE_PAY_DETAILS_ID)
         FROM T_PROPERTY_FEE_PAY_DETAILS
         JOIN T_HOUSE_INFO_DETAILS ON T_HOUSE_INFO_DETAILS."pk_house" = T_PROPERTY_FEE_PAY_DETAILS.HOUSE_INFO_ID
         JOIN T_PROJECT_INFO ON T_HOUSE_INFO_DETAILS."pk_project" = T_PROJECT_INFO.PK_PROJECT

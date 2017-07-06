@@ -3,6 +3,7 @@ package cn.rzhd.wuye.service.impl;
 import cn.rzhd.wuye.bean.UtilitiesDetails;
 import cn.rzhd.wuye.mapper.UtilitiesDetailsMapper;
 import cn.rzhd.wuye.service.IUtilitiesService;
+import cn.rzhd.wuye.vo.query.PropertyRecordsQuery;
 import cn.rzhd.wuye.vo.query.UtilitiesQuery;
 import com.github.pagehelper.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,13 +49,13 @@ public class UtilitiesServiceImpl implements IUtilitiesService {
     }
 
     @Override
-    public List<Map<String, Object>> getElectricByProject(Long userId) {
-        return mapper.getElectricByProject(userId);
+    public List<Map<String, Object>> getElectricByProject(PropertyRecordsQuery query) {
+        return mapper.getElectricByProject(query);
     }
 
     @Override
-    public List<Map<String, Object>> getWaterByProject(Long userId) {
-        return mapper.getWaterByProject(userId);
+    public List<Map<String, Object>> getWaterByProject(PropertyRecordsQuery query) {
+        return mapper.getWaterByProject(query);
     }
 
     @Override
@@ -85,5 +86,15 @@ public class UtilitiesServiceImpl implements IUtilitiesService {
     @Override
     public Map<String, Object> getWaterByPrimaryKey(Long id) {
         return mapper.getWaterByPrimaryKey(id);
+    }
+
+    @Override
+    public Integer countElectricByQuery(PropertyRecordsQuery query) {
+        return mapper.countElectricByQuery(query);
+    }
+
+    @Override
+    public Integer countWaterByQuery(PropertyRecordsQuery query) {
+        return mapper.countWaterByQuery(query);
     }
 }

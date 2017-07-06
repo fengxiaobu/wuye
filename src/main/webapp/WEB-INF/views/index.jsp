@@ -56,9 +56,9 @@
                     <li class="panel" role="tab" id="panel_one_01">
                         <div class="panel-header">
                             <a data-toggle="collapse" data-parent="#aside_one_01" href="#collapse_one_01">
-                                <span class="icon glyphicon glyphicon-home"></span>
+                                <span class="icon glyphicon glyphicon-user"></span>
                                 用户管理
-                                <div class="arrow"><span class="glyphicon glyphicon-menu-left"></span></div>
+                                <div class="arrow"><span class="glyphicon glyphicon-menu-right"></span></div>
                             </a>
                         </div>
                         <div class="collapse panel-collapse" id="collapse_one_01" role="tablist">
@@ -76,9 +76,9 @@
                     <li class="panel" role="tab" id="panel_two_01">
                         <div class="panel-header">
                             <a data-toggle="collapse" data-parent="#aside_two_01" href="#collapse_two_01">
-                                <span class="icon glyphicon glyphicon-home"></span>
+                                <span class="icon glyphicon glyphicon-credit-card"></span>
                                 快捷缴费
-                                <div class="arrow"><span class="glyphicon glyphicon-menu-left"></span></div>
+                                <div class="arrow"><span class="glyphicon glyphicon-menu-right"></span></div>
                             </a>
                         </div>
                         <div class="collapse panel-collapse" id="collapse_two_01" role="tablist">
@@ -120,9 +120,9 @@
                     <li class="panel" role="tab" id="panel_three_01">
                         <div class="panel-header">
                             <a data-toggle="collapse" data-parent="#aside_three_01" href="#collapse_three_011">
-                                <span class="icon glyphicon glyphicon-home"></span>
+                                <span class="icon glyphicon glyphicon-book"></span>
                                 房屋及合同
-                                <div class="arrow"><span class="glyphicon glyphicon-menu-left"></span></div>
+                                <div class="arrow"><span class="glyphicon glyphicon-menu-right"></span></div>
                             </a>
                         </div>
                         <div class="collapse panel-collapse" id="collapse_three_011" role="tablist">
@@ -152,9 +152,9 @@
                     <li class="panel" role="tab" id="panel_four_01">
                         <div class="panel-header">
                             <a data-toggle="collapse" data-parent="#aside_four_01" href="#collapse_four_01">
-                                <span class="icon glyphicon glyphicon-home"></span>
+                                <span class="icon glyphicon glyphicon-thumbs-up"></span>
                                 业务办理
-                                <div class="arrow"><span class="glyphicon glyphicon-menu-left"></span></div>
+                                <div class="arrow"><span class="glyphicon glyphicon-menu-right"></span></div>
                             </a>
                         </div>
                         <div class="collapse panel-collapse" id="collapse_four_01" role="tablist">
@@ -208,9 +208,9 @@
                     <li class="panel" role="tab" id="panel_five_01">
                         <div class="panel-header">
                             <a data-toggle="collapse" data-parent="#aside_four_01" href="#collapse_five_01">
-                                <span class="icon glyphicon glyphicon-home"></span>
+                                <span class="icon glyphicon glyphicon-cog"></span>
                                 系统设置
-                                <div class="arrow"><span class="glyphicon glyphicon-menu-left"></span></div>
+                                <div class="arrow"><span class="glyphicon glyphicon-menu-right"></span></div>
                             </a>
                         </div>
                         <div class="collapse panel-collapse" id="collapse_five_01" role="tablist">
@@ -280,9 +280,9 @@
                     <li class="panel" role="tab" id="panel_six_01">
                         <div class="panel-header">
                             <a data-toggle="collapse" data-parent="#aside_six_01" href="#collapse_six_011">
-                                <span class="icon glyphicon glyphicon-home"></span>
+                                <span class="icon glyphicon glyphicon-bullhorn"></span>
                                 通知管理
-                                <div class="arrow"><span class="glyphicon glyphicon-menu-left"></span></div>
+                                <div class="arrow"><span class="glyphicon glyphicon-menu-right"></span></div>
                             </a>
                         </div>
                         <div class="collapse panel-collapse" id="collapse_six_011" role="tablist">
@@ -304,9 +304,9 @@
                     <li class="panel" role="tab" id="panel_seven_01">
                         <div class="panel-header">
                             <a data-toggle="collapse" data-parent="#aside_four_01" href="#collapse_seven_01">
-                                <span class="icon glyphicon glyphicon-home"></span>
+                                <span class="icon glyphicon glyphicon-wrench"></span>
                                 数据字典
-                                <div class="arrow"><span class="glyphicon glyphicon-menu-left"></span></div>
+                                <div class="arrow"><span class="glyphicon glyphicon-menu-right"></span></div>
                             </a>
                         </div>
                         <div class="collapse panel-collapse" id="collapse_seven_01" role="tablist">
@@ -362,9 +362,9 @@
                     <li class="panel" role="tab" id="panel_eight_01">
                         <div class="panel-header">
                             <a data-toggle="collapse" data-parent="#aside_four_01" href="#collapse_eight_01">
-                                <span class="icon glyphicon glyphicon-home"></span>
+                                <span class="icon glyphicon glyphicon-lock"></span>
                                 权限
-                                <div class="arrow"><span class="glyphicon glyphicon-menu-left"></span></div>
+                                <div class="arrow"><span class="glyphicon glyphicon-menu-right"></span></div>
                             </a>
                         </div>
                         <div class="collapse panel-collapse" id="collapse_eight_01" role="tablist">
