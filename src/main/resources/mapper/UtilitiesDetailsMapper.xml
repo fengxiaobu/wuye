@@ -153,7 +153,7 @@
             STATUS
         FROM T_UTILITIES_DETAILS
         WHERE HOUSE_INFO_ID = #{houseInfoId} AND PAY_TIME &gt;= to_date(#{startDate}, 'YYYY-MM-DD') AND
-              PAY_TIME &lt;= to_date(#{endDate}, 'YYYY-MM-DD') AND STATUS = 'Y'
+              PAY_TIME &lt;= to_date(#{endDate}, 'YYYY-MM-DD') AND STATUS = 'Y'  ORDER BY PAY_TIME DESC
     </select>
 
     <select id="getLastElectric" parameterType="cn.rzhd.wuye.vo.query.UtilitiesQuery" resultMap="BaseResultMap">

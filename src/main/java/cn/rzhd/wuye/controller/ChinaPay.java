@@ -126,7 +126,8 @@ public class ChinaPay {
         RequestVO requestVO = new RequestVO();
         ChinaPayHelper chinaPayHelper = new ChinaPayHelper();
 
-        requestVO.setOrderAmt(orderAmt);
+        // requestVO.setOrderAmt(orderAmt);
+        requestVO.setOrderAmt("10");
         requestVO.setCommodityMsg(commodityMsg);
         requestVO.setMerResv(merResv);
         requestVO.setBankInstNo(bankInstNo);
@@ -397,18 +398,15 @@ public class ChinaPay {
                     result.put("state", "0");
                     return result;
                 }
-                result.put("state", "1");
-                return result;
             }
+            result.put("state", "1");
+            return result;
         } catch (Exception e) {
             result.put("msg", "erro" + e.getMessage());
             result.put("state", "0");
             e.printStackTrace();
             return result;
         }
-        result.put("msg", "未知错误!");
-        result.put("state", "0");
-        return result;
     }
 
     public void test() {
