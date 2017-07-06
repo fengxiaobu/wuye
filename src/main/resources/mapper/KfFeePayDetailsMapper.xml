@@ -183,20 +183,20 @@
     <select id="getCostType" resultType="string">
         SELECT "feename"
         FROM T_FEE_TYPES
-        WHERE "feecode" = #{feeType} AND "pk_corp" = #{pk_corp}
+        WHERE "feecode" = #{feecode} AND "pk_corp" = #{pk_corp}
     </select>
     <select id="getCompanyAccount" resultType="string">
         SELECT "account"
         FROM T_BANK_ACCOUNT
         JOIN T_FEE_TYPES ON T_FEE_TYPES."pk_fee" = T_BANK_ACCOUNT."pk_fee"
-        WHERE "feecode" = #{feeType} AND T_FEE_TYPES."pk_corp" = #{pk_corp}
+        WHERE "feecode" = #{feecode} AND T_FEE_TYPES."pk_corp" = #{pk_corp}
     </select>
     <select id="getCompanyName" resultType="string">
         SELECT "unitname"
         FROM T_COMPANY
             JOIN T_BANK_ACCOUNT ON T_COMPANY."pk_corp" = "vdef1"
             JOIN T_FEE_TYPES ON T_FEE_TYPES."pk_fee" = T_BANK_ACCOUNT."pk_fee"
-        WHERE T_FEE_TYPES."pk_corp" = #{pk_corp} AND "feecode" = #{feeType}
+        WHERE T_FEE_TYPES."pk_corp" = #{pk_corp} AND "feecode" = #{feecode}
     </select>
     <select id="countByQuery" parameterType="cn.rzhd.wuye.vo.query.PropertyRecordsQuery" resultType="integer">
         SELECT

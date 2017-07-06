@@ -5,7 +5,9 @@ import cn.rzhd.wuye.utils.FirstAndLastDay;
 /**
  * Created by hasee on 2017/6/2.
  */
-public class UtilitiesQuery extends BaseQuery {
+public class UtilitiesQuery extends BaseQuery{
+
+    protected static final long serialVersionUID = 1L;
     /**
      * 房产信息主键
      */
@@ -18,6 +20,11 @@ public class UtilitiesQuery extends BaseQuery {
      * 时间段截止时间
      */
     private String endDate;
+
+    public UtilitiesQuery() {
+        this.startDate = sdf.format(FirstAndLastDay.getFirstDay());
+        this.endDate = sdf.format(FirstAndLastDay.getLastDay());
+    }
 
     public String getHouseInfoId() {
         return houseInfoId;
@@ -41,10 +48,5 @@ public class UtilitiesQuery extends BaseQuery {
 
     public void setEndDate(String endDate) {
         this.endDate = sdf.format(FirstAndLastDay.getLast(endDate));
-    }
-
-    public UtilitiesQuery() {
-        this.startDate = sdf.format(FirstAndLastDay.getFirstDay());
-        this.endDate = sdf.format(FirstAndLastDay.getLastDay());
     }
 }

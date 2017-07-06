@@ -9,6 +9,7 @@ import cn.rzhd.wuye.vo.query.UtilitiesQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.math.BigDecimal;
@@ -106,8 +107,8 @@ public class PayFeeController {
      * @param query
      * @return
      */
-    @RequestMapping("/payFeeRecords")
-    public Map<String,Object> payFeeRecords(UtilitiesQuery query){
+    @RequestMapping(value = "/payFeeRecords",method = RequestMethod.POST)
+    public Map<String,Object> payFeeRecords(@RequestBody UtilitiesQuery query){
         return utilitiesService.getLastRecords(query);
     }
 }
