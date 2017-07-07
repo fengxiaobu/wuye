@@ -124,6 +124,10 @@ public class UtilitiesDetails implements Serializable  {
      * 缴费记录是否生效(Y--生效,N--未生效)
      */
     private String status = "N";
+    /**
+     * 付款记录ID
+     */
+    private String recordsId;
 
     public Long getUtilitiesDetailsId() {
         return utilitiesDetailsId;
@@ -355,5 +359,13 @@ public class UtilitiesDetails implements Serializable  {
 
     public void setPk_corp(String pk_corp) {
         this.pk_corp = pk_corp;
+    }
+
+    public String getRecordsId() {
+        return recordsId;
+    }
+
+    public void setRecordsId(String recordsId) {
+        this.recordsId = recordsId;
     }
 }

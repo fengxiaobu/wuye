@@ -28,12 +28,15 @@
                                           INVOICE_COMPANY,
                                           PAY_TIME,
                                           CARTE_TIME,
-                                          UPDATE_TIME, CUSTOMER_ID)
+                                          UPDATE_TIME,
+                                          CUSTOMER_ID,
+                                          RECORDS_ID)
         VALUES
             (#{kfFeePayDetailsId}, #{houseInfoId}, #{clientName}, #{costType}, #{payManner}, #{payMonth}, #{startDate},
                                    #{endDate}, #{payable}, #{paidIn}, #{voucherNumber},
                 #{invoice}, #{invoiceNumber}, #{invoiceNotes}, #{invoiceStatus}, #{collectingCompany},
-                #{collectingAccount}, #{invoiceCompany}, #{payTime}, #{carteTime}, #{updateTime}, #{customerId})
+                #{collectingAccount}, #{invoiceCompany}, #{payTime}, #{carteTime}, #{updateTime}, #{customerId},
+             #{recordsId})
     </insert>
     <update id="changeStatus" parameterType="long">
         UPDATE T_KF_FEE_PAY_DETAILS
@@ -64,6 +67,7 @@
         <result property="carteTime" column="CARTE_TIME"/>
         <result property="updateTime" column="UPDATE_TIME"/>
         <result property="customerId" column="CUSTOMER_ID"/>
+        <result property="recordsId" column="RECORDS_ID"/>
     </resultMap>
 
 
@@ -90,7 +94,8 @@
         PAY_TIME,
         CARTE_TIME,
         UPDATE_TIME,
-        CUSTOMER_ID
+        CUSTOMER_ID,
+        RECORDS_ID
         FROM T_KF_FEE_PAY_DETAILS
         <include refid="whereSql"/>
     </select>
@@ -119,6 +124,7 @@
         <result property="updateTime" column="UPDATE_TIME"/>
         <result property="customerId" column="CUSTOMER_ID"/>
         <result property="status" column="STATUS"/>
+        <result property="recordsId" column="RECORDS_ID"/>
     </resultMap>
     <sql id="querySql">
         <where>
@@ -169,7 +175,8 @@
         CARTE_TIME,
         T_KF_FEE_PAY_DETAILS.UPDATE_TIME,
         CUSTOMER_ID,
-        T_KF_FEE_PAY_DETAILS.STATUS
+        T_KF_FEE_PAY_DETAILS.STATUS,
+        RECORDS_ID
         FROM T_KF_FEE_PAY_DETAILS
         JOIN T_HOUSE_INFO_DETAILS ON T_HOUSE_INFO_DETAILS."pk_house" = T_KF_FEE_PAY_DETAILS.HOUSE_INFO_ID
         JOIN T_PROJECT_INFO ON T_HOUSE_INFO_DETAILS."pk_project" = T_PROJECT_INFO.PK_PROJECT
@@ -188,7 +195,7 @@
     <select id="getCompanyAccount" resultType="string">
         SELECT "account"
         FROM T_BANK_ACCOUNT
-        JOIN T_FEE_TYPES ON T_FEE_TYPES."pk_fee" = T_BANK_ACCOUNT."pk_fee"
+            JOIN T_FEE_TYPES ON T_FEE_TYPES."pk_fee" = T_BANK_ACCOUNT."pk_fee"
         WHERE "feecode" = #{feecode} AND T_FEE_TYPES."pk_corp" = #{pk_corp}
     </select>
     <select id="getCompanyName" resultType="string">
