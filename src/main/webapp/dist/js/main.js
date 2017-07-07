@@ -37590,10 +37590,10 @@ webpackJsonp([0],[
 					type: "post",
 					contentType: "application/json",
 					url: global.HttpPath + '/payFee/payFeeRecords', // 上次缴费记录
-					data: {
-						customerId: this.customerId,
-						houseInfoId: this.houseInfoId
-					},
+					data: JSON.stringify({
+                        customerId: this.customerId,
+                        houseInfoId: this.houseInfoId
+                    }),
 					dataType: 'json',
 					success: function success(data) {
 						console.log('上次缴费记录', data);
