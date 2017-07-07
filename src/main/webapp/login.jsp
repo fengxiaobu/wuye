@@ -105,6 +105,11 @@
 	if (window != top) {
 		top.location.href = window.location.href;
 	}
+	
+	
+	function changeCode(img){
+		img.src = "/kaptcha.jpg?code="+Math.random();
+	}
 </script>
 </head>
 <body>
@@ -131,8 +136,10 @@
 								<div class="form-group label-line">
 									<label class="form-label" for="validatecode"></label>
 									<label class="form-label" for="validatecode"><span class="glyphicon glyphicon-phone"></span></label>
-									<input type="text" class="form-control" id="validatecode" placeholder="请输入验证码">
-									<div class="validate-code"><img src="${pageContext.request.contextPath}/imgs_test/validate-code.png"></div>
+									<input type="text" class="form-control" id="validatecode" placeholder="请输入验证码" name="validatecode">
+									<div class="validate-code">
+										<img src="kaptcha.jpg" width="200" id="kaptchaImage" onclick="changeCode(this)" title="看不清，点击换一张" />  
+									 </div>
 								</div>
 								<!-- <div class="form-group label-line">
 									<div class="row">
