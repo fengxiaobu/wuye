@@ -309,6 +309,7 @@
 			<version>1.9.13</version>
 		</dependency>
 
+<<<<<<< HEAD
 		<!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
 		<dependency>
 			<groupId>com.alibaba</groupId>
@@ -386,6 +387,47 @@
 			<artifactId>poi</artifactId>
 			<version>3.8</version>
 		</dependency>
+=======
+        <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.32</version>
+        </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.bouncycastle/bcprov-jdk15on -->
+        <dependency>
+            <groupId>org.bouncycastle</groupId>
+            <artifactId>bcprov-jdk15on</artifactId>
+            <version>1.47</version>
+        </dependency>
+     <!--   &lt;!&ndash; https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 &ndash;&gt;
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.5</version>
+        </dependency>-->
+        <!-- https://mvnrepository.com/artifact/commons-beanutils/commons-beanutils -->
+       <!-- <dependency>
+            <groupId>commons-beanutils</groupId>
+            <artifactId>commons-beanutils</artifactId>
+            <version>1.6</version>
+        </dependency>-->
+        <dependency>
+            <groupId>com.xiaoleilu</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>3.0.8</version>
+        </dependency>
+        <dependency>
+            <groupId>chinapay</groupId>
+            <artifactId>chinapayfilesecure</artifactId>
+            <version>1.0</version>
+        </dependency>
+>>>>>>> fe6ac9f98c80556beec37e67150a9c56fb2926d2
 
 		<!-- kaptcha验证码 -->
 		<dependency>

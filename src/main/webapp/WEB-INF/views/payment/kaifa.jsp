@@ -238,7 +238,6 @@
     });
 
 
-
     $('#startPicker').datetimepicker();
     $('#endPicker').datetimepicker();
 
@@ -303,7 +302,7 @@
                             totalPages: totalPages,
                             visiblePages: pageSize,
                             currentPage: num,
-                            onPageChange: function (num1,type) {
+                            onPageChange: function (num1, type) {
                                 if (num1 != num) {
                                     getData(num1, pageSize);
                                 }

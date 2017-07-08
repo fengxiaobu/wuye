@@ -18,7 +18,7 @@
             <ol class="breadcrumb">
                 <li><a href="#">首页</a></li>
                 <li><a href="#">业务办理</a></li>
-                <li class="active">入住申请列表</li>
+                <li class="active">裝修申請</li>
             </ol>
         </div>
         <!-- 路径导航 结束 -->

@@ -3,29 +3,29 @@
 <mapper namespace="cn.rzhd.wuye.mapper.CustomerCentreMapper">
     <select id="findCustomer" resultType="cn.rzhd.wuye.bean.Customer">
         SELECT
-            LOGO,
-            "pk_corp",
-            "pk_customerid",
-            "vcname",
-            "vpreferredtel"
+        LOGO,
+        "pk_corp",
+        "pk_customerid",
+        "vcname",
+        "vpreferredtel"
         FROM
-            "T_Customer"
+        "T_Customer"
         WHERE
-            "pk_customerid" = #{customer.pk_customerid}
+        "pk_customerid" = #{customer.pk_customerid}
     </select>
     <select id="findHouse" resultType="java.util.Map">
         SELECT
-            POI.PROJECT_NAME,
-            HI.HOUSE_PROPERTY,
-            HI.STAR_LEVEL,
-            PI.*
+        POI.PROJECT_NAME,
+        HI.HOUSE_PROPERTY,
+        HI.STAR_LEVEL,
+        PI.*
 
         FROM
-            T_HOUSE_INFO HI
-            LEFT JOIN T_PERFECT_INFORMATION PI ON HI.HOUSE_INFO_ID = PI.HOUSE_INFO_ID
-            LEFT JOIN T_PROJECT_INFO POI ON HI.PROJECT_INFO_ID = POI.PK_PROJECT
+        T_HOUSE_INFO HI
+        LEFT JOIN T_PERFECT_INFORMATION PI ON HI.HOUSE_INFO_ID = PI.HOUSE_INFO_ID
+        LEFT JOIN T_PROJECT_INFO POI ON HI.PROJECT_INFO_ID = POI.PK_PROJECT
         WHERE
-            HI.CUSTOMER_ID = #{customer.pk_customerid}
+        HI.CUSTOMER_ID = #{customer.pk_customerid}
     </select>
 
     <select id="getAll" resultMap="InfoMap">
@@ -73,27 +73,27 @@
     </resultMap>
 
     <update id="updateLogo">
-         UPDATE "T_Customer" SET  LOGO = #{LOGO} WHERE "vccode"=#{vccode}
+        UPDATE "T_Customer" SET LOGO = #{LOGO} WHERE "vccode"=#{vccode}
     </update>
     <update id="updatePhone">
-    	UPDATE "T_Customer" SET  "Binding_Phone" = #{bindingPhone} WHERE "vccode"=#{vccode}
+        UPDATE "T_Customer" SET "Binding_Phone" = #{bindingPhone} WHERE "vccode"=#{vccode}
     </update>
-    
+
     <update id="updatePassword">
-    	UPDATE "T_Customer" SET  "Password" = #{password} WHERE "vccode"=#{vccode}
+        UPDATE "T_Customer" SET "Password" = #{password} WHERE "vccode"=#{vccode}
     </update>
-    
+
     <update id="findPassword">
-    	UPDATE "T_Customer" SET  "Password" = #{password} WHERE "Binding_Phone"=#{bindingPhone}
+        UPDATE "T_Customer" SET "Password" = #{password} WHERE "Binding_Phone"=#{bindingPhone}
     </update>
-    
+
     <select id="selectPassword" parameterType="String" resultType="String">
-    	SELECT DISTINCT "Password" FROM "T_Customer" WHERE "vccode"=#{vccode}
+        SELECT DISTINCT "Password" FROM "T_Customer" WHERE "vccode"=#{vccode}
     </select>
-    
+
     <update id="updatePerfectInformation">
         UPDATE
-            T_PERFECT_INFORMATION
+        T_PERFECT_INFORMATION
         SET (
         COMPANY_TYPE=#{perfectInformation.companyType},
         HOUSE_PROPERTY_ID=#{perfectInformation.housePropertyId},

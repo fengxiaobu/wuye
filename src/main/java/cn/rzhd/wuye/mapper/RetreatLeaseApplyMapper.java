@@ -1,6 +1,7 @@
 package cn.rzhd.wuye.mapper;
 
 import cn.rzhd.wuye.bean.RetreatLeaseApply;
+import cn.rzhd.wuye.vo.query.ApplyQuery;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -24,4 +25,5 @@ public interface RetreatLeaseApplyMapper {
 
     List<RetreatLeaseApply> findRetreatLeaseApply(@Param("houseInfoId") String houseInfoId, @Param("customerId") String customerId);
 
+    List<RetreatLeaseApply> selectReatLeaseByQuery(ApplyQuery query);
 }

@@ -1,4 +1,3 @@
-<%@ page import="java.text.SimpleDateFormat" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
@@ -306,7 +305,7 @@
                             totalPages: totalPages,
                             visiblePages: pageSize,
                             currentPage: num,
-                            onPageChange: function (num1,type) {
+                            onPageChange: function (num1, type) {
                                 if (num1 != num) {
                                     getData(num1, pageSize);
                                 }

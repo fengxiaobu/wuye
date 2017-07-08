@@ -3,21 +3,21 @@
 <mapper namespace="cn.rzhd.wuye.mapper.PropertyFeeInvoiceMapper">
     <insert id="addInvoice" parameterType="cn.rzhd.wuye.bean.PropertyFeeInvoiceDetails">
         INSERT INTO T_PROPERTY_FEE_INVOICE_DETAILS (INVOICE_TYPE,
-                                                    INVOICE_COMPANY,
-                                                    BASIC_PROPERTY_FEE,
-                                                    PROPERTY_FEE_INVOICE_SUM,
-                                                    TRIPLE_AGREEMENT,
-                                                    AGENCY_PAY_CREDENTIAL,
-                                                    CARTE_TIME,
-                                                    UPDATE_TIME,
-                                                    PROP_FEE_INVOICE_DETAILS_ID,
-                                                    PROPERTY_FEE_PAY_DETAILS_ID) VALUES
-            (#{invoiceType}, #{invoiceCompany}, #{basicPropertyFee}, #{propertyFeeInvoiceSum}, #{tripleAgreement},
-                             #{agencyPayCredential}, #{carteTime}, #{updateTime},
-                             #{propFeeInvoiceDetailsId}, #{propertyFeePayDetailsId})
+        INVOICE_COMPANY,
+        BASIC_PROPERTY_FEE,
+        PROPERTY_FEE_INVOICE_SUM,
+        TRIPLE_AGREEMENT,
+        AGENCY_PAY_CREDENTIAL,
+        CARTE_TIME,
+        UPDATE_TIME,
+        PROP_FEE_INVOICE_DETAILS_ID,
+        PROPERTY_FEE_PAY_DETAILS_ID) VALUES
+        (#{invoiceType}, #{invoiceCompany}, #{basicPropertyFee}, #{propertyFeeInvoiceSum}, #{tripleAgreement},
+        #{agencyPayCredential}, #{carteTime}, #{updateTime},
+        #{propFeeInvoiceDetailsId}, #{propertyFeePayDetailsId})
     </insert>
     <!--<update id="changeStatus" parameterType="long">-->
-        <!--UPDATE T_PROPERTY_FEE_INVOICE_DETAILS SET STATUS='Y'-->
-        <!--WHERE PROPERTY_FEE_PAY_DETAILS_ID=#{detailsId}-->
+    <!--UPDATE T_PROPERTY_FEE_INVOICE_DETAILS SET STATUS='Y'-->
+    <!--WHERE PROPERTY_FEE_PAY_DETAILS_ID=#{detailsId}-->
     <!--</update>-->
 </mapper>

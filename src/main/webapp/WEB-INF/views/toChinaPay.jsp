@@ -84,10 +84,10 @@
              <td>AcqCode:</td>
              <td><input name="AcqCode" type="hidden" value="${AcqCode}"></td>
          </tr>--%>
-       <%-- <tr>
-            <td>BankInstNo:</td>
-            <td><input name="BankInstNo" type="hidden" value="${BankInstNo}"></td>
-        </tr>--%>
+        <%-- <tr>
+             <td>BankInstNo:</td>
+             <td><input name="BankInstNo" type="hidden" value="${BankInstNo}"></td>
+         </tr>--%>
         <tr>
             <td>CommodityMsg:</td>
             <td><input name="CommodityMsg" type="hidden" value="${CommodityMsg}"></td>
@@ -99,6 +99,10 @@
         <tr>
             <td>TimeStamp:</td>
             <td><input name="TimeStamp" type="hidden" value="${TimeStamp}"></td>
+        </tr>
+        <tr>
+            <td>TimeStamp:</td>
+            <td><input name="OrderReserved" type="hidden" value="${OrderReserved}"></td>
         </tr>
     </table>
     <input type="submit" style="display: none" id="toCHinaPay" value="toPAy">

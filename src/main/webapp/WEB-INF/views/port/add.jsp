@@ -4,11 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <title>添加接口</title>
-   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/H-ui.reset.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/H-ui.reset.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/houtai-style.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/js/libs/layer/skin/layer.css">
     <style>
-        .button{
+        .button {
             display: inline-block;
             width: 90px;
             height: 34px;
@@ -18,52 +18,60 @@
             font-size: 12px;
             color: white;
             margin-right: 10px;
-            margin-bottom:10px;
+            margin-bottom: 10px;
             border-radius: 4px;
-            border:none;
+            border: none;
         }
     </style>
 </head>
 <style>
-    .search div{
+    .search div {
         overflow: hidden;
     }
-    .search span{
-        background-color:#70c0f6;
+
+    .search span {
+        background-color: #70c0f6;
         float: right;
-        margin-right:0;
+        margin-right: 0;
     }
-    .addclick{
-        background-color:white;
-        padding:20px 0;
+
+    .addclick {
+        background-color: white;
+        padding: 20px 0;
     }
-    .addclick span{
-        padding:5px 10px;
-        background-color:#70c0f6;
-        margin-right:10px;
-        color:white;
-        border-radius:4px;
+
+    .addclick span {
+        padding: 5px 10px;
+        background-color: #70c0f6;
+        margin-right: 10px;
+        color: white;
+        border-radius: 4px;
     }
-    .addclick span:hover{
-        background-color:#5B99C7;
+
+    .addclick span:hover {
+        background-color: #5B99C7;
         cursor: pointer;
     }
-    .addmes-cnt{
+
+    .addmes-cnt {
         background-color: white;
-        padding-top:30px;
+        padding-top: 30px;
     }
-    .mestr{
-        width:100%;
-        padding-bottom:25px;
+
+    .mestr {
+        width: 100%;
+        padding-bottom: 25px;
         overflow: hidden;
     }
-    .firsttd,.lasttd{
+
+    .firsttd, .lasttd {
         float: left;
     }
-    .anniu{
+
+    .anniu {
         float: right;
-        margin-top:9px;
-        margin-right:15px;
+        margin-top: 9px;
+        margin-right: 15px;
         background-color: #70c0f6;
         display: inline-block;
         padding: 0 5px;
@@ -83,7 +91,7 @@
         <block name="liebiao"><span>接口管理-新增接口</span></block>
     </p>
     <div class="addmes userinfo">
-        <form method="post" id='formproject' onsubmit="return false;" >
+        <form method="post" id='formproject' onsubmit="return false;">
             <div class="addmes-cnt">
                 <div class="mestr">
                     <div class="firsttd">标题</div>
@@ -93,7 +101,7 @@
                 </div>
                 <div class="mestr">
                     <div class="firsttd">接口地址</div>
-                    <div class="lasttd" >
+                    <div class="lasttd">
                         <input type="text" name="addre" maxlength="60" value="" id="addre">
                     </div>
                 </div>
@@ -113,67 +121,69 @@
                 <div class="mestr">
                     <div class="firsttd">数据返回</div>
                     <div class="lasttd">
-                        <textarea name="returnData" cols="100" rows="20" ></textarea>
+                        <textarea name="returnData" cols="100" rows="20"></textarea>
                     </div>
                 </div>
             </div>
             <div class="surebtn">
-				<span id="btn_submit">确定</span><span onclick="history.back(-1)">返回</span>
-			</div>
+                <span id="btn_submit">确定</span><span onclick="history.back(-1)">返回</span>
+            </div>
         </form>
     </div>
 
 </section>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/libs/jquery-1.11.3.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/libs/layer/layer.js" charset="UTF-8"></script>
-<script type="text/javascript" >
+<script type="text/javascript">
 
 
-var flag = true;	
-var title = "";
-$("#addre").mouseout(function(){
-	var addre = $("#addre").val();
-	$.ajax({
-		   type: "GET",
-		   url: "${pageContext.request.contextPath}/dist/port/check",
-		   data: {addre:addre},
-		   statusCode :{
-			   200 : function(date){
-					layer.alert('接口地址与标题【'+date+'】重复')
-					flag = false;
-					title = date;
-			   },
-			   500 : function(){
-				   layer.msg('操作异常，请稍后再试！', {icon: 5,time:2000});
-			   }
-		   }
-		});
+    var flag = true;
+    var title = "";
+    $("#addre").mouseout(function () {
+        var addre = $("#addre").val();
+        $.ajax({
+            type: "GET",
+            url: "${pageContext.request.contextPath}/dist/port/check",
+            data: {addre: addre},
+            statusCode: {
+                200: function (date) {
+                    layer.alert('接口地址与标题【' + date + '】重复')
+                    flag = false;
+                    title = date;
+                },
+                500: function () {
+                    layer.msg('操作异常，请稍后再试！', {icon: 5, time: 2000});
+                }
+            }
+        });
 
-});
-	
-$("#btn_submit").click(function(){
-	if(flag){
-		layer.confirm('请确认数据检查无误并提交?', {icon: 3, title:'提示'}, function(index){
-			//提交到后台的RESTful
-			$.ajax({
-			   type: "POST",
-			   url: "${pageContext.request.contextPath}/dist/port/save",
-			   data: $("#formproject").serialize(),
-			   statusCode :{
-				   201 : function(){
-						layer.alert('新增成功!', {icon: 6,skin: 'layer-ext-moon'},function(){location.href = "/dist/port/index"})
-				   },
-				   500 : function(){
-					   layer.msg('操作异常，请稍后再试！', {icon: 5,time:2000});
-				   }
-			   }
-			});
-			});
-	}else{
-		layer.alert('接口地址与标题【'+title+'】重复')
-	}
-		
-});
+    });
+
+    $("#btn_submit").click(function () {
+        if (flag) {
+            layer.confirm('请确认数据检查无误并提交?', {icon: 3, title: '提示'}, function (index) {
+                //提交到后台的RESTful
+                $.ajax({
+                    type: "POST",
+                    url: "${pageContext.request.contextPath}/dist/port/save",
+                    data: $("#formproject").serialize(),
+                    statusCode: {
+                        201: function () {
+                            layer.alert('新增成功!', {icon: 6, skin: 'layer-ext-moon'}, function () {
+                                location.href = "/dist/port/index"
+                            })
+                        },
+                        500: function () {
+                            layer.msg('操作异常，请稍后再试！', {icon: 5, time: 2000});
+                        }
+                    }
+                });
+            });
+        } else {
+            layer.alert('接口地址与标题【' + title + '】重复')
+        }
+
+    });
 </script>
 </body>
 </html>

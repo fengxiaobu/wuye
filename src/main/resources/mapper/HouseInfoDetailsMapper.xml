@@ -48,59 +48,59 @@
     </delete>
     <insert id="insert" parameterType="cn.rzhd.wuye.vo.HouseVO">
         INSERT INTO T_HOUSE_INFO_DETAILS ("pk_house", "pk_corp", "pk_project",
-                                          "project", "building", "ifloor",
-                                          "vhcell", "vhnum", "vhcode",
-                                          "vhname", "otation", "room",
-                                          "situation", "fsellmethod", "managestate",
-                                          "nbuildarea", "ninarea", "nleaseoutarea",
-                                          "nmanagearea", "nsellarea", "npublicarea",
-                                          "nunderlinearea", "ngardenarea", "nrpublicarea",
-                                          "nrinarea", "nrbuildarea", "nrunderlinearea",
-                                          "nrgardenarea", MANAGE_ID)
+        "project", "building", "ifloor",
+        "vhcell", "vhnum", "vhcode",
+        "vhname", "otation", "room",
+        "situation", "fsellmethod", "managestate",
+        "nbuildarea", "ninarea", "nleaseoutarea",
+        "nmanagearea", "nsellarea", "npublicarea",
+        "nunderlinearea", "ngardenarea", "nrpublicarea",
+        "nrinarea", "nrbuildarea", "nrunderlinearea",
+        "nrgardenarea", MANAGE_ID)
         VALUES (#{pk_house,jdbcType=CHAR}, #{pk_corp,jdbcType=CHAR}, #{pk_project,jdbcType=VARCHAR},
-                                           #{project,jdbcType=VARCHAR}, #{building,jdbcType=VARCHAR},
-                                           #{ifloor,jdbcType=VARCHAR},
-                                           #{vhcell,jdbcType=VARCHAR}, #{vhnum,jdbcType=VARCHAR},
-                                           #{vhcode,jdbcType=VARCHAR},
-                                           #{vhname,jdbcType=VARCHAR}, #{otation,jdbcType=VARCHAR},
-            #{room,jdbcType=VARCHAR},
-            #{situation,jdbcType=VARCHAR}, #{fsellmethod,jdbcType=VARCHAR}, #{managestate,jdbcType=VARCHAR},
-            #{nbuildarea,jdbcType=VARCHAR}, #{ninarea,jdbcType=VARCHAR}, #{nleaseoutarea,jdbcType=VARCHAR},
-            #{nmanagearea,jdbcType=VARCHAR}, #{nsellarea,jdbcType=VARCHAR}, #{npublicarea,jdbcType=VARCHAR},
-                #{nunderlinearea,jdbcType=VARCHAR}, #{ngardenarea,jdbcType=VARCHAR}, #{nrpublicarea,jdbcType=VARCHAR},
-                #{nrinarea,jdbcType=VARCHAR}, #{nrbuildarea,jdbcType=VARCHAR}, #{nrunderlinearea,jdbcType=VARCHAR},
-                #{nrgardenarea,jdbcType=VARCHAR}, #{vdef1})
+        #{project,jdbcType=VARCHAR}, #{building,jdbcType=VARCHAR},
+        #{ifloor,jdbcType=VARCHAR},
+        #{vhcell,jdbcType=VARCHAR}, #{vhnum,jdbcType=VARCHAR},
+        #{vhcode,jdbcType=VARCHAR},
+        #{vhname,jdbcType=VARCHAR}, #{otation,jdbcType=VARCHAR},
+        #{room,jdbcType=VARCHAR},
+        #{situation,jdbcType=VARCHAR}, #{fsellmethod,jdbcType=VARCHAR}, #{managestate,jdbcType=VARCHAR},
+        #{nbuildarea,jdbcType=VARCHAR}, #{ninarea,jdbcType=VARCHAR}, #{nleaseoutarea,jdbcType=VARCHAR},
+        #{nmanagearea,jdbcType=VARCHAR}, #{nsellarea,jdbcType=VARCHAR}, #{npublicarea,jdbcType=VARCHAR},
+        #{nunderlinearea,jdbcType=VARCHAR}, #{ngardenarea,jdbcType=VARCHAR}, #{nrpublicarea,jdbcType=VARCHAR},
+        #{nrinarea,jdbcType=VARCHAR}, #{nrbuildarea,jdbcType=VARCHAR}, #{nrunderlinearea,jdbcType=VARCHAR},
+        #{nrgardenarea,jdbcType=VARCHAR}, #{vdef1})
     </insert>
     <update id="updateByPrimaryKey" parameterType="cn.rzhd.wuye.vo.HouseVO">
         UPDATE T_HOUSE_INFO_DETAILS
-        SET "pk_corp"         = #{pk_corp,jdbcType=CHAR},
-            "pk_project"      = #{pk_project,jdbcType=VARCHAR},
-            "project"         = #{project,jdbcType=VARCHAR},
-            "building"        = #{building,jdbcType=VARCHAR},
-            "ifloor"          = #{ifloor,jdbcType=VARCHAR},
-            "vhcell"          = #{vhcell,jdbcType=VARCHAR},
-            "vhnum"           = #{vhnum,jdbcType=VARCHAR},
-            "vhcode"          = #{vhcode,jdbcType=VARCHAR},
-            "vhname"          = #{vhname,jdbcType=VARCHAR},
-            "otation"         = #{otation,jdbcType=VARCHAR},
-            "room"            = #{room,jdbcType=VARCHAR},
-            "situation"       = #{situation,jdbcType=VARCHAR},
-            "fsellmethod"     = #{fsellmethod,jdbcType=VARCHAR},
-            "managestate"     = #{managestate,jdbcType=VARCHAR},
-            "nbuildarea"      = #{nbuildarea,jdbcType=VARCHAR},
-            "ninarea"         = #{ninarea,jdbcType=VARCHAR},
-            "nleaseoutarea"   = #{nleaseoutarea,jdbcType=VARCHAR},
-            "nmanagearea"     = #{nmanagearea,jdbcType=VARCHAR},
-            "nsellarea"       = #{nsellarea,jdbcType=VARCHAR},
-            "npublicarea"     = #{npublicarea,jdbcType=VARCHAR},
-            "nunderlinearea"  = #{nunderlinearea,jdbcType=VARCHAR},
-            "ngardenarea"     = #{ngardenarea,jdbcType=VARCHAR},
-            "nrpublicarea"    = #{nrpublicarea,jdbcType=VARCHAR},
-            "nrinarea"        = #{nrinarea,jdbcType=VARCHAR},
-            "nrbuildarea"     = #{nrbuildarea,jdbcType=VARCHAR},
-            "nrunderlinearea" = #{nrunderlinearea,jdbcType=VARCHAR},
-            "nrgardenarea"    = #{nrgardenarea,jdbcType=VARCHAR},
-            MANAGE_ID         = #{vdef1}
+        SET "pk_corp" = #{pk_corp,jdbcType=CHAR},
+        "pk_project" = #{pk_project,jdbcType=VARCHAR},
+        "project" = #{project,jdbcType=VARCHAR},
+        "building" = #{building,jdbcType=VARCHAR},
+        "ifloor" = #{ifloor,jdbcType=VARCHAR},
+        "vhcell" = #{vhcell,jdbcType=VARCHAR},
+        "vhnum" = #{vhnum,jdbcType=VARCHAR},
+        "vhcode" = #{vhcode,jdbcType=VARCHAR},
+        "vhname" = #{vhname,jdbcType=VARCHAR},
+        "otation" = #{otation,jdbcType=VARCHAR},
+        "room" = #{room,jdbcType=VARCHAR},
+        "situation" = #{situation,jdbcType=VARCHAR},
+        "fsellmethod" = #{fsellmethod,jdbcType=VARCHAR},
+        "managestate" = #{managestate,jdbcType=VARCHAR},
+        "nbuildarea" = #{nbuildarea,jdbcType=VARCHAR},
+        "ninarea" = #{ninarea,jdbcType=VARCHAR},
+        "nleaseoutarea" = #{nleaseoutarea,jdbcType=VARCHAR},
+        "nmanagearea" = #{nmanagearea,jdbcType=VARCHAR},
+        "nsellarea" = #{nsellarea,jdbcType=VARCHAR},
+        "npublicarea" = #{npublicarea,jdbcType=VARCHAR},
+        "nunderlinearea" = #{nunderlinearea,jdbcType=VARCHAR},
+        "ngardenarea" = #{ngardenarea,jdbcType=VARCHAR},
+        "nrpublicarea" = #{nrpublicarea,jdbcType=VARCHAR},
+        "nrinarea" = #{nrinarea,jdbcType=VARCHAR},
+        "nrbuildarea" = #{nrbuildarea,jdbcType=VARCHAR},
+        "nrunderlinearea" = #{nrunderlinearea,jdbcType=VARCHAR},
+        "nrgardenarea" = #{nrgardenarea,jdbcType=VARCHAR},
+        MANAGE_ID = #{vdef1}
         WHERE "pk_house" = #{pk_house,jdbcType=CHAR}
     </update>
 
@@ -136,31 +136,31 @@
         FROM T_HOUSE_INFO_DETAILS
     </select>
 
-	<select id="selectHouseInfoDetailsById" resultType="cn.rzhd.wuye.bean.HouseInfoDetails">
+    <select id="selectHouseInfoDetailsById" resultType="cn.rzhd.wuye.bean.HouseInfoDetails">
         SELECT *
         FROM T_HOUSE_INFO_DETAILS
         where "pk_house" = #{pkHouse}
     </select>
     <select id="getHouseInfoByName" parameterType="String" resultMap="houseVOMap">
         SELECT
-            "pk_project",
-            "pk_house",
-            "project",
-            "vhname",
-            "situation",
-            "nbuildarea",
-            OBJECT_PHONE,
-            PROJECT_ADDRESS,
-            PK_PROJECT,
-            MANAGE_ID
+        "pk_project",
+        "pk_house",
+        "project",
+        "vhname",
+        "situation",
+        "nbuildarea",
+        OBJECT_PHONE,
+        PROJECT_ADDRESS,
+        PK_PROJECT,
+        MANAGE_ID
         FROM
-            T_HOUSE_INFO_DETAILS
-            LEFT JOIN
-            T_PROJECT_INFO
-                ON
-                    "pk_project" = PK_PROJECT
+        T_HOUSE_INFO_DETAILS
+        LEFT JOIN
+        T_PROJECT_INFO
+        ON
+        "pk_project" = PK_PROJECT
         WHERE
-            "pk_house" = #{pk_house}
+        "pk_house" = #{pk_house}
     </select>
 
     <resultMap type="cn.rzhd.wuye.vo.HouseVO" id="houseVOMap">
@@ -177,25 +177,25 @@
 
     <select id="getAll" resultMap="houseVOBackMap">
         SELECT
-            DISTINCT
-            H."vhcode",
-            H."pk_project",
-            s."pk_house",
-            P.PK_PROJECT,
-            c."pk_customerid",
-            c."vcname",
-            P.PROJECT_NAME,
-            H."nsellarea",
-            s."nprice",
-            s."nythisdiscountmny",
-            s."nytotalmnysign",
-            P.PROJECT_ADDRESS,
-            P.OBJECT_PHONE
+        DISTINCT
+        H."vhcode",
+        H."pk_project",
+        s."pk_house",
+        P.PK_PROJECT,
+        c."pk_customerid",
+        c."vcname",
+        P.PROJECT_NAME,
+        H."nsellarea",
+        s."nprice",
+        s."nythisdiscountmny",
+        s."nytotalmnysign",
+        P.PROJECT_ADDRESS,
+        P.OBJECT_PHONE
         FROM
-            T_HOUSE_INFO_DETAILS H
-            LEFT JOIN T_PROJECT_INFO P ON H."pk_project" = P.PK_PROJECT
-            LEFT JOIN "T_Sell_Contract" s ON H."pk_house" = s."pk_house"
-            LEFT JOIN "T_Customer" c ON s."pk_customerid" = c."pk_customerid"
+        T_HOUSE_INFO_DETAILS H
+        LEFT JOIN T_PROJECT_INFO P ON H."pk_project" = P.PK_PROJECT
+        LEFT JOIN "T_Sell_Contract" s ON H."pk_house" = s."pk_house"
+        LEFT JOIN "T_Customer" c ON s."pk_customerid" = c."pk_customerid"
     </select>
     <select id="getByManageId" parameterType="string" resultType="string">
         SELECT DISTINCT "pk_house"
@@ -269,16 +269,16 @@
         SET ALREADY_FINISH = #{alreadyFinish}
         WHERE "pk_house" = #{houseInfoId}
     </update>
-    
-    
-     <update id="updatehouseByPkHouse" parameterType="cn.rzhd.wuye.bean.HouseInfoDetails">
-     	UPDATE T_HOUSE_INFO_DETAILS
-			SET STARTDATE = #{startdate},
-			ENDDATE = #{enddate},
-			FIRSTMNY = #{firstmny},
-			EVERYMNY = #{everymny},
-			ASTRICTSTATUS = #{astrictstatus},
-			UPDATEDATE = #{updatedate}
-			WHERE  "pk_house" = #{pkHouse}
+
+
+    <update id="updatehouseByPkHouse" parameterType="cn.rzhd.wuye.bean.HouseInfoDetails">
+        UPDATE T_HOUSE_INFO_DETAILS
+        SET STARTDATE = #{startdate},
+        ENDDATE = #{enddate},
+        FIRSTMNY = #{firstmny},
+        EVERYMNY = #{everymny},
+        ASTRICTSTATUS = #{astrictstatus},
+        UPDATEDATE = #{updatedate}
+        WHERE "pk_house" = #{pkHouse}
     </update>
 </mapper>

@@ -11,7 +11,7 @@
 
     <operation name="updateData">
         <messageReceiver
-                class="org.apache.axis2.rpc.receivers.RPCMessageReceiver" />
+                class="org.apache.axis2.rpc.receivers.RPCMessageReceiver"/>
     </operation>
 
 </service>

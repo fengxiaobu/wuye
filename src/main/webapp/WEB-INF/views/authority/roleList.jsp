@@ -5,7 +5,8 @@
 <head>
     <meta charset="utf-8">
     <title>首页</title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/js/libs/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css"
+          href="${pageContext.request.contextPath}/js/libs/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css">
 </head>
 <body>
@@ -38,12 +39,12 @@
                 </thead>
                 <tbody class="tudiqianyue-tbody">
                 <c:forEach items="${roles}" var="role">
-                <tr class="tudiqianyue-tdtr">
-                    <td>${role.roleId}</td>
-                    <td>${role.name}</td>
-                    <td>${role.note}</td>
-                    <td><a href="${pageContext.request.contextPath}/">编辑</a>|<a href="#">删除</a></td>
-                </tr>
+                    <tr class="tudiqianyue-tdtr">
+                        <td>${role.roleId}</td>
+                        <td>${role.name}</td>
+                        <td>${role.note}</td>
+                        <td><a href="${pageContext.request.contextPath}/">编辑</a>|<a href="#">删除</a></td>
+                    </tr>
                 </c:forEach>
                 </tbody>
             </table>

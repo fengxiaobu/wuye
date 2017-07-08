@@ -27,7 +27,7 @@
     <div class="panel panel-default tudiqianyue">
         <form class="form-horizontal" action="${pageContext.request.contextPath}/user/save" method="post" id="myform">
             <div style="margin-top: 50px"></div>
-            <input type="hidden" name="userId" value="${user.userId}" >
+            <input type="hidden" name="userId" value="${user.userId}">
             <div class="form-group">
                 <label class="col-sm-2 control-label">人员姓名:</label>
                 <div class="col-sm-10">

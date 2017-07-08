@@ -10,18 +10,18 @@
     </delete>
     <select id="getMyRole" parameterType="long" resultType="cn.rzhd.wuye.bean.Role">
         SELECT
-            T_ROLE.ROLE_ID AS roleId,
-            "NAME"         AS name,
-            NOTE           AS note
+        T_ROLE.ROLE_ID AS roleId,
+        "NAME" AS name,
+        NOTE AS note
         FROM T_ROLE
-            JOIN T_USER_ROLE ON T_ROLE.ROLE_ID = T_USER_ROLE.ROLE_ID
+        JOIN T_USER_ROLE ON T_ROLE.ROLE_ID = T_USER_ROLE.ROLE_ID
         WHERE USER_ID = #{id}
     </select>
     <select id="getAllRoles" resultType="cn.rzhd.wuye.bean.Role">
         SELECT
-            ROLE_ID AS roleId,
-            "NAME" AS name,
-            NOTE AS note
+        ROLE_ID AS roleId,
+        "NAME" AS name,
+        NOTE AS note
         FROM T_ROLE
     </select>
 </mapper>
