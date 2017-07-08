@@ -7,6 +7,7 @@
 	<title>登录</title>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/js/libs/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css">
+    <script src="${pageContext.request.contextPath}/js/libs/jquery-1.11.3.min.js"></script>
     
 	<style type="text/css">
 		
@@ -82,7 +83,7 @@
 		.login-title {
 			font-variant: small-caps;
 			text-align: center;
-			font-size: 30px;
+			font-size: 25px;
 			padding-top: 90px;
 			padding-bottom: 30px;
 		}
@@ -100,6 +101,8 @@
 			width: 100%;
 			height: 100%;
 		}
+		
+		.hide {display:none;}
 	</style>
 <script type="text/javascript">
 	if (window != top) {
@@ -110,6 +113,13 @@
 	function changeCode(img){
 		img.src = "/kaptcha.jpg?code="+Math.random();
 	}
+	
+	$(document).ready(function(){
+		  $(".forgetpwd").click(function(){
+			  $(".parent").hide();
+			  $(".parent1").show();
+		  });
+	});
 </script>
 </head>
 <body>
@@ -118,11 +128,13 @@
 		<div class="popup-main">
 			<div class="popup-section">
 				<div class="popup-content popup-anim-scale container">
-					<div>
-						<div class="login-left"></div>
-						<div class="login-right">
+					<div class="parent">
+						<div class="login-left">
+						
+						</div>
+						<div  class="login-right">
 							<form action="${pageContext.request.contextPath}/login" method="post">
-								<div class="login-title">login</div>
+								<div class="login-title">联东物业后台管理系统</div>
 								<div class="form-group label-line">
 									<!-- <label for="username">用户名：</label> -->
 									<label for="username"><span class="glyphicon glyphicon-user"></span></label>
@@ -141,17 +153,6 @@
 										<img src="kaptcha.jpg" width="200" id="kaptchaImage" onclick="changeCode(this)" title="看不清，点击换一张" />  
 									 </div>
 								</div>
-								<!-- <div class="form-group label-line">
-									<div class="row">
-										<div class="col-xs-8">
-											<label class="form-label" for="validatecode">验证码：</label>
-											<input type="text" class="form-control" id="validatecode" placeholder="请输入验证码">
-										</div>
-				  						<div class="col-xs-4">
-				  							<div class="validate-code"><img src="../imgs_test/validate-code.png"></div>
-				  						</div>
-									</div>	
-								</div> -->
 								<div class="checkbox">
 									<label>
 										<input type="checkbox">记住密码
@@ -163,11 +164,28 @@
 								</div>
 							</form>
 						</div>
+						
+					</div>
+					
+					<div class="parent1 hide">
+						<div class="login-left">
+						</div>
+						<div  class="login-right">
+						 	<form action=""  method="post">
+								<div class="login-title">输入登陆账号</div>
+								<div class="form-group label-line">
+									<label for="username"><span class="glyphicon glyphicon-user"></span></label>
+									<input type="text" class="form-control" id="username" name="username" placeholder="请输入登陆账号">
+								</div>
+								<div class="text-center" style="margin-top:200px">
+									<button type="submit" class="btn btn-login">下一步</button>
+								</div>
+							</form>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- 登录-v2 结束 -->
 </body>
 </html>

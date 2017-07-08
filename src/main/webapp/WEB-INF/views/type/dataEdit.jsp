@@ -21,7 +21,7 @@
 						<div class="form-group">
 							<label class="col-sm-2 control-label">
 								<c:if test="${typeRefinement.typeDifferentiateId=='1'}" >
-					　			房产使用属性：
+					　				房产使用属性：
 								</c:if>
 								<c:if test="${typeRefinement.typeDifferentiateId=='2'}" >
 								　　属性：

@@ -35,9 +35,6 @@
                                                               class="img-circle user-photo"></div>
                             <div class="user-name"><shiro:principal property="realname"/></div>
                         </div>
-                        <button class="btn btn-default" type="button"><span
-                                class="glyphicon glyphicon-bullhorn"></span><span class="badge">4</span>消息
-                        </button>
                         <button class="btn btn-default" type="button" onclick="logout()"><span class="glyphicon glyphicon-off"></span>退出
                         </button>
                     </div>
@@ -110,6 +107,15 @@
                                 <li class="panel" role="tab">
                                     <div class="panel-header">
                                         <a href="${pageContext.request.contextPath}/utilitiesRecords/waterIndex" target="main">水费缴费记录表</a>
+                                    </div>
+                                </li>
+                                
+                                <li class="panel" role="tab">
+                                    <div class="panel-header">
+                                        <a href="${pageContext.request.contextPath}/account/index" target="main">对账表</a>
+                                    </div>
+                                    <div class="panel-header">
+                                        <a href="${pageContext.request.contextPath}/account/accountDetails" target="main">对账表明细</a>
                                     </div>
                                 </li>
                             </ul>
