@@ -12,13 +12,52 @@
         <result property="everymny" column="EVERYMNY"/>
         <result property="astrictstatus" column="ASTRICTSTATUS"/>
     </resultMap>
+    
+   <resultMap id="BaseResultMap" type="cn.rzhd.wuye.bean.ProjectInfo">
+        <id column="pkProject" property="pkProject" jdbcType="CHAR"/>
+        <result column="PROJECT_NAME" property="projectName" jdbcType="OTHER"/>
+        <result column="PROJECT_ADDRESS" property="projectAddress" jdbcType="OTHER"/>
+        <result column="DEVELOPMENT_COLLECTING_COMPANY" property="developmentCollectingCompany" jdbcType="OTHER"/>
+        <result column="DEVELOPMENT_COLLECTING_ACCOUNT" property="developmentCollectingAccount" jdbcType="OTHER"/>
+        <result column="PROPERTY_COLLECTING_COMPANY" property="propertyCollectingCompany" jdbcType="OTHER"/>
+        <result column="PROPERTY_COLLECTING_ACCOUNT" property="propertyCollectingAccount" jdbcType="OTHER"/>
+        <result column="WATER_PRICE" property="waterPrice" jdbcType="DECIMAL"/>
+        <result column="ELECTRICITY_PRICE" property="electricityPrice" jdbcType="DECIMAL"/>
+        <result column="SERVICE_PHONE" property="servicePhone" jdbcType="VARCHAR"/>
+        <result column="OBJECT_PHONE" property="objectPhone" jdbcType="VARCHAR"/>
+        <result column="CREATION_TIME" property="creationTime" jdbcType="DATE"/>
+        <result column="UPDATE_TIME" property="updateTime" jdbcType="DATE"/>
+        <result column="STATUS" property="status" jdbcType="DECIMAL"/>
+        <result column="PK_CORP" property="pkCorp" jdbcType="CHAR"/>
+        <result column="VCODE" property="vcode" jdbcType="VARCHAR"/>
+        <result column="VSHORTNAME" property="vshortname" jdbcType="VARCHAR"/>
+        <result column="PK_RESPONSECORP" property="pkResponsecorp" jdbcType="VARCHAR"/>
+        <result column="VINCODE" property="vincode" jdbcType="CHAR"/>
+        <result column="DECORATE_MANAGE" property="decorateManage" jdbcType="DECIMAL"/>
+        <result column="PASSCARD_PLEDGE" property="passcardPledge" jdbcType="DECIMAL"/>
+        <result column="PASSCARD_COST" property="passcardCost" jdbcType="DECIMAL"/>
+        <result column="DECORATE_AREA" property="decorateArea" jdbcType="DECIMAL"/>
+        <result column="LESS_PLEDGE" property="lessPledge" jdbcType="DECIMAL"/>
+        <result column="MORE_PLEDGE" property="morePledge" jdbcType="DECIMAL"/>
+        <result column="STARTDATE" property="startDate"/>
+        <result column="ENDDATE" property="endDate"/>
+        <result column="FIRSTMNY" property="firstMoney"/>
+        <result column="EVERYMNY" property="everyMoney"/>
+        <result column="UPDATEDATE" property="updateDate"/>
+        <result column="ASTRICTSTATUS" property="astrictStatus"/>
+    </resultMap>
    <!-- sql片段 -->
+	<sql id="query_project_where">
+		<if test="projectName!=null">
+				and project.PK_PROJECT like '%${projectName}%'
+		</if>
+	</sql>
+	 <!-- sql片段 -->
 	<sql id="query_house_where">
 		<if test="vhcode!=null">
 				and project.vhcode like '%${vhcode}%'
 		</if>
 	</sql>
-	
 	<!-- 系统设置 房产水电购买列表总数 -->
     <select id="findHouseCount" resultType="int" parameterType="cn.rzhd.wuye.bean.vo.HouseInfoDetailsQueryVo">
     SELECT count (*) FROM
@@ -64,6 +103,58 @@
 		) project
 		<where>
 			<include refid="query_house_where" />
+		</where>
+		
+		<if test="pageQuery!=null">
+			) page_1
+        <![CDATA[
+         where rownum <= ${pageQuery.PageQuery_end}) page_2
+		 where page_2.page_num > ${pageQuery.PageQuery_start}
+		 ]]>
+		</if>
+    </select>
+    
+    <!-- 系统设置 房产水电购买列表总数 -->
+    <select id="findProjectCount" resultType="int" parameterType="cn.rzhd.wuye.bean.vo.ProjectInfoQueryVo">
+    SELECT count (*) FROM
+		(
+		   SELECT 
+				DISTINCT
+				h.PK_PROJECT,
+				h.PROJECT_NAME,
+				h.STARTDATE,
+				h.ENDDATE,
+				h.FIRSTMNY,
+				h.EVERYMNY,
+				h.ASTRICTSTATUS
+			FROM T_PROJECT_INFO h
+		) project
+       <where>
+			<include refid="query_project_where" />
+		</where>
+    </select>
+    
+    <!-- 系统设置 项目水电购买列表分页 -->
+    <select id="findProjectListPage" resultMap="BaseResultMap" parameterType="cn.rzhd.wuye.bean.vo.ProjectInfoQueryVo">
+       <if test="pageQuery!=null"> 
+			select page_2.* from (select page_1.*,
+				rownum page_num from (
+		</if>
+		SELECT * FROM
+		(
+			SELECT 
+				DISTINCT
+				h.PK_PROJECT,
+				h.PROJECT_NAME,
+				h.STARTDATE,
+				h.ENDDATE,
+				h.FIRSTMNY,
+				h.EVERYMNY,
+				h.ASTRICTSTATUS
+			FROM T_PROJECT_INFO h
+		) project
+		<where>
+			<include refid="query_project_where" />
 		</where>
 		
 		<if test="pageQuery!=null">

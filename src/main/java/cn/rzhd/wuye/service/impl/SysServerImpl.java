@@ -9,9 +9,11 @@ import com.xiaoleilu.hutool.util.StrUtil;
 import com.ctc.wstx.util.StringUtil;
 
 import cn.rzhd.wuye.bean.HouseInfoDetails;
+import cn.rzhd.wuye.bean.ProjectInfo;
 import cn.rzhd.wuye.bean.TSys;
 import cn.rzhd.wuye.bean.TSysExample;
 import cn.rzhd.wuye.bean.vo.HouseInfoDetailsQueryVo;
+import cn.rzhd.wuye.bean.vo.ProjectInfoQueryVo;
 import cn.rzhd.wuye.mapper.SysMapperCustom;
 import cn.rzhd.wuye.mapper.TSysMapper;
 import cn.rzhd.wuye.service.ISysServer;
@@ -72,7 +74,15 @@ public class SysServerImpl implements ISysServer {
         return sysMapperCustom.findHouseListPage(queryVo);
     }
 
+    @Override
+    public int findProjectCount(ProjectInfoQueryVo queryVo) {
+        return sysMapperCustom.findProjectCount(queryVo);
+    }
 
+    @Override
+    public List<ProjectInfo> findProjectListPage(ProjectInfoQueryVo queryVo) {
+        return sysMapperCustom.findProjectListPage(queryVo);
+    }
 
 
 
