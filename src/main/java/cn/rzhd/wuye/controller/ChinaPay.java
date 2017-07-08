@@ -140,7 +140,7 @@ public class ChinaPay {
         ChinaPayHelper chinaPayHelper = new ChinaPayHelper();
 
         // requestVO.setOrderAmt(orderAmt);
-        requestVO.setOrderAmt("10");
+        requestVO.setOrderAmt(orderAmt);
         requestVO.setCommodityMsg(commodityMsg);
         requestVO.setMerResv(merResv);
         requestVO.setBankInstNo(bankInstNo);
@@ -188,27 +188,27 @@ public class ChinaPay {
                 System.out.println("-----------------------------------------------------------------");
                 System.out.println("-----------------------------------------------------------------");
                 System.out.println("-----------------------------------------------------------------");
-                System.out.println("费用类型:" + vo.getType() + ",费用记录ID:" + vo.getId());
+              //  System.out.println("费用类型:" + vo.getType() + ",费用记录ID:" + vo.getId());
                 System.out.println("-----------------------------------------------------------------");
                 System.out.println("-----------------------------------------------------------------");
                 System.out.println("-----------------------------------------------------------------");
                 System.out.println("-----------------------------------------------------------------");
 
                 if ("wuye".equals(vo.getType())) {
-                    wuye.changeStatus(vo.getId());
+                   // wuye.changeStatus(vo.getId());
                 } else if ("kaifa".equals(vo.getType())) {
-                    kaifa.changeStatus(vo.getId());
+                   // kaifa.changeStatus(vo.getId());
                 } else if ("shuidian".equals(vo.getType())) {
-                    shuidian.changeStatus(vo.getId());
+                    //shuidian.changeStatus(vo.getId());
                 } else if ("rzwuye".equals(vo.getType())) {
                     enterApplyService.updatePayState("1", null, vo.getApplyId());
-                    wuye.changeStatus(vo.getId());
+                    //wuye.changeStatus(vo.getId());
                 } else if ("rzkaifa".equals(vo.getType())) {
                     enterApplyService.updatePayState(null, "1", vo.getApplyId());
-                    kaifa.changeStatus(vo.getId());
+                   // kaifa.changeStatus(vo.getId());
                 } else if ("zxfy".equals(vo.getType())) {
                     decorationApplyService.updatePayState("1", vo.getApplyId());
-                    wuye.changeStatus(vo.getId());
+                    //wuye.changeStatus(vo.getId());
                 } else {
                     System.out.println("缴费记录生成失败:未知的缴费类型(物业,开发,水电)");
                 }
@@ -281,24 +281,6 @@ public class ChinaPay {
         request.getSession().setAttribute("pay", result);
     }
 
- /*   *//**
-     * 获取入驻支付结果
-     *
-     * @param request
-     * @return
-     *//*
-    @RequestMapping("dist/getPayState")
-    @ResponseBody
-    public Map<String, String> getPayState(HttpServletRequest request) {
-        Map<String, String> result = new Hashtable<>();
-        String rzkaifa = request.getSession().getAttribute("rzkaifa").toString();
-        String rzwuye = request.getSession().getAttribute("rzwuye").toString();
-        request.getSession().removeAttribute("rzkaifa");
-        request.getSession().removeAttribute("rzwuye/");
-        result.put("rzkaifa", rzkaifa);
-        result.put("rzwuye", rzwuye);
-        return result;
-    }*/
 
     /**
      * 扫码支付
@@ -360,16 +342,16 @@ public class ChinaPay {
             while (iterator.hasNext()) {
                 CallBackVO vo = JSON.toJavaObject((JSON) iterator.next(), CallBackVO.class);
                 System.out.println("-----------------------------------------------------------------");
-                System.out.println("费用类型:" + vo.getType() + ",费用记录ID:" + vo.getId());
+               // System.out.println("费用类型:" + vo.getType() + ",费用记录ID:" + vo.getId());
                 System.out.println("-----------------------------------------------------------------");
                 if ("wuye".equals(vo.getType())) {
-                    wuye.changeStatus(vo.getId());
+                   // wuye.changeStatus(vo.getId());
                     result.put("msg", "wuye");
                 } else if ("kaifa".equals(vo.getType())) {
-                    kaifa.changeStatus(vo.getId());
+                   // kaifa.changeStatus(vo.getId());
                     result.put("msg", "kaifa");
                 } else if ("shuidian".equals(vo.getType())) {
-                    shuidian.changeStatus(vo.getId());
+                    //shuidian.changeStatus(vo.getId());
                     result.put("msg", "shuidian");
                 } else if ("rzwuye".equals(vo.getType())) {
                     List<Map<String, JsonFormat.Value>> enterApplyByID = enterApplyService.getEnterApplyByID(vo.getApplyId());
@@ -381,7 +363,7 @@ public class ChinaPay {
                             houseInfoDetailsService.updateHouse(String.valueOf(enterApply.getEnterApplyId()), "3", null);
                         }
                     }
-                    wuye.changeStatus(vo.getId());
+                 //   wuye.changeStatus(vo.getId());
                     result.put("msg", "rzwuye");
                 } else if ("rzkaifa".equals(vo.getType())) {
                     List<Map<String, JsonFormat.Value>> enterApplyByID = enterApplyService.getEnterApplyByID(vo.getApplyId());
@@ -393,12 +375,12 @@ public class ChinaPay {
                             enterApplyService.updatePayState(null, "3", vo.getApplyId());
                         }
                     }
-                    kaifa.changeStatus(vo.getId());
+                   // kaifa.changeStatus(vo.getId());
                     result.put("msg", "rzkaifa");
                 } else if ("zxfy".equals(vo.getType())) {
                     houseInfoDetailsService.updateHouse(String.valueOf(vo.getApplyId()), null, "3");
-                    // decorationApplyService.updatePayState("3", vo.getApplyId());
-                    wuye.changeStatus(vo.getId());
+                     decorationApplyService.updatePayState("3", vo.getApplyId());
+                   // wuye.changeStatus(vo.getId());
                     result.put("msg", "zxfy");
                 } else {
                     System.out.println("缴费记录生成失败:未知的缴费类型(物业,开发,水电)");
