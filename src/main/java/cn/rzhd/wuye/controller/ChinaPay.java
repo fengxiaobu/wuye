@@ -8,15 +8,19 @@ import cn.rzhd.wuye.pay.unionpay.LogUtil;
 import cn.rzhd.wuye.service.*;
 import cn.rzhd.wuye.utils.BeanUtils;
 import cn.rzhd.wuye.utils.HttpUtils;
+import cn.rzhd.wuye.utils.StringTimeUtil;
 import cn.rzhd.wuye.vo.CallBackVO;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.xiaoleilu.hutool.date.DateField;
 import com.xiaoleilu.hutool.date.DateUtil;
+import com.xiaoleilu.hutool.http.HttpRequest;
+import com.xiaoleilu.hutool.http.HttpResponse;
 import com.xiaoleilu.hutool.lang.Base64;
 import com.xiaoleilu.hutool.util.BeanUtil;
 import com.xiaoleilu.hutool.util.RandomUtil;
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -57,6 +61,14 @@ public class ChinaPay {
 
     @RequestMapping("/pay")
     public String toChinaPay(Model model, RequestVO requestVO, HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        //失效时间
+        String OrderValidTime = DateUtil.format(DateUtil.offset(new Date(), DateField.SECOND, 120), "YYYYMMDDHHMMSS");
+        Map<String, String> map = new Hashtable<>();
+        map.put("OrderType", "0001");
+        map.put("OrderValidTime", OrderValidTime);
+        map.put("qrPattern", "link");
+        String OrderReserved = JSON.toJSONString(map);
+        requestVO.setOrderReserved(OrderReserved);
         //前台页面传过来的
         ChinaPayHelper chinaPayHelper = new ChinaPayHelper();
         requestVO.setRemoteAddr(HttpUtils.getIpAddr(req));
@@ -99,11 +111,11 @@ public class ChinaPay {
         //商户后台通知地址
         model.addAttribute("MerBgUrl", vo.getMerBgUrl());
         //防钓鱼客户浏览器IP
-        model.addAttribute("RemoteAddr", vo.getRemoteAddr());
+        // model.addAttribute("RemoteAddr", vo.getRemoteAddr());
         //交易类型
         model.addAttribute("TranType", vo.getTranType());
         ////商户前台通知地址
-        model.addAttribute("MerPageUrl", vo.getMerPageUrl());
+        //model.addAttribute("MerPageUrl", vo.getMerPageUrl());
         //交易币种
         model.addAttribute("CurryNo", vo.getCurryNo());
         //收单机构号
@@ -113,9 +125,10 @@ public class ChinaPay {
         //商品信息
         model.addAttribute("CommodityMsg", vo.getCommodityMsg());
         //商户私有域 原样返回
-        model.addAttribute("MerResv", vo.getMerResv());
+        // model.addAttribute("MerResv", vo.getMerResv());
         //交易时间戳
         model.addAttribute("TimeStamp", vo.getTimeStamp());
+        model.addAttribute("OrderReserved", vo.getOrderReserved());
         //model.addAttribute("TranReserved",vo.getTranReserved());
         return "toChinaPay";
     }
@@ -302,34 +315,29 @@ public class ChinaPay {
     public Map<String, Object> scanCodePay(HttpServletRequest req, String orderAmt, String commodityMsg, String merResv) throws IOException {
         RequestVO requestVO = new RequestVO();
         //失效时间
-        String OrderValidTime = DateUtil.format(DateUtil.offset(new Date(), DateField.SECOND, 120), "YYYYMMDDHHMMSS");
         Map<String, String> map = new Hashtable<>();
         map.put("OrderType", "0001");
-        map.put("OrderValidTime", OrderValidTime);
         map.put("qrPattern", "link");
         String OrderReserved = JSON.toJSONString(map);
 
-        requestVO.setOrderReserved(OrderReserved);
+        requestVO.setOrderReserved(JSON.toJSONString("OrderType:0001"));
         requestVO.setOrderAmt("10");
         requestVO.setCommodityMsg(commodityMsg);
         requestVO.setMerResv(merResv);
-        System.out.println("requestVO = " + requestVO);
-        System.out.println("Base64.decodeStr(merResv) = " + Base64.decodeStr(merResv));
         //前台页面传过来的
         ChinaPayHelper chinaPayHelper = new ChinaPayHelper();
-        requestVO.setRemoteAddr(HttpUtils.getIpAddr(req));
-        requestVO.setMerOrderNo(RandomUtil.randomString(32));
+        // requestVO.setRemoteAddr(HttpUtils.getIpAddr(req));
+        requestVO.setMerOrderNo(RandomUtil.randomNumbers(22));
         //签名
         LogUtil.writeMessage("开始签名");
         RequestVO vo = chinaPayHelper.getSign(requestVO);
-        System.out.println("requestVO = " + requestVO);
+        System.out.println("requestVO = " + JSON.toJSONString(requestVO));
         Map<String, Object> objectMap = BeanUtils.objectToMap(requestVO);
-        // Map<String, Object> objectMap = BeanUtil.beanToMap(requestVO);
         Map<String, Object> sign = ChinaPaySignUtils.sign(objectMap);
-        System.out.println("sign = " + sign);
         objectMap.put("Signature", sign.get("sign"));
-        objectMap.put("postUrl", "http://140.206.112.241:9080/momsMgr/bgTransGet");
-
+        System.out.println("objectMap = " + JSON.toJSONString(objectMap));
+        HttpResponse body = HttpRequest.post("http://140.206.112.241:9080/momsMgr/bgTransGet").form(objectMap).execute();
+        System.out.println("body = " + body.toString());
         return objectMap;
     }
 
@@ -409,18 +417,39 @@ public class ChinaPay {
         }
     }
 
+    @Test
     public void test() {
-        Date date = new Date();
-        String format = DateUtil.format(date, "yyyyMMddHHmmss");
-        System.out.println("format = " + format);
-        String OrderValidTime = DateUtil.format(DateUtil.offsetSecond(new Date(), 120), "YYYYMMDDHHMMSS");
-        System.out.println(OrderValidTime);
-        System.out.println(DateUtil.parse("20161119170100", "YYYYMMDDHHMMSS"));
+        RequestVO requestVO = new RequestVO();
         Map<String, String> map = new Hashtable<>();
+        Date date = new Date();
+        String tranDate = StringTimeUtil.TranDate(date);
+        String tranTime = StringTimeUtil.TranTime(date);
         map.put("OrderType", "0001");
-        map.put("OrderValidTime", OrderValidTime);
         map.put("qrPattern", "link");
         String OrderReserved = JSON.toJSONString(map);
-        System.out.println("jsonString = " + OrderReserved);
+        requestVO.setVersion("20140728");
+        requestVO.setOrderReserved(OrderReserved);
+        requestVO.setOrderAmt("10");
+        requestVO.setTranType("0001");
+        requestVO.setAccessType("0");
+        requestVO.setMerId("000001705221343");
+        requestVO.setMerBgUrl("http://123.56.185.102:8092/wuye/bgReturn");
+        requestVO.setMerOrderNo(RandomUtil.randomNumbers(22));
+        requestVO.setTranDate(tranDate);
+        requestVO.setTranTime(tranTime);
+        requestVO.setCurryNo("CNY");
+        requestVO.setBusiType("0001");
+
+       // Map<String, Object> beanToMap = BeanUtil.beanToMap(requestVO,false,true);
+        Map<String, Object> beanToMap = BeanUtils.objectToMap(requestVO);
+        Map<String, Object> sign = ChinaPaySignUtils.sign(beanToMap);
+        beanToMap.put("Signature", sign.get("sign"));
+        HttpResponse execute = HttpRequest.post("http://140.206.112.241:9080/momsMgr/bgTransGet").form(beanToMap).execute();
+        System.out.println("execute.toString() = " + execute.toString());
+    }
+
+    @Test
+    public void pay() {
+
     }
 }

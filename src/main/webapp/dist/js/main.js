@@ -36432,7 +36432,7 @@ webpackJsonp([0],[
 	// 													</td>
 	// 												</tr> -->
 	// 												<tr v-for="(userInvoiceIndex, userInvoiceItem) in userInvoiceItems">
-	// 													<td v-for="(userInvoiceItemIndex,item) in userInvoiceItem" v-show="item.price!=0&&userInvoiceItemIndex!=sanfangxy&&userInvoiceItemIndex!=daifuxy"><input type="text" v-model="item"></td>
+	// 													<td v-for="(userInvoiceItemIndex,item) in userInvoiceItem" v-show="userInvoiceItemIndex!='sanfangxy'&&userInvoiceItemIndex!='daifuxy'"><input type="text" v-model="item"></td>
 	// 													<td v-show="billingMode=='daifu'">
 	// 														<form :name="'sanfangxy'+userInvoiceIndex" enctype="multipart/form-data" method="post" action="/dist/upload" style="display: inline-block;white-space: nowrap;">
 	// 															<div class="btn-upfile" style="height:30px">
@@ -36603,7 +36603,7 @@ webpackJsonp([0],[
 /* 207 */
 /***/ (function(module, exports) {
 
-	module.exports = "\n<ol class=\"breadcrumb\" _v-abc6c47e=\"\">你当前的位置：\n\t<li _v-abc6c47e=\"\"><a _v-abc6c47e=\"\">联东首页</a></li>\n\t<li _v-abc6c47e=\"\"><a _v-abc6c47e=\"\">费用缴纳</a></li>\n\t<li _v-abc6c47e=\"\"><a v-link=\"{ path: '/home/payment/estates', activeClass: 'active'}\" _v-abc6c47e=\"\">物业缴费记录</a></li>\n\t<li class=\"active\" _v-abc6c47e=\"\">开发票</li>\n</ol>\n<div class=\"container\" _v-abc6c47e=\"\">\n\t<div class=\"row\" _v-abc6c47e=\"\">\n\t\t<div class=\"col-xs-12\" _v-abc6c47e=\"\">\n\t\t\t<div class=\"panel panel-default\" _v-abc6c47e=\"\">\n\t\t\t\t<div class=\"panel-heading\" _v-abc6c47e=\"\"><h1 _v-abc6c47e=\"\">支付</h1></div>\n\t\t\t\t<div class=\"panel-body\" _v-abc6c47e=\"\">\n\t\t\t\t\t<table class=\"table table-bordered table-form\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t<tbody _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t<tr _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t<th _v-abc6c47e=\"\">客户名称</th>\n\t\t\t\t\t\t\t\t<td _v-abc6c47e=\"\">{{ userInfo.user.username }}</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t<th _v-abc6c47e=\"\">房产信息</th>\n\t\t\t\t\t\t\t\t<td _v-abc6c47e=\"\">{{ goodsInfo.houseInfo.house }}</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr v-show=\"!goodsInfo.onlyInvoice\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t<th _v-abc6c47e=\"\">支付方式</th>\n\t\t\t\t\t\t\t\t<td _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t<!-- <label class=\"checkbox-container paycheck\" :checked=\"payMode == 'gongsi'\" for=\"gongsi\">\n\t\t\t\t\t\t\t\t\t\t<input type=\"radio\" v-model=\"payMode\" value=\"gongsi\" id=\"gongsi\">\n\t\t\t\t\t\t\t\t\t\t<span class=\"checkbox_txt\">公司转账</span>\n\t\t\t\t\t\t\t\t\t</label>\n\t\t\t\t\t\t\t\t\t<label class=\"checkbox-container paycheck\" :checked=\"payMode == 'zhifubao'\" for=\"zhifubao\">\n\t\t\t\t\t\t\t\t\t\t<input type=\"radio\" v-model=\"payMode\" value=\"zhifubao\" id=\"zhifubao\">\n\t\t\t\t\t\t\t\t\t\t<span class=\"checkbox_txt\">支付宝支付</span>\n\t\t\t\t\t\t\t\t\t</label>\n\t\t\t\t\t\t\t\t\t<label class=\"checkbox-container paycheck\" :checked=\"payMode == 'weixin'\" for=\"weixin\">\n\t\t\t\t\t\t\t\t\t\t<input type=\"radio\" v-model=\"payMode\" value=\"weixin\" id=\"weixin\">\n\t\t\t\t\t\t\t\t\t\t<span class=\"checkbox_txt\">微信支付</span>\n\t\t\t\t\t\t\t\t\t</label> -->\n\t\t\t\t\t\t\t\t\t<label class=\"checkbox-container paycheck\" :checked=\"payMode == 'yinlian'\" for=\"yinlian\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t\t<input type=\"radio\" v-model=\"payMode\" checked=\"\" value=\"yinlian\" id=\"yinlian\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t\t<span class=\"checkbox_txt\" _v-abc6c47e=\"\">银联支付</span>\n\t\t\t\t\t\t\t\t\t</label>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr v-show=\"goodsInfo.canInvoice\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t<th _v-abc6c47e=\"\">发票信息</th>\n\t\t\t\t\t\t\t\t<!-- <th :rowspan=\"billingMode=='bukaipiao'?'null':'2'\">发票信息</th> -->\n\t\t\t\t\t\t\t\t<td style=\"padding: 0\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t<div class=\"e\" style=\"padding:20px 8px\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t\t<label class=\"checkbox-container\" data-type=\"radio\" data-name=\"like\" :checked=\"billingMode == 'bukaipiao'\" for=\"bukaipiao\" v-show=\"!goodsInfo.onlyInvoice\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<input type=\"radio\" v-model=\"billingMode\" value=\"bukaipiao\" id=\"bukaipiao\" name=\"lick\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<i class=\"icon icon01 i_radio\" _v-abc6c47e=\"\"></i>\n\t\t\t\t\t\t\t\t\t\t\t<span class=\"checkbox_txt\" _v-abc6c47e=\"\">不开发票</span>\n\t\t\t\t\t\t\t\t\t\t</label>\n\t\t\t\t\t\t\t\t\t\t<label class=\"checkbox-container\" data-type=\"radio\" data-name=\"like\" :checked=\"billingMode == 'yezhu'\" for=\"yezhukaipiao\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<input type=\"radio\" v-model=\"billingMode\" :checked=\"goodsInfo.onlyInvoice\" value=\"yezhu\" id=\"yezhukaipiao\" name=\"lick\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<i class=\"icon icon01 i_radio\" _v-abc6c47e=\"\"></i>\n\t\t\t\t\t\t\t\t\t\t\t<span class=\"checkbox_txt\" _v-abc6c47e=\"\">业主开票</span>\n\t\t\t\t\t\t\t\t\t\t</label>\n\t\t\t\t\t\t\t\t\t\t<label class=\"checkbox-container\" data-type=\"radio\" data-name=\"like\" :checked=\"billingMode == 'daifu'\" for=\"daifukaipiao\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<input type=\"radio\" v-model=\"billingMode\" value=\"daifu\" id=\"daifukaipiao\" name=\"lick\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<i class=\"icon icon01 i_radio\" _v-abc6c47e=\"\"></i>\n\t\t\t\t\t\t\t\t\t\t\t<span class=\"checkbox_txt\" _v-abc6c47e=\"\">代付开票</span>\n\t\t\t\t\t\t\t\t\t\t</label>\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t<div style=\"padding:0 10px;border-top: 1px solid #ddd\" v-show=\"billingMode!='bukaipiao' || goodsInfo.onlyInvoice\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t\t<div class=\"tips\" _v-abc6c47e=\"\">温馨提示 ：发票不跨月开票，非业主客户代缴业主房产费用开具发票时，需出示（代付协议、三方协议）</div>\n\t\t\t\t\t\t\t\t\t\t<table class=\"table table-bordered table-data\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<thead _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t\t\t\t<tr _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t<th _v-abc6c47e=\"\">开票公司名称</th>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<th v-for=\"item in goodsInfos\" v-if=\"item.price!=0\" _v-abc6c47e=\"\">{{ item.feetype }}({{ item.price | currency '￥' 2 }})</th>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<th v-show=\"billingMode=='daifu'\" _v-abc6c47e=\"\">三方协议</th>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<th v-show=\"billingMode=='daifu'\" _v-abc6c47e=\"\">代付证明</th>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<th _v-abc6c47e=\"\">操作</th>\n\t\t\t\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t\t</thead>\n\t\t\t\t\t\t\t\t\t\t\t<tbody _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t\t\t\t<!-- <tr v-for=\"userInvoiceItem in userInvoiceItems\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t<td>{{ userInfo.user.username }}</td>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<td v-for=\"item in userInvoiceItem\" v-if=\"item.price!=0\">{{ item.price | currency '￥' 2 }}</td>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<td>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<button class=\"btn\">添加</button>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<button class=\"btn\">删除</button>\n\t\t\t\t\t\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t\t\t\t\t\t</tr> -->\n\t\t\t\t\t\t\t\t\t\t\t\t<tr v-for=\"(userInvoiceIndex, userInvoiceItem) in userInvoiceItems\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t<td v-for=\"(userInvoiceItemIndex,item) in userInvoiceItem\" v-show=\"item.price!=0&amp;&amp;userInvoiceItemIndex!=sanfangxy&amp;&amp;userInvoiceItemIndex!=daifuxy\" _v-abc6c47e=\"\"><input type=\"text\" v-model=\"item\" _v-abc6c47e=\"\"></td>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<td v-show=\"billingMode=='daifu'\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<form :name=\"'sanfangxy'+userInvoiceIndex\" enctype=\"multipart/form-data\" method=\"post\" action=\"/dist/upload\" style=\"display: inline-block;white-space: nowrap;\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"btn-upfile\" style=\"height:30px\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<input readonly=\"\" type=\"file\" :id=\"'sanfangxy'+userInvoiceIndex\" :name=\"'sanfangxy'+userInvoiceIndex\" v-model=\"userInvoiceItem.sanfangxy\" _v-abc6c47e=\"\"><span class=\"btn-upfile-text text-orange\" style=\"height: 30px;\" _v-abc6c47e=\"\">添加附件</span>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t</form>\n\t\t\t\t\t\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<td v-show=\"billingMode=='daifu'\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<form :name=\"'daifuxy'+userInvoiceIndex\" enctype=\"multipart/form-data\" method=\"post\" action=\"/dist/upload\" style=\"display: inline-block;white-space: nowrap;\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"btn-upfile\" style=\"height:30px\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<input readonly=\"\" type=\"file\" :id=\"'daifuxy'+userInvoiceIndex\" :name=\"'daifuxy'+userInvoiceIndex\" v-model=\"userInvoiceItem.daifuxy\" _v-abc6c47e=\"\"><span class=\"btn-upfile-text text-orange\" style=\"height: 30px;\" _v-abc6c47e=\"\">添加附件</span>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t</form>\n\t\t\t\t\t\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<td _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a @click=\"addInvoice(userInvoiceIndex)\" _v-abc6c47e=\"\">添加</a> \n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a @click=\"deleteInvoice(userInvoiceIndex)\" _v-abc6c47e=\"\">删除</a>\n\t\t\t\t\t\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t\t</tbody>\n\t\t\t\t\t\t\t\t\t\t</table>\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<!-- <tr v-show=\"billingMode!='bukaipiao' || goodsInfo.onlyInvoice\">\n\t\t\t\t\t\t\t\t<td>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr> -->\n\t\t\t\t\t\t\t<tr v-show=\"goodsInfo.canInvoice\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t<th _v-abc6c47e=\"\">开票协议</th>\n\t\t\t\t\t\t\t\t<td _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t<a class=\"btn-xieyi\" _v-abc6c47e=\"\"><span _v-abc6c47e=\"\">第三方协议</span><span _v-abc6c47e=\"\">下载</span></a>\n\t\t\t\t\t\t\t\t\t<a class=\"btn-xieyi\" _v-abc6c47e=\"\"><span _v-abc6c47e=\"\">代付协议</span><span _v-abc6c47e=\"\">下载</span></a>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr v-show=\"!goodsInfo.onlyInvoice\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t<th _v-abc6c47e=\"\">费用信息</th>\n\t\t\t\t\t\t\t\t<td _v-abc6c47e=\"\">支付合计: <strong class=\"total_price\" _v-abc6c47e=\"\">{{ goodsInfo.totalPrice | currency '￥' 2 }}</strong></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr v-show=\"!goodsInfo.onlyInvoice\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t<th _v-abc6c47e=\"\"></th>\n\t\t\t\t\t\t\t\t<td _v-abc6c47e=\"\"><button class=\"btn\" :disabled=\"disabledSubmit\" @click=\"next\" _v-abc6c47e=\"\">立即支付</button></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr v-show=\"goodsInfo.onlyInvoice\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t<th _v-abc6c47e=\"\"></th>\n\t\t\t\t\t\t\t\t<td _v-abc6c47e=\"\"><button class=\"btn\" :disabled=\"disabledSubmit\" _v-abc6c47e=\"\">提交开票</button></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t</tbody>\n\t\t\t\t\t</table>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\t\n\t</div>\n</div>\n";
+	module.exports = "\n<ol class=\"breadcrumb\" _v-abc6c47e=\"\">你当前的位置：\n\t<li _v-abc6c47e=\"\"><a _v-abc6c47e=\"\">联东首页</a></li>\n\t<li _v-abc6c47e=\"\"><a _v-abc6c47e=\"\">费用缴纳</a></li>\n\t<li _v-abc6c47e=\"\"><a v-link=\"{ path: '/home/payment/estates', activeClass: 'active'}\" _v-abc6c47e=\"\">物业缴费记录</a></li>\n\t<li class=\"active\" _v-abc6c47e=\"\">开发票</li>\n</ol>\n<div class=\"container\" _v-abc6c47e=\"\">\n\t<div class=\"row\" _v-abc6c47e=\"\">\n\t\t<div class=\"col-xs-12\" _v-abc6c47e=\"\">\n\t\t\t<div class=\"panel panel-default\" _v-abc6c47e=\"\">\n\t\t\t\t<div class=\"panel-heading\" _v-abc6c47e=\"\"><h1 _v-abc6c47e=\"\">支付</h1></div>\n\t\t\t\t<div class=\"panel-body\" _v-abc6c47e=\"\">\n\t\t\t\t\t<table class=\"table table-bordered table-form\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t<tbody _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t<tr _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t<th _v-abc6c47e=\"\">客户名称</th>\n\t\t\t\t\t\t\t\t<td _v-abc6c47e=\"\">{{ userInfo.user.username }}</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t<th _v-abc6c47e=\"\">房产信息</th>\n\t\t\t\t\t\t\t\t<td _v-abc6c47e=\"\">{{ goodsInfo.houseInfo.house }}</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr v-show=\"!goodsInfo.onlyInvoice\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t<th _v-abc6c47e=\"\">支付方式</th>\n\t\t\t\t\t\t\t\t<td _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t<!-- <label class=\"checkbox-container paycheck\" :checked=\"payMode == 'gongsi'\" for=\"gongsi\">\n\t\t\t\t\t\t\t\t\t\t<input type=\"radio\" v-model=\"payMode\" value=\"gongsi\" id=\"gongsi\">\n\t\t\t\t\t\t\t\t\t\t<span class=\"checkbox_txt\">公司转账</span>\n\t\t\t\t\t\t\t\t\t</label>\n\t\t\t\t\t\t\t\t\t<label class=\"checkbox-container paycheck\" :checked=\"payMode == 'zhifubao'\" for=\"zhifubao\">\n\t\t\t\t\t\t\t\t\t\t<input type=\"radio\" v-model=\"payMode\" value=\"zhifubao\" id=\"zhifubao\">\n\t\t\t\t\t\t\t\t\t\t<span class=\"checkbox_txt\">支付宝支付</span>\n\t\t\t\t\t\t\t\t\t</label>\n\t\t\t\t\t\t\t\t\t<label class=\"checkbox-container paycheck\" :checked=\"payMode == 'weixin'\" for=\"weixin\">\n\t\t\t\t\t\t\t\t\t\t<input type=\"radio\" v-model=\"payMode\" value=\"weixin\" id=\"weixin\">\n\t\t\t\t\t\t\t\t\t\t<span class=\"checkbox_txt\">微信支付</span>\n\t\t\t\t\t\t\t\t\t</label> -->\n\t\t\t\t\t\t\t\t\t<label class=\"checkbox-container paycheck\" :checked=\"payMode == 'yinlian'\" for=\"yinlian\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t\t<input type=\"radio\" v-model=\"payMode\" checked=\"\" value=\"yinlian\" id=\"yinlian\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t\t<span class=\"checkbox_txt\" _v-abc6c47e=\"\">银联支付</span>\n\t\t\t\t\t\t\t\t\t</label>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr v-show=\"goodsInfo.canInvoice\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t<th _v-abc6c47e=\"\">发票信息</th>\n\t\t\t\t\t\t\t\t<!-- <th :rowspan=\"billingMode=='bukaipiao'?'null':'2'\">发票信息</th> -->\n\t\t\t\t\t\t\t\t<td style=\"padding: 0\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t<div class=\"e\" style=\"padding:20px 8px\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t\t<label class=\"checkbox-container\" data-type=\"radio\" data-name=\"like\" :checked=\"billingMode == 'bukaipiao'\" for=\"bukaipiao\" v-show=\"!goodsInfo.onlyInvoice\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<input type=\"radio\" v-model=\"billingMode\" value=\"bukaipiao\" id=\"bukaipiao\" name=\"lick\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<i class=\"icon icon01 i_radio\" _v-abc6c47e=\"\"></i>\n\t\t\t\t\t\t\t\t\t\t\t<span class=\"checkbox_txt\" _v-abc6c47e=\"\">不开发票</span>\n\t\t\t\t\t\t\t\t\t\t</label>\n\t\t\t\t\t\t\t\t\t\t<label class=\"checkbox-container\" data-type=\"radio\" data-name=\"like\" :checked=\"billingMode == 'yezhu'\" for=\"yezhukaipiao\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<input type=\"radio\" v-model=\"billingMode\" :checked=\"goodsInfo.onlyInvoice\" value=\"yezhu\" id=\"yezhukaipiao\" name=\"lick\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<i class=\"icon icon01 i_radio\" _v-abc6c47e=\"\"></i>\n\t\t\t\t\t\t\t\t\t\t\t<span class=\"checkbox_txt\" _v-abc6c47e=\"\">业主开票</span>\n\t\t\t\t\t\t\t\t\t\t</label>\n\t\t\t\t\t\t\t\t\t\t<label class=\"checkbox-container\" data-type=\"radio\" data-name=\"like\" :checked=\"billingMode == 'daifu'\" for=\"daifukaipiao\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<input type=\"radio\" v-model=\"billingMode\" value=\"daifu\" id=\"daifukaipiao\" name=\"lick\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<i class=\"icon icon01 i_radio\" _v-abc6c47e=\"\"></i>\n\t\t\t\t\t\t\t\t\t\t\t<span class=\"checkbox_txt\" _v-abc6c47e=\"\">代付开票</span>\n\t\t\t\t\t\t\t\t\t\t</label>\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t<div style=\"padding:0 10px;border-top: 1px solid #ddd\" v-show=\"billingMode!='bukaipiao' || goodsInfo.onlyInvoice\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t\t<div class=\"tips\" _v-abc6c47e=\"\">温馨提示 ：发票不跨月开票，非业主客户代缴业主房产费用开具发票时，需出示（代付协议、三方协议）</div>\n\t\t\t\t\t\t\t\t\t\t<table class=\"table table-bordered table-data\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t\t\t<thead _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t\t\t\t<tr _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t<th _v-abc6c47e=\"\">开票公司名称</th>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<th v-for=\"item in goodsInfos\" v-if=\"item.price!=0\" _v-abc6c47e=\"\">{{ item.feetype }}({{ item.price | currency '￥' 2 }})</th>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<th v-show=\"billingMode=='daifu'\" _v-abc6c47e=\"\">三方协议</th>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<th v-show=\"billingMode=='daifu'\" _v-abc6c47e=\"\">代付证明</th>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<th _v-abc6c47e=\"\">操作</th>\n\t\t\t\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t\t</thead>\n\t\t\t\t\t\t\t\t\t\t\t<tbody _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t\t\t\t<!-- <tr v-for=\"userInvoiceItem in userInvoiceItems\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t<td>{{ userInfo.user.username }}</td>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<td v-for=\"item in userInvoiceItem\" v-if=\"item.price!=0\">{{ item.price | currency '￥' 2 }}</td>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<td>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<button class=\"btn\">添加</button>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<button class=\"btn\">删除</button>\n\t\t\t\t\t\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t\t\t\t\t\t</tr> -->\n\t\t\t\t\t\t\t\t\t\t\t\t<tr v-for=\"(userInvoiceIndex, userInvoiceItem) in userInvoiceItems\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t<td v-for=\"(userInvoiceItemIndex,item) in userInvoiceItem\" v-show=\"userInvoiceItemIndex!='sanfangxy'&amp;&amp;userInvoiceItemIndex!='daifuxy'\" _v-abc6c47e=\"\"><input type=\"text\" v-model=\"item\" _v-abc6c47e=\"\"></td>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<td v-show=\"billingMode=='daifu'\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<form :name=\"'sanfangxy'+userInvoiceIndex\" enctype=\"multipart/form-data\" method=\"post\" action=\"/dist/upload\" style=\"display: inline-block;white-space: nowrap;\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"btn-upfile\" style=\"height:30px\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<input readonly=\"\" type=\"file\" :id=\"'sanfangxy'+userInvoiceIndex\" :name=\"'sanfangxy'+userInvoiceIndex\" v-model=\"userInvoiceItem.sanfangxy\" _v-abc6c47e=\"\"><span class=\"btn-upfile-text text-orange\" style=\"height: 30px;\" _v-abc6c47e=\"\">添加附件</span>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t</form>\n\t\t\t\t\t\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<td v-show=\"billingMode=='daifu'\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<form :name=\"'daifuxy'+userInvoiceIndex\" enctype=\"multipart/form-data\" method=\"post\" action=\"/dist/upload\" style=\"display: inline-block;white-space: nowrap;\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"btn-upfile\" style=\"height:30px\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<input readonly=\"\" type=\"file\" :id=\"'daifuxy'+userInvoiceIndex\" :name=\"'daifuxy'+userInvoiceIndex\" v-model=\"userInvoiceItem.daifuxy\" _v-abc6c47e=\"\"><span class=\"btn-upfile-text text-orange\" style=\"height: 30px;\" _v-abc6c47e=\"\">添加附件</span>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t</form>\n\t\t\t\t\t\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<td _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a @click=\"addInvoice(userInvoiceIndex)\" _v-abc6c47e=\"\">添加</a> \n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a @click=\"deleteInvoice(userInvoiceIndex)\" _v-abc6c47e=\"\">删除</a>\n\t\t\t\t\t\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t\t</tbody>\n\t\t\t\t\t\t\t\t\t\t</table>\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<!-- <tr v-show=\"billingMode!='bukaipiao' || goodsInfo.onlyInvoice\">\n\t\t\t\t\t\t\t\t<td>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr> -->\n\t\t\t\t\t\t\t<tr v-show=\"goodsInfo.canInvoice\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t<th _v-abc6c47e=\"\">开票协议</th>\n\t\t\t\t\t\t\t\t<td _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t\t<a class=\"btn-xieyi\" _v-abc6c47e=\"\"><span _v-abc6c47e=\"\">第三方协议</span><span _v-abc6c47e=\"\">下载</span></a>\n\t\t\t\t\t\t\t\t\t<a class=\"btn-xieyi\" _v-abc6c47e=\"\"><span _v-abc6c47e=\"\">代付协议</span><span _v-abc6c47e=\"\">下载</span></a>\n\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr v-show=\"!goodsInfo.onlyInvoice\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t<th _v-abc6c47e=\"\">费用信息</th>\n\t\t\t\t\t\t\t\t<td _v-abc6c47e=\"\">支付合计: <strong class=\"total_price\" _v-abc6c47e=\"\">{{ goodsInfo.totalPrice | currency '￥' 2 }}</strong></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr v-show=\"!goodsInfo.onlyInvoice\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t<th _v-abc6c47e=\"\"></th>\n\t\t\t\t\t\t\t\t<td _v-abc6c47e=\"\"><button class=\"btn\" :disabled=\"disabledSubmit\" @click=\"next\" _v-abc6c47e=\"\">立即支付</button></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t<tr v-show=\"goodsInfo.onlyInvoice\" _v-abc6c47e=\"\">\n\t\t\t\t\t\t\t\t<th _v-abc6c47e=\"\"></th>\n\t\t\t\t\t\t\t\t<td _v-abc6c47e=\"\"><button class=\"btn\" :disabled=\"disabledSubmit\" _v-abc6c47e=\"\">提交开票</button></td>\n\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t</tbody>\n\t\t\t\t\t</table>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\t\n\t</div>\n</div>\n";
 
 /***/ }),
 /* 208 */
@@ -36641,7 +36641,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */(function(global) {"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
-					value: true
+	    value: true
 	});
 
 	var _stringify = __webpack_require__(173);
@@ -36816,128 +36816,128 @@ webpackJsonp([0],[
 	// <script>
 	function Base64() {
 
-					// private property  
-					var _keyStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
+	    // private property  
+	    var _keyStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
 
-					// public method for encoding  
-					this.encode = function (input) {
-									var output = "";
-									var chr1, chr2, chr3, enc1, enc2, enc3, enc4;
-									var i = 0;
-									input = _utf8_encode(input);
-									while (i < input.length) {
-													chr1 = input.charCodeAt(i++);
-													chr2 = input.charCodeAt(i++);
-													chr3 = input.charCodeAt(i++);
-													enc1 = chr1 >> 2;
-													enc2 = (chr1 & 3) << 4 | chr2 >> 4;
-													enc3 = (chr2 & 15) << 2 | chr3 >> 6;
-													enc4 = chr3 & 63;
-													if (isNaN(chr2)) {
-																	enc3 = enc4 = 64;
-													} else if (isNaN(chr3)) {
-																	enc4 = 64;
-													}
-													output = output + _keyStr.charAt(enc1) + _keyStr.charAt(enc2) + _keyStr.charAt(enc3) + _keyStr.charAt(enc4);
-									}
-									return output;
-					};
+	    // public method for encoding  
+	    this.encode = function (input) {
+	        var output = "";
+	        var chr1, chr2, chr3, enc1, enc2, enc3, enc4;
+	        var i = 0;
+	        input = _utf8_encode(input);
+	        while (i < input.length) {
+	            chr1 = input.charCodeAt(i++);
+	            chr2 = input.charCodeAt(i++);
+	            chr3 = input.charCodeAt(i++);
+	            enc1 = chr1 >> 2;
+	            enc2 = (chr1 & 3) << 4 | chr2 >> 4;
+	            enc3 = (chr2 & 15) << 2 | chr3 >> 6;
+	            enc4 = chr3 & 63;
+	            if (isNaN(chr2)) {
+	                enc3 = enc4 = 64;
+	            } else if (isNaN(chr3)) {
+	                enc4 = 64;
+	            }
+	            output = output + _keyStr.charAt(enc1) + _keyStr.charAt(enc2) + _keyStr.charAt(enc3) + _keyStr.charAt(enc4);
+	        }
+	        return output;
+	    };
 
-					// public method for decoding  
-					this.decode = function (input) {
-									var output = "";
-									var chr1, chr2, chr3;
-									var enc1, enc2, enc3, enc4;
-									var i = 0;
-									input = input.replace(/[^A-Za-z0-9\+\/\=]/g, "");
-									while (i < input.length) {
-													enc1 = _keyStr.indexOf(input.charAt(i++));
-													enc2 = _keyStr.indexOf(input.charAt(i++));
-													enc3 = _keyStr.indexOf(input.charAt(i++));
-													enc4 = _keyStr.indexOf(input.charAt(i++));
-													chr1 = enc1 << 2 | enc2 >> 4;
-													chr2 = (enc2 & 15) << 4 | enc3 >> 2;
-													chr3 = (enc3 & 3) << 6 | enc4;
-													output = output + String.fromCharCode(chr1);
-													if (enc3 != 64) {
-																	output = output + String.fromCharCode(chr2);
-													}
-													if (enc4 != 64) {
-																	output = output + String.fromCharCode(chr3);
-													}
-									}
-									output = _utf8_decode(output);
-									return output;
-					};
+	    // public method for decoding  
+	    this.decode = function (input) {
+	        var output = "";
+	        var chr1, chr2, chr3;
+	        var enc1, enc2, enc3, enc4;
+	        var i = 0;
+	        input = input.replace(/[^A-Za-z0-9\+\/\=]/g, "");
+	        while (i < input.length) {
+	            enc1 = _keyStr.indexOf(input.charAt(i++));
+	            enc2 = _keyStr.indexOf(input.charAt(i++));
+	            enc3 = _keyStr.indexOf(input.charAt(i++));
+	            enc4 = _keyStr.indexOf(input.charAt(i++));
+	            chr1 = enc1 << 2 | enc2 >> 4;
+	            chr2 = (enc2 & 15) << 4 | enc3 >> 2;
+	            chr3 = (enc3 & 3) << 6 | enc4;
+	            output = output + String.fromCharCode(chr1);
+	            if (enc3 != 64) {
+	                output = output + String.fromCharCode(chr2);
+	            }
+	            if (enc4 != 64) {
+	                output = output + String.fromCharCode(chr3);
+	            }
+	        }
+	        output = _utf8_decode(output);
+	        return output;
+	    };
 
-					// private method for UTF-8 encoding  
-					function _utf8_encode(string) {
-									string = string.replace(/\r\n/g, "\n");
-									var utftext = "";
-									for (var n = 0; n < string.length; n++) {
-													var c = string.charCodeAt(n);
-													if (c < 128) {
-																	utftext += String.fromCharCode(c);
-													} else if (c > 127 && c < 2048) {
-																	utftext += String.fromCharCode(c >> 6 | 192);
-																	utftext += String.fromCharCode(c & 63 | 128);
-													} else {
-																	utftext += String.fromCharCode(c >> 12 | 224);
-																	utftext += String.fromCharCode(c >> 6 & 63 | 128);
-																	utftext += String.fromCharCode(c & 63 | 128);
-													}
-									}
-									return utftext;
-					}
+	    // private method for UTF-8 encoding  
+	    function _utf8_encode(string) {
+	        string = string.replace(/\r\n/g, "\n");
+	        var utftext = "";
+	        for (var n = 0; n < string.length; n++) {
+	            var c = string.charCodeAt(n);
+	            if (c < 128) {
+	                utftext += String.fromCharCode(c);
+	            } else if (c > 127 && c < 2048) {
+	                utftext += String.fromCharCode(c >> 6 | 192);
+	                utftext += String.fromCharCode(c & 63 | 128);
+	            } else {
+	                utftext += String.fromCharCode(c >> 12 | 224);
+	                utftext += String.fromCharCode(c >> 6 & 63 | 128);
+	                utftext += String.fromCharCode(c & 63 | 128);
+	            }
+	        }
+	        return utftext;
+	    }
 
-					// private method for UTF-8 decoding  
-					function _utf8_decode(utftext) {
-									var string = "";
-									var i = 0;
-									var c = c1 = c2 = 0;
-									while (i < utftext.length) {
-													c = utftext.charCodeAt(i);
-													if (c < 128) {
-																	string += String.fromCharCode(c);
-																	i++;
-													} else if (c > 191 && c < 224) {
-																	c2 = utftext.charCodeAt(i + 1);
-																	string += String.fromCharCode((c & 31) << 6 | c2 & 63);
-																	i += 2;
-													} else {
-																	c2 = utftext.charCodeAt(i + 1);
-																	c3 = utftext.charCodeAt(i + 2);
-																	string += String.fromCharCode((c & 15) << 12 | (c2 & 63) << 6 | c3 & 63);
-																	i += 3;
-													}
-									}
-									return string;
-					}
+	    // private method for UTF-8 decoding  
+	    function _utf8_decode(utftext) {
+	        var string = "";
+	        var i = 0;
+	        var c = c1 = c2 = 0;
+	        while (i < utftext.length) {
+	            c = utftext.charCodeAt(i);
+	            if (c < 128) {
+	                string += String.fromCharCode(c);
+	                i++;
+	            } else if (c > 191 && c < 224) {
+	                c2 = utftext.charCodeAt(i + 1);
+	                string += String.fromCharCode((c & 31) << 6 | c2 & 63);
+	                i += 2;
+	            } else {
+	                c2 = utftext.charCodeAt(i + 1);
+	                c3 = utftext.charCodeAt(i + 2);
+	                string += String.fromCharCode((c & 15) << 12 | (c2 & 63) << 6 | c3 & 63);
+	                i += 3;
+	            }
+	        }
+	        return string;
+	    }
 	}
 	exports.default = {
-					filters: {},
-					directives: {},
-					components: {},
-					data: function data() {
-									return {
-													userInfo: global.userInfo,
-													payMode: '',
-													billingMode: '',
-													goodsInfo: null, // 商品信息
-													sendpay: null, // 获取支付签名
-													disabledSubmit: true,
-													paymentRecordsIds: [],
-													banks: [{
-																	code: '700000000000017',
-																	name: '银联在线支付'
-													}],
+	    filters: {},
+	    directives: {},
+	    components: {},
+	    data: function data() {
+	        return {
+	            userInfo: global.userInfo,
+	            payMode: '',
+	            billingMode: '',
+	            goodsInfo: null, // 商品信息
+	            sendpay: null, // 获取支付签名
+	            disabledSubmit: true,
+	            paymentRecordsIds: [],
+	            banks: [{
+	                code: '700000000000017',
+	                name: '银联在线支付'
+	            }],
 
-													/*请求参数： 支付签名 
+	            /*请求参数： 支付签名 
 	            --------------------------------------------------*/
-													orderAmt: null, // 商品价格(单位分注意转换)
-													commodityMsg: null, // 商品信息
-													merResv: null, // 附加参数(可作为载体)
-													/*
+	            orderAmt: null, // 商品价格(单位分注意转换)
+	            commodityMsg: null, // 商品信息
+	            merResv: null, // 附加参数(可作为载体)
+	            /*
 	            	'[
 	            	      {
 	            	          "type":"wuye",
@@ -36949,300 +36949,212 @@ webpackJsonp([0],[
 	            	       }
 	            	]'
 	            */
-													bankInstNo: null, // 支付机构号
+	            bankInstNo: null, // 支付机构号
 
 
-													/*请求参数： 生成缴费记录
+	            /*请求参数： 生成缴费记录
 	            --------------------------------------------------*/
-													houseInfoId: null, // 房产id
-													customerId: null, // 客户id
-													clientName: global.userInfo.user.username, // 客户名称
-													costType: null, // 缴费类型
-													payManner: '银联在线支付', // 支付方式
-													payMonth: null, // 缴费月份
-													startDate: null, // 开始日期
-													endDate: null, // 截止日期
-													payable: null, // 应缴
-													paidIn: null, // 已缴
-													invoiceStatus: null, // 开票状态(0-已开，1-未开,2-不开)
-													collectingCompany: null, // 收款公司
-													collectingAccount: null, // 收款账户
-													payTime: null };
-					},
+	            houseInfoId: null, // 房产id
+	            customerId: null, // 客户id
+	            clientName: global.userInfo.user.username, // 客户名称
+	            costType: null, // 缴费类型
+	            payManner: '银联在线支付', // 支付方式
+	            payMonth: null, // 缴费月份
+	            startDate: null, // 开始日期
+	            endDate: null, // 截止日期
+	            payable: null, // 应缴
+	            paidIn: null, // 已缴
+	            invoiceStatus: null, // 开票状态(0-已开，1-未开,2-不开)
+	            collectingCompany: null, // 收款公司
+	            collectingAccount: null, // 收款账户
+	            payTime: null };
+	    },
 
-					watch: {
-									bankInstNo: function bankInstNo() {
-													console.log(global.paymentRecordsIds, global.paymentRecordsIds.join('/'), 'sssssssssss');
-													if (!this.bankInstNo && !(global.paymentRecordsIds && global.paymentRecordsIds.legnth)) {
-																	return;
-													}
-													var _this = this;
-													$.ajax({
-																	type: "post",
-																	url: global.HttpPath + '/sendpay',
-																	data: {
-																					orderAmt: this.orderAmt + '',
-																					// commodityMsg: this.commodityMsg,
-																					// merResv: this.merResv,
-																					commodityMsg: 'aaa',
-																					// merResv: (new Base64()).encode(JSON.stringify(global.paymentRecordsIds)),
-																					merResv: '',
-																					bankInstNo: this.bankInstNo
-																	},
-																	success: function success(res) {
-																					_this.$set('postUrl', res.postUrl);
-																					var _sendpay = {};
-																					for (var key in res) {
-																									if (key != 'postUrl') {
-																													_sendpay[key] = res[key];
-																									}
-																					}
-																					// _this.disabledSubmit = false;
-																					_this.$set('sendpay', _sendpay);
-																	}
-													});
-									},
-									sendpay: function sendpay(newValue) {
-													if (newValue) {
-																	this.disabledSubmit = false;
-													}
-									}
-					},
-					created: function created() {
-									var _generatedRecordParam;
+	    watch: {
+	        bankInstNo: function bankInstNo() {
+	            console.log(global.paymentRecordsIds, global.paymentRecordsIds.join('/'), 'sssssssssss');
+	            if (!this.bankInstNo && !(global.paymentRecordsIds && global.paymentRecordsIds.legnth)) {
+	                return;
+	            }
+	            var _this = this;
+	            $.ajax({
+	                type: "post",
+	                url: global.HttpPath + '/sendpay',
+	                data: {
+	                    orderAmt: this.orderAmt + '',
+	                    // commodityMsg: this.commodityMsg,
+	                    // merResv: this.merResv,
+	                    commodityMsg: 'aaa',
+	                    // merResv: (new Base64()).encode(JSON.stringify(global.paymentRecordsIds)),
+	                    merResv: '',
+	                    bankInstNo: this.bankInstNo
+	                },
+	                success: function success(res) {
+	                    _this.$set('postUrl', res.postUrl);
+	                    var _sendpay = {};
+	                    for (var key in res) {
+	                        if (key != 'postUrl') {
+	                            _sendpay[key] = res[key];
+	                        }
+	                    }
+	                    // _this.disabledSubmit = false;
+	                    _this.$set('sendpay', _sendpay);
+	                }
+	            });
+	        },
+	        sendpay: function sendpay(newValue) {
+	            if (newValue) {
+	                this.disabledSubmit = false;
+	            }
+	        }
+	    },
+	    created: function created() {
+	        var _generatedRecordParam;
 
-									if (this.$router.params) {
-													console.log('页面参数: ', this.$router.params);
-													var _houseInfo = this.$router.params.houseInfo;
-													this.$set('goodsInfo', this.$router.params);
-													this.$set('orderAmt', parseInt(this.$router.params.totalPrice, 10) * 100);
-													this.$set('houseInfoId', _houseInfo.pk_house);
-													this.$set('customerId', _houseInfo.pk_customerid);
-									} else {
-													window.history.go(-1);
-									}
-									/*生成缴费记录*/
-									var _this = this;
-									var time = new Date();
-									var _curTime = time.getFullYear() + '-' + (Array(2).join(0) + (time.getMonth() + 1)).slice(-2) + "-" + (Array(2).join(0) + time.getDate()).slice(-2);
-									var _generatedRecordUrl = '';
-									switch (this.goodsInfo.payType) {
-													case 'wuye':
-													case 'rzwuye':
-													case 'zxfy':
-																	_generatedRecordUrl = global.HttpPath + '/invoicing/records/property'; // 生成物业缴费记录
-																	break;
-													case 'kaifa':
-													case 'rzkaifa':
-																	_generatedRecordUrl = global.HttpPath + '/invoicing/records/kfFee'; // 生成开发缴费记录
-																	break;
-													case 'shuidian':
-																	_generatedRecordUrl = global.HttpPath + '/invoicing/records/utilities'; // 生成水电缴费记录
-																	break;
-									}
-									global.paymentRecordsIds = [];
-									if (this.goodsInfo && this.goodsInfo.goods && _generatedRecordUrl) {
-													var _goods = this.goodsInfo.goods;
-													for (var i = 0; i < _goods.length; i++) {
-																	if (_goods[i].paidIn != 0) {
-																					switch (this.goodsInfo.payType) {
-																									case 'wuye':
-																									case 'rzwuye':
-																									case 'kaifa':
-																													console.log('this.customerId', this.customerId);
-																													var _generatedRecordParams = (_generatedRecordParam = {
-																																	houseInfoId: this.houseInfoId, // 房产id
-																																	customerId: this.customerId, // 客户id
-																																	clientName: this.clientName, // 客户名称
-																																	costType: _goods[i].costType, // 缴费类型
-																																	payManner: this.payManner }, (0, _defineProperty3.default)(_generatedRecordParam, "payManner", this.payManner), (0, _defineProperty3.default)(_generatedRecordParam, "payMonth", _goods[i].payMonth), (0, _defineProperty3.default)(_generatedRecordParam, "startDate", _goods[i].startDate), (0, _defineProperty3.default)(_generatedRecordParam, "endDate", _goods[i].endDate), (0, _defineProperty3.default)(_generatedRecordParam, "payable", _goods[i].payable), (0, _defineProperty3.default)(_generatedRecordParam, "paidIn", _goods[i].payable), (0, _defineProperty3.default)(_generatedRecordParam, "invoiceStatus", _goods[i].invoiceStatus), (0, _defineProperty3.default)(_generatedRecordParam, "collectingCompany", _goods[i].collectingCompany), (0, _defineProperty3.default)(_generatedRecordParam, "collectingAccount", _goods[i].collectingAccount), (0, _defineProperty3.default)(_generatedRecordParam, "payTime", _curTime), (0, _defineProperty3.default)(_generatedRecordParam, "pk_corp", this.goodsInfo.houseInfo.pk_corp), (0, _defineProperty3.default)(_generatedRecordParam, "feecode", 2302), _generatedRecordParam);
-																													break;
-																									case 'zxfy':
-																									case 'rzkaifa':
-																									case 'shuidian':
-																													var _generatedRecordParams = _goods[i];
-																													_generatedRecordParams.payManner = _this.payManner;
-																													_generatedRecordParams.houseInfoId = _this.houseInfoId;
-																													_generatedRecordParams.customerId = _this.customerId;
-																													_generatedRecordParams.pk_corp = this.goodsInfo.houseInfo.pk_corp; // 缴费公司主键
-																													break;
-																					}
-																					$.ajax({
-																									type: "post",
-																									contentType: "application/json",
-																									url: _generatedRecordUrl,
-																									data: (0, _stringify2.default)(_generatedRecordParams),
-																									dataType: 'text',
-																									thisIndex: i,
-																									thisType: this.goodsInfo.payType,
-																									success: function success(data) {
-																													console.log('生成水电缴费记录', data);
-																													var _merResvParam = {
-																																	id: data + '',
-																																	type: this.thisType
-																													};
-																													if (_this.goodsInfo.applyId) {
-																																	_merResvParam.applyId = _this.goodsInfo.applyId + ''; // 申请ID
-																													}
-																													global.paymentRecordsIds.push(_merResvParam);
-																													if (_this.goodsInfo.canInvoice) {// 开票
-																																	// $.ajax({
-																																	//     type: "post",
-																																	//     contentType: "application/json",
-																																	//     url: _generatedRecordUrl,
-																																	//     data: JSON.stringify(_generatedRecordParams),
-																																	//     dataType: 'json',
-																																	//     success: function(data){
-																																	//         console.log(data)
-																																	//         if(this.goodsInfo.billingMode) { // 开票
+	        if (this.$router.params) {
+	            console.log('页面参数: ', this.$router.params);
+	            var _houseInfo = this.$router.params.houseInfo;
+	            this.$set('goodsInfo', this.$router.params);
+	            this.$set('orderAmt', parseInt(this.$router.params.totalPrice, 10) * 100);
+	            this.$set('houseInfoId', _houseInfo.pk_house);
+	            this.$set('customerId', _houseInfo.pk_customerid);
+	        } else {
+	            window.history.go(-1);
+	        }
+	        /*生成缴费记录*/
+	        var _this = this;
+	        var time = new Date();
+	        var _curTime = time.getFullYear() + '-' + (Array(2).join(0) + (time.getMonth() + 1)).slice(-2) + "-" + (Array(2).join(0) + time.getDate()).slice(-2);
+	        var _generatedRecordUrl = '';
+	        switch (this.goodsInfo.payType) {
+	            case 'wuye':
+	            case 'rzwuye':
+	            case 'zxfy':
+	                _generatedRecordUrl = global.HttpPath + '/invoicing/records/property'; // 生成物业缴费记录
+	                break;
+	            case 'kaifa':
+	            case 'rzkaifa':
+	                _generatedRecordUrl = global.HttpPath + '/invoicing/records/kfFee'; // 生成开发缴费记录
+	                break;
+	            case 'shuidian':
+	                _generatedRecordUrl = global.HttpPath + '/invoicing/records/utilities'; // 生成水电缴费记录
+	                break;
+	        }
+	        global.paymentRecordsIds = [];
+	        var _generatedRecordParamsAry = [];
+	        if (this.goodsInfo && this.goodsInfo.goods && _generatedRecordUrl) {
+	            var _goods = this.goodsInfo.goods;
+	            for (var i = 0; i < _goods.length; i++) {
+	                if (_goods[i].paidIn != 0) {
+	                    switch (this.goodsInfo.payType) {
+	                        case 'wuye':
+	                        case 'rzwuye':
+	                        case 'kaifa':
+	                            console.log('this.customerId', this.customerId);
+	                            var _generatedRecordParams = (_generatedRecordParam = {
+	                                houseInfoId: this.houseInfoId, // 房产id
+	                                customerId: this.customerId, // 客户id
+	                                clientName: this.clientName, // 客户名称
+	                                costType: _goods[i].costType, // 缴费类型
+	                                payManner: this.payManner }, (0, _defineProperty3.default)(_generatedRecordParam, "payManner", this.payManner), (0, _defineProperty3.default)(_generatedRecordParam, "payMonth", _goods[i].payMonth), (0, _defineProperty3.default)(_generatedRecordParam, "startDate", _goods[i].startDate), (0, _defineProperty3.default)(_generatedRecordParam, "endDate", _goods[i].endDate), (0, _defineProperty3.default)(_generatedRecordParam, "payable", _goods[i].payable), (0, _defineProperty3.default)(_generatedRecordParam, "paidIn", _goods[i].payable), (0, _defineProperty3.default)(_generatedRecordParam, "invoiceStatus", _goods[i].invoiceStatus), (0, _defineProperty3.default)(_generatedRecordParam, "collectingCompany", _goods[i].collectingCompany), (0, _defineProperty3.default)(_generatedRecordParam, "collectingAccount", _goods[i].collectingAccount), (0, _defineProperty3.default)(_generatedRecordParam, "payTime", _curTime), (0, _defineProperty3.default)(_generatedRecordParam, "pk_corp", this.goodsInfo.houseInfo.pk_corp), (0, _defineProperty3.default)(_generatedRecordParam, "feecode", 2302), _generatedRecordParam);
+	                            break;
+	                        case 'zxfy':
+	                        case 'rzkaifa':
+	                        case 'shuidian':
+	                            var _generatedRecordParams = _goods[i];
+	                            _generatedRecordParams.payManner = _this.payManner;
+	                            _generatedRecordParams.houseInfoId = _this.houseInfoId;
+	                            _generatedRecordParams.customerId = _this.customerId;
+	                            _generatedRecordParams.pk_corp = this.goodsInfo.houseInfo.pk_corp; // 缴费公司主键
+	                            break;
+	                    }
+	                    _generatedRecordParamsAry.push(_generatedRecordParams);
+	                }
+	            }
+	            console.log('_generatedRecordParamsAry', _generatedRecordParamsAry);
+	            $.ajax({
+	                type: "post",
+	                // contentType: "application/json",
+	                url: _generatedRecordUrl,
+	                // data: JSON.stringify(_generatedRecordParams),
+	                data: { data: _generatedRecordParamsAry },
+	                dataType: 'text',
+	                thisIndex: i,
+	                thisType: this.goodsInfo.payType,
+	                success: function success(data) {
+	                    console.log('生成水电缴费记录', data);
+	                    var _merResvParam = {
+	                        id: data + '',
+	                        type: this.thisType
+	                    };
+	                    if (_this.goodsInfo.applyId) {
+	                        _merResvParam.applyId = _this.goodsInfo.applyId + ''; // 申请ID
+	                    }
+	                    global.paymentRecordsIds.push(_merResvParam);
+	                    if (_this.goodsInfo.canInvoice) {// 开票
+	                        // $.ajax({
+	                        //     type: "post",
+	                        //     contentType: "application/json",
+	                        //     url: _generatedRecordUrl,
+	                        //     data: JSON.stringify(_generatedRecordParams),
+	                        //     dataType: 'json',
+	                        //     success: function(data){
+	                        //         console.log(data)
+	                        //         if(this.goodsInfo.billingMode) { // 开票
 
-																																	//         }
-																																	//     }
-																																	// });
-																													}
-																									}
-																					});
-																	}
-													}
-													// if(this.goodsInfo.payType == 'wuye' || this.goodsInfo.payType == 'kaifa') {
-													// 	for(var i = 0; i < _goods.length; i++) {
-													//    		var _generatedRecordParams = {
-													// houseInfoId: this.houseInfoId, // 房产id
-													// customerId: this.customerId, // 客户id
-													// clientName: this.clientName, // 客户名称
-													// costType: _goods[i].costType, // 缴费类型
-													// payManner: this.payManner, // 支付方式
-													// payManner: this.payManner, // 支付方式
-													// payMonth: _goods[i].payMonth, // 缴费月份
-													// startDate: _goods[i].startDate, // 开始日期
-													// endDate: _goods[i].endDate, // 截止日期
-													// payable: _goods[i].payable, // 应缴
-													// paidIn: _goods[i].payable, // 已缴
-													// invoiceStatus: _goods[i].invoiceStatus, // 开票状态(0-已开，1-未开,2-不开)
-													// collectingCompany: _goods[i].collectingCompany, // 收款公司
-													// collectingAccount: _goods[i].collectingAccount, // 收款账户
-													// payTime: _curTime, // 交费日期
-													//    		};
-													//         $.ajax({
-													//             type: "post",
-													//             contentType: "application/json",
-													//             url: _generatedRecordUrl,
-													//             data: JSON.stringify(_generatedRecordParams),
-													//             dataType: 'text',
-													//             thisIndex: i,
-													//             thisType: this.goodsInfo.payType,
-													//             success: function(data){
-													//                 console.log('生成物业/开发缴费记录',data)
-													//                 global.paymentRecordsIds.push({
-													//                 	id: data,
-													//                 	type: this.thisType
-													//                 });
-													//                 if(_this.goodsInfo.canInvoice) { // 开票
-													//            // $.ajax({
-													//            //     type: "post",
-													//            //     contentType: "application/json",
-													//            //     url: _generatedRecordUrl,
-													//            //     data: JSON.stringify(_generatedRecordParams),
-													//            //     dataType: 'json',
-													//            //     success: function(data){
-													//            //         console.log(data)
-													//            //         if(this.goodsInfo.billingMode) { // 开票
+	                        //         }
+	                        //     }
+	                        // });
+	                    }
+	                }
+	            });
+	        }
+	    },
+	    ready: function ready() {},
+	    beforeDestroy: function beforeDestroy() {},
 
-													//            //         }
-													//            //     }
-													//            // });
-													//                 }
-													//             }
-													//         });
-													// 	}
-													// } else if(this.goodsInfo.payType == 'shuidian') {
-													// 	for(var i = 0; i < _goods.length; i++) {
-													// 		if(_goods[i].paidIn!=0) {
-													// 			var _generatedRecordParams = _goods[i];
-													// 			_generatedRecordParams.payManner = _this.payManner;
-													// 			_generatedRecordParams.houseInfoId = _this.houseInfoId;
-													// 			_generatedRecordParams.customerId = _this.customerId;
-													//          $.ajax({
-													//              type: "post",
-													//              contentType: "application/json",
-													//              url: _generatedRecordUrl,
-													//              data: JSON.stringify(_generatedRecordParams),
-													//              dataType: 'text',
-													//              thisIndex: i,
-													//             	thisType: this.goodsInfo.payType,
-													//              success: function(data){
-													//                  console.log('生成水电缴费记录',data)
-													//                  global.paymentRecordsIds.push({
-													//                  	id: data,
-													//                  	type: this.thisType
-													//                  });
-													//                  if(_this.goodsInfo.canInvoice) { // 开票
-													//             // $.ajax({
-													//             //     type: "post",
-													//             //     contentType: "application/json",
-													//             //     url: _generatedRecordUrl,
-													//             //     data: JSON.stringify(_generatedRecordParams),
-													//             //     dataType: 'json',
-													//             //     success: function(data){
-													//             //         console.log(data)
-													//             //         if(this.goodsInfo.billingMode) { // 开票
-
-													//             //         }
-													//             //     }
-													//             // });
-													//                  }
-													//              }
-													//          });
-													// 		}
-													// 	}
-													// }
-									}
-					},
-					ready: function ready() {},
-					beforeDestroy: function beforeDestroy() {},
-
-					methods: {
-									submit: function submit() {
-													if (!this.disabledSubmit) {
-																	$('#payment-modal').modal({ // 打开弹窗
-																					keyboard: false,
-																					backdrop: 'static'
-																	});
-													}
-									},
-									goToPage: function goToPage() {
-													if (this.goodsInfo.goToURL) {
-																	this.$router.go(this.goodsInfo.goToURL.url);
-													}
-									},
-									goBack: function goBack() {
-													window.history.go(-1);
-									},
-									updatePayState: function updatePayState() {
-													if (!this.disabledSubmit) {
-																	$('#payment-modal').modal({ // 打开弹窗
-																					keyboard: false,
-																					backdrop: 'static'
-																	});
-													}
-													var _this = this;
-													console.log('_this.sendpay.merResv', _this.sendpay.MerResv);
-													$.ajax({
-																	type: "post",
-																	// contentType: "application/json",
-																	url: global.HttpPath + '/updatePayState',
-																	data: { merResv: new Base64().encode((0, _stringify2.default)(global.paymentRecordsIds)) },
-																	success: function success(data) {
-																					if (data.state == 1) {
-																									$('#payment-modal').modal({ // 打开弹窗
-																													keyboard: false,
-																													backdrop: 'static'
-																									});
-																					}
-																	}
-													});
-									}
-					}
+	    methods: {
+	        submit: function submit() {
+	            if (!this.disabledSubmit) {
+	                $('#payment-modal').modal({ // 打开弹窗
+	                    keyboard: false,
+	                    backdrop: 'static'
+	                });
+	            }
+	        },
+	        goToPage: function goToPage() {
+	            if (this.goodsInfo.goToURL) {
+	                this.$router.go(this.goodsInfo.goToURL.url);
+	            }
+	        },
+	        goBack: function goBack() {
+	            window.history.go(-1);
+	        },
+	        updatePayState: function updatePayState() {
+	            if (!this.disabledSubmit) {
+	                $('#payment-modal').modal({ // 打开弹窗
+	                    keyboard: false,
+	                    backdrop: 'static'
+	                });
+	            }
+	            var _this = this;
+	            console.log('_this.sendpay.merResv', _this.sendpay.MerResv);
+	            $.ajax({
+	                type: "post",
+	                // contentType: "application/json",
+	                url: global.HttpPath + '/updatePayState',
+	                data: { merResv: new Base64().encode((0, _stringify2.default)(global.paymentRecordsIds)) },
+	                success: function success(data) {
+	                    if (data.state == 1) {
+	                        $('#payment-modal').modal({ // 打开弹窗
+	                            keyboard: false,
+	                            backdrop: 'static'
+	                        });
+	                    }
+	                }
+	            });
+	        }
+	    }
 	};
 	// </script>
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
@@ -41492,7 +41404,7 @@ webpackJsonp([0],[
 	                    _arrearsRent += Number(data[i].arrears, 10);
 	                }
 	                console.log('_arrearsRent', _arrearsRent ? _arrearsRent : 0);
-	                _this.$set('arrearsRent', arrearsRent ? _arrearsRent : 0);
+	                _this.$set('arrearsRent', _arrearsRent ? _arrearsRent : 0);
 	            }, function (error) {
 	                // 响应失败回调
 	                console.log('欠费明细-error:', error);

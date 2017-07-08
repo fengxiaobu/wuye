@@ -100,6 +100,10 @@
             <td>TimeStamp:</td>
             <td><input name="TimeStamp" type="hidden" value="${TimeStamp}"></td>
         </tr>
+        <tr>
+            <td>TimeStamp:</td>
+            <td><input name="OrderReserved" type="hidden" value="${OrderReserved}"></td>
+        </tr>
     </table>
     <input type="submit" style="display: none" id="toCHinaPay" value="toPAy">
 </form>
