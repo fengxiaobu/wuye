@@ -22,4 +22,6 @@ public interface ProjectInfoMapper {
 
     void updateByERP(ProjectVO record);
 
+    void updateProjectForSys(ProjectInfo projectInfo);
+
 }

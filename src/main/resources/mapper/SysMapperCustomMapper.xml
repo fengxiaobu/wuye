@@ -15,7 +15,7 @@
 
     
    <resultMap id="BaseResultMap" type="cn.rzhd.wuye.bean.ProjectInfo">
-        <id column="pkProject" property="pkProject" jdbcType="CHAR"/>
+        <id column="pk_Project" property="pkProject" jdbcType="CHAR"/>
         <result column="PROJECT_NAME" property="projectName" jdbcType="OTHER"/>
         <result column="PROJECT_ADDRESS" property="projectAddress" jdbcType="OTHER"/>
         <result column="DEVELOPMENT_COLLECTING_COMPANY" property="developmentCollectingCompany" jdbcType="OTHER"/>
@@ -50,7 +50,7 @@
    <!-- sql片段 -->
 	<sql id="query_project_where">
 		<if test="projectName!=null">
-				and project.PK_PROJECT like '%${projectName}%'
+				and project.PROJECT_NAME like '%${projectName}%'
 		</if>
 	</sql>
 

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="cn.rzhd.wuye.mapper.ProjectInfoMapper">
     <resultMap id="BaseResultMap" type="cn.rzhd.wuye.bean.ProjectInfo">
-        <id column="pkProject" property="pkProject" jdbcType="CHAR"/>
+        <id column="pk_Project" property="pkProject" jdbcType="CHAR"/>
         <result column="PROJECT_NAME" property="projectName" jdbcType="OTHER"/>
         <result column="PROJECT_ADDRESS" property="projectAddress" jdbcType="OTHER"/>
         <result column="DEVELOPMENT_COLLECTING_COMPANY" property="developmentCollectingCompany" jdbcType="OTHER"/>
@@ -167,5 +167,16 @@
             vincode         = #{vincode}
         WHERE PK_PROJECT = #{pk_project}
     </update>
-
+	 <update id="updateProjectForSys" parameterType="cn.rzhd.wuye.bean.ProjectInfo">
+       	UPDATE T_PROJECT_INFO
+        SET
+           STARTDATE = #{startDate},
+           ENDDATE = #{endDate},
+           FIRSTMNY = #{firstMoney},
+           EVERYMNY = #{everyMoney},
+           ASTRICTSTATUS = #{astrictStatus},
+           UPDATEDATE  = #{updateDate}
+        WHERE PK_PROJECT = #{pkProject}
+    </update>
+	
 </mapper>

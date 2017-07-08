@@ -132,6 +132,33 @@ public class SysController {
     }
     
     /**
+     * @Description 更新项目水电限制
+     * @param houseInfoDetails
+     * @return
+     */
+    @RequestMapping(value = "updateproject", method = RequestMethod.POST)
+    public ResponseEntity<Void> updateproject(ProjectInfo projectInfo) {
+        try {
+
+            if (projectInfo == null || StrUtil.isEmpty(projectInfo.getPkProject())) {
+                // 响应400
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+            }
+
+            //补全信息
+            projectInfo.setUpdateDate(new Date());
+            // 新增或编辑签约信息
+            this.projectInfoService.updateProjectForSys(projectInfo);
+
+            // 响应201
+            return ResponseEntity.status(HttpStatus.CREATED).build();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+    }
+    
+    /**
      * @Description 跳转到更名须知、装修须知、入住提示信息页面
      * @param typeCode
      * @param model

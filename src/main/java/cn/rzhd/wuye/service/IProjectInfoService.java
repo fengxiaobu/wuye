@@ -33,4 +33,12 @@ public interface IProjectInfoService {
      * @return
      */
     List<ProjectInfo> selectPKAndName();
+
+    /**
+     * 
+     * @Description 根据主键编辑项目信息（系统设置-编辑项目水电限制专用）
+     * @param projectInfo
+     */
+    void updateProjectForSys(ProjectInfo projectInfo);
+    
 }
