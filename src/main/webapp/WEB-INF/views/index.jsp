@@ -36,15 +36,12 @@
                                     class="img-circle user-photo"></div>
                             <div class="user-name"><shiro:principal property="realname"/></div>
                         </div>
-<<<<<<< HEAD
                         <button class="btn btn-default" type="button" onclick="logout()"><span class="glyphicon glyphicon-off"></span>退出
-=======
                         <button class="btn btn-default" type="button"><span
                                 class="glyphicon glyphicon-bullhorn"></span><span class="badge">4</span>消息
                         </button>
                         <button class="btn btn-default" type="button" onclick="logout()"><span
                                 class="glyphicon glyphicon-off"></span>退出
->>>>>>> fe6ac9f98c80556beec37e67150a9c56fb2926d2
                         </button>
                     </div>
                 </shiro:user>
