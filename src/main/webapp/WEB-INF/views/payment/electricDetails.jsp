@@ -122,34 +122,36 @@
                         </div>
                     </div>
                     <%--<div class="form-group">--%>
-                        <%--<label class="col-sm-2 control-label">开票明细:</label>--%>
-                        <%--<table class="invoice">--%>
-                            <%--<tr>--%>
-                                <%--<th>序号</th>--%>
-                                <%--<th>开票公司</th>--%>
-                                <%--<th>开票金额</th>--%>
-                                <%--<th>费用类型</th>--%>
-                                <%--<th>发票号</th>--%>
-                                <%--<th>发票备注</th>--%>
-                            <%--</tr>--%>
+                    <%--<label class="col-sm-2 control-label">开票明细:</label>--%>
+                    <%--<table class="invoice">--%>
+                    <%--<tr>--%>
+                    <%--<th>序号</th>--%>
+                    <%--<th>开票公司</th>--%>
+                    <%--<th>开票金额</th>--%>
+                    <%--<th>费用类型</th>--%>
+                    <%--<th>发票号</th>--%>
+                    <%--<th>发票备注</th>--%>
+                    <%--</tr>--%>
 
-                            <%--<c:forEach items="${invoices}" var="item">--%>
-                                <%--<tr>--%>
-                                    <%--<td>${item.id}</td>--%>
-                                    <%--<td>${item.invoiceCompany}</td>--%>
-                                    <%--<td>${item.invoiceAmount}</td>--%>
-                                    <%--<td>${item.feeType}</td>--%>
-                                    <%--<td>${item.invoiceNo}</td>--%>
-                                    <%--<td>${item.note}</td>--%>
-                                <%--</tr>--%>
-                            <%--</c:forEach>--%>
-                        <%--</table>--%>
+                    <%--<c:forEach items="${invoices}" var="item">--%>
+                    <%--<tr>--%>
+                    <%--<td>${item.id}</td>--%>
+                    <%--<td>${item.invoiceCompany}</td>--%>
+                    <%--<td>${item.invoiceAmount}</td>--%>
+                    <%--<td>${item.feeType}</td>--%>
+                    <%--<td>${item.invoiceNo}</td>--%>
+                    <%--<td>${item.note}</td>--%>
+                    <%--</tr>--%>
+                    <%--</c:forEach>--%>
+                    <%--</table>--%>
                     <%--</div>--%>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">写卡状态:</label>
                         <div class="col-sm-10">
-                            <label class="col-sm-2 control-label"><input type="radio" <c:if test="${result.isWritten eq 'Y'}">checked="checked"</c:if> >已写</label>
-                            <label class="col-sm-2 control-label"><input type="radio" <c:if test="${result.isWritten eq 'N'}">checked="checked"</c:if>>未写</label>
+                            <label class="col-sm-2 control-label"><input type="radio"
+                                                                         <c:if test="${result.isWritten eq 'Y'}">checked="checked"</c:if> >已写</label>
+                            <label class="col-sm-2 control-label"><input type="radio"
+                                                                         <c:if test="${result.isWritten eq 'N'}">checked="checked"</c:if>>未写</label>
                         </div>
                     </div>
                 </table>

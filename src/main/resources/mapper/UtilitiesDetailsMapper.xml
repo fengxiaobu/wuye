@@ -37,54 +37,54 @@
     </delete>
     <insert id="insert" parameterType="cn.rzhd.wuye.bean.UtilitiesDetails">
         INSERT INTO WUYE.T_UTILITIES_DETAILS (
-            UTILITIES_DETAILS_ID, HOUSE_INFO_ID, CLIENT_NAME, FEE_TYPE, PAY_MANNER, PAY_MONTH,
-            START_DATE, END_DATE, PAYABLE,
-            PAID_IN, VOUCHER_NUMBER, INVOICE,
-            INVOICE_NUMBER, INVOICE_NOTES, INVOICE_STATUS,
-            COLLECTING_COMPANY, COLLECTING_ACCOUNT, INVOICE_COMPANY,
-            PAY_TIME, AMMETER_NUMBER, MULTIPLYING_POWER,
-            ELECTRIC_POWER, CARTE_TIME, UPDATE_TIME,
-            CUSTOMER_ID, TUNNAGE, STATUS,RECORDS_ID)
+        UTILITIES_DETAILS_ID, HOUSE_INFO_ID, CLIENT_NAME, FEE_TYPE, PAY_MANNER, PAY_MONTH,
+        START_DATE, END_DATE, PAYABLE,
+        PAID_IN, VOUCHER_NUMBER, INVOICE,
+        INVOICE_NUMBER, INVOICE_NOTES, INVOICE_STATUS,
+        COLLECTING_COMPANY, COLLECTING_ACCOUNT, INVOICE_COMPANY,
+        PAY_TIME, AMMETER_NUMBER, MULTIPLYING_POWER,
+        ELECTRIC_POWER, CARTE_TIME, UPDATE_TIME,
+        CUSTOMER_ID, TUNNAGE, STATUS,RECORDS_ID)
         VALUES (#{utilitiesDetailsId}, #{houseInfoId}, #{clientName}, #{costType},
-                                       #{payManner}, #{payMonth},
-                                       #{startDate}, #{endDate}, #{payable},
-                                       #{paidIn},#{voucherNumber}, #{invoice},
-                                                                    #{invoiceNumber}, #{invoiceNotes}, #{invoiceStatus},
-                                                                    #{collectingCompany}, #{collectingAccount},
-                                                                    #{invoiceCompany},
-                                                                    #{payTime}, #{ammeterNumber}, #{multiplyingPower},
-                #{electricPower}, #{carteTime}, #{updateTime},
-                #{customerId}, #{tunnage}, #{status}, #{recordsId})
+        #{payManner}, #{payMonth},
+        #{startDate}, #{endDate}, #{payable},
+        #{paidIn},#{voucherNumber}, #{invoice},
+        #{invoiceNumber}, #{invoiceNotes}, #{invoiceStatus},
+        #{collectingCompany}, #{collectingAccount},
+        #{invoiceCompany},
+        #{payTime}, #{ammeterNumber}, #{multiplyingPower},
+        #{electricPower}, #{carteTime}, #{updateTime},
+        #{customerId}, #{tunnage}, #{status}, #{recordsId})
     </insert>
     <update id="updateByPrimaryKey" parameterType="cn.rzhd.wuye.bean.UtilitiesDetails">
         UPDATE T_UTILITIES_DETAILS
-        SET HOUSE_INFO_ID      = #{houseInfoId},
-            CLIENT_NAME        = #{clientName},
-            FEE_TYPE           = #{costType},
-            PAY_MANNER         = #{payManner},
-            PAY_MONTH          = #{payMonth},
-            START_DATE         = #{startDate},
-            END_DATE           = #{endDate},
-            PAYABLE            = #{payable},
-            PAID_IN            = #{paidIn},
-            VOUCHER_NUMBER     = #{voucherNumber},
-            INVOICE            = #{invoice},
-            INVOICE_NUMBER     = #{invoiceNumber},
-            INVOICE_NOTES      = #{invoiceNotes},
-            INVOICE_STATUS     = #{invoiceStatus},
-            COLLECTING_COMPANY = #{collectingCompany},
-            COLLECTING_ACCOUNT = #{collectingAccount},
-            INVOICE_COMPANY    = #{invoiceCompany},
-            PAY_TIME           = #{payTime},
-            AMMETER_NUMBER     = #{ammeterNumber},
-            MULTIPLYING_POWER  = #{multiplyingPower},
-            ELECTRIC_POWER     = #{electricPower},
-            CARTE_TIME         = #{carteTime},
-            UPDATE_TIME        = #{updateTime},
-            CUSTOMER_ID        = #{customerId},
-            TUNNAGE            = #{tunnage},
-            STATUS             = #{status},
-            RECORDS_ID         = #{recordsId}
+        SET HOUSE_INFO_ID = #{houseInfoId},
+        CLIENT_NAME = #{clientName},
+        FEE_TYPE = #{costType},
+        PAY_MANNER = #{payManner},
+        PAY_MONTH = #{payMonth},
+        START_DATE = #{startDate},
+        END_DATE = #{endDate},
+        PAYABLE = #{payable},
+        PAID_IN = #{paidIn},
+        VOUCHER_NUMBER = #{voucherNumber},
+        INVOICE = #{invoice},
+        INVOICE_NUMBER = #{invoiceNumber},
+        INVOICE_NOTES = #{invoiceNotes},
+        INVOICE_STATUS = #{invoiceStatus},
+        COLLECTING_COMPANY = #{collectingCompany},
+        COLLECTING_ACCOUNT = #{collectingAccount},
+        INVOICE_COMPANY = #{invoiceCompany},
+        PAY_TIME = #{payTime},
+        AMMETER_NUMBER = #{ammeterNumber},
+        MULTIPLYING_POWER = #{multiplyingPower},
+        ELECTRIC_POWER = #{electricPower},
+        CARTE_TIME = #{carteTime},
+        UPDATE_TIME = #{updateTime},
+        CUSTOMER_ID = #{customerId},
+        TUNNAGE = #{tunnage},
+        STATUS = #{status},
+        RECORDS_ID = #{recordsId}
         WHERE UTILITIES_DETAILS_ID = #{utilitiesDetailsId}
     </update>
     <update id="changeStatus" parameterType="long">
@@ -94,202 +94,202 @@
     </update>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="long">
         SELECT
-            UTILITIES_DETAILS_ID,
-            HOUSE_INFO_ID,
-            CLIENT_NAME,
-            FEE_TYPE,
-            PAY_MANNER,
-            PAY_MONTH,
-            START_DATE,
-            END_DATE,
-            PAYABLE,
-            PAID_IN,
-            VOUCHER_NUMBER,
-            INVOICE,
-            INVOICE_NUMBER,
-            INVOICE_NOTES,
-            INVOICE_STATUS,
-            COLLECTING_COMPANY,
-            COLLECTING_ACCOUNT,
-            INVOICE_COMPANY,
-            PAY_TIME,
-            AMMETER_NUMBER,
-            MULTIPLYING_POWER,
-            ELECTRIC_POWER,
-            CARTE_TIME,
-            UPDATE_TIME,
-            CUSTOMER_ID,
-            TUNNAGE,
-            STATUS,
-            RECORDS_ID
+        UTILITIES_DETAILS_ID,
+        HOUSE_INFO_ID,
+        CLIENT_NAME,
+        FEE_TYPE,
+        PAY_MANNER,
+        PAY_MONTH,
+        START_DATE,
+        END_DATE,
+        PAYABLE,
+        PAID_IN,
+        VOUCHER_NUMBER,
+        INVOICE,
+        INVOICE_NUMBER,
+        INVOICE_NOTES,
+        INVOICE_STATUS,
+        COLLECTING_COMPANY,
+        COLLECTING_ACCOUNT,
+        INVOICE_COMPANY,
+        PAY_TIME,
+        AMMETER_NUMBER,
+        MULTIPLYING_POWER,
+        ELECTRIC_POWER,
+        CARTE_TIME,
+        UPDATE_TIME,
+        CUSTOMER_ID,
+        TUNNAGE,
+        STATUS,
+        RECORDS_ID
         FROM T_UTILITIES_DETAILS
         WHERE UTILITIES_DETAILS_ID = #{utilitiesDetailsId}
     </select>
     <select id="selectAll" parameterType="cn.rzhd.wuye.vo.query.UtilitiesQuery" resultMap="BaseResultMap">
         SELECT
-            UTILITIES_DETAILS_ID,
-            HOUSE_INFO_ID,
-            CLIENT_NAME,
-            FEE_TYPE,
-            PAY_MANNER,
-            PAY_MONTH,
-            START_DATE,
-            END_DATE,
-            PAYABLE,
-            PAID_IN,
-            VOUCHER_NUMBER,
-            INVOICE,
-            INVOICE_NUMBER,
-            INVOICE_NOTES,
-            INVOICE_STATUS,
-            COLLECTING_COMPANY,
-            COLLECTING_ACCOUNT,
-            INVOICE_COMPANY,
-            PAY_TIME,
-            AMMETER_NUMBER,
-            MULTIPLYING_POWER,
-            ELECTRIC_POWER,
-            CARTE_TIME,
-            UPDATE_TIME,
-            CUSTOMER_ID,
-            TUNNAGE,
-            STATUS,
-            RECORDS_ID
+        UTILITIES_DETAILS_ID,
+        HOUSE_INFO_ID,
+        CLIENT_NAME,
+        FEE_TYPE,
+        PAY_MANNER,
+        PAY_MONTH,
+        START_DATE,
+        END_DATE,
+        PAYABLE,
+        PAID_IN,
+        VOUCHER_NUMBER,
+        INVOICE,
+        INVOICE_NUMBER,
+        INVOICE_NOTES,
+        INVOICE_STATUS,
+        COLLECTING_COMPANY,
+        COLLECTING_ACCOUNT,
+        INVOICE_COMPANY,
+        PAY_TIME,
+        AMMETER_NUMBER,
+        MULTIPLYING_POWER,
+        ELECTRIC_POWER,
+        CARTE_TIME,
+        UPDATE_TIME,
+        CUSTOMER_ID,
+        TUNNAGE,
+        STATUS,
+        RECORDS_ID
         FROM T_UTILITIES_DETAILS
         WHERE HOUSE_INFO_ID = #{houseInfoId} AND PAY_TIME &gt;= to_date(#{startDate}, 'YYYY-MM-DD') AND
-              PAY_TIME &lt;= to_date(#{endDate}, 'YYYY-MM-DD') AND STATUS = 'Y'  ORDER BY PAY_TIME DESC
+        PAY_TIME &lt;= to_date(#{endDate}, 'YYYY-MM-DD') AND STATUS = 'Y' ORDER BY PAY_TIME DESC
     </select>
 
     <select id="getLastElectric" parameterType="cn.rzhd.wuye.vo.query.UtilitiesQuery" resultMap="BaseResultMap">
         SELECT
-            UTILITIES_DETAILS_ID,
-            HOUSE_INFO_ID,
-            CLIENT_NAME,
-            FEE_TYPE,
-            PAY_MANNER,
-            PAY_MONTH,
-            START_DATE,
-            END_DATE,
-            PAYABLE,
-            PAID_IN,
-            VOUCHER_NUMBER,
-            INVOICE,
-            INVOICE_NUMBER,
-            INVOICE_NOTES,
-            INVOICE_STATUS,
-            COLLECTING_COMPANY,
-            COLLECTING_ACCOUNT,
-            INVOICE_COMPANY,
-            PAY_TIME,
-            AMMETER_NUMBER,
-            MULTIPLYING_POWER,
-            ELECTRIC_POWER,
-            CARTE_TIME,
-            UPDATE_TIME,
-            CUSTOMER_ID,
-            TUNNAGE,
-            STATUS,
-            RECORDS_ID
+        UTILITIES_DETAILS_ID,
+        HOUSE_INFO_ID,
+        CLIENT_NAME,
+        FEE_TYPE,
+        PAY_MANNER,
+        PAY_MONTH,
+        START_DATE,
+        END_DATE,
+        PAYABLE,
+        PAID_IN,
+        VOUCHER_NUMBER,
+        INVOICE,
+        INVOICE_NUMBER,
+        INVOICE_NOTES,
+        INVOICE_STATUS,
+        COLLECTING_COMPANY,
+        COLLECTING_ACCOUNT,
+        INVOICE_COMPANY,
+        PAY_TIME,
+        AMMETER_NUMBER,
+        MULTIPLYING_POWER,
+        ELECTRIC_POWER,
+        CARTE_TIME,
+        UPDATE_TIME,
+        CUSTOMER_ID,
+        TUNNAGE,
+        STATUS,
+        RECORDS_ID
         FROM
-            (SELECT
-                 UTILITIES_DETAILS_ID,
-                 HOUSE_INFO_ID,
-                 CLIENT_NAME,
-                 FEE_TYPE,
-                 PAY_MANNER,
-                 PAY_MONTH,
-                 START_DATE,
-                 END_DATE,
-                 PAYABLE,
-                 PAID_IN,
-                 VOUCHER_NUMBER,
-                 INVOICE,
-                 INVOICE_NUMBER,
-                 INVOICE_NOTES,
-                 INVOICE_STATUS,
-                 COLLECTING_COMPANY,
-                 COLLECTING_ACCOUNT,
-                 INVOICE_COMPANY,
-                 PAY_TIME,
-                 AMMETER_NUMBER,
-                 MULTIPLYING_POWER,
-                 ELECTRIC_POWER,
-                 CARTE_TIME,
-                 UPDATE_TIME,
-                 CUSTOMER_ID,
-                 TUNNAGE,
-                 STATUS,
-                 RECORDS_ID
-             FROM T_UTILITIES_DETAILS
-             WHERE CUSTOMER_ID = '${customerId}' AND HOUSE_INFO_ID = '${houseInfoId}' AND ELECTRIC_POWER IS NOT NULL
-                   AND STATUS = 'Y'
-             ORDER BY PAY_TIME DESC)
+        (SELECT
+        UTILITIES_DETAILS_ID,
+        HOUSE_INFO_ID,
+        CLIENT_NAME,
+        FEE_TYPE,
+        PAY_MANNER,
+        PAY_MONTH,
+        START_DATE,
+        END_DATE,
+        PAYABLE,
+        PAID_IN,
+        VOUCHER_NUMBER,
+        INVOICE,
+        INVOICE_NUMBER,
+        INVOICE_NOTES,
+        INVOICE_STATUS,
+        COLLECTING_COMPANY,
+        COLLECTING_ACCOUNT,
+        INVOICE_COMPANY,
+        PAY_TIME,
+        AMMETER_NUMBER,
+        MULTIPLYING_POWER,
+        ELECTRIC_POWER,
+        CARTE_TIME,
+        UPDATE_TIME,
+        CUSTOMER_ID,
+        TUNNAGE,
+        STATUS,
+        RECORDS_ID
+        FROM T_UTILITIES_DETAILS
+        WHERE CUSTOMER_ID = '${customerId}' AND HOUSE_INFO_ID = '${houseInfoId}' AND ELECTRIC_POWER IS NOT NULL
+        AND STATUS = 'Y'
+        ORDER BY PAY_TIME DESC)
         WHERE ROWNUM = 1
     </select>
     <select id="getLastWater" parameterType="cn.rzhd.wuye.vo.query.UtilitiesQuery" resultMap="BaseResultMap">
         SELECT
-            UTILITIES_DETAILS_ID,
-            HOUSE_INFO_ID,
-            CLIENT_NAME,
-            FEE_TYPE,
-            PAY_MANNER,
-            PAY_MONTH,
-            START_DATE,
-            END_DATE,
-            PAYABLE,
-            PAID_IN,
-            VOUCHER_NUMBER,
-            INVOICE,
-            INVOICE_NUMBER,
-            INVOICE_NOTES,
-            INVOICE_STATUS,
-            COLLECTING_COMPANY,
-            COLLECTING_ACCOUNT,
-            INVOICE_COMPANY,
-            PAY_TIME,
-            AMMETER_NUMBER,
-            MULTIPLYING_POWER,
-            ELECTRIC_POWER,
-            CARTE_TIME,
-            UPDATE_TIME,
-            CUSTOMER_ID,
-            TUNNAGE,
-            STATUS,
-            RECORDS_ID
+        UTILITIES_DETAILS_ID,
+        HOUSE_INFO_ID,
+        CLIENT_NAME,
+        FEE_TYPE,
+        PAY_MANNER,
+        PAY_MONTH,
+        START_DATE,
+        END_DATE,
+        PAYABLE,
+        PAID_IN,
+        VOUCHER_NUMBER,
+        INVOICE,
+        INVOICE_NUMBER,
+        INVOICE_NOTES,
+        INVOICE_STATUS,
+        COLLECTING_COMPANY,
+        COLLECTING_ACCOUNT,
+        INVOICE_COMPANY,
+        PAY_TIME,
+        AMMETER_NUMBER,
+        MULTIPLYING_POWER,
+        ELECTRIC_POWER,
+        CARTE_TIME,
+        UPDATE_TIME,
+        CUSTOMER_ID,
+        TUNNAGE,
+        STATUS,
+        RECORDS_ID
         FROM
-            (SELECT
-                 UTILITIES_DETAILS_ID,
-                 HOUSE_INFO_ID,
-                 CLIENT_NAME,
-                 FEE_TYPE,
-                 PAY_MANNER,
-                 PAY_MONTH,
-                 START_DATE,
-                 END_DATE,
-                 PAYABLE,
-                 PAID_IN,
-                 VOUCHER_NUMBER,
-                 INVOICE,
-                 INVOICE_NUMBER,
-                 INVOICE_NOTES,
-                 INVOICE_STATUS,
-                 COLLECTING_COMPANY,
-                 COLLECTING_ACCOUNT,
-                 INVOICE_COMPANY,
-                 PAY_TIME,
-                 AMMETER_NUMBER,
-                 MULTIPLYING_POWER,
-                 ELECTRIC_POWER,
-                 CARTE_TIME,
-                 UPDATE_TIME,
-                 CUSTOMER_ID,
-                 TUNNAGE,
-                 STATUS,
-                 RECORDS_ID
-             FROM T_UTILITIES_DETAILS
-             WHERE CUSTOMER_ID = '${customerId}' AND HOUSE_INFO_ID = '${houseInfoId}' AND TUNNAGE IS NOT NULL
-                   AND STATUS = 'Y'
-             ORDER BY PAY_TIME DESC)
+        (SELECT
+        UTILITIES_DETAILS_ID,
+        HOUSE_INFO_ID,
+        CLIENT_NAME,
+        FEE_TYPE,
+        PAY_MANNER,
+        PAY_MONTH,
+        START_DATE,
+        END_DATE,
+        PAYABLE,
+        PAID_IN,
+        VOUCHER_NUMBER,
+        INVOICE,
+        INVOICE_NUMBER,
+        INVOICE_NOTES,
+        INVOICE_STATUS,
+        COLLECTING_COMPANY,
+        COLLECTING_ACCOUNT,
+        INVOICE_COMPANY,
+        PAY_TIME,
+        AMMETER_NUMBER,
+        MULTIPLYING_POWER,
+        ELECTRIC_POWER,
+        CARTE_TIME,
+        UPDATE_TIME,
+        CUSTOMER_ID,
+        TUNNAGE,
+        STATUS,
+        RECORDS_ID
+        FROM T_UTILITIES_DETAILS
+        WHERE CUSTOMER_ID = '${customerId}' AND HOUSE_INFO_ID = '${houseInfoId}' AND TUNNAGE IS NOT NULL
+        AND STATUS = 'Y'
+        ORDER BY PAY_TIME DESC)
         WHERE ROWNUM = 1
     </select>
     <resultMap id="electricMap" type="java.util.Map">
@@ -477,21 +477,21 @@
         SELECT SUM(NVL(PAID_IN, 0))
         FROM T_UTILITIES_DETAILS
         WHERE HOUSE_INFO_ID = #{houseInfoId}
-              AND PAY_TIME &lt; #{endDate}
-              AND PAY_TIME &gt; #{startDate}
+        AND PAY_TIME &lt; #{endDate}
+        AND PAY_TIME &gt; #{startDate}
     </select>
 
     <select id="getCompanyName" resultType="string">
         SELECT "unitname"
         FROM T_COMPANY
-            JOIN T_BANK_ACCOUNT ON "vdef1" = T_COMPANY."pk_corp"
-            JOIN T_FEE_TYPES ON T_FEE_TYPES."pk_fee" = T_BANK_ACCOUNT."pk_fee"
+        JOIN T_BANK_ACCOUNT ON "vdef1" = T_COMPANY."pk_corp"
+        JOIN T_FEE_TYPES ON T_FEE_TYPES."pk_fee" = T_BANK_ACCOUNT."pk_fee"
         WHERE T_FEE_TYPES."feecode" = #{pk_feeType} AND T_FEE_TYPES."pk_corp" = #{pk_corp}
     </select>
     <select id="getCompanyAccount" resultType="string">
         SELECT "account"
         FROM T_BANK_ACCOUNT
-            JOIN T_FEE_TYPES ON T_FEE_TYPES."pk_fee" = T_BANK_ACCOUNT."pk_fee"
+        JOIN T_FEE_TYPES ON T_FEE_TYPES."pk_fee" = T_BANK_ACCOUNT."pk_fee"
         WHERE "feecode" = #{pk_feeType} AND T_FEE_TYPES."pk_corp" = #{pk_corp}
     </select>
     <select id="getCostType" resultType="string">
@@ -531,28 +531,28 @@
     </resultMap>
     <select id="getElectricByPrimaryKey" resultMap="electricMapByPrimaryKey" parameterType="long">
         SELECT
-            DISTINCT
-            UTILITIES_DETAILS_ID,
-            T_PROJECT_INFO.PROJECT_NAME,
-            T_HOUSE_INFO_DETAILS."vhcode",
-            CLIENT_NAME,
-            FEE_TYPE,
-            PAY_MANNER,
-            PAID_IN,
-            VOUCHER_NUMBER,
-            INVOICE_NUMBER,
-            INVOICE_NOTES,
-            INVOICE_STATUS,
-            COLLECTING_COMPANY,
-            COLLECTING_ACCOUNT,
-            PAY_TIME,
-            AMMETER_NUMBER,
-            MULTIPLYING_POWER,
-            ELECTRIC_POWER,
-            IS_WRITTEN
+        DISTINCT
+        UTILITIES_DETAILS_ID,
+        T_PROJECT_INFO.PROJECT_NAME,
+        T_HOUSE_INFO_DETAILS."vhcode",
+        CLIENT_NAME,
+        FEE_TYPE,
+        PAY_MANNER,
+        PAID_IN,
+        VOUCHER_NUMBER,
+        INVOICE_NUMBER,
+        INVOICE_NOTES,
+        INVOICE_STATUS,
+        COLLECTING_COMPANY,
+        COLLECTING_ACCOUNT,
+        PAY_TIME,
+        AMMETER_NUMBER,
+        MULTIPLYING_POWER,
+        ELECTRIC_POWER,
+        IS_WRITTEN
         FROM T_UTILITIES_DETAILS
-            JOIN T_HOUSE_INFO_DETAILS ON HOUSE_INFO_ID = "pk_house"
-            JOIN T_PROJECT_INFO ON T_HOUSE_INFO_DETAILS."pk_project" = T_PROJECT_INFO.PK_PROJECT
+        JOIN T_HOUSE_INFO_DETAILS ON HOUSE_INFO_ID = "pk_house"
+        JOIN T_PROJECT_INFO ON T_HOUSE_INFO_DETAILS."pk_project" = T_PROJECT_INFO.PK_PROJECT
         WHERE UTILITIES_DETAILS_ID = #{detailsId}
     </select>
     <resultMap id="waterMapByPrimaryKey" type="java.util.Map">
@@ -585,26 +585,26 @@
     </resultMap>
     <select id="getWaterByPrimaryKey" parameterType="long" resultMap="waterMapByPrimaryKey">
         SELECT
-            DISTINCT
-            UTILITIES_DETAILS_ID,
-            T_PROJECT_INFO.PROJECT_NAME,
-            T_HOUSE_INFO_DETAILS."vhcode",
-            CLIENT_NAME,
-            FEE_TYPE,
-            PAY_MANNER,
-            PAID_IN,
-            VOUCHER_NUMBER,
-            INVOICE_NUMBER,
-            INVOICE_NOTES,
-            INVOICE_STATUS,
-            COLLECTING_COMPANY,
-            COLLECTING_ACCOUNT,
-            PAY_TIME,
-            TUNNAGE,
-            IS_WRITTEN
+        DISTINCT
+        UTILITIES_DETAILS_ID,
+        T_PROJECT_INFO.PROJECT_NAME,
+        T_HOUSE_INFO_DETAILS."vhcode",
+        CLIENT_NAME,
+        FEE_TYPE,
+        PAY_MANNER,
+        PAID_IN,
+        VOUCHER_NUMBER,
+        INVOICE_NUMBER,
+        INVOICE_NOTES,
+        INVOICE_STATUS,
+        COLLECTING_COMPANY,
+        COLLECTING_ACCOUNT,
+        PAY_TIME,
+        TUNNAGE,
+        IS_WRITTEN
         FROM T_UTILITIES_DETAILS
-            JOIN T_HOUSE_INFO_DETAILS ON HOUSE_INFO_ID = "pk_house"
-            JOIN T_PROJECT_INFO ON T_HOUSE_INFO_DETAILS."pk_project" = T_PROJECT_INFO.PK_PROJECT
+        JOIN T_HOUSE_INFO_DETAILS ON HOUSE_INFO_ID = "pk_house"
+        JOIN T_PROJECT_INFO ON T_HOUSE_INFO_DETAILS."pk_project" = T_PROJECT_INFO.PK_PROJECT
         WHERE UTILITIES_DETAILS_ID = #{detailsId}
     </select>
     <select id="countElectricByQuery" parameterType="cn.rzhd.wuye.vo.query.PropertyRecordsQuery" resultType="integer">

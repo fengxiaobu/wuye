@@ -19,54 +19,54 @@
     </delete>
     <insert id="insert" parameterType="cn.rzhd.wuye.bean.KfFeeInvoice">
         INSERT INTO T_KF_INVOICE (KF_FEE_INVOICE_DETAILS_ID, INVOICE_TYPE,
-                                  INVOICE_COMPANY, BASIC_KF_FEE, KF_FEE_INVOICE_SUM,
-                                  TRIPLE_AGREEMENT, AGENCY_PAY_CREDENTIAL, CARTE_TIME,
-                                  UPDATE_TIME, KF_FEE_PAY_DETAILS_ID)
+        INVOICE_COMPANY, BASIC_KF_FEE, KF_FEE_INVOICE_SUM,
+        TRIPLE_AGREEMENT, AGENCY_PAY_CREDENTIAL, CARTE_TIME,
+        UPDATE_TIME, KF_FEE_PAY_DETAILS_ID)
         VALUES (#{kfFeeInvoiceDetailsId,jdbcType=DECIMAL}, #{invoiceType,jdbcType=DECIMAL},
-                #{invoiceCompany,jdbcType=OTHER}, #{basicKfFee,jdbcType=DECIMAL}, #{kfFeeInvoiceSum,jdbcType=DECIMAL},
-                #{tripleAgreement,jdbcType=OTHER}, #{agencyPayCredential,jdbcType=OTHER}, #{carteTime,jdbcType=DATE},
-                #{updateTime,jdbcType=DATE}, #{kfFeePayDetailsId,jdbcType=DECIMAL})
+        #{invoiceCompany,jdbcType=OTHER}, #{basicKfFee,jdbcType=DECIMAL}, #{kfFeeInvoiceSum,jdbcType=DECIMAL},
+        #{tripleAgreement,jdbcType=OTHER}, #{agencyPayCredential,jdbcType=OTHER}, #{carteTime,jdbcType=DATE},
+        #{updateTime,jdbcType=DATE}, #{kfFeePayDetailsId,jdbcType=DECIMAL})
     </insert>
     <update id="updateByPrimaryKey" parameterType="cn.rzhd.wuye.bean.KfFeeInvoice">
         UPDATE T_KF_INVOICE
-        SET INVOICE_TYPE          = #{invoiceType,jdbcType=DECIMAL},
-            INVOICE_COMPANY       = #{invoiceCompany,jdbcType=OTHER},
-            BASIC_KF_FEE          = #{basicKfFee,jdbcType=DECIMAL},
-            KF_FEE_INVOICE_SUM    = #{kfFeeInvoiceSum,jdbcType=DECIMAL},
-            TRIPLE_AGREEMENT      = #{tripleAgreement,jdbcType=OTHER},
-            AGENCY_PAY_CREDENTIAL = #{agencyPayCredential,jdbcType=OTHER},
-            CARTE_TIME            = #{carteTime,jdbcType=DATE},
-            UPDATE_TIME           = #{updateTime,jdbcType=DATE},
-            KF_FEE_PAY_DETAILS_ID = #{kfFeePayDetailsId,jdbcType=DECIMAL}
+        SET INVOICE_TYPE = #{invoiceType,jdbcType=DECIMAL},
+        INVOICE_COMPANY = #{invoiceCompany,jdbcType=OTHER},
+        BASIC_KF_FEE = #{basicKfFee,jdbcType=DECIMAL},
+        KF_FEE_INVOICE_SUM = #{kfFeeInvoiceSum,jdbcType=DECIMAL},
+        TRIPLE_AGREEMENT = #{tripleAgreement,jdbcType=OTHER},
+        AGENCY_PAY_CREDENTIAL = #{agencyPayCredential,jdbcType=OTHER},
+        CARTE_TIME = #{carteTime,jdbcType=DATE},
+        UPDATE_TIME = #{updateTime,jdbcType=DATE},
+        KF_FEE_PAY_DETAILS_ID = #{kfFeePayDetailsId,jdbcType=DECIMAL}
         WHERE KF_FEE_INVOICE_DETAILS_ID = #{kfFeeInvoiceDetailsId,jdbcType=DECIMAL}
     </update>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.math.BigDecimal">
         SELECT
-            KF_FEE_INVOICE_DETAILS_ID,
-            INVOICE_TYPE,
-            INVOICE_COMPANY,
-            BASIC_KF_FEE,
-            KF_FEE_INVOICE_SUM,
-            TRIPLE_AGREEMENT,
-            AGENCY_PAY_CREDENTIAL,
-            CARTE_TIME,
-            UPDATE_TIME,
-            KF_FEE_PAY_DETAILS_ID
+        KF_FEE_INVOICE_DETAILS_ID,
+        INVOICE_TYPE,
+        INVOICE_COMPANY,
+        BASIC_KF_FEE,
+        KF_FEE_INVOICE_SUM,
+        TRIPLE_AGREEMENT,
+        AGENCY_PAY_CREDENTIAL,
+        CARTE_TIME,
+        UPDATE_TIME,
+        KF_FEE_PAY_DETAILS_ID
         FROM T_KF_INVOICE
         WHERE KF_FEE_INVOICE_DETAILS_ID = #{kfFeeInvoiceDetailsId,jdbcType=DECIMAL}
     </select>
     <select id="selectAll" resultMap="BaseResultMap">
         SELECT
-            KF_FEE_INVOICE_DETAILS_ID,
-            INVOICE_TYPE,
-            INVOICE_COMPANY,
-            BASIC_KF_FEE,
-            KF_FEE_INVOICE_SUM,
-            TRIPLE_AGREEMENT,
-            AGENCY_PAY_CREDENTIAL,
-            CARTE_TIME,
-            UPDATE_TIME,
-            KF_FEE_PAY_DETAILS_ID
+        KF_FEE_INVOICE_DETAILS_ID,
+        INVOICE_TYPE,
+        INVOICE_COMPANY,
+        BASIC_KF_FEE,
+        KF_FEE_INVOICE_SUM,
+        TRIPLE_AGREEMENT,
+        AGENCY_PAY_CREDENTIAL,
+        CARTE_TIME,
+        UPDATE_TIME,
+        KF_FEE_PAY_DETAILS_ID
         FROM T_KF_INVOICE
     </select>
 </mapper>

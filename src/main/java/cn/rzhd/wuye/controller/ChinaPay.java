@@ -318,12 +318,12 @@ public class ChinaPay {
         Map<String, String> map = new Hashtable<>();
         map.put("OrderType", "0001");
         map.put("qrPattern", "link");
-        String OrderReserved = JSON.toJSONString(map);
+        //String OrderReserved = JSON.toJSONString(map);
 
-        requestVO.setOrderReserved(JSON.toJSONString("OrderType:0001"));
+        requestVO.setOrderReserved("{\"OrderType\":\"0001\"}");
         requestVO.setOrderAmt("10");
-        requestVO.setCommodityMsg(commodityMsg);
-        requestVO.setMerResv(merResv);
+        /*requestVO.setCommodityMsg(commodityMsg);
+        requestVO.setMerResv(merResv);*/
         //前台页面传过来的
         ChinaPayHelper chinaPayHelper = new ChinaPayHelper();
         // requestVO.setRemoteAddr(HttpUtils.getIpAddr(req));
@@ -332,7 +332,7 @@ public class ChinaPay {
         LogUtil.writeMessage("开始签名");
         RequestVO vo = chinaPayHelper.getSign(requestVO);
         System.out.println("requestVO = " + JSON.toJSONString(requestVO));
-        Map<String, Object> objectMap = BeanUtils.objectToMap(requestVO);
+        Map<String, Object> objectMap = BeanUtils.objectToMap(vo);
         Map<String, Object> sign = ChinaPaySignUtils.sign(objectMap);
         objectMap.put("Signature", sign.get("sign"));
         System.out.println("objectMap = " + JSON.toJSONString(objectMap));
@@ -440,7 +440,7 @@ public class ChinaPay {
         requestVO.setCurryNo("CNY");
         requestVO.setBusiType("0001");
 
-       // Map<String, Object> beanToMap = BeanUtil.beanToMap(requestVO,false,true);
+        //Map<String, Object> beanToMap = BeanUtil.beanToMap(requestVO,false,true);
         Map<String, Object> beanToMap = BeanUtils.objectToMap(requestVO);
         Map<String, Object> sign = ChinaPaySignUtils.sign(beanToMap);
         beanToMap.put("Signature", sign.get("sign"));

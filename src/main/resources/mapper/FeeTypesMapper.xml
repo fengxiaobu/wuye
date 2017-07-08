@@ -13,32 +13,32 @@
     </delete>
     <insert id="insert" parameterType="cn.rzhd.wuye.vo.FeeitemVO">
         INSERT INTO T_FEE_TYPES ("pk_fee", "pk_corp", "feecode",
-                                 "feename")
+        "feename")
         VALUES (#{pk_fee,jdbcType=CHAR}, #{pk_corp,jdbcType=CHAR}, #{feecode,jdbcType=VARCHAR},
-                #{feename,jdbcType=VARCHAR})
+        #{feename,jdbcType=VARCHAR})
     </insert>
     <update id="updateByPrimaryKey" parameterType="cn.rzhd.wuye.vo.FeeitemVO">
         UPDATE T_FEE_TYPES
         SET "pk_corp" = #{pk_corp,jdbcType=CHAR},
-            "feecode" = #{feecode,jdbcType=VARCHAR},
-            "feename" = #{feename,jdbcType=VARCHAR}
+        "feecode" = #{feecode,jdbcType=VARCHAR},
+        "feename" = #{feename,jdbcType=VARCHAR}
         WHERE "pk_fee" = #{pk_fee,jdbcType=CHAR}
     </update>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
         SELECT
-            "pk_fee",
-            "pk_corp",
-            "feecode",
-            "feename"
+        "pk_fee",
+        "pk_corp",
+        "feecode",
+        "feename"
         FROM T_FEE_TYPES
         WHERE "pk_fee" = #{pk_fee,jdbcType=CHAR}
     </select>
     <select id="selectAll" resultMap="BaseResultMap">
         SELECT
-            "pk_fee",
-            "pk_corp",
-            "feecode",
-            "feename"
+        "pk_fee",
+        "pk_corp",
+        "feecode",
+        "feename"
         FROM T_FEE_TYPES
     </select>
 </mapper>

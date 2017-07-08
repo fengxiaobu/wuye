@@ -9,34 +9,34 @@
     </sql>
     <insert id="insert" parameterType="cn.rzhd.wuye.bean.KfFeePayDetails">
         INSERT INTO T_KF_FEE_PAY_DETAILS (KF_FEE_PAY_DETAILS_ID,
-                                          HOUSE_INFO_ID,
-                                          CLIENT_NAME,
-                                          FEE_TYPE,
-                                          PAY_MANNER,
-                                          PAY_MONTH,
-                                          START_DATE,
-                                          END_DATE,
-                                          PAYABLE,
-                                          PAID_IN,
-                                          VOUCHER_NUMBER,
-                                          INVOICE,
-                                          INVOICE_NUMBER,
-                                          INVOICE_NOTES,
-                                          INVOICE_STATUS,
-                                          COLLECTING_COMPANY,
-                                          COLLECTING_ACCOUNT,
-                                          INVOICE_COMPANY,
-                                          PAY_TIME,
-                                          CARTE_TIME,
-                                          UPDATE_TIME,
-                                          CUSTOMER_ID,
-                                          RECORDS_ID)
+        HOUSE_INFO_ID,
+        CLIENT_NAME,
+        FEE_TYPE,
+        PAY_MANNER,
+        PAY_MONTH,
+        START_DATE,
+        END_DATE,
+        PAYABLE,
+        PAID_IN,
+        VOUCHER_NUMBER,
+        INVOICE,
+        INVOICE_NUMBER,
+        INVOICE_NOTES,
+        INVOICE_STATUS,
+        COLLECTING_COMPANY,
+        COLLECTING_ACCOUNT,
+        INVOICE_COMPANY,
+        PAY_TIME,
+        CARTE_TIME,
+        UPDATE_TIME,
+        CUSTOMER_ID,
+        RECORDS_ID)
         VALUES
-            (#{kfFeePayDetailsId}, #{houseInfoId}, #{clientName}, #{costType}, #{payManner}, #{payMonth}, #{startDate},
-                                   #{endDate}, #{payable}, #{paidIn}, #{voucherNumber},
-                #{invoice}, #{invoiceNumber}, #{invoiceNotes}, #{invoiceStatus}, #{collectingCompany},
-                #{collectingAccount}, #{invoiceCompany}, #{payTime}, #{carteTime}, #{updateTime}, #{customerId},
-             #{recordsId})
+        (#{kfFeePayDetailsId}, #{houseInfoId}, #{clientName}, #{costType}, #{payManner}, #{payMonth}, #{startDate},
+        #{endDate}, #{payable}, #{paidIn}, #{voucherNumber},
+        #{invoice}, #{invoiceNumber}, #{invoiceNotes}, #{invoiceStatus}, #{collectingCompany},
+        #{collectingAccount}, #{invoiceCompany}, #{payTime}, #{carteTime}, #{updateTime}, #{customerId},
+        #{recordsId})
     </insert>
     <update id="changeStatus" parameterType="long">
         UPDATE T_KF_FEE_PAY_DETAILS
@@ -195,14 +195,14 @@
     <select id="getCompanyAccount" resultType="string">
         SELECT "account"
         FROM T_BANK_ACCOUNT
-            JOIN T_FEE_TYPES ON T_FEE_TYPES."pk_fee" = T_BANK_ACCOUNT."pk_fee"
+        JOIN T_FEE_TYPES ON T_FEE_TYPES."pk_fee" = T_BANK_ACCOUNT."pk_fee"
         WHERE "feecode" = #{feecode} AND T_FEE_TYPES."pk_corp" = #{pk_corp}
     </select>
     <select id="getCompanyName" resultType="string">
         SELECT "unitname"
         FROM T_COMPANY
-            JOIN T_BANK_ACCOUNT ON T_COMPANY."pk_corp" = "vdef1"
-            JOIN T_FEE_TYPES ON T_FEE_TYPES."pk_fee" = T_BANK_ACCOUNT."pk_fee"
+        JOIN T_BANK_ACCOUNT ON T_COMPANY."pk_corp" = "vdef1"
+        JOIN T_FEE_TYPES ON T_FEE_TYPES."pk_fee" = T_BANK_ACCOUNT."pk_fee"
         WHERE T_FEE_TYPES."pk_corp" = #{pk_corp} AND "feecode" = #{feecode}
     </select>
     <select id="countByQuery" parameterType="cn.rzhd.wuye.vo.query.PropertyRecordsQuery" resultType="integer">

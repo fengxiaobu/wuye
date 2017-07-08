@@ -176,7 +176,10 @@
     </update>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
         SELECT
-            DISTINCT *
+            DISTINCT
+            aaply.*,
+            house.*,
+            cust.*
         FROM
             T_RETREAT_LEASE_APPLY aaply
             LEFT JOIN "T_Customer" cust ON
@@ -188,19 +191,49 @@
     </select>
     <select id="selectAll" resultMap="BaseResultMap">
         SELECT
-            DISTINCT *
+            DISTINCT
+            aaply.*,
+            house.*,
+            cust.*
         FROM
             T_RETREAT_LEASE_APPLY aaply
             LEFT JOIN "T_Customer" cust ON
                                             aaply.CUSTOMERID = cust."pk_customerid"
             LEFT JOIN T_HOUSE_INFO_DETAILS house ON
-
                                                      aaply.HOUSE_INFO_ID = house."pk_house"
+        ORDER BY aaply.CREATION_TIME DESC
+    </select>
+    <select id="selectReatLeaseByQuery" resultMap="BaseResultMap">
+        SELECT
+            DISTINCT
+            aaply.*,6
+            house.*,
+            cust.*
+        FROM
+            T_RETREAT_LEASE_APPLY aaply
+            LEFT JOIN "T_Customer" cust ON
+                                            aaply.CUSTOMERID = cust."pk_customerid"
+            LEFT JOIN T_HOUSE_INFO_DETAILS house ON
+                                                     aaply.HOUSE_INFO_ID = house."pk_house"
+        <where>
+            <if test="startDate != null">
+                <if test="endDate != null">
+                    apply.CREATION_TIME BETWEEN #{startDate}
+                    AND #{endDate}
+                </if>
+            </if>
+            <if test="clientName != null">
+                AND cust."project"=#{clientName} OR house."vhname"=#{clientName}
+            </if>
+        </where>
         ORDER BY aaply.CREATION_TIME DESC
     </select>
     <select id="findRetreatLeaseApply" resultMap="BaseResultMap">
         SELECT
-            DISTINCT *
+            DISTINCT
+            aaply.*,
+            house.*,
+            cust.*
         FROM
             T_RETREAT_LEASE_APPLY aaply
             LEFT JOIN "T_Customer" cust ON

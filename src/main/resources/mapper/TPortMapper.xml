@@ -1,258 +1,260 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="cn.rzhd.wuye.mapper.TPortMapper" >
-  <resultMap id="BaseResultMap" type="cn.rzhd.wuye.bean.TPort" >
-    <id column="ID" property="id" jdbcType="VARCHAR" />
-    <result column="ADDRE" property="addre" jdbcType="VARCHAR" />
-    <result column="TYPE" property="type" jdbcType="CHAR" />
-    <result column="TITLE" property="title" jdbcType="VARCHAR" />
-    <result column="ADD_TIME" property="addTime" jdbcType="DATE" />
-    <result column="UPDATE_TIME" property="updateTime" jdbcType="DATE" />
-    <result column="PARAM" property="param" jdbcType="VARCHAR" />
-    <result column="RETURN_DATA" property="returnData" jdbcType="VARCHAR" />
-  </resultMap>
-  <sql id="Example_Where_Clause" >
-    <where >
-      <foreach collection="oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
+<mapper namespace="cn.rzhd.wuye.mapper.TPortMapper">
+    <resultMap id="BaseResultMap" type="cn.rzhd.wuye.bean.TPort">
+        <id column="ID" property="id" jdbcType="VARCHAR"/>
+        <result column="ADDRE" property="addre" jdbcType="VARCHAR"/>
+        <result column="TYPE" property="type" jdbcType="CHAR"/>
+        <result column="TITLE" property="title" jdbcType="VARCHAR"/>
+        <result column="ADD_TIME" property="addTime" jdbcType="DATE"/>
+        <result column="UPDATE_TIME" property="updateTime" jdbcType="DATE"/>
+        <result column="PARAM" property="param" jdbcType="VARCHAR"/>
+        <result column="RETURN_DATA" property="returnData" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
             </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause" >
-    <where >
-      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
             </foreach>
-          </trim>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+        ID, ADDRE, TYPE, TITLE, ADD_TIME, UPDATE_TIME, PARAM, RETURN_DATA
+    </sql>
+    <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.rzhd.wuye.bean.TPortExample">
+        select
+        <if test="distinct">
+            distinct
         </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Base_Column_List" >
-    ID, ADDRE, TYPE, TITLE, ADD_TIME, UPDATE_TIME, PARAM, RETURN_DATA
-  </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.rzhd.wuye.bean.TPortExample" >
-    select
-    <if test="distinct" >
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from T_PORT
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null" >
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
-    select 
-    <include refid="Base_Column_List" />
-    from T_PORT
-    where ID = #{id,jdbcType=VARCHAR}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
-    delete from T_PORT
-    where ID = #{id,jdbcType=VARCHAR}
-  </delete>
-  <delete id="deleteByExample" parameterType="cn.rzhd.wuye.bean.TPortExample" >
-    delete from T_PORT
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
-  <insert id="insert" parameterType="cn.rzhd.wuye.bean.TPort" >
-    insert into T_PORT (ID, ADDRE, TYPE, 
-      TITLE, ADD_TIME, UPDATE_TIME, 
-      PARAM, RETURN_DATA)
-    values (#{id,jdbcType=VARCHAR}, #{addre,jdbcType=VARCHAR}, #{type,jdbcType=CHAR}, 
-      #{title,jdbcType=VARCHAR}, #{addTime,jdbcType=DATE}, #{updateTime,jdbcType=DATE}, 
-      #{param,jdbcType=VARCHAR}, #{returnData,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="cn.rzhd.wuye.bean.TPort" >
-    insert into T_PORT
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        ID,
-      </if>
-      <if test="addre != null" >
-        ADDRE,
-      </if>
-      <if test="type != null" >
-        TYPE,
-      </if>
-      <if test="title != null" >
-        TITLE,
-      </if>
-      <if test="addTime != null" >
-        ADD_TIME,
-      </if>
-      <if test="updateTime != null" >
-        UPDATE_TIME,
-      </if>
-      <if test="param != null" >
-        PARAM,
-      </if>
-      <if test="returnData != null" >
-        RETURN_DATA,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=VARCHAR},
-      </if>
-      <if test="addre != null" >
-        #{addre,jdbcType=VARCHAR},
-      </if>
-      <if test="type != null" >
-        #{type,jdbcType=CHAR},
-      </if>
-      <if test="title != null" >
-        #{title,jdbcType=VARCHAR},
-      </if>
-      <if test="addTime != null" >
-        #{addTime,jdbcType=DATE},
-      </if>
-      <if test="updateTime != null" >
-        #{updateTime,jdbcType=DATE},
-      </if>
-      <if test="param != null" >
-        #{param,jdbcType=VARCHAR},
-      </if>
-      <if test="returnData != null" >
-        #{returnData,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <select id="countByExample" parameterType="cn.rzhd.wuye.bean.TPortExample" resultType="java.lang.Integer" >
-    select count(*) from T_PORT
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map" >
-    update T_PORT
-    <set >
-      <if test="record.id != null" >
-        ID = #{record.id,jdbcType=VARCHAR},
-      </if>
-      <if test="record.addre != null" >
+        <include refid="Base_Column_List"/>
+        from T_PORT
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from T_PORT
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        delete from T_PORT
+        where ID = #{id,jdbcType=VARCHAR}
+    </delete>
+    <delete id="deleteByExample" parameterType="cn.rzhd.wuye.bean.TPortExample">
+        delete from T_PORT
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="cn.rzhd.wuye.bean.TPort">
+        insert into T_PORT (ID, ADDRE, TYPE,
+        TITLE, ADD_TIME, UPDATE_TIME,
+        PARAM, RETURN_DATA)
+        values (#{id,jdbcType=VARCHAR}, #{addre,jdbcType=VARCHAR}, #{type,jdbcType=CHAR},
+        #{title,jdbcType=VARCHAR}, #{addTime,jdbcType=DATE}, #{updateTime,jdbcType=DATE},
+        #{param,jdbcType=VARCHAR}, #{returnData,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="cn.rzhd.wuye.bean.TPort">
+        insert into T_PORT
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                ID,
+            </if>
+            <if test="addre != null">
+                ADDRE,
+            </if>
+            <if test="type != null">
+                TYPE,
+            </if>
+            <if test="title != null">
+                TITLE,
+            </if>
+            <if test="addTime != null">
+                ADD_TIME,
+            </if>
+            <if test="updateTime != null">
+                UPDATE_TIME,
+            </if>
+            <if test="param != null">
+                PARAM,
+            </if>
+            <if test="returnData != null">
+                RETURN_DATA,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="addre != null">
+                #{addre,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=CHAR},
+            </if>
+            <if test="title != null">
+                #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="addTime != null">
+                #{addTime,jdbcType=DATE},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=DATE},
+            </if>
+            <if test="param != null">
+                #{param,jdbcType=VARCHAR},
+            </if>
+            <if test="returnData != null">
+                #{returnData,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="cn.rzhd.wuye.bean.TPortExample" resultType="java.lang.Integer">
+        select count(*) from T_PORT
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update T_PORT
+        <set>
+            <if test="record.id != null">
+                ID = #{record.id,jdbcType=VARCHAR},
+            </if>
+            <if test="record.addre != null">
+                ADDRE = #{record.addre,jdbcType=VARCHAR},
+            </if>
+            <if test="record.type != null">
+                TYPE = #{record.type,jdbcType=CHAR},
+            </if>
+            <if test="record.title != null">
+                TITLE = #{record.title,jdbcType=VARCHAR},
+            </if>
+            <if test="record.addTime != null">
+                ADD_TIME = #{record.addTime,jdbcType=DATE},
+            </if>
+            <if test="record.updateTime != null">
+                UPDATE_TIME = #{record.updateTime,jdbcType=DATE},
+            </if>
+            <if test="record.param != null">
+                PARAM = #{record.param,jdbcType=VARCHAR},
+            </if>
+            <if test="record.returnData != null">
+                RETURN_DATA = #{record.returnData,jdbcType=VARCHAR},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update T_PORT
+        set ID = #{record.id,jdbcType=VARCHAR},
         ADDRE = #{record.addre,jdbcType=VARCHAR},
-      </if>
-      <if test="record.type != null" >
         TYPE = #{record.type,jdbcType=CHAR},
-      </if>
-      <if test="record.title != null" >
         TITLE = #{record.title,jdbcType=VARCHAR},
-      </if>
-      <if test="record.addTime != null" >
         ADD_TIME = #{record.addTime,jdbcType=DATE},
-      </if>
-      <if test="record.updateTime != null" >
         UPDATE_TIME = #{record.updateTime,jdbcType=DATE},
-      </if>
-      <if test="record.param != null" >
         PARAM = #{record.param,jdbcType=VARCHAR},
-      </if>
-      <if test="record.returnData != null" >
-        RETURN_DATA = #{record.returnData,jdbcType=VARCHAR},
-      </if>
-    </set>
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map" >
-    update T_PORT
-    set ID = #{record.id,jdbcType=VARCHAR},
-      ADDRE = #{record.addre,jdbcType=VARCHAR},
-      TYPE = #{record.type,jdbcType=CHAR},
-      TITLE = #{record.title,jdbcType=VARCHAR},
-      ADD_TIME = #{record.addTime,jdbcType=DATE},
-      UPDATE_TIME = #{record.updateTime,jdbcType=DATE},
-      PARAM = #{record.param,jdbcType=VARCHAR},
-      RETURN_DATA = #{record.returnData,jdbcType=VARCHAR}
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.rzhd.wuye.bean.TPort" >
-    update T_PORT
-    <set >
-      <if test="addre != null" >
-        ADDRE = #{addre,jdbcType=VARCHAR},
-      </if>
-      <if test="type != null" >
+        RETURN_DATA = #{record.returnData,jdbcType=VARCHAR}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="cn.rzhd.wuye.bean.TPort">
+        update T_PORT
+        <set>
+            <if test="addre != null">
+                ADDRE = #{addre,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                TYPE = #{type,jdbcType=CHAR},
+            </if>
+            <if test="title != null">
+                TITLE = #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="addTime != null">
+                ADD_TIME = #{addTime,jdbcType=DATE},
+            </if>
+            <if test="updateTime != null">
+                UPDATE_TIME = #{updateTime,jdbcType=DATE},
+            </if>
+            <if test="param != null">
+                PARAM = #{param,jdbcType=VARCHAR},
+            </if>
+            <if test="returnData != null">
+                RETURN_DATA = #{returnData,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where ID = #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="cn.rzhd.wuye.bean.TPort">
+        update T_PORT
+        set ADDRE = #{addre,jdbcType=VARCHAR},
         TYPE = #{type,jdbcType=CHAR},
-      </if>
-      <if test="title != null" >
         TITLE = #{title,jdbcType=VARCHAR},
-      </if>
-      <if test="addTime != null" >
         ADD_TIME = #{addTime,jdbcType=DATE},
-      </if>
-      <if test="updateTime != null" >
         UPDATE_TIME = #{updateTime,jdbcType=DATE},
-      </if>
-      <if test="param != null" >
         PARAM = #{param,jdbcType=VARCHAR},
-      </if>
-      <if test="returnData != null" >
-        RETURN_DATA = #{returnData,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where ID = #{id,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="cn.rzhd.wuye.bean.TPort" >
-    update T_PORT
-    set ADDRE = #{addre,jdbcType=VARCHAR},
-      TYPE = #{type,jdbcType=CHAR},
-      TITLE = #{title,jdbcType=VARCHAR},
-      ADD_TIME = #{addTime,jdbcType=DATE},
-      UPDATE_TIME = #{updateTime,jdbcType=DATE},
-      PARAM = #{param,jdbcType=VARCHAR},
-      RETURN_DATA = #{returnData,jdbcType=VARCHAR}
-    where ID = #{id,jdbcType=VARCHAR}
-  </update>
+        RETURN_DATA = #{returnData,jdbcType=VARCHAR}
+        where ID = #{id,jdbcType=VARCHAR}
+    </update>
 </mapper>

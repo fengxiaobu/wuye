@@ -66,35 +66,35 @@
     <select id="findEnterMaterial" resultMap="enterMaterialMap">
         SELECT *
         FROM
-            T_ENTER_MATERIAL mater
-            LEFT JOIN T_USER tuser ON mater.USER_ID = tuser.USER_ID
-            LEFT JOIN T_PROJECT_INFO pro ON mater.PK_PROJECT = pro.PK_PROJECT
+        T_ENTER_MATERIAL mater
+        LEFT JOIN T_USER tuser ON mater.USER_ID = tuser.USER_ID
+        LEFT JOIN T_PROJECT_INFO pro ON mater.PK_PROJECT = pro.PK_PROJECT
     </select>
     <select id="findEnterMaterialByKey" resultType="cn.rzhd.wuye.bean.EnterMaterial">
         SELECT
-            tuser.USERNAME,
-            mater.MATERIAL_NAME,
-            mater.UPDATE_TIME,
-            pro.PROJECT_NAME
+        tuser.USERNAME,
+        mater.MATERIAL_NAME,
+        mater.UPDATE_TIME,
+        pro.PROJECT_NAME
         FROM
-            T_ENTER_MATERIAL mater
-            LEFT JOIN T_USER tuser ON mater.USER_ID = tuser.USER_ID
-            LEFT JOIN T_PROJECT_INFO pro ON mater.PK_PROJECT = pro.PK_PROJECT
+        T_ENTER_MATERIAL mater
+        LEFT JOIN T_USER tuser ON mater.USER_ID = tuser.USER_ID
+        LEFT JOIN T_PROJECT_INFO pro ON mater.PK_PROJECT = pro.PK_PROJECT
         WHERE mater.ENTER_MATERIAL_ID = #{enterMaterialId}
     </select>
     <!--获取项目资料-->
     <select id="findEnterMaterialBypkprojectId" resultType="cn.rzhd.wuye.bean.EnterMaterial">
         SELECT
-            ENTER_MATERIAL_ID,
-            PK_PROJECT,
-            MATERIAL_NAME,
-            MATERIAL_ADDRESS,
-            BASIC_INFO,
-            NOTES,
-            USER_ID,
-            UPDATE_TIME
+        ENTER_MATERIAL_ID,
+        PK_PROJECT,
+        MATERIAL_NAME,
+        MATERIAL_ADDRESS,
+        BASIC_INFO,
+        NOTES,
+        USER_ID,
+        UPDATE_TIME
         FROM
-            T_ENTER_MATERIAL
+        T_ENTER_MATERIAL
         WHERE PK_PROJECT = #{pkProject}
     </select>
 
@@ -127,10 +127,11 @@
     </select>
 
     <insert id="insertEnterMaterial" parameterType="cn.rzhd.wuye.bean.EnterMaterial">
-        INSERT INTO T_ENTER_MATERIAL (ENTER_MATERIAL_ID, PK_PROJECT, MATERIAL_NAME, MATERIAL_ADDRESS, BASIC_INFO, NOTES, USER_ID, UPDATE_TIME)
+        INSERT INTO T_ENTER_MATERIAL (ENTER_MATERIAL_ID, PK_PROJECT, MATERIAL_NAME, MATERIAL_ADDRESS, BASIC_INFO, NOTES,
+        USER_ID, UPDATE_TIME)
         VALUES
-            (#{enterMaterialId}, #{pkProject}, #{materialName}, #{materialAddress}, #{basicInfo}, #{notes}, #{userId},
-             #{updateTime});
+        (#{enterMaterialId}, #{pkProject}, #{materialName}, #{materialAddress}, #{basicInfo}, #{notes}, #{userId},
+        #{updateTime});
     </insert>
 
     <delete id="delEnterMaterial">

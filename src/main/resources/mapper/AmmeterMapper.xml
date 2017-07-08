@@ -13,25 +13,25 @@
     </resultMap>
     <select id="queryAmmeters" resultMap="baseMap">
         select
-            "id",
-            "pk_project",
-            "pk_house",
-            "ammeter_no",
-            "ammeter_name",
-            "multiply"
+        "id",
+        "pk_project",
+        "pk_house",
+        "ammeter_no",
+        "ammeter_name",
+        "multiply"
         FROM "T_Ammeter"
         WHERE "pk_house"='${houseInfoId}'
     </select>
     <select id="getAllAmmeters" resultType="cn.rzhd.wuye.bean.Ammeter">
         select
-            a."id",
-            a."pk_project",
-            p."project" AS projectName,
-            a."pk_house",
-            p."vhname" AS propertyName,
-            a."ammeter_no",
-            a."ammeter_name",
-            a."multiply"
+        a."id",
+        a."pk_project",
+        p."project" AS projectName,
+        a."pk_house",
+        p."vhname" AS propertyName,
+        a."ammeter_no",
+        a."ammeter_name",
+        a."multiply"
         FROM "T_Ammeter" a JOIN T_HOUSE_INFO_DETAILS p ON p."pk_house"=a."pk_house"
     </select>
 </mapper>

@@ -6,6 +6,7 @@
 <head>
     <meta charset="utf-8">
     <title>首页</title>
+    <%@include file="/common/common.jsp" %>
     <link rel="stylesheet" type="text/css"
           href="${pageContext.request.contextPath}/js/libs/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css">
@@ -30,21 +31,31 @@
             <div class="col-xs-8 panel-oprerate">
                 <div class="col-xs-6dd">
                     <form action="${pageContext.request.contextPath}/dist/enterApply/search" method="post">
-                        <span>申请日期&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                        <span style="margin-right: 10px"><input style="height: 35px;width: 220px;" type="text"
-                                                                name="startDate" placeholder="&nbsp;&nbsp;开始时间">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;到</span>
-
-                        <span style="margin-right: 50px"><input style="height: 35px;width: 220px;" type="text"
-                                                                name="endDate" placeholder="&nbsp;&nbsp;结束时间"></span>
-                        <span style="margin-right: 50px"><input style="height: 35px;width: 120px;" type="text"
-                                                                name="projectName"
-                                                                placeholder="&nbsp;&nbsp;项目名称"></span>
-                        <span style="margin-right: 50px"><input style="height: 35px;width: 120px;" name="clientName"
-                                                                type="text" placeholder="&nbsp;&nbsp;用户名"></span>
-                        <%--<a class="btn btn-info" type="button"><span class="glyphicon glyphicon-search"></span>搜素
-                        </a>--%>
-                        <button class="btn btn-default" style="background-color: #5bc0de" type="submit"><span
-                                class="glyphicon glyphicon-search">搜素</span></button>
+                        <div class="form-inline">
+                            <div class="form-group">
+                                <label>申请日期：</label>
+                                <div id="form_datetime" class="input-group date form_datetime col-sm-3" data-date=""
+                                     data-date-format="yyyy-mm-dd" data-link-field="dtp_input1" data-link-format="yyyy-mm-dd">
+                                    <input id="showdate1" class="form-control" size="16" type="text" value="${startDate}"
+                                           readonly="readonly">
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                                </div>
+                                <input type="hidden" id="dtp_input1" name="startDate" value=""/>
+                                至
+                                <div id="form_datetime2" class="input-group date form_datetime col-sm-3" data-date=""
+                                     data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                                    <input id="showdate2" class="form-control" size="16" type="text" value="${endDate}"
+                                           readonly="readonly">
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                                </div>
+                                <input type="hidden" id="dtp_input2" name="endDate" value=""/>
+                                <input type="text"
+                                       class="form-control" name="clientName" placeholder="项目名称、用户名" value="${clientName}"/>
+                                <button id="query" type="submit" class="btn btn-info danxi_saixuan">搜索</button>
+                            </div>
+                        </div>
                     </form>
                     <%--<a target="main" href="${pageContext.request.contextPath}/enterApply/toEnterApplyAdd" class="btn btn-info" type="button"><span class="glyphicon glyphicon-plus"></span>新增
                     </a>--%>
@@ -125,162 +136,18 @@
 
 </div>
 </body>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/libs/jquery-1.11.3.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/libs/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript">
-    var tableEdit = {
-        content: function (option) {
-            var _tableEdit = this;
-            if ($(".tudiqianyue").is(".tableedit")) {
-                $(".tudiqianyue-tdtr").find("td").css({
-                    "border": "",
-                    "background": ""
-                });
-            }
-            $(".tudiqianyue").addClass("tableedit");
-            var tr = $(".tudiqianyue-tdtr").length;
-            $(".tudiqianyue-tdtr").each(function (_index, _this) {
-                var trIndex = _index;
-                $(this).find("td").each(function (_index, _this) {
-                    var tdIndex = _index;
-                    // $(this).attr("contenteditable","true");
-                    if (tdIndex == option.start) {
-                        $(this).css({"border-left": "2px solid red"});
-                    }
-                    if (tdIndex == option.end) {
-                        $(this).css({"border-right": "2px solid red"});
-                    }
-                    if (trIndex == 0 && tdIndex >= option.start && tdIndex <= option.end) {
-                        $(this).css({"border-top": "3px solid red"})
-                    }
-                    if (trIndex == tr - 1 && tdIndex >= option.start && tdIndex <= option.end) {
-                        $(this).css({"border-bottom": "3px solid red"})
-                    }
-                    if (tdIndex >= option.start && tdIndex <= option.end) {
-                        $(this).css({"background": "#fff"}).attr("contenteditable", "true");
-                    }
-                });
-            });
-            if (option.cancel) {
-                $(option.cancel).click(function () {
-                    _tableEdit.close(option);
-                });
-            }
-            if (typeof option.callback == "function") {
-                option.callback();
-            }
-        },
-        setTd: function (option) {
-        },
-        close: function (option) {
-            $(".tudiqianyue").removeClass("tableedit");
-            $(".tudiqianyue-tdtr").each(function (_index, _this) {
-                var trIndex = _index;
-                var tr = $(".tudiqianyue-tdtr").length;
-                $(this).find("td").each(function (_index, _this) {
-                    var tdIndex = _index;
-                    if (tdIndex == option.start) {
-                        $(this).css({"border-left": ""})
-                    }
-                    if (tdIndex == option.end) {
-                        $(this).css({"border-right": ""})
-                    }
-                    if (trIndex == 0 && tdIndex >= option.start && tdIndex <= option.end) {
-                        $(this).css({"border-top": ""})
-                    }
-                    if (trIndex == tr - 1 && tdIndex >= option.start && tdIndex <= option.end) {
-                        $(this).css({"border-bottom": ""})
-                    }
-                    if (tdIndex >= option.start && tdIndex <= option.end) {
-                        $(this).css({"background": "#fff"}).attr("contenteditable", "false");
-                    }
-                });
-            });
-        },
-    };
-    // function tableEdit(option) {
-    // 	if($(".tudiqianyue").is(".tableedit")) {
-    // 		$(".tudiqianyue-tdtr").find("td").css({
-    // 			"border": "",
-    // 			"background": ""
-    // 		});
-    // 	}
-    // 	$(".tudiqianyue").addClass("tableedit");
-    // 	var tr = $(".tudiqianyue-tdtr").length;
-    // 	$(".tudiqianyue-tdtr").each(function(_index,_this) {
-    // 		var trIndex = _index;
-    // 		console.log(_index)
-    // 		$(this).find("td").each(function(_index,_this) {
-    // 			var tdIndex = _index;
-    // 			// $(this).attr("contenteditable","true");
-    // 			if(tdIndex == option.start) {
-    // 				$(this).css({"border-left": "2px solid red"});
-    // 			}
-    // 			if(tdIndex == option.end) {
-    // 				$(this).css({"border-right": "2px solid red"});
-    // 			}
-    // 			if(trIndex == 0 && tdIndex >= option.start && tdIndex <= option.end) {
-    // 				$(this).css({"border-top": "3px solid red"})
-    // 			}
-    // 			if(trIndex == tr-1 && tdIndex >= option.start && tdIndex <= option.end) {
-    // 				$(this).css({"border-bottom": "3px solid red"})
-    // 			}
-    // 			if(tdIndex >= option.start && tdIndex <= option.end) {
-    // 				$(this).css({"background":"#fff"}).attr("contenteditable","true");
-    // 			}
-    // 		});
-    // 	});
+    $(function () {
+        formdate('#form_datetime');
+        formdate('#form_datetime2');
+    })
 
-    // 	function close() {
-    // 		$(".tudiqianyue").removeClass("tableedit");
-    // 		$(".tudiqianyue-tdtr").each(function(_index,_this) {
-    // 			var trIndex = _index;
-    // 			console.log(_index)
-    // 			$(this).find("td").each(function(_index,_this) {
-    // 				var tdIndex = _index;
-    // 				// $(this).attr("contenteditable","true");
-    // 				if(tdIndex == option.start) {
-    // 					$(this).css({"border-left": ""})
-    // 				}
-    // 				if(tdIndex == option.end) {
-    // 					$(this).css({"border-right": ""})
-    // 				}
-    // 				if(trIndex == 0 && tdIndex >= option.start && tdIndex <= option.end) {
-    // 					$(this).css({"border-top": ""})
-    // 				}
-    // 				if(trIndex == tr-1 && tdIndex >= option.start && tdIndex <= option.end) {
-    // 					$(this).css({"border-bottom": ""})
-    // 				}
-    // 				if(tdIndex >= option.start && tdIndex <= option.end) {
-    // 					$(this).css({"background":"#fff"}).attr("contenteditable","false");
-    // 				}
-    // 			});
-    // 		});
-    // 	};
-    // 	return close;
-    // }
-
-    $("#edit-xieyi").click(function () {
-        tableEdit.content({
-            start: 1,
-            end: 3,
-            cancel: "#tudiqianyue-remove",
-            callback: function (data) {
-                console.log(111111)
-            }
-        })
-    });
-    $("#edit-hetong").click(function () {
-        tableEdit.content({
-            start: 3,
-            end: 6,
-            callback: function (data) {
-
-            }
-        })
-    });
-    $("#tudiqianyue-remove").click(function () {
-
-    });
+    function del(enterApplyId, pkHouse) {
+        layer.confirm('是否确认删除?', {icon: 3, title: '提示'}, function (index) {
+            //do something
+            window.location.href = "${pageContext.request.contextPath}/dist/enterApply/deleteEnterApply?enterApplyId=" + enterApplyId + "&pkHouse=" + pkHouse + "";
+            layer.close(index);
+        });
+    }
 </script>
 </html>

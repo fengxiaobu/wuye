@@ -6,7 +6,8 @@
 <head>
     <meta charset="utf-8">
     <title>首页</title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/js/libs/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css"
+          href="${pageContext.request.contextPath}/js/libs/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css">
 </head>
 <body>
@@ -28,9 +29,10 @@
             <div class="col-xs-8 panel-oprerate">
                 <div class="col-xs-6dd">
                     <form action="" method="post">
-                       	<a href="${pageContext.request.contextPath}/messageManageBack/messageManageEdit" class="btn btn-info"><span
-                            class="glyphicon glyphicon-plus"></span>新增
-                    </a>
+                        <a href="${pageContext.request.contextPath}/messageManageBack/messageManageEdit"
+                           class="btn btn-info"><span
+                                class="glyphicon glyphicon-plus"></span>新增
+                        </a>
                     </form>
                 </div>
             </div>
@@ -57,12 +59,15 @@
                         <td>${messageManageList.title}</td>
                         <td>${messageManageList.range}</td>
                         <td>
-                        	<c:if test="${messageManageList.status eq 1}">上架</c:if>  
-                			<c:if test="${messageManageList.status eq 0}">下架</c:if>  
+                            <c:if test="${messageManageList.status eq 1}">上架</c:if>
+                            <c:if test="${messageManageList.status eq 0}">下架</c:if>
                         </td>
                         <td><fmt:formatDate value="${messageManageList.create_time}" pattern="yyyy-MM-dd"/></td>
-                        <td><a class="btn btn-info" href="${pageContext.request.contextPath}/messageManageBack/messageManageEdit?message_manage_id=${messageManageList.message_manage_id}" role="button">编辑</a>
-                        <a class="btn btn-info" onclick="del('${messageManageList.message_manage_id}',this)" role="button">删除</a></td>
+                        <td><a class="btn btn-info"
+                               href="${pageContext.request.contextPath}/messageManageBack/messageManageEdit?message_manage_id=${messageManageList.message_manage_id}"
+                               role="button">编辑</a>
+                            <a class="btn btn-info" onclick="del('${messageManageList.message_manage_id}',this)"
+                               role="button">删除</a></td>
                     </tr>
                 </c:forEach>
                 </tbody>
@@ -75,7 +80,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/libs/jquery-1.11.3.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/libs/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript">
-var tableEdit = {
+    var tableEdit = {
         content: function (option) {
             var _tableEdit = this;
             if ($(".tudiqianyue").is(".tableedit")) {
@@ -145,34 +150,34 @@ var tableEdit = {
             });
         },
     };
-    
-$("#edit-xieyi").click(function () {
-    tableEdit.content({
-        start: 1,
-        end: 3,
-        cancel: "#tudiqianyue-remove",
-        callback: function (data) {
-        }
-    })
-});
-$("#edit-hetong").click(function () {
-    tableEdit.content({
-        start: 3,
-        end: 6,
-        callback: function (data) {
 
-        }
-    })
-});
-function del(id, e) {
-    var r = confirm("你确定要删除这个用户吗?");
-    if (r) {
-        $.post("${pageContext.request.contextPath}/messageManageBack/delete", {"id": id}, function (data) {
-            if (data.success) {
-                $(e).closest("tr").remove();
+    $("#edit-xieyi").click(function () {
+        tableEdit.content({
+            start: 1,
+            end: 3,
+            cancel: "#tudiqianyue-remove",
+            callback: function (data) {
             }
         })
+    });
+    $("#edit-hetong").click(function () {
+        tableEdit.content({
+            start: 3,
+            end: 6,
+            callback: function (data) {
+
+            }
+        })
+    });
+    function del(id, e) {
+        var r = confirm("你确定要删除这个用户吗?");
+        if (r) {
+            $.post("${pageContext.request.contextPath}/messageManageBack/delete", {"id": id}, function (data) {
+                if (data.success) {
+                    $(e).closest("tr").remove();
+                }
+            })
+        }
     }
-}
 </script>
 </html>

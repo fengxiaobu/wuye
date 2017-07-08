@@ -3,27 +3,27 @@
 <mapper namespace="cn.rzhd.wuye.mapper.ElectricInvoiceMapper">
     <insert id="addInvoice" parameterType="cn.rzhd.wuye.bean.ElectricFeeInvoiceDeta">
         INSERT INTO T_ELECTRIC_FEE_INVOICE_DETA (ELECTRIC_FEE_INVOICE_DETA_ID,
-                                                 INVOICE_TYPE,
-                                                 INVOICE_COMPANY,
-                                                 BASIC_ELECTRIC_FEE,
-                                                 ELECTRIC_FEE_INVOICE_SUM,
-                                                 TRIPLE_AGREEMENT,
-                                                 AGENCY_PAY_CREDENTIAL,
-                                                 CARTE_TIME,
-                                                 UPDATE_TIME,
-                                                 ELECTRIC_FEE_PAY_DETAILS_ID,
-                                                 STATUS)
+        INVOICE_TYPE,
+        INVOICE_COMPANY,
+        BASIC_ELECTRIC_FEE,
+        ELECTRIC_FEE_INVOICE_SUM,
+        TRIPLE_AGREEMENT,
+        AGENCY_PAY_CREDENTIAL,
+        CARTE_TIME,
+        UPDATE_TIME,
+        ELECTRIC_FEE_PAY_DETAILS_ID,
+        STATUS)
         VALUES (#{electricChargeInvoiceDeta}, #{invoiceType}, #{invoiceCompany},
-                                              #{basicElectricFee}, #{electricFeeInvoiceSum}, #{tripleAgreement},
-                                              #{agencyPayCredential}, #{carteTime}, #{updateTime},
-                                              #{electricFeePayDetailsId},
-                                              #{status})
+        #{basicElectricFee}, #{electricFeeInvoiceSum}, #{tripleAgreement},
+        #{agencyPayCredential}, #{carteTime}, #{updateTime},
+        #{electricFeePayDetailsId},
+        #{status})
     </insert>
     <!--缴费成功后将缴费记录对应的发票都改为生效状态-->
     <update id="changeStatus" parameterType="long">
         UPDATE T_ELECTRIC_FEE_INVOICE_DETA
         SET
-            STATUS = 'Y'
+        STATUS = 'Y'
         WHERE ELECTRIC_FEE_PAY_DETAILS_ID = #{detailsId}
     </update>
 </mapper>

@@ -66,16 +66,16 @@
                     <th>发票备注</th>
                     <th>操作</th>
 
-<!--                    <th>更新日期</th>
-                    <th>缴费月份</th>
-                    <th>开始日期</th>
-                    <th>截止日期</th>
-                    <th>应缴</th>
-                    <th>已缴</th>
-                    <th>单据号</th>
-                    <th>开票状态</th>
-                    <th>开票单位</th>
--->
+                    <!--                    <th>更新日期</th>
+                                        <th>缴费月份</th>
+                                        <th>开始日期</th>
+                                        <th>截止日期</th>
+                                        <th>应缴</th>
+                                        <th>已缴</th>
+                                        <th>单据号</th>
+                                        <th>开票状态</th>
+                                        <th>开票单位</th>
+                    -->
 
                 </tr>
                 </thead>
@@ -245,9 +245,6 @@
     });
 
 
-
-
-
     $('#startPicker').datetimepicker();
     $('#endPicker').datetimepicker();
 
@@ -304,7 +301,7 @@
                         for (var i = 0; i < result.length; i++) {
                             var rowContent =
                                 "<tr>" +
-                                "<td>" + isnull(result[i].detailsId) + "</td><td>" + isnull(result[i].projectName) + "</td><td>" + isnull(result[i].houseCode) + "</td><td>" + isnull(result[i].clientName) + "</td><td>" + isnull(result[i].payTime) + "</td><td>" + isnull(result[i].paidIn) + "</td> <td>" + isnull(result[i].tunnage) + "</td> <td>" + isnull(result[i].voucherNumber) + "</td> <td>" + isnull(result[i].costType) + "</td> <td>" + isnull(result[i].collectingCompany) + "</td> <td>" + isnull(result[i].collectingAccount) + "</td> <td>" + isnull(result[i].payManner) + "</td> <td>" + isnull(result[i].invoiceNumber) + "</td> <td>" + isnull(result[i].invoiceNotes) + "</td> <td>" + isnull(result[i].invoiceStatus) + "</td><td></button>&nbsp;&nbsp;&nbsp;&nbsp;<aclass='btn btn-info'href='${pageContext.request.contextPath}/utilitiesRecords/waterDetails?id=result[i].detailsId'role='button'>详情</a></td>"+
+                                "<td>" + isnull(result[i].detailsId) + "</td><td>" + isnull(result[i].projectName) + "</td><td>" + isnull(result[i].houseCode) + "</td><td>" + isnull(result[i].clientName) + "</td><td>" + isnull(result[i].payTime) + "</td><td>" + isnull(result[i].paidIn) + "</td> <td>" + isnull(result[i].tunnage) + "</td> <td>" + isnull(result[i].voucherNumber) + "</td> <td>" + isnull(result[i].costType) + "</td> <td>" + isnull(result[i].collectingCompany) + "</td> <td>" + isnull(result[i].collectingAccount) + "</td> <td>" + isnull(result[i].payManner) + "</td> <td>" + isnull(result[i].invoiceNumber) + "</td> <td>" + isnull(result[i].invoiceNotes) + "</td> <td>" + isnull(result[i].invoiceStatus) + "</td><td></button>&nbsp;&nbsp;&nbsp;&nbsp;<aclass='btn btn-info'href='${pageContext.request.contextPath}/utilitiesRecords/waterDetails?id=result[i].detailsId'role='button'>详情</a></td>" +
                                 "</tr>";
                             $("#productList").append(rowContent);
                         }
@@ -313,7 +310,7 @@
                             totalPages: totalPages,
                             visiblePages: pageSize,
                             currentPage: num,
-                            onPageChange: function (num1,type) {
+                            onPageChange: function (num1, type) {
                                 if (num1 != num) {
                                     getData(num1, pageSize);
                                 }

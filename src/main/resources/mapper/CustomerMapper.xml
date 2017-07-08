@@ -27,36 +27,36 @@
         <result property="alreadyFinish" column="ALREADY_FINISH"/>
         <result property="currentHouseId" column="CURRENT_HOUSE_ID"/>
         <result property="updateData" column="update_data"/>
-        <association property="pactVO" javaType="cn.rzhd.wuye.vo.PactVO" >
-        	<id property="pk_customerid" column="pk_customerid"/>
-        	<result property="house" column="house"/>
+        <association property="pactVO" javaType="cn.rzhd.wuye.vo.PactVO">
+            <id property="pk_customerid" column="pk_customerid"/>
+            <result property="house" column="house"/>
         </association>
     </resultMap>
     <select id="loginByPwd" parameterType="cn.rzhd.wuye.bean.Customer" resultMap="customerMap">
         SELECT
-            DISTINCT
-            "pk_corp",
-            "pk_customerid",
-            "fccategory",
-            "vccode",
-            "vcname",
-            "vpcnamespell",
-            "vpreferredtel",
-            "vccardnum",
-            "vcaddress",
-            "ccpostalcode",
-            "dregdate",
-            "vregplace",
-            "vmemcardno",
-            "vpcemail",
-            "nproperty",
-            LOGO,
-            "Company_Type",
-            "Password",
-            "Binding_Phone",
-            CURRENT_FLOW,
-            ALREADY_FINISH,
-            CURRENT_HOUSE_ID
+        DISTINCT
+        "pk_corp",
+        "pk_customerid",
+        "fccategory",
+        "vccode",
+        "vcname",
+        "vpcnamespell",
+        "vpreferredtel",
+        "vccardnum",
+        "vcaddress",
+        "ccpostalcode",
+        "dregdate",
+        "vregplace",
+        "vmemcardno",
+        "vpcemail",
+        "nproperty",
+        LOGO,
+        "Company_Type",
+        "Password",
+        "Binding_Phone",
+        CURRENT_FLOW,
+        ALREADY_FINISH,
+        CURRENT_HOUSE_ID
         FROM "T_Customer"
         WHERE "vccode" = #{vccode} AND "Password" = #{password} AND "fccategory" = 1
     </select>
@@ -65,10 +65,10 @@
     <select id="findCustomerList" resultMap="customerMap">
         SELECT *
         FROM (SELECT
-                  C.*,
-                  ROWNUM RN
-              FROM (SELECT *
-                    FROM "T_Customer") C)
+        C.*,
+        ROWNUM RN
+        FROM (SELECT *
+        FROM "T_Customer") C)
         WHERE RN BETWEEN #{pageStartRow} AND #{pageEndRow}
     </select>
     <!-- 用户列表条件查询 -->
@@ -76,12 +76,12 @@
 
         SELECT *
         FROM (SELECT
-                  C.*,
-                  ROWNUM RN
-              FROM (SELECT *
-                    FROM "T_Customer"
-                    WHERE "vcname" LIKE CONCAT(CONCAT('%', #{condition}), '%') OR
-                          "Binding_Phone" LIKE CONCAT(CONCAT('%', #{condition}), '%')) C)
+        C.*,
+        ROWNUM RN
+        FROM (SELECT *
+        FROM "T_Customer"
+        WHERE "vcname" LIKE CONCAT(CONCAT('%', #{condition}), '%') OR
+        "Binding_Phone" LIKE CONCAT(CONCAT('%', #{condition}), '%')) C)
         WHERE RN BETWEEN #{pageStartRow} AND
         #{pageEndRow}
     </select>
@@ -89,28 +89,28 @@
     <!-- 添加用户 -->
     <insert id="addCustomer">
         INSERT INTO "T_Customer" ("pk_corp", "pk_customerid", "fccategory", "vccode", "vcname",
-                                  "vpcnamespell", "vpreferredtel", "vccardnum", "vcaddress", "ccpostalcode", "dregdate",
-                                  "vregplace", "vmemcardno", "vpcemail", "nproperty")
+        "vpcnamespell", "vpreferredtel", "vccardnum", "vcaddress", "ccpostalcode", "dregdate",
+        "vregplace", "vmemcardno", "vpcemail", "nproperty")
         VALUES
-            (#{customerVo.pk_corp}, #{customerVo.pk_customerid}, #{customerVo.fccategory}
-                , #{customerVo.vccode}, #{customerVo.vcname}, #{customerVo.vpcnamespell}
-                , #{customerVo.vpreferredtel}, #{customerVo.vccardnum}, #{customerVo.vcaddress}
-                , #{customerVo.ccpostalcode}, #{customerVo.dregdate}, #{customerVo.vregplace}
-                , #{customerVo.vmemcardno}, #{customerVo.vpcemail}, #{customerVo.nproperty})
+        (#{customerVo.pk_corp}, #{customerVo.pk_customerid}, #{customerVo.fccategory}
+        , #{customerVo.vccode}, #{customerVo.vcname}, #{customerVo.vpcnamespell}
+        , #{customerVo.vpreferredtel}, #{customerVo.vccardnum}, #{customerVo.vcaddress}
+        , #{customerVo.ccpostalcode}, #{customerVo.dregdate}, #{customerVo.vregplace}
+        , #{customerVo.vmemcardno}, #{customerVo.vpcemail}, #{customerVo.nproperty})
     </insert>
     <!-- 用户信息修改 操作-->
     <update id="updateCustomer">
         UPDATE "T_Customer"
         SET
-            "pk_corp"       = #{customerVo.pk_corp}, "fccategory" = #{customerVo.fccategory},
-            "vccode"        = #{customerVo.vccode}, "vcname" = #{customerVo.vcname},
-            "vpcnamespell"  = #{customerVo.vpcnamespell},
-            "vpreferredtel" = #{customerVo.vpreferredtel}, "vccardnum" = #{customerVo.vccardnum},
-            "vcaddress"     = #{customerVo.vcaddress},
-            "ccpostalcode"  = #{customerVo.ccpostalcode}, "dregdate" = #{customerVo.dregdate},
-            "vregplace"     = #{customerVo.vregplace},
-            "vmemcardno"    = #{customerVo.vmemcardno}, "vpcemail" = #{customerVo.vpcemail},
-            "nproperty"     = #{customerVo.nproperty}
+        "pk_corp" = #{customerVo.pk_corp}, "fccategory" = #{customerVo.fccategory},
+        "vccode" = #{customerVo.vccode}, "vcname" = #{customerVo.vcname},
+        "vpcnamespell" = #{customerVo.vpcnamespell},
+        "vpreferredtel" = #{customerVo.vpreferredtel}, "vccardnum" = #{customerVo.vccardnum},
+        "vcaddress" = #{customerVo.vcaddress},
+        "ccpostalcode" = #{customerVo.ccpostalcode}, "dregdate" = #{customerVo.dregdate},
+        "vregplace" = #{customerVo.vregplace},
+        "vmemcardno" = #{customerVo.vmemcardno}, "vpcemail" = #{customerVo.vpcemail},
+        "nproperty" = #{customerVo.nproperty}
         WHERE "pk_customerid" = #{customerVo.pk_customerid}
     </update>
 
@@ -129,16 +129,17 @@
 
     <!--临时用于拉取数据的查询所有-->
     <select id="getAll" resultMap="customerMap">
-        SELECT DISTINCT c.*,r."house" FROM "T_Customer" c LEFT JOIN "T_Rent_Contract" r ON c."pk_customerid" = r."pk_customerid"
+        SELECT DISTINCT c.*,r."house" FROM "T_Customer" c LEFT JOIN "T_Rent_Contract" r ON c."pk_customerid" =
+        r."pk_customerid"
     </select>
     <update id="updadteState">
         UPDATE "T_Customer"
         SET CURRENT_FLOW = #{currentFlow}
         WHERE "houseInfoId" = #{houseInfoId}
     </update>
-    
+
     <select id="selectPhone" resultType="String">
-    	SELECT DISTINCT "Binding_Phone" FROM "T_Customer"
+        SELECT DISTINCT "Binding_Phone" FROM "T_Customer"
     </select>
 
 </mapper>
