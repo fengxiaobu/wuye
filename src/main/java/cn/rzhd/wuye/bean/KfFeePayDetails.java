@@ -114,6 +114,10 @@ public class KfFeePayDetails implements Serializable {
      * 缴费公司
      */
     private String pk_corp;
+    /**
+     * 付款记录ID
+     */
+    private String recordsId;
 
     public Long getKfFeePayDetailsId() {
         return kfFeePayDetailsId;
@@ -321,5 +325,13 @@ public class KfFeePayDetails implements Serializable {
 
     public void setPk_corp(String pk_corp) {
         this.pk_corp = pk_corp;
+    }
+
+    public String getRecordsId() {
+        return recordsId;
+    }
+
+    public void setRecordsId(String recordsId) {
+        this.recordsId = recordsId;
     }
 }

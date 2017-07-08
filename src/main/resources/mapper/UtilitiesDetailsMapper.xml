@@ -29,13 +29,14 @@
         <result column="CUSTOMER_ID" property="customerId"/>
         <result column="TUNNAGE" property="tunnage"/>
         <result column="STATUS" property="status"/>
+        <result column="RECORDS_ID" property="recordsId"/>
     </resultMap>
     <delete id="deleteByPrimaryKey" parameterType="long">
         DELETE FROM T_UTILITIES_DETAILS
         WHERE UTILITIES_DETAILS_ID = #{utilitiesDetailsId}
     </delete>
     <insert id="insert" parameterType="cn.rzhd.wuye.bean.UtilitiesDetails">
-        INSERT INTO T_UTILITIES_DETAILS (
+        INSERT INTO WUYE.T_UTILITIES_DETAILS (
             UTILITIES_DETAILS_ID, HOUSE_INFO_ID, CLIENT_NAME, FEE_TYPE, PAY_MANNER, PAY_MONTH,
             START_DATE, END_DATE, PAYABLE,
             PAID_IN, VOUCHER_NUMBER, INVOICE,
@@ -43,17 +44,17 @@
             COLLECTING_COMPANY, COLLECTING_ACCOUNT, INVOICE_COMPANY,
             PAY_TIME, AMMETER_NUMBER, MULTIPLYING_POWER,
             ELECTRIC_POWER, CARTE_TIME, UPDATE_TIME,
-            CUSTOMER_ID, TUNNAGE, STATUS)
+            CUSTOMER_ID, TUNNAGE, STATUS,RECORDS_ID)
         VALUES (#{utilitiesDetailsId}, #{houseInfoId}, #{clientName}, #{costType},
                                        #{payManner}, #{payMonth},
                                        #{startDate}, #{endDate}, #{payable},
-                                       #{paidIn}, #{voucherNumber}, #{invoice},
+                                       #{paidIn},#{voucherNumber}, #{invoice},
                                                                     #{invoiceNumber}, #{invoiceNotes}, #{invoiceStatus},
                                                                     #{collectingCompany}, #{collectingAccount},
                                                                     #{invoiceCompany},
                                                                     #{payTime}, #{ammeterNumber}, #{multiplyingPower},
                 #{electricPower}, #{carteTime}, #{updateTime},
-                #{customerId}, #{tunnage}, #{status})
+                #{customerId}, #{tunnage}, #{status}, #{recordsId})
     </insert>
     <update id="updateByPrimaryKey" parameterType="cn.rzhd.wuye.bean.UtilitiesDetails">
         UPDATE T_UTILITIES_DETAILS
@@ -82,7 +83,8 @@
             UPDATE_TIME        = #{updateTime},
             CUSTOMER_ID        = #{customerId},
             TUNNAGE            = #{tunnage},
-            STATUS             = #{status}
+            STATUS             = #{status},
+            RECORDS_ID         = #{recordsId}
         WHERE UTILITIES_DETAILS_ID = #{utilitiesDetailsId}
     </update>
     <update id="changeStatus" parameterType="long">
@@ -118,7 +120,8 @@
             UPDATE_TIME,
             CUSTOMER_ID,
             TUNNAGE,
-            STATUS
+            STATUS,
+            RECORDS_ID
         FROM T_UTILITIES_DETAILS
         WHERE UTILITIES_DETAILS_ID = #{utilitiesDetailsId}
     </select>
@@ -150,7 +153,8 @@
             UPDATE_TIME,
             CUSTOMER_ID,
             TUNNAGE,
-            STATUS
+            STATUS,
+            RECORDS_ID
         FROM T_UTILITIES_DETAILS
         WHERE HOUSE_INFO_ID = #{houseInfoId} AND PAY_TIME &gt;= to_date(#{startDate}, 'YYYY-MM-DD') AND
               PAY_TIME &lt;= to_date(#{endDate}, 'YYYY-MM-DD') AND STATUS = 'Y'
@@ -184,7 +188,8 @@
             UPDATE_TIME,
             CUSTOMER_ID,
             TUNNAGE,
-            STATUS
+            STATUS,
+            RECORDS_ID
         FROM
             (SELECT
                  UTILITIES_DETAILS_ID,
@@ -213,7 +218,8 @@
                  UPDATE_TIME,
                  CUSTOMER_ID,
                  TUNNAGE,
-                 STATUS
+                 STATUS,
+                 RECORDS_ID
              FROM T_UTILITIES_DETAILS
              WHERE CUSTOMER_ID = '${customerId}' AND HOUSE_INFO_ID = '${houseInfoId}' AND ELECTRIC_POWER IS NOT NULL
                    AND STATUS = 'Y'
@@ -248,7 +254,8 @@
             UPDATE_TIME,
             CUSTOMER_ID,
             TUNNAGE,
-            STATUS
+            STATUS,
+            RECORDS_ID
         FROM
             (SELECT
                  UTILITIES_DETAILS_ID,
@@ -277,7 +284,8 @@
                  UPDATE_TIME,
                  CUSTOMER_ID,
                  TUNNAGE,
-                 STATUS
+                 STATUS,
+                 RECORDS_ID
              FROM T_UTILITIES_DETAILS
              WHERE CUSTOMER_ID = '${customerId}' AND HOUSE_INFO_ID = '${houseInfoId}' AND TUNNAGE IS NOT NULL
                    AND STATUS = 'Y'
@@ -343,37 +351,37 @@
         a1.*,
         ROWNUM AS RN
         FROM (
-            SELECT
-            DISTINCT
-            UTILITIES_DETAILS_ID,
-            T_PROJECT_INFO.PROJECT_NAME,
-            T_HOUSE_INFO_DETAILS."vhcode",
-            CLIENT_NAME,
-            FEE_TYPE,
-            PAY_MANNER,
-            PAY_MONTH,
-            START_DATE,
-            END_DATE,
-            PAYABLE,
-            PAID_IN,
-            VOUCHER_NUMBER,
-            INVOICE_NUMBER,
-            INVOICE_NOTES,
-            INVOICE_STATUS,
-            COLLECTING_COMPANY,
-            COLLECTING_ACCOUNT,
-            PAY_TIME,
-            T_UTILITIES_DETAILS.STATUS,
-            AMMETER_NUMBER,
-            MULTIPLYING_POWER,
-            ELECTRIC_POWER
-            FROM T_UTILITIES_DETAILS
-            JOIN T_HOUSE_INFO_DETAILS ON T_HOUSE_INFO_DETAILS."pk_house" = T_UTILITIES_DETAILS.HOUSE_INFO_ID
-            JOIN T_PROJECT_INFO ON T_HOUSE_INFO_DETAILS."pk_project" = T_PROJECT_INFO.PK_PROJECT
-            JOIN T_MANAGE ON T_HOUSE_INFO_DETAILS.MANAGE_ID = T_MANAGE."pk_manageId"
-            JOIN T_MANAGE_USER ON T_MANAGE_USER.MANAGE_ID = T_MANAGE."pk_manageId"
-            <include refid="electricSql"/>
-            ORDER BY PAY_TIME DESC
+        SELECT
+        DISTINCT
+        UTILITIES_DETAILS_ID,
+        T_PROJECT_INFO.PROJECT_NAME,
+        T_HOUSE_INFO_DETAILS."vhcode",
+        CLIENT_NAME,
+        FEE_TYPE,
+        PAY_MANNER,
+        PAY_MONTH,
+        START_DATE,
+        END_DATE,
+        PAYABLE,
+        PAID_IN,
+        VOUCHER_NUMBER,
+        INVOICE_NUMBER,
+        INVOICE_NOTES,
+        INVOICE_STATUS,
+        COLLECTING_COMPANY,
+        COLLECTING_ACCOUNT,
+        PAY_TIME,
+        T_UTILITIES_DETAILS.STATUS,
+        AMMETER_NUMBER,
+        MULTIPLYING_POWER,
+        ELECTRIC_POWER
+        FROM T_UTILITIES_DETAILS
+        JOIN T_HOUSE_INFO_DETAILS ON T_HOUSE_INFO_DETAILS."pk_house" = T_UTILITIES_DETAILS.HOUSE_INFO_ID
+        JOIN T_PROJECT_INFO ON T_HOUSE_INFO_DETAILS."pk_project" = T_PROJECT_INFO.PK_PROJECT
+        JOIN T_MANAGE ON T_HOUSE_INFO_DETAILS.MANAGE_ID = T_MANAGE."pk_manageId"
+        JOIN T_MANAGE_USER ON T_MANAGE_USER.MANAGE_ID = T_MANAGE."pk_manageId"
+        <include refid="electricSql"/>
+        ORDER BY PAY_TIME DESC
         ) a1
         WHERE ROWNUM &lt;= #{endNum}) a2
         WHERE RN &gt; #{startNum}
