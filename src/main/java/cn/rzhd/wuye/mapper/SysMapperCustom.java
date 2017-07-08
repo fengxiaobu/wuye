@@ -5,7 +5,9 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import cn.rzhd.wuye.bean.HouseInfoDetails;
+import cn.rzhd.wuye.bean.ProjectInfo;
 import cn.rzhd.wuye.bean.vo.HouseInfoDetailsQueryVo;
+import cn.rzhd.wuye.bean.vo.ProjectInfoQueryVo;
 
 @Mapper
 public interface SysMapperCustom {
@@ -13,5 +15,9 @@ public interface SysMapperCustom {
     int findHouseCount(HouseInfoDetailsQueryVo queryVo);
 
     List<HouseInfoDetails> findHouseListPage(HouseInfoDetailsQueryVo queryVo);
+    
+    int findProjectCount(ProjectInfoQueryVo queryVo);
+
+    List<ProjectInfo> findProjectListPage(ProjectInfoQueryVo queryVo);
 
 }

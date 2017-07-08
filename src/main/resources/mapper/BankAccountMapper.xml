@@ -14,35 +14,35 @@
     </delete>
     <insert id="insert" parameterType="cn.rzhd.wuye.vo.FeeAccountVO">
         INSERT INTO T_BANK_ACCOUNT ("pk_account", "pk_corp", "pk_fee",
-        "account", "vdef1")
+                                    "account", "vdef1")
         VALUES (#{pk_account,jdbcType=CHAR}, #{pk_corp,jdbcType=CHAR}, #{pk_fee,jdbcType=CHAR},
-        #{account,jdbcType=VARCHAR}, #{vdef1,jdbcType=CHAR})
-    </insert>
+                #{account,jdbcType=VARCHAR}, #{vdef1,jdbcType=CHAR})
+</insert>
     <update id="updateByPrimaryKey" parameterType="cn.rzhd.wuye.vo.FeeAccountVO">
         UPDATE T_BANK_ACCOUNT
         SET "pk_corp" = #{pk_corp,jdbcType=CHAR},
-        "pk_fee" = #{pk_fee,jdbcType=CHAR},
-        "account" = #{account,jdbcType=VARCHAR},
-        "vdef1" = #{vdef1,jdbcType=CHAR}
+            "pk_fee"  = #{pk_fee,jdbcType=CHAR},
+            "account" = #{account,jdbcType=VARCHAR},
+            "vdef1"   = #{vdef1,jdbcType=CHAR}
         WHERE "pk_account" = #{pk_account,jdbcType=CHAR}
     </update>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
         SELECT
-        "pk_account",
-        "pk_corp",
-        "pk_fee",
-        "account",
-        "vdef1"
+            "pk_account",
+            "pk_corp",
+            "pk_fee",
+            "account",
+            "vdef1"
         FROM T_BANK_ACCOUNT
         WHERE "pk_account" = #{pk_account,jdbcType=CHAR}
     </select>
     <select id="selectAll" resultMap="BaseResultMap">
         SELECT
-        "pk_account",
-        "pk_corp",
-        "pk_fee",
-        "account",
-        "vdef1"
+            "pk_account",
+            "pk_corp",
+            "pk_fee",
+            "account",
+            "vdef1"
         FROM T_BANK_ACCOUNT
     </select>
 </mapper>

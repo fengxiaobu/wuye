@@ -1,45 +1,45 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="cn.rzhd.wuye.mapper.MessageManageMapper">
-    <select id="findEnterMessage" resultType="cn.rzhd.wuye.bean.MessageManage">
-        SELECT * FROM T_MESSAGE_MANAGE WHERE TYPE='入驻通知'
-    </select>
-
-    <select id="getAllMessage" resultType="cn.rzhd.wuye.bean.MessageManage">
-        SELECT * FROM T_MESSAGE_MANAGE
-    </select>
-
-    <select id="selectOne" parameterType="Long" resultType="cn.rzhd.wuye.bean.MessageManage">
-        SELECT * FROM T_MESSAGE_MANAGE WHERE MESSAGE_MANAGE_ID=#{messageManageId}
-    </select>
-
-    <delete id="deleteInfoArray">
+	<select id="findEnterMessage" resultType="cn.rzhd.wuye.bean.MessageManage">
+		SELECT * FROM T_MESSAGE_MANAGE WHERE TYPE='入驻通知'
+	</select>
+	
+	<select id="getAllMessage" resultType="cn.rzhd.wuye.bean.MessageManage">
+		SELECT * FROM T_MESSAGE_MANAGE
+	</select>
+	
+	<select id="selectOne" parameterType="Long" resultType="cn.rzhd.wuye.bean.MessageManage">
+		SELECT * FROM T_MESSAGE_MANAGE WHERE MESSAGE_MANAGE_ID=#{messageManageId}
+	</select>
+	
+	 <delete id="deleteInfoArray" >
         DELETE FROM T_MESSAGE_MANAGE WHERE MESSAGE_MANAGE_ID in
         <foreach collection="array" open="(" close=")" separator="," item="message_manage_id">
             #{message_manage_id}
         </foreach>
     </delete>
-
+    
     <select id="getAllType" resultType="String">
-        SELECT DISTINCT "TYPE" FROM T_MESSAGE_MANAGE
+    	SELECT DISTINCT "TYPE" FROM T_MESSAGE_MANAGE
     </select>
-
-    <delete id="deleteOne" parameterType="Long">
-        DELETE FROM T_MESSAGE_MANAGE WHERE MESSAGE_MANAGE_ID = #{message_manage_id}
-    </delete>
-
-    <insert id="save" parameterType="cn.rzhd.wuye.bean.MessageManage">
-        insert into T_MESSAGE_MANAGE (TITLE,
+    
+	<delete id="deleteOne" parameterType="Long">
+		 DELETE FROM T_MESSAGE_MANAGE WHERE MESSAGE_MANAGE_ID = #{message_manage_id}
+	</delete>    
+	
+	<insert id="save" parameterType="cn.rzhd.wuye.bean.MessageManage">
+		insert into T_MESSAGE_MANAGE (TITLE,
         CONTENT, NOTE,CREATE_TIME,TYPE,NAME,RANGE,STATUS)
         values (#{title},#{content},#{note},#{create_time},
         #{type},#{name},#{range},#{status})
-    </insert>
-
-    <update id="update" parameterType="cn.rzhd.wuye.bean.MessageManage">
-        UPDATE T_MESSAGE_MANAGE
-        SET TITLE = #{title}, CONTENT = #{content}, NOTE = #{note}, CREATE_TIME = #{create_time},
-        TYPE =#{type},NAME =#{name}, RANGE = #{range}, STATUS = #{status}
-        WHERE
-        MESSAGE_MANAGE_ID = #{message_manage_id}
-    </update>
+	</insert>
+	
+	<update id="update" parameterType="cn.rzhd.wuye.bean.MessageManage">
+		UPDATE T_MESSAGE_MANAGE
+		SET  TITLE = #{title}, CONTENT = #{content}, NOTE = #{note}, CREATE_TIME = #{create_time},
+		 TYPE =#{type},NAME =#{name}, RANGE = #{range}, STATUS = #{status}
+		WHERE
+			MESSAGE_MANAGE_ID = #{message_manage_id}
+	</update>
 </mapper>

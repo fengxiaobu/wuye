@@ -12,12 +12,12 @@
 <head>
     <meta charset="utf-8">
     <title>首页</title>
-    <%@include file="/common/common.jsp" %>
-    <script type="text/javascript">
-        function logout() {
-            location.href = "/loginOut";
-        }
-    </script>
+ <%@include file="/common/common.jsp" %>    
+<script type="text/javascript">
+	function logout() {
+		location.href="/loginOut";
+	}
+</script>
 </head>
 <body>
 
@@ -31,16 +31,14 @@
                 <shiro:user>
                     <div class="nav-group">
                         <div class="user-container">
-                            <div class="user-photo-wrap"><img
-                                    src="${pageContext.request.contextPath}/imgs_test/timg.jpg" alt="..."
-                                    class="img-circle user-photo"></div>
+                            <div class="user-photo-wrap"><img src="${pageContext.request.contextPath}/imgs_test/timg.jpg" alt="..."
+                                                              class="img-circle user-photo"></div>
                             <div class="user-name"><shiro:principal property="realname"/></div>
                         </div>
                         <button class="btn btn-default" type="button"><span
                                 class="glyphicon glyphicon-bullhorn"></span><span class="badge">4</span>消息
                         </button>
-                        <button class="btn btn-default" type="button" onclick="logout()"><span
-                                class="glyphicon glyphicon-off"></span>退出
+                        <button class="btn btn-default" type="button" onclick="logout()"><span class="glyphicon glyphicon-off"></span>退出
                         </button>
                     </div>
                 </shiro:user>
@@ -67,8 +65,7 @@
                             <ul class="panel-group level02" id="aside_one_02">
                                 <li class="panel" role="tab">
                                     <div class="panel-header">
-                                        <a href="${pageContext.request.contextPath}/user/getAllUser?pageNum=1&pageSize=10"
-                                           target="main">用户列表</a>
+                                        <a href="${pageContext.request.contextPath}/user/getAllUser?pageNum=1&pageSize=10" target="main">用户列表</a>
                                     </div>
                                 </li>
                             </ul>
@@ -88,19 +85,16 @@
                             <ul class="panel-group level02" id="aside_two_02">
                                 <li class="panel" role="tab">
                                     <div class="panel-header">
-                                        <a href="${pageContext.request.contextPath}/propertyRecords/payFeeRecords"
-                                           target="main">物业费用</a>
+                                        <a href="${pageContext.request.contextPath}/propertyRecords/payFeeRecords" target="main">物业费用</a>
                                     </div>
                                     <div class="panel-header">
-                                        <a href="${pageContext.request.contextPath}/propertyRecords/index"
-                                           target="main">物业缴费记录</a>
+                                        <a href="${pageContext.request.contextPath}/propertyRecords/index" target="main">物业缴费记录</a>
                                     </div>
                                 </li>
 
                                 <li class="panel" role="tab">
                                     <div class="panel-header">
-                                        <a href="${pageContext.request.contextPath}/kfRecords/payFeeRecords"
-                                           target="main">开发费用</a>
+                                        <a href="${pageContext.request.contextPath}/kfRecords/payFeeRecords" target="main">开发费用</a>
                                     </div>
                                     <div class="panel-header">
                                         <a href="${pageContext.request.contextPath}/kfRecords/index" target="main">开发缴费记录</a>
@@ -108,16 +102,14 @@
                                 </li>
                                 <li class="panel" role="tab">
                                     <div class="panel-header">
-                                        <a href="${pageContext.request.contextPath}/utilitiesRecords/electricIndex"
-                                           target="main">电费缴费记录表</a>
+                                        <a href="${pageContext.request.contextPath}/utilitiesRecords/electricIndex" target="main">电费缴费记录表</a>
                                     </div>
 
                                 </li>
 
                                 <li class="panel" role="tab">
                                     <div class="panel-header">
-                                        <a href="${pageContext.request.contextPath}/utilitiesRecords/waterIndex"
-                                           target="main">水费缴费记录表</a>
+                                        <a href="${pageContext.request.contextPath}/utilitiesRecords/waterIndex" target="main">水费缴费记录表</a>
                                     </div>
                                 </li>
                             </ul>
@@ -137,22 +129,19 @@
                             <ul class="panel-group level02" id="aside_three_011">
                                 <li class="panel" role="tab">
                                     <div class="panel-header">
-                                        <a href="${pageContext.request.contextPath}/houseInfoDetailsBack/getHouseInfoDetailsList?pageNum=1&pageSize=10"
-                                           target="main">房产信息</a>
+                                        <a href="${pageContext.request.contextPath}/houseInfoDetailsBack/getHouseInfoDetailsList?pageNum=1&pageSize=10" target="main">房产信息</a>
                                     </div>
                                 </li>
 
                                 <li class="panel" role="tab">
                                     <div class="panel-header">
-                                        <a href="${pageContext.request.contextPath}/sellContractBack/getSellContractList?pageNum=1&pageSize=10"
-                                           target="main">销售合同表</a>
+                                        <a href="${pageContext.request.contextPath}/sellContractBack/getSellContractList?pageNum=1&pageSize=10" target="main">销售合同表</a>
                                     </div>
                                 </li>
 
                                 <li class="panel" role="tab">
                                     <div class="panel-header">
-                                        <a href="${pageContext.request.contextPath}/rentContractBack/getRentContractList?pageNum=1&pageSize=10"
-                                           target="main">租赁合同表</a>
+                                        <a href="${pageContext.request.contextPath}/rentContractBack/getRentContractList?pageNum=1&pageSize=10" target="main">租赁合同表</a>
                                     </div>
                                 </li>
                             </ul>
@@ -172,23 +161,20 @@
                             <ul class="panel-group level02" id="aside_four_02">
                                 <li class="panel" role="tab">
                                     <div class="panel-header">
-                                        <a href="${pageContext.request.contextPath}/dist/enterApply/enterApplyList?pageNum=1&pageSize=500"
-                                           target="main">入住申请</a>
+                                        <a href="${pageContext.request.contextPath}/dist/enterApply/enterApplyList?pageNum=1&pageSize=500" target="main">入住申请</a>
                                     </div>
                                 </li>
 
                                 <li class="panel" role="tab">
                                     <div class="panel-header">
-                                        <a target="main"
-                                           href="${pageContext.request.contextPath}/dist/enterMaterial/findEnterMaterialList?pageNum=1&pageSize=500">入住资料列表</a>
+                                        <a target="main" href="${pageContext.request.contextPath}/dist/enterMaterial/findEnterMaterialList?pageNum=1&pageSize=500">入住资料列表</a>
                                     </div>
 
                                 </li>
 
                                 <li class="panel" role="tab">
                                     <div class="panel-header">
-                                        <a target="main"
-                                           href="${pageContext.request.contextPath}/dist/toDecorationApplyList">装修申请</a>
+                                        <a target="main" href="${pageContext.request.contextPath}/dist/toDecorationApplyList">装修申请</a>
                                     </div>
 
                                 </li>
@@ -202,16 +188,14 @@
 
                                 <li class="panel" role="tab">
                                     <div class="panel-header">
-                                        <a target="main" target="main"
-                                           href="${pageContext.request.contextPath}/findRetreatLeaseApply">退租申请</a>
+                                        <a target="main" target="main" href="${pageContext.request.contextPath}/findRetreatLeaseApply">退租申请</a>
                                     </div>
 
                                 </li>
 
                                 <li class="panel" role="tab">
                                     <div class="panel-header">
-                                        <a target="main"
-                                           href="${pageContext.request.contextPath}/findReletApply">续租申请</a>
+                                        <a target="main" href="${pageContext.request.contextPath}/findReletApply">续租申请</a>
                                     </div>
 
                                 </li>
@@ -233,52 +217,52 @@
                             <ul class="panel-group level02" id="aside_five_02">
                                 <li class="panel" role="tab">
                                     <div class="panel-header">
-                                        <a target="main" href="${basePath}/admin/sys/rename/1">更名</a>
+                                        <a  target="main"  href="${basePath}/admin/sys/rename/1">更名</a>
                                     </div>
                                 </li>
 
                                 <li class="panel" role="tab">
                                     <div class="panel-header">
-                                        <a target="main" href="${basePath}/admin/sys/decoinfo/2">装修须知</a>
+                                        <a  target="main"  href="${basePath}/admin/sys/decoinfo/2">装修须知</a>
                                     </div>
                                 </li>
 
                                 <li class="panel" role="tab">
                                     <div class="panel-header">
-                                        <a target="main" href="${basePath}/page/system/waterele/houslist">房产电费限制</a>
+                                        <a  target="main"  href="${basePath}/page/system/waterele/houslist">房产电费限制</a>
                                     </div>
 
                                 </li>
 
                                 <li class="panel" role="tab">
                                     <div class="panel-header">
-                                        <a target="main" href="${basePath}/page/system/waterele/projectlist">项目电费限制</a>
+                                        <a  target="main"  href="${basePath}/page/system/waterele/projectlist">项目电费限制</a>
+                                    </div>
+                                </li>
+
+                            <li class="panel" role="tab">
+                                <div class="panel-header">
+                                    <a  target="main" href="${basePath}/admin/sys/set">系统信息设置</a>
+                                </div>
+                                <div class="panel-header">
+                                    <a  target="main"  href="${basePath}/admin/sys/checkinprompt/3">入住提示信息</a>
+                                </div>
+                            </li>
+
+                                <li class="panel" role="tab">
+                                    <div class="panel-header">
+                                        <a target="main"  href="${basePath}/page/system/project/projectlist">项目设置</a>
                                     </div>
                                 </li>
 
                                 <li class="panel" role="tab">
                                     <div class="panel-header">
-                                        <a target="main" href="${basePath}/admin/sys/set">系统信息设置</a>
-                                    </div>
-                                    <div class="panel-header">
-                                        <a target="main" href="${basePath}/admin/sys/checkinprompt/3">入住提示信息</a>
-                                    </div>
-                                </li>
-
-                                <li class="panel" role="tab">
-                                    <div class="panel-header">
-                                        <a target="main" href="${basePath}/page/system/project/projectlist">项目设置</a>
-                                    </div>
-                                </li>
-
-                                <li class="panel" role="tab">
-                                    <div class="panel-header">
-                                        <a target="main" href="${basePath}/page/system/bill/propertylist">物业开票列表</a>
+                                        <a  target="main"  href="${basePath}/page/system/bill/propertylist">物业开票列表</a>
                                     </div>
                                 </li>
                                 <li class="panel" role="tab">
                                     <div class="panel-header">
-                                        <a target="main" href="${basePath}/page/system/bill/develist">开发开票列表</a>
+                                        <a  target="main"  href="${basePath}/page/system/bill/develist">开发开票列表</a>
                                     </div>
                                 </li>
 
@@ -305,12 +289,10 @@
                             <ul class="panel-group level02" id="aside_six_011">
                                 <li class="panel" role="tab">
                                     <div class="panel-header">
-                                        <a href="${pageContext.request.contextPath}/messageManageBack/getMessageManageList?pageNum=1&pageSize=10"
-                                           target="main">通知列表</a>
+                                        <a href="${pageContext.request.contextPath}/messageManageBack/getMessageManageList?pageNum=1&pageSize=10" target="main">通知列表</a>
                                     </div>
                                     <div class="panel-header">
-                                        <a href="${pageContext.request.contextPath}/messageManageBack/messageManageEdit"
-                                           target="main">发布通知</a>
+                                        <a href="${pageContext.request.contextPath}/messageManageBack/messageManageEdit" target="main">发布通知</a>
                                     </div>
                                 </li>
                             </ul>
@@ -331,50 +313,43 @@
                             <ul class="panel-group level02" id="aside_seven_02">
                                 <li class="panel" role="tab">
                                     <div class="panel-header">
-                                        <a href="${pageContext.request.contextPath}/typeRefinement/getTypeData?pageNum=1&pageSize=10&typeDifferentiateId=9"
-                                           target="main">通知类型</a>
+                                        <a href="${pageContext.request.contextPath}/typeRefinement/getTypeData?pageNum=1&pageSize=10&typeDifferentiateId=9" target="main">通知类型</a>
                                     </div>
                                 </li>
 
                                 <li class="panel" role="tab">
                                     <div class="panel-header">
-                                        <a href="${pageContext.request.contextPath}/typeRefinement/getTypeData?pageNum=1&pageSize=10&typeDifferentiateId=1"
-                                           target="main">房产使用属性</a>
+                                        <a href="${pageContext.request.contextPath}/typeRefinement/getTypeData?pageNum=1&pageSize=10&typeDifferentiateId=1" target="main">房产使用属性</a>
                                     </div>
                                 </li>
 
                                 <li class="panel" role="tab">
                                     <div class="panel-header">
-                                        <a href="${pageContext.request.contextPath}/typeRefinement/getTypeData?pageNum=1&pageSize=10&typeDifferentiateId=2"
-                                           target="main">企业在U谷中的属性</a>
+                                        <a href="${pageContext.request.contextPath}/typeRefinement/getTypeData?pageNum=1&pageSize=10&typeDifferentiateId=2" target="main">企业在U谷中的属性</a>
                                     </div>
                                 </li>
 
                                 <li class="panel" role="tab">
                                     <div class="panel-header">
-                                        <a href="${pageContext.request.contextPath}/typeRefinement/getTypeData?pageNum=1&pageSize=10&typeDifferentiateId=3"
-                                           target="main">所属行业</a>
+                                        <a href="${pageContext.request.contextPath}/typeRefinement/getTypeData?pageNum=1&pageSize=10&typeDifferentiateId=3" target="main">所属行业</a>
                                     </div>
                                 </li>
 
                                 <li class="panel" role="tab">
                                     <div class="panel-header">
-                                        <a href="${pageContext.request.contextPath}/typeRefinement/getTypeData?pageNum=1&pageSize=10&typeDifferentiateId=4"
-                                           target="main">上市类型</a>
+                                        <a href="${pageContext.request.contextPath}/typeRefinement/getTypeData?pageNum=1&pageSize=10&typeDifferentiateId=4" target="main">上市类型</a>
                                     </div>
                                 </li>
 
                                 <li class="panel" role="tab">
                                     <div class="panel-header">
-                                        <a href="${pageContext.request.contextPath}/typeRefinement/getTypeData?pageNum=1&pageSize=10&typeDifferentiateId=5"
-                                           target="main">专利类型</a>
+                                        <a href="${pageContext.request.contextPath}/typeRefinement/getTypeData?pageNum=1&pageSize=10&typeDifferentiateId=5" target="main">专利类型</a>
                                     </div>
                                 </li>
 
                                 <li class="panel" role="tab">
                                     <div class="panel-header">
-                                        <a href="${pageContext.request.contextPath}/typeRefinement/getTypeData?pageNum=1&pageSize=10&typeDifferentiateId=6"
-                                           target="main">退租类型</a>
+                                        <a href="${pageContext.request.contextPath}/typeRefinement/getTypeData?pageNum=1&pageSize=10&typeDifferentiateId=6" target="main">退租类型</a>
                                     </div>
 
                                 </li>
