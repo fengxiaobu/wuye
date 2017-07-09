@@ -1,6 +1,7 @@
 package cn.rzhd.wuye.mapper;
 
 import cn.rzhd.wuye.bean.KfFeePayDetails;
+import cn.rzhd.wuye.vo.FeeVO;
 import cn.rzhd.wuye.vo.query.KfFeePayDetailsQuery;
 import cn.rzhd.wuye.vo.query.PropertyRecordsQuery;
 import org.apache.ibatis.annotations.Mapper;
@@ -31,4 +32,8 @@ public interface KfFeePayDetailsMapper {
     Integer countByQuery(PropertyRecordsQuery query);
 
     void changeStatusByRecordsId(String id);
+
+    List<FeeVO> getFeeDataByRecordsId(String id);
+
+    void updateBillIdByRecordsId(@Param("id") String id,@Param("billId") String billid,@Param("billNo") String billno);
 }

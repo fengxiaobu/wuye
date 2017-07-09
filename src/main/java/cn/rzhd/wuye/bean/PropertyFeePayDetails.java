@@ -119,7 +119,14 @@ public class PropertyFeePayDetails implements Serializable{
 	 * 收费项目主键
 	 */
 	private String pk_feeType;
-	
+	/**
+	 * 付款记录ID
+	 */
+	private String recordsId;
+	/**
+	 * 物业费用数据ID
+	 */
+	private String propertyFeeId;
 	/**
 	 * @return the clientName
 	 */
@@ -403,5 +410,21 @@ public class PropertyFeePayDetails implements Serializable{
 
 	public void setPk_feeType(String pk_feeType) {
 		this.pk_feeType = pk_feeType;
+	}
+
+	public String getRecordsId() {
+		return recordsId;
+	}
+
+	public void setRecordsId(String recordsId) {
+		this.recordsId = recordsId;
+	}
+
+	public String getPropertyFeeId() {
+		return propertyFeeId;
+	}
+
+	public void setPropertyFeeId(String propertyFeeId) {
+		this.propertyFeeId = propertyFeeId;
 	}
 }

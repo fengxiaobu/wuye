@@ -7,6 +7,7 @@
         <result column="pk_project" property="pk_project" jdbcType="CHAR"/>
         <result column="pk_house" property="pk_house" jdbcType="CHAR"/>
         <result column="pk_receivablesid" property="pk_receivablesid" jdbcType="CHAR"/>
+        <result column="pk_feetype" property="pk_feetype" jdbcType="CHAR"/>
         <result column="feetype" property="feetype" jdbcType="VARCHAR"/>
         <result column="actmonth" property="actmonth" jdbcType="VARCHAR"/>
         <result column="dbegin" property="dbegin" jdbcType="VARCHAR"/>
@@ -20,6 +21,7 @@
     <resultMap id="forPay" type="map">
         <id column="pk_feetype" property="pkFeeType"/>
         <result column="months" property="months"/>
+        <result column="pk_feetype" property="pk_feetype"/>
         <result column="feetype" property="feetype"/>
         <result column="dbegin" property="beginDate"/>
         <result column="dend" property="stopDate"/>
@@ -95,6 +97,7 @@
             "pk_project",
             "pk_house",
             "pk_receivablesid",
+            "pk_feetype",
             "feetype",
             "actmonth",
             "dbegin",
@@ -158,6 +161,7 @@
     <select id="selectForPay" parameterType="cn.rzhd.wuye.vo.query.ArrearsQuery" resultMap="forPay">
         SELECT
         SUBSTR("dshpay", 1, 7) AS months,
+        "pk_feetype",
         "feetype",
         "dbegin",
         "dend",
@@ -173,6 +177,7 @@
         <include refid="queryForPay"/>
         GROUP BY
         SUBSTR("dshpay", 1, 7),
+        "pk_feetype",
         "feetype",
         "dbegin",
         "dend",

@@ -29,4 +29,6 @@ public interface IKfFeePayDetailsService {
     Integer countByQuery(PropertyRecordsQuery query);
 
     void changeStatusByRecordsId(String id);
+
+    void updateToERP(String id);
 }

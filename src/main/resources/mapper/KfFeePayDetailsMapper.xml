@@ -31,13 +31,18 @@
                                           CARTE_TIME,
                                           UPDATE_TIME,
                                           CUSTOMER_ID,
-                                          RECORDS_ID)
+                                          RECORDS_ID,
+                                          PK_FEE_TYPE,
+                                          PK_KF_FEE)
         VALUES
-            (#{pk_corp},#{kfFeePayDetailsId}, #{houseInfoId}, #{clientName}, #{costType}, #{payManner}, #{payMonth}, #{startDate},
-                                   #{endDate}, #{payable}, #{paidIn}, #{voucherNumber},
-                #{invoice}, #{invoiceNumber}, #{invoiceNotes}, #{invoiceStatus}, #{collectingCompany},
-                #{collectingAccount}, #{invoiceCompany}, #{payTime}, #{carteTime}, #{updateTime}, #{customerId},
-             #{recordsId})
+            (#{pk_corp}, #{kfFeePayDetailsId}, #{houseInfoId}, #{clientName}, #{costType}, #{payManner}, #{payMonth},
+                         #{startDate},
+                         #{endDate}, #{payable}, #{paidIn}, #{voucherNumber},
+                                                            #{invoice}, #{invoiceNumber}, #{invoiceNotes},
+                                                            #{invoiceStatus}, #{collectingCompany},
+                                                            #{collectingAccount}, #{invoiceCompany}, #{payTime},
+                                                            #{carteTime}, #{updateTime}, #{customerId},
+             #{recordsId}, #{pk_feeType}, #{kfFeeId})
     </insert>
     <update id="changeStatus" parameterType="long">
         UPDATE T_KF_FEE_PAY_DETAILS
@@ -47,6 +52,11 @@
     <update id="changeStatusByRecordsId" parameterType="string">
         UPDATE T_KF_FEE_PAY_DETAILS
         SET STATUS = 'Y'
+        WHERE RECORDS_ID = #{id}
+    </update>
+    <update id="updateBillIdByRecordsId">
+        UPDATE T_PROPERTY_FEE_PAY_DETAILS
+        SET BILL_ID = #{billId}, VOUCHER_NUMBER = #{billNo}
         WHERE RECORDS_ID = #{id}
     </update>
 
@@ -74,6 +84,7 @@
         <result property="updateTime" column="UPDATE_TIME"/>
         <result property="customerId" column="CUSTOMER_ID"/>
         <result property="recordsId" column="RECORDS_ID"/>
+        <result property="kfFeeId" column="PK_KF_FEE"/>
     </resultMap>
 
 
@@ -220,5 +231,19 @@
         JOIN T_MANAGE ON T_HOUSE_INFO_DETAILS.MANAGE_ID = T_MANAGE."pk_manageId"
         JOIN T_MANAGE_USER ON T_MANAGE_USER.MANAGE_ID = T_MANAGE."pk_manageId"
         <include refid="querySql"/>
+    </select>
+    <select id="getFeeDataByRecordsId" parameterType="string" resultType="cn.rzhd.wuye.vo.FeeVO">
+        --         公司主键，项目主键，房产主键，客户主键，费用数据主键，收费项目主键，实收金额
+        SELECT
+            T_KF_FEE_PAY_DETAILS.PK_CORP AS pk_corp,
+            T_HOUSE_INFO_DETAILS."pk_project",
+            HOUSE_INFO_ID                AS pk_house,
+            CUSTOMER_ID                  AS pk_customerid,
+            PK_KF_FEE                    AS pk_course_b,
+            PK_FEE_TYPE                  AS pk_feetype,
+            PAID_IN                      AS nmny
+        FROM T_KF_FEE_PAY_DETAILS
+            JOIN T_HOUSE_INFO_DETAILS ON HOUSE_INFO_ID = T_HOUSE_INFO_DETAILS."pk_house"
+        WHERE RECORDS_ID = #{id}
     </select>
 </mapper>

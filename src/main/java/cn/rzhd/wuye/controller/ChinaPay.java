@@ -201,7 +201,7 @@ public class ChinaPay {
                 }else if("开发".equals(type)){
                     kaifa.changeStatusByRecordsId(id);
                     kaifaInvoice.changeStatusByRecordsId(id);
-                    //kaifa.updateToERP(id);
+                    kaifa.updateToERP(id);
                 }else if("水电".equals(type)){
                     shuidian.changeStatusByRecordsId(id);
                     shuidianInvoice.changeStatusByRecordsId(id);
@@ -354,16 +354,26 @@ public class ChinaPay {
                 System.out.println("-----------------------------------------------------------------");
                // System.out.println("费用类型:" + vo.getType() + ",费用记录ID:" + vo.getId());
                 System.out.println("-----------------------------------------------------------------");
-                if ("wuye".equals(vo.getType())) {
-                    //wuye.changeStatus(vo.getId());
-                    result.put("msg", "wuye");
-                } else if ("kaifa".equals(vo.getType())) {
-                    //kaifa.changeStatus(vo.getId());
-                    result.put("msg", "kaifa");
-                } else if ("shuidian".equals(vo.getType())) {
-                    //shuidian.changeStatus(vo.getId());
-                    result.put("msg", "shuidian");
-                } else if ("rzwuye".equals(vo.getType())) {
+                /**
+                 * 修改缴费详情记录状态为可见
+                 * 修改开票记录状态为可见
+                 */
+                String id = vo.getId();
+                String type = payFeeRecordsService.getTypeById(id);
+                if("物业".equals(type)){
+                    wuye.changeStatusByRecordsId(id);
+                    wuyeInvoice.changeStatusByRecordsId(id);
+                    wuye.updateToERP(id);
+                }else if("开发".equals(type)){
+                    kaifa.changeStatusByRecordsId(id);
+                    kaifaInvoice.changeStatusByRecordsId(id);
+                    kaifa.updateToERP(id);
+                }else if("水电".equals(type)){
+                    shuidian.changeStatusByRecordsId(id);
+                    shuidianInvoice.changeStatusByRecordsId(id);
+                    //shuidian.updateToERP(id);
+                }
+                if ("rzwuye".equals(vo.getType())) {
                     List<Map<String, JsonFormat.Value>> enterApplyByID = enterApplyService.getEnterApplyByID(vo.getApplyId());
                     if (enterApplyByID.size() > 0) {
                         Map<String, JsonFormat.Value> stringValueMap = enterApplyByID.get(0);

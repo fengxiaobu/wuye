@@ -313,6 +313,7 @@ public class InvoicingController {
             JSON json = (JSON) o;
             PropertyFeePayDetails detail = JSON.toJavaObject(json, PropertyFeePayDetails.class);
             Long detailId = IDUtils.genLongUID();
+            detail.setRecordsId(id);
             detail.setCarteTime(new Date());
             detail.setPayTime(new Date());
             detail.setPropertyFeePayDetails(detailId);

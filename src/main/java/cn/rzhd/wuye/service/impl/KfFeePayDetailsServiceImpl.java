@@ -1,8 +1,11 @@
 package cn.rzhd.wuye.service.impl;
 
 import cn.rzhd.wuye.bean.KfFeePayDetails;
+import cn.rzhd.wuye.common.UpdateToERP;
 import cn.rzhd.wuye.mapper.KfFeePayDetailsMapper;
 import cn.rzhd.wuye.service.IKfFeePayDetailsService;
+import cn.rzhd.wuye.vo.FeeVO;
+import cn.rzhd.wuye.vo.LiandoServiceConstant;
 import cn.rzhd.wuye.vo.query.KfFeePayDetailsQuery;
 import cn.rzhd.wuye.vo.query.PropertyRecordsQuery;
 import com.github.pagehelper.StringUtil;
@@ -66,5 +69,14 @@ public class KfFeePayDetailsServiceImpl implements IKfFeePayDetailsService {
     @Override
     public void changeStatusByRecordsId(String id) {
         mapper.changeStatusByRecordsId(id);
+    }
+
+    @Override
+    public void updateToERP(String id) {
+        List<FeeVO> list = mapper.getFeeDataByRecordsId(id);
+        Map<String, String> map = UpdateToERP.updateToERP(list, id, LiandoServiceConstant.DATA_TYPE_KF_FEE);
+        String billid = map.get("billid");
+        String billno = map.get("billno");
+        mapper.updateBillIdByRecordsId(id, billid, billno);
     }
 }

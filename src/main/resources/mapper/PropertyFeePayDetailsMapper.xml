@@ -40,6 +40,7 @@
         <result property="customerId" column="CUSTOMER_ID"/>
         <result property="status" column="STATUS"/>
         <result property="recordsId" column="RECORDS_ID"/>
+        <result property="propertyFeeId" column="PK_WY_FEE"/>
     </resultMap>
 
     <insert id="insert" parameterType="cn.rzhd.wuye.bean.PropertyFeePayDetails">
@@ -67,14 +68,16 @@
                                                 UPDATE_TIME,
                                                 CUSTOMER_ID,
                                                 STATUS,
-                                                RECORDS_ID)
-        VALUES (#{pk_corp},#{propertyFeePayDetails}, #{houseInfoId}, #{clientName}, #{costType}, #{payManner},
-                                          #{payMonth}, #{startDate}, #{endDate}, #{payable}, #{paidIn},
-                                          #{voucherNumber}, #{invoice},
-                                                            #{invoiceNumber}, #{invoiceNotes}, #{invoiceStatus},
-                                                            #{collectingCompany}, #{collectingAccount},
-                                                            #{invoiceCompany}, #{payTime}, #{carteTime}, #{updateTime},
-                #{customerId}, #{status}, #{recordsId}
+                                                RECORDS_ID,
+                                                PK_WY_FEE,
+                                                PK_FEE_TYPE)
+        VALUES (#{pk_corp}, #{propertyFeePayDetails}, #{houseInfoId}, #{clientName}, #{costType}, #{payManner},
+                            #{payMonth}, #{startDate}, #{endDate}, #{payable}, #{paidIn},
+            #{voucherNumber}, #{invoice},
+            #{invoiceNumber}, #{invoiceNotes}, #{invoiceStatus},
+            #{collectingCompany}, #{collectingAccount},
+            #{invoiceCompany}, #{payTime}, #{carteTime}, #{updateTime},
+                #{customerId}, #{status}, #{recordsId}, #{propertyFeeId},#{pk_feeType}
         )
 
     </insert>
@@ -105,7 +108,8 @@
         UPDATE_TIME,
         CUSTOMER_ID,
         STATUS,
-        RECORDS_ID
+        RECORDS_ID,
+        PK_WY_FEE
         FROM T_PROPERTY_FEE_PAY_DETAILS
         <include refid="whereSql"/>
     </select>
@@ -136,7 +140,8 @@
             CUSTOMER_ID,
             STATUS,
             FEETYPE,
-            RECORDS_ID
+            RECORDS_ID,
+            PK_WY_FEE
         FROM T_PROPERTY_FEE_PAY_DETAILS
     </select>
 
@@ -166,6 +171,7 @@
         <result property="customerId" column="CUSTOMER_ID"/>
         <result property="status" column="STATUS"/>
         <result property="recordsId" column="RECORDS_ID"/>
+        <result property="propertyFeeId" column="PK_WY_FEE"/>
     </resultMap>
     <sql id="querySql">
         <where>
@@ -216,7 +222,9 @@
         CARTE_TIME,
         T_PROPERTY_FEE_PAY_DETAILS.UPDATE_TIME,
         CUSTOMER_ID,
-        T_PROPERTY_FEE_PAY_DETAILS.STATUS
+        T_PROPERTY_FEE_PAY_DETAILS.STATUS,
+        RECORDS_ID,
+        PK_WY_FEE
         FROM T_PROPERTY_FEE_PAY_DETAILS
         JOIN T_HOUSE_INFO_DETAILS ON T_HOUSE_INFO_DETAILS."pk_house" = T_PROPERTY_FEE_PAY_DETAILS.HOUSE_INFO_ID
         JOIN T_PROJECT_INFO ON T_HOUSE_INFO_DETAILS."pk_project" = T_PROJECT_INFO.PK_PROJECT
@@ -255,19 +263,30 @@
         JOIN T_MANAGE_USER ON T_MANAGE_USER.MANAGE_ID = T_MANAGE."pk_manageId"
         <include refid="querySql"/>
     </select>
-    <resultMap id="updateMap" type="cn.rzhd.wuye.vo.FeeVO">
 
-    </resultMap>
-
-    <select id="getFeeDataByRecordsId" parameterType="string" resultMap="updateMap">
---         公司主键，项目主键，房产主键，客户主键，费用数据主键，收费项目主键，实收金额
-        SELECT PK_CORP,T_HOUSE_INFO_DETAILS."pk_project",HOUSE_INFO_ID,CUSTOMER_ID,PK_FEE_TYPE,
+    <select id="getFeeDataByRecordsId" parameterType="string" resultType="cn.rzhd.wuye.vo.FeeVO">
+        --         公司主键，项目主键，房产主键，客户主键，费用数据主键，收费项目主键，实收金额
+        SELECT
+            T_PROPERTY_FEE_PAY_DETAILS.PK_CORP AS pk_corp,
+            T_HOUSE_INFO_DETAILS."pk_project",
+            HOUSE_INFO_ID                      AS pk_house,
+            CUSTOMER_ID                        AS pk_customerid,
+            PK_WY_FEE                          AS pk_receivablesid,
+            PK_FEE_TYPE                        AS pk_feetype,
+            PAID_IN                            AS nmny
         FROM T_PROPERTY_FEE_PAY_DETAILS
+            JOIN T_HOUSE_INFO_DETAILS ON HOUSE_INFO_ID = T_HOUSE_INFO_DETAILS."pk_house"
+        WHERE RECORDS_ID = #{id}
     </select>
 
     <update id="changeStatusByRecordsId" parameterType="string">
         UPDATE T_PROPERTY_FEE_PAY_DETAILS
         SET STATUS = 'Y'
+        WHERE RECORDS_ID = #{id}
+    </update>
+    <update id="updateBillIdByRecordsId">
+        UPDATE T_PROPERTY_FEE_PAY_DETAILS
+        SET BILL_ID = #{billId}, VOUCHER_NUMBER = #{billNo}
         WHERE RECORDS_ID = #{id}
     </update>
 

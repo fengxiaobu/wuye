@@ -118,6 +118,10 @@ public class KfFeePayDetails implements Serializable {
      * 收费项目主键
      */
     private String pk_feeType;
+    /**
+     * 开发费用数据ID
+     */
+    private String kfFeeId;
 
     public Long getKfFeePayDetailsId() {
         return kfFeePayDetailsId;
@@ -333,5 +337,13 @@ public class KfFeePayDetails implements Serializable {
 
     public void setPk_feeType(String pk_feeType) {
         this.pk_feeType = pk_feeType;
+    }
+
+    public String getKfFeeId() {
+        return kfFeeId;
+    }
+
+    public void setKfFeeId(String kfFeeId) {
+        this.kfFeeId = kfFeeId;
     }
 }
