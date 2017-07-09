@@ -2,7 +2,6 @@ package cn.rzhd.wuye.controller;
 
 import cn.rzhd.wuye.bean.*;
 import cn.rzhd.wuye.service.*;
-import cn.rzhd.wuye.utils.IDUtils;
 import cn.rzhd.wuye.vo.query.ApplyQuery;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;
@@ -110,7 +109,7 @@ public class DecorationApplyController {
                 for (int i = 0; i < decorationApply.getDecorateDetailList().size(); i++) {
                     DecorateDetail decorateDetail = new DecorateDetail();
                     decorateDetail.setDecorationApplyId(aLong);
-                    decorateDetail.setDecorateDetailId(IDUtils.genLongUID());
+                    decorateDetail.setDecorateDetailId(Long.valueOf(RandomUtil.randomNumbers(16)));
                     decorateDetail.setDetailOrder(i + 1L);
                     decorateDetail.setDetailContent(decorationApply.getDecorateDetailList().get(i).getDetailContent());
                     //装修明细
@@ -119,7 +118,7 @@ public class DecorationApplyController {
                 for (int i = 0; i < decorationApply.getDecorationMaterialList().size(); i++) {
                     DecorationMaterial decorationMaterial = new DecorationMaterial();
                     decorationMaterial.setDecorationApplyId(aLong);
-                    decorationMaterial.setDecorationMaterialId(IDUtils.genLongUID());
+                    decorationMaterial.setDecorationMaterialId(Long.valueOf(RandomUtil.randomNumbers(16)));
                     decorationMaterial.setMaterialAddress(decorationApply.getDecorationMaterialList().get(i).getMaterialAddress());
                     decorationMaterial.setMaterialName(decorationApply.getDecorationMaterialList().get(i).getMaterialName());
 
