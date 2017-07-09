@@ -85,5 +85,4 @@ public class PropertyFeePayDetailsServiceImpl implements IPropertyFeePayDetailsS
     public void updateToERP(String id) {
         List<FeeVO> list = mapper.getFeeDataByRecordsId(id);
     }
-
 }

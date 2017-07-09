@@ -90,7 +90,11 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
+<<<<<<< HEAD:src/main/resources/static/js/vendors.js
 /******/ 	var hotCurrentHash = "71bc511035c85c83901e"; // eslint-disable-line no-unused-vars
+=======
+/******/ 	var hotCurrentHash = "28857691e3ae060ec5d2"; // eslint-disable-line no-unused-vars
+>>>>>>> fea4f8ee60999ae4514d34c43466caadd61acd27:src/main/webapp/dist/js/vendors.js
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	

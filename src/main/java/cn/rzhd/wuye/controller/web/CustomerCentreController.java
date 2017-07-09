@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -208,6 +209,7 @@ public class CustomerCentreController {
 
     @RequestMapping("/getPerfectInformation")
     public PerfectInformation getPerfectInformation(String houseInfoId) {
+    	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         PerfectInformation perfectInformation = perfectInformationService.getByHouseInfoId(houseInfoId);
         return perfectInformation;
     }

@@ -58,18 +58,19 @@
 							<div class="col-sm-3">
 								<fmt:formatDate value="${typeRefinement.updateTime}" type="both" pattern="yyyy-MM-dd hh:mm"/>
 							</div>
-
-						</div>
-						<div class="form-group">
-							<div class="col-sm-offset-2 col-sm-10">
-								<button class="btn btn-success from_sub" type="submit"><span class="glyphicon glyphicon-ok"></span>保存</button>
-							</div>
-						</div>
-					</div>
-					</form>
-				</div>
-			</div>
-		</div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button class="btn btn-success from_sub" type="submit"><span
+                                    class="glyphicon glyphicon-ok"></span>保存
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 </body>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/libs/jquery-1.11.3.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/libs/bootstrap/js/bootstrap.min.js"></script>

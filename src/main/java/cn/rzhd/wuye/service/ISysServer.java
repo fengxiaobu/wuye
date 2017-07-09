@@ -3,8 +3,10 @@ package cn.rzhd.wuye.service;
 import java.util.List;
 
 import cn.rzhd.wuye.bean.HouseInfoDetails;
+import cn.rzhd.wuye.bean.ProjectInfo;
 import cn.rzhd.wuye.bean.TSys;
 import cn.rzhd.wuye.bean.vo.HouseInfoDetailsQueryVo;
+import cn.rzhd.wuye.bean.vo.ProjectInfoQueryVo;
 import cn.rzhd.wuye.utils.PageDataGridResult;
 
 public interface ISysServer {
@@ -41,6 +43,20 @@ public interface ISysServer {
      * @return
      */
     List<HouseInfoDetails> findHouseListPage(HouseInfoDetailsQueryVo queryVo);
+    
+    /**
+     * @Description 查询项目列表总记录数
+     * @param queryVo
+     * @return
+     */
+    int findProjectCount(ProjectInfoQueryVo queryVo);
+
+    /**
+     * @Description 分页查找项目数据
+     * @param queryVo
+     * @return
+     */
+    List<ProjectInfo> findProjectListPage(ProjectInfoQueryVo queryVo);
 
 
 }

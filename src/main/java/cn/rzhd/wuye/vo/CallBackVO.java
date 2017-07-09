@@ -21,6 +21,14 @@ public class CallBackVO implements Serializable {
         this.type = type;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public Long getApplyId() {
         return applyId;
     }
@@ -29,11 +37,4 @@ public class CallBackVO implements Serializable {
         this.applyId = applyId;
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 }

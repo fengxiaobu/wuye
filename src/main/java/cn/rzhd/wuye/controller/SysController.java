@@ -19,12 +19,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.xiaoleilu.hutool.util.StrUtil;
 
 import cn.rzhd.wuye.bean.HouseInfoDetails;
+import cn.rzhd.wuye.bean.ProjectInfo;
 import cn.rzhd.wuye.bean.TDictInfo;
 import cn.rzhd.wuye.bean.TSys;
 import cn.rzhd.wuye.bean.vo.HouseInfoDetailsQueryVo;
+import cn.rzhd.wuye.bean.vo.ProjectInfoQueryVo;
 import cn.rzhd.wuye.common.PageQuery;
 import cn.rzhd.wuye.service.IDictInfoService;
 import cn.rzhd.wuye.service.IHouseInfoDetailsService;
+import cn.rzhd.wuye.service.IProjectInfoService;
 import cn.rzhd.wuye.service.ISysServer;
 import cn.rzhd.wuye.utils.PageDataGridResult;
 import cn.rzhd.wuye.vo.HouseVO;
@@ -48,6 +51,9 @@ public class SysController {
     
     @Autowired
     private IHouseInfoDetailsService houseInfoDetailsService;
+    
+    @Autowired
+    private IProjectInfoService projectInfoService;
     
     /**
      * @Description 系统设置数据回显
@@ -83,6 +89,22 @@ public class SysController {
     }
     
     /**
+     * @Description 项目限制编辑页面回显
+     * @param id
+     * @param model
+     * @return
+     */
+    @RequestMapping(value="projectrestedit",method = RequestMethod.GET)
+    public String projectrestedit(String pkProject,Model model){
+        ProjectInfo projectInfo = new ProjectInfo();
+        if(StrUtil.isNotBlank(pkProject)){
+            projectInfo = projectInfoService.selectByPrimaryKey(pkProject);
+        }
+        model.addAttribute("projectInfo", projectInfo);
+        return "system/waterele/projectrestedit";
+    }
+    
+    /**
      * @Description 更新房产水电限制
      * @param houseInfoDetails
      * @return
@@ -100,6 +122,33 @@ public class SysController {
             houseInfoDetails.setUpdatedate(new Date());
             // 新增或编辑签约信息
             this.houseInfoDetailsService.updatehouse(houseInfoDetails);
+
+            // 响应201
+            return ResponseEntity.status(HttpStatus.CREATED).build();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+    }
+    
+    /**
+     * @Description 更新项目水电限制
+     * @param houseInfoDetails
+     * @return
+     */
+    @RequestMapping(value = "updateproject", method = RequestMethod.POST)
+    public ResponseEntity<Void> updateproject(ProjectInfo projectInfo) {
+        try {
+
+            if (projectInfo == null || StrUtil.isEmpty(projectInfo.getPkProject())) {
+                // 响应400
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+            }
+
+            //补全信息
+            projectInfo.setUpdateDate(new Date());
+            // 新增或编辑签约信息
+            this.projectInfoService.updateProjectForSys(projectInfo);
 
             // 响应201
             return ResponseEntity.status(HttpStatus.CREATED).build();
@@ -195,6 +244,53 @@ public class SysController {
             
             // 分页查询，向queryVo中传入pageQuery
             List<HouseInfoDetails> list = sysServer.findHouseListPage(queryVo);
+            
+            PageDataGridResult pageResult = new PageDataGridResult();
+            // 填充 total
+            pageResult.setTotal(total);
+            // 填充 rows
+            pageResult.setRows(list);
+            
+            return ResponseEntity.ok(pageResult);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        // 出错 500
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+    }
+    
+    /**
+     * @Description 分页查询项目电费限制
+     * @param vhname 房产名称
+     * @param page 起始页
+     * @param rows 每页显示的条数
+     * @return
+     */
+    @RequestMapping(value = "queryProjectListByPage", method = RequestMethod.GET)
+    @ResponseBody
+    public ResponseEntity<PageDataGridResult> queryProjectListByPage(@RequestParam(value = "page", defaultValue = "1") Integer page,
+            @RequestParam(value = "rows", defaultValue = "10") Integer rows,String projectName) {
+        try {
+            
+            /**
+             * 构建查询条件
+             */
+            ProjectInfoQueryVo queryVo = new ProjectInfoQueryVo();
+            queryVo.setProjectName(projectName);
+            
+            // 查询列表的总数
+            int total = sysServer.findProjectCount(queryVo);
+            
+            /**
+             * 构建查询条件
+             */
+            PageQuery pageQuery = new PageQuery();
+            pageQuery.setPageParams(total, rows, page);
+            queryVo.setPageQuery(pageQuery );
+            queryVo.setPageQuery(pageQuery);
+            
+            // 分页查询，向queryVo中传入pageQuery
+            List<ProjectInfo> list = sysServer.findProjectListPage(queryVo);
             
             PageDataGridResult pageResult = new PageDataGridResult();
             // 填充 total

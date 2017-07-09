@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.rzhd.wuye.mapper.AccountMapper">
+    
+     <sql id="whereSql">
+        <where>
+<!--             AND PAY_TIME BETWEEN to_date(#{startDate},'YYYY-MM-DD') and -->
+<!--             to_date(#{endDate},'YYYY-MM-DD') -->
+            
+            AND PAY_TIME BETWEEN #{startDate} and
+            #{endDate}
+        </where>	
+    </sql>
+	
+	<select id="getWaterElectric"  parameterType="cn.rzhd.wuye.vo.query.AccountQuery" resultType="cn.rzhd.wuye.bean.Account">
+		SELECT
+			"COLLECTING_COMPANY" collecting_company,
+		"COLLECTING_ACCOUNT"  collecting_account,
+			"SUM" (PAYABLE) payable,
+			"SUM" (PAID_IN) paid_in
+		FROM
+			T_UTILITIES_DETAILS
+		<include refid="whereSql"/>
+		GROUP BY
+			"COLLECTING_COMPANY","COLLECTING_ACCOUNT" 
+	</select>
+</mapper>
