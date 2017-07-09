@@ -63,4 +63,7 @@
     FEE_TYPE
     from T_PAY_FEE_RECORDS
   </select>
+  <select id="getTypeById" parameterType="string" resultType="string">
+    SELECT FEE_TYPE FROM T_PAY_FEE_RECORDS WHERE RECORDS_ID=#{id}
+  </select>
 </mapper>

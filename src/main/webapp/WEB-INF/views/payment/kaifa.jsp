@@ -295,8 +295,28 @@
                         for (var i = 0; i < result.length; i++) {
                             var rowContent =
                                 "<tr>" +
-                                "<td>" + isnull(result[i].detailsId) + "</td><td>" + isnull(result[i].projectName) + "</td><td>" + isnull(result[i].houseCode) + "</td><td>" + isnull(result[i].clientName) + "</td><td>" + isnull(result[i].costType) + "</td><td>" + isnull(result[i].updateTime) + "</td> <td>" + isnull(result[i].payManner) + "</td> <td>" + isnull(result[i].payMonth) + "</td> <td>" + isnull(result[i].startDate) + "</td> <td>" + isnull(result[i].endDate) + "</td> <td>" + isnull(result[i].payable) + "</td> <td>" + isnull(result[i].paidIn) + "</td> <td>" + isnull(result[i].voucherNumber) + "</td> <td>" + isnull(result[i].invoice) + "</td> <td>" + isnull(result[i].invoiceNumber) + "</td> <td>" + isnull(result[i].invoiceNotes) + "</td><td>" + isnull(result[i].invoiceStatus) + "</td> <td>" + isnull(result[i].collectingCompany) + "</td> <td>" + isnull(result[i].collectingAccount) + "</td> <td>" + isnull(result[i].invoiceCompany) + "</td> <td>" + isnull(result[i].payTime) + "</td>" +
-                                "</tr>";
+                                "<td>" + isnull(i+1) +
+                                "</td><td>" + isnull(result[i].projectName) +
+                                "</td><td>" + isnull(result[i].houseCode) +
+                                "</td><td>" + isnull(result[i].clientName) +
+                                "</td><td>" + isnull(result[i].costType) +
+                                "</td><td>" + isnull(result[i].updateTime) +
+                                "</td> <td>" + isnull(result[i].payManner) +
+                                "</td> <td>" + isnull(result[i].payMonth) +
+                                "</td> <td>" + isnull(timeFormatter(result[i].startDate)) +
+                                "</td> <td>" + isnull(timeFormatter(result[i].endDate)) +
+                                "</td> <td>" + isnull(result[i].payable) +
+                                "</td> <td>" + isnull(result[i].paidIn) +
+                                "</td> <td>" + isnull(result[i].voucherNumber) +
+                                "</td> <td>" + isnull(result[i].invoice) +
+                                "</td> <td>" + isnull(result[i].invoiceNumber) +
+                                "</td> <td>" + isnull(result[i].invoiceNotes) +
+                                "</td><td>" + isnull(invoiceStatusFormatter(result[i].invoiceStatus)) +
+                                "</td> <td>" + isnull(result[i].collectingCompany) +
+                                "</td> <td>" + isnull(result[i].collectingAccount) +
+                                "</td> <td>" + isnull(result[i].invoiceCompany) +
+                                "</td> <td>" + isnull(timeFormatter(result[i].payTime)) +
+                                "</td> </tr>";
                             $("#productList").append(rowContent);
                         }
                         $.jqPaginator('#pagination1', {

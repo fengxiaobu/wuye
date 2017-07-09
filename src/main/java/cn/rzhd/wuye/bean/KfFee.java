@@ -14,7 +14,6 @@ public class KfFee implements Serializable {
     private String pk_project;
     private String pk_house;
     private String pk_course_b;
-    private String pk_receivablesid;
     private String pk_feetype;
     private String feetype;
     private String actmonth;
@@ -66,14 +65,6 @@ public class KfFee implements Serializable {
 
     public void setPk_course_b(String pk_course_b) {
         this.pk_course_b = pk_course_b;
-    }
-
-    public String getPk_receivablesid() {
-        return pk_receivablesid;
-    }
-
-    public void setPk_receivablesid(String pk_receivablesid) {
-        this.pk_receivablesid = pk_receivablesid;
     }
 
     public String getPk_feetype() {

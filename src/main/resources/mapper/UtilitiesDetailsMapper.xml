@@ -36,7 +36,7 @@
         WHERE UTILITIES_DETAILS_ID = #{utilitiesDetailsId}
     </delete>
     <insert id="insert" parameterType="cn.rzhd.wuye.bean.UtilitiesDetails">
-        INSERT INTO WUYE.T_UTILITIES_DETAILS (
+        INSERT INTO WUYE.T_UTILITIES_DETAILS (PK_CORP,
             UTILITIES_DETAILS_ID, HOUSE_INFO_ID, CLIENT_NAME, FEE_TYPE, PAY_MANNER, PAY_MONTH,
             START_DATE, END_DATE, PAYABLE,
             PAID_IN, VOUCHER_NUMBER, INVOICE,
@@ -44,11 +44,11 @@
             COLLECTING_COMPANY, COLLECTING_ACCOUNT, INVOICE_COMPANY,
             PAY_TIME, AMMETER_NUMBER, MULTIPLYING_POWER,
             ELECTRIC_POWER, CARTE_TIME, UPDATE_TIME,
-            CUSTOMER_ID, TUNNAGE, STATUS,RECORDS_ID)
-        VALUES (#{utilitiesDetailsId}, #{houseInfoId}, #{clientName}, #{costType},
+            CUSTOMER_ID, TUNNAGE, STATUS, RECORDS_ID)
+        VALUES (#{pk_corp},#{utilitiesDetailsId}, #{houseInfoId}, #{clientName}, #{costType},
                                        #{payManner}, #{payMonth},
                                        #{startDate}, #{endDate}, #{payable},
-                                       #{paidIn},#{voucherNumber}, #{invoice},
+                                       #{paidIn}, #{voucherNumber}, #{invoice},
                                                                     #{invoiceNumber}, #{invoiceNotes}, #{invoiceStatus},
                                                                     #{collectingCompany}, #{collectingAccount},
                                                                     #{invoiceCompany},
@@ -91,6 +91,11 @@
         UPDATE T_UTILITIES_DETAILS
         SET STATUS = 'Y'
         WHERE UTILITIES_DETAILS_ID = #{id}
+    </update>
+    <update id="changeStatusByRecordsId" parameterType="string">
+        UPDATE T_UTILITIES_DETAILS
+        SET STATUS = 'Y'
+        WHERE RECORDS_ID = #{id}
     </update>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="long">
         SELECT
@@ -310,6 +315,7 @@
         <result property="invoiceNotes" column="INVOICE_NOTES"/>
         <result property="costType" column="FEE_TYPE"/>
         <result property="invoiceStatus" column="INVOICE_STATUS"/>
+        <result property="recordsId" column="RECORDS_ID"/>
 
         <!--<result property="invoice" column="INVOICE"/>-->
         <!--<result property="invoiceCompany" column="INVOICE_COMPANY"/>-->
@@ -374,7 +380,8 @@
         T_UTILITIES_DETAILS.STATUS,
         AMMETER_NUMBER,
         MULTIPLYING_POWER,
-        ELECTRIC_POWER
+        ELECTRIC_POWER,
+        RECORDS_ID
         FROM T_UTILITIES_DETAILS
         JOIN T_HOUSE_INFO_DETAILS ON T_HOUSE_INFO_DETAILS."pk_house" = T_UTILITIES_DETAILS.HOUSE_INFO_ID
         JOIN T_PROJECT_INFO ON T_HOUSE_INFO_DETAILS."pk_project" = T_PROJECT_INFO.PK_PROJECT
@@ -402,6 +409,7 @@
         <result property="invoiceNotes" column="INVOICE_NOTES"/>
         <result property="costType" column="FEE_TYPE"/>
         <result property="invoiceStatus" column="INVOICE_STATUS"/>
+        <result property="recordsId" column="RECORDS_ID"/>
 
         <!--<result property="invoice" column="INVOICE"/>-->
         <!--<result property="invoiceCompany" column="INVOICE_COMPANY"/>-->
@@ -460,7 +468,8 @@
         COLLECTING_ACCOUNT,
         PAY_TIME,
         T_UTILITIES_DETAILS.STATUS,
-        TUNNAGE
+        TUNNAGE,
+        RECORDS_ID
         FROM T_UTILITIES_DETAILS
         JOIN T_HOUSE_INFO_DETAILS
         ON T_HOUSE_INFO_DETAILS."pk_house" = T_UTILITIES_DETAILS.HOUSE_INFO_ID
@@ -518,6 +527,7 @@
         <result property="costType" column="FEE_TYPE"/>
         <result property="invoiceStatus" column="INVOICE_STATUS"/>
         <result property="isWritten" column="IS_WRITTEN"/>
+        <result property="recordsId" column="RECORDS_ID"/>
         <!--开票相关-->
         <!--<result property="agencyPayCredential" column=""/>-->
         <!--<collection property="invoices" javaType="cn.rzhd.wuye.bean.UtilitiesInvoice" select="cn.rzhd.wuye.mapper.UtilitiesInvoiceMapper.selectByDetailsId" column="UTILITIES_DETAILS_ID"/>-->
@@ -549,7 +559,8 @@
             AMMETER_NUMBER,
             MULTIPLYING_POWER,
             ELECTRIC_POWER,
-            IS_WRITTEN
+            IS_WRITTEN,
+            RECORDS_ID
         FROM T_UTILITIES_DETAILS
             JOIN T_HOUSE_INFO_DETAILS ON HOUSE_INFO_ID = "pk_house"
             JOIN T_PROJECT_INFO ON T_HOUSE_INFO_DETAILS."pk_project" = T_PROJECT_INFO.PK_PROJECT
@@ -572,6 +583,7 @@
         <result property="costType" column="FEE_TYPE"/>
         <result property="invoiceStatus" column="INVOICE_STATUS"/>
         <result property="isWritten" column="IS_WRITTEN"/>
+        <result property="recordsId" column="RECORDS_ID"/>
         <!--开票相关-->
         <!--<result property="agencyPayCredential" column=""/>-->
         <!--<collection property="invoices" javaType="cn.rzhd.wuye.bean.UtilitiesInvoice" select="cn.rzhd.wuye.mapper.UtilitiesInvoiceMapper.selectByDetailsId" column="UTILITIES_DETAILS_ID"/>-->
@@ -601,7 +613,8 @@
             COLLECTING_ACCOUNT,
             PAY_TIME,
             TUNNAGE,
-            IS_WRITTEN
+            IS_WRITTEN,
+            RECORDS_ID
         FROM T_UTILITIES_DETAILS
             JOIN T_HOUSE_INFO_DETAILS ON HOUSE_INFO_ID = "pk_house"
             JOIN T_PROJECT_INFO ON T_HOUSE_INFO_DETAILS."pk_project" = T_PROJECT_INFO.PK_PROJECT

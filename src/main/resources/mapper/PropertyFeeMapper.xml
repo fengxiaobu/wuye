@@ -28,6 +28,7 @@
         <result column="shouldSum" property="shouldSum"/>
         <result column="account" property="account"/>
         <result column="companyName" property="companyName"/>
+        <result column="pk_receivablesid" property="pk_receivablesid"/>
     </resultMap>
 
     <sql id="arrearsSql">
@@ -164,7 +165,8 @@
         SUM("nyshouldmny") - SUM(NVL("nmny", 0)) AS amount,
         SUM("nyshouldmny") AS shouldSum,
         T_BANK_ACCOUNT."account" AS account,
-        T_COMPANY."unitname" AS companyName
+        T_COMPANY."unitname" AS companyName,
+        "pk_receivablesid"
         FROM T_PROPERTY_FEE
         JOIN T_BANK_ACCOUNT ON "pk_feetype" = "pk_fee"
         JOIN T_COMPANY ON T_BANK_ACCOUNT."vdef1" = T_COMPANY."pk_corp"
@@ -176,7 +178,8 @@
         "dend",
         "nyshouldmny",
         T_BANK_ACCOUNT."account",
-        T_COMPANY."unitname"
+        T_COMPANY."unitname",
+        "pk_receivablesid"
         ORDER BY
         SUBSTR("dshpay", 1, 7)
     </select>

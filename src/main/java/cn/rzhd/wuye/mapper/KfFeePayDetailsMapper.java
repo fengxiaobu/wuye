@@ -29,4 +29,6 @@ public interface KfFeePayDetailsMapper {
     String getCompanyName(@Param("feecode") String feecode,@Param("pk_corp") String pk_corp);
 
     Integer countByQuery(PropertyRecordsQuery query);
+
+    void changeStatusByRecordsId(String id);
 }

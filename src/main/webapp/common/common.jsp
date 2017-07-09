@@ -27,7 +27,33 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     var contextPath = '${contextPath}';  
     var imagesPath = '${imagesPath}';  
     var stylesPath = '${stylesPath}';  
-    var scriptsPath = '${scriptsPath}';  
+    var scriptsPath = '${scriptsPath}';
+
+    /**
+     * 时间转换,传入值,得到转换后的yyyy-MM-dd格式
+     * @param value
+     * @returns {string}
+     */
+    function timeFormatter(value) {
+        if(!value) {return;}
+        var time = new Date(value);
+        return time.getFullYear() + '-' + (Array(2).join(0)+(time.getMonth()+1)).slice(-2) + "-" + (Array(2).join(0)+time.getDate()).slice(-2);
+    }
+    /**
+     * 0-不开票，1-暂不开票,2-业主开票,3-代付开票,4-已开票
+     * @param value
+     */
+    function invoiceStatusFormatter(value){
+        if(!value) {return;}
+        if(value==0){
+            return '不开票';
+        }else if(value == 4){
+            return '已开';
+        }else{
+            return '未开';
+        }
+
+    }
 </script>  
 
 <link rel="stylesheet" type="text/css" href="${scriptsPath}/libs/bootstrap/css/bootstrap.css">

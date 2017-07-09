@@ -62,4 +62,9 @@ public class KfFeePayDetailsServiceImpl implements IKfFeePayDetailsService {
     public Integer countByQuery(PropertyRecordsQuery query) {
         return mapper.countByQuery(query);
     }
+
+    @Override
+    public void changeStatusByRecordsId(String id) {
+        mapper.changeStatusByRecordsId(id);
+    }
 }

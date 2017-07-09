@@ -39,10 +39,12 @@
         <result property="updateTime" column="UPDATE_TIME"/>
         <result property="customerId" column="CUSTOMER_ID"/>
         <result property="status" column="STATUS"/>
+        <result property="recordsId" column="RECORDS_ID"/>
     </resultMap>
 
     <insert id="insert" parameterType="cn.rzhd.wuye.bean.PropertyFeePayDetails">
-        INSERT INTO T_PROPERTY_FEE_PAY_DETAILS (PROPERTY_FEE_PAY_DETAILS_ID,
+        INSERT INTO T_PROPERTY_FEE_PAY_DETAILS (PK_CORP,
+                                                PROPERTY_FEE_PAY_DETAILS_ID,
                                                 HOUSE_INFO_ID,
                                                 CLIENT_NAME,
                                                 FEETYPE,
@@ -64,14 +66,15 @@
                                                 CARTE_TIME,
                                                 UPDATE_TIME,
                                                 CUSTOMER_ID,
-                                                STATUS)
-        VALUES (#{propertyFeePayDetails}, #{houseInfoId}, #{clientName}, #{costType}, #{payManner},
+                                                STATUS,
+                                                RECORDS_ID)
+        VALUES (#{pk_corp},#{propertyFeePayDetails}, #{houseInfoId}, #{clientName}, #{costType}, #{payManner},
                                           #{payMonth}, #{startDate}, #{endDate}, #{payable}, #{paidIn},
                                           #{voucherNumber}, #{invoice},
                                                             #{invoiceNumber}, #{invoiceNotes}, #{invoiceStatus},
                                                             #{collectingCompany}, #{collectingAccount},
                                                             #{invoiceCompany}, #{payTime}, #{carteTime}, #{updateTime},
-                #{customerId}, #{status}
+                #{customerId}, #{status}, #{recordsId}
         )
 
     </insert>
@@ -101,7 +104,8 @@
         CARTE_TIME,
         UPDATE_TIME,
         CUSTOMER_ID,
-        STATUS
+        STATUS,
+        RECORDS_ID
         FROM T_PROPERTY_FEE_PAY_DETAILS
         <include refid="whereSql"/>
     </select>
@@ -131,7 +135,8 @@
             UPDATE_TIME,
             CUSTOMER_ID,
             STATUS,
-            FEETYPE
+            FEETYPE,
+            RECORDS_ID
         FROM T_PROPERTY_FEE_PAY_DETAILS
     </select>
 
@@ -160,6 +165,7 @@
         <result property="updateTime" column="UPDATE_TIME"/>
         <result property="customerId" column="CUSTOMER_ID"/>
         <result property="status" column="STATUS"/>
+        <result property="recordsId" column="RECORDS_ID"/>
     </resultMap>
     <sql id="querySql">
         <where>
@@ -249,4 +255,20 @@
         JOIN T_MANAGE_USER ON T_MANAGE_USER.MANAGE_ID = T_MANAGE."pk_manageId"
         <include refid="querySql"/>
     </select>
+    <resultMap id="updateMap" type="cn.rzhd.wuye.vo.FeeVO">
+
+    </resultMap>
+
+    <select id="getFeeDataByRecordsId" parameterType="string" resultMap="updateMap">
+--         公司主键，项目主键，房产主键，客户主键，费用数据主键，收费项目主键，实收金额
+        SELECT PK_CORP,T_HOUSE_INFO_DETAILS."pk_project",HOUSE_INFO_ID,CUSTOMER_ID,PK_FEE_TYPE,
+        FROM T_PROPERTY_FEE_PAY_DETAILS
+    </select>
+
+    <update id="changeStatusByRecordsId" parameterType="string">
+        UPDATE T_PROPERTY_FEE_PAY_DETAILS
+        SET STATUS = 'Y'
+        WHERE RECORDS_ID = #{id}
+    </update>
+
 </mapper>

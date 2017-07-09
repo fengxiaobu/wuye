@@ -3,7 +3,6 @@ package cn.rzhd.wuye.bean;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.List;
 
 /**
 © 2017 RZHD.CN
@@ -81,7 +80,7 @@ public class PropertyFeePayDetails implements Serializable{
 	 */
 	private String invoiceNotes;
 	/**
-	 * 开票状态(0-已开，1-未开,2-不开)
+	 * 开票状态(0-不开票，1-暂不开票,2-业主开票,3-代付开票,4-已开票)
 	 */
 	private Integer invoiceStatus =1;
 	/**
@@ -112,14 +111,14 @@ public class PropertyFeePayDetails implements Serializable{
 	 * 客户主键
 	 */
 	private String customerId;
-	/**
-	 * 此次缴费所要开的发票
-	 */
-	private List<PropertyFeeInvoiceDetails> invoices;
     /**
      * 缴费记录是否生效(Y--生效,N--未生效)
      */
 	private String status = "N";
+	/**
+	 * 收费项目主键
+	 */
+	private String pk_feeType;
 	
 	/**
 	 * @return the clientName
@@ -366,14 +365,6 @@ public class PropertyFeePayDetails implements Serializable{
 		this.customerId = customerId;
 	}
 
-	public List<PropertyFeeInvoiceDetails> getInvoices() {
-		return invoices;
-	}
-
-	public void setInvoices(List<PropertyFeeInvoiceDetails> invoices) {
-		this.invoices = invoices;
-	}
-
 	public String getPayMonth() {
 		return payMonth;
 	}
@@ -405,4 +396,12 @@ public class PropertyFeePayDetails implements Serializable{
     public void setPk_corp(String pk_corp) {
         this.pk_corp = pk_corp;
     }
+
+	public String getPk_feeType() {
+		return pk_feeType;
+	}
+
+	public void setPk_feeType(String pk_feeType) {
+		this.pk_feeType = pk_feeType;
+	}
 }

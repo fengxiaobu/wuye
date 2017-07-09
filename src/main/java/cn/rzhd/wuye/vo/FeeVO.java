@@ -14,7 +14,6 @@ public class FeeVO implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
 	private String pk_corp;// 公司主键
 	private String pk_project;// 项目主键
 	private String pk_house;// 房产主键
@@ -141,6 +140,14 @@ public class FeeVO implements Serializable {
 		this.nmny = nmny;
 	}
 
+	public String getActmonth() {
+		return actmonth;
+	}
+
+	public void setActmonth(String actmonth) {
+		this.actmonth = actmonth;
+	}
+
 	public String getDbegin() {
 		return dbegin;
 	}
@@ -165,21 +172,13 @@ public class FeeVO implements Serializable {
 		this.dshpay = dshpay;
 	}
 
-    public String getActmonth() {
-        return actmonth;
-    }
+	public String getVmemo() {
+		return vmemo;
+	}
 
-    public void setActmonth(String actmonth) {
-        this.actmonth = actmonth;
-    }
-
-    public String getVmemo() {
-        return vmemo;
-    }
-
-    public void setVmemo(String vmemo) {
-        this.vmemo = vmemo;
-    }
+	public void setVmemo(String vmemo) {
+		this.vmemo = vmemo;
+	}
 
 	public String getNyjmny() {
 		return nyjmny;
@@ -187,5 +186,29 @@ public class FeeVO implements Serializable {
 
 	public void setNyjmny(String nyjmny) {
 		this.nyjmny = nyjmny;
+	}
+
+	@Override
+	public String toString() {
+		return "FeeVO{" +
+				"pk_corp='" + pk_corp + '\'' +
+				", pk_project='" + pk_project + '\'' +
+				", pk_house='" + pk_house + '\'' +
+				", house='" + house + '\'' +
+				", pk_customerid='" + pk_customerid + '\'' +
+				", pk_course_b='" + pk_course_b + '\'' +
+				", pk_receivablesid='" + pk_receivablesid + '\'' +
+				", dbilldate='" + dbilldate + '\'' +
+				", pk_feetype='" + pk_feetype + '\'' +
+				", feetype='" + feetype + '\'' +
+				", nyshouldmny='" + nyshouldmny + '\'' +
+				", nmny='" + nmny + '\'' +
+				", actmonth='" + actmonth + '\'' +
+				", dbegin='" + dbegin + '\'' +
+				", dend='" + dend + '\'' +
+				", dshpay='" + dshpay + '\'' +
+				", vmemo='" + vmemo + '\'' +
+				", nyjmny='" + nyjmny + '\'' +
+				'}';
 	}
 }

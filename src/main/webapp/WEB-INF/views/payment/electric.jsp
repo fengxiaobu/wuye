@@ -304,9 +304,27 @@
                         var pageSize = data.data[1]['pageSize'];
                         var totalPages = total % pageSize == 0 ? Math.floor(total / pageSize) : Math.floor(total / pageSize + 1);
                         for (var i = 0; i < result.length; i++) {
+
                             var rowContent =
                                 "<tr>" +
-                                "<td>" + isnull(result[i].detailsId) + "</td><td>" + isnull(result[i].projectName) + "</td><td>" + isnull(result[i].houseCode) + "</td><td>" + isnull(result[i].clientName) + "</td><td>" + isnull(result[i].payManner) + "</td><td>" + isnull(result[i].ammeterNo) + "</td> <td>" + isnull(result[i].multiply) + "</td> <td>" + isnull(result[i].payTime) + "</td> <td>" + isnull(result[i].paidIn) + "</td> <td>" + isnull(result[i].endDate) + "</td> <td>" + isnull(result[i].payable) + "</td> <td>" + isnull(result[i].paidIn) + "</td> <td>" + isnull(result[i].electricPower) + "</td> <td>" + isnull(result[i].collectingCompany) + "</td> <td>" + isnull(result[i].collectingAccount) + "</td> <td>" + isnull(result[i].voucherNumber) + "</td><td>" + isnull(result[i].invoiceNumber) + "</td> <td>" + isnull(result[i].invoiceNotes) + "</td> <td>" + isnull(result[i].invoiceStatus) + "</td> <td>" + isnull(result[i].costType) + "</td><td></button>&nbsp;&nbsp;&nbsp;&nbsp;<aclass='btn btn-info'href='${pageContext.request.contextPath}/utilitiesRecords/electricDetails?id=result[i].detailsId'role='button'>详情</a></td>"+
+                                    "<td>" + isnull(i+1) +
+                                    "</td><td>" + isnull(result[i].projectName) +
+                                    "</td><td>" + isnull(result[i].houseCode) +
+                                    "</td><td>" + isnull(result[i].clientName) +
+                                    "</td><td>" + isnull(result[i].payManner) +
+                                    "</td><td>" + isnull(result[i].ammeterNo) +
+                                    "</td> <td>" + isnull(result[i].multiply) +
+                                    "</td> <td>" + isnull(timeFormatter(result[i].payTime)) +
+                                    "</td> <td>" + isnull(result[i].paidIn) +
+                                    "</td> <td>" + isnull(result[i].electricPower) +
+                                    "</td> <td>" + isnull(result[i].collectingCompany) +
+                                    "</td> <td>" + isnull(result[i].collectingAccount) +
+                                    "</td> <td>" + isnull(result[i].voucherNumber) +
+                                    "</td> <td>" + isnull(invoiceStatusFormatter(result[i].invoiceStatus)) +
+                                    "</td><td>" + isnull(result[i].invoiceNumber) +
+                                    "</td> <td>" + isnull(result[i].invoiceNotes) +
+                                    "</td> <td>" + isnull(result[i].costType) +
+                                    "</td><td></button>&nbsp;&nbsp;&nbsp;&nbsp;<aclass='btn btn-info'href='${pageContext.request.contextPath}/utilitiesRecords/electricDetails?id=result[i].detailsId'role='button'>详情</a></td>"+
                                 "</tr>";
                             $("#productList").append(rowContent);
                         }
@@ -331,5 +349,6 @@
             }
         );
     }
+
 </script>
 </html>

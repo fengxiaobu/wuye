@@ -1,6 +1,6 @@
 package cn.rzhd.wuye.service.impl;
 
-import cn.rzhd.wuye.bean.UtilitiesInvoice;
+import cn.rzhd.wuye.bean.Invoice;
 import cn.rzhd.wuye.mapper.UtilitiesInvoiceMapper;
 import cn.rzhd.wuye.service.IUtilitiesInvoiceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,12 @@ public class UtilitiesInvoiceServiceImpl implements IUtilitiesInvoiceService {
     @Autowired
     UtilitiesInvoiceMapper mapper;
     @Override
-    public void addInvoice(UtilitiesInvoice invoice) {
+    public void addInvoice(Invoice invoice) {
         mapper.insert(invoice);
+    }
+
+    @Override
+    public void changeStatusByRecordsId(String id) {
+        mapper.changeStatusByRecordsId(id);
     }
 }

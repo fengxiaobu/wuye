@@ -97,4 +97,9 @@ public class UtilitiesServiceImpl implements IUtilitiesService {
     public Integer countWaterByQuery(PropertyRecordsQuery query) {
         return mapper.countWaterByQuery(query);
     }
+
+    @Override
+    public void changeStatusByRecordsId(String id) {
+        mapper.changeStatusByRecordsId(id);
+    }
 }

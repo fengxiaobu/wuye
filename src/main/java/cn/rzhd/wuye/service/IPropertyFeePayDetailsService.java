@@ -35,4 +35,8 @@ public interface IPropertyFeePayDetailsService {
     String getCompanyName(String feeType,String pk_corp);
 
     Integer countByQuery(PropertyRecordsQuery query);
+
+    void changeStatusByRecordsId(String id);
+
+    void updateToERP(String id);
 }

@@ -1,84 +1,84 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="cn.rzhd.wuye.mapper.UtilitiesInvoiceMapper">
+<mapper namespace="cn.rzhd.wuye.mapper.KfInvoiceMapper">
     <resultMap id="BaseResultMap" type="cn.rzhd.wuye.bean.Invoice">
-        <id column="UTILITIES_INVOICE_ID" property="invoiceId"/>
+        <id column="KF_FEE_INVOICE_DETAILS_ID" property="invoiceId"/>
         <result column="INVOICE_TYPE" property="invoiceType"/>
         <result column="INVOICE_COMPANY" property="invoiceCompany"/>
         <result column="AMOUNT" property="amount"/>
+        <result column="TRIPLE_AGREEMENT" property="tripleAgreement"/>
+        <result column="AGENCY_PAY_CREDENTIAL" property="agencyPayCredential"/>
         <result column="CARTE_TIME" property="carteTime"/>
         <result column="UPDATE_TIME" property="updateTime"/>
         <result column="RECORDS_ID" property="recordsId"/>
         <result column="FEE_TYPE" property="feeType"/>
-        <result column="TRIPLE_AGREEMENT" property="tripleAgreement"/>
-        <result column="AGENCY_PAY_CREDENTIAL" property="agencyPayCredential"/>
         <result column="STATUS" property="status"/>
     </resultMap>
-    <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal">
-        DELETE FROM T_UTILITIES_INVOICE
-        WHERE UTILITIES_INVOICE_ID = #{utilitiesInvoiceId}
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        DELETE FROM T_KF_INVOICE
+        WHERE KF_FEE_INVOICE_DETAILS_ID = #{kfFeeInvoiceDetailsId}
     </delete>
     <insert id="insert" parameterType="cn.rzhd.wuye.bean.Invoice">
-        INSERT INTO T_UTILITIES_INVOICE (UTILITIES_INVOICE_ID, INVOICE_TYPE,
-                                         INVOICE_COMPANY, AMOUNT, CARTE_TIME,
-                                         UPDATE_TIME, RECORDS_ID, FEE_TYPE,
-                                         TRIPLE_AGREEMENT, AGENCY_PAY_CREDENTIAL, STATUS)
+        INSERT INTO T_KF_INVOICE (KF_FEE_INVOICE_DETAILS_ID, INVOICE_TYPE,
+                                  INVOICE_COMPANY, AMOUNT, TRIPLE_AGREEMENT,
+                                  AGENCY_PAY_CREDENTIAL, CARTE_TIME, UPDATE_TIME,
+                                  RECORDS_ID, FEE_TYPE, STATUS)
         VALUES (#{invoiceId}, #{invoiceType},
-                              #{invoiceCompany}, #{amount},
-                              #{carteTime},
-                              #{updateTime}, #{recordsId},
-                              #{feeType},
-                              #{tripleAgreement}, #{agencyPayCredential},
-                              #{status})
+                                            #{invoiceCompany}, #{amount},
+                                            #{tripleAgreement},
+                                            #{agencyPayCredential}, #{carteTime},
+                                            #{updateTime},
+                                            #{recordsId}, #{feeType},
+                                            #{status})
     </insert>
     <update id="updateByPrimaryKey" parameterType="cn.rzhd.wuye.bean.Invoice">
-        UPDATE T_UTILITIES_INVOICE
+        UPDATE T_KF_INVOICE
         SET INVOICE_TYPE          = #{invoiceType},
             INVOICE_COMPANY       = #{invoiceCompany},
             AMOUNT                = #{amount},
+            TRIPLE_AGREEMENT      = #{tripleAgreement},
+            AGENCY_PAY_CREDENTIAL = #{agencyPayCredential},
             CARTE_TIME            = #{carteTime},
             UPDATE_TIME           = #{updateTime},
             RECORDS_ID            = #{recordsId},
             FEE_TYPE              = #{feeType},
-            TRIPLE_AGREEMENT      = #{tripleAgreement},
-            AGENCY_PAY_CREDENTIAL = #{agencyPayCredential},
             STATUS                = #{status}
-        WHERE UTILITIES_INVOICE_ID = #{invoiceId}
+        WHERE KF_FEE_INVOICE_DETAILS_ID = #{invoiceId}
     </update>
     <update id="changeStatusByRecordsId" parameterType="string">
-        UPDATE T_UTILITIES_INVOICE
+        UPDATE T_KF_INVOICE
         SET STATUS = 'Y'
         WHERE RECORDS_ID = #{id}
     </update>
-    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.math.BigDecimal">
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
         SELECT
-            UTILITIES_INVOICE_ID,
+            KF_FEE_INVOICE_DETAILS_ID,
             INVOICE_TYPE,
             INVOICE_COMPANY,
             AMOUNT,
+            TRIPLE_AGREEMENT,
+            AGENCY_PAY_CREDENTIAL,
             CARTE_TIME,
             UPDATE_TIME,
             RECORDS_ID,
             FEE_TYPE,
-            TRIPLE_AGREEMENT,
-            AGENCY_PAY_CREDENTIAL,
             STATUS
-        FROM T_UTILITIES_INVOICE
-        WHERE UTILITIES_INVOICE_ID = #{invoiceId}
+        FROM T_KF_INVOICE
+        WHERE KF_FEE_INVOICE_DETAILS_ID = #{invoiceId}
     </select>
     <select id="selectAll" resultMap="BaseResultMap">
         SELECT
-            UTILITIES_INVOICE_ID,
+            KF_FEE_INVOICE_DETAILS_ID,
             INVOICE_TYPE,
             INVOICE_COMPANY,
             AMOUNT,
+            TRIPLE_AGREEMENT,
+            AGENCY_PAY_CREDENTIAL,
             CARTE_TIME,
             UPDATE_TIME,
             RECORDS_ID,
             FEE_TYPE,
-            TRIPLE_AGREEMENT,
-            AGENCY_PAY_CREDENTIAL,
             STATUS
-        FROM T_UTILITIES_INVOICE
+        FROM T_KF_INVOICE
     </select>
 </mapper>

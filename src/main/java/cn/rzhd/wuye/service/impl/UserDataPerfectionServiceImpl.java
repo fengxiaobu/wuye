@@ -8,9 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import cn.rzhd.wuye.bean.Customer;
-import cn.rzhd.wuye.bean.EnterMaterial;
 import cn.rzhd.wuye.bean.PerfectInformation;
-import cn.rzhd.wuye.bean.PropertyFeeInvoiceDetails;
 import cn.rzhd.wuye.mapper.HomePageMapper;
 import cn.rzhd.wuye.mapper.UserDataPerfectionMapper;
 import cn.rzhd.wuye.service.IUserDataPerfectionService;

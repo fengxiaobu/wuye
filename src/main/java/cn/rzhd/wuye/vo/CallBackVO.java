@@ -10,7 +10,7 @@ public class CallBackVO implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private String type;//费用类型(wuye-物业,kaifa-开发,shuidian-水电)
-    private Long id;//缴费记录ID
+    private String id;//缴费记录ID
     private Long applyId;//房产主键
 
     public String getType() {
@@ -21,19 +21,19 @@ public class CallBackVO implements Serializable {
         this.type = type;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public Long getApplyId() {
         return applyId;
     }
 
     public void setApplyId(Long applyId) {
         this.applyId = applyId;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

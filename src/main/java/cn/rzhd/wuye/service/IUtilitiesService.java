@@ -41,4 +41,6 @@ public interface IUtilitiesService {
     Integer countElectricByQuery(PropertyRecordsQuery query);
 
     Integer countWaterByQuery(PropertyRecordsQuery query);
+
+    void changeStatusByRecordsId(String id);
 }

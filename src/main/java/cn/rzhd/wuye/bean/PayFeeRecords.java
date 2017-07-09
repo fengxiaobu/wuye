@@ -39,9 +39,9 @@ public class PayFeeRecords implements Serializable{
      */
     private String voucherNumber;
     /**
-     * 发票状态
+     * 发票状态(0-不开,1-未开,2-已开)
      */
-    private BigDecimal invoiceStatus;
+    private Integer invoiceStatus;
     /**
      * 支付方式
      */
@@ -63,7 +63,7 @@ public class PayFeeRecords implements Serializable{
      */
     private Date payTime;
     /**
-     * 所属类型
+     * 所属类型(物业/开发/水电)
      */
     private String feeType;
 
@@ -123,11 +123,11 @@ public class PayFeeRecords implements Serializable{
         this.voucherNumber = voucherNumber;
     }
 
-    public BigDecimal getInvoiceStatus() {
+    public Integer getInvoiceStatus() {
         return invoiceStatus;
     }
 
-    public void setInvoiceStatus(BigDecimal invoiceStatus) {
+    public void setInvoiceStatus(Integer invoiceStatus) {
         this.invoiceStatus = invoiceStatus;
     }
 

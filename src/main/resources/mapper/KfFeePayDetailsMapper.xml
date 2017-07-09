@@ -8,7 +8,8 @@
         </where>
     </sql>
     <insert id="insert" parameterType="cn.rzhd.wuye.bean.KfFeePayDetails">
-        INSERT INTO T_KF_FEE_PAY_DETAILS (KF_FEE_PAY_DETAILS_ID,
+        INSERT INTO T_KF_FEE_PAY_DETAILS (PK_CORP,
+                                          KF_FEE_PAY_DETAILS_ID,
                                           HOUSE_INFO_ID,
                                           CLIENT_NAME,
                                           FEE_TYPE,
@@ -32,7 +33,7 @@
                                           CUSTOMER_ID,
                                           RECORDS_ID)
         VALUES
-            (#{kfFeePayDetailsId}, #{houseInfoId}, #{clientName}, #{costType}, #{payManner}, #{payMonth}, #{startDate},
+            (#{pk_corp},#{kfFeePayDetailsId}, #{houseInfoId}, #{clientName}, #{costType}, #{payManner}, #{payMonth}, #{startDate},
                                    #{endDate}, #{payable}, #{paidIn}, #{voucherNumber},
                 #{invoice}, #{invoiceNumber}, #{invoiceNotes}, #{invoiceStatus}, #{collectingCompany},
                 #{collectingAccount}, #{invoiceCompany}, #{payTime}, #{carteTime}, #{updateTime}, #{customerId},
@@ -42,6 +43,11 @@
         UPDATE T_KF_FEE_PAY_DETAILS
         SET STATUS = 'Y'
         WHERE KF_FEE_PAY_DETAILS_ID = #{id}
+    </update>
+    <update id="changeStatusByRecordsId" parameterType="string">
+        UPDATE T_KF_FEE_PAY_DETAILS
+        SET STATUS = 'Y'
+        WHERE RECORDS_ID = #{id}
     </update>
 
     <resultMap id="KfFeePayDetailsMapper" type="cn.rzhd.wuye.bean.KfFeePayDetails">
