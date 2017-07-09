@@ -1,9 +1,8 @@
 package cn.rzhd.wuye.controller;
 
-import cn.rzhd.wuye.bean.DecorationApply;
-import cn.rzhd.wuye.bean.DecorationNotice;
-import cn.rzhd.wuye.bean.HouseInfoDetails;
+import cn.rzhd.wuye.bean.*;
 import cn.rzhd.wuye.service.*;
+import cn.rzhd.wuye.utils.IDUtils;
 import cn.rzhd.wuye.vo.query.ApplyQuery;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;
@@ -108,7 +107,7 @@ public class DecorationApplyController {
                 //装修申请
                 System.out.println("/ndecorationApply = " + decorationApply + "/n");
                 decorationApplyService.insert(decorationApply);
-          /*      for (int i = 0; i < decorationApply.getDecorateDetailList().size(); i++) {
+                for (int i = 0; i < decorationApply.getDecorateDetailList().size(); i++) {
                     DecorateDetail decorateDetail = new DecorateDetail();
                     decorateDetail.setDecorationApplyId(aLong);
                     decorateDetail.setDecorateDetailId(IDUtils.genLongUID());
@@ -126,7 +125,7 @@ public class DecorationApplyController {
 
                     //装修资料
                     decorationMaterialService.insert(decorationMaterial);
-                }*/
+                }
             } else {
                 result.put("state", "0");
                 result.put("msg", "申请失败 数据不完整");
@@ -134,7 +133,7 @@ public class DecorationApplyController {
             }
         } catch (Exception e) {
             result.put("state", "0");
-            result.put("msg", "申请失败" + e.getMessage());
+            result.put("msg", "申请失败" +e.getMessage());
             return result;
         }
         //修改申请状态

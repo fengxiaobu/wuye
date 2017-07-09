@@ -3,13 +3,14 @@ package cn.rzhd.wuye.bean;
 import java.io.Serializable;
 
 /**
-© 2017 RZHD.CN
-@Package: cn.rzhd.ldug.bean
-@ClassName: DecorationMaterial
-@Description: 描述：装修资料
-@author: an-wei.xie@rzhd.cn
-@date: 2017年5月23日 下午1:50:27
-@version: V1.0
+ * © 2017 RZHD.CN
+ *
+ * @Package: cn.rzhd.ldug.bean
+ * @ClassName: DecorationMaterial
+ * @Description: 描述：装修资料
+ * @author: an-wei.xie@rzhd.cn
+ * @date: 2017年5月23日 下午1:50:27
+ * @version: V1.0
  */
 public class DecorationMaterial implements Serializable {
 
@@ -67,6 +68,13 @@ public class DecorationMaterial implements Serializable {
         this.materialAddress = materialAddress;
     }
 
-
-
+    @Override
+    public String toString() {
+        return "DecorationMaterial{" +
+                "decorationMaterialId=" + decorationMaterialId +
+                ", decorationApplyId=" + decorationApplyId +
+                ", materialName='" + materialName + '\'' +
+                ", materialAddress='" + materialAddress + '\'' +
+                '}';
+    }
 }

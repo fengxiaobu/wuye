@@ -1,24 +1,26 @@
 <%@ page isELIgnored="false" %>
 <%@ page language="java" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+request.getContextPath();
+    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
 %>
-<c:set var="basePath" value="<%=basePath %>"  scope="session"/>
+<c:set var="basePath" value="<%=basePath %>" scope="session"/>
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}" scope="session"/>
-<c:set var="imagesPath" value="${basePath}/imgs"  scope="session"/>
-<c:set var="stylesPath" value="${basePath}/css"  scope="session"/>
-<c:set var="scriptsPath" value="${basePath}/js"  scope="session"/>
+<c:set var="imagesPath" value="${basePath}/imgs" scope="session"/>
+<c:set var="stylesPath" value="${basePath}/css" scope="session"/>
+<c:set var="scriptsPath" value="${basePath}/js" scope="session"/>
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>
-    <script src="${scriptsPath}/browser-compatibility-js/html5shiv.min.js?now=${timestamp}"></script>
-    <script src="${scriptsPath}/browser-compatibility-js/respond.min.js?now=${timestamp}"></script>
+
+<script src="${scriptsPath}/browser-compatibility-js/html5shiv.min.js?now=${timestamp}"></script>
+<script src="${scriptsPath}/browser-compatibility-js/respond.min.js?now=${timestamp}"></script>
+
 <![endif]-->
 
 <!-- constants variable -->
