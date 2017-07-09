@@ -185,50 +185,72 @@
         SELECT
             DISTINCT *
         FROM
-            T_RELET_APPLY aaply
+            T_RELET_APPLY apply
             LEFT JOIN "T_Customer" cust ON
-                                            aaply.CUSTOMERID = cust."pk_customerid"
+                                            apply.CUSTOMERID = cust."pk_customerid"
             LEFT JOIN T_HOUSE_INFO_DETAILS house ON
-                                                     aaply.HOUSE_INFO_ID = house."pk_house"
+                                                     apply.HOUSE_INFO_ID = house."pk_house"
         WHERE RELET_APPLY_ID = #{reletApplyId}
-        ORDER BY aaply.CREATION_TIME DESC
+        ORDER BY apply.CREATION_TIME DESC
     </select>
     <select id="selectAll" resultMap="BaseResultMap">
         SELECT
             DISTINCT *
         FROM
-            T_RELET_APPLY aaply
+            T_RELET_APPLY apply
             LEFT JOIN "T_Customer" cust ON
-                                            aaply.CUSTOMERID = cust."pk_customerid"
+                                            apply.CUSTOMERID = cust."pk_customerid"
             LEFT JOIN T_HOUSE_INFO_DETAILS house ON
-                                                     aaply.HOUSE_INFO_ID = house."pk_house"
-        ORDER BY aaply.CREATION_TIME DESC
+                                                     apply.HOUSE_INFO_ID = house."pk_house"
+        ORDER BY apply.CREATION_TIME DESC
     </select>
 
     <select id="findReletApply" resultMap="BaseResultMap">
         SELECT
             DISTINCT *
         FROM
-            T_RELET_APPLY aaply
+            T_RELET_APPLY apply
             LEFT JOIN "T_Customer" cust ON
-                                            aaply.CUSTOMERID = cust."pk_customerid"
+                                            apply.CUSTOMERID = cust."pk_customerid"
             LEFT JOIN T_HOUSE_INFO_DETAILS house ON
-                                                     aaply.HOUSE_INFO_ID = house."pk_house"
+                                                     apply.HOUSE_INFO_ID = house."pk_house"
         WHERE HOUSE_INFO_ID = #{houseInfoId} AND CUSTOMERID = #{customerId}
-        ORDER BY aaply.CREATION_TIME DESC
+        ORDER BY apply.CREATION_TIME DESC
     </select>
     <select id="findReletApplyByCustomerId" resultMap="BaseResultMap">
         SELECT *
         FROM (SELECT
                   DISTINCT *
               FROM
-                  T_RELET_APPLY aaply
+                  T_RELET_APPLY apply
                   LEFT JOIN "T_Customer" cust ON
-                                                  aaply.CUSTOMERID = cust."pk_customerid"
+                                                  apply.CUSTOMERID = cust."pk_customerid"
                   LEFT JOIN T_HOUSE_INFO_DETAILS house ON
-                                                           aaply.HOUSE_INFO_ID = house."pk_house"
-              WHERE aaply.CUSTOMERID = #{customerId}
-              ORDER BY aaply.CREATION_TIME DESC)
+                                                           apply.HOUSE_INFO_ID = house."pk_house"
+              WHERE apply.CUSTOMERID = #{customerId}
+              ORDER BY apply.CREATION_TIME DESC)
         WHERE rownum = 1
+    </select>
+    <select id="findEnterApplyByQuery" parameterType="cn.rzhd.wuye.vo.query.ApplyQuery" resultMap="BaseResultMap">
+        SELECT
+        DISTINCT *
+        FROM
+        T_RELET_APPLY apply
+        LEFT JOIN "T_Customer" cust ON
+        apply.CUSTOMERID = cust."pk_customerid"
+        LEFT JOIN T_HOUSE_INFO_DETAILS house ON
+        apply.HOUSE_INFO_ID = house."pk_house"
+        <where>
+            <if test="startDate != null">
+                <if test="endDate != null">
+                    apply.CREATION_TIME BETWEEN #{startDate}
+                    AND #{endDate}
+                </if>
+            </if>
+            <if test="clientName != null">
+                AND house."project"=#{clientName} OR cust."vcname"=#{clientName} OR house."vhname"=#{clientName}
+            </if>
+        </where>
+        ORDER BY apply.CREATION_TIME DESC
     </select>
 </mapper>

@@ -65,50 +65,49 @@
                     <th rowspan="2">序号</th>
                     <th rowspan="2">项目名称<br/></th>
                     <th rowspan="2">資料名稱</th>
-                    <th rowspan="2">客户名称</th>
+                    <th rowspan="2">上传附件</th>
                     <%--  <th rowspan="2">楼号</th>--%>
-                    <th rowspan="2">申请日期</th>
-                    <th rowspan="2">预计工期</th>
+                    <th rowspan="2">资料来源</th>
+                    <th rowspan="2">更新时间</th>
                     <th rowspan="2">操作</th>
                 </tr>
                 </thead>
                 <tbody class="tudiqianyue-tbody">
 
-                <c:forEach items="${decorationApply}" var="decora" varStatus="status">
-                    <tr class="tudiqianyue-tdtr">
-                        <td><input type="checkbox" value=""></td>
-                        <td>${status.index+1}</td>
-                        <td>${decora.houseInfoDetails.project}</td>
-                        <td>${decora.houseInfoDetails.vhname}</td>
-                        <td>${decora.clientName}</td>
-                            <%--  <td>${decora.clientName}</td>--%>
-                        <td><fmt:formatDate value="${decora.applyTime }" pattern="yyyy-MM-dd"/></td>
-                        <td>${decora.antipateTime}&nbsp;天</td>
-                        <td>${decora.localeCustodian}</td>
-                        <td>${decora.localeCustodianPhone}</td>
-                        <td>${decora.decorationParts}</td>
-                        <td>${decora.decorateArea}</td>
-                        <td>${decora.constructPeopleNumber}&nbsp;人</td>
-                        <td>${decora.decorationCompany}</td>
-                        <td>${decora.decorationLeader}</td>
-                        <td>${decora.decorationLeaderPhone}&nbsp;</td>
-                        <td>${decora.decorationDeposit}</td>
-                        <td>${decora.decorationManagementCost}</td>
-                        <td>${decora.passPapersCost}&nbsp;(元)</td>
-                        <td>${decora.passPapersDeposit}&nbsp;(元)</td>
-                        <td>
-                            <c:if test="${decora.auditStatus eq 0}">未审核</c:if>
-                            <c:if test="${decora.auditStatus eq 1}">已通过</c:if>
-                            <c:if test="${decora.auditStatus eq 2}">未通过</c:if>
-                        </td>
-                        <td><a class="btn btn-info"
-                               href="${pageContext.request.contextPath}/dist/deleteDecorationApplyByID?decorationApplyId=${decora.decorationApplyId}"
-                               role="button">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;<a
-                                class="btn btn-info"
-                                href="${pageContext.request.contextPath}/dist/toDecorationApply?decorationApplyId=${decora.decorationApplyId}"
-                                role="button">编辑</a></td>
-                    </tr>
-                </c:forEach>
+                <%--<c:forEach items="${decorationApply}" var="decora" varStatus="status">--%>
+                <tr class="tudiqianyue-tdtr">
+                    <td><input type="checkbox" value=""></td>
+                    <td>1</td>
+                    <td>联东物业</td>
+                    <td>联东物业资料夹</td>
+                    <td>/upload/联东物业.zip</td>
+                    <td>项目资料</td>
+                    <%--  <td>${decora.clientName}</td>--%>
+                    <td>2017-07-09</td>
+                    <td><a class="btn btn-info"
+                           href="#"
+                           role="button">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;<a
+                            class="btn btn-info"
+                            href="#"
+                            role="button">编辑</a></td>
+                </tr>
+                <tr class="tudiqianyue-tdtr">
+                    <td><input type="checkbox" value=""></td>
+                    <td>1</td>
+                    <td>联东物业</td>
+                    <td>联东物业资料夹</td>
+                    <td>/upload/联东物业.zip</td>
+                    <td>全局资料</td>
+                    <%--  <td>${decora.clientName}</td>--%>
+                    <td>2017-07-09</td>
+                    <td><a class="btn btn-info"
+                           href="#"
+                           role="button">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;<a
+                            class="btn btn-info"
+                            href="#"
+                            role="button">编辑</a></td>
+                </tr>
+                <%--  </c:forEach>--%>
                 </tbody>
             </table>
             <%-- <div align="center">

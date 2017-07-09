@@ -5,6 +5,7 @@ import cn.rzhd.wuye.bean.RetreatLeaseApply;
 import cn.rzhd.wuye.service.IReletApplyService;
 import cn.rzhd.wuye.service.IRetreatLeaseApplyService;
 import cn.rzhd.wuye.utils.IDUtils;
+import cn.rzhd.wuye.vo.query.ApplyQuery;
 import com.github.pagehelper.StringUtil;
 import com.xiaoleilu.hutool.date.BetweenFormater;
 import com.xiaoleilu.hutool.date.DateUtil;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.*;
 
@@ -316,4 +318,31 @@ public class ReletApplyController {
         }
         return "redirect:/findRetreatLeaseApply";
     }
+
+
+    @RequestMapping("reletApply/search")
+    public String reletApplysearch(ApplyQuery query, Model model) {
+        System.out.println("applyQuery = " + query);
+        List<ReletApply> reletApplyList = reletApplyService.findEnterApplyByQuery(query);
+        ModelAndView modelAndView = new ModelAndView();
+        model.addAttribute("reletApplys", reletApplyList);
+        model.addAttribute("clientName", query.getClientName());
+        model.addAttribute("startDate", query.getStartDate());
+        model.addAttribute("endDate", query.getEndDate());
+        return "rent/xuzuList";
+    }
+
+    @RequestMapping("retreatLeaseApply/search")
+    public String retreatLeaseApplysearch(ApplyQuery query, Model model) {
+        System.out.println("applyQuery = " + query);
+        List<RetreatLeaseApply> retreatLeaseApplyList = retreatLeaseApplyService.findEnterApplyByQuery(query);
+        ModelAndView modelAndView = new ModelAndView();
+        model.addAttribute("retreatLeaseApplies", retreatLeaseApplyList);
+        model.addAttribute("clientName", query.getClientName());
+        model.addAttribute("startDate", query.getStartDate());
+        model.addAttribute("endDate", query.getEndDate());
+        return "rent/tuizuList";
+    }
+
+
 }

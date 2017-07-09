@@ -3,6 +3,7 @@ package cn.rzhd.wuye.service.impl;
 import cn.rzhd.wuye.bean.RetreatLeaseApply;
 import cn.rzhd.wuye.mapper.RetreatLeaseApplyMapper;
 import cn.rzhd.wuye.service.IRetreatLeaseApplyService;
+import cn.rzhd.wuye.vo.query.ApplyQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -45,5 +46,10 @@ public class RetreatLeaseApplyServiceImpl implements IRetreatLeaseApplyService {
     @Override
     public List<RetreatLeaseApply> findRetreatLeaseApply(String houseInfoId, String customerId) {
         return retreatLeaseApplyMapper.findRetreatLeaseApply(houseInfoId,customerId);
+    }
+
+    @Override
+    public List<RetreatLeaseApply> findEnterApplyByQuery(ApplyQuery query) {
+        return retreatLeaseApplyMapper.findEnterApplyByQuery(query);
     }
 }

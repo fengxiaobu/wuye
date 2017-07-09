@@ -449,4 +449,10 @@ public class DecorationApplyController {
         return result;
     }
 
+    @RequestMapping("decorationMateria/todecorationMateria")
+    public String todecorationMateria() {
+
+        return "decoration/decorationMaterialList";
+    }
+
 }

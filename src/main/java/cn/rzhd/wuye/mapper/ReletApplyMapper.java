@@ -1,6 +1,7 @@
 package cn.rzhd.wuye.mapper;
 
 import cn.rzhd.wuye.bean.ReletApply;
+import cn.rzhd.wuye.vo.query.ApplyQuery;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -23,4 +24,6 @@ public interface ReletApplyMapper {
     int updateByPrimaryKey(ReletApply record);
 
     List<ReletApply> findReletApply(@Param("houseInfoId") String houseInfoId,@Param("customerId") String customerId);
+
+    List<ReletApply> findEnterApplyByQuery(ApplyQuery query);
 }

@@ -1,6 +1,7 @@
 package cn.rzhd.wuye.service;
 
 import cn.rzhd.wuye.bean.ReletApply;
+import cn.rzhd.wuye.vo.query.ApplyQuery;
 
 import java.util.List;
 
@@ -21,4 +22,5 @@ public interface IReletApplyService {
 
     List<ReletApply> findReletApply(String houseInfoId, String customerId);
 
+    List<ReletApply> findEnterApplyByQuery(ApplyQuery query);
 }
