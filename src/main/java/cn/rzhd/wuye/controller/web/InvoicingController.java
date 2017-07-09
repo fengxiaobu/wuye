@@ -183,6 +183,7 @@ public class InvoicingController {
         String collectingCompany = null;
         Date paytime = null;
         Integer invoiceStatus = null;
+        String payManner = null;
         /**
          * 读取每条记录并存入付款记录的值,生成主键值,将部分值取出放入准备的字段,insert缴费详情
          */
@@ -212,6 +213,7 @@ public class InvoicingController {
             collectingCompany = detail.getCollectingCompany();
             paytime = detail.getPayTime();
             invoiceStatus = detail.getInvoiceStatus();
+            payManner = detail.getPayManner();
         }
         /**
          * 此处赋值到付款记录对象,并进行存储
@@ -226,6 +228,7 @@ public class InvoicingController {
         records.setPaidIn(paidIn);
         records.setPayTime(paytime);
         records.setInvoiceStatus(invoiceStatus==null?null:(invoiceStatus==0?0:1));
+        records.setPayManner(payManner);
         payFeeRecordsService.addRecords(records);
         return id;
     }
@@ -250,6 +253,7 @@ public class InvoicingController {
         String collectingCompany = null;
         Date paytime = null;
         Integer invoiceStatus = null;
+        String payManner = null;
         /**
          * 读取每条记录并存入付款记录的值,生成主键值,将部分值取出放入准备的字段,insert缴费详情
          */
@@ -261,8 +265,15 @@ public class InvoicingController {
             detail.setPayTime(new Date());
             detail.setKfFeePayDetailsId(detailId);
             detail.setRecordsId(id);
-            detail.setCollectingAccount(kfFeePayDetailsService.getCompanyAccount(detail.getFeecode(), detail.getPk_corp()));
-            detail.setCollectingCompany(kfFeePayDetailsService.getCompanyName(detail.getFeecode(), detail.getPk_corp()));
+            if(detail.getPk_feeType()==null){
+                detail.setCollectingAccount(kfFeePayDetailsService.getCompanyAccount(detail.getFeecode(), detail.getPk_corp()));
+                detail.setCollectingCompany(kfFeePayDetailsService.getCompanyName(detail.getFeecode(), detail.getPk_corp()));
+            }else{
+                detail.setCollectingAccount(kfFeePayDetailsService.getCompanyAccount(detail.getPk_feeType()));
+                detail.setCollectingCompany(kfFeePayDetailsService.getCompanyName(detail.getPk_feeType()));
+            }
+
+
             kfFeePayDetailsService.addDetails(detail);
             /**
              * 赋值
@@ -276,6 +287,7 @@ public class InvoicingController {
             collectingCompany = detail.getCollectingCompany();
             paytime = detail.getPayTime();
             invoiceStatus = detail.getInvoiceStatus();
+            payManner = detail.getPayManner();
         }
         /**
          * 此处赋值到付款记录对象,并进行存储
@@ -290,6 +302,7 @@ public class InvoicingController {
         records.setPaidIn(paidIn);
         records.setPayTime(paytime);
         records.setInvoiceStatus(invoiceStatus==null?null:(invoiceStatus==0?0:1));
+        records.setPayManner(payManner);
         payFeeRecordsService.addRecords(records);
         return id;
     }
@@ -308,6 +321,8 @@ public class InvoicingController {
         String collectingCompany = null;
         Date paytime = null;
         Integer invoiceStatus = null;
+        String projectName = null;
+        String payManner = null;
         /**
          * 读取每条记录并存入付款记录的值,生成主键值,将部分值取出放入准备的字段,insert缴费详情
          */
@@ -319,8 +334,13 @@ public class InvoicingController {
             detail.setCarteTime(new Date());
             detail.setPayTime(new Date());
             detail.setPropertyFeePayDetails(detailId);
-            detail.setCollectingAccount(propertyFeePayDetailsService.getCompanyAccount(detail.getFeecode(), detail.getPk_corp()));
-            detail.setCollectingCompany(propertyFeePayDetailsService.getCompanyName(detail.getFeecode(), detail.getPk_corp()));
+            if(detail.getPk_feeType()==null){
+                detail.setCollectingAccount(propertyFeePayDetailsService.getCompanyAccount(detail.getFeecode(), detail.getPk_corp()));
+                detail.setCollectingCompany(propertyFeePayDetailsService.getCompanyName(detail.getFeecode(), detail.getPk_corp()));
+            }else{
+                detail.setCollectingAccount(propertyFeePayDetailsService.getCompanyAccount(detail.getPk_feeType()));
+                detail.setCollectingCompany(propertyFeePayDetailsService.getCompanyName(detail.getPk_feeType()));
+            }
             propertyFeePayDetailsService.addDetails(detail);
             /**
              * 赋值
@@ -334,6 +354,7 @@ public class InvoicingController {
             collectingCompany = detail.getCollectingCompany();
             paytime = detail.getPayTime();
             invoiceStatus = detail.getInvoiceStatus();
+            payManner = detail.getPayManner();
         }
         /**
          * 此处赋值到付款记录对象,并进行存储
@@ -348,6 +369,7 @@ public class InvoicingController {
         records.setPaidIn(paidIn);
         records.setPayTime(paytime);
         records.setInvoiceStatus(invoiceStatus==null?null:(invoiceStatus==0?0:1));
+        records.setPayManner(payManner);
         payFeeRecordsService.addRecords(records);
         return id;
     }

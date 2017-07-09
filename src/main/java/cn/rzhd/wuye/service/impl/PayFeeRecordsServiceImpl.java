@@ -33,4 +33,14 @@ public class PayFeeRecordsServiceImpl implements IPayFeeRecordsService {
     public List<Map<String, Object>> getByProject(PropertyRecordsQuery query) {
         return mapper.getByProject(query);
     }
+
+    @Override
+    public Integer countByQuery(PropertyRecordsQuery query) {
+        return mapper.countByQuery(query);
+    }
+
+    @Override
+    public void changeStatus(String id) {
+        mapper.changeStatus(id);
+    }
 }

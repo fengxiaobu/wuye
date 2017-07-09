@@ -32,7 +32,11 @@ public interface IPropertyFeePayDetailsService {
 
     String getCompanyAccount(String feeType,String pk_corp);
 
+    String getCompanyAccount(String pk_feeType);
+
     String getCompanyName(String feeType,String pk_corp);
+
+    String getCompanyName(String pk_feeType);
 
     Integer countByQuery(PropertyRecordsQuery query);
 

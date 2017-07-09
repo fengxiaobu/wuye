@@ -67,8 +67,18 @@ public class PropertyFeePayDetailsServiceImpl implements IPropertyFeePayDetailsS
     }
 
     @Override
+    public String getCompanyAccount(String pk_feeType) {
+        return mapper.getCompanyAccountByPkFeeType(pk_feeType);
+    }
+
+    @Override
     public String getCompanyName(String feeType, String pk_corp) {
         return mapper.getCompanyName(feeType, pk_corp);
+    }
+
+    @Override
+    public String getCompanyName(String pk_feeType) {
+        return mapper.getCompanyNameByPkFeeType(pk_feeType);
     }
 
     @Override

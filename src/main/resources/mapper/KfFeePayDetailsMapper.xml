@@ -246,4 +246,15 @@
             JOIN T_HOUSE_INFO_DETAILS ON HOUSE_INFO_ID = T_HOUSE_INFO_DETAILS."pk_house"
         WHERE RECORDS_ID = #{id}
     </select>
+    <select id="getCompanyAccountByPkFeeType" parameterType="string" resultType="string">
+        SELECT "account"
+        FROM T_BANK_ACCOUNT
+        WHERE "pk_fee" = #{pk_feeType}
+    </select>
+    <select id="getCompanyNameByPkFeeType" parameterType="string" resultType="string">
+        SELECT "unitname"
+        FROM T_COMPANY
+            JOIN T_BANK_ACCOUNT ON T_COMPANY."pk_corp" = "vdef1"
+        WHERE T_BANK_ACCOUNT."pk_fee"=#{pk_feeType}
+    </select>
 </mapper>

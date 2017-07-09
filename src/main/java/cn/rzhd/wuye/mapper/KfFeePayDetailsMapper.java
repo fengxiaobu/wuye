@@ -36,4 +36,8 @@ public interface KfFeePayDetailsMapper {
     List<FeeVO> getFeeDataByRecordsId(String id);
 
     void updateBillIdByRecordsId(@Param("id") String id,@Param("billId") String billid,@Param("billNo") String billno);
+
+    String getCompanyAccountByPkFeeType(String pk_feeType);
+
+    String getCompanyNameByPkFeeType(String pk_feeType);
 }

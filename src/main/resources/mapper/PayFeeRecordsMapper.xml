@@ -1,88 +1,161 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="cn.rzhd.wuye.mapper.PayFeeRecordsMapper" >
-  <resultMap id="BaseResultMap" type="cn.rzhd.wuye.bean.PayFeeRecords" >
-    <id column="RECORDS_ID" property="recordsId"/>
-    <result column="PROJECT_NAME" property="projectName"/>
-    <result column="HOUSE_CODE" property="houseCode"/>
-    <result column="CLIENT_NAME" property="clientName"/>
-    <result column="ARREARS" property="arrears"/>
-    <result column="PAID_IN" property="paidIn"/>
-    <result column="VOUCHER_NUMBER" property="voucherNumber"/>
-    <result column="INVOICE_STATUS" property="invoiceStatus"/>
-    <result column="PAY_MANNER" property="payManner"/>
-    <result column="COLLECTING_COMPANY" property="collectingCompany"/>
-    <result column="COLLECTING_ACCOUNT" property="collectingAccount"/>
-    <result column="INVOICE" property="invoice"/>
-    <result column="PAY_TIME" property="payTime"/>
-    <result column="FEE_TYPE" property="feeType"/>
-  </resultMap>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
-    delete from T_PAY_FEE_RECORDS
-    where RECORDS_ID = #{recordsId}
-  </delete>
-  <insert id="insert" parameterType="cn.rzhd.wuye.bean.PayFeeRecords" >
-    insert into T_PAY_FEE_RECORDS (RECORDS_ID, PROJECT_NAME, HOUSE_CODE, 
-      CLIENT_NAME, ARREARS, PAID_IN, 
-      VOUCHER_NUMBER, INVOICE_STATUS, PAY_MANNER, 
-      COLLECTING_COMPANY, COLLECTING_ACCOUNT, INVOICE, 
-      PAY_TIME, FEE_TYPE)
-    values (#{recordsId}, #{projectName}, #{houseCode},
-      #{clientName}, #{arrears}, #{paidIn},
-      #{voucherNumber}, #{invoiceStatus}, #{payManner},
-      #{collectingCompany}, #{collectingAccount}, #{invoice},
-      #{payTime}, #{feeType})
-  </insert>
-  <update id="updateByPrimaryKey" parameterType="cn.rzhd.wuye.bean.PayFeeRecords" >
-    update T_PAY_FEE_RECORDS
-    set PROJECT_NAME = #{projectName},
-      HOUSE_CODE = #{houseCode},
-      CLIENT_NAME = #{clientName},
-      ARREARS = #{arrears},
-      PAID_IN = #{paidIn},
-      VOUCHER_NUMBER = #{voucherNumber},
-      INVOICE_STATUS = #{invoiceStatus},
-      PAY_MANNER = #{payManner},
-      COLLECTING_COMPANY = #{collectingCompany},
-      COLLECTING_ACCOUNT = #{collectingAccount},
-      INVOICE = #{invoice},
-      PAY_TIME = #{payTime},
-      FEE_TYPE = #{feeType}
-    where RECORDS_ID = #{recordsId}
-  </update>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
-    select RECORDS_ID, PROJECT_NAME, HOUSE_CODE, CLIENT_NAME, ARREARS, PAID_IN, VOUCHER_NUMBER, 
-    INVOICE_STATUS, PAY_MANNER, COLLECTING_COMPANY, COLLECTING_ACCOUNT, INVOICE, PAY_TIME, 
-    FEE_TYPE
-    from T_PAY_FEE_RECORDS
-    where RECORDS_ID = #{recordsId}
-  </select>
-  <select id="selectAll" resultMap="BaseResultMap" >
-    select RECORDS_ID, PROJECT_NAME, HOUSE_CODE, CLIENT_NAME, ARREARS, PAID_IN, VOUCHER_NUMBER, 
-    INVOICE_STATUS, PAY_MANNER, COLLECTING_COMPANY, COLLECTING_ACCOUNT, INVOICE, PAY_TIME, 
-    FEE_TYPE
-    from T_PAY_FEE_RECORDS
-  </select>
-  <select id="getTypeById" parameterType="string" resultType="string">
-    SELECT FEE_TYPE FROM T_PAY_FEE_RECORDS WHERE RECORDS_ID=#{id}
-  </select>
-  <resultMap id="map" type="map">
-
-  </resultMap>
-  <select id="getByProject" parameterType="cn.rzhd.wuye.vo.query.PropertyRecordsQuery" resultMap="map">
-    SELECT
---     PROJECT_NAME AS projectName,
---      houseCode
---     clientName
---     payable
---     paidIn
---     voucherNumber
---     payManner
---     collectingCompany
---     collectingAccount
---     invoice
---     invoiceStatus
---     payTime
-      FROM WUYE.T_PAY_FEE_RECORDS
-  </select>
+<mapper namespace="cn.rzhd.wuye.mapper.PayFeeRecordsMapper">
+    <resultMap id="BaseResultMap" type="cn.rzhd.wuye.bean.PayFeeRecords">
+        <id column="RECORDS_ID" property="recordsId"/>
+        <result column="PROJECT_NAME" property="projectName"/>
+        <result column="HOUSE_CODE" property="houseCode"/>
+        <result column="CLIENT_NAME" property="clientName"/>
+        <result column="ARREARS" property="arrears"/>
+        <result column="PAID_IN" property="paidIn"/>
+        <result column="VOUCHER_NUMBER" property="voucherNumber"/>
+        <result column="INVOICE_STATUS" property="invoiceStatus"/>
+        <result column="PAY_MANNER" property="payManner"/>
+        <result column="COLLECTING_COMPANY" property="collectingCompany"/>
+        <result column="COLLECTING_ACCOUNT" property="collectingAccount"/>
+        <result column="INVOICE" property="invoice"/>
+        <result column="PAY_TIME" property="payTime"/>
+        <result column="FEE_TYPE" property="feeType"/>
+    </resultMap>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        DELETE FROM T_PAY_FEE_RECORDS
+        WHERE RECORDS_ID = #{recordsId}
+    </delete>
+    <insert id="insert" parameterType="cn.rzhd.wuye.bean.PayFeeRecords">
+        INSERT INTO T_PAY_FEE_RECORDS (RECORDS_ID, PROJECT_NAME, HOUSE_CODE,
+                                       CLIENT_NAME, ARREARS, PAID_IN,
+                                       VOUCHER_NUMBER, INVOICE_STATUS, PAY_MANNER,
+                                       COLLECTING_COMPANY, COLLECTING_ACCOUNT, INVOICE,
+                                       PAY_TIME, FEE_TYPE)
+        VALUES (#{recordsId}, #{projectName}, #{houseCode},
+                              #{clientName}, #{arrears}, #{paidIn},
+                              #{voucherNumber}, #{invoiceStatus}, #{payManner},
+                              #{collectingCompany}, #{collectingAccount}, #{invoice},
+                #{payTime}, #{feeType})
+    </insert>
+    <update id="updateByPrimaryKey" parameterType="cn.rzhd.wuye.bean.PayFeeRecords">
+        UPDATE T_PAY_FEE_RECORDS
+        SET PROJECT_NAME       = #{projectName},
+            HOUSE_CODE         = #{houseCode},
+            CLIENT_NAME        = #{clientName},
+            ARREARS            = #{arrears},
+            PAID_IN            = #{paidIn},
+            VOUCHER_NUMBER     = #{voucherNumber},
+            INVOICE_STATUS     = #{invoiceStatus},
+            PAY_MANNER         = #{payManner},
+            COLLECTING_COMPANY = #{collectingCompany},
+            COLLECTING_ACCOUNT = #{collectingAccount},
+            INVOICE            = #{invoice},
+            PAY_TIME           = #{payTime},
+            FEE_TYPE           = #{feeType}
+        WHERE RECORDS_ID = #{recordsId}
+    </update>
+    <update id="changeStatus" parameterType="string">
+        UPDATE WUYE.T_PAY_FEE_RECORDS SET STATUS = 'Y'
+        WHERE RECORDS_ID=#{id}
+    </update>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+        SELECT
+            RECORDS_ID,
+            PROJECT_NAME,
+            HOUSE_CODE,
+            CLIENT_NAME,
+            ARREARS,
+            PAID_IN,
+            VOUCHER_NUMBER,
+            INVOICE_STATUS,
+            PAY_MANNER,
+            COLLECTING_COMPANY,
+            COLLECTING_ACCOUNT,
+            INVOICE,
+            PAY_TIME,
+            FEE_TYPE
+        FROM T_PAY_FEE_RECORDS
+        WHERE RECORDS_ID = #{recordsId}
+    </select>
+    <select id="selectAll" resultMap="BaseResultMap">
+        SELECT
+            RECORDS_ID,
+            PROJECT_NAME,
+            HOUSE_CODE,
+            CLIENT_NAME,
+            ARREARS,
+            PAID_IN,
+            VOUCHER_NUMBER,
+            INVOICE_STATUS,
+            PAY_MANNER,
+            COLLECTING_COMPANY,
+            COLLECTING_ACCOUNT,
+            INVOICE,
+            PAY_TIME,
+            FEE_TYPE
+        FROM T_PAY_FEE_RECORDS
+    </select>
+    <select id="getTypeById" parameterType="string" resultType="string">
+        SELECT FEE_TYPE
+        FROM T_PAY_FEE_RECORDS
+        WHERE RECORDS_ID = #{id}
+    </select>
+    <resultMap id="map" type="map">
+        <result property="projectName" column="projectName"/>
+        <result property="houseCode" column="houseCode"/>
+        <result property="clientName" column="clientName"/>
+        <result property="payable" column="payable"/>
+        <result property="paidIn" column="paidIn"/>
+        <result property="voucherNumber" column="voucherNumber"/>
+        <result property="payManner" column="payManner"/>
+        <result property="collectingCompany" column="collectingCompany"/>
+        <result property="collectingAccount" column="collectingAccount"/>
+        <result property="invoice" column="invoice"/>
+        <result property="invoiceStatus" column="invoiceStatus"/>
+        <result property="payTime" column="payTime"/>
+    </resultMap>
+    <sql id="querySql">
+        <where>
+            T_PAY_FEE_RECORDS.STATUS = 'Y' AND FEE_TYPE = #{feeType}
+            <if test="startDate!=null and endDate!=null">
+                AND PAY_TIME &gt;= #{startDate} AND PAY_TIME &lt;= #{endDate}
+            </if>
+            <if test="feeType!=null">
+                AND FEE_TYPE = #{feeType}
+            </if>
+            <if test="payManner!=null">
+                AND PAY_MANNER = #{payManner}
+            </if>
+            <if test="keyWords !=null and keyWords!=''">
+                AND (
+                PROJECT_NAME LIKE '%'||'${keyWords}'||'%'
+                OR HOUSE_CODE LIKE '%'||'${keyWords}'||'%'
+                OR CLIENT_NAME LIKE '%'||'${keyWords}'||'%'
+                )
+            </if>
+        </where>
+    </sql>
+    <select id="getByProject" parameterType="cn.rzhd.wuye.vo.query.PropertyRecordsQuery" resultMap="map">
+        SELECT a2.*,RN FROM (
+        SELECT a1.*,ROWNUM AS RN FROM (
+        SELECT
+        DISTINCT
+        PROJECT_NAME AS projectName,
+        HOUSE_CODE AS houseCode,
+        CLIENT_NAME AS clientName,
+        PAID_IN AS payable,
+        PAID_IN AS paidIn,
+        VOUCHER_NUMBER AS voucherNumber,
+        PAY_MANNER AS payManner,
+        COLLECTING_COMPANY AS collectingCompany,
+        COLLECTING_ACCOUNT AS collectingAccount,
+        INVOICE AS invoice,
+        INVOICE_STATUS AS invoiceStatus,
+        PAY_TIME AS payTime
+        FROM T_PAY_FEE_RECORDS
+        <include refid="querySql"/>
+        ORDER BY PAY_TIME DESC
+        ) a1 WHERE ROWNUM &lt;=#{endNum}
+        )a2 where RN &gt;#{startNum}
+    </select>
+    <select id="countByQuery" parameterType="cn.rzhd.wuye.vo.query.PropertyRecordsQuery" resultType="integer">
+        SELECT COUNT(RECORDS_ID) FROM T_PAY_FEE_RECORDS
+        <include refid="querySql"/>
+    </select>
 </mapper>

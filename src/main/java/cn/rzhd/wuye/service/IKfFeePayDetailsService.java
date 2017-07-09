@@ -22,9 +22,13 @@ public interface IKfFeePayDetailsService {
 
     String getCompanyAccount(String feecode, String pk_corp);
 
+    String getCompanyAccount(String pk_feeType);
+
     String getCostType(String feecode, String pk_corp);
 
     String getCompanyName(String feecode, String pk_corp);
+
+    String getCompanyName(String pk_feeType);
 
     Integer countByQuery(PropertyRecordsQuery query);
 

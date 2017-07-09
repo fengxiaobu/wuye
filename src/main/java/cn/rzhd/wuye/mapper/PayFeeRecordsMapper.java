@@ -22,4 +22,8 @@ public interface PayFeeRecordsMapper {
     String getTypeById(String id);
 
     List<Map<String,Object>> getByProject(PropertyRecordsQuery query);
+
+    Integer countByQuery(PropertyRecordsQuery query);
+
+    void changeStatus(String id);
 }

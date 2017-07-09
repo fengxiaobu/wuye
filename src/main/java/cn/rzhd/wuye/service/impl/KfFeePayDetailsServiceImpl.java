@@ -52,6 +52,11 @@ public class KfFeePayDetailsServiceImpl implements IKfFeePayDetailsService {
     }
 
     @Override
+    public String getCompanyAccount(String pk_feeType) {
+        return mapper.getCompanyAccountByPkFeeType(pk_feeType);
+    }
+
+    @Override
     public String getCostType(String feecode, String pk_corp) {
         return mapper.getCostType(feecode,pk_corp);
     }
@@ -59,6 +64,11 @@ public class KfFeePayDetailsServiceImpl implements IKfFeePayDetailsService {
     @Override
     public String getCompanyName(String feecode, String pk_corp) {
         return mapper.getCompanyName(feecode,pk_corp);
+    }
+
+    @Override
+    public String getCompanyName(String pk_feeType) {
+        return mapper.getCompanyNameByPkFeeType(pk_feeType);
     }
 
     @Override

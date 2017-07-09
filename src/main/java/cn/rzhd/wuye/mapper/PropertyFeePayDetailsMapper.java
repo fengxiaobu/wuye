@@ -49,4 +49,8 @@ public interface PropertyFeePayDetailsMapper {
     List<String> getPropertyFeeIdByRecords(String id);
 
     List<FeeVO> getTempFeeByRecords(String id);
+
+    String getCompanyAccountByPkFeeType(String pk_feeType);
+
+    String getCompanyNameByPkFeeType(String pk_feeType);
 }

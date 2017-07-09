@@ -296,6 +296,17 @@
             JOIN T_HOUSE_INFO_DETAILS ON "pk_house" = HOUSE_INFO_ID
         WHERE RECORDS_ID = #{id}
     </select>
+    <select id="getCompanyAccountByPkFeeType" parameterType="string" resultType="string">
+        SELECT "account"
+        FROM T_BANK_ACCOUNT
+        WHERE "pk_fee"=#{pk_feeType}
+    </select>
+    <select id="getCompanyNameByPkFeeType" parameterType="string" resultType="string">
+        SELECT "unitname"
+        FROM T_COMPANY
+            JOIN T_BANK_ACCOUNT ON T_COMPANY."pk_corp" = "vdef1"
+        WHERE T_BANK_ACCOUNT."pk_fee"=#{pk_feeType}
+    </select>
 
     <update id="changeStatusByRecordsId" parameterType="string">
         UPDATE T_PROPERTY_FEE_PAY_DETAILS

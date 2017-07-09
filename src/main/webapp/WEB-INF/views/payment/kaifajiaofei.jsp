@@ -56,7 +56,6 @@
                     <th>欠费金额</th>
                     <th>缴费金额</th>
                     <th>单据号</th>
-                    <th>开票类型</th>
                     <th>支付方式</th>
                     <th>收款公司</th>
                     <th>收款账户</th>
@@ -73,8 +72,7 @@
     </div>
 
 </body>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/libs/jquery-1.11.3.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/libs/bootstrap/js/bootstrap.min.js"></script>
+<jsp:include page="../../../common/common.jsp"></jsp:include>
 <script type="text/javascript">
     var tableEdit = {
         content: function (option) {

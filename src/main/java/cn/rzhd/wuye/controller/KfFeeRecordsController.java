@@ -50,8 +50,9 @@ public class KfFeeRecordsController {
     public JsonResult getPayFeeRecords(PropertyRecordsQuery query){
         query.setUserId(UserContext.getUser().getUserId());
         JsonResult result = new JsonResult();
+        query.setFeeType("开发");
         result.getData().add(payFeeRecordsService.getByProject(query));
-        //query.setTotal(payFeeRecordsService.countByQuery(query));
+        query.setTotal(payFeeRecordsService.countByQuery(query));
         result.getData().add(query);
         return result;
     }

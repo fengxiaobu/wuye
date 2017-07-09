@@ -47,8 +47,9 @@ public class PropertyRecordsController {
     public JsonResult getPayFeeRecords(PropertyRecordsQuery query){
         JsonResult result = new JsonResult();
         query.setUserId(UserContext.getUser().getUserId());
+        query.setFeeType("物业");
         result.getData().add(payFeeRecordsService.getByProject(query));
-        //query.setTotal(payFeeRecordsService.countByQuery(query));
+        query.setTotal(payFeeRecordsService.countByQuery(query));
         result.getData().add(query);
         return result;
     }

@@ -358,8 +358,10 @@ public class ChinaPay {
                  * 修改缴费详情记录状态为可见
                  * 修改开票记录状态为可见
                  */
+
                 String id = vo.getId();
                 String type = payFeeRecordsService.getTypeById(id);
+                payFeeRecordsService.changeStatus(id);
                 if("物业".equals(type)){
                     wuye.changeStatusByRecordsId(id);
                     wuyeInvoice.changeStatusByRecordsId(id);
