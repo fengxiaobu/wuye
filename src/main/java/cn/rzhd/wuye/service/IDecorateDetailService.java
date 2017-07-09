@@ -18,4 +18,6 @@ public interface IDecorateDetailService {
     List<DecorateDetail> selectAll();
 
     int updateByPrimaryKey(DecorateDetail record);
+
+    List<DecorateDetail> selectByApplyKey(Long decorationApplyId);
 }

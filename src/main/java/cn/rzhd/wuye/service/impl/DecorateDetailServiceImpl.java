@@ -65,4 +65,9 @@ public class DecorateDetailServiceImpl implements IDecorateDetailService {
     public int updateByPrimaryKey(DecorateDetail record) {
         return decorateDetailMapper.updateByPrimaryKey(record);
     }
+
+    @Override
+    public List<DecorateDetail> selectByApplyKey(Long decorationApplyId) {
+        return decorateDetailMapper.selectByApplyKey(decorationApplyId);
+    }
 }

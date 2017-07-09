@@ -21,7 +21,11 @@ public class DecorationApply implements Serializable {
 
     private static final long serialVersionUID = 1L;
     /**
-     *
+     * 反馈意见
+     */
+    private String opinion;
+    /**
+     * 房产信息
      */
     private HouseInfoDetails houseInfoDetails;
     /**
@@ -36,7 +40,6 @@ public class DecorationApply implements Serializable {
      * 客户名称
      */
     private String clientName;
-
     /**
      * 申请日期
      */
@@ -124,12 +127,10 @@ public class DecorationApply implements Serializable {
      */
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date updateTime;
-
     /**
      * 支付状态
      */
     private String paymentStatus;
-
     private String customerId;
     /**
      * 装修详情
@@ -139,6 +140,14 @@ public class DecorationApply implements Serializable {
      * 装修资料
      */
     private List<DecorationMaterial> decorationMaterialList;
+
+    public String getOpinion() {
+        return opinion;
+    }
+
+    public void setOpinion(String opinion) {
+        this.opinion = opinion;
+    }
 
     public String getCustomerId() {
         return customerId;

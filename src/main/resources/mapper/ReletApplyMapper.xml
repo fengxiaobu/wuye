@@ -230,6 +230,5 @@
               WHERE aaply.CUSTOMERID = #{customerId}
               ORDER BY aaply.CREATION_TIME DESC)
         WHERE rownum = 1
-
     </select>
 </mapper>

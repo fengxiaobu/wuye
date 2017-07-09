@@ -30,7 +30,7 @@
                         <input type="hidden" name="decorationApplyId" value="${decorationApply.decorationApplyId}"/>
                         <label class="col-sm-2 control-label">项目名称:</label>
                         <div class="col-sm-10">
-                            <label class="col-sm-2 control-label">${decorationApply.houseInfoDetails.projectInfo.projectName}</label>
+                            <label class="col-sm-2 control-label">${decorationApply.houseInfoDetails.project}</label>
                         </div>
                     </div>
                     <div class="form-group">
@@ -54,7 +54,8 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">申请时间:</label>
                         <div class="col-sm-10">
-                            <input type="text" name="applyTime" value="<fmt:formatDate value="${decorationApply.applyTime }" pattern="yyyy-MM-dd HH:dd:ss"/>"/>
+                            <input type="text" name="applyTime"
+                                   value="<fmt:formatDate value="${decorationApply.applyTime }" pattern="yyyy-MM-dd HH:dd:ss"/>"/>
                         </div>
                     </div>
                     <div class="form-group">
@@ -72,7 +73,8 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">现场管理人联系方式:</label>
                         <div class="col-sm-10">
-                            <input type="text" name="localeCustodianPhone" value="${decorationApply.localeCustodianPhone}"/>
+                            <input type="text" name="localeCustodianPhone"
+                                   value="${decorationApply.localeCustodianPhone}"/>
                         </div>
                     </div>
                     <div class="form-group">
@@ -90,7 +92,8 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">施工人数:</label>
                         <div class="col-sm-10">
-                            <input type="text" name="constructPeopleNumber" value="${decorationApply.constructPeopleNumber}"/>
+                            <input type="text" name="constructPeopleNumber"
+                                   value="${decorationApply.constructPeopleNumber}"/>
                         </div>
                     </div>
                     <div class="form-group">
@@ -108,7 +111,8 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">装修负责人联系方式:</label>
                         <div class="col-sm-10">
-                            <input type="text" name="decorationLeaderPhone" value="${decorationApply.decorationLeaderPhone}"/>
+                            <input type="text" name="decorationLeaderPhone"
+                                   value="${decorationApply.decorationLeaderPhone}"/>
                         </div>
                     </div>
                     <div class="form-group">
@@ -120,7 +124,8 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">装修管理费:</label>
                         <div class="col-sm-10">
-                            <input type="text" name="decorationManagementCost" value="${decorationApply.decorationManagementCost}"/>
+                            <input type="text" name="decorationManagementCost"
+                                   value="${decorationApply.decorationManagementCost}"/>
                         </div>
                     </div>
                     <div class="form-group">
@@ -135,67 +140,73 @@
                             <input type="text" name="passPapersDeposit" value="${decorationApply.passPapersDeposit}"/>
                         </div>
                     </div>
-                    <%--<div class="form-group">
+                    <div class="form-group">
                         <label class="col-sm-2 control-label">附件:</label>
                         <div class="col-sm-10">
-                          <input type="text" value=""/>
-                            <a target="main" href="${pageContext.request.contextPath}" class="btn btn-info" type="button"><span class="glyphicon glyphicon-plus"></span>批量打包下载
+                            <a target="main" href="${pageContext.request.contextPath}" class="btn btn-info"
+                               type="button"><span class="glyphicon glyphicon-plus"></span>批量打包下载
                             </a>
-                           <br/>
-                            <input type="text" value=""/><br/>
-                            <input type="text" value=""/><br/>
-                            <input type="text" value=""/><br/>
-                            <input type="text" value=""/><br/>
+                            <br/>
+                            <c:forEach items="${decorationMaterialList}" var="decorationMaterial"> <input type="text"
+                                                                                                          value="${decorationMaterial.materialName}"/><br/></c:forEach>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">装修明细:</label>
-                        <div class="col-sm-10">
-                            <table>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                            </table>
+                        <div class="col-sm-10" style="width: 700px">
+                            <div class="panel-body">
+                                <table class="table table-bordered tudiqianyue-table">
+                                    <tbody class="tudiqianyue-tbody">
+                                    <c:forEach var="decorateDetail" items="${decorateDetailList}">
+                                        <tr class="tudiqianyue-tdtr">
+                                            <td>${decorateDetail.detailOrder}</td>
+                                            <td>${decorateDetail.detailContent}</td>
+                                        </tr>
+                                    </c:forEach>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
-                    </div>--%>
-                   <%-- <div class="form-group">
+                    </div>
+                    <div class="form-group">
                         <label class="col-sm-2 control-label">审核意见:</label>
                         <div class="col-sm-10 radio">
                             <label>
-                                <input type="radio" name="auditStatus"
-                                       value="0"/>反馈
+                                <input type="radio" name="opinion"
+                                       value="0" <c:if test="${decorationApply.opinion eq 0}">checked="checked"
+                                </c:if>/>反馈
                             </label>
                             <label>
-                                <input type="radio" name="auditStatus"
-                                       value="1"/>同意
+                                <input type="radio" name="opinion"
+                                       value="1"
+                                       <c:if test="${decorationApply.opinion eq 1}">checked="checked"</c:if>/>同意
                             </label>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">反馈意见:</label>
                         <div class="col-sm-10">
-                            <label class="col-sm-2 control-label"></label>
+                            1, <input type="text" name="FEEDBACK1"/><br/>
+                            2, <input type="text" name="FEEDBACK2"/>
                         </div>
-                    </div>--%>
-                   <%-- <div class="form-group">
+                    </div>
+                    <div class="form-group">
                         <label class="col-sm-2 control-label">特殊装修:</label>
                         <div class="col-sm-10 radio">
                             <label>
-                                <input type="radio" name="auditStatus"
-                                       value="0"/>是
+                                <input type="radio" name="isSpecialDecoration"
+                                       value="1"
+                                       <c:if test="${decorationApply.isSpecialDecoration eq 1}">checked="checked"</c:if>/>是
                             </label>
                             <label>
-                                <input type="radio" name="auditStatus"
-                                       value="1"/>否
+                                <input type="radio" name="isSpecialDecoration"
+                                       value="0"
+                                       <c:if test="${decorationApply.isSpecialDecoration eq 0}">checked="checked"</c:if>/>否
                             </label>
-                            <input type="file" value="请上传特殊装修资料"/>
+                            <br/>
+                            <input type="text" value="${decorationApply.specialDecorationFile}"/><a href="#">下载</a>
                         </div>
-                    </div>--%>
+                    </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">审核状态:</label>
                         <div class="col-sm-10 radio">
@@ -217,7 +228,8 @@
                         </div>
                     </div>
                     <div class="form-group" style="margin-left:360px">
-                        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-save"></span>保存</button>
+                        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-save"></span>保存
+                        </button>
                     </div>
                 </form>
             </div>
@@ -228,6 +240,8 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/libs/jquery-1.11.3.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/libs/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript">
-
+    $(function () {
+        /*alert("");*/
+    });
 </script>
 </html>

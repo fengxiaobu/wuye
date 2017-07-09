@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -73,8 +74,11 @@
                         <label class="col-sm-2 control-label">退租类型:</label>
                         <div class="col-sm-10">
                             <label class="col-sm-2 control-label">
-                                <td>${retreatLeaseApply.retreatLeaseType}正常退租</td>
-                                正常退租</label>
+                                <td>
+                                    <c:if test="${retreatLeaseApply.retreatLeaseType  eq 2}">正常退租</c:if>
+                                    <c:if test="${retreatLeaseApply.retreatLeaseType  eq 1}">提前退租</c:if>
+                                </td>
+                            </label>
                         </div>
                     </div>
                     <div class="form-group">
@@ -86,7 +90,8 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">租赁保证金:</label>
                         <div class="col-sm-10">
-                            <label class="col-sm-2 control-label">${retreatLeaseApply.leaseDeposit}</label>
+                            <input class="col-sm-2 control-label" type="text" name="leaseDeposit"
+                                   value="${retreatLeaseApply.leaseDeposit}">
                         </div>
                     </div>
                     <div class="form-group">

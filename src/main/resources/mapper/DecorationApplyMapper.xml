@@ -5,6 +5,7 @@
     <resultMap id="BaseResultMap" type="cn.rzhd.wuye.bean.DecorationApply">
         <id column="DECORATION_APPLY_ID" property="decorationApplyId"/>
         <result column="HOUSE_INFO_ID" property="houseInfoId"/>
+        <result column="OPINION" property="opinion"/>
         <result column="CLIENT_NAME" property="clientName"/>
         <result column="APPLY_TIME" property="applyTime"/>
         <result column="ANTIPATE_TIME" property="antipateTime"/>
@@ -101,6 +102,7 @@
         <result column="CLIENT_NAME" property="clientName"/>
         <!--<result column="CUSTOMERID" property="customerId"/>-->
         <result column="APPLY_TIME" property="applyTime"/>
+        <result column="OPINION" property="opinion"/>
         <result column="ANTIPATE_TIME" property="antipateTime"/>
         <result column="LOCALE_CUSTODIAN" property="localeCustodian"/>
         <result column="LOCALE_CUSTODIAN_PHONE" property="localeCustodianPhone"/>
@@ -192,6 +194,7 @@
         SELECT
             DECORATION_APPLY_ID,
             HOUSE_INFO_ID,
+            OPINION,
             CLIENT_NAME,
             APPLY_TIME,
             ANTIPATE_TIME,
@@ -225,6 +228,7 @@
         UPDATE T_DECORATION_APPLY
         SET HOUSE_INFO_ID              = #{houseInfoId},
             CLIENT_NAME                = #{clientName},
+            OPINION                    = #{opinion},
             APPLY_TIME                 = #{applyTime},
             ANTIPATE_TIME              = #{antipateTime},
             LOCALE_CUSTODIAN           = #{localeCustodian,},
@@ -255,6 +259,7 @@
             T_DECORATION_APPLY (
                 DECORATION_APPLY_ID,
                 HOUSE_INFO_ID,
+                OPINION,
                 CLIENT_NAME,
                 APPLY_TIME,
                 ANTIPATE_TIME,
@@ -282,6 +287,7 @@
         VALUES (
             #{decorationApplyId},
             #{houseInfoId},
+            #{opinion},
             #{clientName},
             #{applyTime},
             #{antipateTime},

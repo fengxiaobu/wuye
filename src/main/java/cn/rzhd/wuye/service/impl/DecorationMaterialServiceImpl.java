@@ -80,7 +80,7 @@ public class DecorationMaterialServiceImpl implements IDecorationMaterialService
      */
     @Override
     public List<Map<String, JsonFormat.Value>> findByQuery(Long decorationApplyId) {
-        return null;
+        return decorationMaterialMapper.findByQuery(decorationApplyId);
     }
 
 }
