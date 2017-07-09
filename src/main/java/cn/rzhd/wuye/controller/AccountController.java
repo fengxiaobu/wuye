@@ -23,12 +23,12 @@ import cn.rzhd.wuye.vo.query.AccountQuery;
 public class AccountController {
 	@Autowired
 	AccountMapper Mapper;
-	
+
 	@RequestMapping("/index")
 	public String index() {
 		return "/payment/account";
 	}
-	
+
 	@RequestMapping("/accountData")
 	public String accountData(Model model,AccountQuery query) {
 		List<Account> accounts = Mapper.getWaterElectric(query);
@@ -41,7 +41,7 @@ public class AccountController {
 	}
 	
 	
-	@RequestMapping(value ="/exportExcel")  
+	@RequestMapping(value ="/exportExcel")
     public ModelAndView exportExcel(HttpServletRequest request,HttpServletResponse response,AccountQuery query){  
 		System.out.println(query.getType());
         try {  
@@ -73,13 +73,13 @@ public class AccountController {
         } catch (Exception e) {  
             e.printStackTrace();  
         }  
-          
+
         return null;  
-    } 
-	
+    }
+
 	@RequestMapping("/accountDetails")
 	public String accountDetails() {
-		
+
 		return "/payment/accountDetails";
 	}
 }

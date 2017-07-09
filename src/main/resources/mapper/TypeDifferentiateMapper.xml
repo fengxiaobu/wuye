@@ -3,65 +3,63 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="cn.rzhd.wuye.mapper.TypeDifferentiateMapper">
 
-    <resultMap id="typeMap" type="cn.rzhd.wuye.bean.TypeDifferentiate">
-        <id property="typeDifferentiateId" column="type_differentiate_id"/>
-        <result property="typeDifferentiateName" column="type_differentiate_name"/>
-        <result property="note" column="note"/>
-        <result property="status" column="status"/>
-        <result property="createTime" column="create_time"/>
-        <result property="updateTime" column="update_time"/>
-        <collection property="typeRefinementList" ofType="cn.rzhd.wuye.bean.TypeRefinement"
-                    column="type_differentiate_id">
-            <id property="typeRefinementId" column="type_refinement_id"/>
-            <result property="typeDifferentiateId" column="type_differentiate_id"/>
-            <result property="typeRefinementName" column="type_refinement_name"/>
-            <result property="note" column="note"/>
-            <result property="status" column="status"/>
-            <result property="createTime" column="create_time"/>
-            <result property="updateTime" column="update_time"/>
-        </collection>
-    </resultMap>
-    <!-- 查询id主键最后一位 -->
-    <select id="findTypeDifferentiateId" resultType="java.lang.Long">
-        select max(TYPE_DIFFERENTIATE_ID) from T_TYPE_DIFFERENTIATE
-    </select>
-    <!-- 查询是否重名 -->
-    <select id="findTypeDifferentiateNameIsRepeat" resultMap="typeMap">
-        select dif.*,ref.* from T_TYPE_DIFFERENTIATE dif,T_TYPE_REFINEMENT ref
-        where
-        dif.TYPE_DIFFERENTIATE_ID=ref.TYPE_DIFFERENTIATE_ID AND
-        TYPE_DIFFERENTIATE_NAME = #{typeDifferentiateName}
-    </select>
-    <!-- 添加类型 -->
-    <insert id="addTypeDifferentiate">
-        insert into T_TYPE_DIFFERENTIATE
-        (TYPE_DIFFERENTIATE_ID,TYPE_DIFFERENTIATE_NAME,NOTE,STATUS,CREATE_TIME)
-        values
-        (#{typeDifferentiate.typeDifferentiateId},#{typeDifferentiate.typeDifferentiateName},
-        #{typeDifferentiate.note},#{typeDifferentiate.status},#{typeDifferentiate.createTime})
-    </insert>
+	<resultMap id="typeMap" type="cn.rzhd.wuye.bean.TypeDifferentiate">
+		<id property="typeDifferentiateId" column="type_differentiate_id" />
+		<result property="typeDifferentiateName" column="type_differentiate_name" />
+		<result property="note" column="note" />
+		<result property="status" column="status" />
+		<result property="createTime" column="create_time" />
+		<result property="updateTime" column="update_time" />
+		<collection property="typeRefinementList" ofType="cn.rzhd.wuye.bean.TypeRefinement"
+			column="type_differentiate_id">
+			<id property="typeRefinementId" column="type_refinement_id" />
+			<result property="typeDifferentiateId" column="type_differentiate_id" />
+			<result property="typeRefinementName" column="type_refinement_name" />
+			<result property="note" column="note" />
+			<result property="status" column="status" />
+			<result property="createTime" column="create_time" />
+			<result property="updateTime" column="update_time" />
+		</collection>
+	</resultMap>
+	<!-- 查询id主键最后一位 -->
+	<select id="findTypeDifferentiateId" resultType="java.lang.Long">
+		select max(TYPE_DIFFERENTIATE_ID) from T_TYPE_DIFFERENTIATE
+	</select>
+	<!-- 查询是否重名 -->
+	<select id="findTypeDifferentiateNameIsRepeat" resultMap="typeMap">
+		select dif.*,ref.* from T_TYPE_DIFFERENTIATE dif,T_TYPE_REFINEMENT ref
+		where
+		dif.TYPE_DIFFERENTIATE_ID=ref.TYPE_DIFFERENTIATE_ID AND
+		TYPE_DIFFERENTIATE_NAME = #{typeDifferentiateName}
+	</select>
+	<!-- 添加类型 -->
+	<insert id="addTypeDifferentiate">
+		insert into T_TYPE_DIFFERENTIATE
+		(TYPE_DIFFERENTIATE_ID,TYPE_DIFFERENTIATE_NAME,NOTE,STATUS,CREATE_TIME)
+		values
+		(#{typeDifferentiate.typeDifferentiateId},#{typeDifferentiate.typeDifferentiateName},
+		#{typeDifferentiate.note},#{typeDifferentiate.status},#{typeDifferentiate.createTime})
+	</insert>
 
-    <!-- 修改类型 -->
-    <update id="updateTypeDifferentiateById">
-        update T_TYPE_DIFFERENTIATE set STATUS = #{typeDifferentiate.status},
-        NOTE = #{typeDifferentiate.note},UPDATE_TIME =
-        #{typeDifferentiate.updateTime}
-        where
-        TYPE_DIFFERENTIATE_ID = #{typeDifferentiate.typeDifferentiateId}
-    </update>
-
-    <sql id="getAllType">
-        TYPE_DIFFERENTIATE_ID typeDifferentiateId,
-        TYPE_DIFFERENTIATE_NAME typeDifferentiateName,
-        NOTE,
-        STATUS,
-        CREATE_TIME createTime,
-        UPDATE_TIME updateTime
-    </sql>
-
-    <select id="getDataName" parameterType="Long" resultType="cn.rzhd.wuye.bean.TypeDifferentiate">
-        SELECT
-        <include refid="getAllType"/>
-        FROM T_TYPE_DIFFERENTIATE WHERE TYPE_DIFFERENTIATE_ID=#{typeDifferentiateId}
-    </select>
+	<!-- 修改类型 -->
+	<update id="updateTypeDifferentiateById">
+		update T_TYPE_DIFFERENTIATE set STATUS = #{typeDifferentiate.status},
+		NOTE = #{typeDifferentiate.note},UPDATE_TIME =
+		#{typeDifferentiate.updateTime}
+		where
+		TYPE_DIFFERENTIATE_ID = #{typeDifferentiate.typeDifferentiateId}
+	</update>
+	
+	<sql id="getAllType">
+		TYPE_DIFFERENTIATE_ID typeDifferentiateId,
+		TYPE_DIFFERENTIATE_NAME typeDifferentiateName,
+		NOTE,
+		STATUS,
+		CREATE_TIME createTime,
+		UPDATE_TIME updateTime
+	</sql>
+	
+	<select id="getDataName" parameterType="Long" resultType="cn.rzhd.wuye.bean.TypeDifferentiate">
+		SELECT <include refid="getAllType" /> FROM T_TYPE_DIFFERENTIATE WHERE TYPE_DIFFERENTIATE_ID=#{typeDifferentiateId}
+	</select>
 </mapper>

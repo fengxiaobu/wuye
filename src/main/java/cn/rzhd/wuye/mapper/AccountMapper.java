@@ -1,11 +1,10 @@
 package cn.rzhd.wuye.mapper;
 
-import java.util.List;
-
-import org.apache.ibatis.annotations.Mapper;
-
 import cn.rzhd.wuye.bean.Account;
 import cn.rzhd.wuye.vo.query.AccountQuery;
+import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
 
 @Mapper
 public interface AccountMapper {

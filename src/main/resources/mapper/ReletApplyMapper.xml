@@ -116,17 +116,17 @@
     </delete>
     <insert id="insert" parameterType="cn.rzhd.wuye.bean.ReletApply">
         INSERT INTO T_RELET_APPLY (RELET_APPLY_ID, HOUSE_INFO_ID, CUSTOMERID,
-        HOUSE_ACREAGE, LEASE_START_TIME, LEASE_END_TIME,
-        RETREA_TIME, RETREA_TYPE,
-        SINGLE_PRICE, SUBTOTAL, PRIVILEGE_SUM,
-        LEASE_DEPOSIT, TOTAL, CREATION_TIME,
-        UPDATE_TIME, RETREA_END_TIME)
+                                   HOUSE_ACREAGE, LEASE_START_TIME, LEASE_END_TIME,
+                                   RETREA_TIME, RETREA_TYPE,
+                                   SINGLE_PRICE, SUBTOTAL, PRIVILEGE_SUM,
+                                   LEASE_DEPOSIT, TOTAL, CREATION_TIME,
+                                   UPDATE_TIME, RETREA_END_TIME)
         VALUES (#{reletApplyId}, #{houseInfoId}, #{customerId},
-        #{houseAcreage}, #{leaseStartTime}, #{leaseEndTime},
-        #{retreaTime}, #{retreaType},
-        #{singlePrice}, #{subtotal}, #{privilegeSum},
-        #{leaseDeposit}, #{total}, #{creationTime},
-        #{updateTime}, #{retreaEndTime})
+                                 #{houseAcreage}, #{leaseStartTime}, #{leaseEndTime},
+                                 #{retreaTime}, #{retreaType},
+                                 #{singlePrice}, #{subtotal}, #{privilegeSum},
+                #{leaseDeposit}, #{total}, #{creationTime},
+                #{updateTime}, #{retreaEndTime})
     </insert>
     <update id="updateByPrimaryKey" parameterType="cn.rzhd.wuye.bean.ReletApply">
         UPDATE T_RELET_APPLY
@@ -183,49 +183,49 @@
     </update>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
         SELECT
-        DISTINCT *
+            DISTINCT *
         FROM
-        T_RELET_APPLY aaply
-        LEFT JOIN "T_Customer" cust ON
-        aaply.CUSTOMERID = cust."pk_customerid"
-        LEFT JOIN T_HOUSE_INFO_DETAILS house ON
-        aaply.HOUSE_INFO_ID = house."pk_house"
+            T_RELET_APPLY aaply
+            LEFT JOIN "T_Customer" cust ON
+                                            aaply.CUSTOMERID = cust."pk_customerid"
+            LEFT JOIN T_HOUSE_INFO_DETAILS house ON
+                                                     aaply.HOUSE_INFO_ID = house."pk_house"
         WHERE RELET_APPLY_ID = #{reletApplyId}
         ORDER BY aaply.CREATION_TIME DESC
     </select>
     <select id="selectAll" resultMap="BaseResultMap">
         SELECT
-        DISTINCT *
+            DISTINCT *
         FROM
-        T_RELET_APPLY aaply
-        LEFT JOIN "T_Customer" cust ON
-        aaply.CUSTOMERID = cust."pk_customerid"
-        LEFT JOIN T_HOUSE_INFO_DETAILS house ON
-        aaply.HOUSE_INFO_ID = house."pk_house"
+            T_RELET_APPLY aaply
+            LEFT JOIN "T_Customer" cust ON
+                                            aaply.CUSTOMERID = cust."pk_customerid"
+            LEFT JOIN T_HOUSE_INFO_DETAILS house ON
+                                                     aaply.HOUSE_INFO_ID = house."pk_house"
         ORDER BY aaply.CREATION_TIME DESC
     </select>
 
     <select id="findReletApply" resultMap="BaseResultMap">
         SELECT
-        DISTINCT *
+            DISTINCT *
         FROM
-        T_RELET_APPLY aaply
-        LEFT JOIN "T_Customer" cust ON
-        aaply.CUSTOMERID = cust."pk_customerid"
-        LEFT JOIN T_HOUSE_INFO_DETAILS house ON
-        aaply.HOUSE_INFO_ID = house."pk_house"
+            T_RELET_APPLY aaply
+            LEFT JOIN "T_Customer" cust ON
+                                            aaply.CUSTOMERID = cust."pk_customerid"
+            LEFT JOIN T_HOUSE_INFO_DETAILS house ON
+                                                     aaply.HOUSE_INFO_ID = house."pk_house"
         WHERE HOUSE_INFO_ID = #{houseInfoId} AND CUSTOMERID = #{customerId}
         ORDER BY aaply.CREATION_TIME DESC
     </select>
     <select id="findReletApplyByCustomerId" resultMap="BaseResultMap">
         SELECT
-        DISTINCT *
+            DISTINCT *
         FROM
-        T_RELET_APPLY aaply
-        LEFT JOIN "T_Customer" cust ON
-        aaply.CUSTOMERID = cust."pk_customerid"
-        LEFT JOIN T_HOUSE_INFO_DETAILS house ON
-        aaply.HOUSE_INFO_ID = house."pk_house"
+            T_RELET_APPLY aaply
+            LEFT JOIN "T_Customer" cust ON
+                                            aaply.CUSTOMERID = cust."pk_customerid"
+            LEFT JOIN T_HOUSE_INFO_DETAILS house ON
+                                                     aaply.HOUSE_INFO_ID = house."pk_house"
         WHERE aaply.CUSTOMERID = #{customerId}
         ORDER BY aaply.CREATION_TIME DESC
     </select>

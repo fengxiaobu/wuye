@@ -21,7 +21,7 @@
 						<div class="form-group">
 							<label class="col-sm-2 control-label">
 								<c:if test="${typeRefinement.typeDifferentiateId=='1'}" >
-					　				房产使用属性：
+					　			房产使用属性：
 								</c:if>
 								<c:if test="${typeRefinement.typeDifferentiateId=='2'}" >
 								　　属性：
@@ -74,13 +74,10 @@
 </body>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/libs/jquery-1.11.3.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/libs/bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript"
-        src="${pageContext.request.contextPath}/js/libs/datetimepicker/datetimepicker.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/libs/datetimepicker/datetimepicker.zh-CN.js"
-        charset="UTF-8"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/libs/datetimepicker/datetimepicker.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/libs/datetimepicker/datetimepicker.zh-CN.js" charset="UTF-8"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/common.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/creditList/update.js"></script>
 
 </script>
-</
-html >
+</html>

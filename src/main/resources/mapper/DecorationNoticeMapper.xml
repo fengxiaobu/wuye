@@ -8,7 +8,7 @@
         <result column="CREATION_TIME" property="creationTime"/>
         <result column="UPDATE_TIME" property="updateTime"/>
     </resultMap>
-    <delete id="deleteByPrimaryKey">
+    <delete id="deleteByPrimaryKey" >
         delete from T_DECORATION_NOTICE
         where DECORATION_NOTICE_ID = #{decorationNoticeId}
     </delete>
@@ -26,7 +26,7 @@
         UPDATE_TIME = #{updateTime,jdbcType=DATE}
         where DECORATION_NOTICE_ID = #{decorationNoticeId,jdbcType=DECIMAL}
     </update>
-    <select id="selectByPrimaryKey" resultMap="BaseResultMap">
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" >
         select DECORATION_NOTICE_ID, TITLE, CONTENT, CREATION_TIME, UPDATE_TIME
         from T_DECORATION_NOTICE
         where DECORATION_NOTICE_ID = #{decorationNoticeId,jdbcType=DECIMAL}

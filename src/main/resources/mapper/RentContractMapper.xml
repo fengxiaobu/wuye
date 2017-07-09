@@ -2,99 +2,101 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="cn.rzhd.wuye.mapper.RentContractMapper">
 
-    <select id="getAll" resultMap="RentContractBackMap">
-        SELECT
-        DISTINCT
-        P.PROJECT_NAME,
-        r."house",
-        c."vcname",
-        r."dpactstart",
-        r."dpactend",
-        r."dysdate",
-        r."nsbzjyjmny",
-        r."nhtssmny",
-        r."nzlbzjmny",
-        r."nhtysmny"
-        FROM
-        "T_Rent_Contract" r
-        LEFT JOIN T_PROJECT_INFO P ON r."pk_project" = P .PK_PROJECT
-        LEFT JOIN "T_Customer" c ON r."pk_customerid" = c."pk_customerid"
-    </select>
-
-    <resultMap type="cn.rzhd.wuye.vo.PactVO" id="RentContractBackMap">
-        <id property="pk_project" column="pk_project"/>
-        <result property="house" column="house"/>
-        <result property="dpactend" column="dpactend"/>
-        <result property="dpactstart" column="dpactstart"/>
-        <result property="nzlbzjmny" column="nzlbzjmny"/>
-        <result property="nhtysmny" column="nhtysmny"/>
-        <result property="nhtssmny" column="nhtssmny"/>
-        <result property="dysdate" column="dysdate"/>
-        <result property="nsbzjyjmny" column="nsbzjyjmny"/>
-        <association property="customerVO" javaType="cn.rzhd.wuye.vo.CustomerVO">
-            <id property="pk_customerid" column="pk_customerid"/>
-            <result property="vcname" column="vcname"/>
-        </association>
-        <association property="projectVO" javaType="cn.rzhd.wuye.vo.ProjectVO">
-            <id property="pk_project" column="PK_PROJECT"/>
-            <result property="vname" column="PROJECT_NAME"/>
-        </association>
-    </resultMap>
-
+	<select id="getAll"  resultMap="RentContractBackMap">
+		SELECT
+			DISTINCT
+			P.PROJECT_NAME,
+			r."house",
+			c."vcname",
+			r."dpactstart",
+			r."dpactend",
+			r."dysdate",
+			r."nsbzjyjmny",
+			r."nhtssmny",
+			r."nzlbzjmny",
+			r."nhtysmny"
+		FROM
+			"T_Rent_Contract" r
+		LEFT JOIN T_PROJECT_INFO P ON r."pk_project" = P .PK_PROJECT
+		LEFT JOIN "T_Customer" c ON r."pk_customerid" = c."pk_customerid"
+	</select> 
+	
+	<resultMap type="cn.rzhd.wuye.vo.PactVO" id="RentContractBackMap">
+		<id property="pk_project" column="pk_project"/>
+		<result property="house" column="house"/>
+    	<result property="dpactend" column="dpactend"/>
+    	<result property="dpactstart" column="dpactstart"/>
+    	<result property="nzlbzjmny" column="nzlbzjmny"/>
+    	<result property="nhtysmny" column="nhtysmny"/>
+    	<result property="nhtssmny" column="nhtssmny"/>
+    	<result property="dysdate" column="dysdate"/>
+    	<result property="nsbzjyjmny" column="nsbzjyjmny"/>
+		<association property="customerVO" javaType="cn.rzhd.wuye.vo.CustomerVO">
+			<id property="pk_customerid" column="pk_customerid" />
+			<result property="vcname" column="vcname" />
+	 	</association>
+	 	<association property="projectVO" javaType="cn.rzhd.wuye.vo.ProjectVO">
+			<id property="pk_project" column="PK_PROJECT" />
+			<result property="vname" column="PROJECT_NAME" />
+	 	</association>
+	</resultMap>
+	
+	
+	
 
     <select id="getByPkId" parameterType="String" resultType="cn.rzhd.wuye.vo.PactVO">
-        SELECT
-        *
-        FROM
-        "T_Rent_Contract"
-        WHERE
-        "pk_customerid" IN (
-        SELECT DISTINCT
-        "pk_customerid"
-        FROM
-        "T_Customer"
-        WHERE
-        "vccode" = #{vccode}
-        )
+	    SELECT
+			*
+		FROM
+			"T_Rent_Contract"
+		WHERE
+			"pk_customerid" IN (
+				SELECT DISTINCT
+					"pk_customerid"
+				FROM
+					"T_Customer"
+				WHERE
+					"vccode" = #{vccode}
+			)
     </select>
 
     <select id="queryByCustomer" resultType="cn.rzhd.wuye.vo.PactVO">
         SELECT DISTINCT
-        "pk_house",
-        "house",
-        "dpactstart",
-        "dpactend",
-        SERVICE_PHONE,
-        OBJECT_PHONE,
-        "pk_customerid",
-        "nrentarea",
-        p.VSHORTNAME AS projectName,
-        T_HOUSE_INFO.STAR_LEVEL grades
+            "pk_house",
+            "house",
+			"dpactstart",
+			"dpactend",
+            SERVICE_PHONE,
+            OBJECT_PHONE,
+            "pk_customerid",
+			"nrentarea",
+            p.VSHORTNAME AS projectName,
+			T_HOUSE_INFO.STAR_LEVEL grades
         FROM "T_Rent_Contract"
-        JOIN T_PROJECT_INFO p ON "T_Rent_Contract"."pk_project" = p.PK_PROJECT
-        LEFT JOIN T_HOUSE_INFO ON "pk_house"=T_HOUSE_INFO.HOUSE_INFO_ID
+            JOIN T_PROJECT_INFO p ON "T_Rent_Contract"."pk_project" = p.PK_PROJECT
+			LEFT JOIN T_HOUSE_INFO ON "pk_house"=T_HOUSE_INFO.HOUSE_INFO_ID
         WHERE "pk_customerid" = #{customerId}
     </select>
 
     <insert id="add" parameterType="cn.rzhd.wuye.vo.PactVO">
         INSERT INTO "T_Rent_Contract" ("pk_corp",
-        "pk_customerid",
-        "pk_project",
-        "pk_pact",
-        "pk_house",
-        "house",
-        "nrentarea",
-        "dpactend",
-        "dpactstart",
-        "nzlbzjmny",
-        "nhtysmny",
-        "nhtssmny",
-        "dysdate",
-        "nsbzjyjmny"
+                                       "pk_customerid",
+                                       "pk_project",
+                                       "pk_pact",
+                                       "pk_house",
+                                       "house",
+                                       "nrentarea",
+                                       "dpactend",
+                                       "dpactstart",
+                                       "nzlbzjmny",
+                                       "nhtysmny",
+                                       "nhtssmny",
+                                       "dysdate",
+                                       "nsbzjyjmny"
         )
         VALUES (#{pk_corp}, #{pk_customerid}, #{pk_project}, #{pk_pact}, #{pk_house}, #{house}, #{nrentarea},
-        #{dpactend}, #{dpactstart}, #{nzlbzjmny}, #{nhtysmny}, #{nhtssmny},
-        #{dysdate}, #{nsbzjyjmny})
+                            #{dpactend}, #{dpactstart}, #{nzlbzjmny}, #{nhtysmny}, #{nhtssmny},
+                #{dysdate}, #{nsbzjyjmny})
     </insert>
 
 </mapper>

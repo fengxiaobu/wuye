@@ -52,6 +52,13 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label class="col-sm-2 control-label">租赁開始时间:</label>
+                        <div class="col-sm-10">
+                            <label class="col-sm-2 control-label"><fmt:formatDate value="${reletApply.leaseStartTime}"
+                                                                                  pattern="yyyy-MM-dd"/></label>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label class="col-sm-2 control-label">租赁结束时间:</label>
                         <div class="col-sm-10">
                             <label class="col-sm-2 control-label"><fmt:formatDate

@@ -19,20 +19,20 @@
     </resultMap>
     <select id="getAll" resultMap="manageMap">
         SELECT
-        "pk_corp",
-        "pk_manageId",
-        "managecode",
-        "managename"
+            "pk_corp",
+            "pk_manageId",
+            "managecode",
+            "managename"
         FROM T_MANAGE
     </select>
     <select id="getMyManage" parameterType="long" resultMap="manageMap">
         SELECT
-        "pk_corp",
-        "pk_manageId",
-        "managecode",
-        "managename"
+            "pk_corp",
+            "pk_manageId",
+            "managecode",
+            "managename"
         FROM T_MANAGE
-        JOIN T_MANAGE_USER ON "pk_manageId" = MANAGE_ID
+            JOIN T_MANAGE_USER ON "pk_manageId" = MANAGE_ID
         WHERE USER_ID = #{id}
     </select>
 </mapper>

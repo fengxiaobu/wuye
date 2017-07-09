@@ -3,20 +3,20 @@
 <mapper namespace="cn.rzhd.wuye.mapper.WaterFeeInvoiceMapper">
     <insert id="addInvoice" parameterType="cn.rzhd.wuye.bean.WaterRateInvoiceDetails">
         INSERT INTO T_WATER_RATE_INVOICE_DETAILS (WATER_RATE_INVOICE_DETAILS_ID,
-        INVOICE_TYPE,
-        INVOICE_COMPANY,
-        BASIC_WATER_FEE,
-        BASIC_WATER_FEE_INVOICE_SUM,
-        TRIPLE_AGREEMENT,
-        AGENCY_PAY_CREDENTIAL,
-        CARTE_TIME,
-        UPDATE_TIME,
-        WATER_RATE_PAY_DETAILS_ID,
-        STATUS) VALUES
-        (#{waterRateInvoiceDetailsId}, #{invoiceType}, #{invoiceCompany}, #{basicWaterFee},
-        #{basicWaterFeeInvoiceSum}, #{tripleAgreement}, #{agencyPayCredential},
-        #{carteTime}, #{updateTime}, #{waterRatePayDetailsId},
-        #{status})
+                                                  INVOICE_TYPE,
+                                                  INVOICE_COMPANY,
+                                                  BASIC_WATER_FEE,
+                                                  BASIC_WATER_FEE_INVOICE_SUM,
+                                                  TRIPLE_AGREEMENT,
+                                                  AGENCY_PAY_CREDENTIAL,
+                                                  CARTE_TIME,
+                                                  UPDATE_TIME,
+                                                  WATER_RATE_PAY_DETAILS_ID,
+                                                  STATUS) VALUES
+            (#{waterRateInvoiceDetailsId}, #{invoiceType}, #{invoiceCompany}, #{basicWaterFee},
+                                           #{basicWaterFeeInvoiceSum}, #{tripleAgreement}, #{agencyPayCredential},
+                                           #{carteTime}, #{updateTime}, #{waterRatePayDetailsId},
+                                           #{status})
     </insert>
     <update id="changeStatus" parameterType="long">
         UPDATE T_WATER_RATE_INVOICE_DETAILS

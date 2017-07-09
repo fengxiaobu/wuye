@@ -54,5 +54,10 @@ public class ProjectInfoServiceImpl implements IProjectInfoService {
         return mapper.selectPKAndName();
     }
 
+    @Override
+    public void updateProjectForSys(ProjectInfo projectInfo) {
+        mapper.updateProjectForSys(projectInfo);
+    }
+
 
 }

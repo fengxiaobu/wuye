@@ -124,33 +124,33 @@
     <select id="getEnterApplyByID" resultMap="enterApplyMap">
         SELECT DISTINCT *
         FROM
-        T_ENTER_APPLY apply LEFT JOIN
-        T_HOUSE_INFO_DETAILS house ON apply.HOUSE_INFO_ID = house."pk_house"
-        LEFT JOIN T_PROJECT_INFO project ON house."pk_project" = project.PK_PROJECT
-        LEFT JOIN "T_Customer" customer ON apply.CUSTOMERID = customer."pk_customerid"
+            T_ENTER_APPLY apply LEFT JOIN
+            T_HOUSE_INFO_DETAILS house ON apply.HOUSE_INFO_ID = house."pk_house"
+            LEFT JOIN T_PROJECT_INFO project ON house."pk_project" = project.PK_PROJECT
+            LEFT JOIN "T_Customer" customer ON apply.CUSTOMERID = customer."pk_customerid"
         WHERE
-        apply.ENTER_APPLY_ID = #{enterApplyId}
+            apply.ENTER_APPLY_ID = #{enterApplyId}
         ORDER BY apply.CREATION_TIME DESC
     </select>
     <select id="getEnterApplyByIDAndState" resultMap="enterApplyMap">
         SELECT DISTINCT *
         FROM
-        T_ENTER_APPLY apply LEFT JOIN
-        T_HOUSE_INFO_DETAILS house ON apply.HOUSE_INFO_ID = house."pk_house"
-        LEFT JOIN T_PROJECT_INFO project ON house."pk_project" = project.PK_PROJECT
-        LEFT JOIN "T_Customer" customer ON apply.CUSTOMERID = customer."pk_customerid"
+            T_ENTER_APPLY apply LEFT JOIN
+            T_HOUSE_INFO_DETAILS house ON apply.HOUSE_INFO_ID = house."pk_house"
+            LEFT JOIN T_PROJECT_INFO project ON house."pk_project" = project.PK_PROJECT
+            LEFT JOIN "T_Customer" customer ON apply.CUSTOMERID = customer."pk_customerid"
         WHERE
-        HOUSE_INFO_ID = '${pkHouse}'
+            HOUSE_INFO_ID = '${pkHouse}'
         ORDER BY apply.CREATION_TIME DESC
     </select>
     <!-- 入驻申请列表分页查询 -->
     <select id="findEnterApplyList" resultMap="enterApplyMap">
         SELECT DISTINCT *
         FROM
-        T_ENTER_APPLY apply
-        LEFT JOIN T_HOUSE_INFO_DETAILS house ON apply.HOUSE_INFO_ID = house."pk_house"
-        LEFT JOIN T_PROJECT_INFO project ON house."pk_project" = project.PK_PROJECT
-        LEFT JOIN "T_Customer" customer ON apply.CUSTOMERID = customer."pk_customerid"
+            T_ENTER_APPLY apply
+            LEFT JOIN T_HOUSE_INFO_DETAILS house ON apply.HOUSE_INFO_ID = house."pk_house"
+            LEFT JOIN T_PROJECT_INFO project ON house."pk_project" = project.PK_PROJECT
+            LEFT JOIN "T_Customer" customer ON apply.CUSTOMERID = customer."pk_customerid"
         ORDER BY apply.CREATION_TIME DESC
     </select>
     <!-- 入驻申请列表条件查询 -->
@@ -207,12 +207,12 @@
     <!--添加入驻申请-->
     <insert id="insertEnterApply" parameterType="cn.rzhd.wuye.bean.EnterApply">
         INSERT INTO T_ENTER_APPLY (ENTER_APPLY_ID, HOUSE_INFO_ID, CLIENT_NAME,
-        APPLY_TIME, AUDIT_STATUS, ENTER_ADVICE_NOTE,
-        NOTES, CREATION_TIME, UPDATE_TIME, CUSTOMERID
+                                   APPLY_TIME, AUDIT_STATUS, ENTER_ADVICE_NOTE,
+                                   NOTES, CREATION_TIME, UPDATE_TIME, CUSTOMERID
         )
         VALUES (#{enterApplyId}, #{houseId}, #{clientName},
-        #{applyTime}, #{auditStatus}, #{enterAdviceNote},
-        #{notes}, #{creationTime}, #{updateTime}, #{customerId}
+                #{applyTime}, #{auditStatus}, #{enterAdviceNote},
+                #{notes}, #{creationTime}, #{updateTime}, #{customerId}
         )
     </insert>
     <!-- 入驻信息删除操作 -->

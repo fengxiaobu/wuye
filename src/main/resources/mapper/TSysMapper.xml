@@ -1,278 +1,276 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="cn.rzhd.wuye.mapper.TSysMapper">
-    <resultMap id="BaseResultMap" type="cn.rzhd.wuye.bean.TSys">
-        <id column="ID" property="id" jdbcType="VARCHAR"/>
-        <result column="COMP_HOTL" property="compHotl" jdbcType="VARCHAR"/>
-        <result column="OCCUP_NOTICE" property="occupNotice" jdbcType="VARCHAR"/>
-        <result column="CHECK_IN" property="checkIn" jdbcType="VARCHAR"/>
-        <result column="PAY_AMOUNT_PROMPT" property="payAmountPrompt" jdbcType="VARCHAR"/>
-        <result column="PROPERTY_ARREAES_TIPS" property="propertyArreaesTips" jdbcType="VARCHAR"/>
-        <result column="PAY_AGREEM" property="payAgreem" jdbcType="VARCHAR"/>
-        <result column="THREE_PARTY_AGREE" property="threePartyAgree" jdbcType="VARCHAR"/>
-        <result column="UPDATE_TIME" property="updateTime" jdbcType="DATE"/>
-    </resultMap>
-    <sql id="Example_Where_Clause">
-        <where>
-            <foreach collection="oredCriteria" item="criteria" separator="or">
-                <if test="criteria.valid">
-                    <trim prefix="(" suffix=")" prefixOverrides="and">
-                        <foreach collection="criteria.criteria" item="criterion">
-                            <choose>
-                                <when test="criterion.noValue">
-                                    and ${criterion.condition}
-                                </when>
-                                <when test="criterion.singleValue">
-                                    and ${criterion.condition} #{criterion.value}
-                                </when>
-                                <when test="criterion.betweenValue">
-                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                                </when>
-                                <when test="criterion.listValue">
-                                    and ${criterion.condition}
-                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
-                                             separator=",">
-                                        #{listItem}
-                                    </foreach>
-                                </when>
-                            </choose>
-                        </foreach>
-                    </trim>
-                </if>
+<mapper namespace="cn.rzhd.wuye.mapper.TSysMapper" >
+  <resultMap id="BaseResultMap" type="cn.rzhd.wuye.bean.TSys" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="COMP_HOTL" property="compHotl" jdbcType="VARCHAR" />
+    <result column="OCCUP_NOTICE" property="occupNotice" jdbcType="VARCHAR" />
+    <result column="CHECK_IN" property="checkIn" jdbcType="VARCHAR" />
+    <result column="PAY_AMOUNT_PROMPT" property="payAmountPrompt" jdbcType="VARCHAR" />
+    <result column="PROPERTY_ARREAES_TIPS" property="propertyArreaesTips" jdbcType="VARCHAR" />
+    <result column="PAY_AGREEM" property="payAgreem" jdbcType="VARCHAR" />
+    <result column="THREE_PARTY_AGREE" property="threePartyAgree" jdbcType="VARCHAR" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
             </foreach>
-        </where>
-    </sql>
-    <sql id="Update_By_Example_Where_Clause">
-        <where>
-            <foreach collection="example.oredCriteria" item="criteria" separator="or">
-                <if test="criteria.valid">
-                    <trim prefix="(" suffix=")" prefixOverrides="and">
-                        <foreach collection="criteria.criteria" item="criterion">
-                            <choose>
-                                <when test="criterion.noValue">
-                                    and ${criterion.condition}
-                                </when>
-                                <when test="criterion.singleValue">
-                                    and ${criterion.condition} #{criterion.value}
-                                </when>
-                                <when test="criterion.betweenValue">
-                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                                </when>
-                                <when test="criterion.listValue">
-                                    and ${criterion.condition}
-                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
-                                             separator=",">
-                                        #{listItem}
-                                    </foreach>
-                                </when>
-                            </choose>
-                        </foreach>
-                    </trim>
-                </if>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
             </foreach>
-        </where>
-    </sql>
-    <sql id="Base_Column_List">
-        ID, COMP_HOTL, OCCUP_NOTICE, CHECK_IN, PAY_AMOUNT_PROMPT, PROPERTY_ARREAES_TIPS,
-        PAY_AGREEM, THREE_PARTY_AGREE, UPDATE_TIME
-    </sql>
-    <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.rzhd.wuye.bean.TSysExample">
-        select
-        <if test="distinct">
-            distinct
+          </trim>
         </if>
-        <include refid="Base_Column_List"/>
-        from T_SYS
-        <if test="_parameter != null">
-            <include refid="Example_Where_Clause"/>
-        </if>
-        <if test="orderByClause != null">
-            order by ${orderByClause}
-        </if>
-    </select>
-    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
-        select
-        <include refid="Base_Column_List"/>
-        from T_SYS
-        where ID = #{id,jdbcType=VARCHAR}
-    </select>
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-        delete from T_SYS
-        where ID = #{id,jdbcType=VARCHAR}
-    </delete>
-    <delete id="deleteByExample" parameterType="cn.rzhd.wuye.bean.TSysExample">
-        delete from T_SYS
-        <if test="_parameter != null">
-            <include refid="Example_Where_Clause"/>
-        </if>
-    </delete>
-    <insert id="insert" parameterType="cn.rzhd.wuye.bean.TSys">
-        insert into T_SYS (ID, COMP_HOTL, OCCUP_NOTICE,
-        CHECK_IN, PAY_AMOUNT_PROMPT, PROPERTY_ARREAES_TIPS,
-        PAY_AGREEM, THREE_PARTY_AGREE, UPDATE_TIME
-        )
-        values (#{id,jdbcType=VARCHAR}, #{compHotl,jdbcType=VARCHAR}, #{occupNotice,jdbcType=VARCHAR},
-        #{checkIn,jdbcType=VARCHAR}, #{payAmountPrompt,jdbcType=VARCHAR}, #{propertyArreaesTips,jdbcType=VARCHAR},
-        #{payAgreem,jdbcType=VARCHAR}, #{threePartyAgree,jdbcType=VARCHAR}, #{updateTime,jdbcType=DATE}
-        )
-    </insert>
-    <insert id="insertSelective" parameterType="cn.rzhd.wuye.bean.TSys">
-        insert into T_SYS
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="id != null">
-                ID,
-            </if>
-            <if test="compHotl != null">
-                COMP_HOTL,
-            </if>
-            <if test="occupNotice != null">
-                OCCUP_NOTICE,
-            </if>
-            <if test="checkIn != null">
-                CHECK_IN,
-            </if>
-            <if test="payAmountPrompt != null">
-                PAY_AMOUNT_PROMPT,
-            </if>
-            <if test="propertyArreaesTips != null">
-                PROPERTY_ARREAES_TIPS,
-            </if>
-            <if test="payAgreem != null">
-                PAY_AGREEM,
-            </if>
-            <if test="threePartyAgree != null">
-                THREE_PARTY_AGREE,
-            </if>
-            <if test="updateTime != null">
-                UPDATE_TIME,
-            </if>
-        </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="id != null">
-                #{id,jdbcType=VARCHAR},
-            </if>
-            <if test="compHotl != null">
-                #{compHotl,jdbcType=VARCHAR},
-            </if>
-            <if test="occupNotice != null">
-                #{occupNotice,jdbcType=VARCHAR},
-            </if>
-            <if test="checkIn != null">
-                #{checkIn,jdbcType=VARCHAR},
-            </if>
-            <if test="payAmountPrompt != null">
-                #{payAmountPrompt,jdbcType=VARCHAR},
-            </if>
-            <if test="propertyArreaesTips != null">
-                #{propertyArreaesTips,jdbcType=VARCHAR},
-            </if>
-            <if test="payAgreem != null">
-                #{payAgreem,jdbcType=VARCHAR},
-            </if>
-            <if test="threePartyAgree != null">
-                #{threePartyAgree,jdbcType=VARCHAR},
-            </if>
-            <if test="updateTime != null">
-                #{updateTime,jdbcType=DATE},
-            </if>
-        </trim>
-    </insert>
-    <select id="countByExample" parameterType="cn.rzhd.wuye.bean.TSysExample" resultType="java.lang.Integer">
-        select count(*) from T_SYS
-        <if test="_parameter != null">
-            <include refid="Example_Where_Clause"/>
-        </if>
-    </select>
-    <update id="updateByExampleSelective" parameterType="map">
-        update T_SYS
-        <set>
-            <if test="record.id != null">
-                ID = #{record.id,jdbcType=VARCHAR},
-            </if>
-            <if test="record.compHotl != null">
-                COMP_HOTL = #{record.compHotl,jdbcType=VARCHAR},
-            </if>
-            <if test="record.occupNotice != null">
-                OCCUP_NOTICE = #{record.occupNotice,jdbcType=VARCHAR},
-            </if>
-            <if test="record.checkIn != null">
-                CHECK_IN = #{record.checkIn,jdbcType=VARCHAR},
-            </if>
-            <if test="record.payAmountPrompt != null">
-                PAY_AMOUNT_PROMPT = #{record.payAmountPrompt,jdbcType=VARCHAR},
-            </if>
-            <if test="record.propertyArreaesTips != null">
-                PROPERTY_ARREAES_TIPS = #{record.propertyArreaesTips,jdbcType=VARCHAR},
-            </if>
-            <if test="record.payAgreem != null">
-                PAY_AGREEM = #{record.payAgreem,jdbcType=VARCHAR},
-            </if>
-            <if test="record.threePartyAgree != null">
-                THREE_PARTY_AGREE = #{record.threePartyAgree,jdbcType=VARCHAR},
-            </if>
-            <if test="record.updateTime != null">
-                UPDATE_TIME = #{record.updateTime,jdbcType=DATE},
-            </if>
-        </set>
-        <if test="_parameter != null">
-            <include refid="Update_By_Example_Where_Clause"/>
-        </if>
-    </update>
-    <update id="updateByExample" parameterType="map">
-        update T_SYS
-        set ID = #{record.id,jdbcType=VARCHAR},
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, COMP_HOTL, OCCUP_NOTICE, CHECK_IN, PAY_AMOUNT_PROMPT, PROPERTY_ARREAES_TIPS, 
+    PAY_AGREEM, THREE_PARTY_AGREE, UPDATE_TIME
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.rzhd.wuye.bean.TSysExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from T_SYS
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_SYS
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from T_SYS
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="cn.rzhd.wuye.bean.TSysExample" >
+    delete from T_SYS
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.rzhd.wuye.bean.TSys" >
+    insert into T_SYS (ID, COMP_HOTL, OCCUP_NOTICE, 
+      CHECK_IN, PAY_AMOUNT_PROMPT, PROPERTY_ARREAES_TIPS, 
+      PAY_AGREEM, THREE_PARTY_AGREE, UPDATE_TIME
+      )
+    values (#{id,jdbcType=VARCHAR}, #{compHotl,jdbcType=VARCHAR}, #{occupNotice,jdbcType=VARCHAR}, 
+      #{checkIn,jdbcType=VARCHAR}, #{payAmountPrompt,jdbcType=VARCHAR}, #{propertyArreaesTips,jdbcType=VARCHAR}, 
+      #{payAgreem,jdbcType=VARCHAR}, #{threePartyAgree,jdbcType=VARCHAR}, #{updateTime,jdbcType=DATE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.rzhd.wuye.bean.TSys" >
+    insert into T_SYS
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="compHotl != null" >
+        COMP_HOTL,
+      </if>
+      <if test="occupNotice != null" >
+        OCCUP_NOTICE,
+      </if>
+      <if test="checkIn != null" >
+        CHECK_IN,
+      </if>
+      <if test="payAmountPrompt != null" >
+        PAY_AMOUNT_PROMPT,
+      </if>
+      <if test="propertyArreaesTips != null" >
+        PROPERTY_ARREAES_TIPS,
+      </if>
+      <if test="payAgreem != null" >
+        PAY_AGREEM,
+      </if>
+      <if test="threePartyAgree != null" >
+        THREE_PARTY_AGREE,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="compHotl != null" >
+        #{compHotl,jdbcType=VARCHAR},
+      </if>
+      <if test="occupNotice != null" >
+        #{occupNotice,jdbcType=VARCHAR},
+      </if>
+      <if test="checkIn != null" >
+        #{checkIn,jdbcType=VARCHAR},
+      </if>
+      <if test="payAmountPrompt != null" >
+        #{payAmountPrompt,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyArreaesTips != null" >
+        #{propertyArreaesTips,jdbcType=VARCHAR},
+      </if>
+      <if test="payAgreem != null" >
+        #{payAgreem,jdbcType=VARCHAR},
+      </if>
+      <if test="threePartyAgree != null" >
+        #{threePartyAgree,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cn.rzhd.wuye.bean.TSysExample" resultType="java.lang.Integer" >
+    select count(*) from T_SYS
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update T_SYS
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.compHotl != null" >
         COMP_HOTL = #{record.compHotl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.occupNotice != null" >
         OCCUP_NOTICE = #{record.occupNotice,jdbcType=VARCHAR},
+      </if>
+      <if test="record.checkIn != null" >
         CHECK_IN = #{record.checkIn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payAmountPrompt != null" >
         PAY_AMOUNT_PROMPT = #{record.payAmountPrompt,jdbcType=VARCHAR},
+      </if>
+      <if test="record.propertyArreaesTips != null" >
         PROPERTY_ARREAES_TIPS = #{record.propertyArreaesTips,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payAgreem != null" >
         PAY_AGREEM = #{record.payAgreem,jdbcType=VARCHAR},
+      </if>
+      <if test="record.threePartyAgree != null" >
         THREE_PARTY_AGREE = #{record.threePartyAgree,jdbcType=VARCHAR},
-        UPDATE_TIME = #{record.updateTime,jdbcType=DATE}
-        <if test="_parameter != null">
-            <include refid="Update_By_Example_Where_Clause"/>
-        </if>
-    </update>
-    <update id="updateByPrimaryKeySelective" parameterType="cn.rzhd.wuye.bean.TSys">
-        update T_SYS
-        <set>
-            <if test="compHotl != null">
-                COMP_HOTL = #{compHotl,jdbcType=VARCHAR},
-            </if>
-            <if test="occupNotice != null">
-                OCCUP_NOTICE = #{occupNotice,jdbcType=VARCHAR},
-            </if>
-            <if test="checkIn != null">
-                CHECK_IN = #{checkIn,jdbcType=VARCHAR},
-            </if>
-            <if test="payAmountPrompt != null">
-                PAY_AMOUNT_PROMPT = #{payAmountPrompt,jdbcType=VARCHAR},
-            </if>
-            <if test="propertyArreaesTips != null">
-                PROPERTY_ARREAES_TIPS = #{propertyArreaesTips,jdbcType=VARCHAR},
-            </if>
-            <if test="payAgreem != null">
-                PAY_AGREEM = #{payAgreem,jdbcType=VARCHAR},
-            </if>
-            <if test="threePartyAgree != null">
-                THREE_PARTY_AGREE = #{threePartyAgree,jdbcType=VARCHAR},
-            </if>
-            <if test="updateTime != null">
-                UPDATE_TIME = #{updateTime,jdbcType=DATE},
-            </if>
-        </set>
-        where ID = #{id,jdbcType=VARCHAR}
-    </update>
-    <update id="updateByPrimaryKey" parameterType="cn.rzhd.wuye.bean.TSys">
-        update T_SYS
-        set COMP_HOTL = #{compHotl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null" >
+        UPDATE_TIME = #{record.updateTime,jdbcType=DATE},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update T_SYS
+    set ID = #{record.id,jdbcType=VARCHAR},
+      COMP_HOTL = #{record.compHotl,jdbcType=VARCHAR},
+      OCCUP_NOTICE = #{record.occupNotice,jdbcType=VARCHAR},
+      CHECK_IN = #{record.checkIn,jdbcType=VARCHAR},
+      PAY_AMOUNT_PROMPT = #{record.payAmountPrompt,jdbcType=VARCHAR},
+      PROPERTY_ARREAES_TIPS = #{record.propertyArreaesTips,jdbcType=VARCHAR},
+      PAY_AGREEM = #{record.payAgreem,jdbcType=VARCHAR},
+      THREE_PARTY_AGREE = #{record.threePartyAgree,jdbcType=VARCHAR},
+      UPDATE_TIME = #{record.updateTime,jdbcType=DATE}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.rzhd.wuye.bean.TSys" >
+    update T_SYS
+    <set >
+      <if test="compHotl != null" >
+        COMP_HOTL = #{compHotl,jdbcType=VARCHAR},
+      </if>
+      <if test="occupNotice != null" >
         OCCUP_NOTICE = #{occupNotice,jdbcType=VARCHAR},
+      </if>
+      <if test="checkIn != null" >
         CHECK_IN = #{checkIn,jdbcType=VARCHAR},
+      </if>
+      <if test="payAmountPrompt != null" >
         PAY_AMOUNT_PROMPT = #{payAmountPrompt,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyArreaesTips != null" >
         PROPERTY_ARREAES_TIPS = #{propertyArreaesTips,jdbcType=VARCHAR},
+      </if>
+      <if test="payAgreem != null" >
         PAY_AGREEM = #{payAgreem,jdbcType=VARCHAR},
+      </if>
+      <if test="threePartyAgree != null" >
         THREE_PARTY_AGREE = #{threePartyAgree,jdbcType=VARCHAR},
-        UPDATE_TIME = #{updateTime,jdbcType=DATE}
-        where ID = #{id,jdbcType=VARCHAR}
-    </update>
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=DATE},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.rzhd.wuye.bean.TSys" >
+    update T_SYS
+    set COMP_HOTL = #{compHotl,jdbcType=VARCHAR},
+      OCCUP_NOTICE = #{occupNotice,jdbcType=VARCHAR},
+      CHECK_IN = #{checkIn,jdbcType=VARCHAR},
+      PAY_AMOUNT_PROMPT = #{payAmountPrompt,jdbcType=VARCHAR},
+      PROPERTY_ARREAES_TIPS = #{propertyArreaesTips,jdbcType=VARCHAR},
+      PAY_AGREEM = #{payAgreem,jdbcType=VARCHAR},
+      THREE_PARTY_AGREE = #{threePartyAgree,jdbcType=VARCHAR},
+      UPDATE_TIME = #{updateTime,jdbcType=DATE}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
 </mapper>

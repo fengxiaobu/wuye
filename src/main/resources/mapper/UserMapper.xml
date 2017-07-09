@@ -5,22 +5,22 @@
 <mapper namespace="cn.rzhd.wuye.mapper.UserMapper">
     <insert id="insert" parameterType="cn.rzhd.wuye.bean.User">
         INSERT INTO T_USER (USER_ID,
-        USERNAME,
-        REALNAME,
-        WORK_NO,
-        GENDER,
-        STATUS,
-        NOTE)
+                            USERNAME,
+                            REALNAME,
+                            WORK_NO,
+                            GENDER,
+                            STATUS,
+                            NOTE)
         VALUES (#{userId}, #{username}, #{realname}, #{workNo}, #{gender}, #{status}, #{note})
     </insert>
     <update id="update" parameterType="cn.rzhd.wuye.bean.User">
         UPDATE T_USER
         SET USERNAME = #{username},
-        REALNAME = #{realname},
-        WORK_NO = #{workNo},
-        GENDER = #{gender},
-        STATUS = #{status},
-        NOTE = #{note}
+            REALNAME = #{realname},
+            WORK_NO  = #{workNo},
+            GENDER   = #{gender},
+            STATUS   = #{status},
+            NOTE     = #{note}
         WHERE USER_ID=#{userId}
     </update>
     <delete id="delete">
@@ -48,39 +48,39 @@
     </resultMap>
     <select id="getAll" resultMap="userMap">
         SELECT
-        USER_ID,
-        USERNAME,
-        REALNAME,
-        WORK_NO,
-        GENDER,
-        STATUS,
-        NOTE,
-        "PASSWORD"
+            USER_ID,
+            USERNAME,
+            REALNAME,
+            WORK_NO,
+            GENDER,
+            STATUS,
+            NOTE,
+            "PASSWORD"
         FROM T_USER
     </select>
     <select id="getDetailsById" parameterType="long" resultMap="userMap">
         SELECT
-        USER_ID,
-        USERNAME,
-        REALNAME,
-        WORK_NO,
-        GENDER,
-        STATUS,
-        NOTE,
-        "PASSWORD"
+            USER_ID,
+            USERNAME,
+            REALNAME,
+            WORK_NO,
+            GENDER,
+            STATUS,
+            NOTE,
+            "PASSWORD"
         FROM T_USER
         WHERE USER_ID = #{id}
     </select>
     <select id="getByUsername" parameterType="string" resultType="cn.rzhd.wuye.bean.User">
         SELECT
-        USER_ID AS userId,
-        USERNAME,
-        REALNAME,
-        WORK_NO AS workNo,
-        GENDER,
-        STATUS,
-        NOTE,
-        "PASSWORD"
+            USER_ID AS userId,
+            USERNAME,
+            REALNAME,
+            WORK_NO AS workNo,
+            GENDER,
+            STATUS,
+            NOTE,
+            "PASSWORD"
         FROM T_USER
         WHERE USERNAME=#{username}
     </select>

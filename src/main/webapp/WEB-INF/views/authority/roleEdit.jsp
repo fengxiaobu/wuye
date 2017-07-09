@@ -4,8 +4,7 @@
 <head>
     <meta charset="utf-8">
     <title>首页</title>
-    <link rel="stylesheet" type="text/css"
-          href="${pageContext.request.contextPath}/js/libs/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/js/libs/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css">
 </head>
 <body>
@@ -39,10 +38,8 @@
 
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button class="btn btn-success" type="submit"><span class="glyphicon glyphicon-ok"></span>保存
-                        </button>
-                        <button class="btn btn-success" type="submit"><span class="glyphicon glyphicon-ok"></span>重置密码
-                        </button>
+                        <button class="btn btn-success" type="submit"><span class="glyphicon glyphicon-ok"></span>保存</button>
+                        <button class="btn btn-success" type="submit"><span class="glyphicon glyphicon-ok"></span>重置密码</button>
                     </div>
                 </div>
 

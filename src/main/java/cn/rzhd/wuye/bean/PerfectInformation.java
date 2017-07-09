@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -18,10 +17,8 @@ import java.util.Date;
  * @version: V1.0
  */
 public class PerfectInformation implements Serializable {
-	
 
     private static final long serialVersionUID = 1L;
-    
     /**
      * 完善信息id
      */
@@ -45,7 +42,7 @@ public class PerfectInformation implements Serializable {
     /**
      * 入驻企业成立时间
      */
-    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd")
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyyMMddHHmmss")
     private Date companyEstablishTime;
     /**
      * 注册资本金
@@ -98,7 +95,7 @@ public class PerfectInformation implements Serializable {
     /**
      * 发证时间
      */
-    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd")
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyyMMddHHmmss")
     private Date certificateTime;
     /**
      * 专利类型id
@@ -119,7 +116,7 @@ public class PerfectInformation implements Serializable {
     /**
      * 挂牌时间
      */
-    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd")
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyyMMddHHmmss")
     private Date hangBoardTime;
     /**
      * 股票代码
@@ -136,12 +133,12 @@ public class PerfectInformation implements Serializable {
     /**
      * 创建时间
      */
-    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd")
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyyMMddHHmmss")
     private Date carteTime;
     /**
      * 修改时间
      */
-    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd")
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyyMMddHHmmss")
     private Date updateTime;
 
     public String getPerfectInformationId() {

@@ -8,19 +8,15 @@ import cn.rzhd.wuye.pay.unionpay.LogUtil;
 import cn.rzhd.wuye.service.*;
 import cn.rzhd.wuye.utils.BeanUtils;
 import cn.rzhd.wuye.utils.HttpUtils;
-import cn.rzhd.wuye.utils.StringTimeUtil;
 import cn.rzhd.wuye.vo.CallBackVO;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.xiaoleilu.hutool.date.DateField;
 import com.xiaoleilu.hutool.date.DateUtil;
-import com.xiaoleilu.hutool.http.HttpRequest;
-import com.xiaoleilu.hutool.http.HttpResponse;
 import com.xiaoleilu.hutool.lang.Base64;
 import com.xiaoleilu.hutool.util.BeanUtil;
 import com.xiaoleilu.hutool.util.RandomUtil;
-import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -61,14 +57,6 @@ public class ChinaPay {
 
     @RequestMapping("/pay")
     public String toChinaPay(Model model, RequestVO requestVO, HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        //失效时间
-        String OrderValidTime = DateUtil.format(DateUtil.offset(new Date(), DateField.SECOND, 120), "YYYYMMDDHHMMSS");
-        Map<String, String> map = new Hashtable<>();
-        map.put("OrderType", "0001");
-        map.put("OrderValidTime", OrderValidTime);
-        map.put("qrPattern", "link");
-        String OrderReserved = JSON.toJSONString(map);
-        requestVO.setOrderReserved(OrderReserved);
         //前台页面传过来的
         ChinaPayHelper chinaPayHelper = new ChinaPayHelper();
         requestVO.setRemoteAddr(HttpUtils.getIpAddr(req));
@@ -111,11 +99,11 @@ public class ChinaPay {
         //商户后台通知地址
         model.addAttribute("MerBgUrl", vo.getMerBgUrl());
         //防钓鱼客户浏览器IP
-        // model.addAttribute("RemoteAddr", vo.getRemoteAddr());
+        model.addAttribute("RemoteAddr", vo.getRemoteAddr());
         //交易类型
         model.addAttribute("TranType", vo.getTranType());
         ////商户前台通知地址
-        //model.addAttribute("MerPageUrl", vo.getMerPageUrl());
+        model.addAttribute("MerPageUrl", vo.getMerPageUrl());
         //交易币种
         model.addAttribute("CurryNo", vo.getCurryNo());
         //收单机构号
@@ -125,10 +113,9 @@ public class ChinaPay {
         //商品信息
         model.addAttribute("CommodityMsg", vo.getCommodityMsg());
         //商户私有域 原样返回
-        // model.addAttribute("MerResv", vo.getMerResv());
+        model.addAttribute("MerResv", vo.getMerResv());
         //交易时间戳
         model.addAttribute("TimeStamp", vo.getTimeStamp());
-        model.addAttribute("OrderReserved", vo.getOrderReserved());
         //model.addAttribute("TranReserved",vo.getTranReserved());
         return "toChinaPay";
     }
@@ -140,7 +127,7 @@ public class ChinaPay {
         ChinaPayHelper chinaPayHelper = new ChinaPayHelper();
 
         // requestVO.setOrderAmt(orderAmt);
-        requestVO.setOrderAmt("10");
+        requestVO.setOrderAmt(orderAmt);
         requestVO.setCommodityMsg(commodityMsg);
         requestVO.setMerResv(merResv);
         requestVO.setBankInstNo(bankInstNo);
@@ -188,27 +175,27 @@ public class ChinaPay {
                 System.out.println("-----------------------------------------------------------------");
                 System.out.println("-----------------------------------------------------------------");
                 System.out.println("-----------------------------------------------------------------");
-                System.out.println("费用类型:" + vo.getType() + ",费用记录ID:" + vo.getId());
+              //  System.out.println("费用类型:" + vo.getType() + ",费用记录ID:" + vo.getId());
                 System.out.println("-----------------------------------------------------------------");
                 System.out.println("-----------------------------------------------------------------");
                 System.out.println("-----------------------------------------------------------------");
                 System.out.println("-----------------------------------------------------------------");
 
                 if ("wuye".equals(vo.getType())) {
-                    wuye.changeStatus(vo.getId());
+                   // wuye.changeStatus(vo.getId());
                 } else if ("kaifa".equals(vo.getType())) {
-                    kaifa.changeStatus(vo.getId());
+                   // kaifa.changeStatus(vo.getId());
                 } else if ("shuidian".equals(vo.getType())) {
-                    shuidian.changeStatus(vo.getId());
+                    //shuidian.changeStatus(vo.getId());
                 } else if ("rzwuye".equals(vo.getType())) {
                     enterApplyService.updatePayState("1", null, vo.getApplyId());
-                    wuye.changeStatus(vo.getId());
+                    //wuye.changeStatus(vo.getId());
                 } else if ("rzkaifa".equals(vo.getType())) {
                     enterApplyService.updatePayState(null, "1", vo.getApplyId());
-                    kaifa.changeStatus(vo.getId());
+                   // kaifa.changeStatus(vo.getId());
                 } else if ("zxfy".equals(vo.getType())) {
                     decorationApplyService.updatePayState("1", vo.getApplyId());
-                    wuye.changeStatus(vo.getId());
+                    //wuye.changeStatus(vo.getId());
                 } else {
                     System.out.println("缴费记录生成失败:未知的缴费类型(物业,开发,水电)");
                 }
@@ -281,24 +268,6 @@ public class ChinaPay {
         request.getSession().setAttribute("pay", result);
     }
 
- /*   *//**
-     * 获取入驻支付结果
-     *
-     * @param request
-     * @return
-     *//*
-    @RequestMapping("dist/getPayState")
-    @ResponseBody
-    public Map<String, String> getPayState(HttpServletRequest request) {
-        Map<String, String> result = new Hashtable<>();
-        String rzkaifa = request.getSession().getAttribute("rzkaifa").toString();
-        String rzwuye = request.getSession().getAttribute("rzwuye").toString();
-        request.getSession().removeAttribute("rzkaifa");
-        request.getSession().removeAttribute("rzwuye/");
-        result.put("rzkaifa", rzkaifa);
-        result.put("rzwuye", rzwuye);
-        return result;
-    }*/
 
     /**
      * 扫码支付
@@ -315,29 +284,34 @@ public class ChinaPay {
     public Map<String, Object> scanCodePay(HttpServletRequest req, String orderAmt, String commodityMsg, String merResv) throws IOException {
         RequestVO requestVO = new RequestVO();
         //失效时间
+        String OrderValidTime = DateUtil.format(DateUtil.offset(new Date(), DateField.SECOND, 120), "YYYYMMDDHHMMSS");
         Map<String, String> map = new Hashtable<>();
         map.put("OrderType", "0001");
+        map.put("OrderValidTime", OrderValidTime);
         map.put("qrPattern", "link");
-        //String OrderReserved = JSON.toJSONString(map);
+        String OrderReserved = JSON.toJSONString(map);
 
-        requestVO.setOrderReserved("{\"OrderType\":\"0001\"}");
+        requestVO.setOrderReserved(OrderReserved);
         requestVO.setOrderAmt("10");
-        /*requestVO.setCommodityMsg(commodityMsg);
-        requestVO.setMerResv(merResv);*/
+        requestVO.setCommodityMsg(commodityMsg);
+        requestVO.setMerResv(merResv);
+        System.out.println("requestVO = " + requestVO);
+        System.out.println("Base64.decodeStr(merResv) = " + Base64.decodeStr(merResv));
         //前台页面传过来的
         ChinaPayHelper chinaPayHelper = new ChinaPayHelper();
-        // requestVO.setRemoteAddr(HttpUtils.getIpAddr(req));
-        requestVO.setMerOrderNo(RandomUtil.randomNumbers(22));
+        requestVO.setRemoteAddr(HttpUtils.getIpAddr(req));
+        requestVO.setMerOrderNo(RandomUtil.randomString(32));
         //签名
         LogUtil.writeMessage("开始签名");
         RequestVO vo = chinaPayHelper.getSign(requestVO);
-        System.out.println("requestVO = " + JSON.toJSONString(requestVO));
-        Map<String, Object> objectMap = BeanUtils.objectToMap(vo);
+        System.out.println("requestVO = " + requestVO);
+        Map<String, Object> objectMap = BeanUtils.objectToMap(requestVO);
+        // Map<String, Object> objectMap = BeanUtil.beanToMap(requestVO);
         Map<String, Object> sign = ChinaPaySignUtils.sign(objectMap);
+        System.out.println("sign = " + sign);
         objectMap.put("Signature", sign.get("sign"));
-        System.out.println("objectMap = " + JSON.toJSONString(objectMap));
-        HttpResponse body = HttpRequest.post("http://140.206.112.241:9080/momsMgr/bgTransGet").form(objectMap).execute();
-        System.out.println("body = " + body.toString());
+        objectMap.put("postUrl", "http://140.206.112.241:9080/momsMgr/bgTransGet");
+
         return objectMap;
     }
 
@@ -360,16 +334,16 @@ public class ChinaPay {
             while (iterator.hasNext()) {
                 CallBackVO vo = JSON.toJavaObject((JSON) iterator.next(), CallBackVO.class);
                 System.out.println("-----------------------------------------------------------------");
-                System.out.println("费用类型:" + vo.getType() + ",费用记录ID:" + vo.getId());
+               // System.out.println("费用类型:" + vo.getType() + ",费用记录ID:" + vo.getId());
                 System.out.println("-----------------------------------------------------------------");
                 if ("wuye".equals(vo.getType())) {
-                    wuye.changeStatus(vo.getId());
+                   // wuye.changeStatus(vo.getId());
                     result.put("msg", "wuye");
                 } else if ("kaifa".equals(vo.getType())) {
-                    kaifa.changeStatus(vo.getId());
+                   // kaifa.changeStatus(vo.getId());
                     result.put("msg", "kaifa");
                 } else if ("shuidian".equals(vo.getType())) {
-                    shuidian.changeStatus(vo.getId());
+                    //shuidian.changeStatus(vo.getId());
                     result.put("msg", "shuidian");
                 } else if ("rzwuye".equals(vo.getType())) {
                     List<Map<String, JsonFormat.Value>> enterApplyByID = enterApplyService.getEnterApplyByID(vo.getApplyId());
@@ -381,7 +355,7 @@ public class ChinaPay {
                             houseInfoDetailsService.updateHouse(String.valueOf(enterApply.getEnterApplyId()), "3", null);
                         }
                     }
-                    wuye.changeStatus(vo.getId());
+                 //   wuye.changeStatus(vo.getId());
                     result.put("msg", "rzwuye");
                 } else if ("rzkaifa".equals(vo.getType())) {
                     List<Map<String, JsonFormat.Value>> enterApplyByID = enterApplyService.getEnterApplyByID(vo.getApplyId());
@@ -393,12 +367,12 @@ public class ChinaPay {
                             enterApplyService.updatePayState(null, "3", vo.getApplyId());
                         }
                     }
-                    kaifa.changeStatus(vo.getId());
+                   // kaifa.changeStatus(vo.getId());
                     result.put("msg", "rzkaifa");
                 } else if ("zxfy".equals(vo.getType())) {
                     houseInfoDetailsService.updateHouse(String.valueOf(vo.getApplyId()), null, "3");
-                    // decorationApplyService.updatePayState("3", vo.getApplyId());
-                    wuye.changeStatus(vo.getId());
+                     decorationApplyService.updatePayState("3", vo.getApplyId());
+                   // wuye.changeStatus(vo.getId());
                     result.put("msg", "zxfy");
                 } else {
                     System.out.println("缴费记录生成失败:未知的缴费类型(物业,开发,水电)");
@@ -406,50 +380,32 @@ public class ChinaPay {
                     result.put("state", "0");
                     return result;
                 }
+                result.put("state", "1");
+                return result;
             }
-            result.put("state", "1");
-            return result;
         } catch (Exception e) {
             result.put("msg", "erro" + e.getMessage());
             result.put("state", "0");
             e.printStackTrace();
             return result;
         }
+        result.put("msg", "未知错误!");
+        result.put("state", "0");
+        return result;
     }
 
-    @Test
     public void test() {
-        RequestVO requestVO = new RequestVO();
-        Map<String, String> map = new Hashtable<>();
         Date date = new Date();
-        String tranDate = StringTimeUtil.TranDate(date);
-        String tranTime = StringTimeUtil.TranTime(date);
+        String format = DateUtil.format(date, "yyyyMMddHHmmss");
+        System.out.println("format = " + format);
+        String OrderValidTime = DateUtil.format(DateUtil.offsetSecond(new Date(), 120), "YYYYMMDDHHMMSS");
+        System.out.println(OrderValidTime);
+        System.out.println(DateUtil.parse("20161119170100", "YYYYMMDDHHMMSS"));
+        Map<String, String> map = new Hashtable<>();
         map.put("OrderType", "0001");
+        map.put("OrderValidTime", OrderValidTime);
         map.put("qrPattern", "link");
         String OrderReserved = JSON.toJSONString(map);
-        requestVO.setVersion("20140728");
-        requestVO.setOrderReserved(OrderReserved);
-        requestVO.setOrderAmt("10");
-        requestVO.setTranType("0001");
-        requestVO.setAccessType("0");
-        requestVO.setMerId("000001705221343");
-        requestVO.setMerBgUrl("http://123.56.185.102:8092/wuye/bgReturn");
-        requestVO.setMerOrderNo(RandomUtil.randomNumbers(22));
-        requestVO.setTranDate(tranDate);
-        requestVO.setTranTime(tranTime);
-        requestVO.setCurryNo("CNY");
-        requestVO.setBusiType("0001");
-
-        //Map<String, Object> beanToMap = BeanUtil.beanToMap(requestVO,false,true);
-        Map<String, Object> beanToMap = BeanUtils.objectToMap(requestVO);
-        Map<String, Object> sign = ChinaPaySignUtils.sign(beanToMap);
-        beanToMap.put("Signature", sign.get("sign"));
-        HttpResponse execute = HttpRequest.post("http://140.206.112.241:9080/momsMgr/bgTransGet").form(beanToMap).execute();
-        System.out.println("execute.toString() = " + execute.toString());
-    }
-
-    @Test
-    public void pay() {
-
+        System.out.println("jsonString = " + OrderReserved);
     }
 }

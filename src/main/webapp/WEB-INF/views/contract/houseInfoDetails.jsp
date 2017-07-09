@@ -29,11 +29,8 @@
             <div class="col-xs-8 panel-oprerate">
                 <div class="col-xs-6dd">
                     <form action="" method="post">
-                        <span style="margin-right: 50px"><input style="height: 35px;width: 220px;" type="text"
-                                                                name="projectName"
-                                                                placeholder="&nbsp;&nbsp;项目名称,资料包名称,用户名"></span>
-                        <button class="btn btn-default" style="background-color: #5bc0de" type="submit"><span
-                                class="glyphicon glyphicon-search">查询</span></button>
+                        <span style="margin-right: 50px"><input style="height: 35px;width: 220px;" type="text"  name="projectName" placeholder="&nbsp;&nbsp;项目名称,资料包名称,用户名"></span>
+                        <button class="btn btn-default" style="background-color: #5bc0de" type="submit"><span class="glyphicon glyphicon-search">查询</span></button>
                     </form>
                 </div>
             </div>

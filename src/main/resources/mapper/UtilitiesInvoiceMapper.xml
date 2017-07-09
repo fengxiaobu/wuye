@@ -19,70 +19,70 @@
     </delete>
     <insert id="insert" parameterType="cn.rzhd.wuye.bean.UtilitiesInvoice">
         INSERT INTO T_UTILITIES_INVOICE (UTILITIES_INVOICE_ID, INVOICE_TYPE,
-        INVOICE_COMPANY, BASIC_WATER_FEE, BASIC_WATER_INVOICE_SUM,
-        CARTE_TIME, UPDATE_TIME, UTILITIES_DETAILS_ID,
-        BASIC_ELECTRIC_FEE, BASIC_ELECTRIC_INVOICE_SUM
+                                         INVOICE_COMPANY, BASIC_WATER_FEE, BASIC_WATER_INVOICE_SUM,
+                                         CARTE_TIME, UPDATE_TIME, UTILITIES_DETAILS_ID,
+                                         BASIC_ELECTRIC_FEE, BASIC_ELECTRIC_INVOICE_SUM
         )
         VALUES (#{utilitiesInvoiceId}, #{invoiceType},
-        #{invoiceCompany}, #{basicWaterFee}, #{basicWaterInvoiceSum},
-        #{carteTime}, #{updateTime}, #{utilitiesDetailsId},
-        #{basicElectricFee}, #{basicElectricInvoiceSum}
+                #{invoiceCompany}, #{basicWaterFee}, #{basicWaterInvoiceSum},
+                #{carteTime}, #{updateTime}, #{utilitiesDetailsId},
+                #{basicElectricFee}, #{basicElectricInvoiceSum}
         )
     </insert>
     <update id="updateByPrimaryKey" parameterType="cn.rzhd.wuye.bean.UtilitiesInvoice">
         UPDATE T_UTILITIES_INVOICE
-        SET INVOICE_TYPE = #{invoiceType},
-        INVOICE_COMPANY = #{invoiceCompany},
-        BASIC_WATER_FEE = #{basicWaterFee},
-        BASIC_WATER_INVOICE_SUM = #{basicWaterInvoiceSum},
-        CARTE_TIME = #{carteTime},
-        UPDATE_TIME = #{updateTime},
-        UTILITIES_DETAILS_ID = #{utilitiesDetailsId},
-        BASIC_ELECTRIC_FEE = #{basicElectricFee},
-        BASIC_ELECTRIC_INVOICE_SUM = #{basicElectricInvoiceSum}
+        SET INVOICE_TYPE               = #{invoiceType},
+            INVOICE_COMPANY            = #{invoiceCompany},
+            BASIC_WATER_FEE            = #{basicWaterFee},
+            BASIC_WATER_INVOICE_SUM    = #{basicWaterInvoiceSum},
+            CARTE_TIME                 = #{carteTime},
+            UPDATE_TIME                = #{updateTime},
+            UTILITIES_DETAILS_ID       = #{utilitiesDetailsId},
+            BASIC_ELECTRIC_FEE         = #{basicElectricFee},
+            BASIC_ELECTRIC_INVOICE_SUM = #{basicElectricInvoiceSum}
         WHERE UTILITIES_INVOICE_ID = #{utilitiesInvoiceId}
     </update>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="long">
         SELECT
-        UTILITIES_INVOICE_ID,
-        INVOICE_TYPE,
-        INVOICE_COMPANY,
-        BASIC_WATER_FEE,
-        BASIC_WATER_INVOICE_SUM,
-        CARTE_TIME,
-        UPDATE_TIME,
-        UTILITIES_DETAILS_ID,
-        BASIC_ELECTRIC_FEE,
-        BASIC_ELECTRIC_INVOICE_SUM
+            UTILITIES_INVOICE_ID,
+            INVOICE_TYPE,
+            INVOICE_COMPANY,
+            BASIC_WATER_FEE,
+            BASIC_WATER_INVOICE_SUM,
+            CARTE_TIME,
+            UPDATE_TIME,
+            UTILITIES_DETAILS_ID,
+            BASIC_ELECTRIC_FEE,
+            BASIC_ELECTRIC_INVOICE_SUM
         FROM T_UTILITIES_INVOICE
         WHERE UTILITIES_INVOICE_ID = #{utilitiesInvoiceId}
     </select>
     <select id="selectAll" resultMap="BaseResultMap">
         SELECT
-        UTILITIES_INVOICE_ID,
-        INVOICE_TYPE,
-        INVOICE_COMPANY,
-        BASIC_WATER_FEE,
-        BASIC_WATER_INVOICE_SUM,
-        CARTE_TIME,
-        UPDATE_TIME,
-        UTILITIES_DETAILS_ID,
-        BASIC_ELECTRIC_FEE,
-        BASIC_ELECTRIC_INVOICE_SUM
+            UTILITIES_INVOICE_ID,
+            INVOICE_TYPE,
+            INVOICE_COMPANY,
+            BASIC_WATER_FEE,
+            BASIC_WATER_INVOICE_SUM,
+            CARTE_TIME,
+            UPDATE_TIME,
+            UTILITIES_DETAILS_ID,
+            BASIC_ELECTRIC_FEE,
+            BASIC_ELECTRIC_INVOICE_SUM
         FROM T_UTILITIES_INVOICE
     </select>
     <select id="selectByDetailsId" parameterType="long" resultType="cn.rzhd.wuye.bean.UtilitiesInvoice">
         SELECT
-        UTILITIES_INVOICE_ID,
-        INVOICE_TYPE,
-        INVOICE_COMPANY,
-        BASIC_WATER_FEE,
-        BASIC_WATER_INVOICE_SUM,
-        CARTE_TIME,
-        UPDATE_TIME,
-        UTILITIES_DETAILS_ID,
-        BASIC_ELECTRIC_FEE,
-        BASIC_ELECTRIC_INVOICE_SUM
+            UTILITIES_INVOICE_ID,
+            INVOICE_TYPE,
+            INVOICE_COMPANY,
+            BASIC_WATER_FEE,
+            BASIC_WATER_INVOICE_SUM,
+            CARTE_TIME,
+            UPDATE_TIME,
+            UTILITIES_DETAILS_ID,
+            BASIC_ELECTRIC_FEE,
+            BASIC_ELECTRIC_INVOICE_SUM
         FROM T_UTILITIES_INVOICE
         WHERE UTILITIES_DETAILS_ID=#{detailsId}
     </select>

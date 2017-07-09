@@ -96,14 +96,14 @@
                         <td>${item.payTime}</td>
 
 
-                            <%--<td>${item.costType}</td>--%>
-                            <%--<td>${item.updateTime}</td>--%>
-                            <%--<td>${item.payMonth}</td>--%>
-                            <%--<td>${item.startDate}</td>--%>
-                            <%--<td>${item.endDate}</td>--%>
-                            <%--<td>${item.invoiceNumber}</td>--%>
-                            <%--<td>${item.invoiceNotes}</td>--%>
-                            <%--<td>${item.invoiceCompany}</td>--%>
+                        <%--<td>${item.costType}</td>--%>
+                        <%--<td>${item.updateTime}</td>--%>
+                        <%--<td>${item.payMonth}</td>--%>
+                        <%--<td>${item.startDate}</td>--%>
+                        <%--<td>${item.endDate}</td>--%>
+                        <%--<td>${item.invoiceNumber}</td>--%>
+                        <%--<td>${item.invoiceNotes}</td>--%>
+                        <%--<td>${item.invoiceCompany}</td>--%>
 
                     </tr>
                 </c:forEach>

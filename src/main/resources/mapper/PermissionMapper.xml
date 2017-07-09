@@ -14,49 +14,49 @@
     </delete>
     <insert id="insert" parameterType="cn.rzhd.wuye.bean.Permission">
         INSERT INTO T_PERMISSION (PERMISSION_ID, "NAME", URL,
-        NOTE, CODE)
+                                  NOTE, CODE)
         VALUES (#{permissionId,jdbcType=DECIMAL}, #{name,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR},
-        #{note,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR})
+                #{note,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR})
     </insert>
     <update id="updateByPrimaryKey" parameterType="cn.rzhd.wuye.bean.Permission">
         UPDATE T_PERMISSION
         SET "NAME" = #{name,jdbcType=VARCHAR},
-        URL = #{url,jdbcType=VARCHAR},
-        NOTE = #{note,jdbcType=VARCHAR},
-        CODE = #{code,jdbcType=VARCHAR}
+            URL  = #{url,jdbcType=VARCHAR},
+            NOTE = #{note,jdbcType=VARCHAR},
+            CODE = #{code,jdbcType=VARCHAR}
         WHERE PERMISSION_ID = #{permissionId,jdbcType=DECIMAL}
     </update>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="long">
         SELECT
-        PERMISSION_ID,
-        "NAME",
-        URL,
-        NOTE,
-        CODE
+            PERMISSION_ID,
+            "NAME",
+            URL,
+            NOTE,
+            CODE
         FROM T_PERMISSION
         WHERE PERMISSION_ID = #{permissionId,jdbcType=DECIMAL}
     </select>
     <select id="selectAll" resultMap="BaseResultMap">
         SELECT
-        PERMISSION_ID,
-        "NAME",
-        URL,
-        NOTE,
-        CODE
+            PERMISSION_ID,
+            "NAME",
+            URL,
+            NOTE,
+            CODE
         FROM T_PERMISSION
     </select>
     <select id="getPermissionsByUser" parameterType="string" resultType="cn.rzhd.wuye.bean.Permission">
         SELECT
-        T_PERMISSION.PERMISSION_ID,
-        T_PERMISSION."NAME",
-        URL,
-        T_PERMISSION.NOTE,
-        CODE
+            T_PERMISSION.PERMISSION_ID,
+            T_PERMISSION."NAME",
+            URL,
+            T_PERMISSION.NOTE,
+            CODE
         FROM T_PERMISSION
-        JOIN T_ROLE_PERMISSION ON T_PERMISSION.PERMISSION_ID = T_ROLE_PERMISSION.PERMISSION_ID
-        JOIN T_ROLE ON T_ROLE.ROLE_ID = T_ROLE_PERMISSION.ROLE_ID
-        JOIN T_USER_ROLE ON T_USER_ROLE.ROLE_ID = T_ROLE.ROLE_ID
-        JOIN T_USER ON T_USER.USER_ID=T_USER_ROLE.USER_ID
+            JOIN T_ROLE_PERMISSION ON T_PERMISSION.PERMISSION_ID = T_ROLE_PERMISSION.PERMISSION_ID
+            JOIN T_ROLE ON T_ROLE.ROLE_ID = T_ROLE_PERMISSION.ROLE_ID
+            JOIN T_USER_ROLE ON T_USER_ROLE.ROLE_ID = T_ROLE.ROLE_ID
+            JOIN T_USER ON T_USER.USER_ID=T_USER_ROLE.USER_ID
         WHERE T_USER.USERNAME = #{username}
     </select>
 </mapper>

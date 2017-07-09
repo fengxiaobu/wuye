@@ -43,35 +43,35 @@
 
     <insert id="insert" parameterType="cn.rzhd.wuye.bean.PropertyFeePayDetails">
         INSERT INTO T_PROPERTY_FEE_PAY_DETAILS (PROPERTY_FEE_PAY_DETAILS_ID,
-        HOUSE_INFO_ID,
-        CLIENT_NAME,
-        FEETYPE,
-        PAY_MANNER,
-        PAY_MONTH,
-        START_DATE,
-        END_DATE,
-        PAYABLE,
-        PAID_IN,
-        VOUCHER_NUMBER,
-        INVOICE,
-        INVOICE_NUMBER,
-        INVOICE_NOTES,
-        INVOICE_STATUS,
-        COLLECTING_COMPANY,
-        COLLECTING_ACCOUNT,
-        INVOICE_COMPANY,
-        PAY_TIME,
-        CARTE_TIME,
-        UPDATE_TIME,
-        CUSTOMER_ID,
-        STATUS)
+                                                HOUSE_INFO_ID,
+                                                CLIENT_NAME,
+                                                FEETYPE,
+                                                PAY_MANNER,
+                                                PAY_MONTH,
+                                                START_DATE,
+                                                END_DATE,
+                                                PAYABLE,
+                                                PAID_IN,
+                                                VOUCHER_NUMBER,
+                                                INVOICE,
+                                                INVOICE_NUMBER,
+                                                INVOICE_NOTES,
+                                                INVOICE_STATUS,
+                                                COLLECTING_COMPANY,
+                                                COLLECTING_ACCOUNT,
+                                                INVOICE_COMPANY,
+                                                PAY_TIME,
+                                                CARTE_TIME,
+                                                UPDATE_TIME,
+                                                CUSTOMER_ID,
+                                                STATUS)
         VALUES (#{propertyFeePayDetails}, #{houseInfoId}, #{clientName}, #{costType}, #{payManner},
-        #{payMonth}, #{startDate}, #{endDate}, #{payable}, #{paidIn},
-        #{voucherNumber}, #{invoice},
-        #{invoiceNumber}, #{invoiceNotes}, #{invoiceStatus},
-        #{collectingCompany}, #{collectingAccount},
-        #{invoiceCompany}, #{payTime}, #{carteTime}, #{updateTime},
-        #{customerId}, #{status}
+                                          #{payMonth}, #{startDate}, #{endDate}, #{payable}, #{paidIn},
+                                          #{voucherNumber}, #{invoice},
+                                                            #{invoiceNumber}, #{invoiceNotes}, #{invoiceStatus},
+                                                            #{collectingCompany}, #{collectingAccount},
+                                                            #{invoiceCompany}, #{payTime}, #{carteTime}, #{updateTime},
+                #{customerId}, #{status}
         )
 
     </insert>
@@ -108,30 +108,30 @@
 
     <select id="queryByProject" parameterType="cn.rzhd.wuye.vo.query.PropertyRecordsQuery">
         SELECT
-        PROPERTY_FEE_PAY_DETAILS_ID,
-        HOUSE_INFO_ID,
-        CLIENT_NAME,
-        FEETYPE,
-        PAY_MANNER,
-        PAY_MONTH,
-        START_DATE,
-        END_DATE,
-        PAYABLE,
-        PAID_IN,
-        VOUCHER_NUMBER,
-        INVOICE,
-        INVOICE_NUMBER,
-        INVOICE_NOTES,
-        INVOICE_STATUS,
-        COLLECTING_COMPANY,
-        COLLECTING_ACCOUNT,
-        INVOICE_COMPANY,
-        PAY_TIME,
-        CARTE_TIME,
-        UPDATE_TIME,
-        CUSTOMER_ID,
-        STATUS,
-        FEETYPE
+            PROPERTY_FEE_PAY_DETAILS_ID,
+            HOUSE_INFO_ID,
+            CLIENT_NAME,
+            FEETYPE,
+            PAY_MANNER,
+            PAY_MONTH,
+            START_DATE,
+            END_DATE,
+            PAYABLE,
+            PAID_IN,
+            VOUCHER_NUMBER,
+            INVOICE,
+            INVOICE_NUMBER,
+            INVOICE_NOTES,
+            INVOICE_STATUS,
+            COLLECTING_COMPANY,
+            COLLECTING_ACCOUNT,
+            INVOICE_COMPANY,
+            PAY_TIME,
+            CARTE_TIME,
+            UPDATE_TIME,
+            CUSTOMER_ID,
+            STATUS,
+            FEETYPE
         FROM T_PROPERTY_FEE_PAY_DETAILS
     </select>
 
@@ -229,14 +229,14 @@
     <select id="getCompanyAccount" resultType="string">
         SELECT "account"
         FROM T_BANK_ACCOUNT
-        JOIN T_FEE_TYPES ON T_FEE_TYPES."pk_fee" = T_BANK_ACCOUNT."pk_fee"
+            JOIN T_FEE_TYPES ON T_FEE_TYPES."pk_fee" = T_BANK_ACCOUNT."pk_fee"
         WHERE "feecode" = #{feeType} AND T_FEE_TYPES."pk_corp" = #{pk_corp}
     </select>
     <select id="getCompanyName" resultType="string">
         SELECT "unitname"
         FROM T_COMPANY
-        JOIN T_BANK_ACCOUNT ON T_COMPANY."pk_corp" = "vdef1"
-        JOIN T_FEE_TYPES ON T_FEE_TYPES."pk_fee" = T_BANK_ACCOUNT."pk_fee"
+            JOIN T_BANK_ACCOUNT ON T_COMPANY."pk_corp" = "vdef1"
+            JOIN T_FEE_TYPES ON T_FEE_TYPES."pk_fee" = T_BANK_ACCOUNT."pk_fee"
         WHERE T_FEE_TYPES."pk_corp" = #{pk_corp} AND "feecode" = #{feeType}
     </select>
     <select id="countByQuery" parameterType="cn.rzhd.wuye.vo.query.PropertyRecordsQuery" resultType="integer">
