@@ -43,4 +43,8 @@ public interface IUtilitiesService {
     Integer countWaterByQuery(PropertyRecordsQuery query);
 
     void changeStatusByRecordsId(String id);
+
+    void updateToERP(String id);
+
+    String getFeeType(String costType, String pk_corp);
 }

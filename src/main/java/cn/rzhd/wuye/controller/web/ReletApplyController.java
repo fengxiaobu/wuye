@@ -142,9 +142,9 @@ public class ReletApplyController {
                 System.out.println("时间间隔*********************** = " + s.substring(0, s.length() - 1));
 
                 if (!"0".equals(s.substring(0, s.length() - 1))) {
-                    retreatLeaseApply.setRetreatLeaseType("1");
+                    retreatLeaseApply.setRetreatLeaseType("提前退租");
                 } else {
-                    retreatLeaseApply.setRetreatLeaseType("2");
+                    retreatLeaseApply.setRetreatLeaseType("正常退租");
                 }
             }
             Date date = new Date();

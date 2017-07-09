@@ -359,4 +359,12 @@ public class UtilitiesDetails implements Serializable  {
     public void setRecordsId(String recordsId) {
         this.recordsId = recordsId;
     }
+
+    public String getPk_feeType() {
+        return pk_feeType;
+    }
+
+    public void setPk_feeType(String pk_feeType) {
+        this.pk_feeType = pk_feeType;
+    }
 }

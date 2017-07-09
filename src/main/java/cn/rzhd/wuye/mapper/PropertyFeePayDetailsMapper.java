@@ -45,4 +45,8 @@ public interface PropertyFeePayDetailsMapper {
     List<FeeVO> getFeeDataByRecordsId(String id);
 
     void updateBillIdByRecordsId(@Param("id") String id, @Param("billId") String billId, @Param("billNo") String billNo);
+
+    List<String> getPropertyFeeIdByRecords(String id);
+
+    List<FeeVO> getTempFeeByRecords(String id);
 }

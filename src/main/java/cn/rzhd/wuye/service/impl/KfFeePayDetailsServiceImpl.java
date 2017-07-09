@@ -74,7 +74,7 @@ public class KfFeePayDetailsServiceImpl implements IKfFeePayDetailsService {
     @Override
     public void updateToERP(String id) {
         List<FeeVO> list = mapper.getFeeDataByRecordsId(id);
-        Map<String, String> map = UpdateToERP.updateToERP(list, id, LiandoServiceConstant.DATA_TYPE_KF_FEE);
+        Map<String, String> map = UpdateToERP.updateToERP(list,LiandoServiceConstant.DATA_TYPE_KF_FEE);
         String billid = map.get("billid");
         String billno = map.get("billno");
         mapper.updateBillIdByRecordsId(id, billid, billno);

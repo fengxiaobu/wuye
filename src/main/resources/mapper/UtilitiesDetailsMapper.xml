@@ -37,24 +37,24 @@
     </delete>
     <insert id="insert" parameterType="cn.rzhd.wuye.bean.UtilitiesDetails">
         INSERT INTO WUYE.T_UTILITIES_DETAILS (PK_CORP,
-            UTILITIES_DETAILS_ID, HOUSE_INFO_ID, CLIENT_NAME, FEE_TYPE, PAY_MANNER, PAY_MONTH,
-            START_DATE, END_DATE, PAYABLE,
-            PAID_IN, VOUCHER_NUMBER, INVOICE,
-            INVOICE_NUMBER, INVOICE_NOTES, INVOICE_STATUS,
-            COLLECTING_COMPANY, COLLECTING_ACCOUNT, INVOICE_COMPANY,
-            PAY_TIME, AMMETER_NUMBER, MULTIPLYING_POWER,
-            ELECTRIC_POWER, CARTE_TIME, UPDATE_TIME,
-            CUSTOMER_ID, TUNNAGE, STATUS, RECORDS_ID)
-        VALUES (#{pk_corp},#{utilitiesDetailsId}, #{houseInfoId}, #{clientName}, #{costType},
-                                       #{payManner}, #{payMonth},
-                                       #{startDate}, #{endDate}, #{payable},
-                                       #{paidIn}, #{voucherNumber}, #{invoice},
-                                                                    #{invoiceNumber}, #{invoiceNotes}, #{invoiceStatus},
-                                                                    #{collectingCompany}, #{collectingAccount},
-                                                                    #{invoiceCompany},
-                                                                    #{payTime}, #{ammeterNumber}, #{multiplyingPower},
+                                              UTILITIES_DETAILS_ID, HOUSE_INFO_ID, CLIENT_NAME, FEE_TYPE, PAY_MANNER, PAY_MONTH,
+                                              START_DATE, END_DATE, PAYABLE,
+                                              PAID_IN, VOUCHER_NUMBER, INVOICE,
+                                              INVOICE_NUMBER, INVOICE_NOTES, INVOICE_STATUS,
+                                              COLLECTING_COMPANY, COLLECTING_ACCOUNT, INVOICE_COMPANY,
+                                              PAY_TIME, AMMETER_NUMBER, MULTIPLYING_POWER,
+                                              ELECTRIC_POWER, CARTE_TIME, UPDATE_TIME,
+                                              CUSTOMER_ID, TUNNAGE, STATUS, RECORDS_ID,PK_FEE_TYPE)
+        VALUES (#{pk_corp}, #{utilitiesDetailsId}, #{houseInfoId}, #{clientName}, #{costType},
+                            #{payManner}, #{payMonth},
+                            #{startDate}, #{endDate}, #{payable},
+                            #{paidIn}, #{voucherNumber}, #{invoice},
+                                       #{invoiceNumber}, #{invoiceNotes}, #{invoiceStatus},
+                                       #{collectingCompany}, #{collectingAccount},
+                                       #{invoiceCompany},
+                                       #{payTime}, #{ammeterNumber}, #{multiplyingPower},
                 #{electricPower}, #{carteTime}, #{updateTime},
-                #{customerId}, #{tunnage}, #{status}, #{recordsId})
+                #{customerId}, #{tunnage}, #{status}, #{recordsId},#{pk_feeType})
     </insert>
     <update id="updateByPrimaryKey" parameterType="cn.rzhd.wuye.bean.UtilitiesDetails">
         UPDATE T_UTILITIES_DETAILS
@@ -96,6 +96,11 @@
         UPDATE T_UTILITIES_DETAILS
         SET STATUS = 'Y'
         WHERE RECORDS_ID = #{id}
+    </update>
+    <update id="updateBillIdByRecordsId">
+        UPDATE T_UTILITIES_DETAILS
+        SET VOUCHER_NUMBER=#{billno},BILL_ID=#{billid}
+        WHERE RECORDS_ID=#{id}
     </update>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="long">
         SELECT
@@ -642,6 +647,24 @@
         JOIN T_MANAGE ON T_HOUSE_INFO_DETAILS.MANAGE_ID = T_MANAGE."pk_manageId"
         JOIN T_MANAGE_USER ON T_MANAGE_USER.MANAGE_ID = T_MANAGE."pk_manageId"
         <include refid="waterSql"/>
+    </select>
+    <select id="getFeeDataByRecordsId" parameterType="string" resultType="cn.rzhd.wuye.vo.FeeVO">
+        SELECT
+            T_UTILITIES_DETAILS.PK_CORP AS pk_corp,
+            CUSTOMER_ID AS pk_customerid,
+            T_HOUSE_INFO_DETAILS."pk_project",
+            HOUSE_INFO_ID AS pk_house,
+            PK_FEE_TYPE AS pk_feetype,
+            PAY_TIME AS dshpay,
+            PAID_IN AS nmny
+        FROM T_UTILITIES_DETAILS
+            JOIN T_HOUSE_INFO_DETAILS ON "pk_house" = HOUSE_INFO_ID
+        WHERE RECORDS_ID = #{id}
+    </select>
+    <select id="getFeeType" resultType="string">
+        SELECT "pk_fee"
+        FROM T_FEE_TYPES
+        WHERE "feecode" = #{costTpye} AND "pk_corp" = #{pk_corp}
     </select>
 
 </mapper>

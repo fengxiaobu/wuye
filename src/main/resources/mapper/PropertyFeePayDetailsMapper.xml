@@ -77,7 +77,7 @@
             #{invoiceNumber}, #{invoiceNotes}, #{invoiceStatus},
             #{collectingCompany}, #{collectingAccount},
             #{invoiceCompany}, #{payTime}, #{carteTime}, #{updateTime},
-                #{customerId}, #{status}, #{recordsId}, #{propertyFeeId},#{pk_feeType}
+                #{customerId}, #{status}, #{recordsId}, #{propertyFeeId}, #{pk_feeType}
         )
 
     </insert>
@@ -276,6 +276,24 @@
             PAID_IN                            AS nmny
         FROM T_PROPERTY_FEE_PAY_DETAILS
             JOIN T_HOUSE_INFO_DETAILS ON HOUSE_INFO_ID = T_HOUSE_INFO_DETAILS."pk_house"
+        WHERE RECORDS_ID = #{id}
+    </select>
+    <select id="getPropertyFeeIdByRecords" parameterType="string" resultType="string">
+        SELECT PK_WY_FEE
+        FROM T_PROPERTY_FEE_PAY_DETAILS
+        WHERE RECORDS_ID = #{id}
+    </select>
+    <select id="getTempFeeByRecords" parameterType="string" resultType="cn.rzhd.wuye.vo.FeeVO">
+        SELECT
+            T_PROPERTY_FEE_PAY_DETAILS.PK_CORP AS pk_corp,
+            CUSTOMER_ID                        AS pk_customerid,
+            T_HOUSE_INFO_DETAILS."pk_project",
+            HOUSE_INFO_ID                      AS pk_house,
+            PK_FEE_TYPE                        AS pk_feetype,
+            PAY_TIME                           AS dshpay,
+            PAID_IN                            AS nmny
+        FROM T_PROPERTY_FEE_PAY_DETAILS
+            JOIN T_HOUSE_INFO_DETAILS ON "pk_house" = HOUSE_INFO_ID
         WHERE RECORDS_ID = #{id}
     </select>
 

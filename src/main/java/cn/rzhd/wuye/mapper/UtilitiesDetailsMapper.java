@@ -1,6 +1,7 @@
 package cn.rzhd.wuye.mapper;
 
 import cn.rzhd.wuye.bean.UtilitiesDetails;
+import cn.rzhd.wuye.vo.FeeVO;
 import cn.rzhd.wuye.vo.query.PropertyRecordsQuery;
 import cn.rzhd.wuye.vo.query.UtilitiesQuery;
 import org.apache.ibatis.annotations.Mapper;
@@ -51,4 +52,10 @@ public interface UtilitiesDetailsMapper {
     Integer countWaterByQuery(PropertyRecordsQuery query);
 
     void changeStatusByRecordsId(String id);
+
+    List<FeeVO> getFeeDataByRecordsId(String id);
+
+    String getFeeType(@Param("costTpye") String costType,@Param("pk_corp") String pk_corp);
+
+    void updateBillIdByRecordsId(@Param("id") String id,@Param("billid") String billid,@Param("billno") String billno);
 }
