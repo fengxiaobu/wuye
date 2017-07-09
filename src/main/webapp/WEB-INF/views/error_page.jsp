@@ -11,7 +11,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>404 - 对不起，您查找的页面不存在！- JS代码站</title>
-<link rel="stylesheet" type="text/css" href="${request.contextPath}/css/404/main.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/404/main.css">
 <!--[if lt IE 9]>
   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
