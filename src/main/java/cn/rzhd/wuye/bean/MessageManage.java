@@ -5,6 +5,8 @@ import java.util.Date;
 
 import javax.persistence.Column;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class MessageManage implements Serializable {
 
 	/**
@@ -20,6 +22,7 @@ public class MessageManage implements Serializable {
 
 	private String note;
 
+	@JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd")
 	private Date create_time;
 
 	private String type;
