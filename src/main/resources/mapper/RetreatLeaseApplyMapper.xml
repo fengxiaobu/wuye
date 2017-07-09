@@ -199,16 +199,18 @@
         ORDER BY aaply.CREATION_TIME DESC
     </select>
     <select id="findRetreatLeaseApply" resultMap="BaseResultMap">
-        SELECT
-            DISTINCT *
-        FROM
-            T_RETREAT_LEASE_APPLY aaply
-            LEFT JOIN "T_Customer" cust ON
-                                            aaply.CUSTOMERID = cust."pk_customerid"
-            LEFT JOIN T_HOUSE_INFO_DETAILS house ON
-                                                     aaply.HOUSE_INFO_ID = house."pk_house"
-        WHERE
-            HOUSE_INFO_ID = #{houseInfoId} AND CUSTOMERID = #{customerId}
-        ORDER BY aaply.CREATION_TIME DESC
+        SELECT *
+        FROM (SELECT
+                  DISTINCT *
+              FROM
+                  T_RETREAT_LEASE_APPLY aaply
+                  LEFT JOIN "T_Customer" cust ON
+                                                  aaply.CUSTOMERID = cust."pk_customerid"
+                  LEFT JOIN T_HOUSE_INFO_DETAILS house ON
+                                                           aaply.HOUSE_INFO_ID = house."pk_house"
+              WHERE
+                  HOUSE_INFO_ID = #{houseInfoId} AND CUSTOMERID = #{customerId}
+              ORDER BY aaply.CREATION_TIME DESC)
+        WHERE rownum = 1
     </select>
 </mapper>

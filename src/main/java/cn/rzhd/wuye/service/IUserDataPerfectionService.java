@@ -1,9 +1,7 @@
 package cn.rzhd.wuye.service;
 
 import cn.rzhd.wuye.bean.Customer;
-import cn.rzhd.wuye.bean.EnterMaterial;
 import cn.rzhd.wuye.bean.PerfectInformation;
-import cn.rzhd.wuye.bean.PropertyFeeInvoiceDetails;
 
 public interface IUserDataPerfectionService {
     

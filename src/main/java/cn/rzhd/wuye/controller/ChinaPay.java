@@ -36,19 +36,27 @@ import java.util.*;
 public class ChinaPay {
 
     @Autowired
-    IPropertyFeePayDetailsService wuye;
+    private IPropertyFeePayDetailsService wuye;
     @Autowired
-    IKfFeePayDetailsService kaifa;
+    private IKfFeePayDetailsService kaifa;
     @Autowired
-    IUtilitiesService shuidian;
+    private IUtilitiesService shuidian;
     @Autowired
-    IEnterApplyService enterApplyService;
+    private IEnterApplyService enterApplyService;
     @Autowired
-    IDecorationApplyService decorationApplyService;
+    private IDecorationApplyService decorationApplyService;
     @Autowired
-    ICustomerService customerService;
+    private ICustomerService customerService;
     @Autowired
-    IHouseInfoDetailsService houseInfoDetailsService;
+    private IHouseInfoDetailsService houseInfoDetailsService;
+    @Autowired
+    private IPayFeeRecordsService payFeeRecordsService;
+    @Autowired
+    private IPropertyFeeInvoiceService wuyeInvoice;
+    @Autowired
+    private IKfFeeInvoiceService kaifaInvoice;
+    @Autowired
+    private IUtilitiesInvoiceService shuidianInvoice;
 
     @RequestMapping("/topay")
     public String toPay() {
@@ -180,22 +188,32 @@ public class ChinaPay {
                 System.out.println("-----------------------------------------------------------------");
                 System.out.println("-----------------------------------------------------------------");
                 System.out.println("-----------------------------------------------------------------");
+                String id = vo.getId();
+                String type = payFeeRecordsService.getTypeById(id);
+                /**
+                 * 修改缴费详情记录状态为可见
+                 * 修改开票记录状态为可见
+                 */
+                if("物业".equals(type)){
+                    wuye.changeStatusByRecordsId(id);
+                    wuyeInvoice.changeStatusByRecordsId(id);
+                    wuye.updateToERP(id);
+                }else if("开发".equals(type)){
+                    kaifa.changeStatusByRecordsId(id);
+                    kaifaInvoice.changeStatusByRecordsId(id);
+                    //kaifa.updateToERP(id);
+                }else if("水电".equals(type)){
+                    shuidian.changeStatusByRecordsId(id);
+                    shuidianInvoice.changeStatusByRecordsId(id);
+                    //shuidian.updateToERP(id);
+                }
 
-                if ("wuye".equals(vo.getType())) {
-                   // wuye.changeStatus(vo.getId());
-                } else if ("kaifa".equals(vo.getType())) {
-                   // kaifa.changeStatus(vo.getId());
-                } else if ("shuidian".equals(vo.getType())) {
-                    //shuidian.changeStatus(vo.getId());
-                } else if ("rzwuye".equals(vo.getType())) {
+                if ("rzwuye".equals(vo.getType())) {
                     enterApplyService.updatePayState("1", null, vo.getApplyId());
-                    //wuye.changeStatus(vo.getId());
                 } else if ("rzkaifa".equals(vo.getType())) {
                     enterApplyService.updatePayState(null, "1", vo.getApplyId());
-                   // kaifa.changeStatus(vo.getId());
                 } else if ("zxfy".equals(vo.getType())) {
                     decorationApplyService.updatePayState("1", vo.getApplyId());
-                    //wuye.changeStatus(vo.getId());
                 } else {
                     System.out.println("缴费记录生成失败:未知的缴费类型(物业,开发,水电)");
                 }
@@ -337,10 +355,10 @@ public class ChinaPay {
                // System.out.println("费用类型:" + vo.getType() + ",费用记录ID:" + vo.getId());
                 System.out.println("-----------------------------------------------------------------");
                 if ("wuye".equals(vo.getType())) {
-                   // wuye.changeStatus(vo.getId());
+                    //wuye.changeStatus(vo.getId());
                     result.put("msg", "wuye");
                 } else if ("kaifa".equals(vo.getType())) {
-                   // kaifa.changeStatus(vo.getId());
+                    //kaifa.changeStatus(vo.getId());
                     result.put("msg", "kaifa");
                 } else if ("shuidian".equals(vo.getType())) {
                     //shuidian.changeStatus(vo.getId());
@@ -355,7 +373,7 @@ public class ChinaPay {
                             houseInfoDetailsService.updateHouse(String.valueOf(enterApply.getEnterApplyId()), "3", null);
                         }
                     }
-                 //   wuye.changeStatus(vo.getId());
+                    //wuye.changeStatus(vo.getId());
                     result.put("msg", "rzwuye");
                 } else if ("rzkaifa".equals(vo.getType())) {
                     List<Map<String, JsonFormat.Value>> enterApplyByID = enterApplyService.getEnterApplyByID(vo.getApplyId());

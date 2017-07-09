@@ -3,6 +3,7 @@ package cn.rzhd.wuye.controller.web;
 import cn.rzhd.wuye.bean.*;
 import cn.rzhd.wuye.service.*;
 import cn.rzhd.wuye.utils.IDUtils;
+import cn.rzhd.wuye.utils.JsonResult;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by hasee on 2017/6/17.
@@ -36,41 +36,84 @@ public class InvoicingController {
     private IPayFeeRecordsService payFeeRecordsService;
 
 
-    //[{"ammeterNumber":\"10\",\"clientName\":\"无锡立柯纺织服装有限公司\",\"collectingAccount\":\"\",\"collectingCompany\":\"\",\"costType\":\"220101\",\"customerId\":\"1031XX100000000T5HMX\",\"electricPower\":135.51,\"endDate\":\"\",\"feetype\":\"电费\",\"houseInfoId\":\"1031AM1000000001HT2Z\",\"invoiceStatus\":\"\",\"multiplyingPower\":10,\"nyshouldmny\":123,\"paidIn\":123,\"payManner\":\"银联在线支付\",\"payMonth\":\"\",\"payTime\":\"\",\"payable\":\"\",\"pk_corp\":\"1031\",\"startDate\":\"\"},{\"ammeterNumber\":\"10\",\"clientName\":\"无锡立柯纺织服装有限公司\",\"collectingAccount\":\"\",\"collectingCompany\":\"\",\"costType\":\"220101\",\"customerId\":\"1031XX100000000T5HMX\",\"electricPower\":135.51,\"endDate\":\"\",\"feetype\":\"电费\",\"houseInfoId\":\"1031AM1000000001HT2Z\",\"invoiceStatus\":\"\",\"multiplyingPower\":10,\"nyshouldmny\":123,\"paidIn\":123,\"payManner\":\"银联在线支付\",\"payMonth\":\"\",\"payTime\":\"\",\"payable\":\"\",\"pk_corp\":\"1031\",\"startDate\":\"\"}]"
-
-
     @RequestMapping("/invoice/property")
-    public void propertyInvoice(@RequestBody PropertyFeePayDetails details) {
-        Long id = details.getPropertyFeePayDetails();
-        List<PropertyFeeInvoiceDetails> invoices = details.getInvoices();
-        for (PropertyFeeInvoiceDetails invoice : invoices) {
-            invoice.setPropFeeInvoiceDetailsId(IDUtils.genLongUID());
-            invoice.setPropertyFeePayDetailsId(id);
-            propertyFeeInvoiceService.addInvoice(invoice);
+    public JsonResult propertyInvoice(@RequestBody String invoiceStr) {
+        try {
+            JSONArray array = JSON.parseArray(invoiceStr);
+            for (Object o : array) {
+                String id = IDUtils.genId();
+                JSON json = (JSON) o;
+                Invoice invoice = JSON.toJavaObject(json, Invoice.class);
+                invoice.setInvoiceId(id);
+                invoice.setCarteTime(new Date());
+                propertyFeeInvoiceService.addInvoice(invoice);
+            }
+            return new JsonResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new JsonResult(e.getMessage());
         }
+
+//        Long id = details.getPropertyFeePayDetails();
+//        List<PropertyFeeInvoiceDetails> invoices = details.getInvoices();
+//        for (PropertyFeeInvoiceDetails invoice : invoices) {
+//            invoice.setPropFeeInvoiceDetailsId(IDUtils.genLongUID());
+//            invoice.setPropertyFeePayDetailsId(id);
+//            propertyFeeInvoiceService.addInvoice(invoice);
+//        }
     }
 
 
     @RequestMapping("/invoice/kfFee")
-    public void kfFeeInvoice(@RequestBody KfFeePayDetails details) {
-        Long id = details.getKfFeePayDetailsId();
-        List<KfFeeInvoice> invoices = details.getInvoices();
-        for (KfFeeInvoice invoice : invoices) {
-            invoice.setKfFeeInvoiceDetailsId(IDUtils.genLongUID());
-            invoice.setKfFeePayDetailsId(id);
-            kfFeeInvoiceService.addInvoice(invoice);
+    public JsonResult kfFeeInvoice(@RequestBody String invoiceStr) {
+        try {
+            JSONArray array = JSON.parseArray(invoiceStr);
+            for (Object o : array) {
+                String id = IDUtils.genId();
+                JSON json = (JSON) o;
+                Invoice invoice = JSON.toJavaObject(json, Invoice.class);
+                invoice.setInvoiceId(id);
+                invoice.setCarteTime(new Date());
+                kfFeeInvoiceService.addInvoice(invoice);
+            }
+            return new JsonResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new JsonResult(e.getMessage());
         }
+//        Long id = details.getKfFeePayDetailsId();
+//        List<> invoices = details.getInvoices();
+//        for (KfFeeInvoice invoice : invoices) {
+//            invoice.setKfFeeInvoiceDetailsId(IDUtils.genLongUID());
+//            invoice.setKfFeePayDetailsId(id);
+//            kfFeeInvoiceService.addInvoice(invoice);
+//        }
     }
 
     @RequestMapping("/invoice/utilities")
-    public void utilitiesInvoice(@RequestBody UtilitiesDetails details) {
-        Long id = details.getUtilitiesDetailsId();
-        List<UtilitiesInvoice> invoices = details.getInvoices();
-        for (UtilitiesInvoice invoice : invoices) {
-            invoice.setUtilitiesInvoiceId(IDUtils.genLongUID());
-            invoice.setUtilitiesDetailsId(id);
-            utilitiesInvoiceService.addInvoice(invoice);
+    public JsonResult utilitiesInvoice(@RequestBody String invoiceStr) {
+        try {
+            JSONArray array = JSON.parseArray(invoiceStr);
+            for (Object o : array) {
+                String id = IDUtils.genId();
+                JSON json = (JSON) o;
+                Invoice invoice = JSON.toJavaObject(json, Invoice.class);
+                invoice.setInvoiceId(id);
+                invoice.setCarteTime(new Date());
+                utilitiesInvoiceService.addInvoice(invoice);
+            }
+            return new JsonResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new JsonResult(e.getMessage());
         }
+//        Long id = details.getUtilitiesDetailsId();
+//        List<UtilitiesInvoice> invoices = details.getInvoices();
+//        for (UtilitiesInvoice invoice : invoices) {
+//            invoice.setUtilitiesInvoiceId(IDUtils.genLongUID());
+//            invoice.setUtilitiesDetailsId(id);
+//            utilitiesInvoiceService.addInvoice(invoice);
+//        }
     }
 
 
@@ -139,6 +182,7 @@ public class InvoicingController {
         String collectingAccount = null;
         String collectingCompany = null;
         Date paytime = null;
+        Integer invoiceStatus = null;
         /**
          * 读取每条记录并存入付款记录的值,生成主键值,将部分值取出放入准备的字段,insert缴费详情
          */
@@ -165,6 +209,7 @@ public class InvoicingController {
             collectingAccount = detail.getCollectingAccount();
             collectingCompany = detail.getCollectingCompany();
             paytime = detail.getPayTime();
+            invoiceStatus = detail.getInvoiceStatus();
         }
         /**
          * 此处赋值到付款记录对象,并进行存储
@@ -178,6 +223,7 @@ public class InvoicingController {
         records.setFeeType("水电");
         records.setPaidIn(paidIn);
         records.setPayTime(paytime);
+        records.setInvoiceStatus(invoiceStatus==null?null:(invoiceStatus==0?0:1));
         payFeeRecordsService.addRecords(records);
         return id;
     }
@@ -201,6 +247,7 @@ public class InvoicingController {
         String collectingAccount = null;
         String collectingCompany = null;
         Date paytime = null;
+        Integer invoiceStatus = null;
         /**
          * 读取每条记录并存入付款记录的值,生成主键值,将部分值取出放入准备的字段,insert缴费详情
          */
@@ -226,6 +273,7 @@ public class InvoicingController {
             collectingAccount = detail.getCollectingAccount();
             collectingCompany = detail.getCollectingCompany();
             paytime = detail.getPayTime();
+            invoiceStatus = detail.getInvoiceStatus();
         }
         /**
          * 此处赋值到付款记录对象,并进行存储
@@ -239,6 +287,7 @@ public class InvoicingController {
         records.setFeeType("开发");
         records.setPaidIn(paidIn);
         records.setPayTime(paytime);
+        records.setInvoiceStatus(invoiceStatus==null?null:(invoiceStatus==0?0:1));
         payFeeRecordsService.addRecords(records);
         return id;
     }
@@ -256,6 +305,7 @@ public class InvoicingController {
         String collectingAccount = null;
         String collectingCompany = null;
         Date paytime = null;
+        Integer invoiceStatus = null;
         /**
          * 读取每条记录并存入付款记录的值,生成主键值,将部分值取出放入准备的字段,insert缴费详情
          */
@@ -280,6 +330,7 @@ public class InvoicingController {
             collectingAccount = detail.getCollectingAccount();
             collectingCompany = detail.getCollectingCompany();
             paytime = detail.getPayTime();
+            invoiceStatus = detail.getInvoiceStatus();
         }
         /**
          * 此处赋值到付款记录对象,并进行存储
@@ -293,6 +344,7 @@ public class InvoicingController {
         records.setFeeType("物业");
         records.setPaidIn(paidIn);
         records.setPayTime(paytime);
+        records.setInvoiceStatus(invoiceStatus==null?null:(invoiceStatus==0?0:1));
         payFeeRecordsService.addRecords(records);
         return id;
     }

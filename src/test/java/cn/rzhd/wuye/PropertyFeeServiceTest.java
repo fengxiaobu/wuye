@@ -32,7 +32,7 @@ public class PropertyFeeServiceTest extends BaseTest {
         List<Company> list = companyService.getAll();
         RequesterVO req = new RequesterVO();
         req.setKey(LiandoServiceConstant.SERVICE_KEY);
-        req.setBilltype(LiandoServiceConstant.DATA_TYPE_KF_FEE);
+        req.setBilltype(LiandoServiceConstant.DATA_TYPE_WY_FEE);
         for (Company company : list) {
             String pkCorp = company.getPkCorp();
             req.setPk_corp(pkCorp);

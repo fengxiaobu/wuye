@@ -27,4 +27,6 @@ public interface IKfFeePayDetailsService {
     String getCompanyName(String feecode, String pk_corp);
 
     Integer countByQuery(PropertyRecordsQuery query);
+
+    void changeStatusByRecordsId(String id);
 }

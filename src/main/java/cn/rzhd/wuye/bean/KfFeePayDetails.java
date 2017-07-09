@@ -3,7 +3,6 @@ package cn.rzhd.wuye.bean;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by hasee on 2017/6/1.
@@ -55,7 +54,7 @@ public class KfFeePayDetails implements Serializable {
      */
     private String voucherNumber;
     /**
-     * 发票
+     * ERP所需发票ID
      */
     private String invoice;
     /**
@@ -67,7 +66,7 @@ public class KfFeePayDetails implements Serializable {
      */
     private String invoiceNotes;
     /**
-     * 开票状态(0-已开，1-未开,2-不开)
+     * 开票状态(0-不开票，1-暂不开票,2-业主开票,3-代付开票,4-已开票)
      */
     private Integer invoiceStatus =1;
     /**
@@ -98,10 +97,7 @@ public class KfFeePayDetails implements Serializable {
      * 客户主键
      */
     private String customerId;
-    /**
-     * 缴费记录关联的发票记录
-     */
-    private List<KfFeeInvoice> invoices;
+
     /**
      * 缴费记录是否生效(Y--生效,N--未生效)
      */
@@ -118,6 +114,10 @@ public class KfFeePayDetails implements Serializable {
      * 付款记录ID
      */
     private String recordsId;
+    /**
+     * 收费项目主键
+     */
+    private String pk_feeType;
 
     public Long getKfFeePayDetailsId() {
         return kfFeePayDetailsId;
@@ -287,14 +287,6 @@ public class KfFeePayDetails implements Serializable {
         this.customerId = customerId;
     }
 
-    public List<KfFeeInvoice> getInvoices() {
-        return invoices;
-    }
-
-    public void setInvoices(List<KfFeeInvoice> invoices) {
-        this.invoices = invoices;
-    }
-
     public String getStatus() {
         return status;
     }
@@ -333,5 +325,13 @@ public class KfFeePayDetails implements Serializable {
 
     public void setRecordsId(String recordsId) {
         this.recordsId = recordsId;
+    }
+
+    public String getPk_feeType() {
+        return pk_feeType;
+    }
+
+    public void setPk_feeType(String pk_feeType) {
+        this.pk_feeType = pk_feeType;
     }
 }

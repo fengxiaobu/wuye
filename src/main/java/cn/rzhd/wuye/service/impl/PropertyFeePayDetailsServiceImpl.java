@@ -3,6 +3,8 @@ package cn.rzhd.wuye.service.impl;
 import cn.rzhd.wuye.bean.PropertyFeePayDetails;
 import cn.rzhd.wuye.mapper.PropertyFeePayDetailsMapper;
 import cn.rzhd.wuye.service.IPropertyFeePayDetailsService;
+import cn.rzhd.wuye.vo.FeeVO;
+import cn.rzhd.wuye.vo.FeeitemVO;
 import cn.rzhd.wuye.vo.query.PropertyFeePayDetailsQuery;
 import cn.rzhd.wuye.vo.query.PropertyRecordsQuery;
 import com.github.pagehelper.StringUtil;
@@ -72,5 +74,15 @@ public class PropertyFeePayDetailsServiceImpl implements IPropertyFeePayDetailsS
     @Override
     public Integer countByQuery(PropertyRecordsQuery query) {
         return mapper.countByQuery(query);
+    }
+
+    @Override
+    public void changeStatusByRecordsId(String id) {
+        mapper.changeStatusByRecordsId(id);
+    }
+
+    @Override
+    public void updateToERP(String id) {
+        List<FeeVO> list = mapper.getFeeDataByRecordsId(id);
     }
 }

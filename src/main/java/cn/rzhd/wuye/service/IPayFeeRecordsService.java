@@ -8,4 +8,6 @@ import cn.rzhd.wuye.bean.PayFeeRecords;
 public interface IPayFeeRecordsService {
 
     void addRecords(PayFeeRecords records);
+
+    String getTypeById(String id);
 }

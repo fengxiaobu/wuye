@@ -62,6 +62,7 @@
 
     <select id="queryByCustomer" resultType="cn.rzhd.wuye.vo.PactVO">
         SELECT DISTINCT
+			"T_Rent_Contract"."pk_corp",
             "pk_house",
             "house",
 			"dpactstart",

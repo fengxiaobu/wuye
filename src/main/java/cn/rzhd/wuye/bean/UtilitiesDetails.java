@@ -3,7 +3,6 @@ package cn.rzhd.wuye.bean;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.List;
 
 public class UtilitiesDetails implements Serializable  {
 
@@ -69,9 +68,9 @@ public class UtilitiesDetails implements Serializable  {
      */
     private String invoiceNotes;
     /**
-     * 开票状态(0-已开，1-未开,2-不开)
+     * 开票状态(0-不开票，1-暂不开票,2-业主开票,3-代付开票,4-已开票)
      */
-    private Integer invoiceStatus =1;
+    private Integer invoiceStatus = 1;
     /**
      * 收款公司
      */
@@ -117,10 +116,6 @@ public class UtilitiesDetails implements Serializable  {
      */
     private Integer tunnage;
     /**
-     * 缴费记录所关联的发票
-     */
-    private List<UtilitiesInvoice> invoices;
-    /**
      * 缴费记录是否生效(Y--生效,N--未生效)
      */
     private String status = "N";
@@ -128,6 +123,10 @@ public class UtilitiesDetails implements Serializable  {
      * 付款记录ID
      */
     private String recordsId;
+    /**
+     * 收费项目主键
+     */
+    private String pk_feeType;
 
     public Long getUtilitiesDetailsId() {
         return utilitiesDetailsId;
@@ -327,14 +326,6 @@ public class UtilitiesDetails implements Serializable  {
 
     public void setTunnage(Integer tunnage) {
         this.tunnage = tunnage;
-    }
-
-    public List<UtilitiesInvoice> getInvoices() {
-        return invoices;
-    }
-
-    public void setInvoices(List<UtilitiesInvoice> invoices) {
-        this.invoices = invoices;
     }
 
     public String getStatus() {

@@ -16,7 +16,7 @@
         <result column="vmemo" property="vmemo" jdbcType="VARCHAR"/>
         <result column="nyshouldmny" property="nyshouldmny" jdbcType="VARCHAR"/>
         <result column="arrears" property="arrears"/>
-        <result column="account" property="account" />
+        <result column="account" property="account"/>
         <result column="companyName" property="companyName"/>
     </resultMap>
 
@@ -28,8 +28,9 @@
         <result column="amount" property="sum"/>
         <result column="nyshouldmny" property="shouldmny"/>
         <result column="shouldSum" property="shouldSum"/>
-        <result column="account" property="account" />
+        <result column="account" property="account"/>
         <result column="companyName" property="companyName"/>
+        <result column="pk_course_b" property="pk_course_b" jdbcType="CHAR"/>
     </resultMap>
 
     <sql id="arrearsSql">
@@ -107,10 +108,11 @@
             "vmemo",
             "nyshouldmny",
             NVL("nyshouldmny", 0) - NVL("T_KF_Fee"."nmny", 0) AS arrears,
-            T_BANK_ACCOUNT."account" AS account,
-            T_COMPANY."unitname" AS companyName
-        FROM "T_KF_Fee" JOIN T_BANK_ACCOUNT ON "pk_feetype"="pk_fee"
-            JOIN T_COMPANY ON "vdef1"=T_COMPANY."pk_corp"
+            T_BANK_ACCOUNT."account"                          AS account,
+            T_COMPANY."unitname"                              AS companyName
+        FROM "T_KF_Fee"
+            JOIN T_BANK_ACCOUNT ON "pk_feetype" = "pk_fee"
+            JOIN T_COMPANY ON "vdef1" = T_COMPANY."pk_corp"
         WHERE "isrz" = 'N' AND "pk_house" = #{houseInfoId} AND "pk_customerid" = '${customerId}' AND
               "dshpay" > TO_CHAR(SYSDATE, 'YYYY-MM-DD')
     </select>
@@ -132,9 +134,10 @@
             "nmny",
             "nyshouldmny",
             T_BANK_ACCOUNT."account" AS account,
-            T_COMPANY."unitname" AS companyName
-        FROM "T_KF_Fee" JOIN T_BANK_ACCOUNT ON "pk_feetype"="pk_fee"
-            JOIN T_COMPANY ON "vdef1"=T_COMPANY."pk_corp"
+            T_COMPANY."unitname"     AS companyName
+        FROM "T_KF_Fee"
+            JOIN T_BANK_ACCOUNT ON "pk_feetype" = "pk_fee"
+            JOIN T_COMPANY ON "vdef1" = T_COMPANY."pk_corp"
         WHERE "isrz" = 'Y' AND "pk_house" = '${houseInfoId}'
     </select>
     <select id="selectAllArrears" resultMap="BaseResultMap" parameterType="cn.rzhd.wuye.vo.query.ArrearsQuery">
@@ -168,7 +171,8 @@
         SUM("nyshouldmny") - SUM(NVL("nmny", 0)) AS amount,
         SUM("nyshouldmny") AS shouldSum,
         T_BANK_ACCOUNT."account" AS account,
-        T_COMPANY."unitname" AS companyName
+        T_COMPANY."unitname" AS companyName,
+        "pk_course_b"
         FROM "T_KF_Fee" JOIN T_BANK_ACCOUNT ON "pk_feetype"="pk_fee"
         JOIN T_COMPANY ON "vdef1"=T_COMPANY."pk_corp"
         <include refid="queryForPay"/>
@@ -180,7 +184,8 @@
         "pk_feetype",
         "nyshouldmny",
         T_BANK_ACCOUNT."account",
-        T_COMPANY."unitname"
+        T_COMPANY."unitname",
+        "pk_course_b"
         ORDER BY
         SUBSTR("dshpay", 1, 7)
     </select>

@@ -36,4 +36,5 @@ public class CallBackVO implements Serializable {
     public void setApplyId(Long applyId) {
         this.applyId = applyId;
     }
+
 }

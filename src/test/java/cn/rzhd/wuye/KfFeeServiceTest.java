@@ -42,13 +42,11 @@ public class KfFeeServiceTest extends BaseTest {
             if ("Y".equals(resp.getIssuccess()) && StringUtil.isEmpty(resp.getErrorinfo())) {
                 FeeVO[] vos = resp.getFeedata();
                 for (FeeVO vo : vos) {
+                    System.out.println(vo);
                     service.addKfFee(vo);
                 }
-
             }
-
         }
-
     }
 
     @Test

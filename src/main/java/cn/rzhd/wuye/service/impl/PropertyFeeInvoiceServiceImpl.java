@@ -1,7 +1,7 @@
 package cn.rzhd.wuye.service.impl;
 
-import cn.rzhd.wuye.bean.PropertyFeeInvoiceDetails;
-import cn.rzhd.wuye.mapper.PropertyFeeInvoiceMapper;
+import cn.rzhd.wuye.bean.Invoice;
+import cn.rzhd.wuye.mapper.PropertyFeeInvoiceDetailsMapper;
 import cn.rzhd.wuye.service.IPropertyFeeInvoiceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,10 +13,15 @@ import org.springframework.stereotype.Service;
 public class PropertyFeeInvoiceServiceImpl implements IPropertyFeeInvoiceService {
 
     @Autowired
-    PropertyFeeInvoiceMapper mapper;
+    PropertyFeeInvoiceDetailsMapper mapper;
 
     @Override
-    public void addInvoice(PropertyFeeInvoiceDetails invoice) {
-        mapper.addInvoice(invoice);
+    public void addInvoice(Invoice invoice) {
+        mapper.insert(invoice);
+    }
+
+    @Override
+    public void changeStatusByRecordsId(String id) {
+        mapper.changeStatusByRecordsId(id);
     }
 }

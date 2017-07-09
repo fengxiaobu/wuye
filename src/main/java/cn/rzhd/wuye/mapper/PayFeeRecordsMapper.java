@@ -16,4 +16,6 @@ public interface PayFeeRecordsMapper {
     List<PayFeeRecords> selectAll();
 
     int updateByPrimaryKey(PayFeeRecords record);
+
+    String getTypeById(String id);
 }

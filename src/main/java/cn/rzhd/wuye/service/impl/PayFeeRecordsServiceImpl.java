@@ -19,4 +19,9 @@ public class PayFeeRecordsServiceImpl implements IPayFeeRecordsService {
     public void addRecords(PayFeeRecords records) {
         mapper.insert(records);
     }
+
+    @Override
+    public String getTypeById(String id) {
+        return mapper.getTypeById(id);
+    }
 }

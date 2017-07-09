@@ -65,6 +65,14 @@ public class DecorateDetail implements Serializable {
     public void setDetailContent(String detailContent) {
         this.detailContent = detailContent;
     }
-	
-    
+
+    @Override
+    public String toString() {
+        return "DecorateDetail{" +
+                "DecorateDetailId=" + DecorateDetailId +
+                ", decorationApplyId=" + decorationApplyId +
+                ", detailOrder=" + detailOrder +
+                ", detailContent='" + detailContent + '\'' +
+                '}';
+    }
 }

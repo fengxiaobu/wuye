@@ -5,7 +5,6 @@ import cn.rzhd.wuye.bean.RetreatLeaseApply;
 import cn.rzhd.wuye.service.IReletApplyService;
 import cn.rzhd.wuye.service.IRetreatLeaseApplyService;
 import cn.rzhd.wuye.utils.IDUtils;
-import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.StringUtil;
 import com.xiaoleilu.hutool.util.StrUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -170,9 +169,12 @@ public class ReletApplyController {
             return result;
         }
         List<ReletApply> reletApply = reletApplyService.findReletApply(houseInfoId, customerId);
-        String jsonString = JSON.toJSONString(reletApply);
-        result.put("state", "1");
-        result.put("data", jsonString);
+        if (reletApply.size() > 0) {
+            result.put("state", "1");
+            result.put("data", reletApply.get(0));
+        }
+        // String jsonString = JSON.toJSONString(reletApply);
+
         return result;
     }
 
@@ -192,9 +194,11 @@ public class ReletApplyController {
             return result;
         }
         List<RetreatLeaseApply> retreatLeaseApply = retreatLeaseApplyService.findRetreatLeaseApply(houseInfoId, customerId);
-        String jsonString = JSON.toJSONString(retreatLeaseApply);
-        result.put("state", "1");
-        result.put("data", jsonString);
+        //  String jsonString = JSON.toJSONString(retreatLeaseApply);
+        if (retreatLeaseApply.size() > 0) {
+            result.put("state", "1");
+            result.put("data", retreatLeaseApply.get(0));
+        }
         return result;
     }
 

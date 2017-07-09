@@ -5999,7 +5999,16 @@ button.close {
 .prev:after {
   content:'<';
 }
-/*!
+
+.aside-nav a[disabled],
+.navbar a[disabled] {
+  cursor: not-allowed;
+}
+.aside-nav a[disabled]:hover,
+.navbar a[disabled]:hover {
+  color: #fff!important;
+  background: transparent!important;
+}/*!
  * Datetimepicker for Bootstrap
  *
  * Copyright 2012 Stefan Petre

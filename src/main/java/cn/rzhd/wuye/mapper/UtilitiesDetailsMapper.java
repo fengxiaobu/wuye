@@ -49,4 +49,6 @@ public interface UtilitiesDetailsMapper {
     Integer countElectricByQuery(PropertyRecordsQuery query);
 
     Integer countWaterByQuery(PropertyRecordsQuery query);
+
+    void changeStatusByRecordsId(String id);
 }

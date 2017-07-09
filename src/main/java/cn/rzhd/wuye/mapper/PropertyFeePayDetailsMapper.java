@@ -1,6 +1,7 @@
 package cn.rzhd.wuye.mapper;
 
 import cn.rzhd.wuye.bean.PropertyFeePayDetails;
+import cn.rzhd.wuye.vo.FeeVO;
 import cn.rzhd.wuye.vo.query.PropertyFeePayDetailsQuery;
 import cn.rzhd.wuye.vo.query.PropertyRecordsQuery;
 import org.apache.ibatis.annotations.Mapper;
@@ -37,4 +38,8 @@ public interface PropertyFeePayDetailsMapper {
     String getCompanyName(@Param("feeType") String feeType,@Param("pk_corp") String pk_corp);
 
     Integer countByQuery(PropertyRecordsQuery query);
+
+    void changeStatusByRecordsId(String id);
+
+    List<FeeVO> getFeeDataByRecordsId(String id);
 }

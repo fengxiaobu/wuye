@@ -133,7 +133,7 @@ public class DecorationApplyController {
             }
         } catch (Exception e) {
             result.put("state", "0");
-            result.put("msg", "申请失败" + e.getMessage());
+            result.put("msg", "申请失败" +e.getMessage());
             return result;
         }
         //修改申请状态
