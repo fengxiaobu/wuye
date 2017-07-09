@@ -8,10 +8,12 @@ import org.springframework.stereotype.Service;
 import com.xiaoleilu.hutool.util.StrUtil;
 import com.ctc.wstx.util.StringUtil;
 
+import cn.rzhd.wuye.bean.Ammeter;
 import cn.rzhd.wuye.bean.HouseInfoDetails;
 import cn.rzhd.wuye.bean.ProjectInfo;
 import cn.rzhd.wuye.bean.TSys;
 import cn.rzhd.wuye.bean.TSysExample;
+import cn.rzhd.wuye.bean.vo.AmmeQueryVo;
 import cn.rzhd.wuye.bean.vo.HouseInfoDetailsQueryVo;
 import cn.rzhd.wuye.bean.vo.ProjectInfoQueryVo;
 import cn.rzhd.wuye.mapper.SysMapperCustom;
@@ -82,6 +84,18 @@ public class SysServerImpl implements ISysServer {
     @Override
     public List<ProjectInfo> findProjectListPage(ProjectInfoQueryVo queryVo) {
         return sysMapperCustom.findProjectListPage(queryVo);
+    }
+
+    @Override
+    public int findAmmeCount(AmmeQueryVo queryVo) {
+        // TODO Auto-generated method stub
+        return sysMapperCustom.findAmmeCount(queryVo);
+    }
+
+    @Override
+    public List<Ammeter> findAmmeListPage(AmmeQueryVo queryVo) {
+        // TODO Auto-generated method stub
+        return sysMapperCustom.findAmmeListPage(queryVo);
     }
 
 

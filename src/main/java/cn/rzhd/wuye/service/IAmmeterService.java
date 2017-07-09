@@ -12,4 +12,8 @@ public interface IAmmeterService {
     List<Ammeter> getAmmeters(String houseInfoId);
 
     List<Ammeter> getAllAmmeters();
+
+    void add(Ammeter ammeter);
+
+    void del(String id);
 }

@@ -1,6 +1,9 @@
 package cn.rzhd.wuye.bean;
 
 import java.io.Serializable;
+import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 /**
  * Created by hasee on 2017/6/10.
@@ -15,6 +18,34 @@ public class Ammeter implements Serializable {
     private String ammeter_no;
     private String ammeter_name;
     private Integer multiply;
+    private String vhcode;
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date updateTime;
+    
+    
+    
+    
+    
+    
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+
+    
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
+
+
+    public String getVhcode() {
+        return vhcode;
+    }
+
+    
+    public void setVhcode(String vhcode) {
+        this.vhcode = vhcode;
+    }
 
     public Long getId() {
         return id;

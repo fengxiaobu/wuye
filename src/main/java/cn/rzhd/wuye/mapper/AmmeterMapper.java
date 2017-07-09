@@ -14,4 +14,8 @@ public interface AmmeterMapper {
     List<Ammeter> queryAmmeters(@Param("houseInfoId") String houseInfoId);
 
     List<Ammeter> getAllAmmeters();
+
+    void insert(Ammeter ammeter);
+
+    void del(String id);
 }

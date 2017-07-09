@@ -47,6 +47,17 @@
         <result column="UPDATEDATE" property="updateDate"/>
         <result column="ASTRICTSTATUS" property="astrictStatus"/>
     </resultMap>
+    
+    
+    <resultMap id="ammeMap" type="cn.rzhd.wuye.bean.Ammeter">
+        <id property="id" column="id"/>
+        <result property="vhcode" column="vhcode"/>
+        <result property="ammeter_no" column="ammeter_no"/>
+        <result property="multiply" column="multiply"/>
+        <result property="projectName" column="project"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+    
    <!-- sql片段 -->
 	<sql id="query_project_where">
 		<if test="projectName!=null">
@@ -60,6 +71,16 @@
     <sql id="query_house_where">
         <if test="vhcode!=null">
             and project.vhcode like '%${vhcode}%'
+        </if>
+    </sql>
+    
+     <!-- sql片段 -->
+    <sql id="query_amme_where">
+        <if test="projectName!=null and projectName!=''">
+            and project."project"  like '%${projectName}%'
+        </if>
+        <if test="ammeterNo!=null and ammeterNo!=''">
+            and project."ammeter_no" like '%${ammeterNo}%'
         </if>
     </sql>
 
@@ -160,6 +181,58 @@
 		) project
 		<where>
 			<include refid="query_project_where" />
+		</where>
+		
+		<if test="pageQuery!=null">
+			) page_1
+        <![CDATA[
+         where rownum <= ${pageQuery.PageQuery_end}) page_2
+		 where page_2.page_num > ${pageQuery.PageQuery_start}
+		 ]]>
+		</if>
+    </select>
+    
+     <!-- 系统设置 电表列表总数 -->
+    <select id="findAmmeCount" resultType="int" parameterType="cn.rzhd.wuye.bean.vo.AmmeQueryVo">
+    SELECT count (*) FROM
+		(
+		   SELECT
+				A ."id",
+				A ."ammeter_no",
+				A ."multiply",
+				H ."project",
+				H ."vhcode",
+				A ."update_time"
+			FROM
+				"T_Ammeter" A
+			LEFT JOIN T_HOUSE_INFO_DETAILS H ON A ."pk_house" = H ."pk_house"
+		) project
+       <where>
+			<include refid="query_amme_where" />
+		</where>
+    </select>
+    
+    <!-- 系统设置 电表列表分页 -->
+    <select id="findAmmeListPage" resultMap="ammeMap" parameterType="cn.rzhd.wuye.bean.vo.AmmeQueryVo">
+       <if test="pageQuery!=null"> 
+			select page_2.* from (select page_1.*,
+				rownum page_num from (
+		</if>
+		SELECT * FROM
+		(
+			SELECT
+				A ."id",
+				A ."ammeter_no",
+				A ."multiply",
+				H ."project",
+				H ."vhcode",
+				A ."update_time"
+			FROM
+				"T_Ammeter" A
+			LEFT JOIN T_HOUSE_INFO_DETAILS H ON A ."pk_house" = H ."pk_house"
+		) project
+		<where>
+			<include refid="query_amme_where" />
 		</where>
 		
 		<if test="pageQuery!=null">
