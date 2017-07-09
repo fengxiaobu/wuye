@@ -2,35 +2,52 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="cn.rzhd.wuye.mapper.DecorateDetailMapper">
     <resultMap id="BaseResultMap" type="cn.rzhd.wuye.bean.DecorateDetail">
-        <id column="DECORATE_DETAIL_ID" property="decorateDetailId" jdbcType="DECIMAL"/>
-        <result column="DECORATION_APPLY_ID" property="decorationApplyId" jdbcType="DECIMAL"/>
-        <result column="DETAIL_ORDER" property="detailOrder" jdbcType="DECIMAL"/>
-        <result column="DETAIL_CONTENT" property="detailContent" jdbcType="OTHER"/>
+        <id column="DECORATE_DETAIL_ID" property="decorateDetailId"/>
+        <result column="DECORATION_APPLY_ID" property="decorationApplyId"/>
+        <result column="DETAIL_ORDER" property="detailOrder"/>
+        <result column="DETAIL_CONTENT" property="detailContent"/>
     </resultMap>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-        delete from T_DECORATE_DETAIL
-        where DECORATE_DETAIL_ID = #{decorateDetailId,jdbcType=DECIMAL}
+        DELETE FROM T_DECORATE_DETAIL
+        WHERE DECORATE_DETAIL_ID = #{decorateDetailId}
     </delete>
     <insert id="insert" parameterType="cn.rzhd.wuye.bean.DecorateDetail">
-        insert into T_DECORATE_DETAIL (DECORATE_DETAIL_ID, DECORATION_APPLY_ID,
-        DETAIL_ORDER, DETAIL_CONTENT)
-        values (#{decorateDetailId}, #{decorationApplyId,jdbcType=DECIMAL},
-        #{detailOrder,jdbcType=DECIMAL}, #{detailContent,jdbcType=OTHER})
+        INSERT INTO T_DECORATE_DETAIL (DECORATE_DETAIL_ID, DECORATION_APPLY_ID,
+                                       DETAIL_ORDER, DETAIL_CONTENT)
+        VALUES (#{decorateDetailId}, #{decorationApplyId},
+                #{detailOrder}, #{detailContent})
     </insert>
     <update id="updateByPrimaryKey" parameterType="cn.rzhd.wuye.bean.DecorateDetail">
-        update T_DECORATE_DETAIL
-        set DECORATION_APPLY_ID = #{decorationApplyId,jdbcType=DECIMAL},
-        DETAIL_ORDER = #{detailOrder,jdbcType=DECIMAL},
-        DETAIL_CONTENT = #{detailContent,jdbcType=OTHER}
-        where DECORATE_DETAIL_ID = #{decorateDetailId,jdbcType=DECIMAL}
+        UPDATE T_DECORATE_DETAIL
+        SET DECORATION_APPLY_ID = #{decorationApplyId},
+            DETAIL_ORDER        = #{detailOrder},
+            DETAIL_CONTENT      = #{detailContent}
+        WHERE DECORATE_DETAIL_ID = #{decorateDetailId}
     </update>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
-        select DECORATE_DETAIL_ID, DECORATION_APPLY_ID, DETAIL_ORDER, DETAIL_CONTENT
-        from T_DECORATE_DETAIL
-        where DECORATE_DETAIL_ID = #{decorateDetailId,jdbcType=DECIMAL}
+        SELECT
+            DECORATE_DETAIL_ID,
+            DECORATION_APPLY_ID,
+            DETAIL_ORDER,
+            DETAIL_CONTENT
+        FROM T_DECORATE_DETAIL
+        WHERE DECORATE_DETAIL_ID = #{decorateDetailId}
+    </select>
+    <select id="selectByApplyKey" resultMap="BaseResultMap">
+        SELECT
+            DECORATE_DETAIL_ID,
+            DECORATION_APPLY_ID,
+            DETAIL_ORDER,
+            DETAIL_CONTENT
+        FROM T_DECORATE_DETAIL
+        WHERE DECORATION_APPLY_ID = #{decorationApplyId}
     </select>
     <select id="selectAll" resultMap="BaseResultMap">
-        select DECORATE_DETAIL_ID, DECORATION_APPLY_ID, DETAIL_ORDER, DETAIL_CONTENT
-        from T_DECORATE_DETAIL
+        SELECT
+            DECORATE_DETAIL_ID,
+            DECORATION_APPLY_ID,
+            DETAIL_ORDER,
+            DETAIL_CONTENT
+        FROM T_DECORATE_DETAIL
     </select>
 </mapper>

@@ -84,13 +84,13 @@ public class DecorationApplyController {
         decorationApply.setDecorationApplyId(aLong);
         decorationApply.setAuditStatus(0);
         decorationApply.setIsSpecialDecoration(0);
+        decorationApply.setOpinion("0");
         decorationApply.setApplyTime(date);
         decorationApply.setCreationTime(date);
         System.out.println("aLong = " + aLong);
 
         try {
-            if (decorationApply.getDecorateArea() != null) {
-                double mul = NumberUtil.mul(decorationApply.getDecorateArea(), 100);
+            if (decorationApply.getDecorateArea() != null && decorationApply.getAntipateTime() != null) {
                 //装修押金
                 if (NumberUtil.compare(decorationApply.getDecorateArea(), 1000) == -1) {
                     decorationApply.setDecorationDeposit(new BigDecimal(5000.00));
@@ -105,7 +105,7 @@ public class DecorationApplyController {
                 //出入证押金
                 decorationApply.setPassPapersDeposit(new BigDecimal(NumberUtil.mul(decorationApply.getConstructPeopleNumber(), 10)));
                 //装修申请
-                System.out.println("/ndecorationApply = " + decorationApply + "/n");
+                System.out.println("ndecorationApply = " + decorationApply + "/n");
                 decorationApplyService.insert(decorationApply);
                 for (int i = 0; i < decorationApply.getDecorateDetailList().size(); i++) {
                     DecorateDetail decorateDetail = new DecorateDetail();
@@ -133,7 +133,7 @@ public class DecorationApplyController {
             }
         } catch (Exception e) {
             result.put("state", "0");
-            result.put("msg", "申请失败" +e.getMessage());
+            result.put("msg", "申请失败" + e.getMessage());
             return result;
         }
         //修改申请状态
@@ -161,8 +161,16 @@ public class DecorationApplyController {
             return result;
         }
         DecorationApply decorationApply = decorationApplyService.selectByPrimaryKey(decorationApplyId);
+        //装修资料
+        List<Map<String, JsonFormat.Value>> decorationMaterialList = decorationMaterialService.findByQuery(decorationApplyId);
+        //装修明细
+        List<DecorateDetail> decorateDetailList = decorateDetailService.selectByApplyKey(decorationApplyId);
+        Map<String, Object> map = new HashMap<>();
+        map.put("decorationApply", decorationApply);
+        map.put("decorationMaterialList", decorationMaterialList);
+        map.put("decorateDetailList", decorateDetailList);
         result.put("state", "1");
-        result.put("data", decorationApply);
+        result.put("data", map);
         return result;
     }
 
@@ -182,9 +190,19 @@ public class DecorationApplyController {
             return result;
         }
         DecorationApply decorationApply = decorationApplyService.findDecorationApplyByHouseId(houseInfoId);
+        Map<String, Object> map = new HashMap<>();
+        if (decorationApply != null) {
+            //装修资料
+            List<Map<String, JsonFormat.Value>> decorationMaterialList = decorationMaterialService.findByQuery(decorationApply.getDecorationApplyId());
+            //装修明细
+            List<DecorateDetail> decorateDetailList = decorateDetailService.selectByApplyKey(decorationApply.getDecorationApplyId());
+            map.put("decorationApply", decorationApply);
+            map.put("decorationMaterialList", decorationMaterialList);
+            map.put("decorateDetailList", decorateDetailList);
+        }
         if (decorationApply != null) {
             result.put("state", "1");
-            result.put("data", JSON.toJSONString(decorationApply));
+            result.put("data", map);
         } else if (decorationApply == null) {
             result.put("state", "0");
             result.put("data", "null");
@@ -334,9 +352,16 @@ public class DecorationApplyController {
      */
     @RequestMapping("toDecorationApply")
     public String toDecorationApplyEdit(Model model, Long decorationApplyId) {
+        //装修申请
         DecorationApply decorationApply = decorationApplyService.selectByPrimaryKey(decorationApplyId);
-
+        //装修资料
+        List<Map<String, JsonFormat.Value>> decorationMaterialList = decorationMaterialService.findByQuery(decorationApplyId);
+        //装修明细
+        List<DecorateDetail> decorateDetailList = decorateDetailService.selectByApplyKey(decorationApplyId);
         model.addAttribute("decorationApply", decorationApply);
+        model.addAttribute("decorationMaterialList", decorationMaterialList);
+        model.addAttribute("decorateDetailList", decorateDetailList);
+
         return "decoration/decorationApplyEdit";
     }
 
@@ -367,7 +392,7 @@ public class DecorationApplyController {
     public Map<String, String> updateDecorationApplyState(Long decorationApplyId) {
         Map<String, String> result = new Hashtable<>();
         try {
-            houseInfoDetailsService.updateHouse(String.valueOf(decorationApplyId),null,"-1");
+            houseInfoDetailsService.updateHouse(String.valueOf(decorationApplyId), null, "-1");
             result.put("state", "1");
             return result;
         } catch (Exception e) {
@@ -422,6 +447,12 @@ public class DecorationApplyController {
         result.put("state", "1");
         result.put("data", jsonString);
         return result;
+    }
+
+    @RequestMapping("decorationMateria/todecorationMateria")
+    public String todecorationMateria() {
+
+        return "decoration/decorationMaterialList";
     }
 
 }

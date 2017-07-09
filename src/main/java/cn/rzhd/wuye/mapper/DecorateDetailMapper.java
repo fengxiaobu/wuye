@@ -2,6 +2,7 @@ package cn.rzhd.wuye.mapper;
 
 import cn.rzhd.wuye.bean.DecorateDetail;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -21,4 +22,6 @@ public interface DecorateDetailMapper {
     List<DecorateDetail> selectAll();
 
     int updateByPrimaryKey(DecorateDetail record);
+
+    List<DecorateDetail> selectByApplyKey(@Param("decorationApplyId") Long decorationApplyId);
 }

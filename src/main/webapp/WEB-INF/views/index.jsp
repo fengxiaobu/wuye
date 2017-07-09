@@ -199,7 +199,7 @@
 
                                 <li class="panel" role="tab">
                                     <div class="panel-header">
-                                        <a data-toggle="collapse" target="main" href="#">装修附件与资料</a>
+                                        <a target="main" href="${pageContext.request.contextPath}/dist/decorationMateria/todecorationMateria">装修附件与资料</a>
                                     </div>
                                 </li>
 

@@ -276,7 +276,7 @@ public class EnterApplyController {
     public String deleteEnterApply(Model model, Long enterApplyId, String pkHouse) {
         if (enterApplyId != null) {
             enterApplyService.deleteEnterApply(enterApplyId);
-            houseInfoDetailsService.updateHouse(String.valueOf(enterApplyId), "2", null);
+            houseInfoDetailsService.updateHouse(String.valueOf(enterApplyId), "0", null);
         }
         //查询更新数据
         //PageHelper.startPage(1, 5);

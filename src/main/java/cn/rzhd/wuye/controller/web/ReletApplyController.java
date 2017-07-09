@@ -5,13 +5,17 @@ import cn.rzhd.wuye.bean.RetreatLeaseApply;
 import cn.rzhd.wuye.service.IReletApplyService;
 import cn.rzhd.wuye.service.IRetreatLeaseApplyService;
 import cn.rzhd.wuye.utils.IDUtils;
+import cn.rzhd.wuye.vo.query.ApplyQuery;
 import com.github.pagehelper.StringUtil;
+import com.xiaoleilu.hutool.date.BetweenFormater;
+import com.xiaoleilu.hutool.date.DateUtil;
 import com.xiaoleilu.hutool.util.StrUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.*;
 
@@ -132,6 +136,17 @@ public class ReletApplyController {
     public Map<String, Object> insertRetreatLeaseApply(RetreatLeaseApply retreatLeaseApply) {
         Map<String, Object> result = new HashMap<>();
         try {
+
+            if (retreatLeaseApply.getLeaseEndTime() != null) {
+                String s = DateUtil.formatBetween(retreatLeaseApply.getLeaseEndTime(), retreatLeaseApply.getRetreatLeaseTime(), BetweenFormater.Level.DAY);
+                System.out.println("时间间隔*********************** = " + s.substring(0, s.length() - 1));
+
+                if (!"0".equals(s.substring(0, s.length() - 1))) {
+                    retreatLeaseApply.setRetreatLeaseType("提前退租");
+                } else {
+                    retreatLeaseApply.setRetreatLeaseType("正常退租");
+                }
+            }
             Date date = new Date();
             retreatLeaseApply.setCreationTime(date);
             retreatLeaseApply.setCreationTime(new Date());
@@ -303,4 +318,31 @@ public class ReletApplyController {
         }
         return "redirect:/findRetreatLeaseApply";
     }
+
+
+    @RequestMapping("reletApply/search")
+    public String reletApplysearch(ApplyQuery query, Model model) {
+        System.out.println("applyQuery = " + query);
+        List<ReletApply> reletApplyList = reletApplyService.findEnterApplyByQuery(query);
+        ModelAndView modelAndView = new ModelAndView();
+        model.addAttribute("reletApplys", reletApplyList);
+        model.addAttribute("clientName", query.getClientName());
+        model.addAttribute("startDate", query.getStartDate());
+        model.addAttribute("endDate", query.getEndDate());
+        return "rent/xuzuList";
+    }
+
+    @RequestMapping("retreatLeaseApply/search")
+    public String retreatLeaseApplysearch(ApplyQuery query, Model model) {
+        System.out.println("applyQuery = " + query);
+        List<RetreatLeaseApply> retreatLeaseApplyList = retreatLeaseApplyService.findEnterApplyByQuery(query);
+        ModelAndView modelAndView = new ModelAndView();
+        model.addAttribute("retreatLeaseApplies", retreatLeaseApplyList);
+        model.addAttribute("clientName", query.getClientName());
+        model.addAttribute("startDate", query.getStartDate());
+        model.addAttribute("endDate", query.getEndDate());
+        return "rent/tuizuList";
+    }
+
+
 }

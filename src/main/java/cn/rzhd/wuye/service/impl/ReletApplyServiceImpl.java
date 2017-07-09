@@ -3,6 +3,7 @@ package cn.rzhd.wuye.service.impl;
 import cn.rzhd.wuye.bean.ReletApply;
 import cn.rzhd.wuye.mapper.ReletApplyMapper;
 import cn.rzhd.wuye.service.IReletApplyService;
+import cn.rzhd.wuye.vo.query.ApplyQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -44,6 +45,11 @@ public class ReletApplyServiceImpl implements IReletApplyService {
 
     @Override
     public List<ReletApply> findReletApply(String houseInfoId, String customerId) {
-        return reletApplyMapper.findReletApply(houseInfoId,customerId);
+        return reletApplyMapper.findReletApply(houseInfoId, customerId);
+    }
+
+    @Override
+    public List<ReletApply> findEnterApplyByQuery(ApplyQuery query) {
+        return reletApplyMapper.findEnterApplyByQuery(query);
     }
 }

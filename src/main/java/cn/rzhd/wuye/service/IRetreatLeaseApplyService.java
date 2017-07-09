@@ -1,6 +1,7 @@
 package cn.rzhd.wuye.service;
 
 import cn.rzhd.wuye.bean.RetreatLeaseApply;
+import cn.rzhd.wuye.vo.query.ApplyQuery;
 
 import java.util.List;
 
@@ -20,4 +21,6 @@ public interface IRetreatLeaseApplyService {
     int updateByPrimaryKey(RetreatLeaseApply record);
 
     List<RetreatLeaseApply> findRetreatLeaseApply(String houseInfoId, String customerId);
+
+    List<RetreatLeaseApply> findEnterApplyByQuery(ApplyQuery query);
 }
