@@ -194,9 +194,11 @@ public class InvoicingController {
             detail.setRecordsId(id);
             detail.setCarteTime(new Date());
             detail.setPayTime(new Date());
-            detail.setCostType(utilitiesService.getCostType(detail.getCostType(), detail.getPk_corp()));
             detail.setCollectingAccount(utilitiesService.getCompanyAccount(detail.getCostType(), detail.getPk_corp()));
             detail.setCollectingCompany(utilitiesService.getCompanyName(detail.getCostType(), detail.getPk_corp()));
+            detail.setPk_feeType(utilitiesService.getFeeType(detail.getCostType(),detail.getPk_corp()));
+            detail.setCostType(utilitiesService.getCostType(detail.getCostType(), detail.getPk_corp()));
+
             utilitiesService.addDetails(detail);
             /**
              * 赋值

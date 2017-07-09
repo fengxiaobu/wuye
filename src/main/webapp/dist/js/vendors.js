@@ -90,11 +90,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-<<<<<<< HEAD:src/main/webapp/dist/js/vendors.js
-/******/ 	var hotCurrentHash = "d67e5a2ce79f08753dd9"; // eslint-disable-line no-unused-vars
-=======
-/******/ 	var hotCurrentHash = "ab5c4d7dd4dfa96f3dde"; // eslint-disable-line no-unused-vars
->>>>>>> 07f5c33230a9f6ea806022683598ad628902ceeb:src/main/webapp/dist/js/vendors.js
+/******/ 	var hotCurrentHash = "60ebd820418711007778"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	

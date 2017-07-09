@@ -1,8 +1,11 @@
 package cn.rzhd.wuye.service.impl;
 
 import cn.rzhd.wuye.bean.UtilitiesDetails;
+import cn.rzhd.wuye.common.UpdateToERP;
 import cn.rzhd.wuye.mapper.UtilitiesDetailsMapper;
 import cn.rzhd.wuye.service.IUtilitiesService;
+import cn.rzhd.wuye.vo.FeeVO;
+import cn.rzhd.wuye.vo.LiandoServiceConstant;
 import cn.rzhd.wuye.vo.query.PropertyRecordsQuery;
 import cn.rzhd.wuye.vo.query.UtilitiesQuery;
 import com.github.pagehelper.StringUtil;
@@ -101,5 +104,19 @@ public class UtilitiesServiceImpl implements IUtilitiesService {
     @Override
     public void changeStatusByRecordsId(String id) {
         mapper.changeStatusByRecordsId(id);
+    }
+
+    @Override
+    public void updateToERP(String id) {
+        List<FeeVO> list = mapper.getFeeDataByRecordsId(id);
+        Map<String, String> map = UpdateToERP.updateToERP(list,LiandoServiceConstant.DATA_TYPE_TEMP_RECEIPT);
+        String billid = map.get("billid");
+        String billno = map.get("billno");
+        mapper.updateBillIdByRecordsId(id, billid, billno);
+    }
+
+    @Override
+    public String getFeeType(String costType, String pk_corp) {
+        return mapper.getFeeType(costType,pk_corp);
     }
 }

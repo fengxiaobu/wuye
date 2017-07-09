@@ -371,7 +371,7 @@ public class ChinaPay {
                 }else if("水电".equals(type)){
                     shuidian.changeStatusByRecordsId(id);
                     shuidianInvoice.changeStatusByRecordsId(id);
-                    //shuidian.updateToERP(id);
+                    shuidian.updateToERP(id);
                 }
                 if ("rzwuye".equals(vo.getType())) {
                     List<Map<String, JsonFormat.Value>> enterApplyByID = enterApplyService.getEnterApplyByID(vo.getApplyId());

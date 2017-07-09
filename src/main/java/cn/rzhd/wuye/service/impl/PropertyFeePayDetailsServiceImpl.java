@@ -83,10 +83,19 @@ public class PropertyFeePayDetailsServiceImpl implements IPropertyFeePayDetailsS
 
     @Override
     public void updateToERP(String id) {
-        List<FeeVO> list = mapper.getFeeDataByRecordsId(id);
-        Map<String, String> map = UpdateToERP.updateToERP(list, id, LiandoServiceConstant.DATA_TYPE_WY_FEE);
-        String billid = map.get("billid");
-        String billno = map.get("billno");
-        mapper.updateBillIdByRecordsId(id, billid, billno);
+        List<String> ids = mapper.getPropertyFeeIdByRecords(id);
+        if (!ids.isEmpty()) {
+            List<FeeVO> list = mapper.getFeeDataByRecordsId(id);
+            Map<String, String> map = UpdateToERP.updateToERP(list,LiandoServiceConstant.DATA_TYPE_WY_FEE);
+            String billid = map.get("billid");
+            String billno = map.get("billno");
+            mapper.updateBillIdByRecordsId(id, billid, billno);
+        } else {
+            List<FeeVO> list = mapper.getTempFeeByRecords(id);
+            Map<String, String> map = UpdateToERP.updateToERP(list,LiandoServiceConstant.DATA_TYPE_TEMP_RECEIPT);
+            String billid = map.get("billid");
+            String billno = map.get("billno");
+            mapper.updateBillIdByRecordsId(id, billid, billno);
+        }
     }
 }

@@ -28,10 +28,10 @@
             <div class="col-xs-4">开发费用记录</div>
             <div class="col-xs-8 panel-oprerate">
                 <div class="col-xs-12">
-                    <span style="margin-right: 50px"><input style="height: 35px;width: 320px;" type="text"></span>至
-                    <span style="margin-right: 50px"><input style="height: 35px;width: 320px;" type="text"></span>
+                    <span style="margin-right: 50px"><input id="startPicker"  type="text"></span>至
+                    <span style="margin-right: 50px"><input id="endPicker"  type="text"></span>
                     <span style="margin-right: 50px"><input style="height: 35px;width: 320px;" type="text"
-                                                            placeholder="项目名称,房产编码,客户名称,单据号"></span>
+                                                            placeholder="项目名称,房产编码,客户名称" id="keyWords"></span>
                     <button class="btn btn-info" type="button"><span class="glyphicon glyphicon-search"></span>搜素
                     </button>
                 </div>
@@ -65,50 +65,10 @@
                     <th>缴费日期</th>
                 </tr>
                 </thead>
-                <tbody class="tudiqianyue-tbody">
-                <c:forEach items="${kfRecords}" var="item">
-                    <tr class="tudiqianyue-tdtr">
-
-                        <td>${item.detailsId}</td>
-                        <td>${item.projectName}</td>
-                        <td>${item.houseCode}</td>
-                        <td>${item.clientName}</td>
-                        <td>${item.payable}</td>
-                        <td>${item.paidIn}</td>
-                        <td>${item.voucherNumber}</td>
-                        <td>${item.payManner}</td>
-                        <td>${item.collectingCompany}</td>
-                        <td>${item.collectingAccount}</td>
-                        <td>${item.invoice}</td>
-                        <td>
-                            <c:choose>
-                                <c:when test="${item.invoiceStatus==0}">
-                                    已开
-                                </c:when>
-                                <c:when test="${item.invoiceStatus==1}">
-                                    需要
-                                </c:when>
-                                <c:when test="${item.invoiceStatus==2}">
-                                    不需要
-                                </c:when>
-                            </c:choose>
-                        </td>
-                        <td>${item.payTime}</td>
-
-
-                        <%--<td>${item.costType}</td>--%>
-                        <%--<td>${item.updateTime}</td>--%>
-                        <%--<td>${item.payMonth}</td>--%>
-                        <%--<td>${item.startDate}</td>--%>
-                        <%--<td>${item.endDate}</td>--%>
-                        <%--<td>${item.invoiceNumber}</td>--%>
-                        <%--<td>${item.invoiceNotes}</td>--%>
-                        <%--<td>${item.invoiceCompany}</td>--%>
-
-                    </tr>
-                </c:forEach>
+                <tbody id="productList" class="tudiqianyue-tbody">
                 </tbody>
             </table>
+            <div id="pagination1" class="pagination"></div>
         </div>
     </div>
 
@@ -270,5 +230,110 @@
     $("#tudiqianyue-remove").click(function () {
 
     });
+
+
+    $('#startPicker').datetimepicker();
+    $('#endPicker').datetimepicker();
+
+
+    $(function () {
+        var pageSize = 10;
+        getData(1, pageSize);
+
+        //查询
+        $("#query").click(function () {
+            getData(1, pageSize);
+        });
+
+        //回车搜索
+        $(document).keydown(function (event) {
+            if (event.keyCode == 13) {
+                $("#query").click();
+            }
+        });
+    });
+
+    //加载分页显示数据
+    function getData(num, pageSize, f) {
+        var startDate = $("#startPicker").val();
+        var endDate = $("#endPicker").val();
+        var keyWords = $("#keyWords").val();
+        console.log(JSON.stringify({
+            startDate: startDate,
+            endDate: endDate,
+            keyWords: keyWords,
+            startPage: num,//当前页
+            pageSize: pageSize
+        }))
+        $.ajax({
+                url: "${basePath}/kfRecords/getPayFeeRecords",
+                type: "GET",
+                contentType: "application/json",
+                dataType: "json",
+                data: {
+                    startDate: startDate,
+                    endDate: endDate,
+                    keyWords: keyWords,
+                    startPage: num,//当前页
+                    pageSize: pageSize
+                },
+                cache: false,
+                statusCode: {
+                    200: function (data) {
+                        var result = data.data[0];
+                        $("#productList tr").remove();
+                        var total = data.data[1]['total'];
+                        var pageSize = data.data[1]['pageSize'];
+                        var totalPages = total % pageSize == 0 ? Math.floor(total / pageSize) : Math.floor(total / pageSize + 1);
+                        for (var i = 0; i < result.length; i++) {
+                            var rowContent =
+                                "<tr>" + "<td>" + isnull(i + 1) +
+                                "</td>" +
+                                "<td>" + isnull(result[i].projectName) +
+                                "</td>" +
+                                "<td>" + isnull(result[i].houseCode) +
+                                "</td>" +
+                                "<td>" + isnull(result[i].clientName) +
+                                "</td>" +
+                                "<td>" + isnull(result[i].payable) +
+                                "</td>" +
+                                "<td>" + isnull(result[i].paidIn) +
+                                "</td>" +
+                                "<td>" + isnull(result[i].voucherNumber) +
+                                "</td>" +
+                                "<td>" + isnull(result[i].payManner) +
+                                "</td>" +
+                                "<td>" + isnull(result[i].collectingCompany) +
+                                "</td>" +
+                                "<td>" + isnull(result[i].collectingAccount) +
+                                "</td>" +
+                                "<td>" + isnull(result[i].invoice) +
+                                "</td>" +
+                                "<td>" + isnull(invoiceStatusFormatter(result[i].invoiceStatus)) +
+                                "</td>" +
+                                "<td>" + isnull(timeFormatter(result[i].payTime)) + "</td>" +
+                                "</tr>";
+                            $("#productList").append(rowContent);
+                        }
+                        $.jqPaginator('#pagination1', {
+                            totalPages: totalPages,
+                            visiblePages: pageSize,
+                            currentPage: num,
+                            onPageChange: function (num1, type) {
+                                if (num1 != num) {
+                                    getData(num1, pageSize);
+                                }
+                            }
+
+                        })
+                    },
+                    500: function () {
+                        layer.msg('网络异常，请稍后再试！', {icon: 5});
+                    }
+
+                }
+            }
+        );
+    }
 </script>
 </html>

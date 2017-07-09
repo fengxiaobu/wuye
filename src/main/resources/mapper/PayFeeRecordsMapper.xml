@@ -66,4 +66,23 @@
   <select id="getTypeById" parameterType="string" resultType="string">
     SELECT FEE_TYPE FROM T_PAY_FEE_RECORDS WHERE RECORDS_ID=#{id}
   </select>
+  <resultMap id="map" type="map">
+
+  </resultMap>
+  <select id="getByProject" parameterType="cn.rzhd.wuye.vo.query.PropertyRecordsQuery" resultMap="map">
+    SELECT
+--     PROJECT_NAME AS projectName,
+--      houseCode
+--     clientName
+--     payable
+--     paidIn
+--     voucherNumber
+--     payManner
+--     collectingCompany
+--     collectingAccount
+--     invoice
+--     invoiceStatus
+--     payTime
+      FROM WUYE.T_PAY_FEE_RECORDS
+  </select>
 </mapper>

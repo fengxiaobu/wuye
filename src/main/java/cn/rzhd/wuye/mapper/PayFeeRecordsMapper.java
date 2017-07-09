@@ -1,9 +1,11 @@
 package cn.rzhd.wuye.mapper;
 
 import cn.rzhd.wuye.bean.PayFeeRecords;
+import cn.rzhd.wuye.vo.query.PropertyRecordsQuery;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface PayFeeRecordsMapper {
@@ -18,4 +20,6 @@ public interface PayFeeRecordsMapper {
     int updateByPrimaryKey(PayFeeRecords record);
 
     String getTypeById(String id);
+
+    List<Map<String,Object>> getByProject(PropertyRecordsQuery query);
 }

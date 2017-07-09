@@ -7132,6 +7132,29 @@ table{}
 	.decnavstep li+li {
 		margin-left: 1%;
 	}
+
+
+
+
+
+
+
+
+
+
+
+.btn-download01 {
+	display: inline-block;
+	border: 1px solid #dedede;
+	border-radius: 4px;
+}
+.btn-download01 span {
+	display: inline-block;
+	padding: 6px 15px;
+}
+.btn-download01 span +span {
+	border-left: 1px solid #dedede;
+}
 .nav[_v-21b9edce] {
   margin: 20px; }
   .nav li[_v-21b9edce] {
@@ -7692,16 +7715,6 @@ table[_v-1b6f4c14] {
 
 .table-data input[type=text][_v-abc6c47e] {
   width: 100px; }
-
-.btn-xieyi[_v-abc6c47e] {
-  display: inline-block;
-  border: 1px solid #dedede;
-  border-radius: 4px; }
-  .btn-xieyi span[_v-abc6c47e] {
-    display: inline-block;
-    padding: 6px 15px; }
-    .btn-xieyi span + span[_v-abc6c47e] {
-      border-left: 1px solid #dedede; }
 .checkbox-container + .checkbox-container[_v-48d71bb0] {
   margin-left: 33px; }
 
