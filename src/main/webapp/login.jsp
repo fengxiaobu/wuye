@@ -8,7 +8,6 @@
     <link rel="stylesheet" type="text/css"
           href="${pageContext.request.contextPath}/js/libs/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css">
-<<<<<<< HEAD
     <script src="${pageContext.request.contextPath}/js/libs/jquery-1.11.3.min.js"></script>
     
 	<style type="text/css">
@@ -189,7 +188,6 @@
 			</div>
 		</div>
 	</div>
-=======
 
     <style type="text/css">
 
@@ -375,6 +373,5 @@
     </div>
 </div>
 <!-- 登录-v2 结束 -->
->>>>>>> fe6ac9f98c80556beec37e67150a9c56fb2926d2
 </body>
 </html>

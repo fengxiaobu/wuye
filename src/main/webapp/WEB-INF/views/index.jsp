@@ -37,12 +37,6 @@
                             <div class="user-name"><shiro:principal property="realname"/></div>
                         </div>
                         <button class="btn btn-default" type="button" onclick="logout()"><span class="glyphicon glyphicon-off"></span>退出
-                        <button class="btn btn-default" type="button"><span
-                                class="glyphicon glyphicon-bullhorn"></span><span class="badge">4</span>消息
-                        </button>
-                        <button class="btn btn-default" type="button" onclick="logout()"><span
-                                class="glyphicon glyphicon-off"></span>退出
-                        </button>
                     </div>
                 </shiro:user>
             </div>
