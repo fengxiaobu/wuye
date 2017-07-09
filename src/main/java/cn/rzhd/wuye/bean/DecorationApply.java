@@ -5,6 +5,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 /**
  * © 2017 RZHD.CN
@@ -130,6 +131,14 @@ public class DecorationApply implements Serializable {
     private String paymentStatus;
 
     private String customerId;
+    /**
+     * 装修详情
+     */
+    private List<DecorateDetail> decorateDetailList;
+    /**
+     * 装修资料
+     */
+    private List<DecorationMaterial> decorationMaterialList;
 
     public String getCustomerId() {
         return customerId;
@@ -146,18 +155,8 @@ public class DecorationApply implements Serializable {
     public void setPaymentStatus(String paymentStatus) {
         this.paymentStatus = paymentStatus;
     }
-    /* *//**
-     * 装修详情
-     *//*
-    private List<DecorateDetail> decorateDetailList;
-    */
 
-    /**
-     * 装修资料
-     *//*
-    private List<DecorationMaterial> decorationMaterialList;
-*/
- /*   public List<DecorateDetail> getDecorateDetailList() {
+    public List<DecorateDetail> getDecorateDetailList() {
         return decorateDetailList;
     }
 
@@ -171,7 +170,8 @@ public class DecorationApply implements Serializable {
 
     public void setDecorationMaterialList(List<DecorationMaterial> decorationMaterialList) {
         this.decorationMaterialList = decorationMaterialList;
-    }*/
+    }
+
     @Override
     public String toString() {
         return "DecorationApply{" +
@@ -200,8 +200,8 @@ public class DecorationApply implements Serializable {
                 ", specialDecorationFile='" + specialDecorationFile + '\'' +
                 ", creationTime=" + creationTime +
                 ", updateTime=" + updateTime +
-              /*  ", decorateDetailList=" + decorateDetailList +
-                ", decorationMaterialList=" + decorationMaterialList +*/
+                ", decorateDetailList=" + decorateDetailList +
+                ", decorationMaterialList=" + decorationMaterialList +
                 '}';
     }
 

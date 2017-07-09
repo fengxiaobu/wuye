@@ -6,7 +6,7 @@
         <result column="pk_customerid" property="pk_customerid" jdbcType="CHAR"/>
         <result column="pk_project" property="pk_project" jdbcType="CHAR"/>
         <result column="pk_house" property="pk_house" jdbcType="CHAR"/>
-        <result column="pk_receivablesid" property="pk_receivablesid" jdbcType="CHAR"/>
+        <result column="pk_course_b" property="pk_course_b" jdbcType="CHAR"/>
         <result column="feetype" property="feetype" jdbcType="VARCHAR"/>
         <result column="actmonth" property="actmonth" jdbcType="VARCHAR"/>
         <result column="dbegin" property="dbegin" jdbcType="VARCHAR"/>
@@ -62,12 +62,12 @@
     <!--用于插入从ERP获取的数据-->
     <insert id="insert" parameterType="cn.rzhd.wuye.vo.FeeVO">
         INSERT INTO "T_KF_Fee" ("pk_corp", "pk_customerid", "pk_project",
-                                "pk_house", "pk_receivablesid", "pk_feetype",
+                                "pk_house", "pk_course_b", "pk_feetype",
                                 "feetype", "actmonth", "dbegin",
                                 "dend", "dshpay", "vmemo",
                                 "nyshouldmny")
         VALUES (#{pk_corp,jdbcType=CHAR}, #{pk_customerid,jdbcType=CHAR}, #{pk_project,jdbcType=CHAR},
-                                          #{pk_house,jdbcType=CHAR}, #{pk_receivablesid,jdbcType=CHAR},
+                                          #{pk_house,jdbcType=CHAR}, #{pk_course_b,jdbcType=CHAR},
                                           #{pk_feetype,jdbcType=CHAR},
                                           #{feetype,jdbcType=VARCHAR}, #{actmonth,jdbcType=VARCHAR},
                                           #{dbegin,jdbcType=VARCHAR},
@@ -77,12 +77,12 @@
     </insert>
     <insert id="insertRzFee" parameterType="cn.rzhd.wuye.vo.FeeVO">
         INSERT INTO "T_KF_Fee" ("pk_corp", "pk_customerid", "pk_project",
-                                "pk_house", "pk_receivablesid", "pk_feetype",
+                                "pk_house", "pk_course_b", "pk_feetype",
                                 "feetype", "actmonth", "dbegin",
                                 "dend", "dshpay", "vmemo",
                                 "nyshouldmny", "isrz", "nyjmny")
         VALUES (#{pk_corp,jdbcType=CHAR}, #{pk_customerid,jdbcType=CHAR}, #{pk_project,jdbcType=CHAR},
-                                          #{pk_house,jdbcType=CHAR}, #{pk_receivablesid,jdbcType=CHAR},
+                                          #{pk_house,jdbcType=CHAR}, #{pk_course_b,jdbcType=CHAR},
                                           #{pk_feetype,jdbcType=CHAR},
                                           #{feetype,jdbcType=VARCHAR}, #{actmonth,jdbcType=VARCHAR},
                                           #{dbegin,jdbcType=VARCHAR},
@@ -96,7 +96,7 @@
             "pk_customerid",
             "pk_project",
             "pk_house",
-            "pk_receivablesid",
+            "pk_course_b",
             "pk_feetype",
             "feetype",
             "actmonth",
@@ -121,7 +121,7 @@
             "pk_customerid",
             "pk_project",
             "pk_house",
-            "pk_receivablesid",
+            "pk_course_b",
             "pk_feetype",
             "feetype",
             "actmonth",
@@ -143,7 +143,7 @@
         "pk_customerid",
         "pk_project",
         "pk_house",
-        "pk_receivablesid",
+        "pk_course_b",
         "feetype",
         "actmonth",
         "dbegin",
