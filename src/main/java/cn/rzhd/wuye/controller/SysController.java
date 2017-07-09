@@ -18,13 +18,18 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.xiaoleilu.hutool.util.StrUtil;
 
+import cn.rzhd.wuye.bean.Ammeter;
+import cn.rzhd.wuye.bean.HouseInfo;
 import cn.rzhd.wuye.bean.HouseInfoDetails;
 import cn.rzhd.wuye.bean.ProjectInfo;
 import cn.rzhd.wuye.bean.TDictInfo;
+import cn.rzhd.wuye.bean.TPort;
 import cn.rzhd.wuye.bean.TSys;
+import cn.rzhd.wuye.bean.vo.AmmeQueryVo;
 import cn.rzhd.wuye.bean.vo.HouseInfoDetailsQueryVo;
 import cn.rzhd.wuye.bean.vo.ProjectInfoQueryVo;
 import cn.rzhd.wuye.common.PageQuery;
+import cn.rzhd.wuye.service.IAmmeterService;
 import cn.rzhd.wuye.service.IDictInfoService;
 import cn.rzhd.wuye.service.IHouseInfoDetailsService;
 import cn.rzhd.wuye.service.IProjectInfoService;
@@ -54,6 +59,24 @@ public class SysController {
     
     @Autowired
     private IProjectInfoService projectInfoService;
+    
+    @Autowired
+    private IAmmeterService ammeterService;
+    
+    
+    /**
+     * @Description 跳转水电页面，回显项目下拉
+     * @param model
+     * @return
+     */
+    @RequestMapping(value="ammelist",method = RequestMethod.GET)
+    public String ammelist(Model model){
+       // List<ProjectInfo> projectList = projectInfoService.selectPKAndName();
+        //model.addAttribute("projectList", projectList);
+        return "system/ammeter/ammelist";
+    }
+    
+    
     
     /**
      * @Description 系统设置数据回显
@@ -102,6 +125,91 @@ public class SysController {
         }
         model.addAttribute("projectInfo", projectInfo);
         return "system/waterele/projectrestedit";
+    }
+    
+    /**
+     * @Description 查找所有项目名称和id
+     * @return
+     */
+    @RequestMapping(value = "findallproject", method = RequestMethod.GET)
+    public ResponseEntity<List<ProjectInfo>> findAllProject() {
+            try {
+                
+                List<ProjectInfo> result = projectInfoService.selectPKAndName();
+                return ResponseEntity.ok(result);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            // 出错 500
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+      }
+    /**
+     * @Description 根据项目主键查找所有房产
+     * @return
+     */
+    @RequestMapping(value = "findallhouse", method = RequestMethod.GET)
+    public ResponseEntity<List<HouseInfoDetails>> findallhouse(String pkProject) {
+            try {
+                
+               List<HouseInfoDetails> result = houseInfoDetailsService.selectByPkProject(pkProject);
+                return ResponseEntity.ok(result);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            // 出错 500
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    
+    /**
+     * @Description 新增电表
+     * @param ammeter
+     * @return
+     */
+    @RequestMapping(value = "ammeadd", method = RequestMethod.POST)
+    public ResponseEntity<Void> save(Ammeter ammeter) {
+        try {
+            //400
+            if(ammeter ==null || StrUtil.isBlank(ammeter.getPk_house()) || StrUtil.isBlank(ammeter.getPk_project())){
+                // 响应201
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+            }
+            // 新增
+            this.ammeterService.add(ammeter);
+
+            // 响应201
+            return ResponseEntity.status(HttpStatus.CREATED).build();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+    }
+    @RequestMapping(value="ammeter/del/{id}",method = RequestMethod.POST)
+    public ResponseEntity<Void> del(@PathVariable("id") String id) {
+        try {
+            this.ammeterService.del(id);
+            // 成功 204
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        // 出错 500
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    }
+    /**
+     * @Description 电表编辑页面回显
+     * @param id
+     * @param model
+     * @return
+     */
+    @RequestMapping(value="ammeedit",method = RequestMethod.GET)
+    public String ammeedit(String id,Model model){
+        Ammeter ammeter = new Ammeter();
+        if(StrUtil.isNotBlank(id)){
+            //TODO
+            //ammeter = sysServer.selectAmmeById(id);
+        }
+        model.addAttribute("ammeter", ammeter);
+        return "system/ammeter/ammeredit";
     }
     
     /**
@@ -305,4 +413,54 @@ public class SysController {
         // 出错 500
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
     }
+    
+    /**
+     * @Description 分页查询电表
+     * @param page
+     * @param rows
+     * @param projectName
+     * @param ammeter_no
+     * @return
+     */
+    @RequestMapping(value = "queryAmmeByPage", method = RequestMethod.GET)
+    @ResponseBody
+    public ResponseEntity<PageDataGridResult> queryAmmeByPage(@RequestParam(value = "page", defaultValue = "1") Integer page,
+            @RequestParam(value = "rows", defaultValue = "10") Integer rows,String projectName,String ammeterNo) {
+        try {
+            
+            /**
+             * 构建查询条件
+             */
+            AmmeQueryVo queryVo = new AmmeQueryVo();
+            queryVo.setAmmeterNo(ammeterNo);
+            queryVo.setProjectName(projectName);
+            
+            // 查询列表的总数
+            int total = sysServer.findAmmeCount(queryVo);
+            
+            /**
+             * 构建查询条件
+             */
+            PageQuery pageQuery = new PageQuery();
+            pageQuery.setPageParams(total, rows, page);
+            queryVo.setPageQuery(pageQuery );
+            queryVo.setPageQuery(pageQuery);
+            
+            // 分页查询，向queryVo中传入pageQuery
+            List<Ammeter> list = sysServer.findAmmeListPage(queryVo);
+            
+            PageDataGridResult pageResult = new PageDataGridResult();
+            // 填充 total
+            pageResult.setTotal(total);
+            // 填充 rows
+            pageResult.setRows(list);
+            
+            return ResponseEntity.ok(pageResult);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        // 出错 500
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+    }
+    
 }

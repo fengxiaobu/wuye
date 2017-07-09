@@ -281,4 +281,7 @@
 			UPDATEDATE = #{updatedate}
 			WHERE  "pk_house" = #{pkHouse}
     </update>
+    <select id="selectByPkProject" parameterType="string" resultMap="Result">
+    	SELECT "pk_house","vhcode" FROM T_HOUSE_INFO_DETAILS where "pk_project"=#{pkProject}
+    </select>
 </mapper>

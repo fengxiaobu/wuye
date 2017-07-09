@@ -53,4 +53,12 @@ public interface IHouseInfoDetailsService {
      * @return
      */
     HouseInfoDetails selectHouseInfoDetailsById(String pkHouse);
+
+    /**
+     * 
+     * @Description 根据项目主键查找所有房产信息
+     * @param pkProject
+     * @return
+     */
+    List<HouseInfoDetails> selectByPkProject(String pkProject);
 }

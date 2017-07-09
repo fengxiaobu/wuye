@@ -40,4 +40,6 @@ public interface HouseInfoDetailsMapper {
 
     HouseInfoDetails selectHouseInfoDetailsById(String pkHouse);
 
+    List<HouseInfoDetails> selectByPkProject(String pkProject);
+
 }

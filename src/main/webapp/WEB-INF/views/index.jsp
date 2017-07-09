@@ -288,7 +288,7 @@
 
                                 <li class="panel" role="tab">
                                     <div class="panel-header">
-                                        <a target="main" href="${basePath}/page/system/ammeter/ammelist">电表</a>
+                                        <a target="main" href="${basePath}/admin/sys/ammelist">电表设置</a>
                                     </div>
                                 </li>
                             </ul>

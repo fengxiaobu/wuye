@@ -2,9 +2,11 @@ package cn.rzhd.wuye.service;
 
 import java.util.List;
 
+import cn.rzhd.wuye.bean.Ammeter;
 import cn.rzhd.wuye.bean.HouseInfoDetails;
 import cn.rzhd.wuye.bean.ProjectInfo;
 import cn.rzhd.wuye.bean.TSys;
+import cn.rzhd.wuye.bean.vo.AmmeQueryVo;
 import cn.rzhd.wuye.bean.vo.HouseInfoDetailsQueryVo;
 import cn.rzhd.wuye.bean.vo.ProjectInfoQueryVo;
 import cn.rzhd.wuye.utils.PageDataGridResult;
@@ -57,6 +59,17 @@ public interface ISysServer {
      * @return
      */
     List<ProjectInfo> findProjectListPage(ProjectInfoQueryVo queryVo);
+
+    int findAmmeCount(AmmeQueryVo queryVo);
+
+    /**
+     * 
+     * @Description 分页查询电表
+     * @param queryVo
+     * @return
+     */
+    List<Ammeter> findAmmeListPage(AmmeQueryVo queryVo);
+
 
 
 }

@@ -34,4 +34,21 @@
             a."multiply"
         FROM "T_Ammeter" a JOIN T_HOUSE_INFO_DETAILS p ON p."pk_house"=a."pk_house"
     </select>
+    <insert id="insert" parameterType="cn.rzhd.wuye.bean.Ammeter">
+        INSERT INTO "T_Ammeter" (
+			"id",
+			"pk_project",
+			"pk_house",
+			"ammeter_no",
+			"ammeter_name",
+			"multiply",
+			"update_time"
+		)
+		VALUES (#{id,jdbcType=NUMERIC}, #{pk_project,jdbcType=CHAR}, #{pk_house,jdbcType=CHAR},
+        #{ammeter_no,jdbcType=VARCHAR}, #{ammeter_name,jdbcType=VARCHAR},#{multiply,jdbcType=NUMERIC}, #{updateTime,jdbcType=TIMESTAMP}
+        )
+    </insert>
+    <delete id="del" parameterType="string">
+    	DELETE FROM "T_Ammeter" WHERE "id"=#{id}
+    </delete>
 </mapper>
