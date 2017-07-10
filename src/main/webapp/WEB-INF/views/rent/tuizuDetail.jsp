@@ -74,7 +74,7 @@
                         <label class="col-sm-2 control-label">退租类型:</label>
                         <div class="col-sm-10">
                             <label class="col-sm-2 control-label">
-                                <label class="col-sm-2 control-label">${retreatLeaseApply.retreatLeaseType}</label>
+                               ${retreatLeaseApply.retreatLeaseType}
                             </label>
                         </div>
                     </div>

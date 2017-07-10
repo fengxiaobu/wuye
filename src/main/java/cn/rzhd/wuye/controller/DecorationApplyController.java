@@ -110,7 +110,7 @@ public class DecorationApplyController {
                     DecorateDetail decorateDetail = new DecorateDetail();
                     decorateDetail.setDecorationApplyId(aLong);
                     decorateDetail.setDecorateDetailId(Long.valueOf(RandomUtil.randomNumbers(16)));
-                    decorateDetail.setDetailOrder(i + 1L);
+                    decorateDetail.setDetailOrder(decorationApply.getDecorateDetailList().get(i).getDetailOrder());
                     decorateDetail.setDetailContent(decorationApply.getDecorateDetailList().get(i).getDetailContent());
                     //装修明细
                     decorateDetailService.insert(decorateDetail);
